@@ -1,0 +1,20 @@
+﻿@charset "UTF-8";
+/* Гамбургер */
+emoji-hamburger::before {
+  content: "🍔";
+}
+
+/* Волшебник */
+emoji-mage::before {
+  content: "🧙";
+}
+
+/* Мусорная корзина */
+emoji-wastebasket::before {
+  content: "🗑️";
+}
+
+@font-face {
+  font-family: "emoji";
+  src: url("emojione-svg.woff2") format("woff2");
+}
