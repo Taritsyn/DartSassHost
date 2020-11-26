@@ -56,17 +56,17 @@ namespace SassHost
 		/// <summary>
 		/// Compilation options
 		/// </summary>
-		private readonly CompilationOptions _options;
-
-		/// <summary>
-		/// Compilation options in JSON format
-		/// </summary>
-		private readonly string _serializedOptions;
+		private CompilationOptions _options;
 
 		/// <summary>
 		/// File manager
 		/// </summary>
-		private readonly IFileManager _fileManager;
+		private IFileManager _fileManager;
+
+		/// <summary>
+		/// Delegate that creates an instance of JS engine
+		/// </summary>
+		private Func<IJsEngine> _createJsEngineInstance;
 
 		/// <summary>
 		/// JS engine
@@ -89,13 +89,15 @@ namespace SassHost
 		private InterlockedStatedFlag _disposedFlag = new InterlockedStatedFlag();
 
 		/// <summary>
-		/// Version of the LibSass library
+		/// Version of the Dart Sass library
 		/// </summary>
-		private string _version;
+		private string _version = "0.0.0";
 
 		/// <summary>
-		/// Gets a version of the LibSass library
+		/// Gets a version of the Dart Sass library
 		/// </summary>
+		/// <exception cref="SassCompilerLoadException" />
+		/// <exception cref="SassException" />
 		public string Version
 		{
 			get
@@ -183,22 +185,9 @@ namespace SassHost
 				throw new ArgumentNullException(nameof(fileManager));
 			}
 
+			_createJsEngineInstance = createJsEngineInstance;
 			_fileManager = fileManager;
 			_options = options ?? _defaultOptions;
-			_serializedOptions = SerializeCompilationOptions(_options);
-
-			try
-			{
-				_jsEngine = createJsEngineInstance();
-			}
-			catch (JsEngineLoadException e)
-			{
-				throw SassErrorHelpers.WrapCompilerLoadException(e);
-			}
-			catch (Exception e)
-			{
-				throw SassErrorHelpers.WrapCompilerLoadException(e, true);
-			}
 		}
 
 		/// <summary>
@@ -245,22 +234,9 @@ namespace SassHost
 				throw new ArgumentNullException(nameof(fileManager));
 			}
 
+			_createJsEngineInstance = jsEngineFactory.CreateEngine;
 			_fileManager = fileManager;
 			_options = options ?? _defaultOptions;
-			_serializedOptions = SerializeCompilationOptions(_options);
-
-			try
-			{
-				_jsEngine = jsEngineFactory.CreateEngine();
-			}
-			catch (JsEngineLoadException e)
-			{
-				throw SassErrorHelpers.WrapCompilerLoadException(e);
-			}
-			catch (Exception e)
-			{
-				throw SassErrorHelpers.WrapCompilerLoadException(e, true);
-			}
 		}
 
 
@@ -281,8 +257,11 @@ namespace SassHost
 					return;
 				}
 
+				string serializedOptions = SerializeCompilationOptions(_options);
+
 				try
 				{
+					_jsEngine = _createJsEngineInstance();
 					_jsEngine.EmbedHostObject(FILE_MANAGER_VARIABLE_NAME, _fileManager);
 					_jsEngine.SetVariableValue(CURRENT_OS_PLATFORM_NAME, GetCurrentOSPlatformName());
 
@@ -297,14 +276,16 @@ namespace SassHost
 						assembly);
 					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_HELPER_FILE_NAME),
 						assembly);
-					_jsEngine.Execute($"var sassHelper = new SassHelper({_serializedOptions});");
+					_jsEngine.Execute($"var sassHelper = new SassHelper({serializedOptions});");
 
 					_version = _jsEngine.Evaluate<string>("SassHelper.getVersion();");
 				}
+				catch (JsEngineLoadException e)
+				{
+					throw SassErrorHelpers.WrapCompilerLoadException(e);
+				}
 				catch (JsException e)
 				{
-					_version = "0.0.0";
-
 					throw SassErrorHelpers.WrapCompilerLoadException(e, true);
 				}
 
@@ -339,42 +320,16 @@ namespace SassHost
 		/// "Compiles" a Sass code to CSS code
 		/// </summary>
 		/// <param name="content">Text content written on Sass</param>
-		/// <returns>Compilation result</returns>
-		/// <exception cref="ArgumentException"/>
-		/// <exception cref="ArgumentNullException" />
-		/// <exception cref="SassCompilationException">Sass compilation error.</exception>
-		public CompilationResult Compile(string content)
-		{
-			if (content == null)
-			{
-				throw new ArgumentNullException(
-					nameof(content),
-					string.Format(Strings.Common_ArgumentIsNull, nameof(content))
-				);
-			}
-
-			if (string.IsNullOrWhiteSpace(content))
-			{
-				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, nameof(content)),
-					nameof(content)
-				);
-			}
-
-			return InnerCompile(content, false, null, null, null);
-		}
-
-		/// <summary>
-		/// "Compiles" a Sass code to CSS code
-		/// </summary>
-		/// <param name="content">Text content written on Sass</param>
 		/// <param name="indentedSyntax">Flag for whether to enable Sass Indented Syntax
 		/// for parsing the data string</param>
+		/// <param name="options">Compilation options</param>
 		/// <returns>Compilation result</returns>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="ArgumentNullException" />
-		/// <exception cref="SassCompilationException">Sass compilation error.</exception>
-		public CompilationResult Compile(string content, bool indentedSyntax)
+		/// <exception cref="SassCompilerLoadException" />
+		/// <exception cref="SassCompilationException" />
+		/// <exception cref="SassException" />
+		public CompilationResult Compile(string content, bool indentedSyntax, CompilationOptions options = null)
 		{
 			if (content == null)
 			{
@@ -392,7 +347,7 @@ namespace SassHost
 				);
 			}
 
-			return InnerCompile(content, indentedSyntax, null, null, null);
+			return InnerCompile(content, indentedSyntax, null, null, null, options);
 		}
 
 		/// <summary>
@@ -402,12 +357,15 @@ namespace SassHost
 		/// <param name="inputPath">Path to input file</param>
 		/// <param name="outputPath">Path to output file</param>
 		/// <param name="sourceMapPath">Path to source map file</param>
+		/// <param name="options">Compilation options</param>
 		/// <returns>Compilation result</returns>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="ArgumentNullException" />
-		/// <exception cref="SassCompilationException">Sass compilation error.</exception>
+		/// <exception cref="SassCompilerLoadException" />
+		/// <exception cref="SassCompilationException" />
+		/// <exception cref="SassException" />
 		public CompilationResult Compile(string content, string inputPath, string outputPath = null,
-			string sourceMapPath = null)
+			string sourceMapPath = null, CompilationOptions options = null)
 		{
 			if (content == null)
 			{
@@ -443,11 +401,11 @@ namespace SassHost
 
 			bool indentedSyntax = GetIndentedSyntax(inputPath);
 
-			return InnerCompile(content, indentedSyntax, inputPath, outputPath, sourceMapPath);
+			return InnerCompile(content, indentedSyntax, inputPath, outputPath, sourceMapPath, options);
 		}
 
 		private CompilationResult InnerCompile(string content, bool indentedSyntax, string inputPath,
-			string outputPath, string sourceMapPath)
+			string outputPath, string sourceMapPath, CompilationOptions options)
 		{
 			Initialize();
 
@@ -469,13 +427,14 @@ namespace SassHost
 			string serializedInputPath = JsonConvert.SerializeObject(inputPath);
 			string serializedOutputPath = JsonConvert.SerializeObject(outputPath);
 			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapPath);
+			string serializedOptions = options != null ? SerializeCompilationOptions(options) : "null";
 
 			try
 			{
 				serializedResult = _jsEngine.Evaluate<string>("sassHelper.compile(" +
 					serializedContent + ", " + serializedIndentedSyntax + ", " +
 					serializedInputPath + ", " + serializedOutputPath + ", " +
-					serializedSourceMapPath +
+					serializedSourceMapPath + ", " + serializedOptions +
 					");");
 
 			}
@@ -508,12 +467,15 @@ namespace SassHost
 		/// <param name="inputPath">Path to input file</param>
 		/// <param name="outputPath">Path to output file</param>
 		/// <param name="sourceMapPath">Path to source map file</param>
+		/// <param name="options">Compilation options</param>
 		/// <returns>Compilation result</returns>
 		/// <exception cref="ArgumentException"/>
 		/// <exception cref="ArgumentNullException" />
-		/// <exception cref="SassCompilationException">Sass compilation error.</exception>
+		/// <exception cref="SassCompilerLoadException" />
+		/// <exception cref="SassCompilationException" />
+		/// <exception cref="SassException" />
 		public CompilationResult CompileFile(string inputPath, string outputPath = null,
-			string sourceMapPath = null)
+			string sourceMapPath = null, CompilationOptions options = null)
 		{
 			if (inputPath == null)
 			{
@@ -530,6 +492,8 @@ namespace SassHost
 					nameof(inputPath)
 				);
 			}
+
+			Initialize();
 
 			string inputFilePath = !string.IsNullOrWhiteSpace(inputPath) ? inputPath : string.Empty;
 			string outputFilePath = !string.IsNullOrWhiteSpace(outputPath) ? outputPath : string.Empty;
@@ -560,18 +524,17 @@ namespace SassHost
 				};
 			}
 
-			Initialize();
-
 			string serializedResult = string.Empty;
 			string serializedInputPath = JsonConvert.SerializeObject(inputPath);
 			string serializedOutputPath = JsonConvert.SerializeObject(outputPath);
 			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapPath);
+			string serializedOptions = options != null ? SerializeCompilationOptions(options) : "null";
 
 			try
 			{
 				serializedResult = _jsEngine.Evaluate<string>("sassHelper.compileFile(" +
 					serializedInputPath + ", " + serializedOutputPath + ", " +
-					serializedSourceMapPath +
+					serializedSourceMapPath + ", " + serializedOptions +
 					");");
 
 			}
@@ -732,6 +695,10 @@ namespace SassHost
 					_jsEngine.Dispose();
 					_jsEngine = null;
 				}
+
+				_options = null;
+				_fileManager = null;
+				_createJsEngineInstance = null;
 			}
 		}
 	}

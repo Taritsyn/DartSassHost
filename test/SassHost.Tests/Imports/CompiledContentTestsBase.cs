@@ -44,24 +44,20 @@ namespace SassHost.Tests.Imports
 
 			// Act
 			SassCompilationException exception1 = null;
-
-			try
-			{
-				using (var withoutIncludedPathCompiler = new SassCompiler(withoutIncludedPathOptions))
-				{
-					withoutIncludedPathCompiler.Compile(input, inputPath);
-				}
-			}
-			catch (SassCompilationException e)
-			{
-				exception1 = e;
-			}
-
 			string output2;
 
-			using (var withIncludedPathCompiler = new SassCompiler(withIncludedPathOptions))
+			using (var compiler = new SassCompiler())
 			{
-				output2 = withIncludedPathCompiler.Compile(input, inputPath).CompiledContent;
+				try
+				{
+					compiler.Compile(input, inputPath, options: withoutIncludedPathOptions);
+				}
+				catch (SassCompilationException e)
+				{
+					exception1 = e;
+				}
+
+				output2 = compiler.Compile(input, inputPath, options: withIncludedPathOptions).CompiledContent;
 			}
 
 			// Assert
@@ -106,19 +102,11 @@ namespace SassHost.Tests.Imports
 			string output2;
 			string output3;
 
-			using (var twoSpaceIndentCompiler = new SassCompiler(twoSpaceIndentOptions))
+			using (var compiler = new SassCompiler())
 			{
-				output1 = twoSpaceIndentCompiler.Compile(input, inputPath).CompiledContent;
-			}
-
-			using (var fourSpaceIndentCompiler = new SassCompiler(fourSpaceIndentOptions))
-			{
-				output2 = fourSpaceIndentCompiler.Compile(input, inputPath).CompiledContent;
-			}
-
-			using (var oneTabIndentCompiler = new SassCompiler(oneTabIndentOptions))
-			{
-				output3 = oneTabIndentCompiler.Compile(input, inputPath).CompiledContent;
+				output1 = compiler.Compile(input, inputPath, options: twoSpaceIndentOptions).CompiledContent;
+				output2 = compiler.Compile(input, inputPath, options: fourSpaceIndentOptions).CompiledContent;
+				output3 = compiler.Compile(input, inputPath, options: oneTabIndentOptions).CompiledContent;
 			}
 
 			// Assert
@@ -151,24 +139,12 @@ namespace SassHost.Tests.Imports
 			string output3;
 			string output4;
 
-			using (var crLineBreakCompiler = new SassCompiler(crLineBreakOptions))
+			using (var compiler = new SassCompiler())
 			{
-				output1 = crLineBreakCompiler.Compile(input, inputPath).CompiledContent;
-			}
-
-			using (var crLfLineBreakCompiler = new SassCompiler(crLfLineBreakOptions))
-			{
-				output2 = crLfLineBreakCompiler.Compile(input, inputPath).CompiledContent;
-			}
-
-			using (var lfLineBreakCompiler = new SassCompiler(lfLineBreakOptions))
-			{
-				output3 = lfLineBreakCompiler.Compile(input, inputPath).CompiledContent;
-			}
-
-			using (var lfCrLineBreakCompiler = new SassCompiler(lfCrLineBreakOptions))
-			{
-				output4 = lfCrLineBreakCompiler.Compile(input, inputPath).CompiledContent;
+				output1 = compiler.Compile(input, inputPath, options: crLineBreakOptions).CompiledContent;
+				output2 = compiler.Compile(input, inputPath, options: crLfLineBreakOptions).CompiledContent;
+				output3 = compiler.Compile(input, inputPath, options: lfLineBreakOptions).CompiledContent;
+				output4 = compiler.Compile(input, inputPath, options: lfCrLineBreakOptions).CompiledContent;
 			}
 
 			// Assert
@@ -198,14 +174,10 @@ namespace SassHost.Tests.Imports
 			string output1;
 			string output2;
 
-			using (var expandedOutputStyleCompiler = new SassCompiler(expandedOutputStyleOptions))
+			using (var compiler = new SassCompiler())
 			{
-				output1 = expandedOutputStyleCompiler.Compile(input, inputPath).CompiledContent;
-			}
-
-			using (var compressedOutputStyleCompiler = new SassCompiler(compressedOutputStyleOptions))
-			{
-				output2 = compressedOutputStyleCompiler.Compile(input, inputPath).CompiledContent;
+				output1 = compiler.Compile(input, inputPath, options: expandedOutputStyleOptions).CompiledContent;
+				output2 = compiler.Compile(input, inputPath, options: compressedOutputStyleOptions).CompiledContent;
 			}
 
 			// Assert
@@ -281,24 +253,20 @@ namespace SassHost.Tests.Imports
 
 			// Act
 			SassCompilationException exception1 = null;
-
-			try
-			{
-				using (var withoutIncludedPathCompiler = new SassCompiler(withoutIncludedPathOptions))
-				{
-					withoutIncludedPathCompiler.CompileFile(inputPath);
-				}
-			}
-			catch (SassCompilationException e)
-			{
-				exception1 = e;
-			}
-
 			string output2;
 
-			using (var withIncludedPathCompiler = new SassCompiler(withIncludedPathOptions))
+			using (var compiler = new SassCompiler())
 			{
-				output2 = withIncludedPathCompiler.CompileFile(inputPath).CompiledContent;
+				try
+				{
+					compiler.CompileFile(inputPath, options: withoutIncludedPathOptions);
+				}
+				catch (SassCompilationException e)
+				{
+					exception1 = e;
+				}
+
+				output2 = compiler.CompileFile(inputPath, options: withIncludedPathOptions).CompiledContent;
 			}
 
 			// Assert
@@ -342,19 +310,11 @@ namespace SassHost.Tests.Imports
 			string output2;
 			string output3;
 
-			using (var twoSpaceIndentCompiler = new SassCompiler(twoSpaceIndentOptions))
+			using (var compiler = new SassCompiler())
 			{
-				output1 = twoSpaceIndentCompiler.CompileFile(inputPath).CompiledContent;
-			}
-
-			using (var fourSpaceIndentCompiler = new SassCompiler(fourSpaceIndentOptions))
-			{
-				output2 = fourSpaceIndentCompiler.CompileFile(inputPath).CompiledContent;
-			}
-
-			using (var oneTabIndentCompiler = new SassCompiler(oneTabIndentOptions))
-			{
-				output3 = oneTabIndentCompiler.CompileFile(inputPath).CompiledContent;
+				output1 = compiler.CompileFile(inputPath, options: twoSpaceIndentOptions).CompiledContent;
+				output2 = compiler.CompileFile(inputPath, options: fourSpaceIndentOptions).CompiledContent;
+				output3 = compiler.CompileFile(inputPath, options: oneTabIndentOptions).CompiledContent;
 			}
 
 			// Assert
@@ -386,24 +346,12 @@ namespace SassHost.Tests.Imports
 			string output3;
 			string output4;
 
-			using (var crLineBreakCompiler = new SassCompiler(crLineBreakOptions))
+			using (var compiler = new SassCompiler())
 			{
-				output1 = crLineBreakCompiler.CompileFile(inputPath).CompiledContent;
-			}
-
-			using (var crLfLineBreakCompiler = new SassCompiler(crLfLineBreakOptions))
-			{
-				output2 = crLfLineBreakCompiler.CompileFile(inputPath).CompiledContent;
-			}
-
-			using (var lfLineBreakCompiler = new SassCompiler(lfLineBreakOptions))
-			{
-				output3 = lfLineBreakCompiler.CompileFile(inputPath).CompiledContent;
-			}
-
-			using (var lfCrLineBreakCompiler = new SassCompiler(lfCrLineBreakOptions))
-			{
-				output4 = lfCrLineBreakCompiler.CompileFile(inputPath).CompiledContent;
+				output1 = compiler.CompileFile(inputPath, options: crLineBreakOptions).CompiledContent;
+				output2 = compiler.CompileFile(inputPath, options: crLfLineBreakOptions).CompiledContent;
+				output3 = compiler.CompileFile(inputPath, options: lfLineBreakOptions).CompiledContent;
+				output4 = compiler.CompileFile(inputPath, options: lfCrLineBreakOptions).CompiledContent;
 			}
 
 			// Assert
@@ -432,14 +380,10 @@ namespace SassHost.Tests.Imports
 			string output1;
 			string output2;
 
-			using (var expandedOutputStyleCompiler = new SassCompiler(expandedOutputStyleOptions))
+			using (var compiler = new SassCompiler())
 			{
-				output1 = expandedOutputStyleCompiler.CompileFile(inputPath).CompiledContent;
-			}
-
-			using (var compressedOutputStyleCompiler = new SassCompiler(compressedOutputStyleOptions))
-			{
-				output2 = compressedOutputStyleCompiler.CompileFile(inputPath).CompiledContent;
+				output1 = compiler.CompileFile(inputPath, options: expandedOutputStyleOptions).CompiledContent;
+				output2 = compiler.CompileFile(inputPath, options: compressedOutputStyleOptions).CompiledContent;
 			}
 
 			// Assert

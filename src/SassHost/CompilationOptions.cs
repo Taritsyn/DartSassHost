@@ -11,7 +11,7 @@ namespace SassHost
 		/// Gets or sets a list of paths that library can look in to attempt to resolve <code>@import</code> declarations.
 		/// </summary>
 		/// <remarks>
-		/// <para>When using <see cref="SassCompiler.Compile(string)"/> method, it is recommended that use this property.</para>
+		/// <para>When using <see cref="SassCompiler.Compile(string, bool, CompilationOptions)"/> method, it is recommended that use this property.</para>
 		/// </remarks>
 		public IList<string> IncludePaths
 		{

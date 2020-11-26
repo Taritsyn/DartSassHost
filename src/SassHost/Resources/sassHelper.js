@@ -2,10 +2,7 @@
 var SassHelper = (function (sass, fileManager, undefined) {
 	'use strict';
 
-	var exports = {},
-		versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/,
-		defaultOptions = {}
-		;
+	var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/;
 
 	function mix(destination, source) {
 		var propertyName;
@@ -19,25 +16,6 @@ var SassHelper = (function (sass, fileManager, undefined) {
 		}
 
 		return destination;
-	}
-
-	function formatString() {
-		var pattern = arguments[0],
-			result = pattern,
-			regex,
-			argument,
-			argumentIndex,
-			argumentCount = arguments.length
-			;
-
-		for (argumentIndex = 0; argumentIndex < argumentCount - 1; argumentIndex++) {
-			regex = new RegExp('\\{' + argumentIndex + '\\}', 'gm');
-			argument = arguments[argumentIndex + 1];
-
-			result = result.replace(regex, argument);
-		}
-
-		return result;
 	}
 
 	//#region SassHelper class
@@ -105,7 +83,7 @@ var SassHelper = (function (sass, fileManager, undefined) {
 		return JSON.stringify(result);
 	}
 
-	SassHelper.prototype.compile = function (content, indentedSyntax, inputPath, outputPath, sourceMapPath) {
+	SassHelper.prototype.compile = function (content, indentedSyntax, inputPath, outputPath, sourceMapPath, options) {
 		var compilationOptions,
 			optionsFromParameters
 			;
@@ -119,12 +97,12 @@ var SassHelper = (function (sass, fileManager, undefined) {
 		if (this._options.sourceMap) {
 			optionsFromParameters.sourceMap = sourceMapPath ? sourceMapPath : true;
 		}
-		compilationOptions = mix(mix(optionsFromParameters, defaultOptions), this._options);
+		compilationOptions = mix(optionsFromParameters, options ? options : this._options);
 
 		return innerCompile(compilationOptions);
 	};
 
-	SassHelper.prototype.compileFile = function (inputPath, outputPath, sourceMapPath) {
+	SassHelper.prototype.compileFile = function (inputPath, outputPath, sourceMapPath, options) {
 		var compilationOptions,
 			optionsFromParameters
 			;
@@ -136,7 +114,7 @@ var SassHelper = (function (sass, fileManager, undefined) {
 		if (this._options.sourceMap) {
 			optionsFromParameters.sourceMap = sourceMapPath ? sourceMapPath : true;
 		}
-		compilationOptions = mix(mix(optionsFromParameters, defaultOptions), this._options);
+		compilationOptions = mix(optionsFromParameters, options ? options : this._options);
 
 		return innerCompile(compilationOptions);
 	};
