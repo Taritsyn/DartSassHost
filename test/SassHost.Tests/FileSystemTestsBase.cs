@@ -86,6 +86,24 @@ namespace SassHost.Tests
 			return fullFilePath;
 		}
 
+		public string GenerateSourceMapFilePath(string folderName, string fileName)
+		{
+			string fullFilePath = PathHelpers.ProcessBackSlashes(
+				Path.Combine("Files", BaseDirectoryPath, folderName, _subfolderName, fileName + ".css.map")
+			);
+
+			return fullFilePath;
+		}
+
+		public string GenerateCssFileWithInlineSourceMapFilePath(string folderName, string fileName)
+		{
+			string fullFilePath = PathHelpers.ProcessBackSlashes(
+				Path.Combine("Files", BaseDirectoryPath, folderName, _subfolderName, fileName + ".css")
+			);
+
+			return fullFilePath;
+		}
+
 		public string GetFileContent(string filePath)
 		{
 			string content = File.ReadAllText(filePath);

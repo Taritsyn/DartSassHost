@@ -4,18 +4,52 @@ var SassHelper = (function (sass, fileManager, undefined) {
 
 	var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/;
 
-	function mix(destination, source) {
-		var propertyName;
+	function mix() {
+		var arg,
+			argIndex,
+			propertyName,
+			result = {}
+			;
 
-		destination = destination || {};
+		for (argIndex = 0; argIndex < arguments.length; argIndex++) {
+			arg = arguments[argIndex];
 
-		for (propertyName in source) {
-			if (source.hasOwnProperty(propertyName)) {
-				destination[propertyName] = source[propertyName];
+			for (propertyName in arg) {
+				if (arg.hasOwnProperty(propertyName)) {
+					result[propertyName] = arg[propertyName];
+				}
 			}
 		}
 
-		return destination;
+		return result;
+	}
+
+	function fixIncludedFilePaths(paths) {
+		var fixedPaths,
+			currentDirectory,
+			path,
+			pathIndex
+			;
+
+		if (paths.length == 0) {
+			return paths;
+		}
+
+		currentDirectory = getCanonicalFilePath(fileManager.GetCurrentDirectory());
+		fixedPaths = [];
+
+		for (pathIndex = 0; pathIndex < paths.length; pathIndex++) {
+			path = paths[pathIndex];
+			if (getCanonicalFilePath(path) !== currentDirectory) {
+				fixedPaths.push(path);
+			}
+		}
+
+		return fixedPaths;
+	}
+
+	function getCanonicalFilePath(path) {
+		return path.replace(/\\/g, '/');
 	}
 
 	//#region SassHelper class
@@ -50,7 +84,7 @@ var SassHelper = (function (sass, fileManager, undefined) {
 			compilationResult = sass.renderSync(compilationOptions);
 			compiledContent = compilationResult.css || '';
 			sourceMap = compilationResult.map ? compilationResult.map.toString() : '';
-			includedFilePaths = compilationResult.stats.includedFiles;
+			includedFilePaths = fixIncludedFilePaths(compilationResult.stats.includedFiles);
 		}
 		catch (e)
 		{
@@ -84,37 +118,41 @@ var SassHelper = (function (sass, fileManager, undefined) {
 	}
 
 	SassHelper.prototype.compile = function (content, indentedSyntax, inputPath, outputPath, sourceMapPath, options) {
-		var compilationOptions,
+		var currentOptions,
+			compilationOptions,
 			optionsFromParameters
 			;
 
+		currentOptions = options || this._options;
 		optionsFromParameters = {
 			data: content,
 			indentedSyntax: indentedSyntax,
 			file: inputPath,
 			outFile: outputPath
 		};
-		if (this._options.sourceMap) {
+		if (currentOptions.sourceMap) {
 			optionsFromParameters.sourceMap = sourceMapPath ? sourceMapPath : true;
 		}
-		compilationOptions = mix(optionsFromParameters, options ? options : this._options);
+		compilationOptions = mix(currentOptions, optionsFromParameters);
 
 		return innerCompile(compilationOptions);
 	};
 
 	SassHelper.prototype.compileFile = function (inputPath, outputPath, sourceMapPath, options) {
-		var compilationOptions,
+		var currentOptions,
+			compilationOptions,
 			optionsFromParameters
 			;
 
+		currentOptions = options || this._options;
 		optionsFromParameters = {
 			file: inputPath,
 			outFile: outputPath
 		};
-		if (this._options.sourceMap) {
+		if (currentOptions.sourceMap) {
 			optionsFromParameters.sourceMap = sourceMapPath ? sourceMapPath : true;
 		}
-		compilationOptions = mix(optionsFromParameters, options ? options : this._options);
+		compilationOptions = mix(currentOptions, optionsFromParameters);
 
 		return innerCompile(compilationOptions);
 	};

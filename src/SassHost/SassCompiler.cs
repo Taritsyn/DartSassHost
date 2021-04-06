@@ -424,9 +424,9 @@ namespace SassHost
 			string serializedResult = string.Empty;
 			string serializedContent = JsonConvert.SerializeObject(content);
 			string serializedIndentedSyntax = JsonConvert.SerializeObject(indentedSyntax);
-			string serializedInputPath = JsonConvert.SerializeObject(inputPath);
-			string serializedOutputPath = JsonConvert.SerializeObject(outputPath);
-			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapPath);
+			string serializedInputPath = JsonConvert.SerializeObject(inputFilePath);
+			string serializedOutputPath = JsonConvert.SerializeObject(outputFilePath);
+			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapFilePath);
 			string serializedOptions = options != null ? SerializeCompilationOptions(options) : "null";
 
 			try
@@ -525,9 +525,9 @@ namespace SassHost
 			}
 
 			string serializedResult = string.Empty;
-			string serializedInputPath = JsonConvert.SerializeObject(inputPath);
-			string serializedOutputPath = JsonConvert.SerializeObject(outputPath);
-			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapPath);
+			string serializedInputPath = JsonConvert.SerializeObject(inputFilePath);
+			string serializedOutputPath = JsonConvert.SerializeObject(outputFilePath);
+			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapFilePath);
 			string serializedOptions = options != null ? SerializeCompilationOptions(options) : "null";
 
 			try

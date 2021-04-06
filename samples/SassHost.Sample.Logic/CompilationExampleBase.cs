@@ -35,7 +35,7 @@ namespace SassHost.Sample.Logic
 
 			const string inputContent = @"$font-stack: Helvetica, sans-serif;
 $primary-color: #333;
-@import 'none';
+
 body {
   font: 100% $font-stack;
   color: $primary-color;
