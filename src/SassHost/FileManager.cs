@@ -43,23 +43,9 @@ namespace SassHost
 		/// </summary>
 		private FileManager()
 		{
-			_currentDirectoryName = GetDefaultDirectory();
+			_currentDirectoryName = Directory.GetCurrentDirectory();
 		}
 
-
-		/// <summary>
-		/// Gets a default working directory of the application
-		/// </summary>
-		/// <returns>The string containing the path of the default working directory</returns>
-		private static string GetDefaultDirectory()
-		{
-			string defaultDirectoryName = Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar;
-
-			// Convert back slashes to forward slashes
-			defaultDirectoryName = PathHelpers.ProcessBackSlashes(defaultDirectoryName);
-
-			return defaultDirectoryName;
-		}
 
 		/// <summary>
 		/// Determines whether the beginning of specified path matches the drive letter

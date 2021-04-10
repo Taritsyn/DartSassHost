@@ -2,7 +2,7 @@
 
 namespace SassHost.Tests
 {
-	public abstract class ErrorTestsBase : FileSystemTestsBase
+	public abstract class ErrorTestsBase : PhysicalFileSystemTestsBase
 	{
 		public override string BaseDirectoryPath => "errors";
 
@@ -24,7 +24,7 @@ namespace SassHost.Tests
 		public void MappingFileNotFoundErrorDuringCompilationOfFile()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("non-existing-files", "style"));
+			string inputPath = GenerateSassFilePath("non-existing-files", "style");
 
 			// Act
 			string output;

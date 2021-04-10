@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.IO;
-#if NETCOREAPP1_0
-
-using Microsoft.Extensions.PlatformAbstractions;
-#endif
 
 using SassHost.Helpers;
 
 namespace SassHost.Tests
 {
-	public abstract class FileSystemTestsBase
+	public abstract class PhysicalFileSystemTestsBase
 	{
-		private readonly string _appDirectoryPath;
+		private readonly string _currentDirectory;
 		private readonly string _fileExtension;
 		private readonly string _subfolderName;
 		private readonly bool _indentedSyntax;
@@ -25,13 +21,9 @@ namespace SassHost.Tests
 		}
 
 
-		protected FileSystemTestsBase(SyntaxType syntaxType)
+		protected PhysicalFileSystemTestsBase(SyntaxType syntaxType)
 		{
-#if NETCOREAPP1_0
-			_appDirectoryPath = PlatformServices.Default.Application.ApplicationBasePath;
-#else
-			_appDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
-#endif
+			_currentDirectory = Directory.GetCurrentDirectory();
 
 			if (syntaxType == SyntaxType.Sass)
 			{
@@ -54,7 +46,7 @@ namespace SassHost.Tests
 
 		public string ToAbsolutePath(string path)
 		{
-			string absolutePath = Path.GetFullPath(Path.Combine(_appDirectoryPath, path));
+			string absolutePath = Path.GetFullPath(Path.Combine(_currentDirectory, path));
 
 			return absolutePath;
 		}

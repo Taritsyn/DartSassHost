@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace SassHost.Tests.Modules
 {
-	public abstract class CompiledContentTestsBase : FileSystemTestsBase
+	public abstract class CompiledContentTestsBase : PhysicalFileSystemTestsBase
 	{
 		public override string BaseDirectoryPath => "modules/compiled-content";
 
@@ -36,7 +36,7 @@ namespace SassHost.Tests.Modules
 				IncludePaths = new List<string> { GenerateSassDirectoryPath("additional-path", "vendor") }
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("additional-path", "base"));
+			string inputPath = GenerateSassFilePath("additional-path", "base");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath2 = GenerateCssFilePath("additional-path", "base");
@@ -85,7 +85,7 @@ namespace SassHost.Tests.Modules
 				IndentWidth = 1
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "base"));
+			string inputPath = GenerateSassFilePath("ordinary", "base");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "base-with-indent-options-two-space");
@@ -124,7 +124,7 @@ namespace SassHost.Tests.Modules
 			var lfLineBreakOptions = new CompilationOptions { LineFeedType = LineFeedType.Lf };
 			var lfCrLineBreakOptions = new CompilationOptions { LineFeedType = LineFeedType.LfCr };
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "base"));
+			string inputPath = GenerateSassFilePath("ordinary", "base");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath = GenerateCssFilePath("ordinary", "base-with-line-feed-type-options");
@@ -161,7 +161,7 @@ namespace SassHost.Tests.Modules
 			var expandedOutputStyleOptions = new CompilationOptions { OutputStyle = OutputStyle.Expanded };
 			var compressedOutputStyleOptions = new CompilationOptions { OutputStyle = OutputStyle.Compressed };
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "base"));
+			string inputPath = GenerateSassFilePath("ordinary", "base");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "base-with-output-style-option-expanded");
@@ -189,7 +189,7 @@ namespace SassHost.Tests.Modules
 		public void CompilationOfCodeWithUtf8Characters()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ютф-8", "главный"));
+			string inputPath = GenerateSassFilePath("ютф-8", "главный");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath = GenerateCssFilePath("ютф-8", "главный");
@@ -211,7 +211,7 @@ namespace SassHost.Tests.Modules
 		public void CompilationOfCodeWithUtf16Characters()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ютф-16", "главный"));
+			string inputPath = GenerateSassFilePath("ютф-16", "главный");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath = GenerateCssFilePath("ютф-16", "главный");
@@ -246,7 +246,7 @@ namespace SassHost.Tests.Modules
 				IncludePaths = new List<string> { GenerateSassDirectoryPath("additional-path", "vendor") }
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("additional-path", "base"));
+			string inputPath = GenerateSassFilePath("additional-path", "base");
 
 			string targetOutputPath2 = GenerateCssFilePath("additional-path", "base");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
@@ -294,7 +294,7 @@ namespace SassHost.Tests.Modules
 				IndentWidth = 1
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "base"));
+			string inputPath = GenerateSassFilePath("ordinary", "base");
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "base-with-indent-options-two-space");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -332,7 +332,7 @@ namespace SassHost.Tests.Modules
 			var lfLineBreakOptions = new CompilationOptions { LineFeedType = LineFeedType.Lf };
 			var lfCrLineBreakOptions = new CompilationOptions { LineFeedType = LineFeedType.LfCr };
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "base"));
+			string inputPath = GenerateSassFilePath("ordinary", "base");
 
 			string targetOutputPath = GenerateCssFilePath("ordinary", "base-with-line-feed-type-options");
 			string targetOutput1 = GetFileContent(targetOutputPath, LineFeedType.Cr);
@@ -368,7 +368,7 @@ namespace SassHost.Tests.Modules
 			var expandedOutputStyleOptions = new CompilationOptions { OutputStyle = OutputStyle.Expanded };
 			var compressedOutputStyleOptions = new CompilationOptions { OutputStyle = OutputStyle.Compressed };
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "base"));
+			string inputPath = GenerateSassFilePath("ordinary", "base");
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "base-with-output-style-option-expanded");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -395,7 +395,7 @@ namespace SassHost.Tests.Modules
 		public void CompilationOfFileWithUtf8Characters()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ютф-8", "главный"));
+			string inputPath = GenerateSassFilePath("ютф-8", "главный");
 
 			string targetOutputPath = GenerateCssFilePath("ютф-8", "главный");
 			string targetOutput = GetFileContent(targetOutputPath);
@@ -416,7 +416,7 @@ namespace SassHost.Tests.Modules
 		public void CompilationOfFileWithUtf16Characters()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ютф-16", "главный"));
+			string inputPath = GenerateSassFilePath("ютф-16", "главный");
 
 			string targetOutputPath = GenerateCssFilePath("ютф-16", "главный");
 			string targetOutput = GetFileContent(targetOutputPath);

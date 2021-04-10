@@ -17,7 +17,7 @@ namespace SassHost.Tests
 		public void MappingSassImportErrorDuringCompilationOfCode()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("non-existing-files", "base"));
+			string inputPath = GenerateSassFilePath("non-existing-files", "base");
 			string input = GetFileContent(inputPath);
 
 			// Act
@@ -45,7 +45,7 @@ namespace SassHost.Tests
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(inputPath, exception.File);
+			Assert.AreEqual(ToAbsolutePath(inputPath), exception.File);
 			Assert.AreEqual(6, exception.LineNumber);
 			Assert.AreEqual(9, exception.ColumnNumber);
 			Assert.IsEmpty(exception.SourceFragment);
@@ -56,7 +56,7 @@ namespace SassHost.Tests
 		public void MappingSassSyntaxErrorDuringCompilationOfCode()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("invalid-syntax", "style"));
+			string inputPath = GenerateSassFilePath("invalid-syntax", "style");
 			string input = GetFileContent(inputPath);
 
 			// Act
@@ -84,7 +84,7 @@ namespace SassHost.Tests
 			);
 			Assert.AreEqual("Expected \".", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(inputPath, exception.File);
+			Assert.AreEqual(ToAbsolutePath(inputPath), exception.File);
 			Assert.AreEqual(3, exception.LineNumber);
 			Assert.AreEqual(36, exception.ColumnNumber);
 			Assert.AreEqual(
@@ -104,7 +104,7 @@ namespace SassHost.Tests
 		public void MappingSassImportErrorDuringCompilationOfFile()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("non-existing-files", "base"));
+			string inputPath = GenerateSassFilePath("non-existing-files", "base");
 
 			// Act
 			string output;
@@ -131,7 +131,7 @@ namespace SassHost.Tests
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(inputPath, exception.File);
+			Assert.AreEqual(ToAbsolutePath(inputPath), exception.File);
 			Assert.AreEqual(6, exception.LineNumber);
 			Assert.AreEqual(9, exception.ColumnNumber);
 			Assert.IsEmpty(exception.SourceFragment);
@@ -141,7 +141,7 @@ namespace SassHost.Tests
 		public void MappingSassSyntaxDuringCompilationOfFile()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("invalid-syntax", "style"));
+			string inputPath = GenerateSassFilePath("invalid-syntax", "style");
 
 			// Act
 			string output;
@@ -168,7 +168,7 @@ namespace SassHost.Tests
 			);
 			Assert.AreEqual("Expected \".", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(inputPath, exception.File);
+			Assert.AreEqual(ToAbsolutePath(inputPath), exception.File);
 			Assert.AreEqual(3, exception.LineNumber);
 			Assert.AreEqual(36, exception.ColumnNumber);
 			Assert.AreEqual(

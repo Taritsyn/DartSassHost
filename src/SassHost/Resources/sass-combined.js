@@ -16498,7 +16498,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*SH+*/){
 								t2.targetUrl = J.toString$0$(t4.toUri$1(t4.withoutExtension$1(t3.get$file(options)) + ".css"));
 						else
 							t2.targetUrl = J.toString$0$(t4.toUri$1(t4.relative$2$from(t3.get$outFile(options), sourceMapDir)));
-						sourceMapDirUrl = J.toString$0$(t4.toUri$1(sourceMapDir === "." ? D.absolute(".") : sourceMapDir /*SH+*/));
+						sourceMapDirUrl = J.toString$0$(t4.toUri$1(sourceMapDir));
 						for (t4 = t2.urls, i = 0; i < t4.length; ++i) {
 							source = t4[i];
 							if (source === "stdin")

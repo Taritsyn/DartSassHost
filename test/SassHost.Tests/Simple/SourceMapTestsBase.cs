@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace SassHost.Tests.Simple
 {
-	public abstract class SourceMapTestsBase : FileSystemTestsBase
+	public abstract class SourceMapTestsBase : PhysicalFileSystemTestsBase
 	{
 		public override string BaseDirectoryPath => "simple/source-map";
 
@@ -30,7 +30,7 @@ namespace SassHost.Tests.Simple
 			var sourceMapDisabledOptions = new CompilationOptions { SourceMap = false };
 			var sourceMapEnabledOptions = new CompilationOptions { SourceMap = true };
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules");
@@ -48,8 +48,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result1 = compiler.Compile(input, inputPath, options: sourceMapDisabledOptions);
-				result2 = compiler.Compile(input, inputPath, options: sourceMapEnabledOptions);
+				result1 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapDisabledOptions);
+				result2 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapEnabledOptions);
 			}
 
 			// Assert
@@ -75,7 +75,7 @@ namespace SassHost.Tests.Simple
 				SourceMapIncludeContents = true
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
@@ -96,8 +96,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result1 = compiler.Compile(input, inputPath, options: sourceMapWithoutContentsOptions);
-				result2 = compiler.Compile(input, inputPath, options: sourceMapWithContentsOptions);
+				result1 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapWithoutContentsOptions);
+				result2 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapWithContentsOptions);
 			}
 
 			// Assert
@@ -123,7 +123,7 @@ namespace SassHost.Tests.Simple
 				OmitSourceMapUrl = true
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
@@ -144,8 +144,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result1 = compiler.Compile(input, inputPath, options: sourceMapUrlIncludedOptions);
-				result2 = compiler.Compile(input, inputPath, options: sourceMapUrlOmittedOptions);
+				result1 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapUrlIncludedOptions);
+				result2 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapUrlOmittedOptions);
 			}
 
 			// Assert
@@ -166,7 +166,7 @@ namespace SassHost.Tests.Simple
 				SourceMapRootPath = "/"
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
@@ -180,7 +180,7 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result = compiler.Compile(input, inputPath, options: sourceMapOptions);
+				result = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapOptions);
 			}
 
 			// Assert
@@ -203,7 +203,7 @@ namespace SassHost.Tests.Simple
 				InlineSourceMap = true
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 			string input = GetFileContent(inputPath);
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
@@ -212,7 +212,8 @@ namespace SassHost.Tests.Simple
 			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
 			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
 
-			string targetOutputPath2 = GenerateCssFileWithInlineSourceMapFilePath("ordinary", "nested-rules-with-inline-source-map");
+			string targetOutputPath2 = GenerateCssFileWithInlineSourceMapFilePath("ordinary",
+				"nested-rules-with-inline-source-map");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			string targetSourceMapPath2 = targetSourceMapPath1;
@@ -224,8 +225,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result1 = compiler.Compile(input, inputPath, options: inlineSourceMapDisabledOptions);
-				result2 = compiler.Compile(input, inputPath, options: inlineSourceMapEnabledOptions);
+				result1 = compiler.Compile(input, ToAbsolutePath(inputPath), options: inlineSourceMapDisabledOptions);
+				result2 = compiler.Compile(input, ToAbsolutePath(inputPath), options: inlineSourceMapEnabledOptions);
 			}
 
 			// Assert
@@ -242,10 +243,10 @@ namespace SassHost.Tests.Simple
 			// Arrange
 			var sourceMapOptions = new CompilationOptions {	SourceMap = true };
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 			string input = GetFileContent(inputPath);
 
-			string sourceMapPath = ToAbsolutePath(GenerateSourceMapFilePath("ordinary", "maps/nested-rules-custom"));
+			string sourceMapPath = GenerateSourceMapFilePath("ordinary", "maps/nested-rules-custom");
 
 			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-custom-source-map-url");
 			string targetOutput = GetFileContent(targetOutputPath);
@@ -257,7 +258,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result = compiler.Compile(input, inputPath, sourceMapPath: sourceMapPath, options: sourceMapOptions);
+				result = compiler.Compile(input, ToAbsolutePath(inputPath),
+					sourceMapPath: ToAbsolutePath(sourceMapPath), options: sourceMapOptions);
 			}
 
 			// Assert
@@ -276,7 +278,7 @@ namespace SassHost.Tests.Simple
 			var sourceMapDisabledOptions = new CompilationOptions { SourceMap = false };
 			var sourceMapEnabledOptions = new CompilationOptions { SourceMap = true };
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -293,8 +295,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result1 = compiler.CompileFile(inputPath, options: sourceMapDisabledOptions);
-				result2 = compiler.CompileFile(inputPath, options: sourceMapEnabledOptions);
+				result1 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapDisabledOptions);
+				result2 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapEnabledOptions);
 			}
 
 			// Assert
@@ -320,7 +322,7 @@ namespace SassHost.Tests.Simple
 				SourceMapIncludeContents = true
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -340,8 +342,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result1 = compiler.CompileFile(inputPath, options: sourceMapWithoutContentsOptions);
-				result2 = compiler.CompileFile(inputPath, options: sourceMapWithContentsOptions);
+				result1 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapWithoutContentsOptions);
+				result2 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapWithContentsOptions);
 			}
 
 			// Assert
@@ -367,7 +369,7 @@ namespace SassHost.Tests.Simple
 				OmitSourceMapUrl = true
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -387,8 +389,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result1 = compiler.CompileFile(inputPath, options: sourceMapUrlIncludedOptions);
-				result2 = compiler.CompileFile(inputPath, options: sourceMapUrlOmittedOptions);
+				result1 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapUrlIncludedOptions);
+				result2 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapUrlOmittedOptions);
 			}
 
 			// Assert
@@ -409,7 +411,7 @@ namespace SassHost.Tests.Simple
 				SourceMapRootPath = "/"
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 
 			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
 			string targetOutput = GetFileContent(targetOutputPath);
@@ -422,7 +424,7 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result = compiler.CompileFile(inputPath, options: sourceMapOptions);
+				result = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapOptions);
 			}
 
 			// Assert
@@ -445,7 +447,7 @@ namespace SassHost.Tests.Simple
 				InlineSourceMap = true
 			};
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -453,7 +455,8 @@ namespace SassHost.Tests.Simple
 			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
 			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
 
-			string targetOutputPath2 = GenerateCssFileWithInlineSourceMapFilePath("ordinary", "nested-rules-with-inline-source-map");
+			string targetOutputPath2 = GenerateCssFileWithInlineSourceMapFilePath("ordinary",
+				"nested-rules-with-inline-source-map");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			string targetSourceMapPath2 = targetSourceMapPath1;
@@ -465,8 +468,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result1 = compiler.CompileFile(inputPath, options: inlineSourceMapDisabledOptions);
-				result2 = compiler.CompileFile(inputPath, options: inlineSourceMapEnabledOptions);
+				result1 = compiler.CompileFile(ToAbsolutePath(inputPath), options: inlineSourceMapDisabledOptions);
+				result2 = compiler.CompileFile(ToAbsolutePath(inputPath), options: inlineSourceMapEnabledOptions);
 			}
 
 			// Assert
@@ -483,8 +486,8 @@ namespace SassHost.Tests.Simple
 			// Arrange
 			var sourceMapOptions = new CompilationOptions {	SourceMap = true };
 
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "nested-rules"));
-			string sourceMapPath = ToAbsolutePath(GenerateSourceMapFilePath("ordinary", "maps/nested-rules-custom"));
+			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string sourceMapPath = GenerateSourceMapFilePath("ordinary", "maps/nested-rules-custom");
 
 			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-custom-source-map-url");
 			string targetOutput = GetFileContent(targetOutputPath);
@@ -496,7 +499,8 @@ namespace SassHost.Tests.Simple
 
 			using (var compiler = new SassCompiler())
 			{
-				result = compiler.CompileFile(inputPath, sourceMapPath: sourceMapPath, options: sourceMapOptions);
+				result = compiler.CompileFile(ToAbsolutePath(inputPath), sourceMapPath: ToAbsolutePath(sourceMapPath),
+					options: sourceMapOptions);
 			}
 
 			// Assert

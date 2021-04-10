@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace SassHost.Tests.Simple
 {
-	public abstract class IncludedFilePathsTestsBase : FileSystemTestsBase
+	public abstract class IncludedFilePathsTestsBase : PhysicalFileSystemTestsBase
 	{
 		public override string BaseDirectoryPath => "simple/included-file-paths";
 
@@ -27,7 +27,7 @@ namespace SassHost.Tests.Simple
 		public void CompilationOfCode()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "interpolation"));
+			string inputPath = GenerateSassFilePath("ordinary", "interpolation");
 			string input = GetFileContent(inputPath);
 
 			// Act
@@ -44,7 +44,7 @@ namespace SassHost.Tests.Simple
 			Assert.AreEqual(0, includedFilePaths1.Count);
 
 			Assert.AreEqual(1, includedFilePaths2.Count);
-			Assert.AreEqual(inputPath, includedFilePaths2[0]);
+			Assert.AreEqual(ToAbsolutePath(inputPath), includedFilePaths2[0]);
 		}
 
 		#endregion
@@ -55,7 +55,7 @@ namespace SassHost.Tests.Simple
 		public void CompilationOfFile()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "interpolation"));
+			string inputPath = GenerateSassFilePath("ordinary", "interpolation");
 			string input = GetFileContent(inputPath);
 
 			// Act
@@ -68,7 +68,7 @@ namespace SassHost.Tests.Simple
 
 			// Assert
 			Assert.AreEqual(1, includedFilePaths.Count);
-			Assert.AreEqual(inputPath, includedFilePaths[0]);
+			Assert.AreEqual(ToAbsolutePath(inputPath), includedFilePaths[0]);
 		}
 
 		#endregion

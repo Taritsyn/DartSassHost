@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace SassHost.Tests.Modules
 {
-	public abstract class IncludedFilePathsTestsBase : FileSystemTestsBase
+	public abstract class IncludedFilePathsTestsBase : PhysicalFileSystemTestsBase
 	{
 		public override string BaseDirectoryPath => "modules/included-file-paths";
 
@@ -27,10 +27,10 @@ namespace SassHost.Tests.Modules
 		public void CompilationOfCode()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "style"));
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = GetFileContent(inputPath);
-			string firstImportedFilePath = ToAbsolutePath(GenerateSassFilePath("ordinary", @"foundation\_code"));
-			string secondImportedFilePath = ToAbsolutePath(GenerateSassFilePath("ordinary", @"foundation\_lists"));
+			string firstImportedFilePath = GenerateSassFilePath("ordinary", @"foundation\_code");
+			string secondImportedFilePath = GenerateSassFilePath("ordinary", @"foundation\_lists");
 
 			// Act
 			IList<string> includedFilePaths;
@@ -42,9 +42,9 @@ namespace SassHost.Tests.Modules
 
 			// Assert
 			Assert.AreEqual(3, includedFilePaths.Count);
-			Assert.AreEqual(inputPath, includedFilePaths[0]);
-			Assert.AreEqual(firstImportedFilePath, includedFilePaths[1]);
-			Assert.AreEqual(secondImportedFilePath, includedFilePaths[2]);
+			Assert.AreEqual(ToAbsolutePath(inputPath), includedFilePaths[0]);
+			Assert.AreEqual(ToAbsolutePath(firstImportedFilePath), includedFilePaths[1]);
+			Assert.AreEqual(ToAbsolutePath(secondImportedFilePath), includedFilePaths[2]);
 		}
 
 		#endregion
@@ -55,9 +55,9 @@ namespace SassHost.Tests.Modules
 		public void CompilationOfFile()
 		{
 			// Arrange
-			string inputPath = ToAbsolutePath(GenerateSassFilePath("ordinary", "style"));
-			string firstImportedFilePath = ToAbsolutePath(GenerateSassFilePath("ordinary", @"foundation\_code"));
-			string secondImportedFilePath = ToAbsolutePath(GenerateSassFilePath("ordinary", @"foundation\_lists"));
+			string inputPath = GenerateSassFilePath("ordinary", "style");
+			string firstImportedFilePath = GenerateSassFilePath("ordinary", @"foundation\_code");
+			string secondImportedFilePath = GenerateSassFilePath("ordinary", @"foundation\_lists");
 
 			// Act
 			IList<string> includedFilePaths;
@@ -69,9 +69,9 @@ namespace SassHost.Tests.Modules
 
 			// Assert
 			Assert.AreEqual(3, includedFilePaths.Count);
-			Assert.AreEqual(inputPath, includedFilePaths[0]);
-			Assert.AreEqual(firstImportedFilePath, includedFilePaths[1]);
-			Assert.AreEqual(secondImportedFilePath, includedFilePaths[2]);
+			Assert.AreEqual(ToAbsolutePath(inputPath), includedFilePaths[0]);
+			Assert.AreEqual(ToAbsolutePath(firstImportedFilePath), includedFilePaths[1]);
+			Assert.AreEqual(ToAbsolutePath(secondImportedFilePath), includedFilePaths[2]);
 		}
 
 		#endregion
