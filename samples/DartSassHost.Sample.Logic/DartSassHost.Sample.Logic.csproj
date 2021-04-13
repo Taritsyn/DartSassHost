@@ -13,7 +13,7 @@
   <Import Project="../../build/net40-client-target.props" />
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DartSassHost\DartSassHost.csproj" />
+    <ProjectReference Include="../../src/DartSassHost/DartSassHost.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
@@ -21,13 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\SharedFiles\_reset.scss">
-      <Link>Files\_reset.scss</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <None Include="..\SharedFiles\style.scss">
-      <Link>Files\style.scss</Link>
+    <None Include="../SharedFiles/**/*.*">
+      <Link>Files/%(RecursiveDir)/%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>

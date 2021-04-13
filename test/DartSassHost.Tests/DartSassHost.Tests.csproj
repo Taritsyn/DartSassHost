@@ -21,7 +21,7 @@
     <PackageReference Include="NUnit" Version="3.13.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
 
-    <ProjectReference Include="..\..\src\DartSassHost\DartSassHost.csproj" />
+    <ProjectReference Include="../../src/DartSassHost/DartSassHost.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' Or '$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'net5.0' ">
