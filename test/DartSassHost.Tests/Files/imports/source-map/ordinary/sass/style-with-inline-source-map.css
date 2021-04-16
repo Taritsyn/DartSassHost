@@ -1,0 +1,14 @@
+code {
+  padding: 0.25em;
+  line-height: 0;
+}
+
+ul, ol {
+  text-align: left;
+}
+ul ul, ul ol, ol ul, ol ol {
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmb3VuZGF0aW9uL19jb2RlLnNhc3MiLCJmb3VuZGF0aW9uL19saXN0cy5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTs7O0FDRkY7RUFDRTs7QUFFQTtFQUVJO0VBQ0EiLCJmaWxlIjoic3R5bGUuY3NzIn0= */

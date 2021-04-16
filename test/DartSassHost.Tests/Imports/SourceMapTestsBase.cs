@@ -2,11 +2,11 @@
 
 using NUnit.Framework;
 
-namespace DartSassHost.Tests.Simple
+namespace DartSassHost.Tests.Imports
 {
 	public abstract class SourceMapTestsBase : PhysicalFileSystemTestsBase
 	{
-		public override string BaseDirectoryPath => "simple/source-map";
+		public override string BaseDirectoryPath => "imports/source-map";
 
 
 		protected SourceMapTestsBase(SyntaxType syntaxType)
@@ -29,16 +29,16 @@ namespace DartSassHost.Tests.Simple
 			var sourceMapDisabledOptions = new CompilationOptions { SourceMap = false };
 			var sourceMapEnabledOptions = new CompilationOptions { SourceMap = true };
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = GetFileContent(inputPath);
 
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules");
+			string targetOutputPath1 = GenerateCssFilePath("ordinary", "style");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
 
-			string targetOutputPath2 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath2 = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
 
-			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "nested-rules");
+			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "style");
 			string targetSourceMap2 = GetFileContent(targetSourceMapPath2);
 
 			// Act
@@ -74,19 +74,19 @@ namespace DartSassHost.Tests.Simple
 				SourceMapIncludeContents = true
 			};
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = GetFileContent(inputPath);
 
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath1 = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
 
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
+			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "style");
 			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
 
 			string targetOutputPath2 = targetOutputPath1;
 			string targetOutput2 = targetOutput1;
 
-			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "nested-rules-with-contents");
+			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "style-with-contents");
 			string targetSourceMap2 = GetFileContent(targetSourceMapPath2);
 
 			// Act
@@ -122,16 +122,16 @@ namespace DartSassHost.Tests.Simple
 				OmitSourceMapUrl = true
 			};
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = GetFileContent(inputPath);
 
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath1 = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
 
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
+			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "style");
 			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
 
-			string targetOutputPath2 = GenerateCssFilePath("ordinary", "nested-rules");
+			string targetOutputPath2 = GenerateCssFilePath("ordinary", "style");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			string targetSourceMapPath2 = targetSourceMapPath1;
@@ -165,13 +165,13 @@ namespace DartSassHost.Tests.Simple
 				SourceMapRootPath = "/"
 			};
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = GetFileContent(inputPath);
 
-			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput = GetFileContent(targetOutputPath);
 
-			string targetSourceMapPath = GenerateSourceMapFilePath("ordinary", "nested-rules-with-source-root");
+			string targetSourceMapPath = GenerateSourceMapFilePath("ordinary", "style-with-source-root");
 			string targetSourceMap = GetFileContent(targetSourceMapPath);
 
 			// Act
@@ -202,17 +202,17 @@ namespace DartSassHost.Tests.Simple
 				InlineSourceMap = true
 			};
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = GetFileContent(inputPath);
 
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath1 = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
 
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
+			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "style");
 			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
 
 			string targetOutputPath2 = GenerateCssFileWithInlineSourceMapFilePath("ordinary",
-				"nested-rules-with-inline-source-map");
+				"style-with-inline-source-map");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			string targetSourceMapPath2 = targetSourceMapPath1;
@@ -242,12 +242,12 @@ namespace DartSassHost.Tests.Simple
 			// Arrange
 			var sourceMapOptions = new CompilationOptions { SourceMap = true };
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = GetFileContent(inputPath);
 
-			string sourceMapPath = GenerateSourceMapFilePath("ordinary", "maps/nested-rules-custom");
+			string sourceMapPath = GenerateSourceMapFilePath("ordinary", "maps/style-custom");
 
-			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-custom-source-map-url");
+			string targetOutputPath = GenerateCssFilePath("ordinary", "style-with-custom-source-map-url");
 			string targetOutput = GetFileContent(targetOutputPath);
 
 			string targetSourceMap = GetFileContent(sourceMapPath);
@@ -277,15 +277,15 @@ namespace DartSassHost.Tests.Simple
 			var sourceMapDisabledOptions = new CompilationOptions { SourceMap = false };
 			var sourceMapEnabledOptions = new CompilationOptions { SourceMap = true };
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules");
+			string targetOutputPath1 = GenerateCssFilePath("ordinary", "style");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
 
-			string targetOutputPath2 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath2 = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
 
-			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "nested-rules");
+			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "style");
 			string targetSourceMap2 = GetFileContent(targetSourceMapPath2);
 
 			// Act
@@ -321,18 +321,18 @@ namespace DartSassHost.Tests.Simple
 				SourceMapIncludeContents = true
 			};
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath1 = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
 
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
+			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "style");
 			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
 
 			string targetOutputPath2 = targetOutputPath1;
 			string targetOutput2 = targetOutput1;
 
-			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "nested-rules-with-contents");
+			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "style-with-contents");
 			string targetSourceMap2 = GetFileContent(targetSourceMapPath2);
 
 			// Act
@@ -368,15 +368,15 @@ namespace DartSassHost.Tests.Simple
 				OmitSourceMapUrl = true
 			};
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath1 = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
 
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
+			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "style");
 			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
 
-			string targetOutputPath2 = GenerateCssFilePath("ordinary", "nested-rules");
+			string targetOutputPath2 = GenerateCssFilePath("ordinary", "style");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			string targetSourceMapPath2 = targetSourceMapPath1;
@@ -410,12 +410,12 @@ namespace DartSassHost.Tests.Simple
 				SourceMapRootPath = "/"
 			};
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 
-			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput = GetFileContent(targetOutputPath);
 
-			string targetSourceMapPath = GenerateSourceMapFilePath("ordinary", "nested-rules-with-source-root");
+			string targetSourceMapPath = GenerateSourceMapFilePath("ordinary", "style-with-source-root");
 			string targetSourceMap = GetFileContent(targetSourceMapPath);
 
 			// Act
@@ -446,16 +446,16 @@ namespace DartSassHost.Tests.Simple
 				InlineSourceMap = true
 			};
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
 
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
+			string targetOutputPath1 = GenerateCssFilePath("ordinary", "style-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
 
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
+			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "style");
 			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
 
 			string targetOutputPath2 = GenerateCssFileWithInlineSourceMapFilePath("ordinary",
-				"nested-rules-with-inline-source-map");
+				"style-with-inline-source-map");
 			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			string targetSourceMapPath2 = targetSourceMapPath1;
@@ -485,10 +485,10 @@ namespace DartSassHost.Tests.Simple
 			// Arrange
 			var sourceMapOptions = new CompilationOptions { SourceMap = true };
 
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-			string sourceMapPath = GenerateSourceMapFilePath("ordinary", "maps/nested-rules-custom");
+			string inputPath = GenerateSassFilePath("ordinary", "style");
+			string sourceMapPath = GenerateSourceMapFilePath("ordinary", "maps/style-custom");
 
-			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-custom-source-map-url");
+			string targetOutputPath = GenerateCssFilePath("ordinary", "style-with-custom-source-map-url");
 			string targetOutput = GetFileContent(targetOutputPath);
 
 			string targetSourceMap = GetFileContent(sourceMapPath);

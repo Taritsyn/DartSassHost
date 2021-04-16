@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"","sources":["foundation/_code.sass","foundation/_lists.sass"],"names":[],"mappings":"AAAA;EACE;EACA;;;ACFF;EACE;;AAEA;EAEI;EACA","file":"style.css","sourcesContent":["code\n  padding: .25em\n  line-height: 0","ul, ol\n  text-align: left\n\n  & &\n    padding:\n      bottom: 0\n      left: 0"]}
