@@ -46,7 +46,7 @@ namespace DartSassHost.Tests.Modules
 			SassCompilationException exception1 = null;
 			string output2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				try
 				{
@@ -102,7 +102,7 @@ namespace DartSassHost.Tests.Modules
 			string output2;
 			string output3;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.Compile(input, inputPath, options: twoSpaceIndentOptions).CompiledContent;
 				output2 = compiler.Compile(input, inputPath, options: fourSpaceIndentOptions).CompiledContent;
@@ -139,7 +139,7 @@ namespace DartSassHost.Tests.Modules
 			string output3;
 			string output4;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.Compile(input, inputPath, options: crLineBreakOptions).CompiledContent;
 				output2 = compiler.Compile(input, inputPath, options: crLfLineBreakOptions).CompiledContent;
@@ -174,7 +174,7 @@ namespace DartSassHost.Tests.Modules
 			string output1;
 			string output2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.Compile(input, inputPath, options: expandedOutputStyleOptions).CompiledContent;
 				output2 = compiler.Compile(input, inputPath, options: compressedOutputStyleOptions).CompiledContent;
@@ -198,7 +198,7 @@ namespace DartSassHost.Tests.Modules
 			// Act
 			string output;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output = compiler.Compile(input, inputPath).CompiledContent;
 			}
@@ -220,7 +220,7 @@ namespace DartSassHost.Tests.Modules
 			// Act
 			string output;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output = compiler.Compile(input, inputPath).CompiledContent;
 			}
@@ -255,7 +255,7 @@ namespace DartSassHost.Tests.Modules
 			SassCompilationException exception1 = null;
 			string output2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				try
 				{
@@ -310,7 +310,7 @@ namespace DartSassHost.Tests.Modules
 			string output2;
 			string output3;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.CompileFile(inputPath, options: twoSpaceIndentOptions).CompiledContent;
 				output2 = compiler.CompileFile(inputPath, options: fourSpaceIndentOptions).CompiledContent;
@@ -346,7 +346,7 @@ namespace DartSassHost.Tests.Modules
 			string output3;
 			string output4;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.CompileFile(inputPath, options: crLineBreakOptions).CompiledContent;
 				output2 = compiler.CompileFile(inputPath, options: crLfLineBreakOptions).CompiledContent;
@@ -380,7 +380,7 @@ namespace DartSassHost.Tests.Modules
 			string output1;
 			string output2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.CompileFile(inputPath, options: expandedOutputStyleOptions).CompiledContent;
 				output2 = compiler.CompileFile(inputPath, options: compressedOutputStyleOptions).CompiledContent;
@@ -403,7 +403,7 @@ namespace DartSassHost.Tests.Modules
 			// Act
 			string output;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output = compiler.CompileFile(inputPath).CompiledContent;
 			}
@@ -424,7 +424,7 @@ namespace DartSassHost.Tests.Modules
 			// Act
 			string output;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output = compiler.CompileFile(inputPath).CompiledContent;
 			}

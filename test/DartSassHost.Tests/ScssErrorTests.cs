@@ -27,7 +27,7 @@ namespace DartSassHost.Tests
 
 			try
 			{
-				using (var sassCompiler = new SassCompiler())
+				using (var sassCompiler = CreateSassCompiler())
 				{
 					output = sassCompiler.Compile(input, inputPath).CompiledContent;
 				}
@@ -46,7 +46,7 @@ namespace DartSassHost.Tests
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(ToAbsolutePath(inputPath), exception.File);
+			Assert.AreEqual(inputPath, exception.File);
 			Assert.AreEqual(6, exception.LineNumber);
 			Assert.AreEqual(9, exception.ColumnNumber);
 			Assert.IsEmpty(exception.SourceFragment);
@@ -66,7 +66,7 @@ namespace DartSassHost.Tests
 
 			try
 			{
-				using (var sassCompiler = new SassCompiler())
+				using (var sassCompiler = CreateSassCompiler())
 				{
 					output = sassCompiler.Compile(input, inputPath).CompiledContent;
 				}
@@ -85,7 +85,7 @@ namespace DartSassHost.Tests
 			);
 			Assert.AreEqual("Expected \".", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(ToAbsolutePath(inputPath), exception.File);
+			Assert.AreEqual(inputPath, exception.File);
 			Assert.AreEqual(3, exception.LineNumber);
 			Assert.AreEqual(36, exception.ColumnNumber);
 			Assert.AreEqual(
@@ -113,7 +113,7 @@ namespace DartSassHost.Tests
 
 			try
 			{
-				using (var sassCompiler = new SassCompiler())
+				using (var sassCompiler = CreateSassCompiler())
 				{
 					output = sassCompiler.CompileFile(inputPath).CompiledContent;
 				}
@@ -132,7 +132,7 @@ namespace DartSassHost.Tests
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(ToAbsolutePath(inputPath), exception.File);
+			Assert.AreEqual(inputPath, exception.File);
 			Assert.AreEqual(6, exception.LineNumber);
 			Assert.AreEqual(9, exception.ColumnNumber);
 			Assert.IsEmpty(exception.SourceFragment);
@@ -150,7 +150,7 @@ namespace DartSassHost.Tests
 
 			try
 			{
-				using (var sassCompiler = new SassCompiler())
+				using (var sassCompiler = CreateSassCompiler())
 				{
 					output = sassCompiler.CompileFile(inputPath).CompiledContent;
 				}
@@ -169,7 +169,7 @@ namespace DartSassHost.Tests
 			);
 			Assert.AreEqual("Expected \".", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(ToAbsolutePath(inputPath), exception.File);
+			Assert.AreEqual(inputPath, exception.File);
 			Assert.AreEqual(3, exception.LineNumber);
 			Assert.AreEqual(36, exception.ColumnNumber);
 			Assert.AreEqual(

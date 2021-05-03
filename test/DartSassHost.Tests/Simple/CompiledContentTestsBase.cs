@@ -59,7 +59,7 @@ namespace DartSassHost.Tests.Simple
 			string output2;
 			string output3;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.Compile(input, this.IndentedSyntax, twoSpaceIndentOptions).CompiledContent;
 				output2 = compiler.Compile(input, this.IndentedSyntax, fourSpaceIndentOptions).CompiledContent;
@@ -96,7 +96,7 @@ namespace DartSassHost.Tests.Simple
 			string output3;
 			string output4;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.Compile(input, this.IndentedSyntax, crLineBreakOptions).CompiledContent;
 				output2 = compiler.Compile(input, this.IndentedSyntax, crLfLineBreakOptions).CompiledContent;
@@ -132,7 +132,7 @@ namespace DartSassHost.Tests.Simple
 			string output1;
 			string output2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.Compile(input, this.IndentedSyntax, expandedOutputStyleOptions).CompiledContent;
 				output2 = compiler.Compile(input, this.IndentedSyntax, compressedOutputStyleOptions).CompiledContent;
@@ -156,7 +156,7 @@ namespace DartSassHost.Tests.Simple
 			// Act
 			string output;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output = compiler.Compile(input, this.IndentedSyntax).CompiledContent;
 			}
@@ -178,7 +178,7 @@ namespace DartSassHost.Tests.Simple
 			// Act
 			string output;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output = compiler.Compile(input, this.IndentedSyntax).CompiledContent;
 			}
@@ -227,7 +227,7 @@ namespace DartSassHost.Tests.Simple
 			string output2;
 			string output3;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.CompileFile(inputPath, options: twoSpaceIndentOptions).CompiledContent;
 				output2 = compiler.CompileFile(inputPath, options: fourSpaceIndentOptions).CompiledContent;
@@ -263,7 +263,7 @@ namespace DartSassHost.Tests.Simple
 			string output3;
 			string output4;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.CompileFile(inputPath, options: crLineBreakOptions).CompiledContent;
 				output2 = compiler.CompileFile(inputPath, options: crLfLineBreakOptions).CompiledContent;
@@ -298,7 +298,7 @@ namespace DartSassHost.Tests.Simple
 			string output1;
 			string output2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output1 = compiler.CompileFile(inputPath, options: expandedOutputStyleOptions).CompiledContent;
 				output2 = compiler.CompileFile(inputPath, options: compressedOutputStyleOptions).CompiledContent;
@@ -321,7 +321,7 @@ namespace DartSassHost.Tests.Simple
 			// Act
 			string output;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output = compiler.CompileFile(inputPath).CompiledContent;
 			}
@@ -342,7 +342,7 @@ namespace DartSassHost.Tests.Simple
 			// Act
 			string output;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				output = compiler.CompileFile(inputPath).CompiledContent;
 			}

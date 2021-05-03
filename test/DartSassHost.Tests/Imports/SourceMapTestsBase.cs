@@ -45,10 +45,10 @@ namespace DartSassHost.Tests.Imports
 			CompilationResult result1;
 			CompilationResult result2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapDisabledOptions);
-				result2 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapEnabledOptions);
+				result1 = compiler.Compile(input, inputPath, options: sourceMapDisabledOptions);
+				result2 = compiler.Compile(input, inputPath, options: sourceMapEnabledOptions);
 			}
 
 			// Assert
@@ -93,10 +93,10 @@ namespace DartSassHost.Tests.Imports
 			CompilationResult result1;
 			CompilationResult result2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapWithoutContentsOptions);
-				result2 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapWithContentsOptions);
+				result1 = compiler.Compile(input, inputPath, options: sourceMapWithoutContentsOptions);
+				result2 = compiler.Compile(input, inputPath, options: sourceMapWithContentsOptions);
 			}
 
 			// Assert
@@ -141,10 +141,10 @@ namespace DartSassHost.Tests.Imports
 			CompilationResult result1;
 			CompilationResult result2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapUrlIncludedOptions);
-				result2 = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapUrlOmittedOptions);
+				result1 = compiler.Compile(input, inputPath, options: sourceMapUrlIncludedOptions);
+				result2 = compiler.Compile(input, inputPath, options: sourceMapUrlOmittedOptions);
 			}
 
 			// Assert
@@ -177,9 +177,9 @@ namespace DartSassHost.Tests.Imports
 			// Act
 			CompilationResult result;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result = compiler.Compile(input, ToAbsolutePath(inputPath), options: sourceMapOptions);
+				result = compiler.Compile(input, inputPath, options: sourceMapOptions);
 			}
 
 			// Assert
@@ -222,10 +222,10 @@ namespace DartSassHost.Tests.Imports
 			CompilationResult result1;
 			CompilationResult result2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.Compile(input, ToAbsolutePath(inputPath), options: inlineSourceMapDisabledOptions);
-				result2 = compiler.Compile(input, ToAbsolutePath(inputPath), options: inlineSourceMapEnabledOptions);
+				result1 = compiler.Compile(input, inputPath, options: inlineSourceMapDisabledOptions);
+				result2 = compiler.Compile(input, inputPath, options: inlineSourceMapEnabledOptions);
 			}
 
 			// Assert
@@ -255,10 +255,9 @@ namespace DartSassHost.Tests.Imports
 			// Act
 			CompilationResult result;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result = compiler.Compile(input, ToAbsolutePath(inputPath),
-					sourceMapPath: ToAbsolutePath(sourceMapPath), options: sourceMapOptions);
+				result = compiler.Compile(input, inputPath,	sourceMapPath: sourceMapPath, options: sourceMapOptions);
 			}
 
 			// Assert
@@ -292,10 +291,10 @@ namespace DartSassHost.Tests.Imports
 			CompilationResult result1;
 			CompilationResult result2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapDisabledOptions);
-				result2 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapEnabledOptions);
+				result1 = compiler.CompileFile(inputPath, options: sourceMapDisabledOptions);
+				result2 = compiler.CompileFile(inputPath, options: sourceMapEnabledOptions);
 			}
 
 			// Assert
@@ -339,10 +338,10 @@ namespace DartSassHost.Tests.Imports
 			CompilationResult result1;
 			CompilationResult result2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapWithoutContentsOptions);
-				result2 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapWithContentsOptions);
+				result1 = compiler.CompileFile(inputPath, options: sourceMapWithoutContentsOptions);
+				result2 = compiler.CompileFile(inputPath, options: sourceMapWithContentsOptions);
 			}
 
 			// Assert
@@ -386,10 +385,10 @@ namespace DartSassHost.Tests.Imports
 			CompilationResult result1;
 			CompilationResult result2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapUrlIncludedOptions);
-				result2 = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapUrlOmittedOptions);
+				result1 = compiler.CompileFile(inputPath, options: sourceMapUrlIncludedOptions);
+				result2 = compiler.CompileFile(inputPath, options: sourceMapUrlOmittedOptions);
 			}
 
 			// Assert
@@ -421,9 +420,9 @@ namespace DartSassHost.Tests.Imports
 			// Act
 			CompilationResult result;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result = compiler.CompileFile(ToAbsolutePath(inputPath), options: sourceMapOptions);
+				result = compiler.CompileFile(inputPath, options: sourceMapOptions);
 			}
 
 			// Assert
@@ -465,10 +464,10 @@ namespace DartSassHost.Tests.Imports
 			CompilationResult result1;
 			CompilationResult result2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.CompileFile(ToAbsolutePath(inputPath), options: inlineSourceMapDisabledOptions);
-				result2 = compiler.CompileFile(ToAbsolutePath(inputPath), options: inlineSourceMapEnabledOptions);
+				result1 = compiler.CompileFile(inputPath, options: inlineSourceMapDisabledOptions);
+				result2 = compiler.CompileFile(inputPath, options: inlineSourceMapEnabledOptions);
 			}
 
 			// Assert
@@ -496,10 +495,9 @@ namespace DartSassHost.Tests.Imports
 			// Act
 			CompilationResult result;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
-				result = compiler.CompileFile(ToAbsolutePath(inputPath), sourceMapPath: ToAbsolutePath(sourceMapPath),
-					options: sourceMapOptions);
+				result = compiler.CompileFile(inputPath, sourceMapPath: sourceMapPath, options: sourceMapOptions);
 			}
 
 			// Assert

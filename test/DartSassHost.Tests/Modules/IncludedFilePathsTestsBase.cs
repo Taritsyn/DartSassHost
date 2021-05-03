@@ -35,16 +35,16 @@ namespace DartSassHost.Tests.Modules
 			// Act
 			IList<string> includedFilePaths;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				includedFilePaths = compiler.Compile(input, inputPath).IncludedFilePaths;
 			}
 
 			// Assert
 			Assert.AreEqual(3, includedFilePaths.Count);
-			Assert.AreEqual(ToAbsolutePath(inputPath), includedFilePaths[0]);
-			Assert.AreEqual(ToAbsolutePath(firstImportedFilePath), includedFilePaths[1]);
-			Assert.AreEqual(ToAbsolutePath(secondImportedFilePath), includedFilePaths[2]);
+			Assert.AreEqual(inputPath, includedFilePaths[0]);
+			Assert.AreEqual(firstImportedFilePath, includedFilePaths[1]);
+			Assert.AreEqual(secondImportedFilePath, includedFilePaths[2]);
 		}
 
 		#endregion
@@ -62,16 +62,16 @@ namespace DartSassHost.Tests.Modules
 			// Act
 			IList<string> includedFilePaths;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				includedFilePaths = compiler.CompileFile(inputPath).IncludedFilePaths;
 			}
 
 			// Assert
 			Assert.AreEqual(3, includedFilePaths.Count);
-			Assert.AreEqual(ToAbsolutePath(inputPath), includedFilePaths[0]);
-			Assert.AreEqual(ToAbsolutePath(firstImportedFilePath), includedFilePaths[1]);
-			Assert.AreEqual(ToAbsolutePath(secondImportedFilePath), includedFilePaths[2]);
+			Assert.AreEqual(inputPath, includedFilePaths[0]);
+			Assert.AreEqual(firstImportedFilePath, includedFilePaths[1]);
+			Assert.AreEqual(secondImportedFilePath, includedFilePaths[2]);
 		}
 
 		#endregion

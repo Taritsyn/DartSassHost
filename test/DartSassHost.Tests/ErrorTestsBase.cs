@@ -32,7 +32,7 @@ namespace DartSassHost.Tests
 
 			try
 			{
-				using (var sassCompiler = new SassCompiler())
+				using (var sassCompiler = CreateSassCompiler())
 				{
 					output = sassCompiler.CompileFile(inputPath).CompiledContent;
 				}

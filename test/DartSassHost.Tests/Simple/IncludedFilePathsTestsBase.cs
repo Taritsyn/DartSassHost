@@ -34,7 +34,7 @@ namespace DartSassHost.Tests.Simple
 			IList<string> includedFilePaths1;
 			IList<string> includedFilePaths2;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				includedFilePaths1 = compiler.Compile(input, this.IndentedSyntax).IncludedFilePaths;
 				includedFilePaths2 = compiler.Compile(input, inputPath).IncludedFilePaths;
@@ -44,7 +44,7 @@ namespace DartSassHost.Tests.Simple
 			Assert.AreEqual(0, includedFilePaths1.Count);
 
 			Assert.AreEqual(1, includedFilePaths2.Count);
-			Assert.AreEqual(ToAbsolutePath(inputPath), includedFilePaths2[0]);
+			Assert.AreEqual(inputPath, includedFilePaths2[0]);
 		}
 
 		#endregion
@@ -61,14 +61,14 @@ namespace DartSassHost.Tests.Simple
 			// Act
 			IList<string> includedFilePaths;
 
-			using (var compiler = new SassCompiler())
+			using (var compiler = CreateSassCompiler())
 			{
 				includedFilePaths = compiler.CompileFile(inputPath).IncludedFilePaths;
 			}
 
 			// Assert
 			Assert.AreEqual(1, includedFilePaths.Count);
-			Assert.AreEqual(ToAbsolutePath(inputPath), includedFilePaths[0]);
+			Assert.AreEqual(inputPath, includedFilePaths[0]);
 		}
 
 		#endregion

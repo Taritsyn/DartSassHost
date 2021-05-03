@@ -23,7 +23,11 @@ namespace DartSassHost.Tests
 
 		protected PhysicalFileSystemTestsBase(SyntaxType syntaxType)
 		{
+#if NETFULL
+			_currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+#else
 			_currentDirectory = Directory.GetCurrentDirectory();
+#endif
 
 			if (syntaxType == SyntaxType.Sass)
 			{
@@ -44,7 +48,12 @@ namespace DartSassHost.Tests
 		}
 
 
-		public string ToAbsolutePath(string path)
+		public SassCompiler CreateSassCompiler()
+		{
+			return new SassCompiler(PhysicalFileManager.Instance);
+		}
+
+		private string ToAbsolutePath(string path)
 		{
 			string absolutePath = Path.GetFullPath(Path.Combine(_currentDirectory, path));
 
@@ -53,45 +62,45 @@ namespace DartSassHost.Tests
 
 		public string GenerateSassFilePath(string folderName, string fileName)
 		{
-			string fullFilePath = PathHelpers.ProcessBackSlashes(
+			string fullFilePath = ToAbsolutePath(PathHelpers.ProcessBackSlashes(
 				Path.Combine("Files", BaseDirectoryPath, folderName, _subfolderName, fileName + _fileExtension)
-			);
+			));
 
 			return fullFilePath;
 		}
 
 		public string GenerateSassDirectoryPath(string folderName, string directoryName)
 		{
-			string directoryFilePath = PathHelpers.ProcessBackSlashes(
+			string directoryFilePath = ToAbsolutePath(PathHelpers.ProcessBackSlashes(
 				Path.Combine("Files", BaseDirectoryPath, folderName, _subfolderName, directoryName)
-			);
+			));
 
 			return directoryFilePath;
 		}
 
 		public string GenerateCssFilePath(string folderName, string fileName)
 		{
-			string fullFilePath = PathHelpers.ProcessBackSlashes(
+			string fullFilePath = ToAbsolutePath(PathHelpers.ProcessBackSlashes(
 				Path.Combine("Files", BaseDirectoryPath, folderName, fileName + ".css")
-			);
+			));
 
 			return fullFilePath;
 		}
 
 		public string GenerateSourceMapFilePath(string folderName, string fileName)
 		{
-			string fullFilePath = PathHelpers.ProcessBackSlashes(
+			string fullFilePath = ToAbsolutePath(PathHelpers.ProcessBackSlashes(
 				Path.Combine("Files", BaseDirectoryPath, folderName, _subfolderName, fileName + ".css.map")
-			);
+			));
 
 			return fullFilePath;
 		}
 
 		public string GenerateCssFileWithInlineSourceMapFilePath(string folderName, string fileName)
 		{
-			string fullFilePath = PathHelpers.ProcessBackSlashes(
+			string fullFilePath = ToAbsolutePath(PathHelpers.ProcessBackSlashes(
 				Path.Combine("Files", BaseDirectoryPath, folderName, _subfolderName, fileName + ".css")
-			);
+			));
 
 			return fullFilePath;
 		}
