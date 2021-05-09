@@ -2,7 +2,7 @@
 
 using NUnit.Framework;
 
-namespace DartSassHost.Tests
+namespace DartSassHost.Tests.Modules
 {
 	[TestFixture]
 	public sealed class ScssErrorTests : ErrorTestsBase
@@ -41,24 +41,24 @@ namespace DartSassHost.Tests
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Can't find stylesheet to import." + Environment.NewLine +
-				"   at base.scss:6:9",
+				"   at base.scss:1:1",
 				exception.Message
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
 			Assert.AreEqual(1, exception.Status);
 			Assert.AreEqual(inputPath, exception.File);
-			Assert.AreEqual(6, exception.LineNumber);
-			Assert.AreEqual(9, exception.ColumnNumber);
+			Assert.AreEqual(1, exception.LineNumber);
+			Assert.AreEqual(1, exception.ColumnNumber);
 			Assert.IsEmpty(exception.SourceFragment);
 		}
-
 
 		[Test]
 		public void MappingSassSyntaxErrorDuringCompilationOfCode()
 		{
 			// Arrange
-			string inputPath = GenerateSassFilePath("invalid-syntax", "style");
+			string inputPath = GenerateSassFilePath("invalid-syntax", "base");
 			string input = GetFileContent(inputPath);
+			string importedFilePath = GenerateSassFilePath("invalid-syntax", "_reset");
 
 			// Act
 			string output;
@@ -79,22 +79,16 @@ namespace DartSassHost.Tests
 			// Assert
 			Assert.NotNull(exception);
 			Assert.AreEqual(
-				"Error: Expected \"." + Environment.NewLine +
-				"   at style.scss:3:36 ->     family: \"Open Sans, sans-serif;",
+				"Error: expected \"{\"." + Environment.NewLine +
+				"   at _reset.scss:6:10",
 				exception.Message
 			);
-			Assert.AreEqual("Expected \".", exception.Description);
+			Assert.AreEqual("expected \"{\".", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(inputPath, exception.File);
-			Assert.AreEqual(3, exception.LineNumber);
-			Assert.AreEqual(36, exception.ColumnNumber);
-			Assert.AreEqual(
-				"Line 2:   font: italic 20px/24px {" + Environment.NewLine +
-				"Line 3:     family: \"Open Sans, sans-serif;" + Environment.NewLine +
-				"-------------------------------------------^" + Environment.NewLine +
-				"Line 4:   }",
-				exception.SourceFragment
-			);
+			Assert.AreEqual(importedFilePath, exception.File);
+			Assert.AreEqual(6, exception.LineNumber);
+			Assert.AreEqual(10, exception.ColumnNumber);
+			Assert.IsEmpty(exception.SourceFragment);
 		}
 
 		#endregion
@@ -127,14 +121,14 @@ namespace DartSassHost.Tests
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Can't find stylesheet to import." + Environment.NewLine +
-				"   at base.scss:6:9",
+				"   at base.scss:1:1",
 				exception.Message
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
 			Assert.AreEqual(1, exception.Status);
 			Assert.AreEqual(inputPath, exception.File);
-			Assert.AreEqual(6, exception.LineNumber);
-			Assert.AreEqual(9, exception.ColumnNumber);
+			Assert.AreEqual(1, exception.LineNumber);
+			Assert.AreEqual(1, exception.ColumnNumber);
 			Assert.IsEmpty(exception.SourceFragment);
 		}
 
@@ -142,7 +136,8 @@ namespace DartSassHost.Tests
 		public void MappingSassSyntaxDuringCompilationOfFile()
 		{
 			// Arrange
-			string inputPath = GenerateSassFilePath("invalid-syntax", "style");
+			string inputPath = GenerateSassFilePath("invalid-syntax", "base");
+			string importedFilePath = GenerateSassFilePath("invalid-syntax", "_reset");
 
 			// Act
 			string output;
@@ -163,22 +158,16 @@ namespace DartSassHost.Tests
 			// Assert
 			Assert.NotNull(exception);
 			Assert.AreEqual(
-				"Error: Expected \"." + Environment.NewLine +
-				"   at style.scss:3:36 ->     family: \"Open Sans, sans-serif;",
+				"Error: expected \"{\"." + Environment.NewLine +
+				"   at _reset.scss:6:10",
 				exception.Message
 			);
-			Assert.AreEqual("Expected \".", exception.Description);
+			Assert.AreEqual("expected \"{\".", exception.Description);
 			Assert.AreEqual(1, exception.Status);
-			Assert.AreEqual(inputPath, exception.File);
-			Assert.AreEqual(3, exception.LineNumber);
-			Assert.AreEqual(36, exception.ColumnNumber);
-			Assert.AreEqual(
-				"Line 2:   font: italic 20px/24px {" + Environment.NewLine +
-				"Line 3:     family: \"Open Sans, sans-serif;" + Environment.NewLine +
-				"-------------------------------------------^" + Environment.NewLine +
-				"Line 4:   }",
-				exception.SourceFragment
-			);
+			Assert.AreEqual(importedFilePath, exception.File);
+			Assert.AreEqual(6, exception.LineNumber);
+			Assert.AreEqual(10, exception.ColumnNumber);
+			Assert.IsEmpty(exception.SourceFragment);
 		}
 
 		#endregion

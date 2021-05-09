@@ -1,22 +1,18 @@
-﻿using NUnit.Framework;
+﻿using System;
 
-namespace DartSassHost.Tests
+using NUnit.Framework;
+
+namespace DartSassHost.Tests.Simple
 {
 	public abstract class ErrorTestsBase : PhysicalFileSystemTestsBase
 	{
-		public override string BaseDirectoryPath => "errors";
+		public override string BaseDirectoryPath => "simple/errors";
 
 
 		protected ErrorTestsBase(SyntaxType syntaxType)
 			: base(syntaxType)
 		{ }
 
-
-		[SetUp]
-		public void Init()
-		{
-			JsEngineSwitcherInitializer.Initialize();
-		}
 
 		#region Files
 

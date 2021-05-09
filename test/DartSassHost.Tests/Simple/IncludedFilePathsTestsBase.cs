@@ -15,12 +15,6 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
-		[SetUp]
-		public void Init()
-		{
-			JsEngineSwitcherInitializer.Initialize();
-		}
-
 		#region Code
 
 		[Test]

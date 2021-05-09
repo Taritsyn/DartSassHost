@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace DartSassHost.Tests
 {
 	[TestFixture]
-	public class VersionInfoTests
+	public class VersionInfoTests : TestsBase
 	{
 		/// <summary>
 		/// Regular expression for working with the version of the LibSass library
@@ -14,12 +14,6 @@ namespace DartSassHost.Tests
 		private static readonly Regex _versionRegex = new Regex(@"^(?<major>\d+)\.(?<minor>\d+)" +
 			@"(?:\.(?<patch>\d+)(?:\.(?<build>\d+))?)?$");
 
-
-		[SetUp]
-		public void Init()
-		{
-			JsEngineSwitcherInitializer.Initialize();
-		}
 
 		[Test]
 		public void VersionFormatIsCorrect()

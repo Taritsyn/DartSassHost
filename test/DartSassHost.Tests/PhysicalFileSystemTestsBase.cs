@@ -6,7 +6,7 @@ using DartSassHost.Helpers;
 
 namespace DartSassHost.Tests
 {
-	public abstract class PhysicalFileSystemTestsBase
+	public abstract class PhysicalFileSystemTestsBase : TestsBase
 	{
 		private readonly string _currentDirectory;
 		private readonly string _fileExtension;
