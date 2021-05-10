@@ -44145,7 +44145,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						throw exception;
 					}
 					*/
-					return fileManager.DirectoryExists(this.path); //DSH+
+					return true; //DSH+
 				},
 				$signature: 21
 			};
@@ -83499,7 +83499,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						throw exception;
 					}
 					*/
-					return fileManager.DirectoryExists(this.path); //DSH+
+					return true; //DSH+
 				},
 				$signature: 21
 			};

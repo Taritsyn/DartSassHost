@@ -33,11 +33,6 @@ namespace DartSassHost.Tests
 #endif
 		}
 
-		public bool DirectoryExists(string path)
-		{
-			return FileManager.Instance.DirectoryExists(path);
-		}
-
 		public bool FileExists(string path)
 		{
 			return FileManager.Instance.FileExists(path);

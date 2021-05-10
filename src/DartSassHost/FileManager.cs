@@ -81,21 +81,6 @@ namespace DartSassHost
 			return _currentDirectoryName;
 		}
 
-		public bool DirectoryExists(string path)
-		{
-			if (path == null)
-			{
-				throw new ArgumentNullException(
-					nameof(path),
-					string.Format(Strings.Common_ArgumentIsNull, nameof(path))
-				);
-			}
-
-			bool result = Directory.Exists(path);
-
-			return result;
-		}
-
 		public bool FileExists(string path)
 		{
 			if (path == null)

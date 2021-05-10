@@ -26,13 +26,6 @@ namespace DartSassHost
 		string GetCurrentDirectory();
 
 		/// <summary>
-		/// Gets a value that indicates whether a directory exists
-		/// </summary>
-		/// <param name="path">The path to the directory</param>
-		/// <returns>true if the directory exists; otherwise, false</returns>
-		bool DirectoryExists(string path);
-
-		/// <summary>
 		/// Determines whether the specified file exists
 		/// </summary>
 		/// <param name="path">The file to check</param>
