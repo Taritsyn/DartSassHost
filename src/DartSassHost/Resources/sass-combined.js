@@ -4,14 +4,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 		require = function(name) {
 			var result;
 
-			if (typeof loadedModules[name] !== 'undefined') {
+			if (typeof loadedModules[name] !== "undefined") {
 				result = loadedModules[name];
 			}
 			else {
-				if (typeof modules[name] !== 'undefined') {
+				if (typeof modules[name] !== "undefined") {
 					result = modules[name].call(this);
 
-					loadedModules[name] = (typeof result !== 'undefined') ? result : null;
+					loadedModules[name] = (typeof result !== "undefined") ? result : null;
 					modules[name] = undefined;
 				}
 				else {
@@ -35,7 +35,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			;
 
 		for (argumentIndex = 0; argumentIndex < argumentCount - 1; argumentIndex++) {
-			regex = new RegExp('\\{' + argumentIndex + '\\}', 'gm');
+			regex = new RegExp("\\{" + argumentIndex + "\\}", "gm");
 			argument = arguments[argumentIndex + 1];
 
 			result = result.replace(regex, argument);
@@ -43,6 +43,55 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 
 		return result;
 	}
+
+	var dshUtils = (function (fileManager) {
+		var exports = {};
+			fileScheme = "file://",
+			urlFunctionBeginPart = "url(",
+			urlFunctionEndPart = ")"
+			;
+
+		function removeFileSchemeFromPath(path) {
+			var processedPath = path;
+
+			if (path.startsWith(fileScheme)) {
+				processedPath = path.substring(fileScheme.length);
+			}
+
+			return processedPath;
+		}
+
+		function isUrlFunction(value) {
+			return value.length > 6 && value.startsWith(urlFunctionBeginPart) && value.endsWith(urlFunctionEndPart);
+		}
+
+		function extractPathFromUrlFunction(value) {
+			return value.substring(urlFunctionBeginPart.length, value.length - urlFunctionEndPart.length);
+		}
+
+		function wrapPathInUrlFunction(value) {
+			return urlFunctionBeginPart + value + urlFunctionEndPart;
+		}
+
+		function convertPathToAbsoluteInUrlFunction(urlfunction) {
+			var path,
+				processedUrlFunction = urlfunction
+				;
+
+			if (isUrlFunction(urlfunction) && fileManager.SupportsConversionToAbsolutePath) {
+				path = extractPathFromUrlFunction(urlfunction);
+				path = fileManager.ToAbsolutePath(path);
+				processedUrlFunction = wrapPathInUrlFunction(path);
+			}
+
+			return processedUrlFunction;
+		}
+
+		exports.removeFileSchemeFromPath = removeFileSchemeFromPath;
+		exports.convertPathToAbsoluteInUrlFunction = convertPathToAbsoluteInUrlFunction;
+
+		return exports;
+	})(fileManager);
 
 	var process = {
 		platform: currentOsPlatformName,
@@ -57,7 +106,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 	};
 
 	//#region URL: /base64-js
-	modules['/base64-js'] = function () {
+	modules["/base64-js"] = function () {
 		/*!
 		 * base64-js v1.3.1
 		 * https://github.com/beatgammit/base64-js
@@ -229,7 +278,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 	//#endregion
 
 	//#region URL: /buffer
-	modules['/buffer'] = function () {
+	modules["/buffer"] = function () {
 		/*!
 		 * The buffer module from node.js (for the browser) v6.0.3
 		 * https://github.com/feross/buffer
@@ -2347,7 +2396,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 	//#endregion
 
 	//#region URL: /ieee754
-	modules['/ieee754'] = function () {
+	modules["/ieee754"] = function () {
 		/*!
 		 * The IEEE754 module from node.js (for the browser) v1.2.1
 		 * https://github.com/feross/ieee754
@@ -2450,13 +2499,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 	//#endregion
 
 	//#region URL: readline
-	modules['readline'] = function () {
+	modules["readline"] = function () {
 		return Object.create(null);
 	};
 	//#endregion
 
 	//#region URL: /sass.dart.js
-	modules['/sass.dart.js'] = function () {
+	modules["/sass.dart.js"] = function () {
 		/*!
 		 * Dart Sass v1.32.11
 		 * https://sass-lang.com/dart-sass
@@ -2470,6 +2519,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 		 /** * @license MIT
 		 */
 		var exports = {};
+		exports.removeFileSchemeFromPath = dshUtils.removeFileSchemeFromPath; //DSH+
 
 		// make sure to keep this as 'var'
 		// we don't want block scoping
@@ -16346,6 +16396,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				}, _EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin: function _EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin() {
 				},
 				Style__getPlatformStyle: function() {
+					if (fileManager.SupportsConversionToAbsolutePath) //DSH+
+						return $.$get$Style_url(); //DSH+
 					if (P.Uri_base().get$scheme() !== "file")
 						return $.$get$Style_url();
 					var t1 = P.Uri_base();
@@ -34481,6 +34533,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				absolute$7: function(part1, part2, part3, part4, part5, part6, part7) {
 					var t1, _this = this;
+					if (fileManager.SupportsConversionToAbsolutePath) { //DSH+
+						part1 = fileManager.ToAbsolutePath(part1); //DSH+
+					} //DSH+
 					M._validateArgList("absolute", H.setRuntimeTypeInfo([part1, part2, part3, part4, part5, part6, part7], type$.JSArray_nullable_String));
 					if (part2 == null) {
 						t1 = _this.style;
@@ -44034,21 +44089,23 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			B._readFile_closure.prototype = {
 				call$0: function() {
 					/*DSH- return J.readFileSync$2$x(D.fs(), this.path, this.encoding);*/
-					return fileManager.ReadFile(this.path); //DSH+
+					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
+
+					return fileManager.ReadFile(path); //DSH+
 				},
 				$signature: 89
 			};
 			B.writeFile_closure.prototype = {
 				call$0: function() {
 					/*DSH- return J.writeFileSync$2$x(D.fs(), this.path, this.contents);*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, 'writeFile_closure')); //DSH+
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "writeFile_closure")); //DSH+
 				},
 				$signature: 0
 			};
 			B.deleteFile_closure.prototype = {
 				call$0: function() {
 					/*DSH- return J.unlinkSync$1$x(D.fs(), this.path);*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, 'deleteFile_closure')); //DSH+
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "deleteFile_closure")); //DSH+
 				},
 				$signature: 0
 			};
@@ -44167,7 +44224,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						J.mkdirSync$1$x(D.fs(), t1);
 					}
 					*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, 'ensureDir_closure')); //DSH+
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "ensureDir_closure")); //DSH+
 				},
 				$signature: 0
 			};
@@ -44180,7 +44237,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					else
 						return new B.listDir_closure_list().call$1(t1);
 					*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, 'listDir_closure')); //DSH+
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure")); //DSH+
 				},
 				$signature: 152
 			};
@@ -44199,7 +44256,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			B.listDir_closure_list.prototype = {
 				call$1: function($parent) {
 					/*DSH- return J.expand$1$1$ax(J.readdirSync$1$x(D.fs(), $parent), new B.listDir__list_closure($parent, this), type$.String);*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, 'listDir_closure_list')); //DSH+
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure_list")); //DSH+
 				},
 				$signature: 153
 			};
@@ -44224,7 +44281,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					H.checkNotNullable(false, "isUtc", type$.bool);
 					return new P.DateTime(t1, false);
 					*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, 'modificationTime_closure')); //DSH+
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "modificationTime_closure")); //DSH+
 				},
 				$signature: 155
 			};
@@ -48822,8 +48879,10 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t5 = type$.Object;
 								t2 = P.List_List$of(t4, true, t5);
 								t4 = t3._contents;
-								if (t4.length !== 0)
+								if (t4.length !== 0) { /*DSH+*/
+									t4 = dshUtils.convertPathToAbsoluteInUrlFunction(t4); //DSH+
 									t2.push(t4.charCodeAt(0) == 0 ? t4 : t4);
+								} //DSH+
 								result = P.List_List$from(t2, false, t5);
 								result.fixed$length = Array;
 								result.immutable$list = Array;
@@ -77329,7 +77388,10 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					return this._evaluate0$_withStackFrame$3($name, nodeWithSpan, new R._EvaluateVisitor__runUserDefinedCallable_closure1(this, callable, evaluated, nodeWithSpan, run, $V));
 				},
 				_evaluate0$_runFunctionCallable$3: function($arguments, callable, nodeWithSpan) {
-					var t1, t2, t3, first, _i, argument, restArg, rest, _this = this;
+					var t1, t2, t3, first, _i, argument, restArg, rest, _this = this,
+						isUrlFunction, //DSH+
+						evaluatedValue //DSH+
+						;
 					if (callable instanceof Q.BuiltInCallable0)
 						return _this._evaluate0$_runBuiltInCallable$3($arguments, callable, nodeWithSpan).withoutSlash$0();
 					else if (type$.UserDefinedCallable_Environment_2._is(callable))
@@ -77338,6 +77400,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = $arguments.named;
 						if (t1.get$isNotEmpty(t1) || $arguments.keywordRest != null)
 							throw H.wrapException(_this._evaluate0$_exception$2(string$.Plain_, nodeWithSpan.get$span()));
+						isUrlFunction = callable.name.toLowerCase() === "url"; //DSH+
 						t1 = callable.name + "(";
 						for (t2 = $arguments.positional, t3 = t2.length, first = true, _i = 0; _i < t3; ++_i) {
 							argument = t2[_i];
@@ -77345,7 +77408,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								first = false;
 							else
 								t1 += ", ";
-							t1 += _this._evaluate0$_serialize$3$quote(argument.accept$1(_this), argument, true);
+							/*DSH- t1 += _this._evaluate0$_serialize$3$quote(argument.accept$1(_this), argument, true);*/
+							evaluatedValue = argument.accept$1(_this); //DSH+
+							if (isUrlFunction && fileManager.SupportsConversionToAbsolutePath) { //DSH+
+								evaluatedValue.text = fileManager.ToAbsolutePath(evaluatedValue.text);
+							} //DSH+
+							t1 += _this._evaluate0$_serialize$3$quote(evaluatedValue, argument, true); //DSH+
 						}
 						restArg = $arguments.rest;
 						if (restArg != null) {
@@ -83455,7 +83523,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			B._readFile_closure0.prototype = {
 				call$0: function() {
 					/*DSH- return J.readFileSync$2$x(D.fs(), this.path, this.encoding);*/
-					return fileManager.ReadFile(this.path); //DSH+
+					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
+
+					return fileManager.ReadFile(path); //DSH+
 				},
 				$signature: 89
 			};
@@ -83512,7 +83582,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					else
 						return new B.listDir_closure_list0().call$1(t1);
 					*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, 'listDir_closure0')); //DSH+
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure0")); //DSH+
 				},
 				$signature: 152
 			};
@@ -83531,7 +83601,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			B.listDir_closure_list0.prototype = {
 				call$1: function($parent) {
 					/*DSH- return J.expand$1$1$ax(J.readdirSync$1$x(D.fs(), $parent), new B.listDir__list_closure0($parent, this), type$.String);*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, 'listDir_closure_list0')); //DSH+
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure_list0")); //DSH+
 				},
 				$signature: 153
 			};
@@ -90702,8 +90772,10 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t5 = type$.Object;
 								t2 = P.List_List$of(t4, true, t5);
 								t4 = t3._contents;
-								if (t4.length !== 0)
+								if (t4.length !== 0) { /*DSH+*/
+									t4 = dshUtils.convertPathToAbsoluteInUrlFunction(t4); //DSH+
 									t2.push(t4.charCodeAt(0) == 0 ? t4 : t4);
+								} //DSH+
 								result = P.List_List$from(t2, false, t5);
 								result.fixed$length = Array;
 								result.immutable$list = Array;

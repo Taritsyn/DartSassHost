@@ -39,7 +39,7 @@ var SassHelper = (function (sass, fileManager, undefined) {
 		fixedPaths = [];
 
 		for (pathIndex = 0; pathIndex < paths.length; pathIndex++) {
-			path = paths[pathIndex];
+			path = sass.removeFileSchemeFromPath(paths[pathIndex]);
 			if (getCanonicalFilePath(path) !== currentDirectory) {
 				fixedPaths.push(path);
 			}
