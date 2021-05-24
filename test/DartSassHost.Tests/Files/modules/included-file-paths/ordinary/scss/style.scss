@@ -1,2 +1,5 @@
-@use 'foundation/code';
-@use 'foundation/lists';
+@use "bootstrap";
+
+li {
+  @include bootstrap.list-reset;
+}
