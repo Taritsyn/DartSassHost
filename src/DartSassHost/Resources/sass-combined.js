@@ -44180,7 +44180,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						throw exception;
 					}
 					*/
-					return fileManager.FileExists(this.path); //DSH+
+					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
+
+					return fileManager.FileExists(path); //DSH+
 				},
 				$signature: 21
 			};
@@ -83547,7 +83549,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						throw exception;
 					}
 					*/
-					return fileManager.FileExists(this.path); //DSH+
+					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
+
+					return fileManager.FileExists(path); //DSH+
 				},
 				$signature: 21
 			};

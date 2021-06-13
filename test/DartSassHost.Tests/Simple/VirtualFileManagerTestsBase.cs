@@ -13,7 +13,7 @@ namespace DartSassHost.Tests.Simple
 		protected string _siteSourceMapFileContent;
 		private readonly Func<string, string> _siteToAbsolutePath;
 
-		protected readonly string _appAbsolutePath;
+		private readonly string _appAbsolutePath;
 		protected string _appInputFileRelativePath;
 		protected string _appInputFileAbsolutePath;
 		protected string _appInputFileContent;
@@ -24,24 +24,27 @@ namespace DartSassHost.Tests.Simple
 
 		protected VirtualFileManagerTestsBase()
 		{
-			_siteOutputFileContent = ".icon-google-plus {\n" +
-				"  display: inline;\n" +
+			_siteOutputFileContent = ".icons {\n" +
+				"  display: inline-block;\n" +
+				"  background-repeat: no-repeat;\n" +
+				"  width: 16px;\n" +
+				"  height: 16px;\n" +
+				"  line-height: 0;\n" +
+				"  vertical-align: bottom;\n" +
+				"}\n\n" +
+				".icon-google-plus {\n" +
 				"  background-image: url(../images/google-plus.svg);\n" +
 				"}\n\n" +
 				".icon-headphone {\n" +
-				"  display: inline;\n" +
 				"  background-image: URL(\"/images/icons/headphone.gif\");\n" +
 				"}\n\n" +
 				".icon-monitor {\n" +
-				"  display: inline;\n" +
 				"  background-image: url(\"/images/icons/monitor.png\");\n" +
 				"}\n\n" +
 				".icon-robot {\n" +
-				"  display: inline;\n" +
 				"  background-image: url(\"/images/icons/robot.png\");\n" +
 				"}\n\n" +
 				".icon-usb-flash-drive {\n" +
-				"  display: inline;\n" +
 				"  background-image: url(/images/icons/usb-flash-drive.png);\n" +
 				"}\n\n" +
 				"/*# sourceMappingURL=site.css.map */"
@@ -49,24 +52,27 @@ namespace DartSassHost.Tests.Simple
 			_siteToAbsolutePath = (string p) => p;
 
 			_appAbsolutePath = "/app01";
-			_appOutputFileContent = ".icon-google-plus {\n" +
-				"  display: inline;\n" +
+			_appOutputFileContent = ".icons {\n" +
+				"  display: inline-block;\n" +
+				"  background-repeat: no-repeat;\n" +
+				"  width: 16px;\n" +
+				"  height: 16px;\n" +
+				"  line-height: 0;\n" +
+				"  vertical-align: bottom;\n" +
+				"}\n\n" +
+				".icon-google-plus {\n" +
 				"  background-image: url(../images/google-plus.svg);\n" +
 				"}\n\n" +
 				".icon-headphone {\n" +
-				"  display: inline;\n" +
 				"  background-image: URL(\"/app01/images/icons/headphone.gif\");\n" +
 				"}\n\n" +
 				".icon-monitor {\n" +
-				"  display: inline;\n" +
 				"  background-image: url(\"/app01/images/icons/monitor.png\");\n" +
 				"}\n\n" +
 				".icon-robot {\n" +
-				"  display: inline;\n" +
 				"  background-image: url(\"/app01/images/icons/robot.png\");\n" +
 				"}\n\n" +
 				".icon-usb-flash-drive {\n" +
-				"  display: inline;\n" +
 				"  background-image: url(/app01/images/icons/usb-flash-drive.png);\n" +
 				"}\n\n" +
 				"/*# sourceMappingURL=app.css.map */"
@@ -132,7 +138,7 @@ namespace DartSassHost.Tests.Simple
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.GetCurrentDirectory())
-				.Returns(_appAbsolutePath)
+				.Returns(_appAbsolutePath + "/")
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.ToAbsolutePath(It.IsAny<string>()))
@@ -215,7 +221,7 @@ namespace DartSassHost.Tests.Simple
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.GetCurrentDirectory())
-				.Returns(_appAbsolutePath)
+				.Returns(_appAbsolutePath + "/")
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.ToAbsolutePath(It.IsAny<string>()))

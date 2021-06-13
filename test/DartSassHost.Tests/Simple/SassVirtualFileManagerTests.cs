@@ -11,58 +11,64 @@ namespace DartSassHost.Tests.Simple
 		{
 			_siteInputFileAbsolutePath = "/styles/site.sass";
 			_siteInputFileContent = "$icons-path: \"/images/icons\"\n\n" +
+				".icons\n" +
+				"  display: inline-block\n" +
+				"  background-repeat: no-repeat\n" +
+				"  width: 16px\n" +
+				"  height: 16px\n" +
+				"  line-height: 0\n" +
+				"  vertical-align: bottom\n" +
+				"\n" +
 				".icon-google-plus\n" +
-				"  display: inline\n" +
 				"  background-image: url(../images/google-plus.svg)\n" +
-				"\n\n" +
+				"\n" +
 				".icon-headphone\n" +
-				"  display: inline\n" +
 				"  background-image: URL(  '/images/icons/headphone.gif'  )\n" +
-				"\n\n" +
+				"\n" +
 				".icon-monitor\n" +
-				"  display: inline\n" +
 				"  background-image: url(\"#{$icons-path}/monitor.png\")\n" +
-				"\n\n" +
+				"\n" +
 				".icon-robot\n" +
-				"  display: inline\n" +
 				"  background-image: url($icons-path + \"/robot.png\")\n" +
-				"\n\n" +
+				"\n" +
 				".icon-usb-flash-drive\n" +
-				"  display: inline\n" +
 				"  background-image: Url(  /images/icons/usb-flash-drive.png  )"
 				;
 			_siteSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
 				"\"sources\":[\"site.sass\"],\"names\":[]," +
-				"\"mappings\":\"AAEA;EACE;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA\"," +
+				"\"mappings\":\"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE\"," +
 				"\"file\":\"site.css\"}"
 				;
 
 			_appInputFileRelativePath = "~/styles/app.sass";
-			_appInputFileAbsolutePath = _appAbsolutePath + "/styles/app.sass";
+			_appInputFileAbsolutePath = "/app01/styles/app.sass";
 			_appInputFileContent = "$icons-path: \"~/images/icons\"\n\n" +
+				".icons\n" +
+				"  display: inline-block\n" +
+				"  background-repeat: no-repeat\n" +
+				"  width: 16px\n" +
+				"  height: 16px\n" +
+				"  line-height: 0\n" +
+				"  vertical-align: bottom\n" +
+				"\n" +
 				".icon-google-plus\n" +
-				"  display: inline\n" +
 				"  background-image: url(../images/google-plus.svg)\n" +
-				"\n\n" +
+				"\n" +
 				".icon-headphone\n" +
-				"  display: inline\n" +
 				"  background-image: URL(  '~/images/icons/headphone.gif'  )\n" +
-				"\n\n" +
+				"\n" +
 				".icon-monitor\n" +
-				"  display: inline\n" +
 				"  background-image: url(\"#{$icons-path}/monitor.png\")\n" +
-				"\n\n" +
+				"\n" +
 				".icon-robot\n" +
-				"  display: inline\n" +
 				"  background-image: url($icons-path + \"/robot.png\")\n" +
-				"\n\n" +
+				"\n" +
 				".icon-usb-flash-drive\n" +
-				"  display: inline\n" +
 				"  background-image: Url(  ~/images/icons/usb-flash-drive.png  )"
 				;
 			_appSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
 				"\"sources\":[\"file:///app01/styles/app.sass\"],\"names\":[]," +
-				"\"mappings\":\"AAEA;EACE;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA\"," +
+				"\"mappings\":\"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE\"," +
 				"\"file\":\"app.css\"}"
 				;
 		}
