@@ -78,9 +78,11 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				processedUrlFunction = urlfunction
 				;
 
-			if (isUrlFunction(urlfunction) && fileManager.SupportsConversionToAbsolutePath) {
+			if (isUrlFunction(urlfunction) && fileManager.SupportsVirtualPaths) {
 				path = extractPathFromUrlFunction(urlfunction);
-				path = fileManager.ToAbsolutePath(path);
+				if (fileManager.IsAppRelativeVirtualPath(path)) {
+					path = fileManager.ToAbsoluteVirtualPath(path);
+				}
 				processedUrlFunction = wrapPathInUrlFunction(path);
 			}
 
@@ -16396,7 +16398,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				}, _EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin: function _EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin() {
 				},
 				Style__getPlatformStyle: function() {
-					if (fileManager.SupportsConversionToAbsolutePath) //DSH+
+					if (fileManager.SupportsVirtualPaths) //DSH+
 						return $.$get$Style_url(); //DSH+
 					if (P.Uri_base().get$scheme() !== "file")
 						return $.$get$Style_url();
@@ -34533,8 +34535,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				absolute$7: function(part1, part2, part3, part4, part5, part6, part7) {
 					var t1, _this = this;
-					if (fileManager.SupportsConversionToAbsolutePath) { //DSH+
-						part1 = fileManager.ToAbsolutePath(part1); //DSH+
+					if (fileManager.SupportsVirtualPaths && fileManager.IsAppRelativeVirtualPath(part1)) { //DSH+
+						part1 = fileManager.ToAbsoluteVirtualPath(part1); //DSH+
 					} //DSH+
 					M._validateArgList("absolute", H.setRuntimeTypeInfo([part1, part2, part3, part4, part5, part6, part7], type$.JSArray_nullable_String));
 					if (part2 == null) {
@@ -77412,8 +77414,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t1 += ", ";
 							/*DSH- t1 += _this._evaluate0$_serialize$3$quote(argument.accept$1(_this), argument, true);*/
 							evaluatedValue = argument.accept$1(_this); //DSH+
-							if (isUrlFunction && fileManager.SupportsConversionToAbsolutePath) { //DSH+
-								evaluatedValue.text = fileManager.ToAbsolutePath(evaluatedValue.text);
+							if (isUrlFunction && fileManager.SupportsVirtualPaths && fileManager.IsAppRelativeVirtualPath(evaluatedValue.text)) { //DSH+
+								evaluatedValue.text = fileManager.ToAbsoluteVirtualPath(evaluatedValue.text);
 							} //DSH+
 							t1 += _this._evaluate0$_serialize$3$quote(evaluatedValue, argument, true); //DSH+
 						}

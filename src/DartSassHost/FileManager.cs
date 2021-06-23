@@ -70,7 +70,7 @@ namespace DartSassHost
 
 		#region IFileManager implementation
 
-		public bool SupportsConversionToAbsolutePath
+		public bool SupportsVirtualPaths
 		{
 			get { return false; }
 		}
@@ -96,53 +96,12 @@ namespace DartSassHost
 			return result;
 		}
 
-		public bool IsAbsolutePath(string path)
+		public bool IsAppRelativeVirtualPath(string path)
 		{
-			if (path == null)
-			{
-				throw new ArgumentNullException(
-					nameof(path),
-					string.Format(Strings.Common_ArgumentIsNull, nameof(path))
-				);
-			}
-
-			bool result = false;
-
-			if (path.Length > 0)
-			{
-				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && PathStartsWithDriveLetter(path))
-				{
-					return true;
-				}
-
-				int charPosition = 0;
-				char charValue;
-
-				if (path.Length >= 2)
-				{
-					// check if we have a protocol
-					if (path.TryGetChar(charPosition, out charValue) && charValue.IsAlpha())
-					{
-						charPosition++;
-
-						// skip over all alphanumeric characters
-						while (path.TryGetChar(charPosition, out charValue) && charValue.IsAlphaNumeric())
-						{
-							charPosition++;
-						}
-
-						charPosition = charValue == ':' ? charPosition + 1 : 0;
-					}
-				}
-
-				path.TryGetChar(charPosition, out charValue);
-				result = charValue == '/';
-			}
-
-			return result;
+			throw new NotImplementedException();
 		}
 
-		public string ToAbsolutePath(string path)
+		public string ToAbsoluteVirtualPath(string path)
 		{
 			throw new NotImplementedException();
 		}

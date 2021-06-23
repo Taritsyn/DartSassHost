@@ -10,10 +10,9 @@ namespace DartSassHost
 	public interface IFileManager
 	{
 		/// <summary>
-		/// Gets a value that indicates if the file manager supports conversion of
-		/// relative paths to an application absolute paths
+		/// Gets a value that indicates if the file manager supports virtual paths
 		/// </summary>
-		bool SupportsConversionToAbsolutePath
+		bool SupportsVirtualPaths
 		{
 			get;
 		}
@@ -34,18 +33,18 @@ namespace DartSassHost
 		bool FileExists(string path);
 
 		/// <summary>
-		/// Gets a boolean value indicating whether the specified path is absolute
+		/// Gets a value indicating whether the specified virtual path is relative to the application
 		/// </summary>
-		/// <param name="path">The path to check</param>
-		/// <returns>true if path is an absolute path; otherwise, false</returns>
-		bool IsAbsolutePath(string path);
+		/// <param name="path">The virtual path to check</param>
+		/// <returns>true if virtual path is relative to the application; otherwise, false</returns>
+		bool IsAppRelativeVirtualPath(string path);
 
 		/// <summary>
-		/// Converts a relative path to an application absolute path
+		/// Converts a application-relative path to an absolute virtual path
 		/// </summary>
-		/// <param name="path">The relative path</param>
-		/// <returns>The absolute path representation of the specified relative path</returns>
-		string ToAbsolutePath(string path);
+		/// <param name="path">The virtual path</param>
+		/// <returns>The absolute path representation of the specified virtual path</returns>
+		string ToAbsoluteVirtualPath(string path);
 
 		/// <summary>
 		/// Opens a file, reads all lines of the file, and then closes the file

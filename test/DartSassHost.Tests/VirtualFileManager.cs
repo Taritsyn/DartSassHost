@@ -7,19 +7,25 @@ namespace DartSassHost.Tests
 	public sealed class VirtualFileManager : IFileManager
 	{
 		private readonly IFileManager _fileManager;
+		private readonly string _applicationPath;
 
 
 		public VirtualFileManager(Mock<IFileManager> fileManagerMock)
+			: this(fileManagerMock, string.Empty)
+		{ }
+
+		public VirtualFileManager(Mock<IFileManager> fileManagerMock, string applicationPath)
 		{
 			_fileManager = fileManagerMock.Object;
+			_applicationPath = applicationPath ?? string.Empty;
 		}
 
 
 		#region IFileManager implementation
 
-		public bool SupportsConversionToAbsolutePath
+		public bool SupportsVirtualPaths
 		{
-			get { return _fileManager.SupportsConversionToAbsolutePath; }
+			get { return _fileManager.SupportsVirtualPaths; }
 		}
 
 
@@ -33,14 +39,36 @@ namespace DartSassHost.Tests
 			return _fileManager.FileExists(path);
 		}
 
-		public bool IsAbsolutePath(string path)
+		public bool IsAppRelativeVirtualPath(string path)
 		{
-			return _fileManager.IsAbsolutePath(path);
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				return false;
+			}
+
+			return path.StartsWith("~/");
 		}
 
-		public string ToAbsolutePath(string path)
+		public string ToAbsoluteVirtualPath(string path)
 		{
-			return _fileManager.ToAbsolutePath(path);
+			if (path == null)
+			{
+				throw new ArgumentNullException(nameof(path));
+			}
+
+			if (path.StartsWith("/"))
+			{
+				return path;
+			}
+			else if (path.StartsWith("~/") && !string.IsNullOrWhiteSpace(_applicationPath))
+			{
+				return _applicationPath + "/" + path.Substring(2);
+			}
+
+			throw new ArgumentException(
+				string.Format("The relative virtual path '{0}' is not allowed here.", path),
+				nameof(path)
+			);
 		}
 
 		public string ReadFile(string path)

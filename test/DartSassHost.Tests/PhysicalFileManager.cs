@@ -18,9 +18,9 @@ namespace DartSassHost.Tests
 
 		#region IFileManager implementation
 
-		public bool SupportsConversionToAbsolutePath
+		public bool SupportsVirtualPaths
 		{
-			get { return FileManager.Instance.SupportsConversionToAbsolutePath; }
+			get { return FileManager.Instance.SupportsVirtualPaths; }
 		}
 
 
@@ -38,14 +38,14 @@ namespace DartSassHost.Tests
 			return FileManager.Instance.FileExists(path);
 		}
 
-		public bool IsAbsolutePath(string path)
+		public bool IsAppRelativeVirtualPath(string path)
 		{
-			return FileManager.Instance.IsAbsolutePath(path);
+			return FileManager.Instance.IsAppRelativeVirtualPath(path);
 		}
 
-		public string ToAbsolutePath(string path)
+		public string ToAbsoluteVirtualPath(string path)
 		{
-			return FileManager.Instance.ToAbsolutePath(path);
+			return FileManager.Instance.ToAbsoluteVirtualPath(path);
 		}
 
 		public string ReadFile(string path)

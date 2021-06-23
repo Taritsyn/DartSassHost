@@ -11,7 +11,6 @@ namespace DartSassHost.Tests.Simple
 		protected string _siteInputFileContent;
 		private readonly string _siteOutputFileContent;
 		protected string _siteSourceMapFileContent;
-		private readonly Func<string, string> _siteToAbsolutePath;
 
 		private readonly string _appAbsolutePath;
 		protected string _appInputFileRelativePath;
@@ -19,7 +18,6 @@ namespace DartSassHost.Tests.Simple
 		protected string _appInputFileContent;
 		private readonly string _appOutputFileContent;
 		protected string _appSourceMapFileContent;
-		private readonly Func<string, string> _appToAbsolutePath;
 
 
 		protected VirtualFileManagerTestsBase()
@@ -49,7 +47,6 @@ namespace DartSassHost.Tests.Simple
 				"}\n\n" +
 				"/*# sourceMappingURL=site.css.map */"
 				;
-			_siteToAbsolutePath = (string p) => p;
 
 			_appAbsolutePath = "/app01";
 			_appOutputFileContent = ".icons {\n" +
@@ -77,16 +74,6 @@ namespace DartSassHost.Tests.Simple
 				"}\n\n" +
 				"/*# sourceMappingURL=app.css.map */"
 				;
-			_appToAbsolutePath = (string p) =>
-				{
-					if (p.StartsWith("~/"))
-					{
-						return _appAbsolutePath + "/" + p.Substring(2);
-					}
-
-					return p;
-				}
-				;
 		}
 
 
@@ -98,16 +85,12 @@ namespace DartSassHost.Tests.Simple
 			// Arrange
 			var virtualFileManagerMock = new Mock<IFileManager>();
 			virtualFileManagerMock
-				.SetupGet(fm => fm.SupportsConversionToAbsolutePath)
+				.SetupGet(fm => fm.SupportsVirtualPaths)
 				.Returns(true)
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.GetCurrentDirectory())
 				.Returns("/")
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.ToAbsolutePath(It.IsAny<string>()))
-				.Returns(_siteToAbsolutePath)
 				;
 
 			IFileManager virtualFileManager = new VirtualFileManager(virtualFileManagerMock);
@@ -133,19 +116,15 @@ namespace DartSassHost.Tests.Simple
 		{
 			var virtualFileManagerMock = new Mock<IFileManager>();
 			virtualFileManagerMock
-				.SetupGet(fm => fm.SupportsConversionToAbsolutePath)
+				.SetupGet(fm => fm.SupportsVirtualPaths)
 				.Returns(true)
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.GetCurrentDirectory())
 				.Returns(_appAbsolutePath + "/")
 				;
-			virtualFileManagerMock
-				.Setup(fm => fm.ToAbsolutePath(It.IsAny<string>()))
-				.Returns(_appToAbsolutePath)
-				;
 
-			IFileManager virtualFileManager = new VirtualFileManager(virtualFileManagerMock);
+			IFileManager virtualFileManager = new VirtualFileManager(virtualFileManagerMock, _appAbsolutePath);
 			var options = new CompilationOptions { SourceMap = true };
 
 			// Act
@@ -173,16 +152,12 @@ namespace DartSassHost.Tests.Simple
 			// Arrange
 			var virtualFileManagerMock = new Mock<IFileManager>();
 			virtualFileManagerMock
-				.SetupGet(fm => fm.SupportsConversionToAbsolutePath)
+				.SetupGet(fm => fm.SupportsVirtualPaths)
 				.Returns(true)
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.GetCurrentDirectory())
 				.Returns("/")
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.ToAbsolutePath(It.IsAny<string>()))
-				.Returns(_siteToAbsolutePath)
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.FileExists(_siteInputFileAbsolutePath))
@@ -216,16 +191,12 @@ namespace DartSassHost.Tests.Simple
 		{
 			var virtualFileManagerMock = new Mock<IFileManager>();
 			virtualFileManagerMock
-				.SetupGet(fm => fm.SupportsConversionToAbsolutePath)
+				.SetupGet(fm => fm.SupportsVirtualPaths)
 				.Returns(true)
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.GetCurrentDirectory())
 				.Returns(_appAbsolutePath + "/")
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.ToAbsolutePath(It.IsAny<string>()))
-				.Returns(_appToAbsolutePath)
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.FileExists(_appInputFileRelativePath))
@@ -240,7 +211,7 @@ namespace DartSassHost.Tests.Simple
 				.Returns(_appInputFileContent)
 				;
 
-			IFileManager virtualFileManager = new VirtualFileManager(virtualFileManagerMock);
+			IFileManager virtualFileManager = new VirtualFileManager(virtualFileManagerMock, _appAbsolutePath);
 			var options = new CompilationOptions { SourceMap = true };
 
 			// Act
