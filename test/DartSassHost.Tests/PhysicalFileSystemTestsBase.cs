@@ -2,6 +2,8 @@
 using System.Collections.Concurrent;
 using System.IO;
 
+using JavaScriptEngineSwitcher.Core;
+
 using DartSassHost.Helpers;
 
 namespace DartSassHost.Tests
@@ -51,6 +53,11 @@ namespace DartSassHost.Tests
 		public SassCompiler CreateSassCompiler()
 		{
 			return new SassCompiler(PhysicalFileManager.Instance);
+		}
+
+		public SassCompiler CreateSassCompiler(IJsEngineFactory jsEngineFactory)
+		{
+			return new SassCompiler(jsEngineFactory, PhysicalFileManager.Instance);
 		}
 
 		private string ToAbsolutePath(string path)

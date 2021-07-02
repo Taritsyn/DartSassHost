@@ -52,8 +52,9 @@ After installing the packages, you will need to register the default JS engine (
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources/sass-combined.js" />
-    <EmbeddedResource Include="Resources/sassHelper.js" />
+    <EmbeddedResource Include="Resources/es6-polyfills.min.js" />
+    <EmbeddedResource Include="Resources/sass-combined.min.js" />
+    <EmbeddedResource Include="Resources/sass-helper.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +67,33 @@ After installing the packages, you will need to register the default JS engine (
 
   <Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
     <ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
+  </Target>
+
+  <Target Name="NodePackageInstallation" BeforeTargets="BeforeBuild">
+    <Exec Command='npm install'
+      WorkingDirectory="$(ProjectDir)"
+      ConsoleToMsBuild="true" />
+  </Target>
+
+  <Target Name="Es6Translation" AfterTargets="NodePackageInstallation">
+    <Exec Command='babel --out-file "$(ProjectDir)Resources/sass-combined.js" --config-file "$(ProjectDir).babelrc" "$(ProjectDir)Resources/sass-combined.es6"'
+      WorkingDirectory="$(ProjectDir)node_modules/.bin/"
+      ConsoleToMsBuild="true" />
+  </Target>
+
+  <Target Name="JsMinification" AfterTargets="Es6Translation">
+    <Exec
+      Command='uglifyjs "$(ProjectDir)Resources/es6-polyfills.js" --output "$(ProjectDir)Resources/es6-polyfills.min.js" --config-file "$(ProjectDir).uglifyjsrc"'
+      WorkingDirectory="$(ProjectDir)node_modules/.bin/"
+      ConsoleToMsBuild="true" />
+    <Exec
+      Command='uglifyjs "$(ProjectDir)Resources/sass-combined.js" --output "$(ProjectDir)Resources/sass-combined.min.js" --config-file "$(ProjectDir).uglifyjsrc" --keep-fnames'
+      WorkingDirectory="$(ProjectDir)node_modules/.bin/"
+      ConsoleToMsBuild="true" />
+    <Exec
+      Command='uglifyjs "$(ProjectDir)Resources/sass-helper.js" --output "$(ProjectDir)Resources/sass-helper.min.js" --config-file "$(ProjectDir).uglifyjsrc"'
+      WorkingDirectory="$(ProjectDir)node_modules/.bin/"
+      ConsoleToMsBuild="true" />
   </Target>
 
 </Project>

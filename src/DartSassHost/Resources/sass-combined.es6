@@ -1,4 +1,6 @@
 var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
+	"use strict";
+
 	var modules = {},
 		loadedModules = {},
 		require = function(name) {
@@ -2458,7 +2460,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 		 /** * @license MIT
 		 */
 		var dshUtils = (function (fileManager) { //DSH+
-			var exports = {}; //DSH+
+			var exports = {}, //DSH+
 				fileScheme = "file://", //DSH+
 				urlFunctionBeginPart = "url(", //DSH+
 				urlFunctionEndPart = ")" //DSH+
@@ -2514,7 +2516,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 		// make sure to keep this as 'var'
 		// we don't want block scoping
 
-		var dartNodePreambleSelf = typeof global !== "undefined" ? global : /*DSH- window*/this;
+		var dartNodePreambleSelf = typeof global !== "undefined" ? global : /*DSH- window*/Function('return this')();
 
 		var self = Object.create(dartNodePreambleSelf);
 

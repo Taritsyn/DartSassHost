@@ -1,5 +1,7 @@
 ﻿using System;
 
+using JavaScriptEngineSwitcher.Core;
+using JavaScriptEngineSwitcher.NiL;
 using NUnit.Framework;
 
 namespace DartSassHost.Tests.Simple
@@ -14,7 +16,78 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
+		#region Code
+
+		[Test]
+		public void MappingSassCompilerLoadErrorDuringCompilationOfCode()
+		{
+			// Arrange
+			IJsEngineFactory jsEngineFactory = new NiLJsEngineFactory();
+			string inputPath = GenerateSassFilePath("simplest-working", "style");
+			string input = GetFileContent(inputPath);
+
+			// Act
+			string output;
+			SassCompilerLoadException exception = null;
+
+			try
+			{
+				using (var sassCompiler = CreateSassCompiler(jsEngineFactory))
+				{
+					output = sassCompiler.Compile(input, inputPath).CompiledContent;
+				}
+			}
+			catch (SassCompilerLoadException e)
+			{
+				exception = e;
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.AreEqual(
+				"During loading of Sass compiler error has occurred. See the original error message: " +
+				"“TypeError: Can't set property \"keys\" of \"undefined\"”.",
+				exception.Message
+			);
+			Assert.AreEqual("TypeError: Can't set property \"keys\" of \"undefined\"", exception.Description);
+		}
+
+		#endregion
+
 		#region Files
+
+		[Test]
+		public void MappingSassCompilerLoadErrorDuringCompilationOfFile()
+		{
+			// Arrange
+			IJsEngineFactory jsEngineFactory = new NiLJsEngineFactory();
+			string inputPath = GenerateSassFilePath("simplest-working", "style");
+
+			// Act
+			string output;
+			SassCompilerLoadException exception = null;
+
+			try
+			{
+				using (var sassCompiler = CreateSassCompiler(jsEngineFactory))
+				{
+					output = sassCompiler.CompileFile(inputPath).CompiledContent;
+				}
+			}
+			catch (SassCompilerLoadException e)
+			{
+				exception = e;
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.AreEqual(
+				"During loading of Sass compiler error has occurred. See the original error message: " +
+				"“TypeError: Can't set property \"keys\" of \"undefined\"”.",
+				exception.Message
+			);
+			Assert.AreEqual("TypeError: Can't set property \"keys\" of \"undefined\"", exception.Description);
+		}
 
 		[Test]
 		public void MappingFileNotFoundErrorDuringCompilationOfFile()
@@ -55,6 +128,6 @@ namespace DartSassHost.Tests.Simple
 			Assert.IsEmpty(exception.SourceFragment);
 		}
 
-		#endregion
+#endregion
 	}
 }
