@@ -1,15 +1,6 @@
 ﻿using System;
 using System.IO;
-#if NET45 || NET471 || NETSTANDARD
-using System.Runtime.InteropServices;
-#endif
-#if NET40
 
-using PolyfillsForOldDotNet.System.Runtime.InteropServices;
-#endif
-
-using DartSassHost.Extensions;
-using DartSassHost.Helpers;
 using DartSassHost.Resources;
 
 namespace DartSassHost
@@ -27,7 +18,7 @@ namespace DartSassHost
 		/// <summary>
 		/// Current working directory of the application
 		/// </summary>
-		private readonly string _currentDirectoryName;
+		private readonly string _currentDirectory;
 
 		/// <summary>
 		/// Gets a instance of file manager
@@ -43,28 +34,7 @@ namespace DartSassHost
 		/// </summary>
 		private FileManager()
 		{
-			_currentDirectoryName = Directory.GetCurrentDirectory();
-		}
-
-
-		/// <summary>
-		/// Determines whether the beginning of specified path matches the drive letter
-		/// </summary>
-		/// <param name="path">The path</param>
-		/// <returns>true if path starts with the drive letter; otherwise, false</returns>
-		private static bool PathStartsWithDriveLetter(string path)
-		{
-			if (path == null)
-			{
-				throw new ArgumentNullException(
-					nameof(path),
-					string.Format(Strings.Common_ArgumentIsNull, nameof(path))
-				);
-			}
-
-			bool result = path.Length >= 2 && path[0].IsAlpha() && path[1] == ':';
-
-			return result;
+			_currentDirectory = Directory.GetCurrentDirectory();
 		}
 
 
@@ -78,7 +48,7 @@ namespace DartSassHost
 
 		public string GetCurrentDirectory()
 		{
-			return _currentDirectoryName;
+			return _currentDirectory;
 		}
 
 		public bool FileExists(string path)

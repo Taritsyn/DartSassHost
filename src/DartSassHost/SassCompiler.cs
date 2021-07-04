@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 #if NET45 || NET471 || NETSTANDARD
 using System.Runtime.InteropServices;
 #endif
-using System.Text;
-using System.Threading;
 
-using AdvancedStringBuilder;
 using JavaScriptEngineSwitcher.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -277,12 +275,9 @@ namespace DartSassHost
 						.Assembly
 						;
 
-					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(ES6_POLYFILLS_FILE_NAME),
-						assembly);
-					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_LIBRARY_FILE_NAME),
-						assembly);
-					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_HELPER_FILE_NAME),
-						assembly);
+					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(ES6_POLYFILLS_FILE_NAME), assembly);
+					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_LIBRARY_FILE_NAME), assembly);
+					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_HELPER_FILE_NAME), assembly);
 					_jsEngine.Execute($"var sassHelper = new SassHelper({serializedOptions});");
 
 					_version = _jsEngine.Evaluate<string>("SassHelper.getVersion();");
@@ -416,17 +411,11 @@ namespace DartSassHost
 		{
 			Initialize();
 
-			string inputFilePath = !string.IsNullOrWhiteSpace(inputPath) ? inputPath : string.Empty;
-			string outputFilePath = !string.IsNullOrWhiteSpace(outputPath) ? outputPath : string.Empty;
-			string sourceMapFilePath = !string.IsNullOrWhiteSpace(sourceMapPath) ? sourceMapPath : string.Empty;
+			string inputFilePath = inputPath;
+			string outputFilePath = outputPath;
+			string sourceMapFilePath = sourceMapPath;
 
-			if (inputFilePath.Length > 0 || outputFilePath.Length > 0)
-			{
-				outputFilePath = outputFilePath.Length > 0 ?
-					outputPath : Path.ChangeExtension(inputFilePath, ".css");
-				sourceMapFilePath = sourceMapFilePath.Length > 0 ?
-					sourceMapFilePath : Path.ChangeExtension(outputFilePath, ".css.map");
-			}
+			ProcessFilePaths(ref inputFilePath, ref outputFilePath, ref sourceMapFilePath);
 
 			string serializedResult = string.Empty;
 			string serializedContent = JsonConvert.SerializeObject(content);
@@ -502,17 +491,11 @@ namespace DartSassHost
 
 			Initialize();
 
-			string inputFilePath = !string.IsNullOrWhiteSpace(inputPath) ? inputPath : string.Empty;
-			string outputFilePath = !string.IsNullOrWhiteSpace(outputPath) ? outputPath : string.Empty;
-			string sourceMapFilePath = !string.IsNullOrWhiteSpace(sourceMapPath) ? sourceMapPath : string.Empty;
+			string inputFilePath = inputPath;
+			string outputFilePath = outputPath;
+			string sourceMapFilePath = sourceMapPath;
 
-			if (inputFilePath.Length > 0 || outputFilePath.Length > 0)
-			{
-				outputFilePath = outputFilePath.Length > 0 ?
-					outputPath : Path.ChangeExtension(inputFilePath, ".css");
-				sourceMapFilePath = sourceMapFilePath.Length > 0 ?
-					sourceMapFilePath : Path.ChangeExtension(outputFilePath, ".css.map");
-			}
+			ProcessFilePaths(ref inputFilePath, ref outputFilePath, ref sourceMapFilePath);
 
 			IFileManager fileManager = _fileManager;
 			if (fileManager != null && !fileManager.FileExists(inputPath))
@@ -592,17 +575,20 @@ namespace DartSassHost
 			return platformName;
 		}
 
-		private static bool GetIndentedSyntax(string path)
+		[MethodImpl((MethodImplOptions)256 /* AggressiveInlining */)]
+		private static void ProcessFilePaths(ref string inputPath, ref string outputPath, ref string sourceMapPath)
 		{
-			if (string.IsNullOrWhiteSpace(path))
+			inputPath = !string.IsNullOrWhiteSpace(inputPath) ? inputPath : string.Empty;
+			outputPath = !string.IsNullOrWhiteSpace(outputPath) ? outputPath : string.Empty;
+			sourceMapPath = !string.IsNullOrWhiteSpace(sourceMapPath) ? sourceMapPath : string.Empty;
+
+			if (inputPath.Length > 0 || outputPath.Length > 0)
 			{
-				return false;
+				outputPath = outputPath.Length > 0 ?
+					outputPath : Path.ChangeExtension(inputPath, ".css");
+				sourceMapPath = sourceMapPath.Length > 0 ?
+					sourceMapPath : Path.ChangeExtension(outputPath, ".css.map");
 			}
-
-			string fileExtension = Path.GetExtension(path);
-			bool indentedSyntax = string.Equals(fileExtension, ".SASS", StringComparison.OrdinalIgnoreCase);
-
-			return indentedSyntax;
 		}
 
 		private SassCompilationException CreateCompilationExceptionFromJson(JToken error)
@@ -647,6 +633,19 @@ namespace DartSassHost
 			var compilationResult = new CompilationResult(compiledContent, sourceMap, includedFilePaths);
 
 			return compilationResult;
+		}
+
+		private static bool GetIndentedSyntax(string path)
+		{
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				return false;
+			}
+
+			string fileExtension = Path.GetExtension(path);
+			bool indentedSyntax = string.Equals(fileExtension, ".SASS", StringComparison.OrdinalIgnoreCase);
+
+			return indentedSyntax;
 		}
 
 		private static string GetIndentTypeCode(IndentType type)

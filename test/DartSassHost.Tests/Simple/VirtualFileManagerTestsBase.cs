@@ -1,6 +1,4 @@
-﻿using System;
-
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 
 namespace DartSassHost.Tests.Simple

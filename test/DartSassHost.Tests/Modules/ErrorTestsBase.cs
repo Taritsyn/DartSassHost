@@ -1,8 +1,4 @@
-﻿using System;
-
-using NUnit.Framework;
-
-namespace DartSassHost.Tests.Modules
+﻿namespace DartSassHost.Tests.Modules
 {
 	public abstract class ErrorTestsBase : PhysicalFileSystemTestsBase
 	{

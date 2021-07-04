@@ -1,11 +1,9 @@
-﻿using System;
-#if !NET40
+﻿#if !NET40
 using System.Runtime.InteropServices;
 #endif
 
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Msie;
-
 using NUnit.Framework;
 #if NET40
 using PolyfillsForOldDotNet.System.Runtime.InteropServices;

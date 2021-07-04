@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DartSassHost
+﻿namespace DartSassHost
 {
 	/// <summary>
 	/// Defines a interface of file manager

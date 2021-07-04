@@ -1,7 +1,7 @@
 ﻿using System.Text;
 
-using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.ChakraCore;
+using JavaScriptEngineSwitcher.Core;
 
 using DartSassHost.Sample.Logic;
 

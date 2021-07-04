@@ -1,5 +1,5 @@
-﻿using JavaScriptEngineSwitcher.Core;
-using JavaScriptEngineSwitcher.ChakraCore;
+﻿using JavaScriptEngineSwitcher.ChakraCore;
+using JavaScriptEngineSwitcher.Core;
 
 namespace DartSassHost.Tests
 {

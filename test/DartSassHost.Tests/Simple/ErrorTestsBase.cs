@@ -1,6 +1,4 @@
-﻿using System;
-
-using JavaScriptEngineSwitcher.Core;
+﻿using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.NiL;
 using NUnit.Framework;
 
