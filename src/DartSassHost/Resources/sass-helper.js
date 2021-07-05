@@ -93,7 +93,7 @@ var SassHelper = (function (sass, fileManager, undefined) {
 					'message': e.message,
 					'description': e.description || '',
 					'type': e.name || '',
-					'file': e.file || '',
+					'file': e.file ? sass.removeFileSchemeFromPath(e.file) : '',
 					'lineNumber': e.line || 0,
 					'columnNumber': e.column || 0,
 					'source': e.source || '',
