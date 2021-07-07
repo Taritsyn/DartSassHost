@@ -15580,7 +15580,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							$.$get$_jsThrow().call$1(t1);
 						} else {
 							error0 = t1;
-							t1 = B._newRenderError(J.toString$0$(error0), _null /*DSH+*/, _null, _null, _null, _null /*DSH+*/, 3);
+							t1 = B._newRenderError(J.toString$0$(error0), error0.description || error0.message /*DSH+*/, _null, _null, _null, _null /*DSH+*/, 3);
 							$.$get$_jsThrow().call$1(t1);
 						}
 					}
@@ -84395,7 +84395,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					if (error instanceof E.SassException0)
 						t1.call$2(B._wrapException(error), _null);
 					else
-						t1.call$2(B._newRenderError(J.toString$0$(error), _null /*DSH+*/, _null, _null, _null, _null /*DSH+*/, 3), _null);
+						t1.call$2(B._newRenderError(J.toString$0$(error), error.description || error.message /*DSH+*/, _null, _null, _null, _null /*DSH+*/, 3), _null);
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
