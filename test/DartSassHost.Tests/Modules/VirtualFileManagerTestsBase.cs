@@ -244,7 +244,7 @@ namespace DartSassHost.Tests.Modules
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.GetCurrentDirectory())
-				.Returns(_appAbsolutePath + "/")
+				.Returns(_appAbsolutePath)
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.FileExists(It.IsAny<string>()))
@@ -343,7 +343,7 @@ namespace DartSassHost.Tests.Modules
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.GetCurrentDirectory())
-				.Returns(_appAbsolutePath + "/")
+				.Returns(_appAbsolutePath)
 				;
 			virtualFileManagerMock
 				.Setup(fm => fm.FileExists(It.IsAny<string>()))

@@ -1,8 +1,10 @@
-/*global Sass, FileManager  */
-var SassHelper = (function (sass, fileManager, undefined) {
+/*global Sass, FileManager, CURRENT_OS_PLATFORM_NAME  */
+var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined) {
 	'use strict';
 
-	var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/;
+	var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/,
+		DshLogger
+		;
 
 	function mix() {
 		var arg,
@@ -52,6 +54,137 @@ var SassHelper = (function (sass, fileManager, undefined) {
 		return path.replace(/\\/g, '/');
 	}
 
+	//#region DshLogger class
+	DshLogger = (function () {
+		var pathWithDriveLetterRegEx = /^[/\\]?[a-zA-z]:[/\\]/;
+
+		function fixAbsolutePath(path) {
+			var processedPath = path;
+
+			if (pathWithDriveLetterRegEx.test(path)
+				&& (path.startsWith('/') || path.startsWith('\\'))) {
+				processedPath = path.substring(1);
+			}
+
+			if (currentOsPlatformName === 'win32') {
+				processedPath = processedPath.replace(/\//g, '\\');
+			}
+
+			return processedPath;
+		}
+
+		function removeEndingParenthesesFromMemberName(memberName) {
+			var processedMemberName = memberName,
+				endingParentheses = '()'
+				;
+
+			if (memberName.endsWith(endingParentheses)) {
+				processedMemberName = memberName.substring(0, memberName.length - endingParentheses.length);
+			}
+
+			return processedMemberName;
+		}
+
+
+		function DshLogger() {
+			this._warnings = [];
+		}
+
+
+		DshLogger.prototype.warn$4$deprecation$span$trace = function (_, message, deprecation, span, trace) {
+			var warning,
+				file,
+				fileLocation,
+				fileSpan,
+				frames,
+				frameIndex,
+				frame,
+				firstFrame,
+				stackFrames = []
+				;
+
+			warning = {
+				'message': message,
+				'deprecation': deprecation
+			};
+
+			if (span && span.file) {
+				file = span.file;
+				fileLocation = new sass.FileLocation(file, span._file$_start);
+				fileSpan = new sass.FileSpan(file, 0, file._decodedChars.length);
+
+				warning.file = fixAbsolutePath(fileLocation.get$sourceUrl().path);
+				warning.lineNumber = fileLocation.get$line() + 1;
+				warning.columnNumber = fileLocation.get$column() + 1;
+				warning.source = fileSpan.get$text(file._decodedChars);
+			}
+
+			if (trace && trace.frames) {
+				frames = trace.frames;
+
+				if (!span) {
+					firstFrame = frames[0];
+
+					warning.file = fixAbsolutePath(firstFrame.uri.path);
+					warning.lineNumber = firstFrame.line;
+					warning.columnNumber = firstFrame.column;
+					warning.source = '';
+				}
+
+				for (frameIndex = 0; frameIndex < frames.length; frameIndex++) {
+					frame = frames[frameIndex];
+					stackFrames.push({
+						'file': fixAbsolutePath(frame.uri.path),
+						'lineNumber': frame.line,
+						'columnNumber': frame.column,
+						'memberName': removeEndingParenthesesFromMemberName(frame.member)
+					});
+				}
+
+				if (stackFrames.length > 0) {
+					warning.stackFrames = stackFrames;
+				}
+			}
+
+			this._warnings.push(warning);
+		};
+
+		DshLogger.prototype.warn$1 = function ($receiver, message) {
+			return this.warn$4$deprecation$span$trace($receiver, message, false, null, null);
+		};
+
+		DshLogger.prototype.warn$2$span = function ($receiver, message, span) {
+			return this.warn$4$deprecation$span$trace($receiver, message, false, span, null);
+		};
+
+		DshLogger.prototype.warn$2$deprecation = function ($receiver, message, deprecation) {
+			return this.warn$4$deprecation$span$trace($receiver, message, deprecation, null, null);
+		};
+
+		DshLogger.prototype.warn$3$deprecation$span = function ($receiver, message, deprecation, span) {
+			return this.warn$4$deprecation$span$trace($receiver, message, deprecation, span, null);
+		};
+
+		DshLogger.prototype.warn$2$trace = function ($receiver, message, trace) {
+			return this.warn$4$deprecation$span$trace($receiver, message, false, null, trace);
+		};
+
+		DshLogger.prototype.debug$2 = function (_, message, span) {
+			// Do nothing
+		};
+
+		DshLogger.prototype.getWarnings = function () {
+			return this._warnings;
+		};
+
+		DshLogger.prototype.dispose = function () {
+			this._warnings = null;
+		};
+
+		return DshLogger;
+	})();
+	//#endregion
+
 	//#region SassHelper class
 	function SassHelper(options) {
 		this._options = options || {};
@@ -76,8 +209,13 @@ var SassHelper = (function (sass, fileManager, undefined) {
 			compiledContent = '',
 			sourceMap = '',
 			includedFilePaths = [],
-			errors = []
+			errors = [],
+			warnings = [],
+			logger
 			;
+
+		logger = new DshLogger();
+		compilationOptions.dshLogger = logger;
 
 		try
 		{
@@ -85,6 +223,7 @@ var SassHelper = (function (sass, fileManager, undefined) {
 			compiledContent = compilationResult.css || '';
 			sourceMap = compilationResult.map ? compilationResult.map.toString() : '';
 			includedFilePaths = fixIncludedFilePaths(compilationResult.stats.includedFiles);
+			warnings = logger.getWarnings();
 		}
 		catch (e)
 		{
@@ -113,6 +252,12 @@ var SassHelper = (function (sass, fileManager, undefined) {
 		if (errors.length > 0) {
 			result.errors = errors;
 		}
+		if (warnings.length > 0) {
+			result.warnings = warnings;
+		}
+
+		compilationOptions.dshLogger = null;
+		logger.dispose();
 
 		return JSON.stringify(result);
 	}
@@ -159,4 +304,4 @@ var SassHelper = (function (sass, fileManager, undefined) {
 	//#endregion
 
 	return SassHelper;
-}(Sass, FileManager));
+}(Sass, FileManager, CURRENT_OS_PLATFORM_NAME));

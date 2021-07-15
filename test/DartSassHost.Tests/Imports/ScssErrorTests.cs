@@ -41,7 +41,7 @@ namespace DartSassHost.Tests.Imports
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Can't find stylesheet to import." + Environment.NewLine +
-				"   at base.scss:6:9",
+				"   at Files/imports/errors/non-existing-files/scss/base.scss:6:9 -> @import 'normalize';",
 				exception.Message
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
@@ -49,7 +49,12 @@ namespace DartSassHost.Tests.Imports
 			Assert.AreEqual(inputPath, exception.File);
 			Assert.AreEqual(6, exception.LineNumber);
 			Assert.AreEqual(9, exception.ColumnNumber);
-			Assert.IsEmpty(exception.SourceFragment);
+			Assert.AreEqual(
+				"Line 6: @import 'normalize';" + Environment.NewLine +
+				"----------------^" + Environment.NewLine +
+				"Line 7: @import url(http://fonts.googleapis.com/css?family=Limelight&subset=latin,latin-ext);",
+				exception.SourceFragment
+			);
 		}
 
 		[Test]
@@ -80,7 +85,7 @@ namespace DartSassHost.Tests.Imports
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: expected \"{\"." + Environment.NewLine +
-				"   at _reset.scss:5:9",
+				"   at Files/imports/errors/invalid-syntax/scss/_reset.scss:5:9 ->   margin; 0;",
 				exception.Message
 			);
 			Assert.AreEqual("expected \"{\".", exception.Description);
@@ -88,7 +93,13 @@ namespace DartSassHost.Tests.Imports
 			Assert.AreEqual(importedFilePath, exception.File);
 			Assert.AreEqual(5, exception.LineNumber);
 			Assert.AreEqual(9, exception.ColumnNumber);
-			Assert.IsEmpty(exception.SourceFragment);
+			Assert.AreEqual(
+				"Line 4: ol {" + Environment.NewLine +
+				"Line 5:   margin; 0;" + Environment.NewLine +
+				"----------------^" + Environment.NewLine +
+				"Line 6:   padding: 0;",
+				exception.SourceFragment
+			);
 		}
 
 		#endregion
@@ -121,7 +132,7 @@ namespace DartSassHost.Tests.Imports
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Can't find stylesheet to import." + Environment.NewLine +
-				"   at base.scss:6:9",
+				"   at Files/imports/errors/non-existing-files/scss/base.scss:6:9 -> @import 'normalize';",
 				exception.Message
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
@@ -129,7 +140,12 @@ namespace DartSassHost.Tests.Imports
 			Assert.AreEqual(inputPath, exception.File);
 			Assert.AreEqual(6, exception.LineNumber);
 			Assert.AreEqual(9, exception.ColumnNumber);
-			Assert.IsEmpty(exception.SourceFragment);
+			Assert.AreEqual(
+				"Line 6: @import 'normalize';" + Environment.NewLine +
+				"----------------^" + Environment.NewLine +
+				"Line 7: @import url(http://fonts.googleapis.com/css?family=Limelight&subset=latin,latin-ext);",
+				exception.SourceFragment
+			);
 		}
 
 		[Test]
@@ -159,7 +175,7 @@ namespace DartSassHost.Tests.Imports
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: expected \"{\"." + Environment.NewLine +
-				"   at _reset.scss:5:9",
+				"   at Files/imports/errors/invalid-syntax/scss/_reset.scss:5:9 ->   margin; 0;",
 				exception.Message
 			);
 			Assert.AreEqual("expected \"{\".", exception.Description);
@@ -167,7 +183,13 @@ namespace DartSassHost.Tests.Imports
 			Assert.AreEqual(importedFilePath, exception.File);
 			Assert.AreEqual(5, exception.LineNumber);
 			Assert.AreEqual(9, exception.ColumnNumber);
-			Assert.IsEmpty(exception.SourceFragment);
+			Assert.AreEqual(
+				"Line 4: ol {" + Environment.NewLine +
+				"Line 5:   margin; 0;" + Environment.NewLine +
+				"----------------^" + Environment.NewLine +
+				"Line 6:   padding: 0;",
+				exception.SourceFragment
+			);
 		}
 
 		#endregion

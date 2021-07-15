@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 
 namespace DartSassHost.Tests
 {
@@ -26,11 +28,7 @@ namespace DartSassHost.Tests
 
 		public string GetCurrentDirectory()
 		{
-#if NETFULL
-			return AppDomain.CurrentDomain.BaseDirectory;
-#else
-			return FileManager.Instance.GetCurrentDirectory();
-#endif
+			return Path.GetDirectoryName(this.GetType().Assembly.Location);
 		}
 
 		public bool FileExists(string path)

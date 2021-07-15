@@ -34,15 +34,26 @@ namespace DartSassHost
 			set;
 		}
 
+		/// <summary>
+		/// Gets a list of the warnings
+		/// </summary>
+		public IList<ProblemInfo> Warnings
+		{
+			get;
+			private set;
+		}
+
 
 		/// <summary>
 		/// Constructs a instance of the compilation result
 		/// </summary>
-		public CompilationResult(string compiledContent, string sourceMap, IList<string> includedFilePaths)
+		public CompilationResult(string compiledContent, string sourceMap, IList<string> includedFilePaths,
+			IList<ProblemInfo> warnings)
 		{
 			CompiledContent = compiledContent;
 			IncludedFilePaths = includedFilePaths;
 			SourceMap = sourceMap;
+			Warnings = warnings;
 		}
 	}
 }

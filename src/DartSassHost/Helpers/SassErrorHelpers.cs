@@ -13,6 +13,64 @@ namespace DartSassHost.Helpers
 	/// </summary>
 	public static class SassErrorHelpers
 	{
+		/// <summary>
+		/// Writes a error location line to the buffer
+		/// </summary>
+		/// <param name="buffer">Instance of <see cref="StringBuilder"/></param>
+		/// <param name="memberName">Member name</param>
+		/// <param name="documentName">Document name</param>
+		/// <param name="lineNumber">Line number</param>
+		/// <param name="columnNumber">Column number</param>
+		/// <param name="sourceFragment">Source fragment</param>
+		internal static void WriteErrorLocationLine(StringBuilder buffer, string memberName,
+			string documentName, int lineNumber, int columnNumber, string sourceFragment = "")
+		{
+			bool memberNameNotEmpty = !string.IsNullOrWhiteSpace(memberName);
+			bool documentNameNotEmpty = !string.IsNullOrWhiteSpace(documentName);
+
+			if (memberNameNotEmpty || documentNameNotEmpty || lineNumber > 0)
+			{
+				buffer.Append("   at ");
+				if (memberNameNotEmpty)
+				{
+					buffer.Append(memberName);
+				}
+				if (documentNameNotEmpty || lineNumber > 0)
+				{
+					if (memberNameNotEmpty)
+					{
+						buffer.Append(" (");
+					}
+					if (documentNameNotEmpty)
+					{
+						buffer.Append(documentName);
+					}
+					if (lineNumber > 0)
+					{
+						if (documentNameNotEmpty)
+						{
+							buffer.Append(":");
+						}
+						buffer.Append(lineNumber);
+						if (columnNumber > 0)
+						{
+							buffer.Append(":");
+							buffer.Append(columnNumber);
+						}
+					}
+					if (memberNameNotEmpty)
+					{
+						buffer.Append(")");
+					}
+					if (!string.IsNullOrWhiteSpace(sourceFragment))
+					{
+						buffer.Append(" -> ");
+						buffer.Append(sourceFragment);
+					}
+				}
+			}
+		}
+
 		#region Generation of error messages
 
 		/// <summary>
@@ -91,28 +149,96 @@ namespace DartSassHost.Helpers
 			if (documentNameNotEmpty || lineNumber > 0)
 			{
 				messageBuilder.AppendLine();
-				messageBuilder.Append("   at ");
-				if (documentNameNotEmpty)
+				WriteErrorLocationLine(messageBuilder, string.Empty, documentName, lineNumber, columnNumber, sourceFragment);
+			}
+
+			string errorMessage = messageBuilder.ToString();
+			stringBuilderPool.Return(messageBuilder);
+
+			return errorMessage;
+		}
+
+		#endregion
+
+		#region Generation of warning messages
+
+		/// <summary>
+		/// Generates a compilation warning message
+		/// </summary>
+		/// <param name="description">Description of problem</param>
+		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
+		/// <param name="documentName">Document name</param>
+		/// <param name="lineNumber">Line number</param>
+		/// <param name="columnNumber">Column number</param>
+		/// <param name="sourceFragment">Source fragment</param>
+		/// <returns>Compilation warning message</returns>
+		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation,
+			string documentName, int lineNumber, int columnNumber, string sourceFragment = "")
+		{
+			return GenerateCompilationWarningMessage(description, isDeprecation, documentName, lineNumber, columnNumber,
+				sourceFragment, string.Empty);
+		}
+
+		/// <summary>
+		/// Generates a compilation warning message
+		/// </summary>
+		/// <param name="description">Description of problem</param>
+		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
+		/// <param name="callStack">String representation of the script call stack</param>
+		/// <returns>Compilation warning message</returns>
+		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation, string callStack)
+		{
+			return GenerateCompilationWarningMessage(description, isDeprecation, string.Empty, 0, 0, string.Empty, callStack);
+		}
+
+		/// <summary>
+		/// Generates a compilation warning message
+		/// </summary>
+		/// <param name="description">Description of problem</param>
+		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
+		/// <param name="documentName">Document name</param>
+		/// <param name="lineNumber">Line number</param>
+		/// <param name="columnNumber">Column number</param>
+		/// <param name="sourceFragment">Source fragment</param>
+		/// <param name="callStack">String representation of the call stack</param>
+		/// <returns>Compilation warning message</returns>
+		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation, string documentName,
+			int lineNumber, int columnNumber, string sourceFragment, string callStack)
+		{
+			if (description == null)
+			{
+				throw new ArgumentNullException(nameof(description));
+			}
+
+			if (string.IsNullOrWhiteSpace(description))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(description)),
+					nameof(description)
+				);
+			}
+
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder messageBuilder = stringBuilderPool.Rent();
+			if (isDeprecation)
+			{
+				messageBuilder.Append("Deprecation ");
+			}
+			messageBuilder.Append("Warning: ");
+			messageBuilder.Append(description);
+
+			if (!string.IsNullOrWhiteSpace(callStack))
+			{
+				messageBuilder.AppendLine();
+				messageBuilder.Append(callStack);
+			}
+			else
+			{
+				if (!string.IsNullOrWhiteSpace(documentName) || lineNumber > 0)
 				{
-					messageBuilder.Append(documentName);
-				}
-				if (lineNumber > 0)
-				{
-					if (documentNameNotEmpty)
-					{
-						messageBuilder.Append(":");
-					}
-					messageBuilder.Append(lineNumber);
-					if (columnNumber > 0)
-					{
-						messageBuilder.Append(":");
-						messageBuilder.Append(columnNumber);
-					}
-				}
-				if (!string.IsNullOrWhiteSpace(sourceFragment))
-				{
-					messageBuilder.Append(" -> ");
-					messageBuilder.Append(sourceFragment);
+					messageBuilder.AppendLine();
+					WriteErrorLocationLine(messageBuilder, string.Empty, documentName, lineNumber, columnNumber,
+						sourceFragment);
 				}
 			}
 

@@ -15494,13 +15494,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					return P._asyncStartSync($async$_renderAsync, $async$completer);
 				},
 				_renderSync: function(options) {
-					var start, result, data, file, error, error0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, terseLogger, logger, stylesheet, result0, t12, exception, _null = null;
+					var start, result, data, file, error, error0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11,/*DSH- terseLogger,*/ logger, stylesheet, result0, t12, exception, _null = null;
 					try {
 						start = new P.DateTime(Date.now(), false);
 						result = null;
 						t1 = J.getInterceptor$x(options);
 						data = t1.get$data(options);
 						file = X.NullableExtension_andThen0(t1.get$file(options), D.path__absolute$closure());
+						logger = options.dshLogger; //DSH+
 						if (data != null) {
 							t2 = B._parseImporter(options, start);
 							t3 = B._parseFunctions(options, start, false);
@@ -15518,6 +15519,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							if (t1 == null)
 								t1 = false;
 							t11 = B._enableSourceMaps(options);
+							/*DSH-
 							if (!t1) {
 								terseLogger = new Y.TerseLogger0(P.LinkedHashMap_LinkedHashMap$_empty(type$.String, type$.int), new S.StderrLogger0());
 								logger = terseLogger;
@@ -15525,12 +15527,15 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								terseLogger = _null;
 								logger = terseLogger;
 							}
+							*/
 							t1 = t4 == null ? C.Syntax_SCSS0 : t4;
 							stylesheet = V.Stylesheet_Stylesheet$parse0(data, t1, logger, t9);
 							t1 = $.$get$context().absolute$7(".", _null, _null, _null, _null, _null, _null);
 							result0 = U._compileStylesheet1(stylesheet, logger, _null, t2, new F.FilesystemImporter0(t1), new H.CastList(t3, H._arrayInstanceType(t3)._eval$1("CastList<1,Callable0>")), t5, !t6, t7, t8, t10, t11, true);
+							/*DSH-
 							if (terseLogger != null)
 								terseLogger.summarize$1$node(true);
+							*/
 							result = result0;
 						} else if (file != null) {
 							t2 = file;
@@ -15549,6 +15554,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							if (t1 == null)
 								t1 = false;
 							t11 = B._enableSourceMaps(options);
+							/*DSH-
 							if (!t1) {
 								terseLogger = new Y.TerseLogger0(P.LinkedHashMap_LinkedHashMap$_empty(type$.String, type$.int), new S.StderrLogger0());
 								logger = terseLogger;
@@ -15556,6 +15562,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								terseLogger = _null;
 								logger = terseLogger;
 							}
+							*/
 							t1 = B.readFile0(t2);
 							if (t5 == null)
 								t5 = M.Syntax_forPath0(t2);
@@ -15563,8 +15570,10 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							stylesheet = V.Stylesheet_Stylesheet$parse0(t1, t5, logger, t12.toUri$1(t2));
 							t1 = t12;
 							result0 = U._compileStylesheet1(stylesheet, logger, _null, t3, new F.FilesystemImporter0(t1.absolute$7(".", _null, _null, _null, _null, _null, _null)), new H.CastList(t4, H._arrayInstanceType(t4)._eval$1("CastList<1,Callable0>")), t6, !t7, t8, t9, t10, t11, true);
+							/*DSH-
 							if (terseLogger != null)
 								terseLogger.summarize$1$node(true);
+							*/
 							result = result0;
 						} else {
 							t1 = P.ArgumentError$(string$.Either);
@@ -23914,6 +23923,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					J.set$TRUE$x(self.exports, C.SassBoolean_true);
 					J.set$FALSE$x(self.exports, C.SassBoolean_false);
 					J.set$cli_pkg_main_0_$x(self.exports, R._wrapMain(U.sass__main$closure()));
+
+					self.exports.FileLocation = Y.FileLocation; // DSH+
+					self.exports.FileSpan = Y._FileSpan; // DSH+
 				},
 				_wrapMain: function(main) {
 					if (type$.dynamic_Function._is(main))

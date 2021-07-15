@@ -7,7 +7,9 @@ using System.Runtime.CompilerServices;
 #if NET45 || NET471 || NETSTANDARD
 using System.Runtime.InteropServices;
 #endif
+using System.Text;
 
+using AdvancedStringBuilder;
 using JavaScriptEngineSwitcher.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -591,27 +593,69 @@ namespace DartSassHost
 			}
 		}
 
-		private SassCompilationException CreateCompilationExceptionFromJson(JToken error)
+		private bool TryReadFile(string path, out string content)
 		{
-			var description = error.Value<string>("description");
-			var status = error.Value<int>("status");
-			var type = error.Value<string>("type");
-			var file = error.Value<string>("file");
-			string documentName = Path.GetFileName(file);
-			var lineNumber = error.Value<int>("lineNumber");
-			var columnNumber = error.Value<int>("columnNumber");
-			var content = error.Value<string>("source");
-			string sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
-				new SourceCodeNodeCoordinates(lineNumber, columnNumber));
-			string sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
-			string message = SassErrorHelpers.GenerateCompilationErrorMessage(type, description, documentName,
+			bool result = false;
+			content = null;
+
+			if (!string.IsNullOrWhiteSpace(path) && _fileManager != null && _fileManager.FileExists(path))
+			{
+				try
+				{
+					content = _fileManager.ReadFile(path);
+					result = true;
+				}
+				catch
+				{
+					content = null;
+				}
+			}
+
+			return result;
+		}
+
+		private SassCompilationException CreateCompilationExceptionFromJson(JToken errorJson)
+		{
+			var description = errorJson.Value<string>("description");
+			var status = errorJson.Value<int>("status");
+			var type = errorJson.Value<string>("type");
+			var absoluteFilePath = errorJson.Value<string>("file");
+			var relativeFilePath = absoluteFilePath;
+			var lineNumber = errorJson.Value<int>("lineNumber");
+			var columnNumber = errorJson.Value<int>("columnNumber");
+			var content = errorJson.Value<string>("source");
+			var sourceFragment = string.Empty;
+			var sourceLineFragment = string.Empty;
+
+			if (!string.IsNullOrWhiteSpace(absoluteFilePath) && _fileManager != null)
+			{
+				string currentDirectory = _fileManager.GetCurrentDirectory();
+				relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
+			}
+
+			if (string.IsNullOrWhiteSpace(content))
+			{
+				if (!TryReadFile(absoluteFilePath, out content))
+				{
+					content = string.Empty;
+				}
+			}
+
+			if (!string.IsNullOrWhiteSpace(content))
+			{
+				sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
+					new SourceCodeNodeCoordinates(lineNumber, columnNumber));
+				sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
+			}
+
+			string message = SassErrorHelpers.GenerateCompilationErrorMessage(type, description, relativeFilePath,
 				lineNumber, columnNumber, sourceLineFragment);
 
 			var compilationException = new SassCompilationException(message)
 			{
 				Description = description,
 				Status = status,
-				File = file,
+				File = absoluteFilePath,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber,
 				SourceFragment = sourceFragment
@@ -630,9 +674,107 @@ namespace DartSassHost
 				.Distinct(StringComparer.OrdinalIgnoreCase)
 				.ToList()
 				;
-			var compilationResult = new CompilationResult(compiledContent, sourceMap, includedFilePaths);
+			IList<ProblemInfo> warnings = new List<ProblemInfo>();
+
+			var warningsJson = resultJson["warnings"] as JArray;
+			if (warningsJson != null && warningsJson.Count > 0)
+			{
+				foreach (JToken warningJson in warningsJson)
+				{
+					ProblemInfo warning = CreateProblemInfoFromJson(warningJson);
+					warnings.Add(warning);
+				}
+			}
+
+			var compilationResult = new CompilationResult(compiledContent, sourceMap, includedFilePaths, warnings);
 
 			return compilationResult;
+		}
+
+		private ProblemInfo CreateProblemInfoFromJson(JToken warningJson)
+		{
+			string message = string.Empty;
+			var description = warningJson.Value<string>("message");
+			var isDeprecation = warningJson.Value<bool>("deprecation");
+			var absoluteFilePath = warningJson.Value<string>("file");
+			string currentDirectory = _fileManager?.GetCurrentDirectory();
+			var lineNumber = warningJson.Value<int>("lineNumber");
+			var columnNumber = warningJson.Value<int>("columnNumber");
+			var content = warningJson.Value<string>("source");
+			var sourceFragment = string.Empty;
+			var stackFramesJson = warningJson["stackFrames"] as JArray;
+			var callStack = string.Empty;
+
+			if (string.IsNullOrWhiteSpace(content))
+			{
+				if (!TryReadFile(absoluteFilePath, out content))
+				{
+					content = string.Empty;
+				}
+			}
+
+			if (!string.IsNullOrWhiteSpace(content))
+			{
+				sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
+					new SourceCodeNodeCoordinates(lineNumber, columnNumber));
+			}
+
+			if (stackFramesJson != null && stackFramesJson.Count > 0)
+			{
+				var stringBuilderPool = StringBuilderPool.Shared;
+				StringBuilder callStackBuilder = stringBuilderPool.Rent();
+
+				foreach (JToken stackFrameJson in stackFramesJson)
+				{
+					var frameAbsoluteFilePath = stackFrameJson.Value<string>("file");
+					var frameLineNumber = stackFrameJson.Value<int>("lineNumber");
+					var frameColumnNumber = stackFrameJson.Value<int>("columnNumber");
+					var frameMemberName = stackFrameJson.Value<string>("memberName");
+
+					string frameRelativeFilePath = frameAbsoluteFilePath;
+					if (!string.IsNullOrWhiteSpace(frameAbsoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
+					{
+						frameRelativeFilePath = PathHelpers.PrettifyPath(currentDirectory, frameAbsoluteFilePath);
+					}
+
+					SassErrorHelpers.WriteErrorLocationLine(callStackBuilder, frameMemberName, frameRelativeFilePath,
+						frameLineNumber, frameColumnNumber);
+					callStackBuilder.AppendLine();
+				}
+
+				callStackBuilder.TrimEnd();
+
+				callStack = callStackBuilder.ToString();
+				stringBuilderPool.Return(callStackBuilder);
+
+				message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation, callStack);
+			}
+			else
+			{
+				var relativeFilePath = absoluteFilePath;
+				if (!string.IsNullOrWhiteSpace(absoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
+				{
+					relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
+				}
+				string sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
+
+				message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation,
+					relativeFilePath, lineNumber, columnNumber, sourceLineFragment);
+			}
+
+			var warning = new ProblemInfo()
+			{
+				Message = message,
+				Description = description,
+				IsDeprecation = isDeprecation,
+				File = absoluteFilePath,
+				LineNumber = lineNumber,
+				ColumnNumber = columnNumber,
+				SourceFragment = sourceFragment,
+				CallStack = callStack
+			};
+
+			return warning;
 		}
 
 		private static bool GetIndentedSyntax(string path)

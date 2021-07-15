@@ -41,7 +41,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Can't find stylesheet to import." + Environment.NewLine +
-				"   at base.scss:1:1",
+				"   at Files/modules/errors/non-existing-files/scss/base.scss:1:1 -> @use 'normalize';",
 				exception.Message
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
@@ -49,7 +49,11 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(inputPath, exception.File);
 			Assert.AreEqual(1, exception.LineNumber);
 			Assert.AreEqual(1, exception.ColumnNumber);
-			Assert.IsEmpty(exception.SourceFragment);
+			Assert.AreEqual(
+				"Line 1: @use 'normalize';" + Environment.NewLine +
+				"--------^",
+				exception.SourceFragment
+			);
 		}
 
 		[Test]
@@ -80,7 +84,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: expected \"{\"." + Environment.NewLine +
-				"   at _reset.scss:6:10",
+				"   at Files/modules/errors/invalid-syntax/scss/_reset.scss:6:10 ->   padding; 0;",
 				exception.Message
 			);
 			Assert.AreEqual("expected \"{\".", exception.Description);
@@ -88,7 +92,13 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(importedFilePath, exception.File);
 			Assert.AreEqual(6, exception.LineNumber);
 			Assert.AreEqual(10, exception.ColumnNumber);
-			Assert.IsEmpty(exception.SourceFragment);
+			Assert.AreEqual(
+				"Line 5:   margin: 0;" + Environment.NewLine +
+				"Line 6:   padding; 0;" + Environment.NewLine +
+				"-----------------^" + Environment.NewLine +
+				"Line 7: }",
+				exception.SourceFragment
+			);
 		}
 
 		#endregion
@@ -121,7 +131,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Can't find stylesheet to import." + Environment.NewLine +
-				"   at base.scss:1:1",
+				"   at Files/modules/errors/non-existing-files/scss/base.scss:1:1 -> @use 'normalize';",
 				exception.Message
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
@@ -129,7 +139,11 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(inputPath, exception.File);
 			Assert.AreEqual(1, exception.LineNumber);
 			Assert.AreEqual(1, exception.ColumnNumber);
-			Assert.IsEmpty(exception.SourceFragment);
+			Assert.AreEqual(
+				"Line 1: @use 'normalize';" + Environment.NewLine +
+				"--------^",
+				exception.SourceFragment
+			);
 		}
 
 		[Test]
@@ -159,7 +173,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: expected \"{\"." + Environment.NewLine +
-				"   at _reset.scss:6:10",
+				"   at Files/modules/errors/invalid-syntax/scss/_reset.scss:6:10 ->   padding; 0;",
 				exception.Message
 			);
 			Assert.AreEqual("expected \"{\".", exception.Description);
@@ -167,7 +181,13 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(importedFilePath, exception.File);
 			Assert.AreEqual(6, exception.LineNumber);
 			Assert.AreEqual(10, exception.ColumnNumber);
-			Assert.IsEmpty(exception.SourceFragment);
+			Assert.AreEqual(
+				"Line 5:   margin: 0;" + Environment.NewLine +
+				"Line 6:   padding; 0;" + Environment.NewLine +
+				"-----------------^" + Environment.NewLine +
+				"Line 7: }",
+				exception.SourceFragment
+			);
 		}
 
 		#endregion

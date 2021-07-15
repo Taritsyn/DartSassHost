@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 #if NETSTANDARD1_3
 
 using Microsoft.Extensions.PlatformAbstractions;
@@ -101,6 +102,15 @@ body {
 			Console.WriteLine("Compiled content:{1}{1}{0}{1}", result.CompiledContent, Environment.NewLine);
 			Console.WriteLine("Source map:{1}{1}{0}{1}", result.SourceMap, Environment.NewLine);
 			Console.WriteLine("Included file paths: {0}", string.Join(", ", result.IncludedFilePaths));
+
+			if (result.Warnings.Count > 0)
+			{
+				Console.WriteLine("{1}Warnings:{1}{1}{0}",
+					string.Join(Environment.NewLine + Environment.NewLine, result.Warnings.Select(w => w.Message).ToArray()),
+					Environment.NewLine
+				);
+			}
+
 			Console.WriteLine();
 		}
 

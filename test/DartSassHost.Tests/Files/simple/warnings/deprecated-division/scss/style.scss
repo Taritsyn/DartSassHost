@@ -1,0 +1,7 @@
+$grid-gutter-widths: (xs: 30px, sm: 30px);
+
+$col-padding-xs:  map-get($grid-gutter-widths, xs) / 2;
+
+div {
+  padding-right: $col-padding-xs / 2;
+}

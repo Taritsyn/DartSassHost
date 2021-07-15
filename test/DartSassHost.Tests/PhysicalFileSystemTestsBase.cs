@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 using JavaScriptEngineSwitcher.Core;
 
@@ -22,11 +23,7 @@ namespace DartSassHost.Tests
 
 		protected PhysicalFileSystemTestsBase(SyntaxType syntaxType)
 		{
-#if NETFULL
-			_currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-#else
-			_currentDirectory = Directory.GetCurrentDirectory();
-#endif
+			_currentDirectory = Path.GetDirectoryName(this.GetType().Assembly.Location);
 
 			if (syntaxType == SyntaxType.Sass)
 			{
