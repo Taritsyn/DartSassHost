@@ -1,0 +1,11 @@
+@import 'mixins'
+
+div::after
+  @include pseudo
+  top: -1rem
+  left: -1rem
+  width: 1rem
+  height: 1rem
+
+div
+  @include responsive-ratio(16, 9)
