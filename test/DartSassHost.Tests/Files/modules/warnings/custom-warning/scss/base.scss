@@ -1,0 +1,5 @@
+@use "mixins" as m;
+
+.tilt {
+  @include m.prefix(transform, rotate(15deg), wekbit ms);
+}

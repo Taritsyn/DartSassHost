@@ -1,0 +1,13 @@
+@use "mixins" as m;
+
+div::after {
+  @include m.pseudo;
+  top: -1rem;
+  left: -1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+div {
+  @include m.responsive-ratio(16, 9);
+}
