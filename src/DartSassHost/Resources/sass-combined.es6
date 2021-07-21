@@ -2466,6 +2466,53 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				urlFunctionEndPart = ")" //DSH+
 				; //DSH+
 
+			function unquote(quotedValue) { //DSH+
+				var value = quotedValue, //DSH+
+					quoteChar = "", //DSH+
+					firstChar, //DSH+
+					lastChar //DSH+
+					; //DSH+
+
+				if (quotedValue && quotedValue.length >= 2) { //DSH+
+					firstChar = quotedValue.charAt(0); //DSH+
+					lastChar = quotedValue.charAt(quotedValue.length - 1); //DSH+
+
+					if (firstChar === lastChar) { //DSH+
+						value = quotedValue.substring(1, value.length - 1); //DSH+
+						quoteChar = firstChar; //DSH+
+					} //DSH+
+				} //DSH+
+
+				return { value: value, quoteChar: quoteChar }; //DSH+
+			} //DSH+
+
+			function quote(value, quoteChar) { //DSH+
+				var quotedValue = quoteChar + value + quoteChar; //DSH+
+
+				return quotedValue; //DSH+
+			} //DSH+
+
+			function convertPathToAbsoluteInQuotedValue(quotedValue) { //DSH+
+				var processedQuotedValue = quotedValue, //DSH+
+					quotedResult, //DSH+
+					path, //DSH+
+					quoteChar //DSH+
+					; //DSH+
+
+				if (fileManager.SupportsVirtualPaths) { //DSH+
+					quotedResult = unquote(quotedValue); //DSH+
+					path = quotedResult.value; //DSH+
+					quoteChar = quotedResult.quoteChar; //DSH+
+
+					if (path && fileManager.IsAppRelativeVirtualPath(path)) { //DSH+
+						path = fileManager.ToAbsoluteVirtualPath(path); //DSH+
+						processedQuotedValue = quote(path, quoteChar); //DSH+
+					} //DSH+
+				} //DSH+
+
+				return processedQuotedValue; //DSH+
+			} //DSH+
+
 			function removeFileSchemeFromPath(path) { //DSH+
 				var processedPath = path; //DSH+
 
@@ -2506,6 +2553,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 
 			exports.removeFileSchemeFromPath = removeFileSchemeFromPath; //DSH+
 			exports.convertPathToAbsoluteInUrlFunction = convertPathToAbsoluteInUrlFunction; //DSH+
+			exports.convertPathToAbsoluteInQuotedValue = convertPathToAbsoluteInQuotedValue; //DSH+
 
 			return exports; //DSH+
 		})(fileManager); //DSH+
@@ -63046,6 +63094,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_this._serialize$_visitChildren$1(node.children);
 				},
 				visitCssImport$1: function(node) {
+					node.url.value = dshUtils.convertPathToAbsoluteInQuotedValue(node.url.value); // DSH+
+
 					this._writeIndentation$0();
 					this._serialize$_buffer.forSpan$2(node.span, new N._SerializeVisitor_visitCssImport_closure(this, node));
 				},
@@ -87479,6 +87529,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_this._serialize0$_visitChildren$1(node.children);
 				},
 				visitCssImport$1: function(node) {
+					node.url.value = dshUtils.convertPathToAbsoluteInQuotedValue(node.url.value); // DSH+
+
 					this._serialize0$_writeIndentation$0();
 					this._buffer.forSpan$2(node.span, new N._SerializeVisitor_visitCssImport_closure0(this, node));
 				},

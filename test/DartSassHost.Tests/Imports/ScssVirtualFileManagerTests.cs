@@ -39,7 +39,7 @@ namespace DartSassHost.Tests.Imports
 				;
 			_siteImportedFiles["/styles/_fonts.scss"] = "@import \"fonts/bebas-neue\";\n" +
 				"@import \"http://fonts.googleapis.com/css?family=Droid+Sans\";\n" +
-				"@import \"fonts/league-gothic.css\";"
+				"@import '/styles/fonts/bitstream-vera-sans-bold.css', \"/styles/fonts/league-gothic.css\";"
 				;
 			_siteImportedFiles["/styles/_icons.scss"] = ".icons {\n"+
 				"  display: inline-block;\n" +
@@ -84,7 +84,8 @@ namespace DartSassHost.Tests.Imports
 			_siteSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
 				"\"sources\":[\"_icons.scss\",\"_fonts.scss\",\"site.scss\",\"foundation/_reset.scss\"," +
 				"\"fonts/bebas-neue.css\",\"layout.scss\",\"_variables.scss\",\"foundation/_mixins.scss\"]," +
-				"\"names\":[],\"mappings\":\"AASQ;AACA;AACA;AACA;AACA;ACZA;AACA;ACEA;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
+				"\"names\":[]," +
+				"\"mappings\":\"AASQ;AACA;AACA;AACA;AACA;ACZA;AACA;AAA8C;ACE9C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
 				"AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;" +
 				"AAGF;EACE;EACA;EACA;EACA;EEVA,eFWuB;EEVvB,uBFUuB;EETvB,oBFSuB\"," +
 				"\"file\":\"site.css\"}"
@@ -121,7 +122,7 @@ namespace DartSassHost.Tests.Imports
 				;
 			_appImportedFiles["/app01/styles/_fonts.scss"] = "@import \"fonts/bebas-neue\";\n" +
 				"@import \"http://fonts.googleapis.com/css?family=Droid+Sans\";\n" +
-				"@import \"fonts/league-gothic.css\";"
+				"@import '~/styles/fonts/bitstream-vera-sans-bold.css', \"~/styles/fonts/league-gothic.css\";"
 				;
 			_appImportedFiles["/app01/styles/_icons.scss"] = ".icons {\n"+
 				"  display: inline-block;\n" +
@@ -168,7 +169,8 @@ namespace DartSassHost.Tests.Imports
 				"\"file:///app01/styles/app.scss\",\"file:///app01/styles/foundation/_reset.scss\"," +
 				"\"file:///app01/styles/fonts/bebas-neue.css\",\"file:///app01/styles/layout.scss\"," +
 				"\"file:///app01/styles/_variables.scss\",\"file:///app01/styles/foundation/_mixins.scss\"]," +
-				"\"names\":[],\"mappings\":\"AASQ;AACA;AACA;AACA;AACA;ACZA;AACA;ACEA;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
+				"\"names\":[]," +
+				"\"mappings\":\"AASQ;AACA;AACA;AACA;AACA;ACZA;AACA;AAA+C;ACE/C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
 				"AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;" +
 				"AAGF;EACE;EACA;EACA;EACA;EEVA,eFWuB;EEVvB,uBFUuB;EETvB,oBFSuB\"," +
 				"\"file\":\"app.css\"}"

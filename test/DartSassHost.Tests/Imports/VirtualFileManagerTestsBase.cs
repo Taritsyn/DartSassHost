@@ -38,6 +38,17 @@ namespace DartSassHost.Tests.Imports
 				"  font-style: normal;\n" +
 				"}"
 				;
+			_siteImportedFiles["/styles/fonts/bitstream-vera-sans-bold.css"] = "@font-face {\n" +
+				"  font-family: \"Bitstream Vera Sans Bold\";\n" +
+				"  src: url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.eot\");\n" +
+				"  src: url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.eot?#iefix\" ) format(\"embedded-opentype\"),\n" +
+				"    url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.woff\") format(\"woff\"),\n" +
+				"    url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.ttf\") format(\"truetype\"),\n" +
+				"    url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.svg#bitstream_vera_sansbold\") format(\"svg\");\n" +
+				"  font-weight: normal;\n" +
+				"  font-style: normal;\n" +
+				"}"
+				;
 			_siteImportedFiles["/styles/fonts/league-gothic.css"] = "@font-face {\n" +
 				"  font-family: \"League Gothic\";\n" +
 				"  src: url(\"../../fonts/league-gothic/league-gothic-webfont.eot\");\n" +
@@ -88,7 +99,8 @@ namespace DartSassHost.Tests.Imports
 				"@import url(\"/styles/icons/robot.css\");\n" +
 				"@import url(/styles/icons/usb-flash-drive.css);\n" +
 				"@import \"http://fonts.googleapis.com/css?family=Droid+Sans\";\n" +
-				"@import \"fonts/league-gothic.css\";\n" +
+				"@import '/styles/fonts/bitstream-vera-sans-bold.css';\n" +
+				"@import \"/styles/fonts/league-gothic.css\";\n" +
 				"@import 'print' print and (min-resolution: 300dpi);\n" +
 				"html,\n" +
 				"body,\n" +
@@ -146,6 +158,17 @@ namespace DartSassHost.Tests.Imports
 				"  font-style: normal;\n" +
 				"}"
 				;
+			_appImportedFiles["/app01/styles/fonts/bitstream-vera-sans-bold.css"] = "@font-face {\n" +
+				"  font-family: \"Bitstream Vera Sans Bold\";\n" +
+				"  src: url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.eot\");\n" +
+				"  src: url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.eot?#iefix\" ) format(\"embedded-opentype\"),\n" +
+				"    url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.woff\") format(\"woff\"),\n" +
+				"    url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.ttf\") format(\"truetype\"),\n" +
+				"    url(\"../../fonts/bitstream-vera-sans-bold/vera-bold-webfont.svg#bitstream_vera_sansbold\") format(\"svg\");\n" +
+				"  font-weight: normal;\n" +
+				"  font-style: normal;\n" +
+				"}"
+				;
 			_appImportedFiles["/app01/styles/fonts/league-gothic.css"] = "@font-face {\n" +
 				"  font-family: \"League Gothic\";\n" +
 				"  src: url(\"../../fonts/league-gothic/league-gothic-webfont.eot\");\n" +
@@ -196,7 +219,8 @@ namespace DartSassHost.Tests.Imports
 				"@import url(\"/app01/styles/icons/robot.css\");\n" +
 				"@import url(/app01/styles/icons/usb-flash-drive.css);\n" +
 				"@import \"http://fonts.googleapis.com/css?family=Droid+Sans\";\n" +
-				"@import \"fonts/league-gothic.css\";\n" +
+				"@import '/app01/styles/fonts/bitstream-vera-sans-bold.css';\n" +
+				"@import \"/app01/styles/fonts/league-gothic.css\";\n" +
 				"@import 'print' print and (min-resolution: 300dpi);\n" +
 				"html,\n" +
 				"body,\n" +

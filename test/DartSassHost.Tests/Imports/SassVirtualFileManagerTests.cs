@@ -37,7 +37,7 @@ namespace DartSassHost.Tests.Imports
 				;
 			_siteImportedFiles["/styles/_fonts.sass"] = "@import \"fonts/bebas-neue\"\n" +
 				"@import \"http://fonts.googleapis.com/css?family=Droid+Sans\"\n" +
-				"@import \"fonts/league-gothic.css\""
+				"@import '/styles/fonts/bitstream-vera-sans-bold.css', \"/styles/fonts/league-gothic.css\""
 				;
 			_siteImportedFiles["/styles/_icons.sass"] = ".icons\n"+
 				"  display: inline-block\n" +
@@ -81,7 +81,7 @@ namespace DartSassHost.Tests.Imports
 			_siteSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
 				"\"sources\":[\"_icons.sass\",\"_fonts.sass\",\"site.sass\",\"foundation/_reset.sass\"," +
 				"\"fonts/bebas-neue.css\",\"layout.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
-				"\"names\":[],\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;ACXA;AACA;ACEA;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
+				"\"names\":[],\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;ACXA;AACA;AAA8C;ACE9C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
 				"AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;" +
 				"AAEF;EACE;EACA;EACA;EACA;EETA,eFUuB;EETvB,uBFSuB;EERvB,oBFQuB\"," +
 				"\"file\":\"site.css\"}"
@@ -116,7 +116,7 @@ namespace DartSassHost.Tests.Imports
 				;
 			_appImportedFiles["/app01/styles/_fonts.sass"] = "@import \"fonts/bebas-neue\"\n" +
 				"@import \"http://fonts.googleapis.com/css?family=Droid+Sans\"\n" +
-				"@import \"fonts/league-gothic.css\""
+				"@import '~/styles/fonts/bitstream-vera-sans-bold.css', \"~/styles/fonts/league-gothic.css\""
 				;
 			_appImportedFiles["/app01/styles/_icons.sass"] = ".icons\n"+
 				"  display: inline-block\n" +
@@ -162,7 +162,8 @@ namespace DartSassHost.Tests.Imports
 				"\"file:///app01/styles/app.sass\",\"file:///app01/styles/foundation/_reset.sass\"," +
 				"\"file:///app01/styles/fonts/bebas-neue.css\",\"file:///app01/styles/layout.sass\"," +
 				"\"file:///app01/styles/_variables.sass\",\"file:///app01/styles/foundation/_mixins.sass\"]," +
-				"\"names\":[],\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;ACXA;AACA;ACEA;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
+				"\"names\":[]," +
+				"\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;ACXA;AACA;AAA+C;ACE/C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
 				"AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;" +
 				"AAEF;EACE;EACA;EACA;EACA;EETA,eFUuB;EETvB,uBFSuB;EERvB,oBFQuB\"," +
 				"\"file\":\"app.css\"}"
