@@ -3,8 +3,8 @@
   <PropertyGroup>
     <Product>Dart Sass Host for .NET</Product>
     <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix>preview1</VersionSuffix>
     <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netstandard2.1</TargetFrameworks>
-    <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.0</NetStandardImplicitPackageVersion>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyOriginatorKeyFile>../../build/Key.snk</AssemblyOriginatorKeyFile>
@@ -15,18 +15,25 @@
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
     <Title>$(Product)</Title>
     <Authors>Andrey Taritsyn</Authors>
-    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.35.1.
+    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.35.1 with the ability to support a virtual file system.
 
 Since the original library is written in JavaScript, you will need a JS engine to run it. As a JS engine is used the JavaScript Engine Switcher library (https://github.com/Taritsyn/JavaScriptEngineSwitcher). For correct working, you need to install one of the following NuGet packages:
 
  * JavaScriptEngineSwitcher.ChakraCore
- * JavaScriptEngineSwitcher.V8
  * JavaScriptEngineSwitcher.Msie (only in the Chakra JsRT modes)
 
 After installing the packages, you will need to register the default JS engine (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).</Description>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageTags>Sass;SCSS;CSS</PackageTags>
+    <PackageProjectUrl>https://github.com/Taritsyn/DartSassHost</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/DartSassHost/main/images/DartSassHost_Logo_128x128.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Taritsyn/DartSassHost</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
@@ -39,6 +46,7 @@ After installing the packages, you will need to register the default JS engine (
   <ItemGroup>
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.1.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha6" PrivateAssets="All" />
   </ItemGroup>
@@ -58,11 +66,61 @@ After installing the packages, you will need to register the default JS engine (
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="../../images/DartSassHost_Logo_128x128.png">
+      <PackagePath>$(PackageIcon)</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
     <None Include="../../LICENSE.txt">
       <PackagePath>$(PackageLicenseFile)</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
     </None>
+    <None Include="../../licenses/advanced-string-builder-license.txt">
+      <PackagePath>advanced-string-builder-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../licenses/base64-js-license.txt">
+      <PackagePath>base64-js-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../licenses/buffer-license.txt">
+      <PackagePath>buffer-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../licenses/core-js-license.txt">
+      <PackagePath>core-js-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../licenses/dart-sass-license.txt">
+      <PackagePath>dart-sass-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../licenses/ieee754-license.txt">
+      <PackagePath>ieee754-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../licenses/js-engine-switcher-license.txt">
+      <PackagePath>js-engine-switcher-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../licenses/newtonsoft-json-license.txt">
+      <PackagePath>newtonsoft-json-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+
+    <Content Include="readme.txt">
+      <PackagePath>readme.txt</PackagePath>
+      <Pack>true</Pack>
+    </Content>
   </ItemGroup>
 
   <Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">

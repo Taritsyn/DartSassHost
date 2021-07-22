@@ -2599,7 +2599,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			platform: currentOsPlatformName, //DSH+
 			env: { }, //DSH+
 
-			cwd: fileManager.GetCurrentDirectory, //DSH+
+			cwd: function() { //DSH+
+				return fileManager.GetCurrentDirectory(); //DSH+
+			}, //DSH+
 			toString: function() { //DSH+
 				return "[object process]"; //DSH+
 			} //DSH+

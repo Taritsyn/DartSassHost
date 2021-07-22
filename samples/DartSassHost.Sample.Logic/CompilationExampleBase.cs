@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 #if NETSTANDARD1_3
@@ -101,14 +102,35 @@ body {
 		{
 			Console.WriteLine("Compiled content:{1}{1}{0}{1}", result.CompiledContent, Environment.NewLine);
 			Console.WriteLine("Source map:{1}{1}{0}{1}", result.SourceMap, Environment.NewLine);
-			Console.WriteLine("Included file paths: {0}", string.Join(", ", result.IncludedFilePaths));
 
-			if (result.Warnings.Count > 0)
+			IList<string> includedFilePaths = result.IncludedFilePaths;
+
+			if (includedFilePaths.Count > 0)
 			{
-				Console.WriteLine("{1}Warnings:{1}{1}{0}",
-					string.Join(Environment.NewLine + Environment.NewLine, result.Warnings.Select(w => w.Message).ToArray()),
-					Environment.NewLine
-				);
+				Console.WriteLine("Included file paths:");
+				Console.WriteLine();
+
+				foreach (string includedFilePath in includedFilePaths)
+				{
+					Console.WriteLine(includedFilePath);
+				}
+
+				Console.WriteLine();
+			}
+
+			IList<ProblemInfo> warnings = result.Warnings;
+
+			if (warnings.Count > 0)
+			{
+				Console.WriteLine("Warnings:");
+				Console.WriteLine();
+
+				foreach (ProblemInfo warning in warnings)
+				{
+					Console.WriteLine(warning.Message);
+				}
+
+				Console.WriteLine();
 			}
 
 			Console.WriteLine();
