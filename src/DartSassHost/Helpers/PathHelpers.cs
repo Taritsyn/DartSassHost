@@ -82,27 +82,42 @@ namespace DartSassHost.Helpers
 				);
 			}
 
-			if (!relativeTo.EndsWith(Path.DirectorySeparatorChar.ToString())
-				&& !relativeTo.EndsWith(Path.AltDirectorySeparatorChar.ToString()))
+			if (string.IsNullOrWhiteSpace(path))
 			{
-				relativeTo += Path.DirectorySeparatorChar;
+				throw new ArgumentException(
+					nameof(path),
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(path))
+				);
 			}
 
-			Uri baseUri = new Uri(relativeTo);
-			Uri uri = new Uri(path);
+			if (string.IsNullOrWhiteSpace(relativeTo))
+			{
+				return ProcessBackSlashes(path);
+			}
+
+			string processedRelativeTo = ProcessBackSlashes(relativeTo);
+			string processedPath = ProcessBackSlashes(path);
+
+			if (processedRelativeTo == "/" && processedPath.StartsWith("/"))
+			{
+				return processedPath.TrimStart(new[] { '/' });
+			}
+
+			if (!processedRelativeTo.EndsWith("/"))
+			{
+				processedRelativeTo += "/";
+			}
+
+			Uri baseUri = new Uri(processedRelativeTo);
+			Uri uri = new Uri(processedPath);
 
 			if (baseUri.Scheme != uri.Scheme)
 			{
-				return path;
+				return processedPath;
 			}
 
 			Uri relativeUri = baseUri.MakeRelativeUri(uri);
 			string relativePath = Uri.UnescapeDataString(relativeUri.ToString());
-
-			if (uri.Scheme.Equals("file", StringComparison.OrdinalIgnoreCase))
-			{
-				relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
-			}
 
 			return relativePath;
 		}

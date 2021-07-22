@@ -59,11 +59,17 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		var pathWithDriveLetterRegEx = /^[/\\]?[a-zA-z]:[/\\]/;
 
 		function fixAbsolutePath(path) {
-			var processedPath = path;
+			var processedPath;
 
-			if (pathWithDriveLetterRegEx.test(path)
-				&& (path.startsWith('/') || path.startsWith('\\'))) {
-				processedPath = path.substring(1);
+			if (!path) {
+				return path;
+			}
+
+			processedPath = sass.removeFileSchemeFromPath(path);
+
+			if (pathWithDriveLetterRegEx.test(processedPath)
+				&& (processedPath.startsWith('/') || processedPath.startsWith('\\'))) {
+				processedPath = processedPath.substring(1);
 			}
 
 			if (currentOsPlatformName === 'win32') {
@@ -78,7 +84,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				endingParentheses = '()'
 				;
 
-			if (memberName.endsWith(endingParentheses)) {
+			if (memberName && memberName.endsWith(endingParentheses)) {
 				processedMemberName = memberName.substring(0, memberName.length - endingParentheses.length);
 			}
 

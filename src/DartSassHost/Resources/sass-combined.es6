@@ -2463,8 +2463,29 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			var exports = {}, //DSH+
 				fileScheme = "file://", //DSH+
 				urlFunctionBeginPart = "url(", //DSH+
-				urlFunctionEndPart = ")" //DSH+
+				urlFunctionEndPart = ")", //DSH+
+				supportsVirtualPaths = fileManager.SupportsVirtualPaths //DSH+
 				; //DSH+
+
+			function removeFileSchemeFromPath(path) { //DSH+
+				var processedPath = path; //DSH+
+
+				if (path && path.startsWith(fileScheme)) { //DSH+
+					processedPath = path.substring(fileScheme.length); //DSH+
+				} //DSH+
+
+				return processedPath; //DSH+
+			} //DSH+
+
+			function convertPathToAbsolute(path) { //DSH+
+				var processedPath = path; //DSH+
+
+				if (path && supportsVirtualPaths && fileManager.IsAppRelativeVirtualPath(path)) { //DSH+
+					processedPath = fileManager.ToAbsoluteVirtualPath(path); //DSH+
+				} //DSH+
+
+				return processedPath; //DSH+
+			} //DSH+
 
 			function unquote(quotedValue) { //DSH+
 				var value = quotedValue, //DSH+
@@ -2499,7 +2520,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					quoteChar //DSH+
 					; //DSH+
 
-				if (fileManager.SupportsVirtualPaths) { //DSH+
+				if (supportsVirtualPaths) { //DSH+
 					quotedResult = unquote(quotedValue); //DSH+
 					path = quotedResult.value; //DSH+
 					quoteChar = quotedResult.quoteChar; //DSH+
@@ -2513,18 +2534,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				return processedQuotedValue; //DSH+
 			} //DSH+
 
-			function removeFileSchemeFromPath(path) { //DSH+
-				var processedPath = path; //DSH+
-
-				if (path.startsWith(fileScheme)) { //DSH+
-					processedPath = path.substring(fileScheme.length); //DSH+
-				} //DSH+
-
-				return processedPath; //DSH+
-			} //DSH+
-
 			function isUrlFunction(value) { //DSH+
-				return value.length > 6 && value.startsWith(urlFunctionBeginPart) && value.endsWith(urlFunctionEndPart); //DSH+
+				return value && value.length > 6 && value.startsWith(urlFunctionBeginPart)
+					&& value.endsWith(urlFunctionEndPart); //DSH+
 			} //DSH+
 
 			function extractPathFromUrlFunction(value) { //DSH+
@@ -2540,18 +2552,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					processedUrlFunction = urlfunction //DSH+
 					; //DSH+
 
-				if (isUrlFunction(urlfunction) && fileManager.SupportsVirtualPaths) { //DSH+
+				if (isUrlFunction(urlfunction) && supportsVirtualPaths) { //DSH+
 					path = extractPathFromUrlFunction(urlfunction); //DSH+
-					if (fileManager.IsAppRelativeVirtualPath(path)) { //DSH+
+					if (path && fileManager.IsAppRelativeVirtualPath(path)) { //DSH+
 						path = fileManager.ToAbsoluteVirtualPath(path); //DSH+
+						processedUrlFunction = wrapPathInUrlFunction(path); //DSH+
 					} //DSH+
-					processedUrlFunction = wrapPathInUrlFunction(path); //DSH+
 				} //DSH+
 
 				return processedUrlFunction; //DSH+
 			} //DSH+
 
+			exports.supportsVirtualPaths = supportsVirtualPaths; //DSH+
 			exports.removeFileSchemeFromPath = removeFileSchemeFromPath; //DSH+
+			exports.convertPathToAbsolute = convertPathToAbsolute; //DSH+
 			exports.convertPathToAbsoluteInUrlFunction = convertPathToAbsoluteInUrlFunction; //DSH+
 			exports.convertPathToAbsoluteInQuotedValue = convertPathToAbsoluteInQuotedValue; //DSH+
 
@@ -2585,9 +2599,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			platform: currentOsPlatformName, //DSH+
 			env: { }, //DSH+
 
-			cwd: function() { //DSH+
-				return fileManager.GetCurrentDirectory(); //DSH+
-			}, //DSH+
+			cwd: fileManager.GetCurrentDirectory, //DSH+
 			toString: function() { //DSH+
 				return "[object process]"; //DSH+
 			} //DSH+
@@ -16501,7 +16513,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				}, _EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin: function _EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin() {
 				},
 				Style__getPlatformStyle: function() {
-					if (fileManager.SupportsVirtualPaths) //DSH+
+					if (dshUtils.supportsVirtualPaths) //DSH+
 						return $.$get$Style_url(); //DSH+
 					if (P.Uri_base().get$scheme() !== "file")
 						return $.$get$Style_url();
@@ -35002,9 +35014,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			M.Context.prototype = {
 				absolute$7: function(part1, part2, part3, part4, part5, part6, part7) {
 					var t1;
-					if (fileManager.SupportsVirtualPaths && fileManager.IsAppRelativeVirtualPath(part1)) { //DSH+
-						part1 = fileManager.ToAbsoluteVirtualPath(part1); //DSH+
-					} //DSH+
+					part1 = dshUtils.convertPathToAbsolute(part1); //DSH+
 					M._validateArgList("absolute", H.setRuntimeTypeInfo([part1, part2, part3, part4, part5, part6, part7], type$.JSArray_nullable_String));
 					if (part2 == null) {
 						t1 = this.style;
@@ -63094,13 +63104,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_this._serialize$_visitChildren$1(node.children);
 				},
 				visitCssImport$1: function(node) {
-					node.url.value = dshUtils.convertPathToAbsoluteInQuotedValue(node.url.value); // DSH+
-
 					this._writeIndentation$0();
 					this._serialize$_buffer.forSpan$2(node.span, new N._SerializeVisitor_visitCssImport_closure(this, node));
 				},
 				_writeImportUrl$1: function(url) {
 					var urlContents, maybeQuote, _this = this;
+					url = dshUtils.convertPathToAbsoluteInQuotedValue(url); // DSH+
 					if (_this._style !== C.OutputStyle_compressed || C.JSString_methods._codeUnitAt$1(url, 0) !== 117) {
 						_this._serialize$_buffer.write$1(0, url);
 						return;
@@ -78090,8 +78099,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t1 += ", ";
 							/*DSH- t1 += _this._evaluate0$_serialize$3$quote(argument.accept$1(_this), argument, true);*/
 							evaluatedValue = argument.accept$1(_this); //DSH+
-							if (isUrlFunction && fileManager.SupportsVirtualPaths && fileManager.IsAppRelativeVirtualPath(evaluatedValue.text)) { //DSH+
-								evaluatedValue.text = fileManager.ToAbsoluteVirtualPath(evaluatedValue.text); //DSH+
+							if (isUrlFunction) { //DSH+
+								evaluatedValue.text = dshUtils.convertPathToAbsolute(evaluatedValue.text); //DSH+
 							} //DSH+
 							t1 += _this._evaluate0$_serialize$3$quote(evaluatedValue, argument, true); //DSH+
 						}
@@ -87529,13 +87538,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_this._serialize0$_visitChildren$1(node.children);
 				},
 				visitCssImport$1: function(node) {
-					node.url.value = dshUtils.convertPathToAbsoluteInQuotedValue(node.url.value); // DSH+
-
 					this._serialize0$_writeIndentation$0();
 					this._buffer.forSpan$2(node.span, new N._SerializeVisitor_visitCssImport_closure0(this, node));
 				},
 				_serialize0$_writeImportUrl$1: function(url) {
 					var urlContents, maybeQuote, _this = this;
+					url = dshUtils.convertPathToAbsoluteInQuotedValue(url); // DSH+
 					if (_this._serialize0$_style !== C.OutputStyle_compressed0 || C.JSString_methods._codeUnitAt$1(url, 0) !== 117) {
 						_this._buffer.write$1(0, url);
 						return;
