@@ -113,8 +113,8 @@ body {
             {
                 using (var sassCompiler = new SassCompiler(new ChakraCoreJsEngineFactory(), options))
                 {
-                    CompilationResult result = sassCompiler.Compile(inputContent, "input.scss", "output.css",
-                        "output.css.map", options);
+                    CompilationResult result = sassCompiler.Compile(inputContent, "input.scss",
+                        "output.css", "output.css.map", options);
 
                     Console.WriteLine("Compiled content:{1}{1}{0}{1}", result.CompiledContent,
                         Environment.NewLine);
