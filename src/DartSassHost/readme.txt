@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-               README file for Dart Sass Host for .NET v1.0.0 Preview 1
+               README file for Dart Sass Host for .NET v1.0.0 Preview 2
 
    --------------------------------------------------------------------------------
 
@@ -24,6 +24,11 @@
 
    After installing the packages, you will need to register the default JS engine
    (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).
+
+   =============
+   RELEASE NOTES
+   =============
+   Fixed a error that caused generation of absolute paths in source maps.
 
    ============
    PROJECT SITE
