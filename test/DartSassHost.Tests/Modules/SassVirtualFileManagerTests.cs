@@ -99,8 +99,8 @@ namespace DartSassHost.Tests.Modules
 				"/styles/fonts/league-gothic.sass"
 			};
 			_siteSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
-				"\"sources\":[\"foundation/_reset.sass\",\"_icons.sass\",\"fonts/bebas-neue.css\",\"fonts/league-gothic.sass\"," +
-				"\"site.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
+				"\"sources\":[\"foundation/_reset.sass\",\"_icons.sass\",\"fonts/bebas-neue.css\"," +
+				"\"fonts/league-gothic.sass\",\"site.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
 				"\"names\":[],\"mappings\":\"AAAA;AAAA;AAAA;AAAA;EAIE;EACA;;;ACHF;EACE;EACA;EACA;EACA;EACA;EACA;;;" +
 				"AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;ACvBF;EACE;EACA;EACA;EAIA;EACA;;ACNF;" +
 				"EACE;EACA;EACA;EACA;EACA;;ACFF;EACE,kBCNS;EDOT;EACA;EACA;;;AAEF;EACE;EACA;EACA;EACA;EEdA,eFeyB;" +
@@ -199,10 +199,8 @@ namespace DartSassHost.Tests.Modules
 				"/app01/styles/fonts/league-gothic.sass"
 			};
 			_appSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
-				"\"sources\":[\"file:///app01/styles/foundation/_reset.sass\",\"file:///app01/styles/_icons.sass\"," +
-				"\"file:///app01/styles/fonts/bebas-neue.css\",\"file:///app01/styles/fonts/league-gothic.sass\"," +
-				"\"file:///app01/styles/app.sass\",\"file:///app01/styles/_variables.sass\"," +
-				"\"file:///app01/styles/foundation/_mixins.sass\"]," +
+				"\"sources\":[\"foundation/_reset.sass\",\"_icons.sass\",\"fonts/bebas-neue.css\"," +
+				"\"fonts/league-gothic.sass\",\"app.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
 				"\"names\":[],\"mappings\":\"AAAA;AAAA;AAAA;AAAA;EAIE;EACA;;;ACHF;EACE;EACA;EACA;EACA;EACA;EACA;;;" +
 				"AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;ACvBF;EACE;EACA;EACA;EAIA;EACA;;ACNF;" +
 				"EACE;EACA;EACA;EACA;EACA;;ACFF;EACE,kBCNS;EDOT;EACA;EACA;;;AAEF;EACE;EACA;EACA;EACA;EEdA,eFeyB;EEdzB,uBFcyB;EEbzB,oBFayB\"," +

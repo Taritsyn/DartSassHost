@@ -209,10 +209,8 @@ namespace DartSassHost.Tests.Modules
 				"/app01/styles/fonts/league-gothic.scss"
 			};
 			_appSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
-				"\"sources\":[\"file:///app01/styles/foundation/_reset.scss\",\"file:///app01/styles/_icons.scss\"," +
-				"\"file:///app01/styles/fonts/bebas-neue.css\",\"file:///app01/styles/fonts/league-gothic.scss\"," +
-				"\"file:///app01/styles/app.scss\",\"file:///app01/styles/_variables.scss\"," +
-				"\"file:///app01/styles/foundation/_mixins.scss\"]," +
+				"\"sources\":[\"foundation/_reset.scss\",\"_icons.scss\",\"fonts/bebas-neue.css\"," +
+				"\"fonts/league-gothic.scss\",\"app.scss\",\"_variables.scss\",\"foundation/_mixins.scss\"]," +
 				"\"names\":[],\"mappings\":\"AAAA;AAAA;AAAA;AAAA;EAIE;EACA;;;ACHF;EACE;EACA;EACA;EACA;EACA;EACA;;;" +
 				"AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AC5BF;EACE;EACA;EACA;EAIA;EACA;;ACNF;" +
 				"EACE;EACA;EACA;EAIA;EACA;;ACLF;EACE,kBCNS;EDOT;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EEfA,eFgByB;" +

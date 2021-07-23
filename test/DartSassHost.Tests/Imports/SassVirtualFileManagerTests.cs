@@ -158,10 +158,8 @@ namespace DartSassHost.Tests.Imports
 				"/app01/styles/layout.sass"
 			};
 			_appSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
-				"\"sources\":[\"file:///app01/styles/_icons.sass\",\"file:///app01/styles/_fonts.sass\"," +
-				"\"file:///app01/styles/app.sass\",\"file:///app01/styles/foundation/_reset.sass\"," +
-				"\"file:///app01/styles/fonts/bebas-neue.css\",\"file:///app01/styles/layout.sass\"," +
-				"\"file:///app01/styles/_variables.sass\",\"file:///app01/styles/foundation/_mixins.sass\"]," +
+				"\"sources\":[\"_icons.sass\",\"_fonts.sass\",\"app.sass\",\"foundation/_reset.sass\"," +
+				"\"fonts/bebas-neue.css\",\"layout.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
 				"\"names\":[]," +
 				"\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;ACXA;AACA;AAA+C;ACE/C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
 				"AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;" +

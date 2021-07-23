@@ -65,7 +65,7 @@ namespace DartSassHost.Tests.Simple
 				"  background-image: Url(  ~/images/icons/usb-flash-drive.png  )"
 				;
 			_appSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
-				"\"sources\":[\"file:///app01/styles/app.sass\"],\"names\":[]," +
+				"\"sources\":[\"app.sass\"],\"names\":[]," +
 				"\"mappings\":\"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE\"," +
 				"\"file\":\"app.css\"}"
 				;

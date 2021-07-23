@@ -15782,7 +15782,10 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t2.targetUrl = t4.toUri$1(t4.withoutExtension$1(file) + ".css").toString$0(0);
 						} else
 							t2.targetUrl = t4.toUri$1(t4.relative$2$from(outFile, sourceMapDir)).toString$0(0);
+						/*DSH-
 						sourceMapDirUrl = t4.toUri$1(sourceMapDir).toString$0(0);
+						*/
+						sourceMapDirUrl = t4.toUri$1(sourceMapDir === "." ? D.absolute(".") : dshUtils.convertPathToAbsolute(sourceMapDir)).toString$0(0); // DSH+
 						for (t4 = t2.urls, i = 0; i < t4.length; ++i) {
 							source = t4[i];
 							if (source === "stdin")

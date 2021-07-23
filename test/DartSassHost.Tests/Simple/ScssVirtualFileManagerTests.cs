@@ -67,7 +67,7 @@ namespace DartSassHost.Tests.Simple
 				"}"
 				;
 			_appSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
-				"\"sources\":[\"file:///app01/styles/app.scss\"],\"names\":[]," +
+				"\"sources\":[\"app.scss\"],\"names\":[]," +
 				"\"mappings\":\"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE\"," +
 				"\"file\":\"app.css\"}"
 				;
