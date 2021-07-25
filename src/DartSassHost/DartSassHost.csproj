@@ -60,10 +60,16 @@ After installing the packages, you will need to register the default JS engine (
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
     <EmbeddedResource Include="Resources/es6-polyfills.min.js" />
     <EmbeddedResource Include="Resources/sass-combined.min.js" />
     <EmbeddedResource Include="Resources/sass-helper.min.js" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <EmbeddedResource Include="Resources/es6-polyfills.js" />
+    <EmbeddedResource Include="Resources/sass-combined.es6" />
+    <EmbeddedResource Include="Resources/sass-helper.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -128,19 +134,19 @@ After installing the packages, you will need to register the default JS engine (
     <ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
   </Target>
 
-  <Target Name="NodePackageInstallation" BeforeTargets="BeforeBuild">
+  <Target Name="NodePackageInstallation" BeforeTargets="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
     <Exec Command='npm install'
       WorkingDirectory="$(ProjectDir)"
       ConsoleToMsBuild="true" />
   </Target>
 
-  <Target Name="Es6Translation" AfterTargets="NodePackageInstallation">
+  <Target Name="Es6Translation" AfterTargets="NodePackageInstallation" Condition=" '$(Configuration)' == 'Release' ">
     <Exec Command='babel --out-file "$(ProjectDir)Resources/sass-combined.js" --config-file "$(ProjectDir).babelrc" "$(ProjectDir)Resources/sass-combined.es6"'
       WorkingDirectory="$(ProjectDir)node_modules/.bin/"
       ConsoleToMsBuild="true" />
   </Target>
 
-  <Target Name="JsMinification" AfterTargets="Es6Translation">
+  <Target Name="JsMinification" AfterTargets="Es6Translation" Condition=" '$(Configuration)' == 'Release' ">
     <Exec
       Command='uglifyjs "$(ProjectDir)Resources/es6-polyfills.js" --output "$(ProjectDir)Resources/es6-polyfills.min.js" --config-file "$(ProjectDir).uglifyjsrc"'
       WorkingDirectory="$(ProjectDir)node_modules/.bin/"

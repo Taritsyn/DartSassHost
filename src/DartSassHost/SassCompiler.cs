@@ -31,17 +31,29 @@ namespace DartSassHost
 		/// <summary>
 		/// Name of file, which contains a ECMAScript 6+ polyfills
 		/// </summary>
+#if !DEBUG
 		private const string ES6_POLYFILLS_FILE_NAME = "es6-polyfills.min.js";
+#else
+		private const string ES6_POLYFILLS_FILE_NAME = "es6-polyfills.js";
+#endif
 
 		/// <summary>
 		/// Name of file, which contains a Sass library
 		/// </summary>
+#if !DEBUG
 		private const string SASS_LIBRARY_FILE_NAME = "sass-combined.min.js";
+#else
+		private const string SASS_LIBRARY_FILE_NAME = "sass-combined.es6";
+#endif
 
 		/// <summary>
 		/// Name of file, which contains a Sass helper
 		/// </summary>
+#if !DEBUG
 		private const string SASS_HELPER_FILE_NAME = "sass-helper.min.js";
+#else
+		private const string SASS_HELPER_FILE_NAME = "sass-helper.js";
+#endif
 
 		/// <summary>
 		/// Name of variable, which contains a operating system name
