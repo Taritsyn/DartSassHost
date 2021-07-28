@@ -5,6 +5,6 @@
     "@babel/cli": "7.12.17",
     "@babel/core": "7.12.17",
     "@babel/preset-env": "7.12.17",
-    "uglify-js": "3.13.10"
+    "uglify-js": "3.14.1"
   }
 }
