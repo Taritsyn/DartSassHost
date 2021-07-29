@@ -20,6 +20,7 @@
 Since the original library is written in JavaScript, you will need a JS engine to run it. As a JS engine is used the JavaScript Engine Switcher library (https://github.com/Taritsyn/JavaScriptEngineSwitcher). For correct working, you need to install one of the following NuGet packages:
 
  * JavaScriptEngineSwitcher.ChakraCore
+ * JavaScriptEngineSwitcher.V8
  * JavaScriptEngineSwitcher.Msie (only in the Chakra JsRT modes)
 
 After installing the packages, you will need to register the default JS engine (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).</Description>
@@ -33,7 +34,8 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>Added support of the Dart Sass version 1.36.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support of the Dart Sass version 1.36.0;
+2. Now can use the JavaScriptEngineSwitcher.V8 as a JS engine.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>

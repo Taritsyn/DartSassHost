@@ -20,6 +20,7 @@
    need to install one of the following NuGet packages:
 
     * JavaScriptEngineSwitcher.ChakraCore
+    * JavaScriptEngineSwitcher.V8
     * JavaScriptEngineSwitcher.Msie (only in the Chakra JsRT modes)
 
    After installing the packages, you will need to register the default JS engine
@@ -28,7 +29,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support of the Dart Sass version 1.36.0.
+   1. Added support of the Dart Sass version 1.36.0;
+   2. Now can use the JavaScriptEngineSwitcher.V8 as a JS engine.
 
    ============
    PROJECT SITE
