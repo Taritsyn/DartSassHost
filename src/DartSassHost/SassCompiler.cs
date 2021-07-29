@@ -17,6 +17,7 @@ using Newtonsoft.Json.Linq;
 using PolyfillsForOldDotNet.System.Runtime.InteropServices;
 #endif
 
+using DartSassHost.Extensions;
 using DartSassHost.Helpers;
 using DartSassHost.Resources;
 using DartSassHost.Utilities;
@@ -605,27 +606,6 @@ namespace DartSassHost
 			}
 		}
 
-		private bool TryReadFile(string path, out string content)
-		{
-			bool result = false;
-			content = null;
-
-			if (!string.IsNullOrWhiteSpace(path) && _fileManager != null && _fileManager.FileExists(path))
-			{
-				try
-				{
-					content = _fileManager.ReadFile(path);
-					result = true;
-				}
-				catch
-				{
-					content = null;
-				}
-			}
-
-			return result;
-		}
-
 		private SassCompilationException CreateCompilationExceptionFromJson(JToken errorJson)
 		{
 			var description = errorJson.Value<string>("description");
@@ -647,7 +627,7 @@ namespace DartSassHost
 
 			if (string.IsNullOrWhiteSpace(content))
 			{
-				if (!TryReadFile(absoluteFilePath, out content))
+				if (!_fileManager.TryReadFile(absoluteFilePath, out content))
 				{
 					content = string.Empty;
 				}
@@ -719,7 +699,7 @@ namespace DartSassHost
 
 			if (string.IsNullOrWhiteSpace(content))
 			{
-				if (!TryReadFile(absoluteFilePath, out content))
+				if (!_fileManager.TryReadFile(absoluteFilePath, out content))
 				{
 					content = string.Empty;
 				}
