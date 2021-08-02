@@ -1,4 +1,4 @@
-Dart Sass Host for .NET
+Dart Sass Host for .NET [![NuGet version](http://img.shields.io/nuget/v/DartSassHost.svg)](https://www.nuget.org/packages/DartSassHost/)  [![Download count](https://img.shields.io/nuget/dt/DartSassHost.svg)](https://www.nuget.org/packages/DartSassHost/)
 =======================
 
 ![Dart Sass Host logo](https://raw.githubusercontent.com/Taritsyn/DartSassHost/main/images/DartSassHost_Logo.png)
