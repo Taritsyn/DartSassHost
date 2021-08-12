@@ -4,17 +4,12 @@
 	/// Wrapper around the file manager that provides compatibility with host object embedding mechanism
 	/// of the Microsoft ClearScript.V8 library
 	/// </summary>
-	public sealed class FileManagerWrapper
+	public sealed class FileManagerWrapper : IFileManager
 	{
 		/// <summary>
 		/// File manager
 		/// </summary>
 		IFileManager _fileManager;
-
-		public bool SupportsVirtualPaths
-		{
-			get { return _fileManager.SupportsVirtualPaths; }
-		}
 
 
 		/// <summary>
@@ -24,6 +19,14 @@
 		public FileManagerWrapper(IFileManager fileManager)
 		{
 			_fileManager = fileManager;
+		}
+
+
+		#region IFileManager implementation
+
+		public bool SupportsVirtualPaths
+		{
+			get { return _fileManager.SupportsVirtualPaths; }
 		}
 
 
@@ -51,5 +54,7 @@
 		{
 			return _fileManager.ReadFile(path);
 		}
+
+		#endregion
 	}
 }

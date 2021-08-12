@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v1.0.0 Preview 4 - August 12, 2021
+ * Added support of the Dart Sass version 1.37.5
+
 ## v1.0.0 Preview 3 - July 29, 2021
  * Added support of the Dart Sass version 1.36.0
  * Now can use the JavaScriptEngineSwitcher.V8 as a JS engine
