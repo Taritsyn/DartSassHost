@@ -12,7 +12,6 @@
     "minify-es6-polyfills-js": "uglifyjs ./Resources/es6-polyfills.js --output ./Resources/es6-polyfills.min.js --config-file ./.uglifyjsrc",
     "minify-sass-combined-js": "uglifyjs ./Resources/sass-combined.js --output ./Resources/sass-combined.min.js --config-file ./.uglifyjsrc --keep-fnames",
     "minify-sass-helper-js": "uglifyjs ./Resources/sass-helper.js --output ./Resources/sass-helper.min.js --config-file ./.uglifyjsrc",
-
     "transpile-es6": "npm run -s transpile-sass-combined-es6",
     "minify-js": "npm run -s minify-es6-polyfills-js && npm run -s minify-sass-combined-js && npm run -s minify-sass-helper-js"
   }
