@@ -13,6 +13,13 @@ indent_style = space
 indent_size = 2
 insert_final_newline = true
 
+[*.{cmd,sh}]
+indent_style = space
+indent_size = 4
+
+[*.sh]
+end_of_line = lf
+
 [*.{xml,config,csproj,props,targets}]
 indent_style = space
 indent_size = 2

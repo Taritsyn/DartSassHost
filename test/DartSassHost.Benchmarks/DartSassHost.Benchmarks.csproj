@@ -55,10 +55,10 @@
     </None>
   </ItemGroup>
 
-  <Target Name="NodePackageInstallation" AfterTargets="BeforeBuild">
-    <Exec Command='npm install'
-      WorkingDirectory="$(ProjectDir)"
-      ConsoleToMsBuild="true" />
+  <Target Name="EnsureNodePackagesInstalled" BeforeTargets="BeforeBuild">
+    <Error
+      Condition=" !Exists('./node_modules/@angular/material/_theming.scss') Or !Exists('./node_modules/bootstrap/scss/bootstrap.scss') Or !Exists('./node_modules/foundation-sites/scss/foundation.scss') "
+      Text="You need to install a Node.js packages. To do this, in the directory of $(MSBuildProjectName) project, run the following command: `npm install`." />
   </Target>
 
 </Project>

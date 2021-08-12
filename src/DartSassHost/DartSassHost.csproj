@@ -133,34 +133,15 @@ After installing the packages, you will need to register the default JS engine (
   </ItemGroup>
 
   <Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
-    <ResxToCsTask InputDirectory="./Resources/" Namespace="$(RootNamespace).Resources" InternalAccessModifier="true" />
+    <ResxToCsTask
+      InputDirectory="./Resources/"
+      Namespace="$(RootNamespace).Resources"
+      InternalAccessModifier="true" />
   </Target>
 
-  <Target Name="NodePackageInstallation" BeforeTargets="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
-    <Exec Command='npm install'
-      WorkingDirectory="$(ProjectDir)"
-      ConsoleToMsBuild="true" />
+  <Target Name="EnsureJsFilesBuilded" BeforeTargets="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
+    <Error
+      Condition=" !Exists('./Resources/es6-polyfills.min.js') Or !Exists('./Resources/sass-combined.min.js') Or !Exists('./Resources/sass-helper.min.js') "
+      Text="In release mode, you need to build JS files. To do this, run a `build-js.cmd` or `build-js.sh` script." />
   </Target>
-
-  <Target Name="Es6Translation" AfterTargets="NodePackageInstallation" Condition=" '$(Configuration)' == 'Release' ">
-    <Exec Command='babel --out-file "$(ProjectDir)Resources/sass-combined.js" --config-file "$(ProjectDir).babelrc" "$(ProjectDir)Resources/sass-combined.es6"'
-      WorkingDirectory="$(ProjectDir)node_modules/.bin/"
-      ConsoleToMsBuild="true" />
-  </Target>
-
-  <Target Name="JsMinification" AfterTargets="Es6Translation" Condition=" '$(Configuration)' == 'Release' ">
-    <Exec
-      Command='uglifyjs "$(ProjectDir)Resources/es6-polyfills.js" --output "$(ProjectDir)Resources/es6-polyfills.min.js" --config-file "$(ProjectDir).uglifyjsrc"'
-      WorkingDirectory="$(ProjectDir)node_modules/.bin/"
-      ConsoleToMsBuild="true" />
-    <Exec
-      Command='uglifyjs "$(ProjectDir)Resources/sass-combined.js" --output "$(ProjectDir)Resources/sass-combined.min.js" --config-file "$(ProjectDir).uglifyjsrc" --keep-fnames'
-      WorkingDirectory="$(ProjectDir)node_modules/.bin/"
-      ConsoleToMsBuild="true" />
-    <Exec
-      Command='uglifyjs "$(ProjectDir)Resources/sass-helper.js" --output "$(ProjectDir)Resources/sass-helper.min.js" --config-file "$(ProjectDir).uglifyjsrc"'
-      WorkingDirectory="$(ProjectDir)node_modules/.bin/"
-      ConsoleToMsBuild="true" />
-  </Target>
-
 </Project>
