@@ -462,7 +462,7 @@ namespace DartSassHost
 
 			if (errorsJson != null && errorsJson.Count > 0)
 			{
-				throw CreateCompilationExceptionFromJson(errorsJson[0]);
+				throw CreateCompilationExceptionFromJson((JObject)errorsJson[0]);
 			}
 
 			CompilationResult compilationResult = CreateCompilationResultFromJson(resultJson, content, inputPath);
@@ -556,7 +556,7 @@ namespace DartSassHost
 
 			if (errorsJson != null && errorsJson.Count > 0)
 			{
-				throw CreateCompilationExceptionFromJson(errorsJson[0]);
+				throw CreateCompilationExceptionFromJson((JObject)errorsJson[0]);
 			}
 
 			CompilationResult compilationResult = CreateCompilationResultFromJson(resultJson, string.Empty, inputPath);
@@ -604,7 +604,7 @@ namespace DartSassHost
 			}
 		}
 
-		private SassCompilationException CreateCompilationExceptionFromJson(JToken errorJson)
+		private SassCompilationException CreateCompilationExceptionFromJson(JObject errorJson)
 		{
 			var description = errorJson.Value<string>("description");
 			var status = errorJson.Value<int>("status");
@@ -669,11 +669,23 @@ namespace DartSassHost
 			var warningsJson = resultJson["warnings"] as JArray;
 			if (warningsJson != null && warningsJson.Count > 0)
 			{
-				foreach (JToken warningJson in warningsJson)
+				IEqualityComparer<string> comparer = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+					StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
+				var warningSourcesCache = new Dictionary<string, string>(comparer);
+
+				var warningSourcesJson = (JObject)resultJson["warningSources"];
+				foreach (JProperty warningSourceProp in warningSourcesJson.Properties())
 				{
-					ProblemInfo warning = CreateProblemInfoFromJson(warningJson);
+					warningSourcesCache.Add(warningSourceProp.Name, warningSourceProp.Value.ToString());
+				}
+
+				foreach (JObject warningJson in warningsJson)
+				{
+					ProblemInfo warning = CreateProblemInfoFromJson(warningJson, warningSourcesCache);
 					warnings.Add(warning);
 				}
+
+				warningSourcesCache.Clear();
 			}
 
 			var compilationResult = new CompilationResult(compiledContent, sourceMap, includedFilePaths, warnings);
@@ -681,7 +693,7 @@ namespace DartSassHost
 			return compilationResult;
 		}
 
-		private ProblemInfo CreateProblemInfoFromJson(JToken warningJson)
+		private ProblemInfo CreateProblemInfoFromJson(JObject warningJson, Dictionary<string, string> sourcesCache)
 		{
 			string message = string.Empty;
 			var description = warningJson.Value<string>("message");
@@ -690,14 +702,18 @@ namespace DartSassHost
 			string currentDirectory = _fileManager?.GetCurrentDirectory();
 			var lineNumber = warningJson.Value<int>("lineNumber");
 			var columnNumber = warningJson.Value<int>("columnNumber");
-			var content = warningJson.Value<string>("source");
+			var content = string.Empty;
 			var sourceFragment = string.Empty;
 			var stackFramesJson = warningJson["stackFrames"] as JArray;
 			var callStack = string.Empty;
 
-			if (string.IsNullOrWhiteSpace(content))
+			if (!sourcesCache.TryGetValue(absoluteFilePath, out content))
 			{
-				if (!_fileManager.TryReadFile(absoluteFilePath, out content))
+				if (_fileManager.TryReadFile(absoluteFilePath, out content))
+				{
+					sourcesCache.Add(absoluteFilePath, content);
+				}
+				else
 				{
 					content = string.Empty;
 				}

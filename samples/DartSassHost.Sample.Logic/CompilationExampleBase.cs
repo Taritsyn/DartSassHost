@@ -128,9 +128,8 @@ body {
 				foreach (ProblemInfo warning in warnings)
 				{
 					Console.WriteLine(warning.Message);
+					Console.WriteLine();
 				}
-
-				Console.WriteLine();
 			}
 
 			Console.WriteLine();

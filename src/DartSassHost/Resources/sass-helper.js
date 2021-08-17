@@ -51,7 +51,12 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 	}
 
 	function getCanonicalFilePath(path) {
-		return path.replace(/\\/g, '/');
+		var canonicalPath = path.replace(/\\/g, '/');
+		if (currentOsPlatformName === 'win32') {
+			canonicalPath = canonicalPath.toLowerCase();
+		}
+
+		return canonicalPath;
 	}
 
 	//#region DshLogger class
@@ -94,6 +99,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 		function DshLogger() {
 			this._warnings = [];
+			this._sources = {};
 		}
 
 
@@ -102,6 +108,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				file,
 				fileLocation,
 				fileSpan,
+				filePath,
 				frames,
 				frameIndex,
 				frame,
@@ -118,11 +125,15 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				file = span.file;
 				fileLocation = new sass.FileLocation(file, span._file$_start);
 				fileSpan = new sass.FileSpan(file, 0, file._decodedChars.length);
+				filePath = fixAbsolutePath(fileLocation.get$sourceUrl().path);
 
-				warning.file = fixAbsolutePath(fileLocation.get$sourceUrl().path);
+				warning.file = filePath;
 				warning.lineNumber = fileLocation.get$line() + 1;
 				warning.columnNumber = fileLocation.get$column() + 1;
-				warning.source = fileSpan.get$text(file._decodedChars);
+
+				if (!this._sources.hasOwnProperty(filePath)) {
+					this._sources[filePath] = fileSpan.get$text(file._decodedChars);
+				}
 			}
 
 			if (trace && trace.frames) {
@@ -134,7 +145,6 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					warning.file = fixAbsolutePath(firstFrame.uri.path);
 					warning.lineNumber = firstFrame.line;
 					warning.columnNumber = firstFrame.column;
-					warning.source = '';
 				}
 
 				for (frameIndex = 0; frameIndex < frames.length; frameIndex++) {
@@ -183,8 +193,13 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			return this._warnings;
 		};
 
+		DshLogger.prototype.getSources = function () {
+			return this._sources;
+		};
+
 		DshLogger.prototype.dispose = function () {
 			this._warnings = null;
+			this._sources = null;
 		};
 
 		return DshLogger;
@@ -217,6 +232,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			includedFilePaths = [],
 			errors = [],
 			warnings = [],
+			warningSources = {},
 			logger
 			;
 
@@ -230,6 +246,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			sourceMap = compilationResult.map ? compilationResult.map.toString() : '';
 			includedFilePaths = fixIncludedFilePaths(compilationResult.stats.includedFiles);
 			warnings = logger.getWarnings();
+			warningSources = logger.getSources();
 		}
 		catch (e)
 		{
@@ -260,6 +277,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		}
 		if (warnings.length > 0) {
 			result.warnings = warnings;
+			result.warningSources = warningSources;
 		}
 
 		compilationOptions.dshLogger = null;
