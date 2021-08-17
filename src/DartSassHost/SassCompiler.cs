@@ -67,6 +67,11 @@ namespace DartSassHost
 		private const string FILE_MANAGER_VARIABLE_NAME = "FileManager";
 
 		/// <summary>
+		/// Storage for script resources
+		/// </summary>
+		private static readonly ScriptResourceStorage _scriptResourceStorage = new ScriptResourceStorage();
+
+		/// <summary>
 		/// Default compilation options
 		/// </summary>
 		private static readonly CompilationOptions _defaultOptions = new CompilationOptions();
@@ -283,16 +288,9 @@ namespace DartSassHost
 					_jsEngine.EmbedHostObject(FILE_MANAGER_VARIABLE_NAME, new FileManagerWrapper(_fileManager));
 					_jsEngine.SetVariableValue(CURRENT_OS_PLATFORM_NAME, GetCurrentOSPlatformName());
 
-					Assembly assembly = this.GetType()
-#if !NET40
-						.GetTypeInfo()
-#endif
-						.Assembly
-						;
-
-					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(ES6_POLYFILLS_FILE_NAME), assembly);
-					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_LIBRARY_FILE_NAME), assembly);
-					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_HELPER_FILE_NAME), assembly);
+					_jsEngine.Execute(_scriptResourceStorage.GetOrReadScriptCode(ES6_POLYFILLS_FILE_NAME));
+					_jsEngine.Execute(_scriptResourceStorage.GetOrReadScriptCode(SASS_LIBRARY_FILE_NAME));
+					_jsEngine.Execute(_scriptResourceStorage.GetOrReadScriptCode(SASS_HELPER_FILE_NAME));
 					_jsEngine.Execute($"var sassHelper = new SassHelper({serializedOptions});");
 
 					_version = _jsEngine.Evaluate<string>("SassHelper.getVersion();");

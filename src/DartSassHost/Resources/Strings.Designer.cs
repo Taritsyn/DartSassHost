@@ -74,6 +74,14 @@ namespace DartSassHost.Resources
 		}
 
 		/// <summary>
+		/// Looks up a localized string similar to "Resource with name '{0}' is null."
+		/// </summary>
+		internal static string Common_ResourceIsNull
+		{
+			get { return GetString("Common_ResourceIsNull"); }
+		}
+
+		/// <summary>
 		/// Looks up a localized string similar to "See the original error message: “{0}”."
 		/// </summary>
 		internal static string Common_SeeOriginalErrorMessage
