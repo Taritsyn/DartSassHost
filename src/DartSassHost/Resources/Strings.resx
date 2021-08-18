@@ -123,9 +123,6 @@
   <data name="Common_ArgumentIsNull" xml:space="preserve">
     <value>The parameter '{0}' must be a non-nullable.</value>
   </data>
-  <data name="Common_ResourceIsNull" xml:space="preserve">
-    <value>Resource with name '{0}' is null.</value>
-  </data>
   <data name="Common_SeeOriginalErrorMessage" xml:space="preserve">
     <value>See the original error message: “{0}”.</value>
   </data>

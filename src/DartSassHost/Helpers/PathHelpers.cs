@@ -10,7 +10,7 @@ namespace DartSassHost.Helpers
 	/// </summary>
 	internal static class PathHelpers
 	{
-		public static string PrettifyPath(string currentDirectory, string path)
+		internal static string PrettifyPath(string currentDirectory, string path)
 		{
 			if (currentDirectory == null)
 			{

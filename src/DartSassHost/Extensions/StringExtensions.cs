@@ -13,7 +13,7 @@ namespace DartSassHost.Extensions
 		/// <param name="source">String value</param>
 		/// <param name="tabSize">Number of spaces in tab</param>
 		/// <returns>Processed string value</returns>
-		public static string TabsToSpaces(this string source, int tabSize)
+		internal static string TabsToSpaces(this string source, int tabSize)
 		{
 			if (source == null)
 			{
@@ -35,7 +35,7 @@ namespace DartSassHost.Extensions
 		/// if the receiving succeeded, or null character if the receiving failed.
 		/// The receiving fails if the index out of bounds.</param>
 		/// <returns>true if the character was received successfully; otherwise, false</returns>
-		public static bool TryGetChar(this string source, int index, out char result)
+		internal static bool TryGetChar(this string source, int index, out char result)
 		{
 			if (source == null)
 			{
