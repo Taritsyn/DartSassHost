@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 #if NET45 || NET471 || NETSTANDARD
 using System.Runtime.InteropServices;
 #endif
-using System.Text;
 
-using AdvancedStringBuilder;
 using JavaScriptEngineSwitcher.Core;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 #if NET40
 using PolyfillsForOldDotNet.System.Runtime.InteropServices;
 #endif
 
 using DartSassHost.Extensions;
 using DartSassHost.Helpers;
+using DartSassHost.JsonConverters;
 using DartSassHost.Resources;
 using DartSassHost.Utilities;
 
@@ -90,6 +86,16 @@ namespace DartSassHost
 		/// JS engine
 		/// </summary>
 		private IJsEngine _jsEngine;
+
+		/// <summary>
+		/// Compilation options JSON converter
+		/// </summary>
+		private CompilationOptionsConverter _compilationOptionsConverter;
+
+		/// <summary>
+		/// Compilation result JSON converter
+		/// </summary>
+		private CompilationResultConverter _compilationResultConverter;
 
 		/// <summary>
 		/// Synchronizer of Sass compiler initialization
@@ -206,6 +212,8 @@ namespace DartSassHost
 			_createJsEngineInstance = createJsEngineInstance;
 			_fileManager = fileManager;
 			_options = options ?? _defaultOptions;
+			_compilationOptionsConverter = new CompilationOptionsConverter();
+			_compilationResultConverter = new CompilationResultConverter(fileManager);
 		}
 
 		/// <summary>
@@ -255,6 +263,8 @@ namespace DartSassHost
 			_createJsEngineInstance = jsEngineFactory.CreateEngine;
 			_fileManager = fileManager;
 			_options = options ?? _defaultOptions;
+			_compilationOptionsConverter = new CompilationOptionsConverter();
+			_compilationResultConverter = new CompilationResultConverter(fileManager);
 		}
 
 
@@ -308,29 +318,6 @@ namespace DartSassHost
 
 				_initialized = true;
 			}
-		}
-
-		/// <summary>
-		/// Serializes a compilation options to JSON format
-		/// </summary>
-		/// <param name="options">Compilation options</param>
-		/// <returns>Serialized compilation options in JSON format</returns>
-		private string SerializeCompilationOptions(CompilationOptions options)
-		{
-			var optionsJson = new JObject(
-				new JProperty("includePaths", new JArray(options.IncludePaths)),
-				new JProperty("indentType", GetIndentTypeCode(options.IndentType)),
-				new JProperty("indentWidth", options.IndentWidth),
-				new JProperty("linefeed", GetLineFeedString(options.LineFeedType)),
-				new JProperty("omitSourceMapUrl", options.OmitSourceMapUrl),
-				new JProperty("outputStyle", GetOutputStyleCode(options.OutputStyle)),
-				new JProperty("sourceMapContents", options.SourceMapIncludeContents),
-				new JProperty("sourceMapEmbed", options.InlineSourceMap),
-				new JProperty("sourceMapRoot", options.SourceMapRootPath),
-				new JProperty("sourceMap", options.SourceMap)
-			);
-
-			return optionsJson.ToString();
 		}
 
 		/// <summary>
@@ -432,7 +419,6 @@ namespace DartSassHost
 
 			ProcessFilePaths(ref inputFilePath, ref outputFilePath, ref sourceMapFilePath);
 
-			string serializedResult = string.Empty;
 			string serializedContent = JsonConvert.SerializeObject(content);
 			string serializedIndentedSyntax = JsonConvert.SerializeObject(indentedSyntax);
 			string serializedInputPath = JsonConvert.SerializeObject(inputFilePath);
@@ -440,14 +426,21 @@ namespace DartSassHost
 			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapFilePath);
 			string serializedOptions = options != null ? SerializeCompilationOptions(options) : "null";
 
+			CompilationResult compilationResult = null;
+
 			try
 			{
-				serializedResult = _jsEngine.Evaluate<string>("sassHelper.compile(" +
+				string serializedResult = _jsEngine.Evaluate<string>("sassHelper.compile(" +
 					serializedContent + ", " + serializedIndentedSyntax + ", " +
 					serializedInputPath + ", " + serializedOutputPath + ", " +
 					serializedSourceMapPath + ", " + serializedOptions +
 					");");
 
+				compilationResult = DeserializeCompilationResult(serializedResult);
+			}
+			catch (SassCompilationException)
+			{
+				throw;
 			}
 			catch (JsException e)
 			{
@@ -458,16 +451,6 @@ namespace DartSassHost
 					File = inputPath ?? string.Empty
 				};
 			}
-
-			var resultJson = JObject.Parse(serializedResult);
-			var errorsJson = resultJson["errors"] as JArray;
-
-			if (errorsJson != null && errorsJson.Count > 0)
-			{
-				throw CreateCompilationExceptionFromJson((JObject)errorsJson[0]);
-			}
-
-			CompilationResult compilationResult = CreateCompilationResultFromJson(resultJson, content, inputPath);
 
 			return compilationResult;
 		}
@@ -529,19 +512,25 @@ namespace DartSassHost
 				};
 			}
 
-			string serializedResult = string.Empty;
 			string serializedInputPath = JsonConvert.SerializeObject(inputFilePath);
 			string serializedOutputPath = JsonConvert.SerializeObject(outputFilePath);
 			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapFilePath);
 			string serializedOptions = options != null ? SerializeCompilationOptions(options) : "null";
 
+			CompilationResult compilationResult = null;
+
 			try
 			{
-				serializedResult = _jsEngine.Evaluate<string>("sassHelper.compileFile(" +
+				string serializedResult = _jsEngine.Evaluate<string>("sassHelper.compileFile(" +
 					serializedInputPath + ", " + serializedOutputPath + ", " +
 					serializedSourceMapPath + ", " + serializedOptions +
 					");");
 
+				compilationResult = DeserializeCompilationResult(serializedResult);
+			}
+			catch (SassCompilationException)
+			{
+				throw;
 			}
 			catch (JsException e)
 			{
@@ -552,16 +541,6 @@ namespace DartSassHost
 					File = inputPath ?? string.Empty
 				};
 			}
-
-			var resultJson = JObject.Parse(serializedResult);
-			var errorsJson = resultJson["errors"] as JArray;
-
-			if (errorsJson != null && errorsJson.Count > 0)
-			{
-				throw CreateCompilationExceptionFromJson((JObject)errorsJson[0]);
-			}
-
-			CompilationResult compilationResult = CreateCompilationResultFromJson(resultJson, string.Empty, inputPath);
 
 			return compilationResult;
 		}
@@ -606,185 +585,6 @@ namespace DartSassHost
 			}
 		}
 
-		private SassCompilationException CreateCompilationExceptionFromJson(JObject errorJson)
-		{
-			var description = errorJson.Value<string>("description");
-			var status = errorJson.Value<int>("status");
-			var type = errorJson.Value<string>("type");
-			var absoluteFilePath = errorJson.Value<string>("file");
-			var relativeFilePath = absoluteFilePath;
-			var lineNumber = errorJson.Value<int>("lineNumber");
-			var columnNumber = errorJson.Value<int>("columnNumber");
-			var content = errorJson.Value<string>("source");
-			var sourceFragment = string.Empty;
-			var sourceLineFragment = string.Empty;
-
-			if (!string.IsNullOrWhiteSpace(absoluteFilePath) && _fileManager != null)
-			{
-				string currentDirectory = _fileManager.GetCurrentDirectory();
-				relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
-			}
-
-			if (string.IsNullOrWhiteSpace(content))
-			{
-				if (!_fileManager.TryReadFile(absoluteFilePath, out content))
-				{
-					content = string.Empty;
-				}
-			}
-
-			if (!string.IsNullOrWhiteSpace(content))
-			{
-				sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
-					new SourceCodeNodeCoordinates(lineNumber, columnNumber));
-				sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
-			}
-
-			string message = SassErrorHelpers.GenerateCompilationErrorMessage(type, description, relativeFilePath,
-				lineNumber, columnNumber, sourceLineFragment);
-
-			var compilationException = new SassCompilationException(message)
-			{
-				Description = description,
-				Status = status,
-				File = absoluteFilePath,
-				LineNumber = lineNumber,
-				ColumnNumber = columnNumber,
-				SourceFragment = sourceFragment
-			};
-
-			return compilationException;
-		}
-
-		private CompilationResult CreateCompilationResultFromJson(JObject resultJson, string content,
-			string inputPath)
-		{
-			string compiledContent = resultJson.Value<string>("compiledContent");
-			string sourceMap = resultJson.Value<string>("sourceMap");
-			IList<string> includedFilePaths = resultJson.Value<JArray>("includedFilePaths")
-				.ToObject<IList<string>>()
-				.Distinct(StringComparer.OrdinalIgnoreCase)
-				.ToList()
-				;
-			IList<ProblemInfo> warnings = new List<ProblemInfo>();
-
-			var warningsJson = resultJson["warnings"] as JArray;
-			if (warningsJson != null && warningsJson.Count > 0)
-			{
-				IEqualityComparer<string> comparer = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
-					StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
-				var warningSourcesCache = new Dictionary<string, string>(comparer);
-
-				var warningSourcesJson = (JObject)resultJson["warningSources"];
-				foreach (JProperty warningSourceProp in warningSourcesJson.Properties())
-				{
-					warningSourcesCache.Add(warningSourceProp.Name, warningSourceProp.Value.ToString());
-				}
-
-				foreach (JObject warningJson in warningsJson)
-				{
-					ProblemInfo warning = CreateProblemInfoFromJson(warningJson, warningSourcesCache);
-					warnings.Add(warning);
-				}
-
-				warningSourcesCache.Clear();
-			}
-
-			var compilationResult = new CompilationResult(compiledContent, sourceMap, includedFilePaths, warnings);
-
-			return compilationResult;
-		}
-
-		private ProblemInfo CreateProblemInfoFromJson(JObject warningJson, Dictionary<string, string> sourcesCache)
-		{
-			string message = string.Empty;
-			var description = warningJson.Value<string>("message");
-			var isDeprecation = warningJson.Value<bool>("deprecation");
-			var absoluteFilePath = warningJson.Value<string>("file");
-			string currentDirectory = _fileManager?.GetCurrentDirectory();
-			var lineNumber = warningJson.Value<int>("lineNumber");
-			var columnNumber = warningJson.Value<int>("columnNumber");
-			var content = string.Empty;
-			var sourceFragment = string.Empty;
-			var stackFramesJson = warningJson["stackFrames"] as JArray;
-			var callStack = string.Empty;
-
-			if (!sourcesCache.TryGetValue(absoluteFilePath, out content))
-			{
-				if (_fileManager.TryReadFile(absoluteFilePath, out content))
-				{
-					sourcesCache.Add(absoluteFilePath, content);
-				}
-				else
-				{
-					content = string.Empty;
-				}
-			}
-
-			if (!string.IsNullOrWhiteSpace(content))
-			{
-				sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
-					new SourceCodeNodeCoordinates(lineNumber, columnNumber));
-			}
-
-			if (stackFramesJson != null && stackFramesJson.Count > 0)
-			{
-				var stringBuilderPool = StringBuilderPool.Shared;
-				StringBuilder callStackBuilder = stringBuilderPool.Rent();
-
-				foreach (JToken stackFrameJson in stackFramesJson)
-				{
-					var frameAbsoluteFilePath = stackFrameJson.Value<string>("file");
-					var frameLineNumber = stackFrameJson.Value<int>("lineNumber");
-					var frameColumnNumber = stackFrameJson.Value<int>("columnNumber");
-					var frameMemberName = stackFrameJson.Value<string>("memberName");
-
-					string frameRelativeFilePath = frameAbsoluteFilePath;
-					if (!string.IsNullOrWhiteSpace(frameAbsoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
-					{
-						frameRelativeFilePath = PathHelpers.PrettifyPath(currentDirectory, frameAbsoluteFilePath);
-					}
-
-					SassErrorHelpers.WriteErrorLocationLine(callStackBuilder, frameMemberName, frameRelativeFilePath,
-						frameLineNumber, frameColumnNumber);
-					callStackBuilder.AppendLine();
-				}
-
-				callStackBuilder.TrimEnd();
-
-				callStack = callStackBuilder.ToString();
-				stringBuilderPool.Return(callStackBuilder);
-
-				message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation, callStack);
-			}
-			else
-			{
-				var relativeFilePath = absoluteFilePath;
-				if (!string.IsNullOrWhiteSpace(absoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
-				{
-					relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
-				}
-				string sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
-
-				message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation,
-					relativeFilePath, lineNumber, columnNumber, sourceLineFragment);
-			}
-
-			var warning = new ProblemInfo()
-			{
-				Message = message,
-				Description = description,
-				IsDeprecation = isDeprecation,
-				File = absoluteFilePath,
-				LineNumber = lineNumber,
-				ColumnNumber = columnNumber,
-				SourceFragment = sourceFragment,
-				CallStack = callStack
-			};
-
-			return warning;
-		}
-
 		private static bool GetIndentedSyntax(string path)
 		{
 			if (string.IsNullOrWhiteSpace(path))
@@ -798,43 +598,24 @@ namespace DartSassHost
 			return indentedSyntax;
 		}
 
-		private static string GetIndentTypeCode(IndentType type)
+		/// <summary>
+		/// Serializes a compilation options to JSON format
+		/// </summary>
+		/// <param name="options">Compilation options</param>
+		/// <returns>Serialized compilation options in JSON format</returns>
+		private string SerializeCompilationOptions(CompilationOptions options)
 		{
-			string typeCode = type == IndentType.Tab ? "tab" : "space";
-
-			return typeCode;
+			return JsonConvert.SerializeObject(options, _compilationOptionsConverter);
 		}
 
-		private static string GetLineFeedString(LineFeedType type)
+		/// <summary>
+		/// Deserialize a compilation result from JSON format
+		/// </summary>
+		/// <param name="serializedResult">Serialized compilation result in JSON format</param>
+		/// <returns>Compilation result</returns>
+		private CompilationResult DeserializeCompilationResult(string serializedResult)
 		{
-			string lineFeed;
-
-			switch (type)
-			{
-				case LineFeedType.Cr:
-					lineFeed = "cr";
-					break;
-				case LineFeedType.CrLf:
-					lineFeed = "crlf";
-					break;
-				case LineFeedType.Lf:
-					lineFeed = "lf";
-					break;
-				case LineFeedType.LfCr:
-					lineFeed = "lfcr";
-					break;
-				default:
-					throw new NotSupportedException();
-			}
-
-			return lineFeed;
-		}
-
-		private static string GetOutputStyleCode(OutputStyle style)
-		{
-			string styleCode = style == OutputStyle.Expanded ? "expanded" : "compressed";
-
-			return styleCode;
+			return JsonConvert.DeserializeObject<CompilationResult>(serializedResult, _compilationResultConverter);
 		}
 
 		/// <summary>
@@ -852,6 +633,13 @@ namespace DartSassHost
 					_jsEngine = null;
 				}
 
+				if (_compilationResultConverter != null)
+				{
+					_compilationResultConverter.Dispose();
+					_compilationResultConverter = null;
+				}
+
+				_compilationOptionsConverter = null;
 				_options = null;
 				_fileManager = null;
 				_createJsEngineInstance = null;

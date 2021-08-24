@@ -276,8 +276,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			result.errors = errors;
 		}
 		if (warnings.length > 0) {
-			result.warnings = warnings;
 			result.warningSources = warningSources;
+			result.warnings = warnings;
 		}
 
 		compilationOptions.dshLogger = null;

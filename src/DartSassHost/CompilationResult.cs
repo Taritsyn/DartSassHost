@@ -13,7 +13,7 @@ namespace DartSassHost
 		public string CompiledContent
 		{
 			get;
-			set;
+			private set;
 		}
 
 		/// <summary>
@@ -22,7 +22,7 @@ namespace DartSassHost
 		public IList<string> IncludedFilePaths
 		{
 			get;
-			set;
+			private set;
 		}
 
 		/// <summary>
@@ -31,7 +31,7 @@ namespace DartSassHost
 		public string SourceMap
 		{
 			get;
-			set;
+			private set;
 		}
 
 		/// <summary>
