@@ -2,12 +2,17 @@
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-#if NET45 || NET471 || NETSTANDARD
+#if !NET40
 using System.Runtime.InteropServices;
+#endif
+#if MODERN_JSON_CONVERTER
+using System.Text.Json;
 #endif
 
 using JavaScriptEngineSwitcher.Core;
+#if !MODERN_JSON_CONVERTER
 using Newtonsoft.Json;
+#endif
 #if NET40
 using PolyfillsForOldDotNet.System.Runtime.InteropServices;
 #endif
@@ -88,14 +93,9 @@ namespace DartSassHost
 		private IJsEngine _jsEngine;
 
 		/// <summary>
-		/// Compilation options JSON converter
+		/// Unified JSON serializer
 		/// </summary>
-		private CompilationOptionsConverter _compilationOptionsConverter;
-
-		/// <summary>
-		/// Compilation result JSON converter
-		/// </summary>
-		private CompilationResultConverter _compilationResultConverter;
+		private UnifiedJsonSerializer _jsonSerializer;
 
 		/// <summary>
 		/// Synchronizer of Sass compiler initialization
@@ -126,7 +126,7 @@ namespace DartSassHost
 		{
 			get
 			{
-				Initialize();
+				InitializeCompiler();
 
 				return _version;
 			}
@@ -209,11 +209,7 @@ namespace DartSassHost
 				throw new ArgumentNullException(nameof(fileManager));
 			}
 
-			_createJsEngineInstance = createJsEngineInstance;
-			_fileManager = fileManager;
-			_options = options ?? _defaultOptions;
-			_compilationOptionsConverter = new CompilationOptionsConverter();
-			_compilationResultConverter = new CompilationResultConverter(fileManager);
+			InitializeFields(createJsEngineInstance, fileManager, options);
 		}
 
 		/// <summary>
@@ -260,18 +256,39 @@ namespace DartSassHost
 				throw new ArgumentNullException(nameof(fileManager));
 			}
 
-			_createJsEngineInstance = jsEngineFactory.CreateEngine;
+			InitializeFields(jsEngineFactory.CreateEngine, fileManager, options);
+		}
+
+
+		/// <summary>
+		/// Initialize a class fields
+		/// </summary>
+		/// <param name="createJsEngineInstance">Delegate that creates an instance of JS engine</param>
+		/// <param name="fileManager">File manager</param>
+		/// <param name="options">Compilation options</param>
+		private void InitializeFields(Func<IJsEngine> createJsEngineInstance, IFileManager fileManager, CompilationOptions options)
+		{
+			_createJsEngineInstance = createJsEngineInstance;
 			_fileManager = fileManager;
 			_options = options ?? _defaultOptions;
-			_compilationOptionsConverter = new CompilationOptionsConverter();
-			_compilationResultConverter = new CompilationResultConverter(fileManager);
+
+#if MODERN_JSON_CONVERTER
+			var jsonSerializerOptions = new JsonSerializerOptions();
+#else
+			var jsonSerializerOptions = new JsonSerializerSettings();
+#endif
+			var converters = jsonSerializerOptions.Converters;
+			converters.Add(new CompilationOptionsConverter());
+			converters.Add(new CompilationResultConverter(fileManager));
+
+			_jsonSerializer = new UnifiedJsonSerializer(jsonSerializerOptions);
 		}
 
 
 		/// <summary>
 		/// Initializes a Sass compiler
 		/// </summary>
-		private void Initialize()
+		private void InitializeCompiler()
 		{
 			if (_initialized)
 			{
@@ -285,7 +302,7 @@ namespace DartSassHost
 					return;
 				}
 
-				string serializedOptions = SerializeCompilationOptions(_options);
+				string serializedOptions = _jsonSerializer.SerializeObject(_options);
 
 				try
 				{
@@ -411,7 +428,7 @@ namespace DartSassHost
 		private CompilationResult InnerCompile(string content, bool indentedSyntax, string inputPath,
 			string outputPath, string sourceMapPath, CompilationOptions options)
 		{
-			Initialize();
+			InitializeCompiler();
 
 			string inputFilePath = inputPath;
 			string outputFilePath = outputPath;
@@ -419,24 +436,22 @@ namespace DartSassHost
 
 			ProcessFilePaths(ref inputFilePath, ref outputFilePath, ref sourceMapFilePath);
 
-			string serializedContent = JsonConvert.SerializeObject(content);
-			string serializedIndentedSyntax = JsonConvert.SerializeObject(indentedSyntax);
-			string serializedInputPath = JsonConvert.SerializeObject(inputFilePath);
-			string serializedOutputPath = JsonConvert.SerializeObject(outputFilePath);
-			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapFilePath);
-			string serializedOptions = options != null ? SerializeCompilationOptions(options) : "null";
+			string serializedContent = _jsonSerializer.SerializePrimitiveType(content);
+			string serializedIndentedSyntax = _jsonSerializer.SerializePrimitiveType(indentedSyntax);
+			string serializedInputPath = _jsonSerializer.SerializePrimitiveType(inputFilePath);
+			string serializedOutputPath = _jsonSerializer.SerializePrimitiveType(outputFilePath);
+			string serializedSourceMapPath = _jsonSerializer.SerializePrimitiveType(sourceMapFilePath);
+			string serializedOptions = options != null ? _jsonSerializer.SerializeObject(options) : "null";
 
 			CompilationResult compilationResult = null;
 
 			try
 			{
-				string serializedResult = _jsEngine.Evaluate<string>("sassHelper.compile(" +
-					serializedContent + ", " + serializedIndentedSyntax + ", " +
-					serializedInputPath + ", " + serializedOutputPath + ", " +
-					serializedSourceMapPath + ", " + serializedOptions +
-					");");
+				string serializedResult = _jsEngine.Evaluate<string>($"sassHelper.compile({serializedContent}, " +
+					$"{serializedIndentedSyntax}, {serializedInputPath}, {serializedOutputPath}, " +
+					$"{serializedSourceMapPath}, {serializedOptions});");
 
-				compilationResult = DeserializeCompilationResult(serializedResult);
+				compilationResult = _jsonSerializer.DeserializeObject<CompilationResult>(serializedResult);
 			}
 			catch (SassCompilationException)
 			{
@@ -487,7 +502,7 @@ namespace DartSassHost
 				);
 			}
 
-			Initialize();
+			InitializeCompiler();
 
 			string inputFilePath = inputPath;
 			string outputFilePath = outputPath;
@@ -512,21 +527,19 @@ namespace DartSassHost
 				};
 			}
 
-			string serializedInputPath = JsonConvert.SerializeObject(inputFilePath);
-			string serializedOutputPath = JsonConvert.SerializeObject(outputFilePath);
-			string serializedSourceMapPath = JsonConvert.SerializeObject(sourceMapFilePath);
-			string serializedOptions = options != null ? SerializeCompilationOptions(options) : "null";
+			string serializedInputPath = _jsonSerializer.SerializePrimitiveType(inputFilePath);
+			string serializedOutputPath = _jsonSerializer.SerializePrimitiveType(outputFilePath);
+			string serializedSourceMapPath = _jsonSerializer.SerializePrimitiveType(sourceMapFilePath);
+			string serializedOptions = options != null ? _jsonSerializer.SerializeObject(options) : "null";
 
 			CompilationResult compilationResult = null;
 
 			try
 			{
-				string serializedResult = _jsEngine.Evaluate<string>("sassHelper.compileFile(" +
-					serializedInputPath + ", " + serializedOutputPath + ", " +
-					serializedSourceMapPath + ", " + serializedOptions +
-					");");
+				string serializedResult = _jsEngine.Evaluate<string>($"sassHelper.compileFile({serializedInputPath}, " +
+					$"{serializedOutputPath}, {serializedSourceMapPath}, {serializedOptions});");
 
-				compilationResult = DeserializeCompilationResult(serializedResult);
+				compilationResult = _jsonSerializer.DeserializeObject<CompilationResult>(serializedResult);
 			}
 			catch (SassCompilationException)
 			{
@@ -599,26 +612,6 @@ namespace DartSassHost
 		}
 
 		/// <summary>
-		/// Serializes a compilation options to JSON format
-		/// </summary>
-		/// <param name="options">Compilation options</param>
-		/// <returns>Serialized compilation options in JSON format</returns>
-		private string SerializeCompilationOptions(CompilationOptions options)
-		{
-			return JsonConvert.SerializeObject(options, _compilationOptionsConverter);
-		}
-
-		/// <summary>
-		/// Deserialize a compilation result from JSON format
-		/// </summary>
-		/// <param name="serializedResult">Serialized compilation result in JSON format</param>
-		/// <returns>Compilation result</returns>
-		private CompilationResult DeserializeCompilationResult(string serializedResult)
-		{
-			return JsonConvert.DeserializeObject<CompilationResult>(serializedResult, _compilationResultConverter);
-		}
-
-		/// <summary>
 		/// Destroys object
 		/// </summary>
 		public void Dispose()
@@ -633,13 +626,7 @@ namespace DartSassHost
 					_jsEngine = null;
 				}
 
-				if (_compilationResultConverter != null)
-				{
-					_compilationResultConverter.Dispose();
-					_compilationResultConverter = null;
-				}
-
-				_compilationOptionsConverter = null;
+				_jsonSerializer = null;
 				_options = null;
 				_fileManager = null;
 				_createJsEngineInstance = null;

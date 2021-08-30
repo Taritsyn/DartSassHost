@@ -1,14 +1,64 @@
 ﻿using System;
+using System.Collections.Generic;
+#if MODERN_JSON_CONVERTER
+using System.Text.Json;
+using System.Text.Json.Serialization;
+#endif
+#if !MODERN_JSON_CONVERTER
 
 using Newtonsoft.Json;
+#endif
+
+using DartSassHost.Extensions;
 
 namespace DartSassHost.JsonConverters
 {
 	/// <summary>
 	/// Converts an compilation options to JSON
 	/// </summary>
-	internal sealed class CompilationOptionsConverter : JsonConverter
+	internal sealed class CompilationOptionsConverter : JsonConverter<CompilationOptions>
 	{
+		private void WriteOptionsJson(
+#if MODERN_JSON_CONVERTER
+			Utf8JsonWriter writer,
+#else
+			JsonTextWriter writer,
+#endif
+			CompilationOptions value
+		)
+		{
+			if (value == null)
+			{
+				throw new ArgumentNullException(nameof(value));
+			}
+
+			writer.WriteStartObject();
+
+			writer.WriteStartArray("includePaths");
+
+			IList<string> paths = value.IncludePaths;
+			int pathCount = paths.Count;
+
+			for (int pathIndex = 0; pathIndex < pathCount; pathIndex++)
+			{
+				writer.WriteStringValue(paths[pathIndex]);
+			}
+
+			writer.WriteEndArray();
+
+			writer.WriteString("indentType", GetIndentTypeCode(value.IndentType));
+			writer.WriteNumber("indentWidth", value.IndentWidth);
+			writer.WriteString("linefeed", GetLineFeedString(value.LineFeedType));
+			writer.WriteBoolean("omitSourceMapUrl", value.OmitSourceMapUrl);
+			writer.WriteString("outputStyle", GetOutputStyleCode(value.OutputStyle));
+			writer.WriteBoolean("sourceMapContents", value.SourceMapIncludeContents);
+			writer.WriteBoolean("sourceMapEmbed", value.InlineSourceMap);
+			writer.WriteString("sourceMapRoot", value.SourceMapRootPath);
+			writer.WriteBoolean("sourceMap", value.SourceMap);
+
+			writer.WriteEndObject();
+		}
+
 		private static string GetIndentTypeCode(IndentType type)
 		{
 			string typeCode = type == IndentType.Tab ? "tab" : "space";
@@ -48,70 +98,39 @@ namespace DartSassHost.JsonConverters
 			return styleCode;
 		}
 
-		#region JsonConverter overrides
+		#region JsonConverter<T> overrides
 
-		public override bool CanRead => false;
-		public override bool CanWrite => true;
-
-
-		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+#if MODERN_JSON_CONVERTER
+		public override CompilationOptions Read(ref Utf8JsonReader reader, Type typeToConvert,
+			JsonSerializerOptions options)
 		{
 			throw new NotImplementedException();
 		}
 
-		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+		public override void Write(Utf8JsonWriter writer, CompilationOptions value,
+			JsonSerializerOptions options)
 		{
-			if (value == null)
-			{
-				throw new ArgumentNullException(nameof(value));
-			}
+			WriteOptionsJson(writer, value);
+		}
+#else
+		public override bool CanRead => false;
 
-			var options = (CompilationOptions)value;
+		public override bool CanWrite => true;
 
-			writer.WriteStartObject();
 
-			writer.WritePropertyName("includePaths");
-			writer.WriteStartArray();
-			foreach (string path in options.IncludePaths)
-			{
-				writer.WriteValue(path);
-			}
-			writer.WriteEndArray();
-
-			writer.WritePropertyName("indentType");
-			writer.WriteValue(GetIndentTypeCode(options.IndentType));
-
-			writer.WritePropertyName("indentWidth");
-			writer.WriteValue(options.IndentWidth);
-
-			writer.WritePropertyName("linefeed");
-			writer.WriteValue(GetLineFeedString(options.LineFeedType));
-
-			writer.WritePropertyName("omitSourceMapUrl");
-			writer.WriteValue(options.OmitSourceMapUrl);
-
-			writer.WritePropertyName("outputStyle");
-			writer.WriteValue(GetOutputStyleCode(options.OutputStyle));
-
-			writer.WritePropertyName("sourceMapContents");
-			writer.WriteValue(options.SourceMapIncludeContents);
-
-			writer.WritePropertyName("sourceMapEmbed");
-			writer.WriteValue(options.InlineSourceMap);
-
-			writer.WritePropertyName("sourceMapRoot");
-			writer.WriteValue(options.SourceMapRootPath);
-
-			writer.WritePropertyName("sourceMap");
-			writer.WriteValue(options.SourceMap);
-
-			writer.WriteEndObject();
+		public override CompilationOptions ReadJson(JsonReader reader, Type objectType, CompilationOptions existingValue,
+			bool hasExistingValue, JsonSerializer serializer)
+		{
+			throw new NotImplementedException();
 		}
 
-		public override bool CanConvert(Type objectType)
+		public override void WriteJson(JsonWriter writer, CompilationOptions value, JsonSerializer serializer)
 		{
-			return objectType == typeof(CompilationOptions);
+			var textWriter = (JsonTextWriter)writer;
+
+			WriteOptionsJson(textWriter, value);
 		}
+#endif
 
 		#endregion
 	}

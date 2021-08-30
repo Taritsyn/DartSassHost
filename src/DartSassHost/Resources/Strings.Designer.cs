@@ -153,6 +153,78 @@ namespace DartSassHost.Resources
 			get { return GetString("ErrorDetails_SourceFragment"); }
 		}
 
+		/// <summary>
+		/// Looks up a localized string similar to "Unexpected character encountered, excepted a JSON {0} token."
+		/// </summary>
+		internal static string JsonReader_UnexpectedCharacterEncountered
+		{
+			get { return GetString("JsonReader_UnexpectedCharacterEncountered"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "The`{0}` type is not primitive."
+		/// </summary>
+		internal static string JsonSerializer_TypeIsNotPrimitive
+		{
+			get { return GetString("JsonSerializer_TypeIsNotPrimitive"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "true or false literal"
+		/// </summary>
+		internal static string JsonTokenTypeName_Boolean
+		{
+			get { return GetString("JsonTokenTypeName_Boolean"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "end array (`]`)"
+		/// </summary>
+		internal static string JsonTokenTypeName_EndArray
+		{
+			get { return GetString("JsonTokenTypeName_EndArray"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "end object (`}`)"
+		/// </summary>
+		internal static string JsonTokenTypeName_EndObject
+		{
+			get { return GetString("JsonTokenTypeName_EndObject"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "number"
+		/// </summary>
+		internal static string JsonTokenTypeName_Number
+		{
+			get { return GetString("JsonTokenTypeName_Number"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "start array (`[`)"
+		/// </summary>
+		internal static string JsonTokenTypeName_StartArray
+		{
+			get { return GetString("JsonTokenTypeName_StartArray"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "start object (`{`)"
+		/// </summary>
+		internal static string JsonTokenTypeName_StartObject
+		{
+			get { return GetString("JsonTokenTypeName_StartObject"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "string"
+		/// </summary>
+		internal static string JsonTokenTypeName_String
+		{
+			get { return GetString("JsonTokenTypeName_String"); }
+		}
+
 		private static string GetString(string name)
 		{
 			string value = ResourceManager.GetString(name, _resourceCulture);

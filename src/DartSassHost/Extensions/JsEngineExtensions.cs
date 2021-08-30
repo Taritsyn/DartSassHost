@@ -48,7 +48,7 @@ namespace DartSassHost.Extensions
 		/// <exception cref="JsInterruptedException"/>
 		/// <exception cref="JsRuntimeException"/>
 		/// <exception cref="JsException"/>
-		internal static void ExecuteResource(this IJsEngine source, string resourceName, Assembly assembly, bool useCache)
+		public static void ExecuteResource(this IJsEngine source, string resourceName, Assembly assembly, bool useCache)
 		{
 			if (useCache)
 			{

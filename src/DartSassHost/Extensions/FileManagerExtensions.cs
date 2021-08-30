@@ -13,7 +13,7 @@
 		/// <param name="path">The file to open for reading</param>
 		/// <param name="content">The string containing all lines of the file</param>
 		/// <returns>true if the file was read successfully; otherwise, false</returns>
-		internal static bool TryReadFile(this IFileManager source, string path, out string content)
+		public static bool TryReadFile(this IFileManager source, string path, out string content)
 		{
 			bool result = false;
 			content = null;

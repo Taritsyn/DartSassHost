@@ -155,4 +155,31 @@
   <data name="ErrorDetails_SourceFragment" xml:space="preserve">
     <value>Source fragment</value>
   </data>
+  <data name="JsonReader_UnexpectedCharacterEncountered" xml:space="preserve">
+    <value>Unexpected character encountered, excepted a JSON {0} token.</value>
+  </data>
+  <data name="JsonSerializer_TypeIsNotPrimitive" xml:space="preserve">
+    <value>The`{0}` type is not primitive.</value>
+  </data>
+  <data name="JsonTokenTypeName_Boolean" xml:space="preserve">
+    <value>true or false literal</value>
+  </data>
+  <data name="JsonTokenTypeName_EndArray" xml:space="preserve">
+    <value>end array (`]`)</value>
+  </data>
+  <data name="JsonTokenTypeName_EndObject" xml:space="preserve">
+    <value>end object (`}`)</value>
+  </data>
+  <data name="JsonTokenTypeName_Number" xml:space="preserve">
+    <value>number</value>
+  </data>
+  <data name="JsonTokenTypeName_StartArray" xml:space="preserve">
+    <value>start array (`[`)</value>
+  </data>
+  <data name="JsonTokenTypeName_StartObject" xml:space="preserve">
+    <value>start object (`{`)</value>
+  </data>
+  <data name="JsonTokenTypeName_String" xml:space="preserve">
+    <value>string</value>
+  </data>
 </root>

@@ -29,7 +29,12 @@
    =============
    RELEASE NOTES
    =============
-   Added support of the Dart Sass version 1.37.5.
+   1. Now, when reading a script code from the embedded resources, caching is
+      performed;
+   2. Optimized a source code fetching for warnings;
+   3. For latest versions of .NET now uses the System.Text.Json library as JSON
+      serializer;
+   4. Added a .NET Core App 3.1 and .NET 5.0 targets.
 
    ============
    PROJECT SITE

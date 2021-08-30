@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-#if NET45 || NET471 || NETSTANDARD
+#if !NET40
 using System.Runtime.InteropServices;
 #endif
 using System.Text;
+#if MODERN_JSON_CONVERTER
+using System.Text.Json;
+using System.Text.Json.Serialization;
+#endif
 
 using AdvancedStringBuilder;
+#if !MODERN_JSON_CONVERTER
 using Newtonsoft.Json;
+#endif
 #if NET40
 using PolyfillsForOldDotNet.System.Runtime.InteropServices;
 #endif
@@ -20,7 +26,7 @@ namespace DartSassHost.JsonConverters
 	/// <summary>
 	/// Converts an compilation result from JSON
 	/// </summary>
-	internal sealed class CompilationResultConverter : JsonConverter, IDisposable
+	internal sealed class CompilationResultConverter : JsonConverter<CompilationResult>
 	{
 		/// <summary>
 		/// File manager
@@ -38,107 +44,151 @@ namespace DartSassHost.JsonConverters
 		}
 
 
-		private CompilationResult ReadResultJson(JsonReader reader)
+		private CompilationResult ReadResult(
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader
+#else
+			JsonTextReader reader
+#endif
+		)
 		{
+			reader.CheckStartObject();
+
 			string compiledContent = string.Empty;
 			string sourceMap = string.Empty;
 			List<string> includedFilePaths = null;
 			Dictionary<string, string> warningSourcesCache = null;
 			List<ProblemInfo> warnings = null;
 
-			while (reader.Read())
+			while (reader.Read() && reader.IsTokenTypeProperty())
 			{
-				if (reader.TokenType == JsonToken.EndObject)
-				{
-					return new CompilationResult(compiledContent, sourceMap, includedFilePaths ?? new List<string>(),
-						warnings ?? new List<ProblemInfo>());
-				}
+				string propertyName = reader.GetStringValue();
 
-				if (reader.TokenType == JsonToken.PropertyName)
+				switch (propertyName)
 				{
-					string propertyName = reader.Value.ToString();
-					reader.Read();
-
-					switch (propertyName)
-					{
-						case "compiledContent":
-							compiledContent = reader.Value.ToString();
-							break;
-						case "sourceMap":
-							sourceMap = reader.Value.ToString();
-							break;
-						case "includedFilePaths":
-							includedFilePaths = ReadIncludedFilePathsJson(reader);
-							break;
-						case "errors":
-							SassCompilationException compilationException = ReadErrorsJson(reader);
-							if (compilationException != null)
-							{
-								throw compilationException;
-							}
-							else
-							{
-								throw new JsonException();
-							}
-						case "warningSources":
-							warningSourcesCache = ReadWarningSourcesJson(reader);
-							break;
-						case "warnings":
-							warnings = ReadWarningsJson(reader, warningSourcesCache);
-							warningSourcesCache?.Clear();
-							break;
-					}
+					case "compiledContent":
+						compiledContent = reader.ReadAsString();
+						break;
+					case "sourceMap":
+						sourceMap = reader.ReadAsString();
+						break;
+					case "includedFilePaths":
+						includedFilePaths = ReadIncludedFilePaths(
+#if MODERN_JSON_CONVERTER
+							ref reader
+#else
+							reader
+#endif
+						);
+						break;
+					case "errors":
+						SassCompilationException compilationException = ReadFirstError(
+#if MODERN_JSON_CONVERTER
+							ref reader
+#else
+							reader
+#endif
+						);
+						throw compilationException;
+					case "warningSources":
+						warningSourcesCache = ReadWarningSources(
+#if MODERN_JSON_CONVERTER
+							ref reader
+#else
+							reader
+#endif
+						);
+						break;
+					case "warnings":
+						warnings = ReadWarnings(
+#if MODERN_JSON_CONVERTER
+							ref reader,
+#else
+							reader,
+#endif
+							warningSourcesCache
+						);
+						warningSourcesCache?.Clear();
+						break;
+					default:
+						reader.Skip();
+						break;
 				}
 			}
 
-			throw new JsonException();
+			reader.CheckEndObject();
+
+			var result = new CompilationResult(compiledContent, sourceMap, includedFilePaths ?? new List<string>(),
+				warnings ?? new List<ProblemInfo>());
+
+			return result;
 		}
 
-		private List<string> ReadIncludedFilePathsJson(JsonReader reader)
+		private List<string> ReadIncludedFilePaths(
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader
+#else
+			JsonTextReader reader
+#endif
+		)
 		{
+			reader.ReadStartArray();
+
 			var includedFilePaths = new List<string>();
 
-			while (reader.Read())
+			while (reader.Read() && reader.IsTokenTypeString())
 			{
-				if (reader.TokenType == JsonToken.EndArray)
-				{
-					return includedFilePaths;
-				}
-				else if (reader.TokenType == JsonToken.String)
-				{
-					includedFilePaths.Add(reader.Value.ToString());
-				}
+				includedFilePaths.Add(reader.GetStringValue());
 			}
 
-			throw new JsonException();
+			reader.CheckEndArray();
+
+			return includedFilePaths;
 		}
 
-		private SassCompilationException ReadErrorsJson(JsonReader reader)
+		private SassCompilationException ReadFirstError(
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader
+#else
+			JsonTextReader reader
+#endif
+		)
 		{
+			reader.ReadStartArray();
+
 			SassCompilationException firstException = null;
 
-			while (reader.Read())
+			while (reader.Read() && reader.IsTokenTypeStartObject())
 			{
-				if (reader.TokenType == JsonToken.EndArray)
+				if (firstException != null)
 				{
-					return firstException;
+					continue;
 				}
-				else
-				{
-					if (firstException != null)
-					{
-						continue;
-					}
 
-					firstException = ReadErrorJson(reader);
-				}
+				firstException = ReadError(
+#if MODERN_JSON_CONVERTER
+					ref reader
+#else
+					reader
+#endif
+				);
 			}
 
-			throw new JsonException();
+			reader.CheckEndArray();
+
+			return firstException;
 		}
 
-		private SassCompilationException ReadErrorJson(JsonReader reader)
+		private SassCompilationException ReadError(
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader
+#else
+			JsonTextReader reader
+#endif
+		)
 		{
+			reader.CheckStartObject();
+
 			string description = string.Empty;
 			int status = 0;
 			string type = string.Empty;
@@ -147,140 +197,159 @@ namespace DartSassHost.JsonConverters
 			int columnNumber = 0;
 			string content = string.Empty;
 
-			while (reader.Read())
+			while (reader.Read() && reader.IsTokenTypeProperty())
 			{
-				if (reader.TokenType == JsonToken.EndObject)
+				string propertyName = reader.GetStringValue();
+
+				switch (propertyName)
 				{
-					string relativeFilePath = absoluteFilePath;
-					string sourceFragment = string.Empty;
-					string sourceLineFragment = string.Empty;
-
-					if (!string.IsNullOrWhiteSpace(absoluteFilePath) && _fileManager != null)
-					{
-						string currentDirectory = _fileManager.GetCurrentDirectory();
-						relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
-					}
-
-					if (string.IsNullOrWhiteSpace(content))
-					{
-						if (!_fileManager.TryReadFile(absoluteFilePath, out content))
-						{
-							content = string.Empty;
-						}
-					}
-
-					if (!string.IsNullOrWhiteSpace(content))
-					{
-						sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
-							new SourceCodeNodeCoordinates(lineNumber, columnNumber));
-						sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
-					}
-
-					string message = SassErrorHelpers.GenerateCompilationErrorMessage(type, description, relativeFilePath,
-						lineNumber, columnNumber, sourceLineFragment);
-
-					var compilationException = new SassCompilationException(message)
-					{
-						Description = description,
-						Status = status,
-						File = absoluteFilePath,
-						LineNumber = lineNumber,
-						ColumnNumber = columnNumber,
-						SourceFragment = sourceFragment
-					};
-
-					return compilationException;
-				}
-
-				if (reader.TokenType == JsonToken.PropertyName)
-				{
-					string propertyName = reader.Value.ToString();
-					reader.Read();
-
-					switch (propertyName)
-					{
-						case "description":
-							description = reader.Value.ToString();
-							break;
-						case "status":
-							status = Convert.ToInt32(reader.Value);
-							break;
-						case "type":
-							type = reader.Value.ToString();
-							break;
-						case "file":
-							absoluteFilePath = reader.Value.ToString();
-							break;
-						case "lineNumber":
-							lineNumber = Convert.ToInt32(reader.Value);
-							break;
-						case "columnNumber":
-							columnNumber = Convert.ToInt32(reader.Value);
-							break;
-						case "source":
-							content = reader.Value.ToString();
-							break;
-					}
+					case "description":
+						description = reader.ReadAsString();
+						break;
+					case "status":
+						status = reader.ReadAsInt32(0);
+						break;
+					case "type":
+						type = reader.ReadAsString();
+						break;
+					case "file":
+						absoluteFilePath = reader.ReadAsString();
+						break;
+					case "lineNumber":
+						lineNumber = reader.ReadAsInt32(0);
+						break;
+					case "columnNumber":
+						columnNumber = reader.ReadAsInt32(0);
+						break;
+					case "source":
+						content = reader.ReadAsString();
+						break;
+					default:
+						reader.Skip();
+						break;
 				}
 			}
 
-			throw new JsonException();
+			reader.CheckEndObject();
+
+			string relativeFilePath = absoluteFilePath;
+			string sourceFragment = string.Empty;
+			string sourceLineFragment = string.Empty;
+
+			if (!string.IsNullOrWhiteSpace(absoluteFilePath) && _fileManager != null)
+			{
+				string currentDirectory = _fileManager.GetCurrentDirectory();
+				relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
+			}
+
+			if (string.IsNullOrWhiteSpace(content))
+			{
+				if (!_fileManager.TryReadFile(absoluteFilePath, out content))
+				{
+					content = string.Empty;
+				}
+			}
+
+			if (!string.IsNullOrWhiteSpace(content))
+			{
+				sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
+					new SourceCodeNodeCoordinates(lineNumber, columnNumber));
+				sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
+			}
+
+			string message = SassErrorHelpers.GenerateCompilationErrorMessage(type, description, relativeFilePath,
+				lineNumber, columnNumber, sourceLineFragment);
+
+			var compilationException = new SassCompilationException(message)
+			{
+				Description = description,
+				Status = status,
+				File = absoluteFilePath,
+				LineNumber = lineNumber,
+				ColumnNumber = columnNumber,
+				SourceFragment = sourceFragment
+			};
+
+			return compilationException;
 		}
 
-		private Dictionary<string, string> ReadWarningSourcesJson(JsonReader reader)
+		private Dictionary<string, string> ReadWarningSources(
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader
+#else
+			JsonTextReader reader
+#endif
+		)
 		{
+			reader.ReadStartObject();
+
 			IEqualityComparer<string> comparer = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
 				StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
 			var warningSources = new Dictionary<string, string>(comparer);
 
-			while (reader.Read())
+			while (reader.Read() && reader.IsTokenTypeProperty())
 			{
-				if (reader.TokenType == JsonToken.EndObject)
-				{
-					return warningSources;
-				}
+				string path = reader.GetStringValue();
+				string content = reader.ReadAsString();
 
-				if (reader.TokenType == JsonToken.PropertyName)
-				{
-					string path = reader.Value.ToString();
-					reader.Read();
-					string content = reader.Value.ToString();
-
-					warningSources.Add(path, content);
-				}
+				warningSources.Add(path, content);
 			}
 
-			throw new JsonException();
+			reader.CheckEndObject();
+
+			return warningSources;
 		}
 
-		private List<ProblemInfo> ReadWarningsJson(JsonReader reader, Dictionary<string, string> sourcesCache)
+		private List<ProblemInfo> ReadWarnings(
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader,
+#else
+			JsonTextReader reader,
+#endif
+			Dictionary<string, string> sourcesCache
+		)
 		{
 			if (sourcesCache == null)
 			{
 				throw new ArgumentNullException(nameof(sourcesCache));
 			}
 
+			reader.ReadStartArray();
+
 			var warnings = new List<ProblemInfo>();
 			string currentDirectory = _fileManager?.GetCurrentDirectory();
 
-			while (reader.Read())
+			while (reader.Read() && reader.IsTokenTypeStartObject())
 			{
-				if (reader.TokenType == JsonToken.EndArray)
-				{
-					return warnings;
-				}
-				else
-				{
-					ProblemInfo warning = ReadWarningJson(reader, currentDirectory, sourcesCache);
-					warnings.Add(warning);
-				}
+				ProblemInfo warning = ReadWarning(
+#if MODERN_JSON_CONVERTER
+					ref reader,
+#else
+					reader,
+#endif
+					currentDirectory,
+					sourcesCache
+				);
+				warnings.Add(warning);
 			}
 
-			throw new JsonException();
+			reader.CheckEndArray();
+
+			return warnings;
 		}
 
-		private ProblemInfo ReadWarningJson(JsonReader reader, string currentDirectory, Dictionary<string, string> sourcesCache)
+		private ProblemInfo ReadWarning(
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader,
+#else
+			JsonTextReader reader,
+#endif
+			string currentDirectory,
+			Dictionary<string, string> sourcesCache
+		)
 		{
+			reader.CheckStartObject();
+
 			string description = string.Empty;
 			bool isDeprecation = false;
 			string absoluteFilePath = string.Empty;
@@ -289,207 +358,232 @@ namespace DartSassHost.JsonConverters
 			string content = string.Empty;
 			string callStack = string.Empty;
 
-			while (reader.Read())
+			while (reader.Read() && reader.IsTokenTypeProperty())
 			{
-				if (reader.TokenType == JsonToken.EndObject)
+				string propertyName = reader.GetStringValue();
+
+				switch (propertyName)
 				{
-					string message;
-					string sourceFragment = string.Empty;
+					case "message":
+						description = reader.ReadAsString();
+						break;
+					case "deprecation":
+						isDeprecation = reader.ReadAsBoolean(false);
+						break;
+					case "file":
+						absoluteFilePath = reader.ReadAsString();
 
-					if (!string.IsNullOrWhiteSpace(content))
-					{
-						sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
-							new SourceCodeNodeCoordinates(lineNumber, columnNumber));
-					}
-
-					if (callStack.Length > 0)
-					{
-						message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation, callStack);
-					}
-					else
-					{
-						string relativeFilePath = absoluteFilePath;
-						if (!string.IsNullOrWhiteSpace(absoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
+						if (!sourcesCache.TryGetValue(absoluteFilePath, out content))
 						{
-							relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
-						}
-						string sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
-
-						message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation,
-							relativeFilePath, lineNumber, columnNumber, sourceLineFragment);
-					}
-
-					var warning = new ProblemInfo()
-					{
-						Message = message,
-						Description = description,
-						IsDeprecation = isDeprecation,
-						File = absoluteFilePath,
-						LineNumber = lineNumber,
-						ColumnNumber = columnNumber,
-						SourceFragment = sourceFragment,
-						CallStack = callStack
-					};
-
-					return warning;
-				}
-
-				if (reader.TokenType == JsonToken.PropertyName)
-				{
-					string propertyName = reader.Value.ToString();
-					reader.Read();
-
-					switch (propertyName)
-					{
-						case "message":
-							description = reader.Value.ToString();
-							break;
-						case "deprecation":
-							isDeprecation = Convert.ToBoolean(reader.Value);
-							break;
-						case "file":
-							absoluteFilePath = reader.Value.ToString();
-
-							if (!sourcesCache.TryGetValue(absoluteFilePath, out content))
+							if (_fileManager.TryReadFile(absoluteFilePath, out content))
 							{
-								if (_fileManager.TryReadFile(absoluteFilePath, out content))
-								{
-									sourcesCache.Add(absoluteFilePath, content);
-								}
-								else
-								{
-									content = string.Empty;
-								}
+								sourcesCache.Add(absoluteFilePath, content);
 							}
-							break;
-						case "lineNumber":
-							lineNumber = Convert.ToInt32(reader.Value);
-							break;
-						case "columnNumber":
-							columnNumber = Convert.ToInt32(reader.Value);
-							break;
-						case "stackFrames":
-							callStack = ReadStackFramesJson(reader, currentDirectory, sourcesCache);
-							break;
-					}
+							else
+							{
+								content = string.Empty;
+							}
+						}
+						break;
+					case "lineNumber":
+						lineNumber = reader.ReadAsInt32(0);
+						break;
+					case "columnNumber":
+						columnNumber = reader.ReadAsInt32(0);
+						break;
+					case "stackFrames":
+						callStack = ReadStackFrames(
+#if MODERN_JSON_CONVERTER
+							ref reader,
+#else
+							reader,
+#endif
+							currentDirectory,
+							sourcesCache
+						);
+						break;
+					default:
+						reader.Skip();
+						break;
 				}
 			}
 
-			throw new JsonException();
+			reader.CheckEndObject();
+
+			string message;
+			string sourceFragment = string.Empty;
+
+			if (!string.IsNullOrWhiteSpace(content))
+			{
+				sourceFragment = SourceCodeNavigator.GetSourceFragment(content,
+					new SourceCodeNodeCoordinates(lineNumber, columnNumber));
+			}
+
+			if (callStack.Length > 0)
+			{
+				message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation, callStack);
+			}
+			else
+			{
+				string relativeFilePath = absoluteFilePath;
+				if (!string.IsNullOrWhiteSpace(absoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
+				{
+					relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
+				}
+				string sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
+
+				message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation,
+					relativeFilePath, lineNumber, columnNumber, sourceLineFragment);
+			}
+
+			var warning = new ProblemInfo()
+			{
+				Message = message,
+				Description = description,
+				IsDeprecation = isDeprecation,
+				File = absoluteFilePath,
+				LineNumber = lineNumber,
+				ColumnNumber = columnNumber,
+				SourceFragment = sourceFragment,
+				CallStack = callStack
+			};
+
+			return warning;
 		}
 
-		private string ReadStackFramesJson(JsonReader reader, string currentDirectory,
-			Dictionary<string, string> sourcesCache)
+		private string ReadStackFrames(
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader,
+#else
+			JsonTextReader reader,
+#endif
+			string currentDirectory,
+			Dictionary<string, string> sourcesCache
+		)
 		{
+			reader.ReadStartArray();
+
+			string callStack = string.Empty;
 			var stringBuilderPool = StringBuilderPool.Shared;
 			StringBuilder callStackBuilder = stringBuilderPool.Rent();
 
-			while (reader.Read())
+			try
 			{
-				if (reader.TokenType == JsonToken.EndArray)
+				while (reader.Read() && reader.IsTokenTypeStartObject())
 				{
-					callStackBuilder.TrimEnd();
-
-					string callStack = callStackBuilder.ToString();
-					stringBuilderPool.Return(callStackBuilder);
-					callStackBuilder = null;
-
-					return callStack;
+					ReadStackFrame(
+						callStackBuilder,
+#if MODERN_JSON_CONVERTER
+						ref reader,
+#else
+						reader,
+#endif
+						currentDirectory,
+						sourcesCache
+					);
 				}
-				else
-				{
-					ReadStackFrameJson(callStackBuilder, reader, currentDirectory, sourcesCache);
-				}
+
+				reader.CheckEndArray();
+
+				callStackBuilder.TrimEnd();
+				callStack = callStackBuilder.ToString();
 			}
-
-			if (callStackBuilder != null)
+			finally
 			{
 				stringBuilderPool.Return(callStackBuilder);
 			}
 
-			throw new JsonException();
+			return callStack;
 		}
 
-		private void ReadStackFrameJson(StringBuilder callStackBuilder, JsonReader reader, string currentDirectory,
-			Dictionary<string, string> sourcesCache)
+		private void ReadStackFrame(
+			StringBuilder callStackBuilder,
+#if MODERN_JSON_CONVERTER
+			ref Utf8JsonReader reader,
+#else
+			JsonTextReader reader,
+#endif
+			string currentDirectory,
+			Dictionary<string, string> sourcesCache
+		)
 		{
+			reader.CheckStartObject();
+
 			string absoluteFilePath = string.Empty;
 			int lineNumber = 0;
 			int columnNumber = 0;
 			string memberName = string.Empty;
 
-			while (reader.Read())
+			while (reader.Read() && reader.IsTokenTypeProperty())
 			{
-				if (reader.TokenType == JsonToken.EndObject)
+				string propertyName = reader.GetStringValue();
+
+				switch (propertyName)
 				{
-					string relativeFilePath = absoluteFilePath;
-					if (!string.IsNullOrWhiteSpace(absoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
-					{
-						relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
-					}
-
-					SassErrorHelpers.WriteErrorLocationLine(callStackBuilder, memberName, relativeFilePath,
-						lineNumber, columnNumber);
-					callStackBuilder.AppendLine();
-
-					return;
-				}
-
-				if (reader.TokenType == JsonToken.PropertyName)
-				{
-					string propertyName = reader.Value.ToString();
-					reader.Read();
-
-					switch (propertyName)
-					{
-						case "file":
-							absoluteFilePath = reader.Value.ToString();
-							break;
-						case "lineNumber":
-							lineNumber = Convert.ToInt32(reader.Value);
-							break;
-						case "columnNumber":
-							columnNumber = Convert.ToInt32(reader.Value);
-							break;
-						case "memberName":
-							memberName = reader.Value.ToString();
-							break;
-					}
+					case "file":
+						absoluteFilePath = reader.ReadAsString();
+						break;
+					case "lineNumber":
+						lineNumber = reader.ReadAsInt32(0);
+						break;
+					case "columnNumber":
+						columnNumber = reader.ReadAsInt32(0);
+						break;
+					case "memberName":
+						memberName = reader.ReadAsString();
+						break;
+					default:
+						reader.Skip();
+						break;
 				}
 			}
 
-			throw new JsonException();
+			reader.CheckEndObject();
+
+			string relativeFilePath = absoluteFilePath;
+			if (!string.IsNullOrWhiteSpace(absoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
+			{
+				relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
+			}
+
+			SassErrorHelpers.WriteErrorLocationLine(callStackBuilder, memberName, relativeFilePath,
+				lineNumber, columnNumber);
+			callStackBuilder.AppendLine();
+
+			return;
 		}
 
-		#region JsonConverter overrides
+		#region JsonConverter<T> overrides
 
-		public override bool CanRead => true;
-		public override bool CanWrite => false;
-
-
-		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+#if MODERN_JSON_CONVERTER
+		public override CompilationResult Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
-			return ReadResultJson(reader);
+			return ReadResult(ref reader);
 		}
 
-		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+		public override void Write(Utf8JsonWriter writer, CompilationResult value, JsonSerializerOptions options)
 		{
 			throw new NotImplementedException();
 		}
+#else
+		public override bool CanRead => true;
 
-		public override bool CanConvert(Type objectType)
+		public override bool CanWrite => false;
+
+
+		public override CompilationResult ReadJson(JsonReader reader, Type objectType, CompilationResult existingValue,
+			bool hasExistingValue, JsonSerializer serializer)
 		{
-			return objectType == typeof(CompilationResult);
+			var textReader = (JsonTextReader)reader;
+
+			return ReadResult(textReader);
 		}
 
-		#endregion
-
-		#region IDisposable implementation
-
-		public void Dispose()
+		public override void WriteJson(JsonWriter writer, CompilationResult value, JsonSerializer serializer)
 		{
-			_fileManager = null;
+			throw new NotImplementedException();
 		}
+#endif
 
 		#endregion
 	}
