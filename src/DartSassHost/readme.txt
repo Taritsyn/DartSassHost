@@ -34,7 +34,8 @@
    2. Optimized a source code fetching for warnings;
    3. For latest versions of .NET now uses the System.Text.Json library as JSON
       serializer;
-   4. Added a .NET Core App 3.1 and .NET 5.0 targets.
+   4. Added a .NET Core App 3.1 and .NET 5.0 targets;
+   5. Optimized a generation of source maps.
 
    ============
    PROJECT SITE

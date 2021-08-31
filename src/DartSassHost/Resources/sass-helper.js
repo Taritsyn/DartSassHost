@@ -243,7 +243,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		{
 			compilationResult = sass.renderSync(compilationOptions);
 			compiledContent = compilationResult.css || '';
-			sourceMap = compilationResult.map ? compilationResult.map.toString() : '';
+			sourceMap = compilationResult.map ? compilationResult.map : '';
 			includedFilePaths = fixIncludedFilePaths(compilationResult.stats.includedFiles);
 			warnings = logger.getWarnings();
 			warningSources = logger.getSources();

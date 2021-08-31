@@ -15758,7 +15758,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t3, sourceMapOption, sourceMapPath, t4, sourceMapDir, outFile, t5, file, sourceMapDirUrl, i, source, t6, t7, sourceMapBytes, buffer, indices, url, t8, t9, _null = null,
 						t1 = Date.now(),
 						t2 = result._compile_result$_serialize,
-						css = t2.css;
+						css = t2.css,
+						sourceMap = _null // DSH+
+						;
 					if (B._enableSourceMaps(options)) {
 						t3 = J.getInterceptor$x(options);
 						sourceMapOption = t3.get$sourceMap(options);
@@ -15799,7 +15801,10 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							t4[i] = t6.relative$2$from(source, sourceMapDirUrl);
 						}
 						t4 = t3.get$sourceMapContents(options);
+						/*DSH-
 						sourceMapBytes = self.Buffer.from(C.C_JsonCodec.encode$2$toEncodable(t2.toJson$1$includeSourceContents(!J.$eq$(t4, false) && t4 != null), _null), "utf8");
+						*/
+						sourceMap = C.C_JsonCodec.encode$2$toEncodable(t2.toJson$1$includeSourceContents(!J.$eq$(t4, false) && t4 != null), _null); // DSH+
 						t2 = t3.get$omitSourceMapUrl(options);
 						if (!(!J.$eq$(t2, false) && t2 != null)) {
 							t2 = t3.get$sourceMapEmbed(options);
@@ -15811,6 +15816,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t2 = buffer._contents += ";base64,";
 								indices.push(t2.length - 1);
 								t2 = C.C_Base64Encoder.startChunkedConversion$1(new P._StringSinkConversionSink(buffer));
+								sourceMapBytes = self.Buffer.from(sourceMap, "utf8"); // DSH+
 								t3 = sourceMapBytes.length;
 								P.RangeError_checkValidRange(0, t3, t3);
 								t2._convert$_add$4(sourceMapBytes, 0, t3, true);
@@ -15827,8 +15833,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							}
 							css += "\n\n/*# sourceMappingURL=" + url.toString$0(0) + " */";
 						}
-					} else
-						sourceMapBytes = _null;
+					}/*DSH- else
+						sourceMapBytes = _null;*/
 					t2 = /*DSH- self.Buffer.from(*/css/*DSH- , "utf8")*/;
 					t3 = J.get$file$x(options);
 					if (t3 == null)
@@ -15844,7 +15850,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						else
 							t6.push(t9.toString$0(0));
 					}
-					return {css: t2, map: sourceMapBytes, stats: {entry: t3, start: t4, end: t1, duration: t5, includedFiles: t6}};
+					return {css: t2, map: /*DSH- sourceMapBytes*/sourceMap, stats: {entry: t3, start: t4, end: t1, duration: t5, includedFiles: t6}};
 				},
 				_enableSourceMaps: function(options) {
 					var t2,
