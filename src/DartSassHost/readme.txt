@@ -12,7 +12,7 @@
    DESCRIPTION
    ===========
    .NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version
-   1.37.5 with the ability to support a virtual file system.
+   1.38.2 with the ability to support a virtual file system.
 
    Since the original library is written in JavaScript, you will need a JS engine
    to run it. As a JS engine is used the JavaScript Engine Switcher library
@@ -35,7 +35,8 @@
    3. For latest versions of .NET now uses the System.Text.Json library as JSON
       serializer;
    4. Added a .NET Core App 3.1 and .NET 5.0 targets;
-   5. Optimized a generation of source maps.
+   5. Optimized a generation of source maps;
+   6. Added support of the Dart Sass version 1.38.2.
 
    ============
    PROJECT SITE

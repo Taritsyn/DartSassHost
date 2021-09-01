@@ -2448,7 +2448,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 	//#region URL: /sass.dart.js
 	modules["/sass.dart.js"] = function () {
 		/*!
-		 * Dart Sass v1.37.5
+		 * Dart Sass v1.38.2
 		 * https://sass-lang.com/dart-sass
 		 * https://github.com/sass/dart-sass
 		 *
@@ -2651,7 +2651,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			// 1) Prevent Webpack from bundling.
 			// 2) In Webpack on Node.js, make sure we're using the native Node.js require, which is available via __non_webpack_require__
 			// https://github.com/mbullington/node_preamble.dart/issues/18#issuecomment-527305561
-			/*DSH- var url = ("undefined" !== typeof __webpack_require__ ? __non_webpack_require__ : require)("url");*/
+			/*DSH-
+			var url = ("undefined" !== typeof __webpack_require__ ? __non_webpack_require__ : require)("url");
+			*/
 
 			// Setting `self.location=` in Electron throws a `TypeError`, so we define it
 			// as a property instead to be safe.
@@ -2672,7 +2674,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								if (process.platform != "win32") return cwd;
 								return "/" + cwd.replace(/\\/g, "/");
 							})() + "/"
-						/*DSH- }*/
+						/*DSH-
+						}
+						*/
 					}
 				}
 			});
@@ -3297,10 +3301,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				CastMap: function CastMap(t0, t1) {
 					this._source = t0;
 					this.$ti = t1;
-				},
-				CastMap_putIfAbsent_closure: function CastMap_putIfAbsent_closure(t0, t1) {
-					this.$this = t0;
-					this.ifAbsent = t1;
 				},
 				CastMap_forEach_closure: function CastMap_forEach_closure(t0, t1) {
 					this.$this = t0;
@@ -10258,6 +10258,10 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				}, TTY: function TTY() {
 				}, TTYReadStream: function TTYReadStream() {
 				}, TTYWriteStream: function TTYWriteStream() {
+				}, InterpolatedFunctionExpression: function InterpolatedFunctionExpression(t0, t1, t2) {
+					this.name = t0;
+					this.$arguments = t1;
+					this.span = t2;
 				}, AttributeSelector: function AttributeSelector(t0, t1, t2, t3) {
 					var _ = this;
 					_.name = t0;
@@ -10439,6 +10443,11 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				IDSelector_unify_closure0: function IDSelector_unify_closure0(t0) {
 					this.$this = t0;
+				},
+				InterpolatedFunctionExpression0: function InterpolatedFunctionExpression0(t0, t1, t2) {
+					this.name = t0;
+					this.$arguments = t1;
+					this.span = t2;
 				},
 				NoSourceMapBuffer: function NoSourceMapBuffer(t0) {
 					this._no_source_map_buffer$_buffer = t0;
@@ -11410,6 +11419,66 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_._stylesheet1$_forwards = t3;
 					_.children = t4;
 					_.hasDeclarations = t5;
+				},
+				SpanExtensions_trimLeft: function(_this) {
+					var t5,
+						t1 = _this._file$_start,
+						t2 = _this._end,
+						t3 = _this.file._decodedChars,
+						t4 = t3.length,
+						start = 0;
+					while (true) {
+						t5 = C.JSString_methods._codeUnitAt$1(P.String_String$fromCharCodes(new Uint32Array(t3.subarray(t1, H._checkValidRange(t1, t2, t4))), 0, null), start);
+						if (!(t5 === 32 || t5 === 9 || t5 === 10 || t5 === 13 || t5 === 12))
+							break;
+						++start;
+					}
+					return Y.FileSpanExtension_subspan(_this, start, null);
+				},
+				SpanExtensions_trimRight: function(_this) {
+					var t5,
+						t1 = _this._file$_start,
+						t2 = _this._end,
+						t3 = _this.file._decodedChars,
+						end = P.String_String$fromCharCodes(C.NativeUint32List_methods.sublist$2(t3, t1, t2), 0, null).length - 1,
+						t4 = t3.length;
+					while (true) {
+						t5 = C.JSString_methods.codeUnitAt$1(P.String_String$fromCharCodes(new Uint32Array(t3.subarray(t1, H._checkValidRange(t1, t2, t4))), 0, null), end);
+						if (!(t5 === 32 || t5 === 9 || t5 === 10 || t5 === 13 || t5 === 12))
+							break;
+						--end;
+					}
+					return Y.FileSpanExtension_subspan(_this, 0, end + 1);
+				},
+				SpanExtensions_trimLeft0: function(_this) {
+					var t5,
+						t1 = _this._file$_start,
+						t2 = _this._end,
+						t3 = _this.file._decodedChars,
+						t4 = t3.length,
+						start = 0;
+					while (true) {
+						t5 = C.JSString_methods._codeUnitAt$1(P.String_String$fromCharCodes(new Uint32Array(t3.subarray(t1, H._checkValidRange(t1, t2, t4))), 0, null), start);
+						if (!(t5 === 32 || t5 === 9 || t5 === 10 || t5 === 13 || t5 === 12))
+							break;
+						++start;
+					}
+					return Y.FileSpanExtension_subspan(_this, start, null);
+				},
+				SpanExtensions_trimRight0: function(_this) {
+					var t5,
+						t1 = _this._file$_start,
+						t2 = _this._end,
+						t3 = _this.file._decodedChars,
+						end = P.String_String$fromCharCodes(C.NativeUint32List_methods.sublist$2(t3, t1, t2), 0, null).length - 1,
+						t4 = t3.length;
+					while (true) {
+						t5 = C.JSString_methods.codeUnitAt$1(P.String_String$fromCharCodes(new Uint32Array(t3.subarray(t1, H._checkValidRange(t1, t2, t4))), 0, null), end);
+						if (!(t5 === 32 || t5 === 9 || t5 === 10 || t5 === 13 || t5 === 12))
+							break;
+						--end;
+					}
+					return Y.FileSpanExtension_subspan(_this, 0, end + 1);
 				}
 			},
 			G = {Option: function Option(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12) {
@@ -11687,7 +11756,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				FunctionExpression: function FunctionExpression(t0, t1, t2, t3) {
 					var _ = this;
 					_.namespace = t0;
-					_.name = t1;
+					_.originalName = t1;
 					_.$arguments = t2;
 					_.span = t3;
 				},
@@ -11775,7 +11844,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				FunctionExpression0: function FunctionExpression0(t0, t1, t2, t3) {
 					var _ = this;
 					_.namespace = t0;
-					_.name = t1;
+					_.originalName = t1;
 					_.$arguments = t2;
 					_.span = t3;
 				},
@@ -12675,6 +12744,23 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					else if (_start < 0)
 						H.throwExpression(P.RangeError$("Start may not be negative, was " + _start + "."));
 					return new Y._FileSpan(file, _start, _end);
+				},
+				FileSpanExtension_subspan: function(_this, start, end) {
+					var startOffset,
+						t1 = _this._end,
+						t2 = _this._file$_start,
+						t3 = t1 - t2;
+					P.RangeError_checkValidRange(start, end, t3);
+					if (start === 0)
+						t3 = end == null || end === t3;
+					else
+						t3 = false;
+					if (t3)
+						return _this;
+					t3 = _this.file;
+					startOffset = Y.FileLocation$_(t3, t2).offset;
+					t1 = end == null ? Y.FileLocation$_(t3, t1).offset : startOffset + end;
+					return t3.span$2(startOffset + start, t1);
 				},
 				SourceFile: function SourceFile(t0, t1, t2) {
 					var _ = this;
@@ -15064,20 +15150,17 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					return iterator.moveNext$0() ? iterator.get$current(iterator) : null;
 				},
 				codepointIndexToCodeUnitIndex: function(string, codepointIndex) {
-					var codeUnitIndex, i, codeUnitIndex0, t1;
+					var codeUnitIndex, i, codeUnitIndex0;
 					for (codeUnitIndex = 0, i = 0; i < codepointIndex; ++i) {
 						codeUnitIndex0 = codeUnitIndex + 1;
-						t1 = C.JSString_methods._codeUnitAt$1(string, codeUnitIndex);
-						codeUnitIndex = t1 >= 55296 && t1 <= 56319 ? codeUnitIndex0 + 1 : codeUnitIndex0;
+						codeUnitIndex = C.JSString_methods._codeUnitAt$1(string, codeUnitIndex) >>> 10 === 54 ? codeUnitIndex0 + 1 : codeUnitIndex0;
 					}
 					return codeUnitIndex;
 				},
 				codeUnitIndexToCodepointIndex: function(string, codeUnitIndex) {
-					var codepointIndex, i, t1;
-					for (codepointIndex = 0, i = 0; i < codeUnitIndex; i = (t1 >= 55296 && t1 <= 56319 ? i + 1 : i) + 1) {
+					var codepointIndex, i;
+					for (codepointIndex = 0, i = 0; i < codeUnitIndex; i = (C.JSString_methods._codeUnitAt$1(string, i) >>> 10 === 54 ? i + 1 : i) + 1)
 						++codepointIndex;
-						t1 = C.JSString_methods._codeUnitAt$1(string, i);
-					}
 					return codepointIndex;
 				},
 				frameForSpan: function(span, member, url) {
@@ -15295,27 +15378,34 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t1;
 				},
-				SpanExtensions_trim: function(_this) {
-					var t3, end, end0,
-						t1 = _this.file,
-						t2 = _this._file$_start,
-						text = P.String_String$fromCharCodes(C.NativeUint32List_methods.sublist$2(t1._decodedChars, t2, _this._end), 0, null),
-						start = 0;
-					while (true) {
-						t3 = C.JSString_methods._codeUnitAt$1(text, start);
-						if (!(t3 === 32 || t3 === 9 || t3 === 10 || t3 === 13 || t3 === 12))
-							break;
-						++start;
-					}
-					end = text.length - 1;
-					end0 = end;
-					while (true) {
-						t3 = C.JSString_methods.codeUnitAt$1(text, end0);
-						if (!(t3 === 32 || t3 === 9 || t3 === 10 || t3 === 13 || t3 === 12))
-							break;
-						--end0;
-					}
-					return start === 0 && end0 === end ? _this : t1.span$2(Y.FileLocation$_(t1, t2).offset + start, Y.FileLocation$_(t1, t2).offset + end0 + 1);
+				consumeEscapedCharacter: function(scanner) {
+					var first, value, i, next, t1;
+					scanner.expectChar$1(92);
+					first = scanner.peekChar$0();
+					if (first == null)
+						return 65533;
+					else if (first === 10 || first === 13 || first === 12)
+						scanner.error$1(0, "Expected escape sequence.");
+					else if (T.isHex(first)) {
+						for (value = 0, i = 0; i < 6; ++i) {
+							next = scanner.peekChar$0();
+							if (next == null || !T.isHex(next))
+								break;
+							value = (value << 4 >>> 0) + T.asHex(scanner.readChar$0());
+						}
+						t1 = scanner.peekChar$0();
+						if (t1 === 32 || t1 === 9 || t1 === 10 || t1 === 13 || t1 === 12)
+							scanner.readChar$0();
+						if (value !== 0)
+							t1 = value >= 55296 && value <= 57343 || value >= 1114111;
+						else
+							t1 = true;
+						if (t1)
+							return 65533;
+						else
+							return value;
+					} else
+						return scanner.readChar$0();
 				},
 				indent_closure: function indent_closure(t0) {
 					this.indentation = t0;
@@ -15660,21 +15750,22 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					throw H.wrapException("unreachable");
 				},
 				_wrapException: function(exception) {
-					var t3, t4,
-						t1 = C.JSString_methods.replaceFirst$2(exception.toString$0(0), "Error: ", ""),
-						t2 = G.SourceSpanException.prototype.get$span.call(exception),
+					var file, t1, t2, t3,
+						url = G.SourceSpanException.prototype.get$span.call(exception).file.url,
 						source //DSH+
 						;
+					if (url == null)
+						file = "stdin";
+					else
+						file = url.get$scheme() === "file" ? $.$get$context().style.pathFromUri$1(M._parseUri(url)) : url.toString$0(0);
+					t1 = C.JSString_methods.replaceFirst$2(exception.toString$0(0), "Error: ", "");
+					t2 = G.SourceSpanException.prototype.get$span.call(exception);
 					t2 = Y.FileLocation$_(t2.file, t2._file$_start);
 					t2 = t2.file.getLine$1(t2.offset);
 					t3 = G.SourceSpanException.prototype.get$span.call(exception);
 					t3 = Y.FileLocation$_(t3.file, t3._file$_start);
-					t3 = t3.file.getColumn$1(t3.offset);
-					t4 = X.NullableExtension_andThen0(G.SourceSpanException.prototype.get$span.call(exception).file.url, D.path__fromUri$closure());
-					if (t4 == null)
-						t4 = "stdin";
 					source = exception.get$source ? exception.get$source() : ""; //DSH+;
-					return B._newRenderError(t1, exception.get$message() /*DSH+*/, t3 + 1, t4, t2 + 1, source /*DSH+*/, 1);
+					return B._newRenderError(t1, exception.get$message() /*DSH+*/, t3.file.getColumn$1(t3.offset) + 1, file, t2 + 1, source /*DSH+*/, 1);
 				},
 				_parseFunctions: function(options, start, asynch) {
 					var result,
@@ -16161,20 +16252,17 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					return iterator.moveNext$0() ? iterator.get$current(iterator) : null;
 				},
 				codepointIndexToCodeUnitIndex0: function(string, codepointIndex) {
-					var codeUnitIndex, i, codeUnitIndex0, t1;
+					var codeUnitIndex, i, codeUnitIndex0;
 					for (codeUnitIndex = 0, i = 0; i < codepointIndex; ++i) {
 						codeUnitIndex0 = codeUnitIndex + 1;
-						t1 = C.JSString_methods._codeUnitAt$1(string, codeUnitIndex);
-						codeUnitIndex = t1 >= 55296 && t1 <= 56319 ? codeUnitIndex0 + 1 : codeUnitIndex0;
+						codeUnitIndex = C.JSString_methods._codeUnitAt$1(string, codeUnitIndex) >>> 10 === 54 ? codeUnitIndex0 + 1 : codeUnitIndex0;
 					}
 					return codeUnitIndex;
 				},
 				codeUnitIndexToCodepointIndex0: function(string, codeUnitIndex) {
-					var codepointIndex, i, t1;
-					for (codepointIndex = 0, i = 0; i < codeUnitIndex; i = (t1 >= 55296 && t1 <= 56319 ? i + 1 : i) + 1) {
+					var codepointIndex, i;
+					for (codepointIndex = 0, i = 0; i < codeUnitIndex; i = (C.JSString_methods._codeUnitAt$1(string, i) >>> 10 === 54 ? i + 1 : i) + 1)
 						++codepointIndex;
-						t1 = C.JSString_methods._codeUnitAt$1(string, i);
-					}
 					return codepointIndex;
 				},
 				frameForSpan0: function(span, member, url) {
@@ -16392,27 +16480,34 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t1;
 				},
-				SpanExtensions_trim0: function(_this) {
-					var t3, end, end0,
-						t1 = _this.file,
-						t2 = _this._file$_start,
-						text = P.String_String$fromCharCodes(C.NativeUint32List_methods.sublist$2(t1._decodedChars, t2, _this._end), 0, null),
-						start = 0;
-					while (true) {
-						t3 = C.JSString_methods._codeUnitAt$1(text, start);
-						if (!(t3 === 32 || t3 === 9 || t3 === 10 || t3 === 13 || t3 === 12))
-							break;
-						++start;
-					}
-					end = text.length - 1;
-					end0 = end;
-					while (true) {
-						t3 = C.JSString_methods.codeUnitAt$1(text, end0);
-						if (!(t3 === 32 || t3 === 9 || t3 === 10 || t3 === 13 || t3 === 12))
-							break;
-						--end0;
-					}
-					return start === 0 && end0 === end ? _this : t1.span$2(Y.FileLocation$_(t1, t2).offset + start, Y.FileLocation$_(t1, t2).offset + end0 + 1);
+				consumeEscapedCharacter0: function(scanner) {
+					var first, value, i, next, t1;
+					scanner.expectChar$1(92);
+					first = scanner.peekChar$0();
+					if (first == null)
+						return 65533;
+					else if (first === 10 || first === 13 || first === 12)
+						scanner.error$1(0, "Expected escape sequence.");
+					else if (T.isHex0(first)) {
+						for (value = 0, i = 0; i < 6; ++i) {
+							next = scanner.peekChar$0();
+							if (next == null || !T.isHex0(next))
+								break;
+							value = (value << 4 >>> 0) + T.asHex0(scanner.readChar$0());
+						}
+						t1 = scanner.peekChar$0();
+						if (t1 === 32 || t1 === 9 || t1 === 10 || t1 === 13 || t1 === 12)
+							scanner.readChar$0();
+						if (value !== 0)
+							t1 = value >= 55296 && value <= 57343 || value >= 1114111;
+						else
+							t1 = true;
+						if (t1)
+							return 65533;
+						else
+							return value;
+					} else
+						return scanner.readChar$0();
 				},
 				indent_closure0: function indent_closure0(t0) {
 					this.indentation = t0;
@@ -17616,7 +17711,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							switch ($async$goto) {
 								case 0:
 									// Function start
-									$async$returnValue = "1.37.5 compiled with dart2js 2.13.4";
+									$async$returnValue = "1.38.2 compiled with dart2js 2.13.4";
 									// goto return
 									$async$goto = 1;
 									break;
@@ -18802,9 +18897,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var _null = null;
 					return $.$get$context().join$8(0, part1, part2, part3, _null, _null, _null, _null, _null);
 				},
-				fromUri: function(uri) {
-					return $.$get$context().style.pathFromUri$1(M._parseUri(uri));
-				},
 				prettyUri: function(uri) {
 					return $.$get$context().prettyUri$1(uri);
 				}
@@ -19326,15 +19418,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_EvaluateVisitor_visitListExpression_closure0: function _EvaluateVisitor_visitListExpression_closure0(t0) {
 					this.$this = t0;
 				},
-				_EvaluateVisitor_visitFunctionExpression_closure1: function _EvaluateVisitor_visitFunctionExpression_closure1(t0, t1, t2) {
+				_EvaluateVisitor_visitFunctionExpression_closure1: function _EvaluateVisitor_visitFunctionExpression_closure1(t0, t1) {
 					this.$this = t0;
 					this.node = t1;
-					this.plainName = t2;
 				},
 				_EvaluateVisitor_visitFunctionExpression_closure2: function _EvaluateVisitor_visitFunctionExpression_closure2(t0, t1, t2) {
 					this._box_0 = t0;
 					this.$this = t1;
 					this.node = t2;
+				},
+				_EvaluateVisitor_visitInterpolatedFunctionExpression_closure0: function _EvaluateVisitor_visitInterpolatedFunctionExpression_closure0(t0, t1, t2) {
+					this.$this = t0;
+					this.node = t1;
+					this.$function = t2;
 				},
 				_EvaluateVisitor__runUserDefinedCallable_closure0: function _EvaluateVisitor__runUserDefinedCallable_closure0(t0, t1, t2, t3, t4, t5) {
 					var _ = this;
@@ -19985,15 +20081,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_EvaluateVisitor_visitListExpression_closure2: function _EvaluateVisitor_visitListExpression_closure2(t0) {
 					this.$this = t0;
 				},
-				_EvaluateVisitor_visitFunctionExpression_closure5: function _EvaluateVisitor_visitFunctionExpression_closure5(t0, t1, t2) {
+				_EvaluateVisitor_visitFunctionExpression_closure5: function _EvaluateVisitor_visitFunctionExpression_closure5(t0, t1) {
 					this.$this = t0;
 					this.node = t1;
-					this.plainName = t2;
 				},
 				_EvaluateVisitor_visitFunctionExpression_closure6: function _EvaluateVisitor_visitFunctionExpression_closure6(t0, t1, t2) {
 					this._box_0 = t0;
 					this.$this = t1;
 					this.node = t2;
+				},
+				_EvaluateVisitor_visitInterpolatedFunctionExpression_closure2: function _EvaluateVisitor_visitInterpolatedFunctionExpression_closure2(t0, t1, t2) {
+					this.$this = t0;
+					this.node = t1;
+					this.$function = t2;
 				},
 				_EvaluateVisitor__runUserDefinedCallable_closure2: function _EvaluateVisitor__runUserDefinedCallable_closure2(t0, t1, t2, t3, t4, t5) {
 					var _ = this;
@@ -20630,9 +20730,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				ExtensionStore_addExtensions___closure: function ExtensionStore_addExtensions___closure() {
 				},
-				ExtensionStore_addExtensions___closure0: function ExtensionStore_addExtensions___closure0(t0) {
-					this.extension = t0;
-				},
 				ExtensionStore_addExtensions_closure0: function ExtensionStore_addExtensions_closure0(t0, t1) {
 					this._box_0 = t0;
 					this.$this = t1;
@@ -20975,10 +21072,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_.selectorsForTarget = t3;
 					_.target = t4;
 				},
-				ExtensionStore_addExtensions___closure1: function ExtensionStore_addExtensions___closure1() {
-				},
-				ExtensionStore_addExtensions___closure2: function ExtensionStore_addExtensions___closure2(t0) {
-					this.extension = t0;
+				ExtensionStore_addExtensions___closure0: function ExtensionStore_addExtensions___closure0() {
 				},
 				ExtensionStore_addExtensions_closure2: function ExtensionStore_addExtensions_closure2(t0, t1) {
 					this._box_0 = t0;
@@ -22952,15 +23046,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_EvaluateVisitor_visitListExpression_closure: function _EvaluateVisitor_visitListExpression_closure(t0) {
 					this.$this = t0;
 				},
-				_EvaluateVisitor_visitFunctionExpression_closure: function _EvaluateVisitor_visitFunctionExpression_closure(t0, t1, t2) {
+				_EvaluateVisitor_visitFunctionExpression_closure: function _EvaluateVisitor_visitFunctionExpression_closure(t0, t1) {
 					this.$this = t0;
 					this.node = t1;
-					this.plainName = t2;
 				},
 				_EvaluateVisitor_visitFunctionExpression_closure0: function _EvaluateVisitor_visitFunctionExpression_closure0(t0, t1, t2) {
 					this._box_0 = t0;
 					this.$this = t1;
 					this.node = t2;
+				},
+				_EvaluateVisitor_visitInterpolatedFunctionExpression_closure: function _EvaluateVisitor_visitInterpolatedFunctionExpression_closure(t0, t1, t2) {
+					this.$this = t0;
+					this.node = t1;
+					this.$function = t2;
 				},
 				_EvaluateVisitor__runUserDefinedCallable_closure: function _EvaluateVisitor__runUserDefinedCallable_closure(t0, t1, t2, t3, t4, t5) {
 					var _ = this;
@@ -23638,15 +23736,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_EvaluateVisitor_visitListExpression_closure1: function _EvaluateVisitor_visitListExpression_closure1(t0) {
 					this.$this = t0;
 				},
-				_EvaluateVisitor_visitFunctionExpression_closure3: function _EvaluateVisitor_visitFunctionExpression_closure3(t0, t1, t2) {
+				_EvaluateVisitor_visitFunctionExpression_closure3: function _EvaluateVisitor_visitFunctionExpression_closure3(t0, t1) {
 					this.$this = t0;
 					this.node = t1;
-					this.plainName = t2;
 				},
 				_EvaluateVisitor_visitFunctionExpression_closure4: function _EvaluateVisitor_visitFunctionExpression_closure4(t0, t1, t2) {
 					this._box_0 = t0;
 					this.$this = t1;
 					this.node = t2;
+				},
+				_EvaluateVisitor_visitInterpolatedFunctionExpression_closure1: function _EvaluateVisitor_visitInterpolatedFunctionExpression_closure1(t0, t1, t2) {
+					this.$this = t0;
+					this.node = t1;
+					this.$function = t2;
 				},
 				_EvaluateVisitor__runUserDefinedCallable_closure1: function _EvaluateVisitor__runUserDefinedCallable_closure1(t0, t1, t2, t3, t4, t5) {
 					var _ = this;
@@ -23974,7 +24076,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					new Uint8Array(0);
 					J.set$render$x(self.exports, P.allowInterop(B.node___render$closure()));
 					J.set$renderSync$x(self.exports, P.allowInterop(B.node___renderSync$closure()));
-					J.set$info$x(self.exports, "dart-sass\t1.37.5\t(Sass Compiler)\t[Dart]\ndart2js\t2.13.4\t(Dart Compiler)\t[Dart]");
+					J.set$info$x(self.exports, "dart-sass\t1.38.2\t(Sass Compiler)\t[Dart]\ndart2js\t2.13.4\t(Dart Compiler)\t[Dart]");
 					J.set$types$x(self.exports, {Boolean: $.$get$booleanConstructor(), Color: $.$get$colorConstructor(), List: $.$get$listConstructor(), Map: $.$get$mapConstructor(), Null: $.$get$nullConstructor(), Number: $.$get$numberConstructor(), String: $.$get$stringConstructor(), Error: self.Error});
 					J.set$NULL$x(self.exports, C.C__SassNull);
 					J.set$TRUE$x(self.exports, C.SassBoolean_true);
@@ -24119,7 +24221,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_Watcher__debounceEvents_closure: function _Watcher__debounceEvents_closure() {
 				},
 				MergedExtension_merge: function(left, right) {
-					var t4, t5,
+					var t4, t5, t6,
 						t1 = left.extender,
 						t2 = t1.selector,
 						t3 = C.C_ListEquality.equals$2(0, t2.components, right.extender.selector.components);
@@ -24138,11 +24240,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return left;
 					if (left.isOptional && t4)
 						return right;
+					t5 = left.target;
+					t6 = left.span;
 					if (t4)
 						t3 = right.mediaContext;
 					t2.get$maxSpecificity();
 					t1 = new S.Extender(t2, false, t1.span);
-					return t1._extension = new A.MergedExtension(left, right, t1, left.target, t3, true, left.span);
+					return t1._extension = new A.MergedExtension(left, right, t1, t5, t3, true, t6);
 				},
 				MergedExtension: function MergedExtension(t0, t1, t2, t3, t4, t5, t6) {
 					var _ = this;
@@ -24442,7 +24546,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					this.result = t0;
 				},
 				MergedExtension_merge0: function(left, right) {
-					var t4, t5,
+					var t4, t5, t6,
 						t1 = left.extender,
 						t2 = t1.selector,
 						t3 = C.C_ListEquality.equals$2(0, t2.components, right.extender.selector.components);
@@ -24461,11 +24565,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return left;
 					if (left.isOptional && t4)
 						return right;
+					t5 = left.target;
+					t6 = left.span;
 					if (t4)
 						t3 = right.mediaContext;
 					t2.get$maxSpecificity();
 					t1 = new S.Extender0(t2, false, t1.span);
-					return t1._extension$_extension = new A.MergedExtension0(left, right, t1, left.target, t3, true, left.span);
+					return t1._extension$_extension = new A.MergedExtension0(left, right, t1, t5, t3, true, t6);
 				},
 				MergedExtension0: function MergedExtension0(t0, t1, t2, t3, t4, t5, t6) {
 					var _ = this;
@@ -26691,10 +26797,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.$ti;
 					this._source.$indexSet(0, t1._precomputed1._as(key), t1._rest[1]._as(value));
 				},
-				putIfAbsent$2: function(key, ifAbsent) {
-					var t1 = this.$ti;
-					return t1._rest[3]._as(this._source.putIfAbsent$2(t1._precomputed1._as(key), new H.CastMap_putIfAbsent_closure(this, ifAbsent)));
-				},
 				addAll$1: function(_, other) {
 					var t1 = this.$ti;
 					this._source.addAll$1(0, new H.CastMap(other, t1._eval$1("@<3>")._bind$1(t1._rest[3])._bind$1(t1._precomputed1)._bind$1(t1._rest[1])._eval$1("CastMap<1,2,3,4>")));
@@ -26730,14 +26832,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				get$entries: function(_) {
 					var t1 = this._source;
 					return t1.get$entries(t1).map$1$1(0, new H.CastMap_entries_closure(this), this.$ti._eval$1("MapEntry<3,4>"));
-				}
-			};
-			H.CastMap_putIfAbsent_closure.prototype = {
-				call$0: function() {
-					return this.$this.$ti._rest[1]._as(this.ifAbsent.call$0());
-				},
-				$signature: function() {
-					return this.$this.$ti._eval$1("2()");
 				}
 			};
 			H.CastMap_forEach_closure.prototype = {
@@ -27463,9 +27557,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$indexSet: function(_, key, val) {
 					H.ConstantMap__throwUnmodifiable();
 				},
-				putIfAbsent$2: function(key, ifAbsent) {
-					H.ConstantMap__throwUnmodifiable();
-				},
 				remove$1: function(_, key) {
 					H.ConstantMap__throwUnmodifiable();
 				},
@@ -28096,7 +28187,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(o, tag) {
 					return this.getUnknownTag(o, tag);
 				},
-				$signature: 378
+				$signature: 377
 			};
 			H.initHooks_closure1.prototype = {
 				call$1: function(tag) {
@@ -28680,21 +28771,21 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._stackTrace0 = t1;
 				},
-				$signature: 331
+				$signature: 332
 			};
 			P.Future_wait__error_get.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._error;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("error")) : t1;
 				},
-				$signature: 126
+				$signature: 100
 			};
 			P.Future_wait__stackTrace_get.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._stackTrace0;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("stackTrace")) : t1;
 				},
-				$signature: 242
+				$signature: 241
 			};
 			P.Future_wait_handleError.prototype = {
 				call$2: function(theError, theStackTrace) {
@@ -29047,7 +29138,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(_) {
 					return this.originalSource;
 				},
-				$signature: 325
+				$signature: 324
 			};
 			P._Future__propagateToListeners_handleValueCallback.prototype = {
 				call$0: function() {
@@ -29122,7 +29213,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 342
+				$signature: 341
 			};
 			P.Stream_length_closure.prototype = {
 				call$1: function(_) {
@@ -30360,14 +30451,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						}
 					}
 				},
-				putIfAbsent$2: function(key, ifAbsent) {
-					var value, _this = this;
-					if (_this.containsKey$1(key))
-						return H._instanceType(_this)._rest[1]._as(_this.$index(0, key));
-					value = ifAbsent.call$0();
-					_this.$indexSet(0, key, value);
-					return value;
-				},
 				remove$1: function(_, key) {
 					var t1;
 					if (typeof key == "string" && key !== "__proto__")
@@ -30823,14 +30906,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(k, v) {
 					this.result.$indexSet(0, this.K._as(k), this.V._as(v));
 				},
-				$signature: 143
+				$signature: 142
 			};
 			P.IterableBase.prototype = {};
 			P.LinkedHashMap_LinkedHashMap$from_closure.prototype = {
 				call$2: function(k, v) {
 					this.result.$indexSet(0, this.K._as(k), this.V._as(v));
 				},
-				$signature: 143
+				$signature: 142
 			};
 			P.ListBase.prototype = {$isEfficientLengthIterable: 1, $isIterable: 1, $isList: 1};
 			P.ListMixin.prototype = {
@@ -31041,7 +31124,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1._contents = t2 + ": ";
 					t1._contents += H.S(v);
 				},
-				$signature: 150
+				$signature: 149
 			};
 			P.MapMixin.prototype = {
 				cast$2$0: function(_, RK, RV) {
@@ -31061,14 +31144,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						key = t1.get$current(t1);
 						this.$indexSet(0, key, t2._as(other.$index(0, key)));
 					}
-				},
-				putIfAbsent$2: function(key, ifAbsent) {
-					var t1, _this = this;
-					if (_this.containsKey$1(key))
-						return H._instanceType(_this)._eval$1("MapMixin.V")._as(_this.$index(0, key));
-					t1 = ifAbsent.call$0();
-					_this.$indexSet(0, key, t1);
-					return t1;
 				},
 				get$entries: function(_) {
 					var _this = this;
@@ -31161,9 +31236,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				remove$1: function(_, key) {
 					throw H.wrapException(P.UnsupportedError$("Cannot modify unmodifiable map"));
-				},
-				putIfAbsent$2: function(key, ifAbsent) {
-					throw H.wrapException(P.UnsupportedError$("Cannot modify unmodifiable map"));
 				}
 			};
 			P.MapView.prototype = {
@@ -31178,9 +31250,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				addAll$1: function(_, other) {
 					this._map.addAll$1(0, other);
-				},
-				putIfAbsent$2: function(key, ifAbsent) {
-					return this._map.putIfAbsent$2(key, ifAbsent);
 				},
 				containsKey$1: function(key) {
 					return this._map.containsKey$1(key);
@@ -32013,7 +32082,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.i = i + 1;
 					t1[i] = value;
 				},
-				$signature: 150
+				$signature: 149
 			};
 			P._JsonStringStringifier.prototype = {
 				get$_partialResult: function() {
@@ -32919,7 +32988,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(msg) {
 					return this.call$2(msg, null);
 				},
-				$signature: 356
+				$signature: 357
 			};
 			P.Uri_parseIPv6Address_parseHex.prototype = {
 				call$2: function(start, end) {
@@ -32931,7 +33000,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						this.error.call$2("each part must be in the range of `0x0..0xFFFF`", start);
 					return value;
 				},
-				$signature: 352
+				$signature: 355
 			};
 			P._Uri.prototype = {
 				get$_text: function() {
@@ -33245,7 +33314,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					C.NativeUint8List_methods.fillRange$3(t1, 0, 96, defaultTransition);
 					return t1;
 				},
-				$signature: 340
+				$signature: 239
 			};
 			P._createTables_setChars.prototype = {
 				call$3: function(target, chars, transition) {
@@ -33253,7 +33322,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					for (t1 = chars.length, i = 0; i < t1; ++i)
 						target[C.JSString_methods._codeUnitAt$1(chars, i) ^ 96] = transition;
 				},
-				$signature: 172
+				$signature: 171
 			};
 			P._createTables_setRange.prototype = {
 				call$3: function(target, range, transition) {
@@ -33261,7 +33330,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					for (i = C.JSString_methods._codeUnitAt$1(range, 0), n = C.JSString_methods._codeUnitAt$1(range, 1); i <= n; ++i)
 						target[(i ^ 96) >>> 0] = transition;
 				},
-				$signature: 172
+				$signature: 171
 			};
 			P._SimpleUri.prototype = {
 				get$hasAuthority: function() {
@@ -33944,13 +34013,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return;
 					callback.call$1(option.valueOrDefault$1(parsedOption));
 				},
-				$signature: 335
+				$signature: 337
 			};
 			G.Parser__setOption_closure.prototype = {
 				call$0: function() {
 					return H.setRuntimeTypeInfo([], type$.JSArray_String);
 				},
-				$signature: 44
+				$signature: 45
 			};
 			G._Usage.prototype = {
 				get$_columnWidths: function() {
@@ -34120,7 +34189,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return '"' + H.S(value) + '"';
 				},
-				$signature: 61
+				$signature: 79
 			};
 			G._Usage__buildAllowedList_closure.prototype = {
 				call$1: function(value) {
@@ -34455,7 +34524,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._runController = t1;
 				},
-				$signature: 307
+				$signature: 310
 			};
 			B.ReplAdapter_runAsync__runController_get.prototype = {
 				call$0: function() {
@@ -35699,7 +35768,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(p) {
 					return p !== "";
 				},
-				$signature: 233
+				$signature: 232
 			};
 			X.ParsedPath__splitExtension_closure0.prototype = {
 				call$0: function() {
@@ -35727,13 +35796,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 451
+				$signature: 450
 			};
 			K.PathMap__create_closure0.prototype = {
 				call$1: function(path) {
 					return path == null ? 0 : this._box_0.context.hash$1(path);
 				},
-				$signature: 241
+				$signature: 240
 			};
 			K.PathMap__create_closure1.prototype = {
 				call$1: function(path) {
@@ -36400,7 +36469,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t4 = C.JSString_methods.codeUnitAt$1(text, t3);
 					if (!(t4 === 95 || T.isAlphabetic0(t4) || t4 >= 128))
 						return t1;
-					return B.SpanExtensions_trim(t2.span$2(t3, Y.FileLocation$_(t2, t1._end).offset));
+					return V.SpanExtensions_trimRight(V.SpanExtensions_trimLeft(t2.span$2(t3, Y.FileLocation$_(t2, t1._end).offset)));
 				},
 				verify$2: function(positional, names) {
 					var t1, t2, t3, namedUsed, i, argument, t4, unknownNames, _this = this,
@@ -36506,7 +36575,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(argument) {
 					return argument.name;
 				},
-				$signature: 244
+				$signature: 243
 			};
 			B.ArgumentDeclaration_verify_closure0.prototype = {
 				call$1: function($name) {
@@ -36662,7 +36731,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				toString$0: function(_) {
 					var t1 = this.namespace;
 					t1 = t1 != null ? "" + (t1 + ".") : "";
-					t1 += this.name.toString$0(0) + this.$arguments.toString$0(0);
+					t1 += this.originalName + this.$arguments.toString$0(0);
 					return t1.charCodeAt(0) == 0 ? t1 : t1;
 				},
 				$isAstNode: 1,
@@ -36680,6 +36749,22 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				toString$0: function(_) {
 					return "if" + this.$arguments.toString$0(0);
+				},
+				$isAstNode: 1,
+				$isExpression: 1,
+				get$span: function() {
+					return this.span;
+				}
+			};
+			N.InterpolatedFunctionExpression.prototype = {
+				accept$1$1: function(visitor) {
+					return visitor.visitInterpolatedFunctionExpression$1(this);
+				},
+				accept$1: function(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
+				},
+				toString$0: function(_) {
+					return this.name.toString$0(0) + this.$arguments.toString$0(0);
 				},
 				$isAstNode: 1,
 				$isExpression: 1,
@@ -36756,7 +36841,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(pair) {
 					return H.S(pair.item1) + ": " + H.S(pair.item2);
 				},
-				$signature: 253
+				$signature: 252
 			};
 			O.NullExpression.prototype = {
 				accept$1$1: function(visitor) {
@@ -36993,7 +37078,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return typeof value == "string" ? value : "#{" + H.S(value) + "}";
 				},
-				$signature: 42
+				$signature: 43
 			};
 			V.AtRootRule.prototype = {
 				accept$1$1: function(visitor) {
@@ -37257,7 +37342,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(clause) {
 					return "@if {" + C.JSArray_methods.join$1(clause.children, " ") + "}";
 				},
-				$signature: 257
+				$signature: 256
 			};
 			V.IfRuleClause.prototype = {};
 			V.IfRuleClause$__closure.prototype = {
@@ -37275,7 +37360,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = true;
 					return t1;
 				},
-				$signature: 221
+				$signature: 222
 			};
 			V.IfRuleClause$___closure.prototype = {
 				call$1: function($import) {
@@ -37316,7 +37401,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					if (!(this.content == null)) {
 						t2 = t1.file;
 						t3 = this.$arguments.span;
-						t3 = B.SpanExtensions_trim(t2.span$2(Y.FileLocation$_(t2, t1._file$_start).offset, Y.FileLocation$_(t3.file, t3._end).offset));
+						t3 = V.SpanExtensions_trimRight(V.SpanExtensions_trimLeft(t2.span$2(Y.FileLocation$_(t2, t1._file$_start).offset, Y.FileLocation$_(t3.file, t3._end).offset)));
 						t1 = t3;
 					}
 					return t1;
@@ -37426,7 +37511,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = true;
 					return t1;
 				},
-				$signature: 221
+				$signature: 222
 			};
 			M.ParentStatement__closure.prototype = {
 				call$1: function($import) {
@@ -37984,20 +38069,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = complex.components;
 					return D.SassList$(new H.MappedListIterable(t1, new D.SelectorList_asSassList__closure(), H._arrayInstanceType(t1)._eval$1("MappedListIterable<1,Value>")), C.ListSeparator_woc, false);
 				},
-				$signature: 274
+				$signature: 273
 			};
 			D.SelectorList_asSassList__closure.prototype = {
 				call$1: function(component) {
 					return new D.SassString(component.toString$0(0), false);
 				},
-				$signature: 303
+				$signature: 302
 			};
 			D.SelectorList_unify_closure.prototype = {
 				call$1: function(complex1) {
 					var t1 = this.other.components;
 					return new H.ExpandIterable(t1, new D.SelectorList_unify__closure(complex1), H._arrayInstanceType(t1)._eval$1("ExpandIterable<1,ComplexSelector>"));
 				},
-				$signature: 138
+				$signature: 130
 			};
 			D.SelectorList_unify__closure.prototype = {
 				call$1: function(complex2) {
@@ -38006,7 +38091,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return C.List_empty4;
 					return J.map$1$1$ax(unified, new D.SelectorList_unify___closure(), type$.ComplexSelector);
 				},
-				$signature: 138
+				$signature: 130
 			};
 			D.SelectorList_unify___closure.prototype = {
 				call$1: function(complex) {
@@ -38061,7 +38146,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_box_0.i = 0;
 					return new H.MappedListIterable(newComplexes, new D.SelectorList_resolveParentSelectors__closure0(_box_0), H._arrayInstanceType(newComplexes)._eval$1("MappedListIterable<1,ComplexSelector>"));
 				},
-				$signature: 138
+				$signature: 130
 			};
 			D.SelectorList_resolveParentSelectors__closure.prototype = {
 				call$1: function(parentComplex) {
@@ -38070,7 +38155,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					C.JSArray_methods.addAll$1(t1, t2.components);
 					return S.ComplexSelector$(t1, t2.lineBreak || parentComplex.lineBreak);
 				},
-				$signature: 115
+				$signature: 124
 			};
 			D.SelectorList_resolveParentSelectors__closure0.prototype = {
 				call$1: function(newComplex) {
@@ -38122,7 +38207,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t3 = simple.isClass;
 					return D.PseudoSelector$(t2, simple.argument, !t3, t1);
 				},
-				$signature: 330
+				$signature: 329
 			};
 			D.SelectorList__resolveParentSelectorsCompound_closure1.prototype = {
 				call$1: function(complex) {
@@ -38150,7 +38235,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1.push(last);
 					return S.ComplexSelector$(t1, complex.lineBreak);
 				},
-				$signature: 115
+				$signature: 124
 			};
 			M.ParentSelector.prototype = {
 				accept$1$1: function(visitor) {
@@ -39106,27 +39191,27 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = module.get$variables();
 					return t1.get$keys(t1);
 				},
-				$signature: 117
+				$signature: 116
 			};
 			Q.AsyncEnvironment_importForwards_closure0.prototype = {
 				call$1: function(module) {
 					var t1 = module.get$functions(module);
 					return t1.get$keys(t1);
 				},
-				$signature: 117
+				$signature: 116
 			};
 			Q.AsyncEnvironment_importForwards_closure1.prototype = {
 				call$1: function(module) {
 					var t1 = module.get$mixins();
 					return t1.get$keys(t1);
 				},
-				$signature: 117
+				$signature: 116
 			};
 			Q.AsyncEnvironment__getVariableFromGlobalModule_closure.prototype = {
 				call$1: function(module) {
 					return module.get$variables().$index(0, this.name);
 				},
-				$signature: 336
+				$signature: 335
 			};
 			Q.AsyncEnvironment_setVariable_closure.prototype = {
 				call$0: function() {
@@ -39140,7 +39225,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables().containsKey$1(this.name) ? module : null;
 				},
-				$signature: 343
+				$signature: 342
 			};
 			Q.AsyncEnvironment_setVariable_closure1.prototype = {
 				call$0: function() {
@@ -39154,13 +39239,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$functions(module).$index(0, this.name);
 				},
-				$signature: 169
+				$signature: 170
 			};
 			Q.AsyncEnvironment__getMixinFromGlobalModule_closure.prototype = {
 				call$1: function(module) {
 					return module.get$mixins().$index(0, this.name);
 				},
-				$signature: 169
+				$signature: 170
 			};
 			Q.AsyncEnvironment_toModule_closure.prototype = {
 				call$1: function(modules) {
@@ -39178,7 +39263,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(entry) {
 					return X.NullableExtension_andThen(this.callback.call$1(entry.key), new Q.AsyncEnvironment__fromOneModule__closure(entry, this.T));
 				},
-				$signature: 348
+				$signature: 347
 			};
 			Q.AsyncEnvironment__fromOneModule__closure.prototype = {
 				call$1: function(_) {
@@ -39262,13 +39347,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables();
 				},
-				$signature: 355
+				$signature: 354
 			};
 			Q._EnvironmentModule__EnvironmentModule_closure6.prototype = {
 				call$1: function(module) {
 					return module.get$variableNodes();
 				},
-				$signature: 357
+				$signature: 356
 			};
 			Q._EnvironmentModule__EnvironmentModule_closure7.prototype = {
 				call$1: function(module) {
@@ -39477,7 +39562,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 363
+				$signature: 362
 			};
 			O.AsyncImportCache__canonicalize_closure.prototype = {
 				call$0: function() {
@@ -39485,7 +39570,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 154
+				$signature: 155
 			};
 			O.AsyncImportCache_importCanonical_closure.prototype = {
 				call$0: function() {
@@ -39527,19 +39612,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 375
+				$signature: 374
 			};
 			O.AsyncImportCache_humanize_closure.prototype = {
 				call$1: function(tuple) {
 					return tuple.item2.$eq(0, this.canonicalUrl);
 				},
-				$signature: 376
+				$signature: 375
 			};
 			O.AsyncImportCache_humanize_closure0.prototype = {
 				call$1: function(tuple) {
 					return tuple.item3;
 				},
-				$signature: 377
+				$signature: 376
 			};
 			O.AsyncImportCache_humanize_closure1.prototype = {
 				call$1: function(url) {
@@ -39703,7 +39788,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(entry) {
 					return "$" + H.S(entry.key) + ": " + H.S(entry.value);
 				},
-				$signature: 406
+				$signature: 405
 			};
 			A.ExplicitConfiguration.prototype = {
 				_withValues$1: function(values) {
@@ -40241,27 +40326,27 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = module.get$variables();
 					return t1.get$keys(t1);
 				},
-				$signature: 107
+				$signature: 108
 			};
 			O.Environment_importForwards_closure0.prototype = {
 				call$1: function(module) {
 					var t1 = module.get$functions(module);
 					return t1.get$keys(t1);
 				},
-				$signature: 107
+				$signature: 108
 			};
 			O.Environment_importForwards_closure1.prototype = {
 				call$1: function(module) {
 					var t1 = module.get$mixins();
 					return t1.get$keys(t1);
 				},
-				$signature: 107
+				$signature: 108
 			};
 			O.Environment__getVariableFromGlobalModule_closure.prototype = {
 				call$1: function(module) {
 					return module.get$variables().$index(0, this.name);
 				},
-				$signature: 416
+				$signature: 415
 			};
 			O.Environment_setVariable_closure.prototype = {
 				call$0: function() {
@@ -40275,7 +40360,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables().containsKey$1(this.name) ? module : null;
 				},
-				$signature: 466
+				$signature: 464
 			};
 			O.Environment_setVariable_closure1.prototype = {
 				call$0: function() {
@@ -40289,13 +40374,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$functions(module).$index(0, this.name);
 				},
-				$signature: 173
+				$signature: 168
 			};
 			O.Environment__getMixinFromGlobalModule_closure.prototype = {
 				call$1: function(module) {
 					return module.get$mixins().$index(0, this.name);
 				},
-				$signature: 173
+				$signature: 168
 			};
 			O.Environment_toModule_closure.prototype = {
 				call$1: function(modules) {
@@ -40313,7 +40398,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(entry) {
 					return X.NullableExtension_andThen(this.callback.call$1(entry.key), new O.Environment__fromOneModule__closure(entry, this.T));
 				},
-				$signature: 461
+				$signature: 459
 			};
 			O.Environment__fromOneModule__closure.prototype = {
 				call$1: function(_) {
@@ -40397,13 +40482,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables();
 				},
-				$signature: 518
+				$signature: 516
 			};
 			O._EnvironmentModule__EnvironmentModule_closure0.prototype = {
 				call$1: function(module) {
 					return module.get$variableNodes();
 				},
-				$signature: 404
+				$signature: 403
 			};
 			O._EnvironmentModule__EnvironmentModule_closure1.prototype = {
 				call$1: function(module) {
@@ -40421,13 +40506,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$transitivelyContainsCss();
 				},
-				$signature: 137
+				$signature: 140
 			};
 			O._EnvironmentModule__EnvironmentModule_closure4.prototype = {
 				call$1: function(module) {
 					return module.get$transitivelyContainsExtensions();
 				},
-				$signature: 137
+				$signature: 140
 			};
 			E.SassException.prototype = {
 				get$trace: function(_) {
@@ -40456,11 +40541,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					return this.toString$1$color($receiver, null);
 				},
 				toCssString$0: function() {
-					var stringMessage, rune,
+					var commentMessage, stringMessage, rune,
 						t1 = $._glyphs,
 						t2 = $._glyphs = C.C_AsciiGlyphSet,
-						t3 = this.toString$1$color(0, false),
-						commentMessage = H.stringReplaceAllUnchecked(t3, "*/", "*\u2215");
+						t3 = this.toString$1$color(0, false);
+					t3 = H.stringReplaceAllUnchecked(t3, "*/", "*\u2215");
+					commentMessage = H.stringReplaceAllUnchecked(t3, "\r\n", "\n");
 					$._glyphs = t1 === C.C_AsciiGlyphSet ? t2 : C.C_UnicodeGlyphSet;
 					stringMessage = new P.StringBuffer("");
 					for (t1 = new P.RuneIterator(N.serializeValue0(new D.SassString(this.toString$1$color(0, false), true), true, true)); t1.moveNext$0();) {
@@ -40840,7 +40926,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					parser.addFlag$3$help$negatable("version", "Print the version of Dart Sass.", false);
 					return parser;
 				},
-				$signature: 550
+				$signature: 548
 			};
 			B.ExecutableOptions_interactive_closure.prototype = {
 				call$0: function() {
@@ -40864,7 +40950,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(destination) {
 					return destination != null;
 				},
-				$signature: 233
+				$signature: 232
 			};
 			*/
 			B.UsageException.prototype = {$isException: 1,
@@ -40878,7 +40964,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						dir = $.$get$context().dirname$1(dir);
 					return this.dirWatcher.watch$1(0, dir);
 				},
-				$signature: 535
+				$signature: 533
 			};
 			A._Watcher.prototype = {
 				compile$3$ifModified: function(source, destination, ifModified) {
@@ -41458,7 +41544,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t2;
 				},
-				$signature: 534
+				$signature: 532
 			};
 			F.EmptyExtensionStore.prototype = {
 				get$isEmpty: function(_) {
@@ -42123,13 +42209,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(extension) {
 					return !extension.isOptional;
 				},
-				$signature: 527
+				$signature: 525
 			};
 			X.ExtensionStore__registerSelector_closure.prototype = {
 				call$0: function() {
 					return P.LinkedHashSet_LinkedHashSet$_empty(type$.ModifiableCssValue_SelectorList);
 				},
-				$signature: 520
+				$signature: 518
 			};
 			X.ExtensionStore_addExtension_closure.prototype = {
 				call$0: function() {
@@ -42141,7 +42227,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return H.setRuntimeTypeInfo([], type$.JSArray_Extension);
 				},
-				$signature: 207
+				$signature: 201
 			};
 			X.ExtensionStore_addExtension_closure1.prototype = {
 				call$0: function() {
@@ -42153,7 +42239,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return H.setRuntimeTypeInfo([], type$.JSArray_Extension);
 				},
-				$signature: 207
+				$signature: 201
 			};
 			X.ExtensionStore__extendExistingExtensions_closure0.prototype = {
 				call$0: function() {
@@ -42189,44 +42275,45 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = t1._extensions;
 					existingSources = t1.$index(0, target);
 					if (existingSources == null) {
-						t1.$indexSet(0, target, newSources);
+						t4 = type$.ComplexSelector;
+						t5 = type$.Extension;
+						t1.$indexSet(0, target, P.LinkedHashMap_LinkedHashMap$of(newSources, t4, t5));
 						if (!t2 || t3) {
 							t1 = _this._box_0;
 							t2 = t1.newExtensions;
-							(t2 == null ? t1.newExtensions = P.LinkedHashMap_LinkedHashMap$_empty(type$.SimpleSelector, type$.Map_ComplexSelector_Extension) : t2).$indexSet(0, target, newSources);
+							t1 = t2 == null ? t1.newExtensions = P.LinkedHashMap_LinkedHashMap$_empty(type$.SimpleSelector, type$.Map_ComplexSelector_Extension) : t2;
+							t1.$indexSet(0, target, P.LinkedHashMap_LinkedHashMap$of(newSources, t4, t5));
 						}
 					} else
 						newSources.forEach$1(0, new X.ExtensionStore_addExtensions__closure1(_this._box_0, existingSources, extensionsForTarget, selectorsForTarget, target));
 				},
-				$signature: 510
+				$signature: 508
 			};
 			X.ExtensionStore_addExtensions__closure1.prototype = {
 				call$2: function(extender, extension) {
 					var t2, _this = this,
 						t1 = _this.existingSources;
-					if (t1.containsKey$1(extender))
-						return;
-					t1.$indexSet(0, extender, extension);
+					if (t1.containsKey$1(extender)) {
+						t2 = t1.$index(0, extender);
+						t2.toString;
+						extension = A.MergedExtension_merge(t2, extension);
+						t1.$indexSet(0, extender, extension);
+					} else
+						t1.$indexSet(0, extender, extension);
 					if (_this.extensionsForTarget != null || _this.selectorsForTarget != null) {
 						t1 = _this._box_0;
 						t2 = t1.newExtensions;
 						t1 = t2 == null ? t1.newExtensions = P.LinkedHashMap_LinkedHashMap$_empty(type$.SimpleSelector, type$.Map_ComplexSelector_Extension) : t2;
-						t1.putIfAbsent$2(_this.target, new X.ExtensionStore_addExtensions___closure()).putIfAbsent$2(extender, new X.ExtensionStore_addExtensions___closure0(extension));
+						J.$indexSet$ax(t1.putIfAbsent$2(_this.target, new X.ExtensionStore_addExtensions___closure()), extender, extension);
 					}
 				},
-				$signature: 507
+				$signature: 505
 			};
 			X.ExtensionStore_addExtensions___closure.prototype = {
 				call$0: function() {
 					return P.LinkedHashMap_LinkedHashMap$_empty(type$.ComplexSelector, type$.Extension);
 				},
 				$signature: 102
-			};
-			X.ExtensionStore_addExtensions___closure0.prototype = {
-				call$0: function() {
-					return this.extension;
-				},
-				$signature: 500
 			};
 			X.ExtensionStore_addExtensions_closure0.prototype = {
 				call$1: function(newExtensions) {
@@ -42235,19 +42322,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					X.NullableExtension_andThen(t1.extensionsToExtend, new X.ExtensionStore_addExtensions__closure(t2, newExtensions));
 					X.NullableExtension_andThen(t1.selectorsToExtend, new X.ExtensionStore_addExtensions__closure0(t2, newExtensions));
 				},
-				$signature: 499
+				$signature: 498
 			};
 			X.ExtensionStore_addExtensions__closure.prototype = {
 				call$1: function(extensionsToExtend) {
 					return this.$this._extendExistingExtensions$2(extensionsToExtend, this.newExtensions);
 				},
-				$signature: 495
+				$signature: 497
 			};
 			X.ExtensionStore_addExtensions__closure0.prototype = {
 				call$1: function(selectorsToExtend) {
 					return this.$this._extendExistingSelectors$2(selectorsToExtend, this.newExtensions);
 				},
-				$signature: 484
+				$signature: 493
 			};
 			X.ExtensionStore__extendComplex_closure.prototype = {
 				call$1: function(component) {
@@ -42260,13 +42347,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = Y.weave(J.map$1$1$ax(path, new X.ExtensionStore__extendComplex__closure(), type$.List_ComplexSelectorComponent).toList$0(0));
 					return new H.MappedListIterable(t1, new X.ExtensionStore__extendComplex__closure0(this._box_0, this.$this, this.complex, path), H._arrayInstanceType(t1)._eval$1("MappedListIterable<1,ComplexSelector>"));
 				},
-				$signature: 470
+				$signature: 480
 			};
 			X.ExtensionStore__extendComplex__closure.prototype = {
 				call$1: function(complex) {
 					return complex.components;
 				},
-				$signature: 467
+				$signature: 468
 			};
 			X.ExtensionStore__extendComplex__closure0.prototype = {
 				call$1: function(components) {
@@ -42292,7 +42379,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					extender.assertCompatibleMediaContext$1(this.mediaQueryContext);
 					return extender.selector;
 				},
-				$signature: 455
+				$signature: 465
 			};
 			X.ExtensionStore__extendCompound_closure0.prototype = {
 				call$1: function(path) {
@@ -42327,13 +42414,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = J.map$1$1$ax(complexes, new X.ExtensionStore__extendCompound__closure0(_box_0), type$.ComplexSelector);
 					return P.List_List$of(t1, true, t1.$ti._eval$1("ListIterable.E"));
 				},
-				$signature: 454
+				$signature: 453
 			};
 			X.ExtensionStore__extendCompound__closure.prototype = {
 				call$1: function(extender) {
 					return type$.CompoundSelector._as(C.JSArray_methods.get$last(extender.selector.components)).components;
 				},
-				$signature: 450
+				$signature: 452
 			};
 			X.ExtensionStore__extendCompound__closure0.prototype = {
 				call$1: function(components) {
@@ -42345,7 +42432,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(l) {
 					return l;
 				},
-				$signature: 446
+				$signature: 448
 			};
 			X.ExtensionStore__extendCompound_closure2.prototype = {
 				call$1: function(_) {
@@ -42377,20 +42464,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1.push(t2.get$current(t2).extender);
 					return t1;
 				},
-				$signature: 443
+				$signature: 444
 			};
 			X.ExtensionStore__extendSimple_closure.prototype = {
 				call$1: function(pseudo) {
 					var t1 = this.withoutPseudo.call$1(pseudo);
 					return t1 == null ? H.setRuntimeTypeInfo([this.$this._extenderForSimple$2(pseudo, this.simpleSpan)], type$.JSArray_Extender) : t1;
 				},
-				$signature: 432
+				$signature: 441
 			};
 			X.ExtensionStore__extendSimple_closure0.prototype = {
 				call$1: function(result) {
 					return H.setRuntimeTypeInfo([result], type$.JSArray_List_Extender);
 				},
-				$signature: 421
+				$signature: 430
 			};
 			X.ExtensionStore__extendPseudo_closure.prototype = {
 				call$1: function(complex) {
@@ -42461,7 +42548,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.pseudo;
 					return D.PseudoSelector$(t1.name, t1.argument, !t1.isClass, D.SelectorList$(H.setRuntimeTypeInfo([complex], type$.JSArray_ComplexSelector)));
 				},
-				$signature: 413
+				$signature: 419
 			};
 			X.ExtensionStore__trim_closure.prototype = {
 				call$1: function(complex2) {
@@ -42491,14 +42578,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							t5.$indexSet(0, newSelector, mediaContext);
 					}
 				},
-				$signature: 411
+				$signature: 412
 			};
 			Y.unifyComplex_closure.prototype = {
 				call$1: function(complex) {
 					var t1 = J.getInterceptor$asx(complex);
 					return t1.sublist$2(complex, 0, t1.get$length(complex) - 1);
 				},
-				$signature: 108
+				$signature: 107
 			};
 			Y._weaveParents_closure.prototype = {
 				call$2: function(group1, group2) {
@@ -42521,7 +42608,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return _null;
 					return t1.get$first(unified);
 				},
-				$signature: 401
+				$signature: 410
 			};
 			Y._weaveParents_closure0.prototype = {
 				call$1: function(sequence) {
@@ -42533,37 +42620,37 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(chunk) {
 					return J.expand$1$1$ax(chunk, new Y._weaveParents__closure1(), type$.ComplexSelectorComponent);
 				},
-				$signature: 157
+				$signature: 159
 			};
 			Y._weaveParents__closure1.prototype = {
 				call$1: function(group) {
 					return group;
 				},
-				$signature: 108
+				$signature: 107
 			};
 			Y._weaveParents_closure2.prototype = {
 				call$1: function(sequence) {
 					return sequence.get$length(sequence) === 0;
 				},
-				$signature: 156
+				$signature: 157
 			};
 			Y._weaveParents_closure3.prototype = {
 				call$1: function(chunk) {
 					return J.expand$1$1$ax(chunk, new Y._weaveParents__closure0(), type$.ComplexSelectorComponent);
 				},
-				$signature: 157
+				$signature: 159
 			};
 			Y._weaveParents__closure0.prototype = {
 				call$1: function(group) {
 					return group;
 				},
-				$signature: 108
+				$signature: 107
 			};
 			Y._weaveParents_closure4.prototype = {
 				call$1: function(choice) {
 					return J.get$isNotEmpty$asx(choice);
 				},
-				$signature: 396
+				$signature: 399
 			};
 			Y._weaveParents_closure5.prototype = {
 				call$1: function(path) {
@@ -42576,7 +42663,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(group) {
 					return group;
 				},
-				$signature: 392
+				$signature: 394
 			};
 			Y._mustUnify_closure.prototype = {
 				call$1: function(component) {
@@ -42775,19 +42862,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(pseudo) {
 					return pseudo.isClass === this.isClass && pseudo.name === this.name;
 				},
-				$signature: 388
+				$signature: 390
 			};
 			Y._selectorPseudoArgs_closure0.prototype = {
 				call$1: function(pseudo) {
 					return pseudo.selector;
 				},
-				$signature: 386
+				$signature: 387
 			};
 			A.MergedExtension.prototype = {
 				unmerge$0: function() {
 					var $async$self = this;
 					return P._makeSyncStarIterable(function() {
-						var $async$goto = 0, $async$handler = 1, $async$currentError, left;
+						var $async$goto = 0, $async$handler = 1, $async$currentError, right, left;
 						return function $async$unmerge$0($async$errorCode, $async$result) {
 							if ($async$errorCode === 1) {
 								$async$currentError = $async$result;
@@ -42817,10 +42904,26 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 										// after yield
 									case 3:
 										// join
-										$async$goto = 7;
-										return $async$self.right;
+										right = $async$self.right;
+										$async$goto = right instanceof A.MergedExtension ? 7 : 9;
+										break;
 									case 7:
+										// then
+										$async$goto = 10;
+										return P._IterationMarker_yieldStar(right.unmerge$0());
+									case 10:
 										// after yield
+										// goto join
+										$async$goto = 8;
+										break;
+									case 9:
+										// else
+										$async$goto = 11;
+										return right;
+									case 11:
+										// after yield
+									case 8:
+										// join
 										// implicit return
 										return P._IterationMarker_endOfIteration();
 									case 1:
@@ -43294,7 +43397,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$3$assertPercent: function($name, max, assertPercent) {
 					return this.call$4$assertPercent$checkPercent($name, max, assertPercent, false);
 				},
-				$signature: 144
+				$signature: 143
 			};
 			K._updateComponents_closure.prototype = {
 				call$1: function($name) {
@@ -43314,19 +43417,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = param > 0 ? max - current : current;
 					return current + t1 * (param / 100);
 				},
-				$signature: 168
+				$signature: 144
 			};
 			K._updateComponents_updateRgb.prototype = {
 				call$2: function(current, param) {
 					return T.fuzzyRound(this.updateValue.call$3(current, param, 255));
 				},
-				$signature: 146
+				$signature: 214
 			};
 			K._functionString_closure.prototype = {
 				call$1: function(argument) {
 					return N.serializeValue0(argument, false, true);
 				},
-				$signature: 379
+				$signature: 381
 			};
 			K._removedColorFunction_closure.prototype = {
 				call$1: function($arguments) {
@@ -43335,7 +43438,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t3 = "The function " + t1 + string$.x28__isn + H.S(t2.$index($arguments, 0)) + ", $" + this.argument + ": ";
 					throw H.wrapException(E.SassScriptException$(t3 + (this.negative ? "-" : "") + H.S(t2.$index($arguments, 1)) + string$.x29x0a_Mor + t1));
 				},
-				$signature: 373
+				$signature: 378
 			};
 			K._rgb_closure.prototype = {
 				call$1: function(alpha) {
@@ -43481,7 +43584,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(list) {
 					return list.get$asList();
 				},
-				$signature: 367
+				$signature: 372
 			};
 			D._zip__closure0.prototype = {
 				call$1: function(list) {
@@ -43639,7 +43742,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return new A.SassMap(H.ConstantMap_ConstantMap$from(t2, t1, t1));
 				},
-				$signature: 362
+				$signature: 363
 			};
 			A._deepMerge_closure.prototype = {
 				call$1: function($arguments) {
@@ -43745,7 +43848,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					mutableMap.$indexSet(0, key, _this.call$1(t2 ? C.SassMap_Map_empty : nestedMap));
 					return new A.SassMap(H.ConstantMap_ConstantMap$from(mutableMap, t1, t1));
 				},
-				$signature: 359
+				$signature: 361
 			};
 			A._deepMergeImpl__ensureMutable.prototype = {
 				call$0: function() {
@@ -43843,7 +43946,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return Math.abs(value);
 				},
-				$signature: 94
+				$signature: 81
 			};
 			K._hypot_closure.prototype = {
 				call$1: function($arguments) {
@@ -44166,13 +44269,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1.first = false;
 					return result;
 				},
-				$signature: 162
+				$signature: 161
 			};
 			T._nest__closure0.prototype = {
 				call$2: function($parent, child) {
 					return child.resolveParentSelectors$1($parent);
 				},
-				$signature: 163
+				$signature: 162
 			};
 			T._append_closure.prototype = {
 				call$1: function($arguments) {
@@ -44187,14 +44290,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(selector) {
 					return selector.assertSelector$0();
 				},
-				$signature: 162
+				$signature: 161
 			};
 			T._append__closure0.prototype = {
 				call$2: function($parent, child) {
 					var t1 = child.components;
 					return D.SelectorList$(new H.MappedListIterable(t1, new T._append___closure($parent), H._arrayInstanceType(t1)._eval$1("MappedListIterable<1,ComplexSelector>"))).resolveParentSelectors$1($parent);
 				},
-				$signature: 163
+				$signature: 162
 			};
 			T._append___closure.prototype = {
 				call$1: function(complex) {
@@ -44211,7 +44314,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					} else
 						throw H.wrapException(E.SassScriptException$("Can't append " + complex.toString$0(0) + " to " + this.parent.toString$0(0) + "."));
 				},
-				$signature: 115
+				$signature: 124
 			};
 			T._extend_closure.prototype = {
 				call$1: function($arguments) {
@@ -44444,7 +44547,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return null;
 				},
-				$signature: 125
+				$signature: 127
 			};
 			R.ImportCache__canonicalize_closure.prototype = {
 				call$0: function() {
@@ -44452,7 +44555,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 166
+				$signature: 165
 			};
 			R.ImportCache_importCanonical_closure.prototype = {
 				call$0: function() {
@@ -44472,13 +44575,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(tuple) {
 					return tuple.item2.$eq(0, this.canonicalUrl);
 				},
-				$signature: 346
+				$signature: 348
 			};
 			R.ImportCache_humanize_closure0.prototype = {
 				call$1: function(tuple) {
 					return tuple.item3;
 				},
-				$signature: 239
+				$signature: 345
 			};
 			R.ImportCache_humanize_closure1.prototype = {
 				call$1: function(url) {
@@ -44550,7 +44653,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t2.toUri$1(t1);
 				},
-				$signature: 170
+				$signature: 169
 			};
 			E.ImporterResult.prototype = {
 				get$sourceMapUrl: function() {
@@ -44561,19 +44664,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return B._exactlyOne(B._tryPath($.$get$context().withoutExtension$1(this.path) + ".import" + this.extension));
 				},
-				$signature: 39
+				$signature: 42
 			};
 			B.resolveImportPath_closure0.prototype = {
 				call$0: function() {
 					return B._exactlyOne(B._tryPathWithExtensions(this.path + ".import"));
 				},
-				$signature: 39
+				$signature: 42
 			};
 			B._tryPathAsDirectory_closure.prototype = {
 				call$0: function() {
 					return B._exactlyOne(B._tryPathWithExtensions(D.join(this.path, "index.import", null)));
 				},
-				$signature: 39
+				$signature: 42
 			};
 			B._exactlyOne_closure.prototype = {
 				call$1: function(path) {
@@ -44685,7 +44788,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			};
 			B._readFile_closure.prototype = {
 				call$0: function() {
-					/*DSH- return J.readFileSync$2$x(D.fs(), this.path, this.encoding); */
+					/*DSH-
+					return J.readFileSync$2$x(D.fs(), this.path, this.encoding);
+					*/
 					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
 
 					return fileManager.ReadFile(path); //DSH+
@@ -44694,14 +44799,18 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			};
 			B.writeFile_closure.prototype = {
 				call$0: function() {
-					/*DSH- return J.writeFileSync$2$x(D.fs(), this.path, this.contents);*/
+					/*DSH-
+					return J.writeFileSync$2$x(D.fs(), this.path, this.contents);
+					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "writeFile_closure")); //DSH+
 				},
 				$signature: 0
 			};
 			B.deleteFile_closure.prototype = {
 				call$0: function() {
-					/*DSH- return J.unlinkSync$1$x(D.fs(), this.path);*/
+					/*DSH-
+					return J.unlinkSync$1$x(D.fs(), this.path);
+					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "deleteFile_closure")); //DSH+
 				},
 				$signature: 0
@@ -44711,7 +44820,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					this._box_0.contents = result;
 					this.completer.complete$1(result);
 				},
-				$signature: 124
+				$signature: 122
 			};
 			B.readStdin_closure0.prototype = {
 				call$1: function(chunk) {
@@ -44725,7 +44834,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 87
+				$signature: 90
 			};
 			B.readStdin_closure1.prototype = {
 				call$1: function(_) {
@@ -44739,7 +44848,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 87
+				$signature: 90
 			};
 			B.readStdin_closure2.prototype = {
 				call$1: function(e) {
@@ -44757,7 +44866,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 87
+				$signature: 90
 			};
 			B.fileExists_closure.prototype = {
 				call$0: function() {
@@ -44838,13 +44947,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure")); //DSH+
 				},
-				$signature: 238
+				$signature: 174
 			};
 			B.listDir__closure.prototype = {
 				call$1: function(child) {
 					return D.join(this.path, H._asString(child), null);
 				},
-				$signature: 61
+				$signature: 79
 			};
 			B.listDir__closure0.prototype = {
 				call$1: function(child) {
@@ -44856,14 +44965,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($parent) {
 					return J.expand$1$1$ax(J.readdirSync$1$x(D.fs(), $parent), new B.listDir__list_closure($parent, this), type$.String);
 				},
-				$signature: 176
+				$signature: 238
 			};
 			B.listDir__list_closure.prototype = {
 				call$1: function(child) {
 					var path = D.join(this.parent, H._asString(child), null);
 					return B.dirExists(path) ? this.list.call$1(path) : H.setRuntimeTypeInfo([path], type$.JSArray_String);
 				},
-				$signature: 177
+				$signature: 176
 			};
 			B.modificationTime_closure.prototype = {
 				call$0: function() {
@@ -44881,7 +44990,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "modificationTime_closure")); //DSH+
 				},
-				$signature: 178
+				$signature: 177
 			};
 			/*DSH-
 			B.watchDir_closure.prototype = {
@@ -44896,7 +45005,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 179
+				$signature: 178
 			};
 			B.watchDir_closure0.prototype = {
 				call$2: function(path, _) {
@@ -44910,14 +45019,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 179
+				$signature: 178
 			};
 			B.watchDir_closure1.prototype = {
 				call$1: function(path) {
 					var t1 = this._box_0.controller;
 					return t1 == null ? null : t1.add$1(0, new E.WatchEvent(C.ChangeType_remove, path));
 				},
-				$signature: 124
+				$signature: 122
 			};
 			B.watchDir_closure2.prototype = {
 				call$1: function(error) {
@@ -45075,13 +45184,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(count) {
 					return count > 5;
 				},
-				$signature: 51
+				$signature: 52
 			};
 			Y.TerseLogger_summarize_closure0.prototype = {
 				call$1: function(count) {
 					return count - 5;
 				},
-				$signature: 182
+				$signature: 181
 			};
 			T.TrackingLogger.prototype = {
 				warn$4$deprecation$span$trace: function(_, message, deprecation, span, trace) {
@@ -45344,7 +45453,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.expectDone$0();
 					return new V.AtRootQuery(include, atRules, atRules.contains$1(0, "all"), atRules.contains$1(0, "rule"));
 				},
-				$signature: 120
+				$signature: 119
 			};
 			Q._disallowedFunctionNames_closure.prototype = {
 				call$1: function($function) {
@@ -45438,7 +45547,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t3 = X.Interpolation$(H.setRuntimeTypeInfo([new D.StringExpression(identifier, false)], type$.JSArray_Object), identifier.span);
 					t2 = t1.spanFrom$1(new S._SpanScannerState(t1, t2));
 					t4 = type$.Expression;
-					return new F.FunctionExpression(null, t3, new X.ArgumentInvocation(P.List_List$unmodifiable($arguments, t4), H.ConstantMap_ConstantMap$from(C.Map_empty2, type$.String, t4), null, null, t2), t1.spanFrom$1(start));
+					return new N.InterpolatedFunctionExpression(t3, new X.ArgumentInvocation(P.List_List$unmodifiable($arguments, t4), H.ConstantMap_ConstantMap$from(C.Map_empty2, type$.String, t4), null, null, t2), t1.spanFrom$1(start));
 				}
 			};
 			E.KeyframeSelectorParser.prototype = {
@@ -45507,7 +45616,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.expectDone$0();
 					return selectors;
 				},
-				$signature: 44
+				$signature: 45
 			};
 			F.MediaQueryParser.prototype = {
 				parse$0: function() {
@@ -45566,7 +45675,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.expectDone$0();
 					return queries;
 				},
-				$signature: 119
+				$signature: 117
 			};
 			G.Parser.prototype = {
 				_parseIdentifier$0: function() {
@@ -45770,7 +45879,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t1.readChar$0();
 								t1.readChar$0();
 							} else
-								buffer._contents += H.Primitives_stringFromCharCode(this.escapeCharacter$0());
+								buffer._contents += H.Primitives_stringFromCharCode(B.consumeEscapedCharacter(t1));
 						} else
 							buffer._contents += H.Primitives_stringFromCharCode(t1.readChar$0());
 					}
@@ -45913,6 +46022,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						next = t1.peekChar$0();
 						if (next == null)
 							break;
+						else if (next === 92)
+							buffer._contents += H.S(_this.escape$0());
 						else {
 							if (next !== 37)
 								if (next !== 38)
@@ -45926,8 +46037,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t2 = true;
 							if (t2)
 								buffer._contents += H.Primitives_stringFromCharCode(t1.readChar$0());
-							else if (next === 92)
-								buffer._contents += H.S(_this.escape$0());
 							else if (next === 32 || next === 9 || next === 10 || next === 13 || next === 12) {
 								_this.whitespace$0();
 								if (t1.peekChar$0() !== 41)
@@ -45948,15 +46057,16 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				escape$1$identifierStart: function(identifierStart) {
 					var value, first, i, next, t2, exception,
+						_s25_ = "Expected escape sequence.",
 						t1 = this.scanner,
 						start = t1._string_scanner$_position;
 					t1.expectChar$1(92);
 					value = 0;
 					first = t1.peekChar$0();
 					if (first == null)
-						return "";
+						t1.error$1(0, _s25_);
 					else if (first === 10 || first === 13 || first === 12)
-						t1.error$1(0, "Expected escape sequence.");
+						t1.error$1(0, _s25_);
 					else if (T.isHex(first)) {
 						for (i = 0; i < 6; ++i) {
 							next = t1.peekChar$0();
@@ -46006,36 +46116,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				escape$0: function() {
 					return this.escape$1$identifierStart(false);
 				},
-				escapeCharacter$0: function() {
-					var first, value, i, next, t2,
-						t1 = this.scanner;
-					t1.expectChar$1(92);
-					first = t1.peekChar$0();
-					if (first == null)
-						return 65533;
-					else if (first === 10 || first === 13 || first === 12)
-						t1.error$1(0, "Expected escape sequence.");
-					else if (T.isHex(first)) {
-						for (value = 0, i = 0; i < 6; ++i) {
-							next = t1.peekChar$0();
-							if (next == null || !T.isHex(next))
-								break;
-							value = (value << 4 >>> 0) + T.asHex(t1.readChar$0());
-						}
-						t2 = t1.peekChar$0();
-						if (t2 === 32 || t2 === 9 || t2 === 10 || t2 === 13 || t2 === 12)
-							t1.readChar$0();
-						if (value !== 0)
-							t1 = value >= 55296 && value <= 57343 || value >= 1114111;
-						else
-							t1 = true;
-						if (t1)
-							return 65533;
-						else
-							return value;
-					} else
-						return t1.readChar$0();
-				},
 				scanCharIf$1: function(condition) {
 					var t1 = this.scanner;
 					if (!condition.call$1(t1.peekChar$0()))
@@ -46053,7 +46133,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return true;
 					} else if (next === 92) {
 						t3 = t2._string_scanner$_position;
-						if (t1.call$1(this.escapeCharacter$0()))
+						if (t1.call$1(B.consumeEscapedCharacter(t2)))
 							return true;
 						t2.set$state(new S._SpanScannerState(t2, t3));
 					}
@@ -46250,7 +46330,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.char;
 					return this.caseSensitive ? actual === t1 : T.characterEqualsIgnoreCase(t1, actual);
 				},
-				$signature: 51
+				$signature: 52
 			};
 			U.SassParser.prototype = {
 				get$currentIndentation: function() {
@@ -46700,7 +46780,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._nextIndentation0 = t1;
 				},
-				$signature: 92
+				$signature: 94
 			};
 			U.SassParser__peekIndentation__containsTab_get.prototype = {
 				call$0: function() {
@@ -47243,7 +47323,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1.error$1(0, "expected selector.");
 					return selector;
 				},
-				$signature: 43
+				$signature: 44
 			};
 			T.SelectorParser_parseCompoundSelector_closure.prototype = {
 				call$0: function() {
@@ -49204,7 +49284,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								if (second === 13)
 									t1.scanChar$1(10);
 							} else
-								t3._contents += H.Primitives_stringFromCharCode(this.escapeCharacter$0());
+								t3._contents += H.Primitives_stringFromCharCode(B.consumeEscapedCharacter(t1));
 						} else if (next === 35)
 							if (t1.peekChar$1(1) === 123) {
 								t5 = this.singleInterpolation$0();
@@ -49225,7 +49305,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						plain = identifier.get$asPlain(),
 						t2 = plain == null;
 					if (!t2) {
-						if (plain === "if") {
+						if (plain === "if" && t1.peekChar$0() === 40) {
 							invocation = _this._argumentInvocation$0();
 							return new L.IfExpression(invocation, identifier.span.expand$1(0, invocation.span));
 						} else if (plain === "not") {
@@ -49266,10 +49346,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								_this._assertPublic$2($name, new V.StylesheetParser_identifierLike_closure(_this, start));
 								return new S.VariableExpression(plain, $name, t1.spanFrom$1(start));
 							}
-							t2 = t1._string_scanner$_position;
-							return new F.FunctionExpression(plain, X.Interpolation$(H.setRuntimeTypeInfo([_this._publicIdentifier$0()], type$.JSArray_Object), t1.spanFrom$1(new S._SpanScannerState(t1, t2))), _this._argumentInvocation$0(), t1.spanFrom$1(start));
+							return new F.FunctionExpression(plain, _this._publicIdentifier$0(), _this._argumentInvocation$0(), t1.spanFrom$1(start));
 						case 40:
-							return new F.FunctionExpression(null, identifier, _this._argumentInvocation$0(), t1.spanFrom$1(start));
+							if (t2)
+								return new N.InterpolatedFunctionExpression(identifier, _this._argumentInvocation$0(), t1.spanFrom$1(start));
+							else
+								return new F.FunctionExpression(null, plain, _this._argumentInvocation$0(), t1.spanFrom$1(start));
 						default:
 							return new D.StringExpression(identifier, false);
 					}
@@ -49366,6 +49448,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							case 55:
 							case 56:
 							case 57:
+							case 46:
 								try {
 									start = t1._string_scanner$_position;
 									t4.call$0();
@@ -49496,6 +49579,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						next = t1.peekChar$0();
 						if (next == null)
 							break;
+						else if (next === 92)
+							t3._contents += H.S(_this.escape$0());
 						else {
 							if (next !== 33)
 								if (next !== 37)
@@ -49509,8 +49594,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t5 = true;
 							if (t5)
 								t3._contents += H.Primitives_stringFromCharCode(t1.readChar$0());
-							else if (next === 92)
-								t3._contents += H.S(_this.escape$0());
 							else if (next === 35)
 								if (t1.peekChar$1(1) === 123) {
 									t5 = _this.singleInterpolation$0();
@@ -49560,7 +49643,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					contents = _this._tryUrlContents$1(start);
 					if (contents != null)
 						return new D.StringExpression(contents, false);
-					return new F.FunctionExpression(null, X.Interpolation$(H.setRuntimeTypeInfo(["url"], type$.JSArray_Object), t1.spanFrom$1(start)), _this._argumentInvocation$0(), t1.spanFrom$1(start));
+					return new N.InterpolatedFunctionExpression(X.Interpolation$(H.setRuntimeTypeInfo(["url"], type$.JSArray_Object), t1.spanFrom$1(start)), _this._argumentInvocation$0(), t1.spanFrom$1(start));
 				},
 				almostAnyValue$1$omitComments: function(omitComments) {
 					var t4, t5, t6, next, commentStart, end, t7, contents, _this = this,
@@ -50257,7 +50340,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t1._statement$1$root(true);
 				},
-				$signature: 316
+				$signature: 319
 			};
 			V.StylesheetParser_parse__closure0.prototype = {
 				call$1: function(declaration) {
@@ -50279,14 +50362,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.expectChar$1(123);
 					return $arguments;
 				},
-				$signature: 312
+				$signature: 314
 			};
 			V.StylesheetParser_parseVariableDeclaration_closure.prototype = {
 				call$0: function() {
 					var t1 = this.$this;
 					return t1.lookingAtIdentifier$0() ? t1._variableDeclarationWithNamespace$0() : t1.variableDeclarationWithoutNamespace$0();
 				},
-				$signature: 198
+				$signature: 197
 			};
 			V.StylesheetParser_parseUseRule_closure.prototype = {
 				call$0: function() {
@@ -50314,7 +50397,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.$this._statement$0();
 				},
-				$signature: 100
+				$signature: 114
 			};
 			V.StylesheetParser_variableDeclarationWithoutNamespace_closure.prototype = {
 				call$0: function() {
@@ -50326,19 +50409,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.declaration;
 				},
-				$signature: 198
+				$signature: 197
 			};
 			V.StylesheetParser__declarationOrBuffer_closure.prototype = {
 				call$2: function(children, span) {
 					return L.Declaration$nested(this.name, children, span, null);
 				},
-				$signature: 90
+				$signature: 92
 			};
 			V.StylesheetParser__declarationOrBuffer_closure0.prototype = {
 				call$2: function(children, span) {
 					return L.Declaration$nested(this.name, children, span, this._box_0.value);
 				},
-				$signature: 90
+				$signature: 92
 			};
 			V.StylesheetParser__styleRule_closure.prototype = {
 				call$2: function(children, span) {
@@ -50355,25 +50438,25 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(children, span) {
 					return L.Declaration$nested(this._box_0.name, children, span, null);
 				},
-				$signature: 90
+				$signature: 92
 			};
 			V.StylesheetParser__propertyOrVariableDeclaration_closure0.prototype = {
 				call$2: function(children, span) {
 					return L.Declaration$nested(this._box_0.name, children, span, this.value);
 				},
-				$signature: 90
+				$signature: 92
 			};
 			V.StylesheetParser__atRootRule_closure.prototype = {
 				call$2: function(children, span) {
 					return V.AtRootRule$(children, span, this.query);
 				},
-				$signature: 203
+				$signature: 202
 			};
 			V.StylesheetParser__atRootRule_closure0.prototype = {
 				call$2: function(children, span) {
 					return V.AtRootRule$(children, span, null);
 				},
-				$signature: 203
+				$signature: 202
 			};
 			V.StylesheetParser__eachRule_closure.prototype = {
 				call$2: function(children, span) {
@@ -50381,13 +50464,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_this.$this._inControlDirective = _this.wasInControlDirective;
 					return V.EachRule$(_this.variables, _this.list, children, span);
 				},
-				$signature: 302
+				$signature: 304
 			};
 			V.StylesheetParser__functionRule_closure.prototype = {
 				call$2: function(children, span) {
 					return M.FunctionRule$(this.name, this.$arguments, children, span, this.precedingComment);
 				},
-				$signature: 300
+				$signature: 301
 			};
 			V.StylesheetParser__forRule_closure.prototype = {
 				call$0: function() {
@@ -50412,7 +50495,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1.toString;
 					return B.ForRule$(_this.variable, _this.from, _this.to, children, span, t1);
 				},
-				$signature: 297
+				$signature: 299
 			};
 			V.StylesheetParser__memberList_closure.prototype = {
 				call$0: function() {
@@ -50428,13 +50511,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(children, span) {
 					return Y.ContentBlock$(this.contentArguments_, children, span);
 				},
-				$signature: 290
+				$signature: 296
 			};
 			V.StylesheetParser_mediaRule_closure.prototype = {
 				call$2: function(children, span) {
 					return G.MediaRule$(this.query, children, span);
 				},
-				$signature: 279
+				$signature: 289
 			};
 			V.StylesheetParser__mixinRule_closure.prototype = {
 				call$2: function(children, span) {
@@ -50442,7 +50525,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_this.$this._stylesheet$_inMixin = false;
 					return T.MixinRule$(_this.name, _this.$arguments, children, span, _this.precedingComment);
 				},
-				$signature: 276
+				$signature: 278
 			};
 			V.StylesheetParser_mozDocumentRule_closure.prototype = {
 				call$2: function(children, span) {
@@ -50451,26 +50534,26 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						_this.$this.logger.warn$3$deprecation$span(0, string$.x40_moz_, true, span);
 					return U.AtRule$(_this.name, span, children, _this.value);
 				},
-				$signature: 210
+				$signature: 209
 			};
 			V.StylesheetParser_supportsRule_closure.prototype = {
 				call$2: function(children, span) {
 					return B.SupportsRule$(this.condition, children, span);
 				},
-				$signature: 270
+				$signature: 275
 			};
 			V.StylesheetParser__whileRule_closure.prototype = {
 				call$2: function(children, span) {
 					this.$this._inControlDirective = this.wasInControlDirective;
 					return G.WhileRule$(this.condition, children, span);
 				},
-				$signature: 268
+				$signature: 269
 			};
 			V.StylesheetParser_unknownAtRule_closure.prototype = {
 				call$2: function(children, span) {
 					return U.AtRule$(this.name, span, children, this._box_0.value);
 				},
-				$signature: 210
+				$signature: 209
 			};
 			V.StylesheetParser_expression_resetState.prototype = {
 				call$0: function() {
@@ -50545,7 +50628,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(expression) {
 					return this.call$2$number(expression, false);
 				},
-				$signature: 266
+				$signature: 267
 			};
 			V.StylesheetParser_expression_addOperator.prototype = {
 				call$1: function(operator) {
@@ -50585,7 +50668,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.singleExpression_ = singleExpression_;
 					t2.allowSlash = t2.allowSlash && singleExpression_ instanceof T.NumberExpression;
 				},
-				$signature: 263
+				$signature: 265
 			};
 			V.StylesheetParser_expression_resolveSpaceExpressions.prototype = {
 				call$0: function() {
@@ -50800,14 +50883,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return latest;
 				},
-				$signature: 178
+				$signature: 177
 			};
 			M.StylesheetGraph__add_closure.prototype = {
 				call$0: function() {
 					var _this = this;
 					return _this.$this.importCache.canonicalize$3$baseImporter$baseUrl(_this.url, _this.baseImporter, _this.baseUrl);
 				},
-				$signature: 125
+				$signature: 127
 			};
 			M.StylesheetGraph_addCanonical_closure.prototype = {
 				call$0: function() {
@@ -50854,7 +50937,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var _this = this;
 					return _this.$this.importCache.canonicalize$4$baseImporter$baseUrl$forImport(_this.url, _this.baseImporter, _this.baseUrl, _this.forImport);
 				},
-				$signature: 125
+				$signature: 127
 			};
 			M.StylesheetGraph__nodeFor_closure0.prototype = {
 				call$0: function() {
@@ -51225,7 +51308,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t4 = t3 === 0 ? t4.prefixColumn : 0;
 					return new L.Entry(t1, V.SourceLocation$(t2.offset + this.prefixLength, t2.column + t4, t3 + t5, null), entry.identifierName);
 				},
-				$signature: 219
+				$signature: 218
 			};
 			R.UnprefixedMapView.prototype = {
 				get$keys: function(_) {
@@ -52247,13 +52330,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(num1, num2) {
 					return num1 + num2;
 				},
-				$signature: 48
+				$signature: 49
 			};
 			T.SassNumber_minus_closure.prototype = {
 				call$2: function(num1, num2) {
 					return num1 - num2;
 				},
-				$signature: 48
+				$signature: 49
 			};
 			T.SassNumber_multiplyUnits_closure.prototype = {
 				call$1: function(denominator) {
@@ -52315,7 +52398,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(multiplier, unit) {
 					return multiplier * this.$this.canonicalMultiplierForUnit$1(unit);
 				},
-				$signature: 222
+				$signature: 221
 			};
 			S.ComplexSassNumber.prototype = {
 				get$hasUnits: function() {
@@ -52422,13 +52505,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(factor) {
 					return new L.SingleUnitSassNumber(this.unit, this.$this.value * factor, null);
 				},
-				$signature: 254
+				$signature: 257
 			};
 			L.SingleUnitSassNumber__coerceValueToUnit_closure.prototype = {
 				call$1: function(factor) {
 					return this.$this.value * factor;
 				},
-				$signature: 94
+				$signature: 81
 			};
 			L.SingleUnitSassNumber_multiplyUnits_closure.prototype = {
 				call$1: function(denominator) {
@@ -55170,7 +55253,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				visitFunctionExpression$body$_EvaluateVisitor: function(node) {
 					var $async$goto = 0,
 						$async$completer = P._makeAsyncAwaitCompleter(type$.Value),
-						$async$returnValue, $async$self = this, oldInFunction, result, t1, t2, plainName, $async$temp1, $async$temp2;
+						$async$returnValue, $async$self = this, oldInFunction, result, t1, $function;
 					var $async$visitFunctionExpression$1 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
 						if ($async$errorCode === 1)
 							return P._asyncRethrow($async$result, $async$completer);
@@ -55179,29 +55262,18 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								case 0:
 									// Function start
 									t1 = {};
-									t2 = node.name;
-									plainName = t2.get$asPlain();
-									t1.$function = null;
-									$async$goto = (plainName != null ? t1.$function = $async$self._async_evaluate$_addExceptionSpan$2(node, new E._EvaluateVisitor_visitFunctionExpression_closure1($async$self, node, plainName)) : null) == null ? 3 : 4;
-									break;
-								case 3:
-									// then
-									if (node.namespace != null)
-										throw H.wrapException($async$self._async_evaluate$_exception$2("Undefined function.", node.span));
-									$async$temp1 = t1;
-									$async$temp2 = L;
-									$async$goto = 5;
-									return P._asyncAwait($async$self._async_evaluate$_performInterpolation$1(t2), $async$visitFunctionExpression$1);
-								case 5:
-									// returning from await.
-									$async$temp1.$function = new $async$temp2.PlainCssCallable($async$result);
-								case 4:
-									// join
+									$function = $async$self._async_evaluate$_addExceptionSpan$2(node, new E._EvaluateVisitor_visitFunctionExpression_closure1($async$self, node));
+									t1.$function = $function;
+									if ($function == null) {
+										if (node.namespace != null)
+											throw H.wrapException($async$self._async_evaluate$_exception$2("Undefined function.", node.span));
+										t1.$function = new L.PlainCssCallable(node.originalName);
+									}
 									oldInFunction = $async$self._async_evaluate$_inFunction;
 									$async$self._async_evaluate$_inFunction = true;
-									$async$goto = 6;
+									$async$goto = 3;
 									return P._asyncAwait($async$self._async_evaluate$_addErrorSpan$1$2(node, new E._EvaluateVisitor_visitFunctionExpression_closure2(t1, $async$self, node), type$.Value), $async$visitFunctionExpression$1);
-								case 6:
+								case 3:
 									// returning from await.
 									result = $async$result;
 									$async$self._async_evaluate$_inFunction = oldInFunction;
@@ -55215,6 +55287,44 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							}
 					});
 					return P._asyncStartSync($async$visitFunctionExpression$1, $async$completer);
+				},
+				visitInterpolatedFunctionExpression$1: function(node) {
+					return this.visitInterpolatedFunctionExpression$body$_EvaluateVisitor(node);
+				},
+				visitInterpolatedFunctionExpression$body$_EvaluateVisitor: function(node) {
+					var $async$goto = 0,
+						$async$completer = P._makeAsyncAwaitCompleter(type$.Value),
+						$async$returnValue, $async$self = this, result, t1, oldInFunction;
+					var $async$visitInterpolatedFunctionExpression$1 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
+						if ($async$errorCode === 1)
+							return P._asyncRethrow($async$result, $async$completer);
+						while (true)
+							switch ($async$goto) {
+								case 0:
+									// Function start
+									$async$goto = 3;
+									return P._asyncAwait($async$self._async_evaluate$_performInterpolation$1(node.name), $async$visitInterpolatedFunctionExpression$1);
+								case 3:
+									// returning from await.
+									t1 = $async$result;
+									oldInFunction = $async$self._async_evaluate$_inFunction;
+									$async$self._async_evaluate$_inFunction = true;
+									$async$goto = 4;
+									return P._asyncAwait($async$self._async_evaluate$_addErrorSpan$1$2(node, new E._EvaluateVisitor_visitInterpolatedFunctionExpression_closure0($async$self, node, new L.PlainCssCallable(t1)), type$.Value), $async$visitInterpolatedFunctionExpression$1);
+								case 4:
+									// returning from await.
+									result = $async$result;
+									$async$self._async_evaluate$_inFunction = oldInFunction;
+									$async$returnValue = result;
+									// goto return
+									$async$goto = 1;
+									break;
+								case 1:
+									// return
+									return P._asyncReturn($async$returnValue, $async$completer);
+							}
+					});
+					return P._asyncStartSync($async$visitInterpolatedFunctionExpression$1, $async$completer);
 				},
 				_async_evaluate$_getFunction$2$namespace: function($name, namespace) {
 					var local = this._async_evaluate$_environment.getFunction$2$namespace($name, namespace);
@@ -56798,7 +56908,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return new F.SassFunction(callable);
 					throw H.wrapException("Function not found: " + $name.toString$0(0));
 				},
-				$signature: 227
+				$signature: 226
 			};
 			E._EvaluateVisitor__closure4.prototype = {
 				call$0: function() {
@@ -56816,7 +56926,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$call$body$_EvaluateVisitor_closure0: function($arguments) {
 					var $async$goto = 0,
 						$async$completer = P._makeAsyncAwaitCompleter(type$.Value),
-						$async$returnValue, $async$self = this, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, invocation, t1, $function, args;
+						$async$returnValue, $async$self = this, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, invocation, callableNode, t1, $function, args;
 					var $async$call$1 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
 						if ($async$errorCode === 1)
 							return P._asyncRethrow($async$result, $async$completer);
@@ -56854,10 +56964,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								case 3:
 									// then
 									N.warn(string$.Passin + $function.toString$0(0) + "))", true);
-									t2 = t1._async_evaluate$_callableNode;
-									t2.toString;
+									callableNode = t1._async_evaluate$_callableNode;
 									$async$goto = 5;
-									return P._asyncAwait(t1.visitFunctionExpression$1(new F.FunctionExpression(null, X.Interpolation$(H.setRuntimeTypeInfo([$function.text], type$.JSArray_Object), t2.get$span()), invocation, t2.get$span())), $async$call$1);
+									return P._asyncAwait(t1.visitFunctionExpression$1(new F.FunctionExpression(null, $function.text, invocation, callableNode.get$span())), $async$call$1);
 								case 5:
 									// returning from await.
 									$async$returnValue = $async$result;
@@ -56948,7 +57057,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.$this;
 					return t1._async_evaluate$_combineCss$2$clone(module, true).accept$1(t1);
 				},
-				$signature: 230
+				$signature: 229
 			};
 			E._EvaluateVisitor_run_closure0.prototype = {
 				call$0: function() {
@@ -57001,7 +57110,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 84
+				$signature: 87
 			};
 			E._EvaluateVisitor__loadModule_closure1.prototype = {
 				call$0: function() {
@@ -57120,20 +57229,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(previousLoad) {
 					return this.$this._async_evaluate$_multiSpanException$3(this.message, "new load", P.LinkedHashMap_LinkedHashMap$_literal([previousLoad.get$span(), "original load"], type$.FileSpan, type$.String));
 				},
-				$signature: 83
+				$signature: 84
 			};
 			E._EvaluateVisitor__execute__css_set0.prototype = {
 				call$1: function(t1) {
 					return this._box_0._css = t1;
 				},
-				$signature: 234
+				$signature: 233
 			};
 			E._EvaluateVisitor__execute__css_get0.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._css;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("css")) : t1;
 				},
-				$signature: 235
+				$signature: 234
 			};
 			E._EvaluateVisitor__execute_closure0.prototype = {
 				call$0: function() {
@@ -57218,7 +57327,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.cloneCss$0();
 				},
-				$signature: 345
+				$signature: 245
 			};
 			E._EvaluateVisitor__extendModules_closure1.prototype = {
 				call$1: function(target) {
@@ -57230,7 +57339,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return H.setRuntimeTypeInfo([], type$.JSArray_ExtensionStore);
 				},
-				$signature: 191
+				$signature: 236
 			};
 			E._EvaluateVisitor__topologicalModules_visitModule0.prototype = {
 				call$1: function(module) {
@@ -57242,14 +57351,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					this.sorted.addFirst$1(module);
 				},
-				$signature: 230
+				$signature: 229
 			};
 			E._EvaluateVisitor_visitAtRootRule_closure2.prototype = {
 				call$0: function() {
 					var t1 = S.SpanScanner$(this.resolved, null);
 					return new V.AtRootQueryParser(t1, this.$this._async_evaluate$_logger).parse$0();
 				},
-				$signature: 120
+				$signature: 119
 			};
 			E._EvaluateVisitor_visitAtRootRule_closure3.prototype = {
 				call$0: function() {
@@ -57433,7 +57542,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($parent) {
 					return type$.CssAtRule._is($parent);
 				},
-				$signature: 236
+				$signature: 191
 			};
 			E._EvaluateVisitor__scopeForAtRoot_closure10.prototype = {
 				call$1: function(callback) {
@@ -57539,7 +57648,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 240
+				$signature: 344
 			};
 			E._EvaluateVisitor_visitDeclaration_closure2.prototype = {
 				call$0: function() {
@@ -57610,26 +57719,26 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = this.$this;
 					return t1._async_evaluate$_handleReturn$2(this.node.children, new E._EvaluateVisitor_visitEachRule___closure0(t1));
 				},
-				$signature: 243
+				$signature: 242
 			};
 			E._EvaluateVisitor_visitEachRule___closure0.prototype = {
 				call$1: function(child) {
 					return child.accept$1(this.$this);
 				},
-				$signature: 81
+				$signature: 83
 			};
 			E._EvaluateVisitor_visitExtendRule_closure0.prototype = {
 				call$0: function() {
 					var t1 = this.targetText;
 					return D.SelectorList_SelectorList$parse(B.trimAscii(t1.get$value(t1), true), false, true, this.$this._async_evaluate$_logger);
 				},
-				$signature: 43
+				$signature: 44
 			};
 			E._EvaluateVisitor_visitAtRule_closure2.prototype = {
 				call$1: function(value) {
 					return this.$this._async_evaluate$_interpolationToValue$3$trim$warnForColor(value, true, true);
 				},
-				$signature: 245
+				$signature: 244
 			};
 			E._EvaluateVisitor_visitAtRule_closure3.prototype = {
 				call$0: function() {
@@ -57761,7 +57870,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 232
+				$signature: 235
 			};
 			E._EvaluateVisitor_visitForRule_closure5.prototype = {
 				call$0: function() {
@@ -57790,7 +57899,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 232
+				$signature: 235
 			};
 			E._EvaluateVisitor_visitForRule_closure6.prototype = {
 				call$0: function() {
@@ -57867,7 +57976,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(child) {
 					return child.accept$1(this.$this);
 				},
-				$signature: 81
+				$signature: 83
 			};
 			E._EvaluateVisitor_visitForwardRule_closure1.prototype = {
 				call$1: function(module) {
@@ -57892,7 +58001,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(child) {
 					return child.accept$1(this.$this);
 				},
-				$signature: 81
+				$signature: 83
 			};
 			E._EvaluateVisitor__visitDynamicImport_closure0.prototype = {
 				call$0: function() {
@@ -58004,20 +58113,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._children0 = t1;
 				},
-				$signature: 229
+				$signature: 230
 			};
 			E._EvaluateVisitor__visitDynamicImport__closure1.prototype = {
 				call$1: function(previousLoad) {
 					return this.$this._async_evaluate$_multiSpanException$3("This file is already being loaded.", "new load", P.LinkedHashMap_LinkedHashMap$_literal([previousLoad.get$span(), "original load"], type$.FileSpan, type$.String));
 				},
-				$signature: 83
+				$signature: 84
 			};
 			E._EvaluateVisitor__visitDynamicImport_closure__children_get0.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._children0;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("children")) : t1;
 				},
-				$signature: 225
+				$signature: 228
 			};
 			E._EvaluateVisitor__visitDynamicImport__closure2.prototype = {
 				call$0: function() {
@@ -58129,7 +58238,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 250
+				$signature: 249
 			};
 			E._EvaluateVisitor_visitIncludeRule_closure3.prototype = {
 				call$0: function() {
@@ -58150,7 +58259,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($content) {
 					return new E.UserDefinedCallable($content, this.$this._async_evaluate$_environment.closure$0(), type$.UserDefinedCallable_AsyncEnvironment);
 				},
-				$signature: 251
+				$signature: 250
 			};
 			E._EvaluateVisitor_visitIncludeRule_closure5.prototype = {
 				call$0: function() {
@@ -58262,7 +58371,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(mediaQueries) {
 					return this.$this._async_evaluate$_mergeMediaQueries$2(mediaQueries, this.queries);
 				},
-				$signature: 79
+				$signature: 80
 			};
 			E._EvaluateVisitor_visitMediaRule_closure3.prototype = {
 				call$0: function() {
@@ -58405,14 +58514,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = S.SpanScanner$(this.resolved, null);
 					return new F.MediaQueryParser(t1, this.$this._async_evaluate$_logger).parse$0();
 				},
-				$signature: 119
+				$signature: 117
 			};
 			E._EvaluateVisitor_visitStyleRule_closure6.prototype = {
 				call$0: function() {
 					var t1 = this.selectorText;
 					return E.KeyframeSelectorParser$(t1.get$value(t1), this.$this._async_evaluate$_logger).parse$0();
 				},
-				$signature: 44
+				$signature: 45
 			};
 			E._EvaluateVisitor_visitStyleRule_closure7.prototype = {
 				call$0: function() {
@@ -58467,7 +58576,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t2 = this.$this;
 					return D.SelectorList_SelectorList$parse(t1.get$value(t1), !t2._async_evaluate$_assertInModule$2(t2._async_evaluate$__stylesheet, _s11_).plainCss, !t2._async_evaluate$_assertInModule$2(t2._async_evaluate$__stylesheet, _s11_).plainCss, t2._async_evaluate$_logger);
 				},
-				$signature: 43
+				$signature: 44
 			};
 			E._EvaluateVisitor_visitStyleRule_closure10.prototype = {
 				call$0: function() {
@@ -58477,7 +58586,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t3 = t3 == null ? null : t3.originalSelector;
 					return t1.resolveParentSelectors$2$implicitParent(t3, !t2._async_evaluate$_atRootExcludingStyleRule);
 				},
-				$signature: 43
+				$signature: 44
 			};
 			E._EvaluateVisitor_visitStyleRule_closure11.prototype = {
 				call$0: function() {
@@ -58686,7 +58795,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.node.expression.accept$1(this.$this);
 				},
-				$signature: 74
+				$signature: 62
 			};
 			E._EvaluateVisitor_visitWhileRule_closure0.prototype = {
 				call$0: function() {
@@ -58745,7 +58854,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(child) {
 					return child.accept$1(this.$this);
 				},
-				$signature: 81
+				$signature: 83
 			};
 			E._EvaluateVisitor_visitBinaryOperationExpression_closure0.prototype = {
 				call$0: function() {
@@ -59030,7 +59139,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 74
+				$signature: 62
 			};
 			E._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation0.prototype = {
 				call$1: function(expression) {
@@ -59052,15 +59161,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(expression) {
 					return expression.accept$1(this.$this);
 				},
-				$signature: 255
+				$signature: 254
 			};
 			E._EvaluateVisitor_visitFunctionExpression_closure1.prototype = {
 				call$0: function() {
-					var t1 = this.node.namespace,
-						t2 = this.plainName;
-					if (t1 == null)
-						t2 = H.stringReplaceAllUnchecked(t2, "_", "-");
-					return this.$this._async_evaluate$_getFunction$2$namespace(t2, t1);
+					var t1 = this.node;
+					return this.$this._async_evaluate$_getFunction$2$namespace(H.stringReplaceAllUnchecked(t1.originalName, "_", "-"), t1.namespace);
 				},
 				$signature: 129
 			};
@@ -59069,7 +59175,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.node;
 					return this.$this._async_evaluate$_runFunctionCallable$3(t1.$arguments, this._box_0.$function, t1);
 				},
-				$signature: 74
+				$signature: 62
+			};
+			E._EvaluateVisitor_visitInterpolatedFunctionExpression_closure0.prototype = {
+				call$0: function() {
+					var t1 = this.node;
+					return this.$this._async_evaluate$_runFunctionCallable$3(t1.$arguments, this.$function, t1);
+				},
+				$signature: 62
 			};
 			E._EvaluateVisitor__runUserDefinedCallable_closure0.prototype = {
 				call$0: function() {
@@ -59261,7 +59374,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 74
+				$signature: 62
 			};
 			E._EvaluateVisitor__runBuiltInCallable_closure2.prototype = {
 				call$0: function() {
@@ -59275,7 +59388,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 256
+				$signature: 255
 			};
 			E._EvaluateVisitor__runBuiltInCallable_closure4.prototype = {
 				call$1: function($name) {
@@ -59314,13 +59427,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.ValueExpression(value, this.restArgs.get$span());
 				},
-				$signature: 52
+				$signature: 53
 			};
 			E._EvaluateVisitor__evaluateMacroArguments_closure4.prototype = {
 				call$1: function(value) {
 					return new F.ValueExpression(this.$this._async_evaluate$_withoutSlash$2(value, this.restNodeForSpan), this.restArgs.get$span());
 				},
-				$signature: 52
+				$signature: 53
 			};
 			E._EvaluateVisitor__evaluateMacroArguments_closure5.prototype = {
 				call$2: function(key, value) {
@@ -59333,7 +59446,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.ValueExpression(this.$this._async_evaluate$_withoutSlash$2(value, this.keywordRestNodeForSpan), this.keywordRestArgs.get$span());
 				},
-				$signature: 52
+				$signature: 53
 			};
 			E._EvaluateVisitor__addRestMap_closure0.prototype = {
 				call$2: function(key, value) {
@@ -59388,7 +59501,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 73
+				$signature: 74
 			};
 			E._EvaluateVisitor_visitCssAtRule_closure1.prototype = {
 				call$0: function() {
@@ -59480,7 +59593,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(mediaQueries) {
 					return this.$this._async_evaluate$_mergeMediaQueries$2(mediaQueries, this.node.queries);
 				},
-				$signature: 79
+				$signature: 80
 			};
 			E._EvaluateVisitor_visitCssMediaRule_closure3.prototype = {
 				call$0: function() {
@@ -59818,7 +59931,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 73
+				$signature: 74
 			};
 			E._EvaluateVisitor__serialize_closure0.prototype = {
 				call$0: function() {
@@ -59831,7 +59944,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.expression;
 					return this.$this._async_evaluate$_environment.getVariableNode$2$namespace(t1.name, t1.namespace);
 				},
-				$signature: 218
+				$signature: 219
 			};
 			E._EvaluateVisitor__withoutSlash_recommendation0.prototype = {
 				call$1: function(number) {
@@ -59849,13 +59962,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = t1 == null ? null : t1.humanize$1(url);
 					return t1 == null ? url : t1;
 				},
-				$signature: 70
+				$signature: 73
 			};
 			E._EvaluateVisitor__stackTrace_closure0.prototype = {
 				call$1: function(tuple) {
 					return this.$this._async_evaluate$_stackFrame$2(tuple.item1, tuple.item2.get$span());
 				},
-				$signature: 214
+				$signature: 215
 			};
 			E._ImportedCssVisitor0.prototype = {
 				visitCssAtRule$1: function(node) {
@@ -60909,17 +61022,25 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				visitFunctionExpression$1: function(node) {
 					var oldInFunction, result, _this = this, t1 = {},
-						t2 = node.name,
-						plainName = t2.get$asPlain();
-					t1.$function = null;
-					if ((plainName != null ? t1.$function = _this._addExceptionSpan$2(node, new R._EvaluateVisitor_visitFunctionExpression_closure(_this, node, plainName)) : null) == null) {
+						$function = _this._addExceptionSpan$2(node, new R._EvaluateVisitor_visitFunctionExpression_closure(_this, node));
+					t1.$function = $function;
+					if ($function == null) {
 						if (node.namespace != null)
 							throw H.wrapException(_this._evaluate$_exception$2("Undefined function.", node.span));
-						t1.$function = new L.PlainCssCallable(_this._performInterpolation$1(t2));
+						t1.$function = new L.PlainCssCallable(node.originalName);
 					}
 					oldInFunction = _this._inFunction;
 					_this._inFunction = true;
 					result = _this._addErrorSpan$2(node, new R._EvaluateVisitor_visitFunctionExpression_closure0(t1, _this, node));
+					_this._inFunction = oldInFunction;
+					return result;
+				},
+				visitInterpolatedFunctionExpression$1: function(node) {
+					var result, _this = this,
+						t1 = _this._performInterpolation$1(node.name),
+						oldInFunction = _this._inFunction;
+					_this._inFunction = true;
+					result = _this._addErrorSpan$2(node, new R._EvaluateVisitor_visitInterpolatedFunctionExpression_closure(_this, node, new L.PlainCssCallable(t1)));
 					_this._inFunction = oldInFunction;
 					return result;
 				},
@@ -61610,7 +61731,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return new F.SassFunction(callable);
 					throw H.wrapException("Function not found: " + $name.toString$0(0));
 				},
-				$signature: 227
+				$signature: 226
 			};
 			R._EvaluateVisitor__closure1.prototype = {
 				call$0: function() {
@@ -61619,11 +61740,11 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2 = t2 == null ? null : t2.text;
 					return this.$this._getFunction$2$namespace(t1, t2);
 				},
-				$signature: 128
+				$signature: 126
 			};
 			R._EvaluateVisitor_closure7.prototype = {
 				call$1: function($arguments) {
-					var t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, invocation, callable,
+					var t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, invocation, callableNode, callable,
 						t1 = J.getInterceptor$asx($arguments),
 						$function = t1.$index($arguments, 0),
 						args = type$.SassArgumentList._as(t1.$index($arguments, 1));
@@ -61651,9 +61772,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					invocation = new X.ArgumentInvocation(P.List_List$unmodifiable(t3, t5), H.ConstantMap_ConstantMap$from(P.LinkedHashMap_LinkedHashMap$_empty(t4, t5), t4, t5), new F.ValueExpression(args, t7), t2, t6);
 					if ($function instanceof D.SassString) {
 						N.warn(string$.Passin + $function.toString$0(0) + "))", true);
-						t2 = t1._callableNode;
-						t2.toString;
-						return t1.visitFunctionExpression$1(new F.FunctionExpression(null, X.Interpolation$(H.setRuntimeTypeInfo([$function.text], type$.JSArray_Object), t2.get$span()), invocation, t2.get$span()));
+						callableNode = t1._callableNode;
+						return t1.visitFunctionExpression$1(new F.FunctionExpression(null, $function.text, invocation, callableNode.get$span()));
 					}
 					callable = $function.assertFunction$1("function").callable;
 					if (type$.Callable._is(callable)) {
@@ -61685,7 +61805,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1._assertConfigurationIsEmpty$2$nameInError(configuration, true);
 					return null;
 				},
-				$signature: 267
+				$signature: 266
 			};
 			R._EvaluateVisitor__closure.prototype = {
 				call$2: function(variable, value) {
@@ -61703,7 +61823,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.$this;
 					return t1._combineCss$2$clone(module, true).accept$1(t1);
 				},
-				$signature: 63
+				$signature: 64
 			};
 			R._EvaluateVisitor_run_closure.prototype = {
 				call$0: function() {
@@ -61718,7 +61838,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2 = _this.$this;
 					return new E.EvaluateResult(t2._combineCss$1(t2._execute$2(_this.importer, t1)));
 				},
-				$signature: 269
+				$signature: 268
 			};
 			R._EvaluateVisitor_runExpression_closure.prototype = {
 				call$0: function() {
@@ -61726,13 +61846,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t2 = this.expression;
 					return t1._withFakeStylesheet$3(this.importer, t2, new R._EvaluateVisitor_runExpression__closure(t1, t2));
 				},
-				$signature: 45
+				$signature: 39
 			};
 			R._EvaluateVisitor_runExpression__closure.prototype = {
 				call$0: function() {
 					return this.expression.accept$1(this.$this);
 				},
-				$signature: 45
+				$signature: 39
 			};
 			R._EvaluateVisitor_runStatement_closure.prototype = {
 				call$0: function() {
@@ -61760,7 +61880,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 84
+				$signature: 87
 			};
 			R._EvaluateVisitor__loadModule_closure.prototype = {
 				call$0: function() {
@@ -61820,20 +61940,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(previousLoad) {
 					return this.$this._multiSpanException$3(this.message, "new load", P.LinkedHashMap_LinkedHashMap$_literal([previousLoad.get$span(), "original load"], type$.FileSpan, type$.String));
 				},
-				$signature: 83
+				$signature: 84
 			};
 			R._EvaluateVisitor__execute__css_set.prototype = {
 				call$1: function(t1) {
 					return this._box_0._css = t1;
 				},
-				$signature: 234
+				$signature: 233
 			};
 			R._EvaluateVisitor__execute__css_get.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._css;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("css")) : t1;
 				},
-				$signature: 235
+				$signature: 234
 			};
 			R._EvaluateVisitor__execute_closure.prototype = {
 				call$0: function() {
@@ -61889,7 +62009,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$transitivelyContainsCss();
 				},
-				$signature: 137
+				$signature: 140
 			};
 			R._EvaluateVisitor__combineCss_closure0.prototype = {
 				call$1: function(target) {
@@ -61901,7 +62021,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.cloneCss$0();
 				},
-				$signature: 271
+				$signature: 270
 			};
 			R._EvaluateVisitor__extendModules_closure.prototype = {
 				call$1: function(target) {
@@ -61913,7 +62033,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return H.setRuntimeTypeInfo([], type$.JSArray_ExtensionStore);
 				},
-				$signature: 191
+				$signature: 236
 			};
 			R._EvaluateVisitor__topologicalModules_visitModule.prototype = {
 				call$1: function(module) {
@@ -61925,14 +62045,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					this.sorted.addFirst$1(module);
 				},
-				$signature: 63
+				$signature: 64
 			};
 			R._EvaluateVisitor_visitAtRootRule_closure.prototype = {
 				call$0: function() {
 					var t1 = S.SpanScanner$(this.resolved, null);
 					return new V.AtRootQueryParser(t1, this.$this._evaluate$_logger).parse$0();
 				},
-				$signature: 120
+				$signature: 119
 			};
 			R._EvaluateVisitor_visitAtRootRule_closure0.prototype = {
 				call$0: function() {
@@ -61998,7 +62118,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($parent) {
 					return type$.CssAtRule._is($parent);
 				},
-				$signature: 236
+				$signature: 191
 			};
 			R._EvaluateVisitor__scopeForAtRoot_closure4.prototype = {
 				call$1: function(callback) {
@@ -62023,7 +62143,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.CssValue(value.accept$1(this.$this), value.get$span(), type$.CssValue_Value);
 				},
-				$signature: 272
+				$signature: 271
 			};
 			R._EvaluateVisitor_visitDeclaration_closure0.prototype = {
 				call$0: function() {
@@ -62062,25 +62182,25 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = this.$this;
 					return t1._handleReturn$2(this.node.children, new R._EvaluateVisitor_visitEachRule___closure(t1));
 				},
-				$signature: 273
+				$signature: 272
 			};
 			R._EvaluateVisitor_visitEachRule___closure.prototype = {
 				call$1: function(child) {
 					return child.accept$1(this.$this);
 				},
-				$signature: 66
+				$signature: 67
 			};
 			R._EvaluateVisitor_visitExtendRule_closure.prototype = {
 				call$0: function() {
 					return D.SelectorList_SelectorList$parse(B.trimAscii(this.targetText.value, true), false, true, this.$this._evaluate$_logger);
 				},
-				$signature: 43
+				$signature: 44
 			};
 			R._EvaluateVisitor_visitAtRule_closure.prototype = {
 				call$1: function(value) {
 					return this.$this._interpolationToValue$3$trim$warnForColor(value, true, true);
 				},
-				$signature: 275
+				$signature: 274
 			};
 			R._EvaluateVisitor_visitAtRule_closure0.prototype = {
 				call$0: function() {
@@ -62113,13 +62233,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.node.from.accept$1(this.$this).assertNumber$0();
 				},
-				$signature: 209
+				$signature: 210
 			};
 			R._EvaluateVisitor_visitForRule_closure0.prototype = {
 				call$0: function() {
 					return this.node.to.accept$1(this.$this).assertNumber$0();
 				},
-				$signature: 209
+				$signature: 210
 			};
 			R._EvaluateVisitor_visitForRule_closure1.prototype = {
 				call$0: function() {
@@ -62156,19 +62276,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(child) {
 					return child.accept$1(this.$this);
 				},
-				$signature: 66
+				$signature: 67
 			};
 			R._EvaluateVisitor_visitForwardRule_closure.prototype = {
 				call$1: function(module) {
 					this.$this._environment.forwardModule$2(module, this.node);
 				},
-				$signature: 63
+				$signature: 64
 			};
 			R._EvaluateVisitor_visitForwardRule_closure0.prototype = {
 				call$1: function(module) {
 					this.$this._environment.forwardModule$2(module, this.node);
 				},
-				$signature: 63
+				$signature: 64
 			};
 			R._EvaluateVisitor_visitIfRule_closure.prototype = {
 				call$0: function() {
@@ -62181,7 +62301,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(child) {
 					return child.accept$1(this.$this);
 				},
-				$signature: 66
+				$signature: 67
 			};
 			R._EvaluateVisitor__visitDynamicImport_closure.prototype = {
 				call$0: function() {
@@ -62250,20 +62370,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._children0 = t1;
 				},
-				$signature: 229
+				$signature: 230
 			};
 			R._EvaluateVisitor__visitDynamicImport__closure.prototype = {
 				call$1: function(previousLoad) {
 					return this.$this._multiSpanException$3("This file is already being loaded.", "new load", P.LinkedHashMap_LinkedHashMap$_literal([previousLoad.get$span(), "original load"], type$.FileSpan, type$.String));
 				},
-				$signature: 83
+				$signature: 84
 			};
 			R._EvaluateVisitor__visitDynamicImport_closure__children_get.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._children0;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("children")) : t1;
 				},
-				$signature: 225
+				$signature: 228
 			};
 			R._EvaluateVisitor__visitDynamicImport__closure0.prototype = {
 				call$0: function() {
@@ -62314,14 +62434,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						arg = X.NullableExtension_andThen(supports, t1.get$_visitSupportsCondition());
 					return new F.CssValue("supports(" + H.S(arg) + ")", supports.get$span(), type$.CssValue_String);
 				},
-				$signature: 277
+				$signature: 276
 			};
 			R._EvaluateVisitor_visitIncludeRule_closure.prototype = {
 				call$0: function() {
 					var t1 = this.node;
 					return this.$this._environment.getMixin$2$namespace(t1.name, t1.namespace);
 				},
-				$signature: 128
+				$signature: 126
 			};
 			R._EvaluateVisitor_visitIncludeRule_closure0.prototype = {
 				call$0: function() {
@@ -62335,7 +62455,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($content) {
 					return new E.UserDefinedCallable($content, this.$this._environment.closure$0(), type$.UserDefinedCallable_Environment);
 				},
-				$signature: 278
+				$signature: 277
 			};
 			R._EvaluateVisitor_visitIncludeRule_closure1.prototype = {
 				call$0: function() {
@@ -62380,7 +62500,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(mediaQueries) {
 					return this.$this._mergeMediaQueries$2(mediaQueries, this.queries);
 				},
-				$signature: 79
+				$signature: 80
 			};
 			R._EvaluateVisitor_visitMediaRule_closure0.prototype = {
 				call$0: function() {
@@ -62430,13 +62550,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = S.SpanScanner$(this.resolved, null);
 					return new F.MediaQueryParser(t1, this.$this._evaluate$_logger).parse$0();
 				},
-				$signature: 119
+				$signature: 117
 			};
 			R._EvaluateVisitor_visitStyleRule_closure.prototype = {
 				call$0: function() {
 					return E.KeyframeSelectorParser$(this.selectorText.value, this.$this._evaluate$_logger).parse$0();
 				},
-				$signature: 44
+				$signature: 45
 			};
 			R._EvaluateVisitor_visitStyleRule_closure0.prototype = {
 				call$0: function() {
@@ -62458,7 +62578,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = this.$this;
 					return D.SelectorList_SelectorList$parse(this.selectorText.value, !t1._assertInModule$2(t1.__stylesheet, _s11_).plainCss, !t1._assertInModule$2(t1.__stylesheet, _s11_).plainCss, t1._evaluate$_logger);
 				},
-				$signature: 43
+				$signature: 44
 			};
 			R._EvaluateVisitor_visitStyleRule_closure3.prototype = {
 				call$0: function() {
@@ -62468,7 +62588,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t3 = t3 == null ? null : t3.originalSelector;
 					return t1.resolveParentSelectors$2$implicitParent(t3, !t2._atRootExcludingStyleRule);
 				},
-				$signature: 43
+				$signature: 44
 			};
 			R._EvaluateVisitor_visitStyleRule_closure4.prototype = {
 				call$0: function() {
@@ -62545,13 +62665,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.node;
 					this.$this._environment.addModule$3$namespace(module, t1, t1.namespace);
 				},
-				$signature: 63
+				$signature: 64
 			};
 			R._EvaluateVisitor_visitWarnRule_closure.prototype = {
 				call$0: function() {
 					return this.node.expression.accept$1(this.$this);
 				},
-				$signature: 45
+				$signature: 39
 			};
 			R._EvaluateVisitor_visitWhileRule_closure.prototype = {
 				call$0: function() {
@@ -62569,7 +62689,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(child) {
 					return child.accept$1(this.$this);
 				},
-				$signature: 66
+				$signature: 67
 			};
 			R._EvaluateVisitor_visitBinaryOperationExpression_closure.prototype = {
 				call$0: function() {
@@ -62620,7 +62740,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							throw H.wrapException(P.ArgumentError$("Unknown binary operator " + t3.toString$0(0) + "."));
 					}
 				},
-				$signature: 45
+				$signature: 39
 			};
 			R._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation.prototype = {
 				call$1: function(expression) {
@@ -62642,24 +62762,28 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(expression) {
 					return expression.accept$1(this.$this);
 				},
-				$signature: 559
+				$signature: 557
 			};
 			R._EvaluateVisitor_visitFunctionExpression_closure.prototype = {
 				call$0: function() {
-					var t1 = this.node.namespace,
-						t2 = this.plainName;
-					if (t1 == null)
-						t2 = H.stringReplaceAllUnchecked(t2, "_", "-");
-					return this.$this._getFunction$2$namespace(t2, t1);
+					var t1 = this.node;
+					return this.$this._getFunction$2$namespace(H.stringReplaceAllUnchecked(t1.originalName, "_", "-"), t1.namespace);
 				},
-				$signature: 128
+				$signature: 126
 			};
 			R._EvaluateVisitor_visitFunctionExpression_closure0.prototype = {
 				call$0: function() {
 					var t1 = this.node;
 					return this.$this._runFunctionCallable$3(t1.$arguments, this._box_0.$function, t1);
 				},
-				$signature: 45
+				$signature: 39
+			};
+			R._EvaluateVisitor_visitInterpolatedFunctionExpression_closure.prototype = {
+				call$0: function() {
+					var t1 = this.node;
+					return this.$this._runFunctionCallable$3(t1.$arguments, this.$function, t1);
+				},
+				$signature: 39
 			};
 			R._EvaluateVisitor__runUserDefinedCallable_closure.prototype = {
 				call$0: function() {
@@ -62756,7 +62880,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					throw H.wrapException(t4._evaluate$_exception$2("Function finished without @return.", t1.span));
 				},
-				$signature: 45
+				$signature: 39
 			};
 			R._EvaluateVisitor__runBuiltInCallable_closure.prototype = {
 				call$0: function() {
@@ -62770,7 +62894,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 45
+				$signature: 39
 			};
 			R._EvaluateVisitor__runBuiltInCallable_closure1.prototype = {
 				call$1: function($name) {
@@ -62809,13 +62933,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.ValueExpression(value, this.restArgs.get$span());
 				},
-				$signature: 52
+				$signature: 53
 			};
 			R._EvaluateVisitor__evaluateMacroArguments_closure0.prototype = {
 				call$1: function(value) {
 					return new F.ValueExpression(this.$this._withoutSlash$2(value, this.restNodeForSpan), this.restArgs.get$span());
 				},
-				$signature: 52
+				$signature: 53
 			};
 			R._EvaluateVisitor__evaluateMacroArguments_closure1.prototype = {
 				call$2: function(key, value) {
@@ -62828,7 +62952,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.ValueExpression(this.$this._withoutSlash$2(value, this.keywordRestNodeForSpan), this.keywordRestArgs.get$span());
 				},
-				$signature: 52
+				$signature: 53
 			};
 			R._EvaluateVisitor__addRestMap_closure.prototype = {
 				call$2: function(key, value) {
@@ -62857,7 +62981,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					result = value.accept$1(t1);
 					return result instanceof D.SassString ? result.text : t1._evaluate$_serialize$3$quote(result, value, false);
 				},
-				$signature: 42
+				$signature: 43
 			};
 			R._EvaluateVisitor_visitCssAtRule_closure.prototype = {
 				call$0: function() {
@@ -62891,7 +63015,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(mediaQueries) {
 					return this.$this._mergeMediaQueries$2(mediaQueries, this.node.queries);
 				},
-				$signature: 79
+				$signature: 80
 			};
 			R._EvaluateVisitor_visitCssMediaRule_closure0.prototype = {
 				call$0: function() {
@@ -62999,7 +63123,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t1._evaluate$_serialize$3$quote(result, value, false);
 				},
-				$signature: 42
+				$signature: 43
 			};
 			R._EvaluateVisitor__serialize_closure.prototype = {
 				call$0: function() {
@@ -63012,7 +63136,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.expression;
 					return this.$this._environment.getVariableNode$2$namespace(t1.name, t1.namespace);
 				},
-				$signature: 218
+				$signature: 219
 			};
 			R._EvaluateVisitor__withoutSlash_recommendation.prototype = {
 				call$1: function(number) {
@@ -63030,13 +63154,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = t1 == null ? null : t1.humanize$1(url);
 					return t1 == null ? url : t1;
 				},
-				$signature: 70
+				$signature: 73
 			};
 			R._EvaluateVisitor__stackTrace_closure.prototype = {
 				call$1: function(tuple) {
 					return this.$this._stackFrame$2(tuple.item1, tuple.item2.get$span());
 				},
-				$signature: 214
+				$signature: 215
 			};
 			R._ImportedCssVisitor.prototype = {
 				visitCssAtRule$1: function(node) {
@@ -63202,7 +63326,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(codeUnit) {
 					return codeUnit > 127;
 				},
-				$signature: 51
+				$signature: 52
 			};
 			N._SerializeVisitor0.prototype = {
 				visitCssStylesheet$1: function(node) {
@@ -63777,7 +63901,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 				},
 				_visitQuotedString$2$forceDoubleQuote: function(string, forceDoubleQuote) {
-					var t1, includesSingleQuote, includesDoubleQuote, i, char, t2, next, quote, _this = this,
+					var t1, includesSingleQuote, includesDoubleQuote, i, char, newIndex, quote, _this = this,
 						buffer = forceDoubleQuote ? _this._serialize$_buffer : new P.StringBuffer("");
 					if (forceDoubleQuote)
 						buffer.writeCharCode$1(34);
@@ -63840,25 +63964,18 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							case 29:
 							case 30:
 							case 31:
-								buffer.writeCharCode$1(92);
-								if (char > 15) {
-									t2 = char >>> 4;
-									buffer.writeCharCode$1(t2 < 10 ? 48 + t2 : 87 + t2);
-								}
-								t2 = char & 15;
-								buffer.writeCharCode$1(t2 < 10 ? 48 + t2 : 87 + t2);
-								t2 = i + 1;
-								if (t1 === t2)
-									break;
-								next = C.JSString_methods._codeUnitAt$1(string, t2);
-								if (T.isHex(next) || next === 32 || next === 9)
-									buffer.writeCharCode$1(32);
+								_this._writeEscape$4(buffer, char, string, i);
 								break;
 							case 92:
 								buffer.writeCharCode$1(92);
 								buffer.writeCharCode$1(92);
 								break;
 							default:
+								newIndex = _this._tryPrivateUseCharacter$4(buffer, char, string, i);
+								if (newIndex != null) {
+									i = newIndex;
+									break;
+								}
 								buffer.writeCharCode$1(char);
 								break;
 						}
@@ -63877,7 +63994,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					return this._visitQuotedString$2$forceDoubleQuote(string, false);
 				},
 				_visitUnquotedString$1: function(string) {
-					var t1, t2, afterNewline, i, char;
+					var t1, t2, afterNewline, i, char, newIndex;
 					for (t1 = string.length, t2 = this._serialize$_buffer, afterNewline = false, i = 0; i < t1; ++i) {
 						char = C.JSString_methods._codeUnitAt$1(string, i);
 						switch (char) {
@@ -63890,11 +64007,43 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 									t2.writeCharCode$1(32);
 								break;
 							default:
+								newIndex = this._tryPrivateUseCharacter$4(t2, char, string, i);
+								if (newIndex != null) {
+									i = newIndex;
+									afterNewline = false;
+									break;
+								}
 								t2.writeCharCode$1(char);
 								afterNewline = false;
 								break;
 						}
 					}
+				},
+				_tryPrivateUseCharacter$4: function(buffer, codeUnit, string, i) {
+					var t1;
+					if (this._style === C.OutputStyle_compressed)
+						return null;
+					if (codeUnit >= 57344 && codeUnit <= 63743) {
+						this._writeEscape$4(buffer, codeUnit, string, i);
+						return i;
+					}
+					if (codeUnit >>> 7 === 439 && string.length > i + 1) {
+						t1 = i + 1;
+						this._writeEscape$4(buffer, 65536 + ((codeUnit & 1023) << 10) + (C.JSString_methods._codeUnitAt$1(string, t1) & 1023), string, t1);
+						return t1;
+					}
+					return null;
+				},
+				_writeEscape$4: function(buffer, character, string, i) {
+					var t1, next;
+					buffer.writeCharCode$1(92);
+					buffer.write$1(0, C.JSInt_methods.toRadixString$1(character, 16));
+					t1 = i + 1;
+					if (string.length === t1)
+						return;
+					next = C.JSString_methods._codeUnitAt$1(string, t1);
+					if (T.isHex(next) || next === 32 || next === 9)
+						buffer.writeCharCode$1(32);
 				},
 				visitComplexSelector$1: function(complex) {
 					var t1, t2, t3, t4, lastComponent, _i, component, t5;
@@ -64203,13 +64352,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1._serialize$_buffer.write$1(0, ": ");
 					t1._writeMapElement$1(entry.value);
 				},
-				$signature: 283
+				$signature: 282
 			};
 			N._SerializeVisitor__removeExponent__exponent_set.prototype = {
 				call$1: function(t1) {
 					return this._box_0._exponent = t1;
 				},
-				$signature: 92
+				$signature: 94
 			};
 			N._SerializeVisitor__removeExponent__exponent_get.prototype = {
 				call$0: function() {
@@ -64490,14 +64639,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._targetEntries = t1;
 				},
-				$signature: 284
+				$signature: 283
 			};
 			T.SingleMapping_SingleMapping$fromEntries__targetEntries_get.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._targetEntries;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("targetEntries")) : t1;
 				},
-				$signature: 285
+				$signature: 284
 			};
 			T.SingleMapping_SingleMapping$fromEntries_closure.prototype = {
 				call$0: function() {
@@ -64510,19 +64659,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.sourceEntry.source.file;
 				},
-				$signature: 286
+				$signature: 285
 			};
 			T.SingleMapping_SingleMapping$fromEntries_closure1.prototype = {
 				call$1: function(i) {
 					return this.files.$index(0, i);
 				},
-				$signature: 287
+				$signature: 286
 			};
 			T.SingleMapping_toJson_closure.prototype = {
 				call$1: function(file) {
 					return file == null ? null : P.String_String$fromCharCodes(C.NativeUint32List_methods.sublist$2(file._decodedChars, 0, null), 0, null);
 				},
-				$signature: 288
+				$signature: 287
 			};
 			T.SingleMapping_toJson_closure0.prototype = {
 				call$2: function($name, value) {
@@ -64976,7 +65125,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return null;
 					return H._asStringQ(t1);
 				},
-				$signature: 39
+				$signature: 42
 			};
 			U.Highlighter$__closure.prototype = {
 				call$1: function(line) {
@@ -64984,33 +65133,33 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = new H.WhereIterable(t1, new U.Highlighter$___closure(), H._arrayInstanceType(t1)._eval$1("WhereIterable<1>"));
 					return t1.get$length(t1);
 				},
-				$signature: 289
+				$signature: 288
 			};
 			U.Highlighter$___closure.prototype = {
 				call$1: function(highlight) {
 					var t1 = highlight.span;
 					return t1.get$start(t1).get$line() !== t1.get$end(t1).get$line();
 				},
-				$signature: 130
+				$signature: 128
 			};
 			U.Highlighter$__closure0.prototype = {
 				call$1: function(line) {
 					return line.url;
 				},
-				$signature: 291
+				$signature: 290
 			};
 			U.Highlighter__collateLines_closure.prototype = {
 				call$1: function(highlight) {
 					var t1 = highlight.span;
 					return t1.get$sourceUrl(t1);
 				},
-				$signature: 292
+				$signature: 291
 			};
 			U.Highlighter__collateLines_closure0.prototype = {
 				call$2: function(highlight1, highlight2) {
 					return highlight1.span.compareTo$1(0, highlight2.span);
 				},
-				$signature: 293
+				$signature: 292
 			};
 			U.Highlighter__collateLines_closure1.prototype = {
 				call$1: function(highlightsForFile) {
@@ -65053,7 +65202,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return lines;
 				},
-				$signature: 294
+				$signature: 293
 			};
 			U.Highlighter__collateLines__closure.prototype = {
 				call$1: function(highlight) {
@@ -65061,13 +65210,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t2 = this.line;
 					return !J.$eq$(t1.get$sourceUrl(t1), t2.url) || t1.get$end(t1).get$line() < t2.number;
 				},
-				$signature: 130
+				$signature: 128
 			};
 			U.Highlighter_highlight_closure.prototype = {
 				call$1: function(highlight) {
 					return highlight.isPrimary;
 				},
-				$signature: 130
+				$signature: 128
 			};
 			U.Highlighter__writeFileStart_closure.prototype = {
 				call$0: function() {
@@ -65235,7 +65384,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return U._Highlight__normalizeEndOfLine(U._Highlight__normalizeTrailingNewline(U._Highlight__normalizeNewlines(t1)));
 				},
-				$signature: 295
+				$signature: 294
 			};
 			U._Line.prototype = {
 				toString$0: function(_) {
@@ -65464,14 +65613,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(trace) {
 					return trace.get$frames();
 				},
-				$signature: 298
+				$signature: 297
 			};
 			U.Chain_toString_closure0.prototype = {
 				call$1: function(trace) {
 					var t1 = trace.get$frames();
 					return new H.MappedListIterable(t1, new U.Chain_toString__closure0(), H._arrayInstanceType(t1)._eval$1("MappedListIterable<1,int>")).fold$2(0, 0, C.CONSTANT);
 				},
-				$signature: 299
+				$signature: 298
 			};
 			U.Chain_toString__closure0.prototype = {
 				call$1: function(frame) {
@@ -65484,7 +65633,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = trace.get$frames();
 					return new H.MappedListIterable(t1, new U.Chain_toString__closure(this.longest), H._arrayInstanceType(t1)._eval$1("MappedListIterable<1,String>")).join$0(0);
 				},
-				$signature: 301
+				$signature: 300
 			};
 			U.Chain_toString__closure.prototype = {
 				call$1: function(frame) {
@@ -65564,7 +65713,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					line = t1 > 1 ? P.int_parse(lineAndColumn[1], _null) : _null;
 					return new A.Frame(uri, line, t1 > 2 ? P.int_parse(lineAndColumn[2], _null) : _null, member);
 				},
-				$signature: 65
+				$signature: 66
 			};
 			A.Frame_Frame$parseV8_closure.prototype = {
 				call$0: function() {
@@ -65590,7 +65739,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return t1.call$2(t2, _s4_);
 					}
 				},
-				$signature: 65
+				$signature: 66
 			};
 			A.Frame_Frame$parseV8_closure_parseLocation.prototype = {
 				call$2: function($location, member) {
@@ -65617,7 +65766,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					columnMatch = t1[3];
 					return new A.Frame(uri, line, columnMatch != null ? P.int_parse(columnMatch, _null) : _null, member);
 				},
-				$signature: 304
+				$signature: 303
 			};
 			A.Frame_Frame$_parseFirefoxEval_closure.prototype = {
 				call$0: function() {
@@ -65638,7 +65787,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					line = P.int_parse(t1, _null);
 					return new A.Frame(uri, line, _null, member.length === 0 || member === "anonymous" ? "<fn>" : member);
 				},
-				$signature: 65
+				$signature: 66
 			};
 			A.Frame_Frame$parseFirefox_closure.prototype = {
 				call$0: function() {
@@ -65685,7 +65834,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return new A.Frame(uri, line, column, member);
 				},
-				$signature: 65
+				$signature: 66
 			};
 			A.Frame_Frame$parseFriendly_closure.prototype = {
 				call$0: function() {
@@ -65725,7 +65874,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return new A.Frame(uri, line, column, t1[4]);
 				},
-				$signature: 65
+				$signature: 66
 			};
 			T.LazyTrace.prototype = {
 				get$_lazy_trace$_trace: function() {
@@ -65756,7 +65905,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.$this.get$_lazy_trace$_trace().get$terse();
 				},
-				$signature: 202
+				$signature: 203
 			};
 			Y.Trace.prototype = {
 				get$terse: function() {
@@ -65794,7 +65943,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return Y.Trace_Trace$parse(this.trace.toString$0(0));
 				},
-				$signature: 202
+				$signature: 203
 			};
 			Y.Trace__parseVM_closure.prototype = {
 				call$1: function(line) {
@@ -65806,7 +65955,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(line) {
 					return A.Frame_Frame$parseVM(line);
 				},
-				$signature: 64
+				$signature: 65
 			};
 			Y.Trace$parseV8_closure.prototype = {
 				call$1: function(line) {
@@ -65818,7 +65967,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(line) {
 					return A.Frame_Frame$parseV8(line);
 				},
-				$signature: 64
+				$signature: 65
 			};
 			Y.Trace$parseJSCore_closure.prototype = {
 				call$1: function(line) {
@@ -65830,7 +65979,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(line) {
 					return A.Frame_Frame$parseV8(line);
 				},
-				$signature: 64
+				$signature: 65
 			};
 			Y.Trace$parseFirefox_closure.prototype = {
 				call$1: function(line) {
@@ -65842,7 +65991,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(line) {
 					return A.Frame_Frame$parseFirefox(line);
 				},
-				$signature: 64
+				$signature: 65
 			};
 			Y.Trace$parseFriendly_closure.prototype = {
 				call$1: function(line) {
@@ -65854,7 +66003,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(line) {
 					return A.Frame_Frame$parseFriendly(line);
 				},
-				$signature: 64
+				$signature: 65
 			};
 			Y.Trace_terse_closure.prototype = {
 				call$1: function(_) {
@@ -65888,7 +66037,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2 = $.$get$_terseRegExp();
 					return new A.Frame(P.Uri_parse(H.stringReplaceAllUnchecked(t1, t2, "")), null, null, frame.get$member());
 				},
-				$signature: 308
+				$signature: 307
 			};
 			Y.Trace_toString_closure0.prototype = {
 				call$1: function(frame) {
@@ -65985,7 +66134,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 309
+				$signature: 308
 			};
 			R.RateLimit__debounceAggregate_closure.prototype = {
 				call$2: function(value, sink) {
@@ -66414,7 +66563,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t4 = C.JSString_methods.codeUnitAt$1(text, t3);
 					if (!(t4 === 95 || T.isAlphabetic1(t4) || t4 >= 128))
 						return t1;
-					return B.SpanExtensions_trim0(t2.span$2(t3, Y.FileLocation$_(t2, t1._end).offset));
+					return V.SpanExtensions_trimRight0(V.SpanExtensions_trimLeft0(t2.span$2(t3, Y.FileLocation$_(t2, t1._end).offset)));
 				},
 				verify$2: function(positional, names) {
 					var t1, t2, t3, namedUsed, i, argument, t4, unknownNames, _this = this,
@@ -66520,7 +66669,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(argument) {
 					return argument.name;
 				},
-				$signature: 310
+				$signature: 309
 			};
 			B.ArgumentDeclaration_verify_closure2.prototype = {
 				call$1: function($name) {
@@ -66599,7 +66748,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 140
+				$signature: 138
 			};
 			X._compileStylesheet_closure2.prototype = {
 				call$1: function(url) {
@@ -67267,27 +67416,27 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = module.get$variables();
 					return t1.get$keys(t1);
 				},
-				$signature: 141
+				$signature: 139
 			};
 			Q.AsyncEnvironment_importForwards_closure3.prototype = {
 				call$1: function(module) {
 					var t1 = module.get$functions(module);
 					return t1.get$keys(t1);
 				},
-				$signature: 141
+				$signature: 139
 			};
 			Q.AsyncEnvironment_importForwards_closure4.prototype = {
 				call$1: function(module) {
 					var t1 = module.get$mixins();
 					return t1.get$keys(t1);
 				},
-				$signature: 141
+				$signature: 139
 			};
 			Q.AsyncEnvironment__getVariableFromGlobalModule_closure0.prototype = {
 				call$1: function(module) {
 					return module.get$variables().$index(0, this.name);
 				},
-				$signature: 313
+				$signature: 312
 			};
 			Q.AsyncEnvironment_setVariable_closure2.prototype = {
 				call$0: function() {
@@ -67301,7 +67450,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables().containsKey$1(this.name) ? module : null;
 				},
-				$signature: 314
+				$signature: 313
 			};
 			Q.AsyncEnvironment_setVariable_closure4.prototype = {
 				call$0: function() {
@@ -67339,7 +67488,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(entry) {
 					return X.NullableExtension_andThen0(this.callback.call$1(entry.key), new Q.AsyncEnvironment__fromOneModule__closure0(entry, this.T));
 				},
-				$signature: 317
+				$signature: 316
 			};
 			Q.AsyncEnvironment__fromOneModule__closure0.prototype = {
 				call$1: function(_) {
@@ -67423,13 +67572,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables();
 				},
-				$signature: 318
+				$signature: 317
 			};
 			Q._EnvironmentModule__EnvironmentModule_closure18.prototype = {
 				call$1: function(module) {
 					return module.get$variableNodes();
 				},
-				$signature: 319
+				$signature: 318
 			};
 			Q._EnvironmentModule__EnvironmentModule_closure19.prototype = {
 				call$1: function(module) {
@@ -67447,13 +67596,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$transitivelyContainsCss();
 				},
-				$signature: 114
+				$signature: 141
 			};
 			Q._EnvironmentModule__EnvironmentModule_closure22.prototype = {
 				call$1: function(module) {
 					return module.get$transitivelyContainsExtensions();
 				},
-				$signature: 114
+				$signature: 141
 			};
 			E._EvaluateVisitor2.prototype = {
 				_EvaluateVisitor$6$functions$importCache$logger$nodeImporter$quietDeps$sourceMap2: function(functions, importCache, logger, nodeImporter, quietDeps, sourceMap) {
@@ -69970,7 +70119,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				visitFunctionExpression$body$_EvaluateVisitor0: function(node) {
 					var $async$goto = 0,
 						$async$completer = P._makeAsyncAwaitCompleter(type$.Value_2),
-						$async$returnValue, $async$self = this, oldInFunction, result, t1, t2, plainName, $async$temp1, $async$temp2;
+						$async$returnValue, $async$self = this, oldInFunction, result, t1, $function;
 					var $async$visitFunctionExpression$1 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
 						if ($async$errorCode === 1)
 							return P._asyncRethrow($async$result, $async$completer);
@@ -69979,29 +70128,18 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								case 0:
 									// Function start
 									t1 = {};
-									t2 = node.name;
-									plainName = t2.get$asPlain();
-									t1.$function = null;
-									$async$goto = (plainName != null ? t1.$function = $async$self._async_evaluate0$_addExceptionSpan$2(node, new E._EvaluateVisitor_visitFunctionExpression_closure5($async$self, node, plainName)) : null) == null ? 3 : 4;
-									break;
-								case 3:
-									// then
-									if (node.namespace != null)
-										throw H.wrapException($async$self._async_evaluate0$_exception$2("Undefined function.", node.span));
-									$async$temp1 = t1;
-									$async$temp2 = L;
-									$async$goto = 5;
-									return P._asyncAwait($async$self._async_evaluate0$_performInterpolation$1(t2), $async$visitFunctionExpression$1);
-								case 5:
-									// returning from await.
-									$async$temp1.$function = new $async$temp2.PlainCssCallable0($async$result);
-								case 4:
-									// join
+									$function = $async$self._async_evaluate0$_addExceptionSpan$2(node, new E._EvaluateVisitor_visitFunctionExpression_closure5($async$self, node));
+									t1.$function = $function;
+									if ($function == null) {
+										if (node.namespace != null)
+											throw H.wrapException($async$self._async_evaluate0$_exception$2("Undefined function.", node.span));
+										t1.$function = new L.PlainCssCallable0(node.originalName);
+									}
 									oldInFunction = $async$self._async_evaluate0$_inFunction;
 									$async$self._async_evaluate0$_inFunction = true;
-									$async$goto = 6;
+									$async$goto = 3;
 									return P._asyncAwait($async$self._async_evaluate0$_addErrorSpan$1$2(node, new E._EvaluateVisitor_visitFunctionExpression_closure6(t1, $async$self, node), type$.Value_2), $async$visitFunctionExpression$1);
-								case 6:
+								case 3:
 									// returning from await.
 									result = $async$result;
 									$async$self._async_evaluate0$_inFunction = oldInFunction;
@@ -70015,6 +70153,44 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							}
 					});
 					return P._asyncStartSync($async$visitFunctionExpression$1, $async$completer);
+				},
+				visitInterpolatedFunctionExpression$1: function(node) {
+					return this.visitInterpolatedFunctionExpression$body$_EvaluateVisitor0(node);
+				},
+				visitInterpolatedFunctionExpression$body$_EvaluateVisitor0: function(node) {
+					var $async$goto = 0,
+						$async$completer = P._makeAsyncAwaitCompleter(type$.Value_2),
+						$async$returnValue, $async$self = this, result, t1, oldInFunction;
+					var $async$visitInterpolatedFunctionExpression$1 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
+						if ($async$errorCode === 1)
+							return P._asyncRethrow($async$result, $async$completer);
+						while (true)
+							switch ($async$goto) {
+								case 0:
+									// Function start
+									$async$goto = 3;
+									return P._asyncAwait($async$self._async_evaluate0$_performInterpolation$1(node.name), $async$visitInterpolatedFunctionExpression$1);
+								case 3:
+									// returning from await.
+									t1 = $async$result;
+									oldInFunction = $async$self._async_evaluate0$_inFunction;
+									$async$self._async_evaluate0$_inFunction = true;
+									$async$goto = 4;
+									return P._asyncAwait($async$self._async_evaluate0$_addErrorSpan$1$2(node, new E._EvaluateVisitor_visitInterpolatedFunctionExpression_closure2($async$self, node, new L.PlainCssCallable0(t1)), type$.Value_2), $async$visitInterpolatedFunctionExpression$1);
+								case 4:
+									// returning from await.
+									result = $async$result;
+									$async$self._async_evaluate0$_inFunction = oldInFunction;
+									$async$returnValue = result;
+									// goto return
+									$async$goto = 1;
+									break;
+								case 1:
+									// return
+									return P._asyncReturn($async$returnValue, $async$completer);
+							}
+					});
+					return P._asyncStartSync($async$visitInterpolatedFunctionExpression$1, $async$completer);
 				},
 				_async_evaluate0$_getFunction$2$namespace: function($name, namespace) {
 					var local = this._async_evaluate0$_environment.getFunction$2$namespace($name, namespace);
@@ -71616,7 +71792,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$call$body$_EvaluateVisitor_closure2: function($arguments) {
 					var $async$goto = 0,
 						$async$completer = P._makeAsyncAwaitCompleter(type$.Value_2),
-						$async$returnValue, $async$self = this, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, invocation, t1, $function, args;
+						$async$returnValue, $async$self = this, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, invocation, callableNode, t1, $function, args;
 					var $async$call$1 = P._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
 						if ($async$errorCode === 1)
 							return P._asyncRethrow($async$result, $async$completer);
@@ -71654,10 +71830,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								case 3:
 									// then
 									N.warn0(string$.Passin + $function.toString$0(0) + "))", true);
-									t2 = t1._async_evaluate0$_callableNode;
-									t2.toString;
+									callableNode = t1._async_evaluate0$_callableNode;
 									$async$goto = 5;
-									return P._asyncAwait(t1.visitFunctionExpression$1(new F.FunctionExpression0(null, X.Interpolation$0(H.setRuntimeTypeInfo([$function.text], type$.JSArray_Object), t2.get$span()), invocation, t2.get$span())), $async$call$1);
+									return P._asyncAwait(t1.visitFunctionExpression$1(new F.FunctionExpression0(null, $function.text, invocation, callableNode.get$span())), $async$call$1);
 								case 5:
 									// returning from await.
 									$async$returnValue = $async$result;
@@ -71684,7 +71859,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 140
+				$signature: 138
 			};
 			E._EvaluateVisitor_closure38.prototype = {
 				call$1: function($arguments) {
@@ -71730,7 +71905,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 329
+				$signature: 328
 			};
 			E._EvaluateVisitor__closure8.prototype = {
 				call$2: function(variable, value) {
@@ -71741,7 +71916,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						throw H.wrapException("The variable $" + $name + " was configured twice.");
 					t1.$indexSet(0, $name, new Z.ConfiguredValue0(value, this.span, this.callableNode));
 				},
-				$signature: 54
+				$signature: 55
 			};
 			E._EvaluateVisitor__closure9.prototype = {
 				call$1: function(module) {
@@ -71788,7 +71963,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 332
+				$signature: 331
 			};
 			E._EvaluateVisitor__withWarnCallback_closure2.prototype = {
 				call$2: function(message, deprecation) {
@@ -71802,7 +71977,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 84
+				$signature: 87
 			};
 			E._EvaluateVisitor__loadModule_closure5.prototype = {
 				call$0: function() {
@@ -71927,14 +72102,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._css = t1;
 				},
-				$signature: 184
+				$signature: 185
 			};
 			E._EvaluateVisitor__execute__css_get2.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._css;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("css")) : t1;
 				},
-				$signature: 181
+				$signature: 183
 			};
 			E._EvaluateVisitor__execute_closure2.prototype = {
 				call$0: function() {
@@ -72007,7 +72182,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$transitivelyContainsCss();
 				},
-				$signature: 114
+				$signature: 141
 			};
 			E._EvaluateVisitor__combineCss_closure9.prototype = {
 				call$1: function(target) {
@@ -72019,7 +72194,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.cloneCss$0();
 				},
-				$signature: 337
+				$signature: 336
 			};
 			E._EvaluateVisitor__extendModules_closure5.prototype = {
 				call$1: function(target) {
@@ -72050,7 +72225,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = S.SpanScanner$(this.resolved, null);
 					return new V.AtRootQueryParser0(t1, this.$this._async_evaluate0$_logger).parse$0();
 				},
-				$signature: 122
+				$signature: 120
 			};
 			E._EvaluateVisitor_visitAtRootRule_closure9.prototype = {
 				call$0: function() {
@@ -72234,7 +72409,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($parent) {
 					return type$.CssAtRule_2._is($parent);
 				},
-				$signature: 171
+				$signature: 173
 			};
 			E._EvaluateVisitor__scopeForAtRoot_closure22.prototype = {
 				call$1: function(callback) {
@@ -72340,7 +72515,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 341
+				$signature: 340
 			};
 			E._EvaluateVisitor_visitDeclaration_closure6.prototype = {
 				call$0: function() {
@@ -72388,13 +72563,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t2 = this.nodeWithSpan;
 					return t1._async_evaluate0$_environment.setLocalVariable$3(C.JSArray_methods.get$first(this.node.variables), t1._async_evaluate0$_withoutSlash$2(value, t2), t2);
 				},
-				$signature: 53
+				$signature: 54
 			};
 			E._EvaluateVisitor_visitEachRule_closure9.prototype = {
 				call$1: function(value) {
 					return this.$this._async_evaluate0$_setMultipleVariables$3(this.node.variables, value, this.nodeWithSpan);
 				},
-				$signature: 53
+				$signature: 54
 			};
 			E._EvaluateVisitor_visitEachRule_closure10.prototype = {
 				call$0: function() {
@@ -72402,7 +72577,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = _this.$this;
 					return t1._async_evaluate0$_handleReturn$2(_this.list.get$asList(), new E._EvaluateVisitor_visitEachRule__closure2(t1, _this.setVariables, _this.node));
 				},
-				$signature: 62
+				$signature: 63
 			};
 			E._EvaluateVisitor_visitEachRule__closure2.prototype = {
 				call$1: function(element) {
@@ -72411,7 +72586,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = this.$this;
 					return t1._async_evaluate0$_handleReturn$2(this.node.children, new E._EvaluateVisitor_visitEachRule___closure2(t1));
 				},
-				$signature: 344
+				$signature: 343
 			};
 			E._EvaluateVisitor_visitEachRule___closure2.prototype = {
 				call$1: function(child) {
@@ -72430,7 +72605,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return this.$this._async_evaluate0$_interpolationToValue$3$trim$warnForColor(value, true, true);
 				},
-				$signature: 347
+				$signature: 346
 			};
 			E._EvaluateVisitor_visitAtRule_closure9.prototype = {
 				call$0: function() {
@@ -72662,7 +72837,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 62
+				$signature: 63
 			};
 			E._EvaluateVisitor_visitForRule__closure2.prototype = {
 				call$1: function(child) {
@@ -72674,20 +72849,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					this.$this._async_evaluate0$_environment.forwardModule$2(module, this.node);
 				},
-				$signature: 127
+				$signature: 125
 			};
 			E._EvaluateVisitor_visitForwardRule_closure6.prototype = {
 				call$1: function(module) {
 					this.$this._async_evaluate0$_environment.forwardModule$2(module, this.node);
 				},
-				$signature: 127
+				$signature: 125
 			};
 			E._EvaluateVisitor_visitIfRule_closure2.prototype = {
 				call$0: function() {
 					var t1 = this.$this;
 					return t1._async_evaluate0$_handleReturn$2(this._box_0.clause.children, new E._EvaluateVisitor_visitIfRule__closure2(t1));
 				},
-				$signature: 62
+				$signature: 63
 			};
 			E._EvaluateVisitor_visitIfRule__closure2.prototype = {
 				call$1: function(child) {
@@ -72805,7 +72980,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._children0 = t1;
 				},
-				$signature: 161
+				$signature: 163
 			};
 			E._EvaluateVisitor__visitDynamicImport__closure5.prototype = {
 				call$1: function(previousLoad) {
@@ -72930,7 +73105,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 353
+				$signature: 352
 			};
 			E._EvaluateVisitor_visitIncludeRule_closure11.prototype = {
 				call$0: function() {
@@ -72951,7 +73126,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($content) {
 					return new E.UserDefinedCallable0($content, this.$this._async_evaluate0$_environment.closure$0(), type$.UserDefinedCallable_AsyncEnvironment_2);
 				},
-				$signature: 354
+				$signature: 353
 			};
 			E._EvaluateVisitor_visitIncludeRule_closure13.prototype = {
 				call$0: function() {
@@ -73057,7 +73232,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.statement.accept$1(this.$this);
 				},
-				$signature: 62
+				$signature: 63
 			};
 			E._EvaluateVisitor_visitMediaRule_closure8.prototype = {
 				call$1: function(mediaQueries) {
@@ -73213,7 +73388,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.selectorText;
 					return E.KeyframeSelectorParser$0(t1.get$value(t1), this.$this._async_evaluate0$_logger).parse$0();
 				},
-				$signature: 44
+				$signature: 45
 			};
 			E._EvaluateVisitor_visitStyleRule_closure21.prototype = {
 				call$0: function() {
@@ -73481,13 +73656,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.node;
 					this.$this._async_evaluate0$_environment.addModule$3$namespace(module, t1, t1.namespace);
 				},
-				$signature: 127
+				$signature: 125
 			};
 			E._EvaluateVisitor_visitWarnRule_closure2.prototype = {
 				call$0: function() {
 					return this.node.expression.accept$1(this.$this);
 				},
-				$signature: 80
+				$signature: 61
 			};
 			E._EvaluateVisitor_visitWhileRule_closure2.prototype = {
 				call$0: function() {
@@ -73540,7 +73715,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 62
+				$signature: 63
 			};
 			E._EvaluateVisitor_visitWhileRule__closure2.prototype = {
 				call$1: function(child) {
@@ -73831,7 +74006,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 80
+				$signature: 61
 			};
 			E._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation2.prototype = {
 				call$1: function(expression) {
@@ -73853,15 +74028,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(expression) {
 					return expression.accept$1(this.$this);
 				},
-				$signature: 360
+				$signature: 359
 			};
 			E._EvaluateVisitor_visitFunctionExpression_closure5.prototype = {
 				call$0: function() {
-					var t1 = this.node.namespace,
-						t2 = this.plainName;
-					if (t1 == null)
-						t2 = H.stringReplaceAllUnchecked(t2, "_", "-");
-					return this.$this._async_evaluate0$_getFunction$2$namespace(t2, t1);
+					var t1 = this.node;
+					return this.$this._async_evaluate0$_getFunction$2$namespace(H.stringReplaceAllUnchecked(t1.originalName, "_", "-"), t1.namespace);
 				},
 				$signature: 99
 			};
@@ -73870,7 +74042,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.node;
 					return this.$this._async_evaluate0$_runFunctionCallable$3(t1.$arguments, this._box_0.$function, t1);
 				},
-				$signature: 80
+				$signature: 61
+			};
+			E._EvaluateVisitor_visitInterpolatedFunctionExpression_closure2.prototype = {
+				call$0: function() {
+					var t1 = this.node;
+					return this.$this._async_evaluate0$_runFunctionCallable$3(t1.$arguments, this.$function, t1);
+				},
+				$signature: 61
 			};
 			E._EvaluateVisitor__runUserDefinedCallable_closure2.prototype = {
 				call$0: function() {
@@ -74062,7 +74241,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 80
+				$signature: 61
 			};
 			E._EvaluateVisitor__runBuiltInCallable_closure8.prototype = {
 				call$0: function() {
@@ -74076,7 +74255,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 361
+				$signature: 360
 			};
 			E._EvaluateVisitor__runBuiltInCallable_closure10.prototype = {
 				call$1: function($name) {
@@ -74115,13 +74294,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.ValueExpression0(value, this.restArgs.get$span());
 				},
-				$signature: 49
+				$signature: 51
 			};
 			E._EvaluateVisitor__evaluateMacroArguments_closure12.prototype = {
 				call$1: function(value) {
 					return new F.ValueExpression0(this.$this._async_evaluate0$_withoutSlash$2(value, this.restNodeForSpan), this.restArgs.get$span());
 				},
-				$signature: 49
+				$signature: 51
 			};
 			E._EvaluateVisitor__evaluateMacroArguments_closure13.prototype = {
 				call$2: function(key, value) {
@@ -74134,7 +74313,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.ValueExpression0(this.$this._async_evaluate0$_withoutSlash$2(value, this.keywordRestNodeForSpan), this.keywordRestArgs.get$span());
 				},
-				$signature: 49
+				$signature: 51
 			};
 			E._EvaluateVisitor__addRestMap_closure2.prototype = {
 				call$2: function(key, value) {
@@ -74145,7 +74324,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					else
 						throw H.wrapException(t1._async_evaluate0$_exception$2(string$.Variab_ + key.toString$0(0) + " is not a string in " + _this.map.toString$0(0) + ".", _this.nodeWithSpan.get$span()));
 				},
-				$signature: 54
+				$signature: 55
 			};
 			E._EvaluateVisitor__verifyArguments_closure2.prototype = {
 				call$0: function() {
@@ -74189,7 +74368,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 73
+				$signature: 74
 			};
 			E._EvaluateVisitor_visitCssAtRule_closure5.prototype = {
 				call$0: function() {
@@ -74619,7 +74798,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 73
+				$signature: 74
 			};
 			E._EvaluateVisitor__serialize_closure2.prototype = {
 				call$0: function() {
@@ -74650,7 +74829,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = t1 == null ? null : t1.humanize$1(url);
 					return t1 == null ? url : t1;
 				},
-				$signature: 70
+				$signature: 73
 			};
 			E._EvaluateVisitor__stackTrace_closure2.prototype = {
 				call$1: function(tuple) {
@@ -74913,7 +75092,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 368
+				$signature: 367
 			};
 			O.AsyncImportCache__canonicalize_closure0.prototype = {
 				call$0: function() {
@@ -74921,7 +75100,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 154
+				$signature: 155
 			};
 			O.AsyncImportCache_importCanonical_closure0.prototype = {
 				call$0: function() {
@@ -74963,19 +75142,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$0, $async$completer);
 				},
-				$signature: 369
+				$signature: 368
 			};
 			O.AsyncImportCache_humanize_closure2.prototype = {
 				call$1: function(tuple) {
 					return tuple.item2.$eq(0, this.canonicalUrl);
 				},
-				$signature: 370
+				$signature: 369
 			};
 			O.AsyncImportCache_humanize_closure3.prototype = {
 				call$1: function(tuple) {
 					return tuple.item3;
 				},
-				$signature: 371
+				$signature: 370
 			};
 			O.AsyncImportCache_humanize_closure4.prototype = {
 				call$1: function(url) {
@@ -75010,7 +75189,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.expectDone$0();
 					return new V.AtRootQuery0(include, atRules, atRules.contains$1(0, "all"), atRules.contains$1(0, "rule"));
 				},
-				$signature: 122
+				$signature: 120
 			};
 			V.AtRootQuery0.prototype = {
 				excludes$1: function(node) {
@@ -75228,13 +75407,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 148
+				$signature: 150
 			};
 			Z.booleanConstructor__closure0.prototype = {
 				call$1: function(thisArg) {
 					return thisArg === C.SassBoolean_true;
 				},
-				$signature: 374
+				$signature: 373
 			};
 			Z.SassBoolean0.prototype = {
 				get$isTruthy: function() {
@@ -75881,7 +76060,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$3$assertPercent: function($name, max, assertPercent) {
 					return this.call$4$assertPercent$checkPercent($name, max, assertPercent, false);
 				},
-				$signature: 144
+				$signature: 143
 			};
 			K._updateComponents_closure0.prototype = {
 				call$1: function($name) {
@@ -75901,19 +76080,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = param > 0 ? max - current : current;
 					return current + t1 * (param / 100);
 				},
-				$signature: 168
+				$signature: 144
 			};
 			K._updateComponents_updateRgb0.prototype = {
 				call$2: function(current, param) {
 					return T.fuzzyRound0(this.updateValue.call$3(current, param, 255));
 				},
-				$signature: 146
+				$signature: 214
 			};
 			K._functionString_closure0.prototype = {
 				call$1: function(argument) {
 					return N.serializeValue(argument, false, true);
 				},
-				$signature: 380
+				$signature: 379
 			};
 			K._removedColorFunction_closure0.prototype = {
 				call$1: function($arguments) {
@@ -75922,19 +76101,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t3 = "The function " + t1 + string$.x28__isn + H.S(t2.$index($arguments, 0)) + ", $" + this.argument + ": ";
 					throw H.wrapException(E.SassScriptException$0(t3 + (this.negative ? "-" : "") + H.S(t2.$index($arguments, 1)) + string$.x29x0a_Mor + t1));
 				},
-				$signature: 381
+				$signature: 380
 			};
 			K._rgb_closure0.prototype = {
 				call$1: function(alpha) {
 					return K._percentageOrUnitless0(alpha.assertNumber$1("alpha"), 1, "alpha");
 				},
-				$signature: 139
+				$signature: 137
 			};
 			K._hsl_closure0.prototype = {
 				call$1: function(alpha) {
 					return K._percentageOrUnitless0(alpha.assertNumber$1("alpha"), 1, "alpha");
 				},
-				$signature: 139
+				$signature: 137
 			};
 			K._removeUnits_closure1.prototype = {
 				call$1: function(unit) {
@@ -75952,7 +76131,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(alpha) {
 					return K._percentageOrUnitless0(alpha.assertNumber$1("alpha"), 1, "alpha");
 				},
-				$signature: 139
+				$signature: 137
 			};
 			K._parseChannels_closure0.prototype = {
 				call$1: function(value) {
@@ -76001,7 +76180,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null, null, null, null];
 				},
-				$signature: 383
+				$signature: 382
 			};
 			K.colorConstructor_closure0.prototype = {
 				call$1: function(thisArg) {
@@ -76025,7 +76204,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(thisArg) {
 					return J.get$dartValue$x(thisArg).alpha;
 				},
-				$signature: 385
+				$signature: 384
 			};
 			K.colorConstructor_closure4.prototype = {
 				call$2: function(thisArg, value) {
@@ -76067,7 +76246,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(thisArg) {
 					return N.serializeValue(J.get$dartValue$x(thisArg), true, true);
 				},
-				$signature: 387
+				$signature: 386
 			};
 			K.SassColor0.prototype = {
 				get$red: function() {
@@ -76439,7 +76618,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(entry) {
 					return "$" + H.S(entry.key) + ": " + H.S(entry.value);
 				},
-				$signature: 389
+				$signature: 388
 			};
 			A.ExplicitConfiguration0.prototype = {
 				_configuration$_withValues$1: function(values) {
@@ -76493,7 +76672,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($function) {
 					return $function.name;
 				},
-				$signature: 390
+				$signature: 389
 			};
 			Q.CssParser0.prototype = {
 				get$plainCss: function() {
@@ -76581,7 +76760,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t3 = X.Interpolation$0(H.setRuntimeTypeInfo([new D.StringExpression0(identifier, false)], type$.JSArray_Object), identifier.span);
 					t2 = t1.spanFrom$1(new S._SpanScannerState(t1, t2));
 					t4 = type$.Expression_2;
-					return new F.FunctionExpression0(null, t3, new X.ArgumentInvocation0(P.List_List$unmodifiable($arguments, t4), H.ConstantMap_ConstantMap$from(C.Map_empty8, type$.String, t4), null, null, t2), t1.spanFrom$1(start));
+					return new N.InterpolatedFunctionExpression0(t3, new X.ArgumentInvocation0(P.List_List$unmodifiable($arguments, t4), H.ConstantMap_ConstantMap$from(C.Map_empty8, type$.String, t4), null, null, t2), t1.spanFrom$1(start));
 				}
 			};
 			Q.DebugRule0.prototype = {
@@ -77241,7 +77420,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables().$index(0, this.name);
 				},
-				$signature: 393
+				$signature: 392
 			};
 			O.Environment_setVariable_closure2.prototype = {
 				call$0: function() {
@@ -77255,7 +77434,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables().containsKey$1(this.name) ? module : null;
 				},
-				$signature: 394
+				$signature: 393
 			};
 			O.Environment_setVariable_closure4.prototype = {
 				call$0: function() {
@@ -77269,31 +77448,31 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$functions(module).$index(0, this.name);
 				},
-				$signature: 149
+				$signature: 148
 			};
 			O.Environment__getMixinFromGlobalModule_closure0.prototype = {
 				call$1: function(module) {
 					return module.get$mixins().$index(0, this.name);
 				},
-				$signature: 149
+				$signature: 148
 			};
 			O.Environment_toModule_closure0.prototype = {
 				call$1: function(modules) {
 					return new M.MapKeySet(modules, type$.MapKeySet_Module_Callable_2);
 				},
-				$signature: 155
+				$signature: 154
 			};
 			O.Environment_toDummyModule_closure0.prototype = {
 				call$1: function(modules) {
 					return new M.MapKeySet(modules, type$.MapKeySet_Module_Callable_2);
 				},
-				$signature: 155
+				$signature: 154
 			};
 			O.Environment__fromOneModule_closure0.prototype = {
 				call$1: function(entry) {
 					return X.NullableExtension_andThen0(this.callback.call$1(entry.key), new O.Environment__fromOneModule__closure0(entry, this.T));
 				},
-				$signature: 397
+				$signature: 396
 			};
 			O.Environment__fromOneModule__closure0.prototype = {
 				call$1: function(_) {
@@ -77377,25 +77556,25 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.get$variables();
 				},
-				$signature: 398
+				$signature: 397
 			};
 			O._EnvironmentModule__EnvironmentModule_closure12.prototype = {
 				call$1: function(module) {
 					return module.get$variableNodes();
 				},
-				$signature: 399
+				$signature: 398
 			};
 			O._EnvironmentModule__EnvironmentModule_closure13.prototype = {
 				call$1: function(module) {
 					return module.get$functions(module);
 				},
-				$signature: 159
+				$signature: 156
 			};
 			O._EnvironmentModule__EnvironmentModule_closure14.prototype = {
 				call$1: function(module) {
 					return module.get$mixins();
 				},
-				$signature: 159
+				$signature: 156
 			};
 			O._EnvironmentModule__EnvironmentModule_closure15.prototype = {
 				call$1: function(module) {
@@ -78341,17 +78520,25 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				visitFunctionExpression$1: function(node) {
 					var oldInFunction, result, _this = this, t1 = {},
-						t2 = node.name,
-						plainName = t2.get$asPlain();
-					t1.$function = null;
-					if ((plainName != null ? t1.$function = _this._evaluate0$_addExceptionSpan$2(node, new R._EvaluateVisitor_visitFunctionExpression_closure3(_this, node, plainName)) : null) == null) {
+						$function = _this._evaluate0$_addExceptionSpan$2(node, new R._EvaluateVisitor_visitFunctionExpression_closure3(_this, node));
+					t1.$function = $function;
+					if ($function == null) {
 						if (node.namespace != null)
 							throw H.wrapException(_this._evaluate0$_exception$2("Undefined function.", node.span));
-						t1.$function = new L.PlainCssCallable0(_this._evaluate0$_performInterpolation$1(t2));
+						t1.$function = new L.PlainCssCallable0(node.originalName);
 					}
 					oldInFunction = _this._evaluate0$_inFunction;
 					_this._evaluate0$_inFunction = true;
 					result = _this._evaluate0$_addErrorSpan$2(node, new R._EvaluateVisitor_visitFunctionExpression_closure4(t1, _this, node));
+					_this._evaluate0$_inFunction = oldInFunction;
+					return result;
+				},
+				visitInterpolatedFunctionExpression$1: function(node) {
+					var result, _this = this,
+						t1 = _this._evaluate0$_performInterpolation$1(node.name),
+						oldInFunction = _this._evaluate0$_inFunction;
+					_this._evaluate0$_inFunction = true;
+					result = _this._evaluate0$_addErrorSpan$2(node, new R._EvaluateVisitor_visitInterpolatedFunctionExpression_closure1(_this, node, new L.PlainCssCallable0(t1)));
 					_this._evaluate0$_inFunction = oldInFunction;
 					return result;
 				},
@@ -78389,7 +78576,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								first = false;
 							else
 								t1 += ", ";
-							/*DSH- t1 += _this._evaluate0$_serialize$3$quote(argument.accept$1(_this), argument, true);*/
+							/*DSH-
+							t1 += _this._evaluate0$_serialize$3$quote(argument.accept$1(_this), argument, true);
+							*/
 							evaluatedValue = argument.accept$1(_this); //DSH+
 							if (isUrlFunction) { //DSH+
 								evaluatedValue.text = dshUtils.convertPathToAbsolute(evaluatedValue.text); //DSH+
@@ -79060,11 +79249,11 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2 = t2 == null ? null : t2.text;
 					return this.$this._evaluate0$_getFunction$2$namespace(t1, t2);
 				},
-				$signature: 116
+				$signature: 115
 			};
 			R._EvaluateVisitor_closure27.prototype = {
 				call$1: function($arguments) {
-					var t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, invocation, callable,
+					var t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, invocation, callableNode, callable,
 						t1 = J.getInterceptor$asx($arguments),
 						$function = t1.$index($arguments, 0),
 						args = type$.SassArgumentList_2._as(t1.$index($arguments, 1));
@@ -79092,9 +79281,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					invocation = new X.ArgumentInvocation0(P.List_List$unmodifiable(t3, t5), H.ConstantMap_ConstantMap$from(P.LinkedHashMap_LinkedHashMap$_empty(t4, t5), t4, t5), new F.ValueExpression0(args, t7), t2, t6);
 					if ($function instanceof D.SassString0) {
 						N.warn0(string$.Passin + $function.toString$0(0) + "))", true);
-						t2 = t1._evaluate0$_callableNode;
-						t2.toString;
-						return t1.visitFunctionExpression$1(new F.FunctionExpression0(null, X.Interpolation$0(H.setRuntimeTypeInfo([$function.text], type$.JSArray_Object), t2.get$span()), invocation, t2.get$span()));
+						callableNode = t1._evaluate0$_callableNode;
+						return t1.visitFunctionExpression$1(new F.FunctionExpression0(null, $function.text, invocation, callableNode.get$span()));
 					}
 					callable = $function.assertFunction$1("function").callable;
 					if (type$.Callable_2._is(callable)) {
@@ -79126,7 +79314,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1._evaluate0$_assertConfigurationIsEmpty$2$nameInError(configuration, true);
 					return null;
 				},
-				$signature: 405
+				$signature: 404
 			};
 			R._EvaluateVisitor__closure5.prototype = {
 				call$2: function(variable, value) {
@@ -79137,7 +79325,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						throw H.wrapException("The variable $" + $name + " was configured twice.");
 					t1.$indexSet(0, $name, new Z.ConfiguredValue0(value, this.span, this.callableNode));
 				},
-				$signature: 54
+				$signature: 55
 			};
 			R._EvaluateVisitor__closure6.prototype = {
 				call$1: function(module) {
@@ -79160,7 +79348,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2 = _this.$this;
 					return new E.EvaluateResult0(t2._evaluate0$_combineCss$1(t2._evaluate0$_execute$2(_this.importer, t1)), t2._evaluate0$_loadedUrls);
 				},
-				$signature: 407
+				$signature: 406
 			};
 			R._EvaluateVisitor__withWarnCallback_closure1.prototype = {
 				call$2: function(message, deprecation) {
@@ -79174,7 +79362,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 84
+				$signature: 87
 			};
 			R._EvaluateVisitor__loadModule_closure3.prototype = {
 				call$0: function() {
@@ -79240,14 +79428,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._css = t1;
 				},
-				$signature: 184
+				$signature: 185
 			};
 			R._EvaluateVisitor__execute__css_get1.prototype = {
 				call$0: function() {
 					var t1 = this._box_0._css;
 					return t1 == null ? H.throwExpression(H.LateError$localNI("css")) : t1;
 				},
-				$signature: 181
+				$signature: 183
 			};
 			R._EvaluateVisitor__execute_closure1.prototype = {
 				call$0: function() {
@@ -79315,7 +79503,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(module) {
 					return module.cloneCss$0();
 				},
-				$signature: 408
+				$signature: 407
 			};
 			R._EvaluateVisitor__extendModules_closure3.prototype = {
 				call$1: function(target) {
@@ -79346,7 +79534,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = S.SpanScanner$(this.resolved, null);
 					return new V.AtRootQueryParser0(t1, this.$this._evaluate0$_logger).parse$0();
 				},
-				$signature: 122
+				$signature: 120
 			};
 			R._EvaluateVisitor_visitAtRootRule_closure6.prototype = {
 				call$0: function() {
@@ -79412,7 +79600,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($parent) {
 					return type$.CssAtRule_2._is($parent);
 				},
-				$signature: 171
+				$signature: 173
 			};
 			R._EvaluateVisitor__scopeForAtRoot_closure16.prototype = {
 				call$1: function(callback) {
@@ -79437,7 +79625,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.CssValue0(value.accept$1(this.$this), value.get$span(), type$.CssValue_Value_2);
 				},
-				$signature: 409
+				$signature: 408
 			};
 			R._EvaluateVisitor_visitDeclaration_closure4.prototype = {
 				call$0: function() {
@@ -79453,13 +79641,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t2 = this.nodeWithSpan;
 					return t1._evaluate0$_environment.setLocalVariable$3(C.JSArray_methods.get$first(this.node.variables), t1._evaluate0$_withoutSlash$2(value, t2), t2);
 				},
-				$signature: 53
+				$signature: 54
 			};
 			R._EvaluateVisitor_visitEachRule_closure6.prototype = {
 				call$1: function(value) {
 					return this.$this._evaluate0$_setMultipleVariables$3(this.node.variables, value, this.nodeWithSpan);
 				},
-				$signature: 53
+				$signature: 54
 			};
 			R._EvaluateVisitor_visitEachRule_closure7.prototype = {
 				call$0: function() {
@@ -79476,7 +79664,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = this.$this;
 					return t1._evaluate0$_handleReturn$2(this.node.children, new R._EvaluateVisitor_visitEachRule___closure1(t1));
 				},
-				$signature: 410
+				$signature: 409
 			};
 			R._EvaluateVisitor_visitEachRule___closure1.prototype = {
 				call$1: function(child) {
@@ -79494,7 +79682,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return this.$this._evaluate0$_interpolationToValue$3$trim$warnForColor(value, true, true);
 				},
-				$signature: 412
+				$signature: 411
 			};
 			R._EvaluateVisitor_visitAtRule_closure6.prototype = {
 				call$0: function() {
@@ -79664,7 +79852,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._children0 = t1;
 				},
-				$signature: 161
+				$signature: 163
 			};
 			R._EvaluateVisitor__visitDynamicImport__closure3.prototype = {
 				call$1: function(previousLoad) {
@@ -79728,14 +79916,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						arg = X.NullableExtension_andThen0(supports, t1.get$_evaluate0$_visitSupportsCondition());
 					return new F.CssValue0("supports(" + H.S(arg) + ")", supports.get$span(), type$.CssValue_String_2);
 				},
-				$signature: 414
+				$signature: 413
 			};
 			R._EvaluateVisitor_visitIncludeRule_closure7.prototype = {
 				call$0: function() {
 					var t1 = this.node;
 					return this.$this._evaluate0$_environment.getMixin$2$namespace(t1.name, t1.namespace);
 				},
-				$signature: 116
+				$signature: 115
 			};
 			R._EvaluateVisitor_visitIncludeRule_closure8.prototype = {
 				call$0: function() {
@@ -79749,7 +79937,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function($content) {
 					return new E.UserDefinedCallable0($content, this.$this._evaluate0$_environment.closure$0(), type$.UserDefinedCallable_Environment_2);
 				},
-				$signature: 415
+				$signature: 414
 			};
 			R._EvaluateVisitor_visitIncludeRule_closure9.prototype = {
 				call$0: function() {
@@ -79850,7 +80038,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return E.KeyframeSelectorParser$0(this.selectorText.value, this.$this._evaluate0$_logger).parse$0();
 				},
-				$signature: 44
+				$signature: 45
 			};
 			R._EvaluateVisitor_visitStyleRule_closure14.prototype = {
 				call$0: function() {
@@ -79965,7 +80153,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.node.expression.accept$1(this.$this);
 				},
-				$signature: 55
+				$signature: 48
 			};
 			R._EvaluateVisitor_visitWhileRule_closure1.prototype = {
 				call$0: function() {
@@ -80034,7 +80222,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							throw H.wrapException(P.ArgumentError$("Unknown binary operator " + t3.toString$0(0) + "."));
 					}
 				},
-				$signature: 55
+				$signature: 48
 			};
 			R._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation1.prototype = {
 				call$1: function(expression) {
@@ -80056,24 +80244,28 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(expression) {
 					return expression.accept$1(this.$this);
 				},
-				$signature: 417
+				$signature: 416
 			};
 			R._EvaluateVisitor_visitFunctionExpression_closure3.prototype = {
 				call$0: function() {
-					var t1 = this.node.namespace,
-						t2 = this.plainName;
-					if (t1 == null)
-						t2 = H.stringReplaceAllUnchecked(t2, "_", "-");
-					return this.$this._evaluate0$_getFunction$2$namespace(t2, t1);
+					var t1 = this.node;
+					return this.$this._evaluate0$_getFunction$2$namespace(H.stringReplaceAllUnchecked(t1.originalName, "_", "-"), t1.namespace);
 				},
-				$signature: 116
+				$signature: 115
 			};
 			R._EvaluateVisitor_visitFunctionExpression_closure4.prototype = {
 				call$0: function() {
 					var t1 = this.node;
 					return this.$this._evaluate0$_runFunctionCallable$3(t1.$arguments, this._box_0.$function, t1);
 				},
-				$signature: 55
+				$signature: 48
+			};
+			R._EvaluateVisitor_visitInterpolatedFunctionExpression_closure1.prototype = {
+				call$0: function() {
+					var t1 = this.node;
+					return this.$this._evaluate0$_runFunctionCallable$3(t1.$arguments, this.$function, t1);
+				},
+				$signature: 48
 			};
 			R._EvaluateVisitor__runUserDefinedCallable_closure1.prototype = {
 				call$0: function() {
@@ -80170,7 +80362,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					throw H.wrapException(t4._evaluate0$_exception$2("Function finished without @return.", t1.span));
 				},
-				$signature: 55
+				$signature: 48
 			};
 			R._EvaluateVisitor__runBuiltInCallable_closure5.prototype = {
 				call$0: function() {
@@ -80184,7 +80376,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 55
+				$signature: 48
 			};
 			R._EvaluateVisitor__runBuiltInCallable_closure7.prototype = {
 				call$1: function($name) {
@@ -80223,13 +80415,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.ValueExpression0(value, this.restArgs.get$span());
 				},
-				$signature: 49
+				$signature: 51
 			};
 			R._EvaluateVisitor__evaluateMacroArguments_closure8.prototype = {
 				call$1: function(value) {
 					return new F.ValueExpression0(this.$this._evaluate0$_withoutSlash$2(value, this.restNodeForSpan), this.restArgs.get$span());
 				},
-				$signature: 49
+				$signature: 51
 			};
 			R._EvaluateVisitor__evaluateMacroArguments_closure9.prototype = {
 				call$2: function(key, value) {
@@ -80242,7 +80434,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return new F.ValueExpression0(this.$this._evaluate0$_withoutSlash$2(value, this.keywordRestNodeForSpan), this.keywordRestArgs.get$span());
 				},
-				$signature: 49
+				$signature: 51
 			};
 			R._EvaluateVisitor__addRestMap_closure1.prototype = {
 				call$2: function(key, value) {
@@ -80253,7 +80445,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					else
 						throw H.wrapException(t1._evaluate0$_exception$2(string$.Variab_ + key.toString$0(0) + " is not a string in " + _this.map.toString$0(0) + ".", _this.nodeWithSpan.get$span()));
 				},
-				$signature: 54
+				$signature: 55
 			};
 			R._EvaluateVisitor__verifyArguments_closure1.prototype = {
 				call$0: function() {
@@ -80271,7 +80463,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					result = value.accept$1(t1);
 					return result instanceof D.SassString0 ? result.text : t1._evaluate0$_serialize$3$quote(result, value, false);
 				},
-				$signature: 42
+				$signature: 43
 			};
 			R._EvaluateVisitor_visitCssAtRule_closure3.prototype = {
 				call$0: function() {
@@ -80413,7 +80605,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t1._evaluate0$_serialize$3$quote(result, value, false);
 				},
-				$signature: 42
+				$signature: 43
 			};
 			R._EvaluateVisitor__serialize_closure1.prototype = {
 				call$0: function() {
@@ -80444,7 +80636,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = t1 == null ? null : t1.humanize$1(url);
 					return t1 == null ? url : t1;
 				},
-				$signature: 70
+				$signature: 73
 			};
 			R._EvaluateVisitor__stackTrace_closure1.prototype = {
 				call$1: function(tuple) {
@@ -81248,13 +81440,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(extension) {
 					return !extension.isOptional;
 				},
-				$signature: 418
+				$signature: 417
 			};
 			X.ExtensionStore__registerSelector_closure0.prototype = {
 				call$0: function() {
 					return P.LinkedHashSet_LinkedHashSet$_empty(type$.ModifiableCssValue_SelectorList_2);
 				},
-				$signature: 419
+				$signature: 418
 			};
 			X.ExtensionStore_addExtension_closure2.prototype = {
 				call$0: function() {
@@ -81266,7 +81458,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return H.setRuntimeTypeInfo([], type$.JSArray_Extension_2);
 				},
-				$signature: 165
+				$signature: 166
 			};
 			X.ExtensionStore_addExtension_closure4.prototype = {
 				call$0: function() {
@@ -81278,7 +81470,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return H.setRuntimeTypeInfo([], type$.JSArray_Extension_2);
 				},
-				$signature: 165
+				$signature: 166
 			};
 			X.ExtensionStore__extendExistingExtensions_closure2.prototype = {
 				call$0: function() {
@@ -81314,44 +81506,45 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = t1._extension_store$_extensions;
 					existingSources = t1.$index(0, target);
 					if (existingSources == null) {
-						t1.$indexSet(0, target, newSources);
+						t4 = type$.ComplexSelector_2;
+						t5 = type$.Extension_2;
+						t1.$indexSet(0, target, P.LinkedHashMap_LinkedHashMap$of(newSources, t4, t5));
 						if (!t2 || t3) {
 							t1 = _this._box_0;
 							t2 = t1.newExtensions;
-							(t2 == null ? t1.newExtensions = P.LinkedHashMap_LinkedHashMap$_empty(type$.SimpleSelector_2, type$.Map_ComplexSelector_Extension_2) : t2).$indexSet(0, target, newSources);
+							t1 = t2 == null ? t1.newExtensions = P.LinkedHashMap_LinkedHashMap$_empty(type$.SimpleSelector_2, type$.Map_ComplexSelector_Extension_2) : t2;
+							t1.$indexSet(0, target, P.LinkedHashMap_LinkedHashMap$of(newSources, t4, t5));
 						}
 					} else
 						newSources.forEach$1(0, new X.ExtensionStore_addExtensions__closure4(_this._box_0, existingSources, extensionsForTarget, selectorsForTarget, target));
 				},
-				$signature: 422
+				$signature: 421
 			};
 			X.ExtensionStore_addExtensions__closure4.prototype = {
 				call$2: function(extender, extension) {
 					var t2, _this = this,
 						t1 = _this.existingSources;
-					if (t1.containsKey$1(extender))
-						return;
-					t1.$indexSet(0, extender, extension);
+					if (t1.containsKey$1(extender)) {
+						t2 = t1.$index(0, extender);
+						t2.toString;
+						extension = A.MergedExtension_merge0(t2, extension);
+						t1.$indexSet(0, extender, extension);
+					} else
+						t1.$indexSet(0, extender, extension);
 					if (_this.extensionsForTarget != null || _this.selectorsForTarget != null) {
 						t1 = _this._box_0;
 						t2 = t1.newExtensions;
 						t1 = t2 == null ? t1.newExtensions = P.LinkedHashMap_LinkedHashMap$_empty(type$.SimpleSelector_2, type$.Map_ComplexSelector_Extension_2) : t2;
-						t1.putIfAbsent$2(_this.target, new X.ExtensionStore_addExtensions___closure1()).putIfAbsent$2(extender, new X.ExtensionStore_addExtensions___closure2(extension));
+						J.$indexSet$ax(t1.putIfAbsent$2(_this.target, new X.ExtensionStore_addExtensions___closure0()), extender, extension);
 					}
 				},
-				$signature: 423
+				$signature: 422
 			};
-			X.ExtensionStore_addExtensions___closure1.prototype = {
+			X.ExtensionStore_addExtensions___closure0.prototype = {
 				call$0: function() {
 					return P.LinkedHashMap_LinkedHashMap$_empty(type$.ComplexSelector_2, type$.Extension_2);
 				},
 				$signature: 106
-			};
-			X.ExtensionStore_addExtensions___closure2.prototype = {
-				call$0: function() {
-					return this.extension;
-				},
-				$signature: 424
 			};
 			X.ExtensionStore_addExtensions_closure2.prototype = {
 				call$1: function(newExtensions) {
@@ -81360,38 +81553,38 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					X.NullableExtension_andThen0(t1.extensionsToExtend, new X.ExtensionStore_addExtensions__closure2(t2, newExtensions));
 					X.NullableExtension_andThen0(t1.selectorsToExtend, new X.ExtensionStore_addExtensions__closure3(t2, newExtensions));
 				},
-				$signature: 425
+				$signature: 423
 			};
 			X.ExtensionStore_addExtensions__closure2.prototype = {
 				call$1: function(extensionsToExtend) {
 					return this.$this._extension_store$_extendExistingExtensions$2(extensionsToExtend, this.newExtensions);
 				},
-				$signature: 426
+				$signature: 424
 			};
 			X.ExtensionStore_addExtensions__closure3.prototype = {
 				call$1: function(selectorsToExtend) {
 					return this.$this._extension_store$_extendExistingSelectors$2(selectorsToExtend, this.newExtensions);
 				},
-				$signature: 427
+				$signature: 425
 			};
 			X.ExtensionStore__extendComplex_closure1.prototype = {
 				call$1: function(component) {
 					return H.setRuntimeTypeInfo([S.ComplexSelector$0(H.setRuntimeTypeInfo([component], type$.JSArray_ComplexSelectorComponent_2), this.complex.lineBreak)], type$.JSArray_ComplexSelector_2);
 				},
-				$signature: 428
+				$signature: 426
 			};
 			X.ExtensionStore__extendComplex_closure2.prototype = {
 				call$1: function(path) {
 					var t1 = Y.weave0(J.map$1$1$ax(path, new X.ExtensionStore__extendComplex__closure1(), type$.List_ComplexSelectorComponent_2).toList$0(0));
 					return new H.MappedListIterable(t1, new X.ExtensionStore__extendComplex__closure2(this._box_0, this.$this, this.complex, path), H._arrayInstanceType(t1)._eval$1("MappedListIterable<1,ComplexSelector0>"));
 				},
-				$signature: 429
+				$signature: 427
 			};
 			X.ExtensionStore__extendComplex__closure1.prototype = {
 				call$1: function(complex) {
 					return complex.components;
 				},
-				$signature: 430
+				$signature: 428
 			};
 			X.ExtensionStore__extendComplex__closure2.prototype = {
 				call$1: function(components) {
@@ -81417,7 +81610,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					extender.assertCompatibleMediaContext$1(this.mediaQueryContext);
 					return extender.selector;
 				},
-				$signature: 433
+				$signature: 431
 			};
 			X.ExtensionStore__extendCompound_closure5.prototype = {
 				call$1: function(path) {
@@ -81452,13 +81645,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1 = J.map$1$1$ax(complexes, new X.ExtensionStore__extendCompound__closure2(_box_0), type$.ComplexSelector_2);
 					return P.List_List$of(t1, true, t1.$ti._eval$1("ListIterable.E"));
 				},
-				$signature: 434
+				$signature: 432
 			};
 			X.ExtensionStore__extendCompound__closure1.prototype = {
 				call$1: function(extender) {
 					return type$.CompoundSelector_2._as(C.JSArray_methods.get$last(extender.selector.components)).components;
 				},
-				$signature: 435
+				$signature: 433
 			};
 			X.ExtensionStore__extendCompound__closure2.prototype = {
 				call$1: function(components) {
@@ -81470,7 +81663,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(l) {
 					return l;
 				},
-				$signature: 436
+				$signature: 434
 			};
 			X.ExtensionStore__extendCompound_closure7.prototype = {
 				call$1: function(_) {
@@ -81502,20 +81695,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1.push(t2.get$current(t2).extender);
 					return t1;
 				},
-				$signature: 437
+				$signature: 435
 			};
 			X.ExtensionStore__extendSimple_closure1.prototype = {
 				call$1: function(pseudo) {
 					var t1 = this.withoutPseudo.call$1(pseudo);
 					return t1 == null ? H.setRuntimeTypeInfo([this.$this._extension_store$_extenderForSimple$2(pseudo, this.simpleSpan)], type$.JSArray_Extender_2) : t1;
 				},
-				$signature: 438
+				$signature: 436
 			};
 			X.ExtensionStore__extendSimple_closure2.prototype = {
 				call$1: function(result) {
 					return H.setRuntimeTypeInfo([result], type$.JSArray_List_Extender_2);
 				},
-				$signature: 439
+				$signature: 437
 			};
 			X.ExtensionStore__extendPseudo_closure4.prototype = {
 				call$1: function(complex) {
@@ -81579,14 +81772,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							return H.setRuntimeTypeInfo([], type$.JSArray_ComplexSelector_2);
 					}
 				},
-				$signature: 440
+				$signature: 438
 			};
 			X.ExtensionStore__extendPseudo_closure8.prototype = {
 				call$1: function(complex) {
 					var t1 = this.pseudo;
 					return D.PseudoSelector$0(t1.name, t1.argument, !t1.isClass, D.SelectorList$0(H.setRuntimeTypeInfo([complex], type$.JSArray_ComplexSelector_2)));
 				},
-				$signature: 441
+				$signature: 439
 			};
 			X.ExtensionStore__trim_closure1.prototype = {
 				call$1: function(complex2) {
@@ -81616,7 +81809,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							t5.$indexSet(0, newSelector, mediaContext);
 					}
 				},
-				$signature: 442
+				$signature: 440
 			};
 			E.FiberClass.prototype = {};
 			E.Fiber.prototype = {};
@@ -81657,7 +81850,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t2.toUri$1(t1);
 				},
-				$signature: 170
+				$signature: 169
 			};
 			B.ForRule0.prototype = {
 				accept$1$1: function(visitor) {
@@ -81811,7 +82004,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				toString$0: function(_) {
 					var t1 = this.namespace;
 					t1 = t1 != null ? "" + (t1 + ".") : "";
-					t1 += this.name.toString$0(0) + this.$arguments.toString$0(0);
+					t1 += this.originalName + this.$arguments.toString$0(0);
 					return t1.charCodeAt(0) == 0 ? t1 : t1;
 				},
 				$isExpression0: 1,
@@ -81899,19 +82092,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return _null;
 					return t1.get$first(unified);
 				},
-				$signature: 444
+				$signature: 442
 			};
 			Y._weaveParents_closure7.prototype = {
 				call$1: function(sequence) {
 					return Y.complexIsParentSuperselector0(sequence.get$first(sequence), this.group);
 				},
-				$signature: 445
+				$signature: 443
 			};
 			Y._weaveParents_closure8.prototype = {
 				call$1: function(chunk) {
 					return J.expand$1$1$ax(chunk, new Y._weaveParents__closure4(), type$.ComplexSelectorComponent_2);
 				},
-				$signature: 174
+				$signature: 172
 			};
 			Y._weaveParents__closure4.prototype = {
 				call$1: function(group) {
@@ -81923,13 +82116,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(sequence) {
 					return sequence.get$length(sequence) === 0;
 				},
-				$signature: 156
+				$signature: 157
 			};
 			Y._weaveParents_closure10.prototype = {
 				call$1: function(chunk) {
 					return J.expand$1$1$ax(chunk, new Y._weaveParents__closure3(), type$.ComplexSelectorComponent_2);
 				},
-				$signature: 174
+				$signature: 172
 			};
 			Y._weaveParents__closure3.prototype = {
 				call$1: function(group) {
@@ -81941,20 +82134,20 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(choice) {
 					return J.get$isNotEmpty$asx(choice);
 				},
-				$signature: 447
+				$signature: 445
 			};
 			Y._weaveParents_closure12.prototype = {
 				call$1: function(path) {
 					var t1 = J.expand$1$1$ax(path, new Y._weaveParents__closure2(), type$.ComplexSelectorComponent_2);
 					return P.List_List$of(t1, true, t1.$ti._eval$1("Iterable.E"));
 				},
-				$signature: 448
+				$signature: 446
 			};
 			Y._weaveParents__closure2.prototype = {
 				call$1: function(group) {
 					return group;
 				},
-				$signature: 449
+				$signature: 447
 			};
 			Y._mustUnify_closure0.prototype = {
 				call$1: function(component) {
@@ -82153,13 +82346,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(pseudo) {
 					return pseudo.isClass === this.isClass && pseudo.name === this.name;
 				},
-				$signature: 558
+				$signature: 449
 			};
 			Y._selectorPseudoArgs_closure2.prototype = {
 				call$1: function(pseudo) {
 					return pseudo.selector;
 				},
-				$signature: 452
+				$signature: 556
 			};
 			Y.globalFunctions_closure0.prototype = {
 				call$1: function($arguments) {
@@ -82249,7 +82442,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(clause) {
 					return "@if {" + C.JSArray_methods.join$1(clause.children, " ") + "}";
 				},
-				$signature: 453
+				$signature: 451
 			};
 			V.IfRuleClause0.prototype = {};
 			V.IfRuleClause$__closure0.prototype = {
@@ -82267,13 +82460,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = true;
 					return t1;
 				},
-				$signature: 183
+				$signature: 179
 			};
 			V.IfRuleClause$___closure0.prototype = {
 				call$1: function($import) {
 					return $import instanceof B.DynamicImport0;
 				},
-				$signature: 185
+				$signature: 182
 			};
 			V.IfClause0.prototype = {
 				toString$0: function(_) {
@@ -82413,7 +82606,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = contents == null ? "" : contents;
 						return new S.Tuple2(t1, url, type$.Tuple2_String_String);
 					} else if (contents != null)
-						return new S.Tuple2(contents, file, type$.Tuple2_String_String);
+						return new S.Tuple2(contents, $.$get$context().toUri$1(file).toString$0(0), type$.Tuple2_String_String);
 					else {
 						resolved = this.loadRelative$3($.$get$context().toUri$1(file).toString$0(0), previous, forImport);
 						if (resolved == null)
@@ -82476,13 +82669,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 39
+				$signature: 42
 			};
 			F.NodeImporter__tryPath_closure0.prototype = {
 				call$1: function(resolved) {
 					return new S.Tuple2(B.readFile0(resolved), $.$get$context().toUri$1(resolved).toString$0(0), type$.Tuple2_String_String);
 				},
-				$signature: 456
+				$signature: 454
 			};
 			F.ModifiableCssImport0.prototype = {
 				accept$1$1: function(visitor) {
@@ -82546,7 +82739,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return null;
 				},
-				$signature: 457
+				$signature: 455
 			};
 			R.ImportCache__canonicalize_closure0.prototype = {
 				call$0: function() {
@@ -82554,7 +82747,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 166
+				$signature: 165
 			};
 			R.ImportCache_importCanonical_closure0.prototype = {
 				call$0: function() {
@@ -82567,19 +82760,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2 = _this.quiet ? $.$get$Logger_quiet0() : t2._import_cache$_logger;
 					return V.Stylesheet_Stylesheet$parse0(result.contents, result.syntax, t2, t1);
 				},
-				$signature: 458
+				$signature: 456
 			};
 			R.ImportCache_humanize_closure2.prototype = {
 				call$1: function(tuple) {
 					return tuple.item2.$eq(0, this.canonicalUrl);
 				},
-				$signature: 459
+				$signature: 457
 			};
 			R.ImportCache_humanize_closure3.prototype = {
 				call$1: function(tuple) {
 					return tuple.item3;
 				},
-				$signature: 460
+				$signature: 458
 			};
 			R.ImportCache_humanize_closure4.prototype = {
 				call$1: function(url) {
@@ -82612,7 +82805,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					if (!(this.content == null)) {
 						t2 = t1.file;
 						t3 = this.$arguments.span;
-						t3 = B.SpanExtensions_trim0(t2.span$2(Y.FileLocation$_(t2, t1._file$_start).offset, Y.FileLocation$_(t3.file, t3._end).offset));
+						t3 = V.SpanExtensions_trimRight0(V.SpanExtensions_trimLeft0(t2.span$2(Y.FileLocation$_(t2, t1._file$_start).offset, Y.FileLocation$_(t3.file, t3._end).offset)));
 						t1 = t3;
 					}
 					return t1;
@@ -82637,6 +82830,22 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				$isAstNode0: 1,
 				$isStatement0: 1,
+				get$span: function() {
+					return this.span;
+				}
+			};
+			N.InterpolatedFunctionExpression0.prototype = {
+				accept$1$1: function(visitor) {
+					return visitor.visitInterpolatedFunctionExpression$1(this);
+				},
+				accept$1: function(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
+				},
+				toString$0: function(_) {
+					return this.name.toString$0(0) + this.$arguments.toString$0(0);
+				},
+				$isExpression0: 1,
+				$isAstNode0: 1,
 				get$span: function() {
 					return this.span;
 				}
@@ -82682,7 +82891,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return typeof value == "string" ? value : "#{" + H.S(value) + "}";
 				},
-				$signature: 42
+				$signature: 43
 			};
 			X.SupportsInterpolation0.prototype = {
 				toString$0: function(_) {
@@ -82858,7 +83067,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.expectDone$0();
 					return selectors;
 				},
-				$signature: 44
+				$signature: 45
 			};
 			K.LimitedMapView0.prototype = {
 				get$keys: function(_) {
@@ -83039,13 +83248,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(list) {
 					return list.get$asList();
 				},
-				$signature: 462
+				$signature: 460
 			};
 			D._zip__closure3.prototype = {
 				call$1: function(list) {
 					return this._box_0.i !== J.get$length$asx(list);
 				},
-				$signature: 463
+				$signature: 461
 			};
 			D._zip__closure4.prototype = {
 				call$1: function(list) {
@@ -83165,13 +83374,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = complex.components;
 					return D.SassList$0(new H.MappedListIterable(t1, new D.SelectorList_asSassList__closure0(), H._arrayInstanceType(t1)._eval$1("MappedListIterable<1,Value0>")), C.ListSeparator_woc0, false);
 				},
-				$signature: 464
+				$signature: 462
 			};
 			D.SelectorList_asSassList__closure0.prototype = {
 				call$1: function(component) {
 					return new D.SassString0(component.toString$0(0), false);
 				},
-				$signature: 465
+				$signature: 463
 			};
 			D.SelectorList_unify_closure0.prototype = {
 				call$1: function(complex1) {
@@ -83303,7 +83512,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t3 = simple.isClass;
 					return D.PseudoSelector$0(t2, simple.argument, !t3, t1);
 				},
-				$signature: 468
+				$signature: 466
 			};
 			D.SelectorList__resolveParentSelectorsCompound_closure4.prototype = {
 				call$1: function(complex) {
@@ -83356,13 +83565,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null, null];
 				},
-				$signature: 469
+				$signature: 467
 			};
 			D.listConstructor__closure.prototype = {
 				call$1: function(_) {
 					return C.C__SassNull;
 				},
-				$signature: 186
+				$signature: 184
 			};
 			D.listConstructor_closure0.prototype = {
 				call$2: function(thisArg, index) {
@@ -83370,7 +83579,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 471
+				$signature: 469
 			};
 			D.listConstructor_closure1.prototype = {
 				call$3: function(thisArg, index, value) {
@@ -83382,13 +83591,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$3",
 				$requiredArgCount: 3,
-				$signature: 472
+				$signature: 470
 			};
 			D.listConstructor_closure2.prototype = {
 				call$1: function(thisArg) {
 					return J.get$dartValue$x(thisArg).separator === C.ListSeparator_kWM0;
 				},
-				$signature: 473
+				$signature: 471
 			};
 			D.listConstructor_closure3.prototype = {
 				call$2: function(thisArg, isComma) {
@@ -83399,19 +83608,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 474
+				$signature: 472
 			};
 			D.listConstructor_closure4.prototype = {
 				call$1: function(thisArg) {
 					return J.get$dartValue$x(thisArg)._list1$_contents.length;
 				},
-				$signature: 475
+				$signature: 473
 			};
 			D.listConstructor_closure5.prototype = {
 				call$1: function(thisArg) {
 					return N.serializeValue(J.get$dartValue$x(thisArg), true, true);
 				},
-				$signature: 476
+				$signature: 474
 			};
 			D.SassList0.prototype = {
 				get$isBlank: function() {
@@ -83517,7 +83726,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(pair) {
 					return H.S(pair.item1) + ": " + H.S(pair.item2);
 				},
-				$signature: 477
+				$signature: 475
 			};
 			A._get_closure0.prototype = {
 				call$1: function($arguments) {
@@ -83623,7 +83832,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return new A.SassMap0(H.ConstantMap_ConstantMap$from(t2, t1, t1));
 				},
-				$signature: 478
+				$signature: 476
 			};
 			A._deepMerge_closure0.prototype = {
 				call$1: function($arguments) {
@@ -83729,7 +83938,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					mutableMap.$indexSet(0, key, _this.call$1(t2 ? C.SassMap_Map_empty0 : nestedMap));
 					return new A.SassMap0(H.ConstantMap_ConstantMap$from(mutableMap, t1, t1));
 				},
-				$signature: 479
+				$signature: 477
 			};
 			A._deepMergeImpl__ensureMutable0.prototype = {
 				call$0: function() {
@@ -83763,7 +83972,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						}
 					}
 				},
-				$signature: 54
+				$signature: 55
 			};
 			A._NodeSassMap.prototype = {};
 			A.mapConstructor_closure.prototype = {
@@ -83789,19 +83998,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 480
+				$signature: 478
 			};
 			A.mapConstructor__closure.prototype = {
 				call$1: function(i) {
 					return new N.UnitlessSassNumber0(i, null);
 				},
-				$signature: 481
+				$signature: 479
 			};
 			A.mapConstructor__closure0.prototype = {
 				call$1: function(_) {
 					return C.C__SassNull;
 				},
-				$signature: 186
+				$signature: 184
 			};
 			A.mapConstructor_closure0.prototype = {
 				call$2: function(thisArg, index) {
@@ -83810,7 +84019,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 188
+				$signature: 186
 			};
 			A.mapConstructor_closure1.prototype = {
 				call$2: function(thisArg, index) {
@@ -83819,14 +84028,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 188
+				$signature: 186
 			};
 			A.mapConstructor_closure2.prototype = {
 				call$1: function(thisArg) {
 					var t1 = J.get$dartValue$x(thisArg).contents;
 					return t1.get$length(t1);
 				},
-				$signature: 483
+				$signature: 481
 			};
 			A.mapConstructor_closure3.prototype = {
 				call$3: function(thisArg, index, key) {
@@ -83852,7 +84061,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$3",
 				$requiredArgCount: 3,
-				$signature: 190
+				$signature: 188
 			};
 			A.mapConstructor_closure4.prototype = {
 				call$3: function(thisArg, index, value) {
@@ -83871,13 +84080,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$3",
 				$requiredArgCount: 3,
-				$signature: 190
+				$signature: 188
 			};
 			A.mapConstructor_closure5.prototype = {
 				call$1: function(thisArg) {
 					return N.serializeValue(J.get$dartValue$x(thisArg), true, true);
 				},
-				$signature: 485
+				$signature: 483
 			};
 			A.SassMap0.prototype = {
 				get$separator: function() {
@@ -83925,7 +84134,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(key, value) {
 					this.result.push(D.SassList$0(H.setRuntimeTypeInfo([key, value], type$.JSArray_Value_2), C.ListSeparator_woc0, false));
 				},
-				$signature: 54
+				$signature: 55
 			};
 			K._ceil_closure0.prototype = {
 				call$1: function(value) {
@@ -83989,7 +84198,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(value) {
 					return Math.abs(value);
 				},
-				$signature: 94
+				$signature: 81
 			};
 			K._hypot_closure0.prototype = {
 				call$1: function($arguments) {
@@ -84015,7 +84224,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(argument) {
 					return argument.assertNumber$0();
 				},
-				$signature: 486
+				$signature: 484
 			};
 			K._log_closure0.prototype = {
 				call$1: function($arguments) {
@@ -84445,7 +84654,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				unmerge$0: function() {
 					var $async$self = this;
 					return P._makeSyncStarIterable(function() {
-						var $async$goto = 0, $async$handler = 1, $async$currentError, left;
+						var $async$goto = 0, $async$handler = 1, $async$currentError, right, left;
 						return function $async$unmerge$0($async$errorCode, $async$result) {
 							if ($async$errorCode === 1) {
 								$async$currentError = $async$result;
@@ -84475,10 +84684,26 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 										// after yield
 									case 3:
 										// join
-										$async$goto = 7;
-										return $async$self.right;
+										right = $async$self.right;
+										$async$goto = right instanceof A.MergedExtension0 ? 7 : 9;
+										break;
 									case 7:
+										// then
+										$async$goto = 10;
+										return P._IterationMarker_yieldStar(right.unmerge$0());
+									case 10:
 										// after yield
+										// goto join
+										$async$goto = 8;
+										break;
+									case 9:
+										// else
+										$async$goto = 11;
+										return right;
+									case 11:
+										// after yield
+									case 8:
+										// join
 										// implicit return
 										return P._IterationMarker_endOfIteration();
 									case 1:
@@ -84699,7 +84924,9 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			};
 			B._readFile_closure0.prototype = {
 				call$0: function() {
-					/*DSH- return J.readFileSync$2$x(D.fs(), this.path, this.encoding);*/
+					/*DSH-
+					return J.readFileSync$2$x(D.fs(), this.path, this.encoding);
+					*/
 					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
 
 					return fileManager.ReadFile(path); //DSH+
@@ -84763,13 +84990,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure0")); //DSH+
 				},
-				$signature: 238
+				$signature: 174
 			};
 			B.listDir__closure1.prototype = {
 				call$1: function(child) {
 					return D.join(this.path, H._asString(child), null);
 				},
-				$signature: 61
+				$signature: 79
 			};
 			B.listDir__closure2.prototype = {
 				call$1: function(child) {
@@ -84779,17 +85006,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			};
 			B.listDir_closure_list0.prototype = {
 				call$1: function($parent) {
-					/*DSH- return J.expand$1$1$ax(J.readdirSync$1$x(D.fs(), $parent), new B.listDir__list_closure0($parent, this), type$.String);*/
-					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure_list0")); //DSH+
+					return J.expand$1$1$ax(J.readdirSync$1$x(D.fs(), $parent), new B.listDir__list_closure0($parent, this), type$.String);
 				},
-				$signature: 176
+				$signature: 238
 			};
 			B.listDir__list_closure0.prototype = {
 				call$1: function(child) {
+					/*DSH-
 					var path = D.join(this.parent, H._asString(child), null);
 					return B.dirExists0(path) ? this.list.call$1(path) : H.setRuntimeTypeInfo([path], type$.JSArray_String);
+					*/
+					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir__list_closure0")); //DSH+
 				},
-				$signature: 177
+				$signature: 176
 			};
 			B.ModifiableCssNode0.prototype = {
 				get$hasFollowingSibling: function() {
@@ -84857,7 +85086,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(result) {
 					this.callback.call$2(null, result);
 				},
-				$signature: 487
+				$signature: 485
 			};
 			B._render_closure1.prototype = {
 				call$2: function(error, stackTrace) {
@@ -84899,7 +85128,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							t1.push(new S.AsyncBuiltInCallable0(tuple.item1, tuple.item2, new B._parseFunctions__closure1(callback, context)));
 					}
 				},
-				$signature: 488
+				$signature: 486
 			};
 			B._parseFunctions__closure.prototype = {
 				call$1: function($arguments) {
@@ -84926,7 +85155,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 87
+				$signature: 90
 			};
 			B._parseFunctions____closure.prototype = {
 				call$0: function() {
@@ -84942,7 +85171,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 126
+				$signature: 100
 			};
 			B._parseFunctions__closure0.prototype = {
 				call$1: function($arguments) {
@@ -84998,7 +85227,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					});
 					return P._asyncStartSync($async$call$1, $async$completer);
 				},
-				$signature: 140
+				$signature: 138
 			};
 			B._parseFunctions___closure.prototype = {
 				call$1: function(result) {
@@ -85018,7 +85247,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(importer) {
 					return type$.JSFunction._as(P.allowInteropCaptureThis(new B._parseImporter__closure(this.fiber, importer)));
 				},
-				$signature: 489
+				$signature: 487
 			};
 			B._parseImporter__closure.prototype = {
 				call$4: function(thisArg, url, previous, _) {
@@ -85036,13 +85265,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 490
+				$signature: 488
 			};
 			B._parseImporter___closure.prototype = {
 				call$1: function(result) {
 					P.scheduleMicrotask(new B._parseImporter____closure(this.currentFiber, result));
 				},
-				$signature: 491
+				$signature: 489
 			};
 			B._parseImporter____closure.prototype = {
 				call$0: function() {
@@ -85058,7 +85287,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$0",
 				$requiredArgCount: 0,
-				$signature: 126
+				$signature: 100
 			};
 			O.NullExpression0.prototype = {
 				accept$1$1: function(visitor) {
@@ -85100,7 +85329,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 148
+				$signature: 150
 			};
 			O.nullConstructor__closure0.prototype = {
 				call$0: function() {
@@ -85172,13 +85401,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null, null];
 				},
-				$signature: 492
+				$signature: 490
 			};
 			T.numberConstructor_closure0.prototype = {
 				call$1: function(thisArg) {
 					return J.get$dartValue$x(thisArg).value;
 				},
-				$signature: 493
+				$signature: 491
 			};
 			T.numberConstructor_closure1.prototype = {
 				call$2: function(thisArg, value) {
@@ -85188,7 +85417,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 494
+				$signature: 492
 			};
 			T.numberConstructor_closure2.prototype = {
 				call$1: function(thisArg) {
@@ -85196,7 +85425,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t2 = J.join$1$ax(t1.get$dartValue(thisArg).get$numeratorUnits(), "*");
 					return t2 + (t1.get$dartValue(thisArg).get$denominatorUnits().length === 0 ? "" : "/") + C.JSArray_methods.join$1(t1.get$dartValue(thisArg).get$denominatorUnits(), "*");
 				},
-				$signature: 193
+				$signature: 190
 			};
 			T.numberConstructor_closure3.prototype = {
 				call$2: function(thisArg, unit) {
@@ -85205,13 +85434,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 496
+				$signature: 494
 			};
 			T.numberConstructor_closure4.prototype = {
 				call$1: function(thisArg) {
 					return N.serializeValue(J.get$dartValue$x(thisArg), true, true);
 				},
-				$signature: 193
+				$signature: 190
 			};
 			T._parseNumber_closure.prototype = {
 				call$1: function(unit) {
@@ -85580,7 +85809,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return new E.SassScriptException0(t1 == null ? t3 : "$" + t1 + ": " + t3);
 					}
 				},
-				$signature: 497
+				$signature: 495
 			};
 			T.SassNumber__coerceOrConvertValue_closure3.prototype = {
 				call$1: function(oldNumerator) {
@@ -85618,13 +85847,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(num1, num2) {
 					return num1 + num2;
 				},
-				$signature: 48
+				$signature: 49
 			};
 			T.SassNumber_minus_closure0.prototype = {
 				call$2: function(num1, num2) {
 					return num1 - num2;
 				},
-				$signature: 48
+				$signature: 49
 			};
 			T.SassNumber_multiplyUnits_closure3.prototype = {
 				call$1: function(denominator) {
@@ -85686,7 +85915,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(multiplier, unit) {
 					return multiplier * this.$this.canonicalMultiplierForUnit$1(unit);
 				},
-				$signature: 222
+				$signature: 221
 			};
 			U.SupportsOperation0.prototype = {
 				toString$0: function(_) {
@@ -85740,13 +85969,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = true;
 					return t1;
 				},
-				$signature: 183
+				$signature: 179
 			};
 			M.ParentStatement__closure0.prototype = {
 				call$1: function($import) {
 					return $import instanceof B.DynamicImport0;
 				},
-				$signature: 185
+				$signature: 182
 			};
 			T.ParenthesizedExpression0.prototype = {
 				accept$1$1: function(visitor) {
@@ -85955,7 +86184,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t1.readChar$0();
 								t1.readChar$0();
 							} else
-								buffer._contents += H.Primitives_stringFromCharCode(this.escapeCharacter$0());
+								buffer._contents += H.Primitives_stringFromCharCode(B.consumeEscapedCharacter0(t1));
 						} else
 							buffer._contents += H.Primitives_stringFromCharCode(t1.readChar$0());
 					}
@@ -86098,6 +86327,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						next = t1.peekChar$0();
 						if (next == null)
 							break;
+						else if (next === 92)
+							buffer._contents += H.S(_this.escape$0());
 						else {
 							if (next !== 37)
 								if (next !== 38)
@@ -86111,8 +86342,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t2 = true;
 							if (t2)
 								buffer._contents += H.Primitives_stringFromCharCode(t1.readChar$0());
-							else if (next === 92)
-								buffer._contents += H.S(_this.escape$0());
 							else if (next === 32 || next === 9 || next === 10 || next === 13 || next === 12) {
 								_this.whitespace$0();
 								if (t1.peekChar$0() !== 41)
@@ -86133,15 +86362,16 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				escape$1$identifierStart: function(identifierStart) {
 					var value, first, i, next, t2, exception,
+						_s25_ = "Expected escape sequence.",
 						t1 = this.scanner,
 						start = t1._string_scanner$_position;
 					t1.expectChar$1(92);
 					value = 0;
 					first = t1.peekChar$0();
 					if (first == null)
-						return "";
+						t1.error$1(0, _s25_);
 					else if (first === 10 || first === 13 || first === 12)
-						t1.error$1(0, "Expected escape sequence.");
+						t1.error$1(0, _s25_);
 					else if (T.isHex0(first)) {
 						for (i = 0; i < 6; ++i) {
 							next = t1.peekChar$0();
@@ -86191,36 +86421,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				escape$0: function() {
 					return this.escape$1$identifierStart(false);
 				},
-				escapeCharacter$0: function() {
-					var first, value, i, next, t2,
-						t1 = this.scanner;
-					t1.expectChar$1(92);
-					first = t1.peekChar$0();
-					if (first == null)
-						return 65533;
-					else if (first === 10 || first === 13 || first === 12)
-						t1.error$1(0, "Expected escape sequence.");
-					else if (T.isHex0(first)) {
-						for (value = 0, i = 0; i < 6; ++i) {
-							next = t1.peekChar$0();
-							if (next == null || !T.isHex0(next))
-								break;
-							value = (value << 4 >>> 0) + T.asHex0(t1.readChar$0());
-						}
-						t2 = t1.peekChar$0();
-						if (t2 === 32 || t2 === 9 || t2 === 10 || t2 === 13 || t2 === 12)
-							t1.readChar$0();
-						if (value !== 0)
-							t1 = value >= 55296 && value <= 57343 || value >= 1114111;
-						else
-							t1 = true;
-						if (t1)
-							return 65533;
-						else
-							return value;
-					} else
-						return t1.readChar$0();
-				},
 				scanCharIf$1: function(condition) {
 					var t1 = this.scanner;
 					if (!condition.call$1(t1.peekChar$0()))
@@ -86238,7 +86438,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						return true;
 					} else if (next === 92) {
 						t3 = t2._string_scanner$_position;
-						if (t1.call$1(this.escapeCharacter$0()))
+						if (t1.call$1(B.consumeEscapedCharacter0(t2)))
 							return true;
 						t2.set$state(new S._SpanScannerState(t2, t3));
 					}
@@ -86435,7 +86635,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					var t1 = this.char;
 					return this.caseSensitive ? actual === t1 : T.characterEqualsIgnoreCase0(t1, actual);
 				},
-				$signature: 51
+				$signature: 52
 			};
 			N.PlaceholderSelector0.prototype = {
 				get$isInvisible: function() {
@@ -86704,7 +86904,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1.writeln$1(C.JSString_methods.trimRight$0(Y.Trace_Trace$from(stackTrace).get$terse().toString$0(0)));
 					}
 				},
-				$signature: 498
+				$signature: 496
 			};
 			U.main_closure.prototype = {
 				call$0: function() {
@@ -87168,7 +87368,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(t1) {
 					return this._box_0._nextIndentation0 = t1;
 				},
-				$signature: 92
+				$signature: 94
 			};
 			U.SassParser__peekIndentation__containsTab_get0.prototype = {
 				call$0: function() {
@@ -87452,13 +87652,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1.first = false;
 					return result;
 				},
-				$signature: 197
+				$signature: 193
 			};
 			T._nest__closure2.prototype = {
 				call$2: function($parent, child) {
 					return child.resolveParentSelectors$1($parent);
 				},
-				$signature: 199
+				$signature: 198
 			};
 			T._append_closure1.prototype = {
 				call$1: function($arguments) {
@@ -87473,14 +87673,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(selector) {
 					return selector.assertSelector$0();
 				},
-				$signature: 197
+				$signature: 193
 			};
 			T._append__closure2.prototype = {
 				call$2: function($parent, child) {
 					var t1 = child.components;
 					return D.SelectorList$0(new H.MappedListIterable(t1, new T._append___closure0($parent), H._arrayInstanceType(t1)._eval$1("MappedListIterable<1,ComplexSelector0>"))).resolveParentSelectors$1($parent);
 				},
-				$signature: 199
+				$signature: 198
 			};
 			T._append___closure0.prototype = {
 				call$1: function(complex) {
@@ -87545,7 +87745,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(simple) {
 					return new D.SassString0(N.serializeSelector0(simple, true), false);
 				},
-				$signature: 501
+				$signature: 499
 			};
 			T._parse_closure0.prototype = {
 				call$1: function($arguments) {
@@ -87880,13 +88080,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1.error$1(0, "expected selector.");
 					return compound;
 				},
-				$signature: 502
+				$signature: 500
 			};
 			N.serialize_closure0.prototype = {
 				call$1: function(codeUnit) {
 					return codeUnit > 127;
 				},
-				$signature: 51
+				$signature: 52
 			};
 			N._SerializeVisitor.prototype = {
 				visitCssStylesheet$1: function(node) {
@@ -88461,7 +88661,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 				},
 				_serialize0$_visitQuotedString$2$forceDoubleQuote: function(string, forceDoubleQuote) {
-					var t1, includesSingleQuote, includesDoubleQuote, i, char, t2, next, quote, _this = this,
+					var t1, includesSingleQuote, includesDoubleQuote, i, char, newIndex, quote, _this = this,
 						buffer = forceDoubleQuote ? _this._buffer : new P.StringBuffer("");
 					if (forceDoubleQuote)
 						buffer.writeCharCode$1(34);
@@ -88524,25 +88724,18 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							case 29:
 							case 30:
 							case 31:
-								buffer.writeCharCode$1(92);
-								if (char > 15) {
-									t2 = char >>> 4;
-									buffer.writeCharCode$1(t2 < 10 ? 48 + t2 : 87 + t2);
-								}
-								t2 = char & 15;
-								buffer.writeCharCode$1(t2 < 10 ? 48 + t2 : 87 + t2);
-								t2 = i + 1;
-								if (t1 === t2)
-									break;
-								next = C.JSString_methods._codeUnitAt$1(string, t2);
-								if (T.isHex0(next) || next === 32 || next === 9)
-									buffer.writeCharCode$1(32);
+								_this._serialize0$_writeEscape$4(buffer, char, string, i);
 								break;
 							case 92:
 								buffer.writeCharCode$1(92);
 								buffer.writeCharCode$1(92);
 								break;
 							default:
+								newIndex = _this._serialize0$_tryPrivateUseCharacter$4(buffer, char, string, i);
+								if (newIndex != null) {
+									i = newIndex;
+									break;
+								}
 								buffer.writeCharCode$1(char);
 								break;
 						}
@@ -88561,7 +88754,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					return this._serialize0$_visitQuotedString$2$forceDoubleQuote(string, false);
 				},
 				_serialize0$_visitUnquotedString$1: function(string) {
-					var t1, t2, afterNewline, i, char;
+					var t1, t2, afterNewline, i, char, newIndex;
 					for (t1 = string.length, t2 = this._buffer, afterNewline = false, i = 0; i < t1; ++i) {
 						char = C.JSString_methods._codeUnitAt$1(string, i);
 						switch (char) {
@@ -88574,11 +88767,43 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 									t2.writeCharCode$1(32);
 								break;
 							default:
+								newIndex = this._serialize0$_tryPrivateUseCharacter$4(t2, char, string, i);
+								if (newIndex != null) {
+									i = newIndex;
+									afterNewline = false;
+									break;
+								}
 								t2.writeCharCode$1(char);
 								afterNewline = false;
 								break;
 						}
 					}
+				},
+				_serialize0$_tryPrivateUseCharacter$4: function(buffer, codeUnit, string, i) {
+					var t1;
+					if (this._serialize0$_style === C.OutputStyle_compressed0)
+						return null;
+					if (codeUnit >= 57344 && codeUnit <= 63743) {
+						this._serialize0$_writeEscape$4(buffer, codeUnit, string, i);
+						return i;
+					}
+					if (codeUnit >>> 7 === 439 && string.length > i + 1) {
+						t1 = i + 1;
+						this._serialize0$_writeEscape$4(buffer, 65536 + ((codeUnit & 1023) << 10) + (C.JSString_methods._codeUnitAt$1(string, t1) & 1023), string, t1);
+						return t1;
+					}
+					return null;
+				},
+				_serialize0$_writeEscape$4: function(buffer, character, string, i) {
+					var t1, next;
+					buffer.writeCharCode$1(92);
+					buffer.write$1(0, C.JSInt_methods.toRadixString$1(character, 16));
+					t1 = i + 1;
+					if (string.length === t1)
+						return;
+					next = C.JSString_methods._codeUnitAt$1(string, t1);
+					if (T.isHex0(next) || next === 32 || next === 9)
+						buffer.writeCharCode$1(32);
 				},
 				visitComplexSelector$1: function(complex) {
 					var t1, t2, t3, t4, lastComponent, _i, component, t5;
@@ -88872,13 +89097,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					if (needsParens)
 						t1._buffer.writeCharCode$1(41);
 				},
-				$signature: 53
+				$signature: 54
 			};
 			N._SerializeVisitor_visitList_closure4.prototype = {
 				call$1: function(element) {
 					element.accept$1(this.$this);
 				},
-				$signature: 53
+				$signature: 54
 			};
 			N._SerializeVisitor_visitMap_closure0.prototype = {
 				call$1: function(entry) {
@@ -88887,13 +89112,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1._buffer.write$1(0, ": ");
 					t1._serialize0$_writeMapElement$1(entry.value);
 				},
-				$signature: 504
+				$signature: 502
 			};
 			N._SerializeVisitor__removeExponent__exponent_set0.prototype = {
 				call$1: function(t1) {
 					return this._box_0._exponent = t1;
 				},
-				$signature: 92
+				$signature: 94
 			};
 			N._SerializeVisitor__removeExponent__exponent_get0.prototype = {
 				call$0: function() {
@@ -89161,13 +89386,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(factor) {
 					return new L.SingleUnitSassNumber0(this.unit, this.$this.value * factor, null);
 				},
-				$signature: 505
+				$signature: 503
 			};
 			L.SingleUnitSassNumber__coerceValueToUnit_closure0.prototype = {
 				call$1: function(factor) {
 					return this.$this.value * factor;
 				},
-				$signature: 94
+				$signature: 81
 			};
 			L.SingleUnitSassNumber_multiplyUnits_closure1.prototype = {
 				call$1: function(denominator) {
@@ -89287,7 +89512,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t4 = t3 === 0 ? t4.prefixColumn : 0;
 					return new L.Entry(t1, V.SourceLocation$(t2.offset + this.prefixLength, t2.column + t4, t3 + t5, null), entry.identifierName);
 				},
-				$signature: 219
+				$signature: 218
 			};
 			A.StatementSearchVisitor0.prototype = {
 				visitAtRootRule$1: function(node) {
@@ -89661,13 +89886,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				$defaultValues: function() {
 					return [null];
 				},
-				$signature: 506
+				$signature: 504
 			};
 			D.stringConstructor_closure0.prototype = {
 				call$1: function(thisArg) {
 					return J.get$dartValue$x(thisArg).text;
 				},
-				$signature: 201
+				$signature: 199
 			};
 			D.stringConstructor_closure1.prototype = {
 				call$2: function(thisArg, value) {
@@ -89675,13 +89900,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				"call*": "call$2",
 				$requiredArgCount: 2,
-				$signature: 508
+				$signature: 506
 			};
 			D.stringConstructor_closure2.prototype = {
 				call$1: function(thisArg) {
 					return N.serializeValue(J.get$dartValue$x(thisArg), true, true);
 				},
-				$signature: 201
+				$signature: 199
 			};
 			D.SassString0.prototype = {
 				get$sassLength: function() {
@@ -91795,7 +92020,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								if (second === 13)
 									t1.scanChar$1(10);
 							} else
-								t3._contents += H.Primitives_stringFromCharCode(this.escapeCharacter$0());
+								t3._contents += H.Primitives_stringFromCharCode(B.consumeEscapedCharacter0(t1));
 						} else if (next === 35)
 							if (t1.peekChar$1(1) === 123) {
 								t5 = this.singleInterpolation$0();
@@ -91816,7 +92041,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						plain = identifier.get$asPlain(),
 						t2 = plain == null;
 					if (!t2) {
-						if (plain === "if") {
+						if (plain === "if" && t1.peekChar$0() === 40) {
 							invocation = _this._stylesheet0$_argumentInvocation$0();
 							return new L.IfExpression0(invocation, identifier.span.expand$1(0, invocation.span));
 						} else if (plain === "not") {
@@ -91857,10 +92082,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								_this._stylesheet0$_assertPublic$2($name, new V.StylesheetParser_identifierLike_closure0(_this, start));
 								return new S.VariableExpression0(plain, $name, t1.spanFrom$1(start));
 							}
-							t2 = t1._string_scanner$_position;
-							return new F.FunctionExpression0(plain, X.Interpolation$0(H.setRuntimeTypeInfo([_this._stylesheet0$_publicIdentifier$0()], type$.JSArray_Object), t1.spanFrom$1(new S._SpanScannerState(t1, t2))), _this._stylesheet0$_argumentInvocation$0(), t1.spanFrom$1(start));
+							return new F.FunctionExpression0(plain, _this._stylesheet0$_publicIdentifier$0(), _this._stylesheet0$_argumentInvocation$0(), t1.spanFrom$1(start));
 						case 40:
-							return new F.FunctionExpression0(null, identifier, _this._stylesheet0$_argumentInvocation$0(), t1.spanFrom$1(start));
+							if (t2)
+								return new N.InterpolatedFunctionExpression0(identifier, _this._stylesheet0$_argumentInvocation$0(), t1.spanFrom$1(start));
+							else
+								return new F.FunctionExpression0(null, plain, _this._stylesheet0$_argumentInvocation$0(), t1.spanFrom$1(start));
 						default:
 							return new D.StringExpression0(identifier, false);
 					}
@@ -91957,6 +92184,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							case 55:
 							case 56:
 							case 57:
+							case 46:
 								try {
 									start = t1._string_scanner$_position;
 									t4.call$0();
@@ -92087,6 +92315,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						next = t1.peekChar$0();
 						if (next == null)
 							break;
+						else if (next === 92)
+							t3._contents += H.S(_this.escape$0());
 						else {
 							if (next !== 33)
 								if (next !== 37)
@@ -92100,8 +92330,6 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t5 = true;
 							if (t5)
 								t3._contents += H.Primitives_stringFromCharCode(t1.readChar$0());
-							else if (next === 92)
-								t3._contents += H.S(_this.escape$0());
 							else if (next === 35)
 								if (t1.peekChar$1(1) === 123) {
 									t5 = _this.singleInterpolation$0();
@@ -92151,7 +92379,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					contents = _this._stylesheet0$_tryUrlContents$1(start);
 					if (contents != null)
 						return new D.StringExpression0(contents, false);
-					return new F.FunctionExpression0(null, X.Interpolation$0(H.setRuntimeTypeInfo(["url"], type$.JSArray_Object), t1.spanFrom$1(start)), _this._stylesheet0$_argumentInvocation$0(), t1.spanFrom$1(start));
+					return new N.InterpolatedFunctionExpression0(X.Interpolation$0(H.setRuntimeTypeInfo(["url"], type$.JSArray_Object), t1.spanFrom$1(start)), _this._stylesheet0$_argumentInvocation$0(), t1.spanFrom$1(start));
 				},
 				almostAnyValue$1$omitComments: function(omitComments) {
 					var t4, t5, t6, next, commentStart, end, t7, contents, _this = this,
@@ -92836,7 +93064,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					C.JSArray_methods.addAll$1(statements, H.MappedIterable_MappedIterable(t4, new V.StylesheetParser_parse__closure2(), H._instanceType(t4)._eval$1("Iterable.E"), type$.Statement_2));
 					return V.Stylesheet$internal0(statements, t2.spanFrom$1(new S._SpanScannerState(t2, t3)), t1.get$plainCss());
 				},
-				$signature: 512
+				$signature: 510
 			};
 			V.StylesheetParser_parse__closure1.prototype = {
 				call$0: function() {
@@ -92848,13 +93076,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					}
 					return t1._stylesheet0$_statement$1$root(true);
 				},
-				$signature: 513
+				$signature: 511
 			};
 			V.StylesheetParser_parse__closure2.prototype = {
 				call$1: function(declaration) {
 					return Z.VariableDeclaration$0(declaration.name, new O.NullExpression0(declaration.expression.get$span()), declaration.span, null, false, true, null);
 				},
-				$signature: 514
+				$signature: 512
 			};
 			V.StylesheetParser_parseArgumentDeclaration_closure0.prototype = {
 				call$0: function() {
@@ -92870,7 +93098,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.expectChar$1(123);
 					return $arguments;
 				},
-				$signature: 515
+				$signature: 513
 			};
 			V.StylesheetParser__parseSingleProduction_closure0.prototype = {
 				call$0: function() {
@@ -92899,7 +93127,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.expectDone$0();
 					return new S.Tuple2($name, $arguments, type$.Tuple2_String_ArgumentDeclaration);
 				},
-				$signature: 516
+				$signature: 514
 			};
 			V.StylesheetParser__statement_closure0.prototype = {
 				call$0: function() {
@@ -92917,19 +93145,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return this.declaration;
 				},
-				$signature: 517
+				$signature: 515
 			};
 			V.StylesheetParser__declarationOrBuffer_closure1.prototype = {
 				call$2: function(children, span) {
 					return L.Declaration$nested0(this.name, children, span, null);
 				},
-				$signature: 67
+				$signature: 70
 			};
 			V.StylesheetParser__declarationOrBuffer_closure2.prototype = {
 				call$2: function(children, span) {
 					return L.Declaration$nested0(this.name, children, span, this._box_0.value);
 				},
-				$signature: 67
+				$signature: 70
 			};
 			V.StylesheetParser__styleRule_closure0.prototype = {
 				call$2: function(children, span) {
@@ -92940,31 +93168,31 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1._stylesheet0$_inStyleRule = _this.wasInStyleRule;
 					return X.StyleRule$0(_this._box_0.interpolation, children, t1.scanner.spanFrom$1(_this.start));
 				},
-				$signature: 519
+				$signature: 517
 			};
 			V.StylesheetParser__propertyOrVariableDeclaration_closure1.prototype = {
 				call$2: function(children, span) {
 					return L.Declaration$nested0(this._box_0.name, children, span, null);
 				},
-				$signature: 67
+				$signature: 70
 			};
 			V.StylesheetParser__propertyOrVariableDeclaration_closure2.prototype = {
 				call$2: function(children, span) {
 					return L.Declaration$nested0(this._box_0.name, children, span, this.value);
 				},
-				$signature: 67
+				$signature: 70
 			};
 			V.StylesheetParser__atRootRule_closure1.prototype = {
 				call$2: function(children, span) {
 					return V.AtRootRule$0(children, span, this.query);
 				},
-				$signature: 213
+				$signature: 207
 			};
 			V.StylesheetParser__atRootRule_closure2.prototype = {
 				call$2: function(children, span) {
 					return V.AtRootRule$0(children, span, null);
 				},
-				$signature: 213
+				$signature: 207
 			};
 			V.StylesheetParser__eachRule_closure0.prototype = {
 				call$2: function(children, span) {
@@ -92972,13 +93200,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_this.$this._stylesheet0$_inControlDirective = _this.wasInControlDirective;
 					return V.EachRule$0(_this.variables, _this.list, children, span);
 				},
-				$signature: 521
+				$signature: 519
 			};
 			V.StylesheetParser__functionRule_closure0.prototype = {
 				call$2: function(children, span) {
 					return M.FunctionRule$0(this.name, this.$arguments, children, span, this.precedingComment);
 				},
-				$signature: 522
+				$signature: 520
 			};
 			V.StylesheetParser__forRule_closure1.prototype = {
 				call$0: function() {
@@ -93003,7 +93231,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t1.toString;
 					return B.ForRule$0(_this.variable, _this.from, _this.to, children, span, t1);
 				},
-				$signature: 523
+				$signature: 521
 			};
 			V.StylesheetParser__memberList_closure0.prototype = {
 				call$0: function() {
@@ -93019,13 +93247,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$2: function(children, span) {
 					return Y.ContentBlock$0(this.contentArguments_, children, span);
 				},
-				$signature: 524
+				$signature: 522
 			};
 			V.StylesheetParser_mediaRule_closure0.prototype = {
 				call$2: function(children, span) {
 					return G.MediaRule$0(this.query, children, span);
 				},
-				$signature: 525
+				$signature: 523
 			};
 			V.StylesheetParser__mixinRule_closure0.prototype = {
 				call$2: function(children, span) {
@@ -93033,7 +93261,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					_this.$this._stylesheet0$_inMixin = false;
 					return T.MixinRule$0(_this.name, _this.$arguments, children, span, _this.precedingComment);
 				},
-				$signature: 526
+				$signature: 524
 			};
 			V.StylesheetParser_mozDocumentRule_closure0.prototype = {
 				call$2: function(children, span) {
@@ -93042,26 +93270,26 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						_this.$this.logger.warn$3$deprecation$span(0, string$.x40_moz_, true, span);
 					return U.AtRule$0(_this.name, span, children, _this.value);
 				},
-				$signature: 215
+				$signature: 213
 			};
 			V.StylesheetParser_supportsRule_closure0.prototype = {
 				call$2: function(children, span) {
 					return B.SupportsRule$0(this.condition, children, span);
 				},
-				$signature: 528
+				$signature: 526
 			};
 			V.StylesheetParser__whileRule_closure0.prototype = {
 				call$2: function(children, span) {
 					this.$this._stylesheet0$_inControlDirective = this.wasInControlDirective;
 					return G.WhileRule$0(this.condition, children, span);
 				},
-				$signature: 529
+				$signature: 527
 			};
 			V.StylesheetParser_unknownAtRule_closure0.prototype = {
 				call$2: function(children, span) {
 					return U.AtRule$0(this.name, span, children, this._box_0.value);
 				},
-				$signature: 215
+				$signature: 213
 			};
 			V.StylesheetParser_expression_resetState0.prototype = {
 				call$0: function() {
@@ -93136,7 +93364,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(expression) {
 					return this.call$2$number(expression, false);
 				},
-				$signature: 530
+				$signature: 528
 			};
 			V.StylesheetParser_expression_addOperator0.prototype = {
 				call$1: function(operator) {
@@ -93176,7 +93404,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					t2.singleExpression_ = singleExpression_;
 					t2.allowSlash = t2.allowSlash && singleExpression_ instanceof T.NumberExpression0;
 				},
-				$signature: 531
+				$signature: 529
 			};
 			V.StylesheetParser_expression_resolveSpaceExpressions0.prototype = {
 				call$0: function() {
@@ -93224,7 +93452,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(contents) {
 					return new D.StringExpression0(contents, false);
 				},
-				$signature: 532
+				$signature: 530
 			};
 			V.StylesheetParser__expressionUntilComparison_closure0.prototype = {
 				call$0: function() {
@@ -93349,13 +93577,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(count) {
 					return count > 5;
 				},
-				$signature: 51
+				$signature: 52
 			};
 			Y.TerseLogger_summarize_closure2.prototype = {
 				call$1: function(count) {
 					return count - 5;
 				},
-				$signature: 182
+				$signature: 181
 			};
 			F.TypeSelector0.prototype = {
 				get$minSpecificity: function() {
@@ -93671,19 +93899,19 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$0: function() {
 					return B._exactlyOne0(B._tryPath0($.$get$context().withoutExtension$1(this.path) + ".import" + this.extension));
 				},
-				$signature: 39
+				$signature: 42
 			};
 			B.resolveImportPath_closure2.prototype = {
 				call$0: function() {
 					return B._exactlyOne0(B._tryPathWithExtensions0(this.path + ".import"));
 				},
-				$signature: 39
+				$signature: 42
 			};
 			B._tryPathAsDirectory_closure0.prototype = {
 				call$0: function() {
 					return B._exactlyOne0(B._tryPathWithExtensions0(D.join(this.path, "index.import", null)));
 				},
-				$signature: 39
+				$signature: 42
 			};
 			B._exactlyOne_closure0.prototype = {
 				call$1: function(path) {
@@ -93696,13 +93924,13 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				call$1: function(thisArg) {
 					return J.toString$0$(thisArg);
 				},
-				$signature: 42
+				$signature: 43
 			};
 			B.createClass_closure.prototype = {
 				call$2: function($name, body) {
 					this.$prototype[$name] = P.allowInteropCaptureThis(body);
 				},
-				$signature: 533
+				$signature: 531
 			};
 			B._PropertyDescriptor0.prototype = {};
 			B.indent_closure0.prototype = {
@@ -94194,32 +94422,32 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_static_1(P, "async___nullDataHandler$closure", "_nullDataHandler", 134);
 				_static_2(P, "async___nullErrorHandler$closure", "_nullErrorHandler", 56);
 				_static_0(P, "async___nullDoneHandler$closure", "_nullDoneHandler", 0);
-				_static(P, "async___rootHandleUncaughtError$closure", 5, null, ["call$5"], ["_rootHandleUncaughtError"], 536, 0);
+				_static(P, "async___rootHandleUncaughtError$closure", 5, null, ["call$5"], ["_rootHandleUncaughtError"], 534, 0);
 				_static(P, "async___rootRun$closure", 4, null, ["call$1$4", "call$4"], ["_rootRun", function($self, $parent, zone, f) {
 					return P._rootRun($self, $parent, zone, f, type$.dynamic);
-				}], 537, 1);
+				}], 535, 1);
 				_static(P, "async___rootRunUnary$closure", 5, null, ["call$2$5", "call$5"], ["_rootRunUnary", function($self, $parent, zone, f, arg) {
 					return P._rootRunUnary($self, $parent, zone, f, arg, type$.dynamic, type$.dynamic);
-				}], 538, 1);
+				}], 536, 1);
 				_static(P, "async___rootRunBinary$closure", 6, null, ["call$3$6", "call$6"], ["_rootRunBinary", function($self, $parent, zone, f, arg1, arg2) {
 					return P._rootRunBinary($self, $parent, zone, f, arg1, arg2, type$.dynamic, type$.dynamic, type$.dynamic);
-				}], 539, 1);
+				}], 537, 1);
 				_static(P, "async___rootRegisterCallback$closure", 4, null, ["call$1$4", "call$4"], ["_rootRegisterCallback", function($self, $parent, zone, f) {
 					return P._rootRegisterCallback($self, $parent, zone, f, type$.dynamic);
-				}], 540, 0);
+				}], 538, 0);
 				_static(P, "async___rootRegisterUnaryCallback$closure", 4, null, ["call$2$4", "call$4"], ["_rootRegisterUnaryCallback", function($self, $parent, zone, f) {
 					return P._rootRegisterUnaryCallback($self, $parent, zone, f, type$.dynamic, type$.dynamic);
-				}], 541, 0);
+				}], 539, 0);
 				_static(P, "async___rootRegisterBinaryCallback$closure", 4, null, ["call$3$4", "call$4"], ["_rootRegisterBinaryCallback", function($self, $parent, zone, f) {
 					return P._rootRegisterBinaryCallback($self, $parent, zone, f, type$.dynamic, type$.dynamic, type$.dynamic);
-				}], 542, 0);
-				_static(P, "async___rootErrorCallback$closure", 5, null, ["call$5"], ["_rootErrorCallback"], 543, 0);
-				_static(P, "async___rootScheduleMicrotask$closure", 4, null, ["call$4"], ["_rootScheduleMicrotask"], 544, 0);
-				_static(P, "async___rootCreateTimer$closure", 5, null, ["call$5"], ["_rootCreateTimer"], 545, 0);
-				_static(P, "async___rootCreatePeriodicTimer$closure", 5, null, ["call$5"], ["_rootCreatePeriodicTimer"], 546, 0);
-				_static(P, "async___rootPrint$closure", 4, null, ["call$4"], ["_rootPrint"], 547, 0);
-				_static_1(P, "async___printToZone$closure", "_printToZone", 124);
-				_static(P, "async___rootFork$closure", 5, null, ["call$5"], ["_rootFork"], 548, 0);
+				}], 540, 0);
+				_static(P, "async___rootErrorCallback$closure", 5, null, ["call$5"], ["_rootErrorCallback"], 541, 0);
+				_static(P, "async___rootScheduleMicrotask$closure", 4, null, ["call$4"], ["_rootScheduleMicrotask"], 542, 0);
+				_static(P, "async___rootCreateTimer$closure", 5, null, ["call$5"], ["_rootCreateTimer"], 543, 0);
+				_static(P, "async___rootCreatePeriodicTimer$closure", 5, null, ["call$5"], ["_rootCreatePeriodicTimer"], 544, 0);
+				_static(P, "async___rootPrint$closure", 4, null, ["call$4"], ["_rootPrint"], 545, 0);
+				_static_1(P, "async___printToZone$closure", "_printToZone", 122);
+				_static(P, "async___rootFork$closure", 5, null, ["call$5"], ["_rootFork"], 546, 0);
 				_instance(P._AsyncCompleter.prototype, "get$complete", 0, 0, function() {
 					return [null];
 				}, ["call$1", "call$0"], ["complete$1", "complete$0"], 212, 0);
@@ -94228,14 +94456,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_instance_1_i(_ = P._StreamController.prototype, "get$add", "add$1", 28);
 				_instance(_, "get$addError", 0, 1, function() {
 					return [null];
-				}, ["call$2", "call$1"], ["addError$2", "addError$1"], 142, 0);
-				_instance_0_i(_, "get$close", "close$0", 431);
+				}, ["call$2", "call$1"], ["addError$2", "addError$1"], 145, 0);
+				_instance_0_i(_, "get$close", "close$0", 429);
 				_instance_1_u(_, "get$_async$_add", "_async$_add$1", 28);
 				_instance_2_u(_, "get$_addError", "_addError$2", 56);
 				_instance_0_u(_, "get$_close", "_close$0", 0);
 				_instance_0_u(_ = P._ControllerSubscription.prototype, "get$_async$_onPause", "_async$_onPause$0", 0);
 				_instance_0_u(_, "get$_async$_onResume", "_async$_onResume$0", 0);
-				_instance(_ = P._BufferingStreamSubscription.prototype, "get$pause", 1, 0, null, ["call$1", "call$0"], ["pause$1", "pause$0"], 549, 0);
+				_instance(_ = P._BufferingStreamSubscription.prototype, "get$pause", 1, 0, null, ["call$1", "call$0"], ["pause$1", "pause$0"], 547, 0);
 				_instance_0_i(_, "get$resume", "resume$0", 0);
 				_instance_0_u(_, "get$_async$_onPause", "_async$_onPause$0", 0);
 				_instance_0_u(_, "get$_async$_onResume", "_async$_onResume$0", 0);
@@ -94247,35 +94475,35 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_instance_1_u(_, "get$_handleData", "_handleData$1", 28);
 				_instance_2_u(_, "get$_handleError", "_handleError$2", 391);
 				_instance_0_u(_, "get$_handleDone", "_handleDone$0", 0);
-				_static_2(P, "collection___defaultEquals$closure", "_defaultEquals", 228);
+				_static_2(P, "collection___defaultEquals$closure", "_defaultEquals", 227);
 				_static_1(P, "collection___defaultHashCode$closure", "_defaultHashCode", 231);
 				_static_2(P, "collection_ListMixin__compareAny$closure", "ListMixin__compareAny", 223);
 				_instance_1_u(P._HashMap.prototype, "get$containsKey", "containsKey$1", 9);
 				_instance_1_u(P._LinkedCustomHashMap.prototype, "get$containsKey", "containsKey$1", 9);
-				_instance(_ = P._LinkedHashSet.prototype, "get$_newSimilarSet", 0, 0, null, ["call$1$0", "call$0"], ["_newSimilarSet$1$0", "_newSimilarSet$0"], 384, 0);
+				_instance(_ = P._LinkedHashSet.prototype, "get$_newSimilarSet", 0, 0, null, ["call$1$0", "call$0"], ["_newSimilarSet$1$0", "_newSimilarSet$0"], 385, 0);
 				_instance_1_i(_, "get$contains", "contains$1", 9);
 				_instance_1_i(_, "get$add", "add$1", 9);
-				_instance(P._LinkedIdentityHashSet.prototype, "get$_newSimilarSet", 0, 0, null, ["call$1$0", "call$0"], ["_newSimilarSet$1$0", "_newSimilarSet$0"], 382, 0);
+				_instance(P._LinkedIdentityHashSet.prototype, "get$_newSimilarSet", 0, 0, null, ["call$1$0", "call$0"], ["_newSimilarSet$1$0", "_newSimilarSet$0"], 383, 0);
 				_instance_1_u(P.MapMixin.prototype, "get$containsKey", "containsKey$1", 9);
 				_instance_1_u(P.MapView.prototype, "get$containsKey", "containsKey$1", 9);
 				_instance_1_i(P._UnmodifiableSet.prototype, "get$contains", "contains$1", 9);
 				_static_1(P, "convert___defaultToEncodable$closure", "_defaultToEncodable", 96);
 				_static_1(P, "core__identityHashCode$closure", "identityHashCode", 231);
-				_static_2(P, "core__identical$closure", "identical", 228);
+				_static_2(P, "core__identical$closure", "identical", 227);
 				_static_1(P, "core_Uri_decodeComponent$closure", "Uri_decodeComponent", 5);
 				_instance_1_i(P.Iterable.prototype, "get$contains", "contains$1", 9);
 				_instance_1_i(P.StringBuffer.prototype, "get$write", "write$1", 28);
 				_static(P, "math0__max$closure", 2, null, ["call$1$2", "call$2"], ["max", function(a, b) {
 					return P.max(a, b, type$.num);
-				}], 551, 1);
+				}], 549, 1);
 				_instance_1_u(_ = Y.StreamCompleter.prototype, "get$setSourceStream", "setSourceStream$1", 28);
 				_instance(_, "get$setError", 0, 1, function() {
 					return [null];
-				}, ["call$2", "call$1"], ["setError$2", "setError$1"], 142, 0);
+				}, ["call$2", "call$1"], ["setError$2", "setError$1"], 145, 0);
 				_instance_0_u(_ = L.StreamGroup.prototype, "get$_onListen", "_onListen$0", 0);
 				_instance_0_u(_, "get$_onPause", "_onPause$0", 0);
 				_instance_0_u(_, "get$_onResume", "_onResume$0", 0);
-				_instance_0_u(_, "get$_onCancel", "_onCancel$0", 328);
+				_instance_0_u(_, "get$_onCancel", "_onCancel$0", 330);
 				_instance_0_i(B.ReplAdapter.prototype, "get$exit", "exit$0", 0);
 				_instance_1_i(O.EmptyUnmodifiableSet.prototype, "get$contains", "contains$1", 9);
 				_instance_1_i(M._DelegatingIterableBase.prototype, "get$contains", "contains$1", 9);
@@ -94292,10 +94520,10 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_instance_0_u(_, "get$string", "string$0", 27);
 				_instance_0_u(U.SassParser.prototype, "get$loudComment", "loudComment$0", 0);
 				_instance(_ = V.StylesheetParser.prototype, "get$_statement", 0, 0, null, ["call$1$root", "call$0"], ["_statement$1$root", "_statement$0"], 326, 0);
-				_instance_0_u(_, "get$_declarationChild", "_declarationChild$0", 100);
-				_instance_0_u(_, "get$_functionChild", "_functionChild$0", 100);
-				_instance(_, "get$expression", 0, 0, null, ["call$3$bracketList$singleEquals$until", "call$0", "call$2$singleEquals$until", "call$1$bracketList", "call$1$singleEquals", "call$1$until"], ["expression$3$bracketList$singleEquals$until", "expression$0", "expression$2$singleEquals$until", "expression$1$bracketList", "expression$1$singleEquals", "expression$1$until"], 324, 0);
-				_instance_0_u(_, "get$_number", "_number$0", 321);
+				_instance_0_u(_, "get$_declarationChild", "_declarationChild$0", 114);
+				_instance_0_u(_, "get$_functionChild", "_functionChild$0", 114);
+				_instance(_, "get$expression", 0, 0, null, ["call$3$bracketList$singleEquals$until", "call$0", "call$2$singleEquals$until", "call$1$bracketList", "call$1$singleEquals", "call$1$until"], ["expression$3$bracketList$singleEquals$until", "expression$0", "expression$2$singleEquals$until", "expression$1$bracketList", "expression$1$singleEquals", "expression$1$until"], 325, 0);
+				_instance_0_u(_, "get$_number", "_number$0", 323);
 				_instance_1_u(K.LimitedMapView.prototype, "get$containsKey", "containsKey$1", 9);
 				_instance_1_u(Z.MergedMapView.prototype, "get$containsKey", "containsKey$1", 9);
 				_instance_1_i(N.NoSourceMapBuffer0.prototype, "get$write", "write$1", 28);
@@ -94304,63 +94532,63 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_instance_1_i(D.SourceMapBuffer0.prototype, "get$write", "write$1", 28);
 				_instance_1_u(R.UnprefixedMapView.prototype, "get$containsKey", "containsKey$1", 9);
 				_static_1(B, "utils__isPublic$closure", "isPublic", 6);
-				_instance_2_u(T.SassNumber.prototype, "get$moduloLikeSass", "moduloLikeSass$2", 48);
-				_instance_1_u(_ = E._EvaluateVisitor0.prototype, "get$_async_evaluate$_visitMediaQueries", "_async_evaluate$_visitMediaQueries$1", 252);
-				_instance_1_u(_, "get$_async_evaluate$_visitSupportsCondition", "_async_evaluate$_visitSupportsCondition$1", 249);
-				_instance_1_u(_, "get$_async_evaluate$_expressionNode", "_async_evaluate$_expressionNode$1", 226);
-				_instance_1_u(_ = R._EvaluateVisitor.prototype, "get$_visitMediaQueries", "_visitMediaQueries$1", 264);
-				_instance_1_u(_, "get$_visitSupportsCondition", "_visitSupportsCondition$1", 265);
-				_instance_1_u(_, "get$_expressionNode", "_expressionNode$1", 226);
-				_instance_1_u(_ = D.RecursiveStatementVisitor.prototype, "get$visitContentBlock", "visitContentBlock$1", 280);
-				_instance_1_u(_, "get$visitChildren", "visitChildren$1", 281);
-				_instance_1_u(_ = N._SerializeVisitor0.prototype, "get$_visitMediaQuery", "_visitMediaQuery$1", 282);
+				_instance_2_u(T.SassNumber.prototype, "get$moduloLikeSass", "moduloLikeSass$2", 49);
+				_instance_1_u(_ = E._EvaluateVisitor0.prototype, "get$_async_evaluate$_visitMediaQueries", "_async_evaluate$_visitMediaQueries$1", 253);
+				_instance_1_u(_, "get$_async_evaluate$_visitSupportsCondition", "_async_evaluate$_visitSupportsCondition$1", 251);
+				_instance_1_u(_, "get$_async_evaluate$_expressionNode", "_async_evaluate$_expressionNode$1", 225);
+				_instance_1_u(_ = R._EvaluateVisitor.prototype, "get$_visitMediaQueries", "_visitMediaQueries$1", 263);
+				_instance_1_u(_, "get$_visitSupportsCondition", "_visitSupportsCondition$1", 264);
+				_instance_1_u(_, "get$_expressionNode", "_expressionNode$1", 225);
+				_instance_1_u(_ = D.RecursiveStatementVisitor.prototype, "get$visitContentBlock", "visitContentBlock$1", 279);
+				_instance_1_u(_, "get$visitChildren", "visitChildren$1", 280);
+				_instance_1_u(_ = N._SerializeVisitor0.prototype, "get$_visitMediaQuery", "_visitMediaQuery$1", 281);
 				_instance_1_u(_, "get$_isInvisible", "_isInvisible$1", 7);
 				_instance_1_u(_ = A.StatementSearchVisitor.prototype, "get$visitContentBlock", "visitContentBlock$1", "StatementSearchVisitor.T?(ContentBlock)");
 				_instance_1_u(_, "get$visitChildren", "visitChildren$1", "StatementSearchVisitor.T?(List<Statement>)");
 				_instance(Y.SourceSpanMixin.prototype, "get$message", 1, 1, function() {
 					return {color: null};
-				}, ["call$2$color", "call$1"], ["message$2$color", "message$1"], 296, 0);
+				}, ["call$2$color", "call$1"], ["message$2$color", "message$1"], 295, 0);
 				_static(L, "from_handlers__TransformByHandlers__defaultHandleError$closure", 3, null, ["call$1$3", "call$3"], ["TransformByHandlers__defaultHandleError", function(error, stackTrace, sink) {
 					return L.TransformByHandlers__defaultHandleError(error, stackTrace, sink, type$.dynamic);
-				}], 552, 0);
+				}], 550, 0);
 				_static(R, "rate_limit___collect$closure", 2, null, ["call$1$2", "call$2"], ["_collect", function($event, soFar) {
 					return R._collect($event, soFar, type$.dynamic);
-				}], 553, 0);
-				_instance_1_u(_ = E._EvaluateVisitor2.prototype, "get$_async_evaluate0$_visitMediaQueries", "_async_evaluate0$_visitMediaQueries$1", 322);
-				_instance_1_u(_, "get$_async_evaluate0$_visitSupportsCondition", "_async_evaluate0$_visitSupportsCondition$1", 323);
+				}], 551, 0);
+				_instance_1_u(_ = E._EvaluateVisitor2.prototype, "get$_async_evaluate0$_visitMediaQueries", "_async_evaluate0$_visitMediaQueries$1", 321);
+				_instance_1_u(_, "get$_async_evaluate0$_visitSupportsCondition", "_async_evaluate0$_visitSupportsCondition$1", 322);
 				_instance_1_u(_, "get$_async_evaluate0$_expressionNode", "_async_evaluate0$_expressionNode$1", 192);
 				_static_1(K, "color1___opacify$closure", "_opacify0", 24);
 				_static_1(K, "color1___transparentize$closure", "_transparentize0", 24);
-				_instance_1_u(F.EmptyExtensionStore0.prototype, "get$addExtensions", "addExtensions$1", 145);
-				_instance_1_u(_ = R._EvaluateVisitor1.prototype, "get$_evaluate0$_visitMediaQueries", "_evaluate0$_visitMediaQueries$1", 402);
-				_instance_1_u(_, "get$_evaluate0$_visitSupportsCondition", "_evaluate0$_visitSupportsCondition$1", 403);
+				_instance_1_u(F.EmptyExtensionStore0.prototype, "get$addExtensions", "addExtensions$1", 146);
+				_instance_1_u(_ = R._EvaluateVisitor1.prototype, "get$_evaluate0$_visitMediaQueries", "_evaluate0$_visitMediaQueries$1", 401);
+				_instance_1_u(_, "get$_evaluate0$_visitSupportsCondition", "_evaluate0$_visitSupportsCondition$1", 402);
 				_instance_1_u(_, "get$_evaluate0$_expressionNode", "_evaluate0$_expressionNode$1", 192);
-				_instance_1_u(X.ExtensionStore0.prototype, "get$addExtensions", "addExtensions$1", 145);
+				_instance_1_u(X.ExtensionStore0.prototype, "get$addExtensions", "addExtensions$1", 146);
 				_static_1(Y, "functions0___isUnique$closure", "_isUnique0", 18);
 				_instance_1_u(K.LimitedMapView0.prototype, "get$containsKey", "containsKey$1", 9);
 				_instance_1_u(D.SelectorList0.prototype, "get$_list2$_complexContainsParentSelector", "_list2$_complexContainsParentSelector$1", 19);
 				_instance_1_u(Z.MergedMapView0.prototype, "get$containsKey", "containsKey$1", 9);
 				_instance_1_i(N.NoSourceMapBuffer.prototype, "get$write", "write$1", 28);
 				_instance_1_u(B.ModifiableCssNode0.prototype, "get$_node2$_isInvisible", "_node2$_isInvisible$1", 8);
-				_static_2(B, "node___render$closure", "_render", 554);
-				_static_1(B, "node___renderSync$closure", "_renderSync", 555);
-				_instance_2_u(T.SassNumber0.prototype, "get$moduloLikeSass", "moduloLikeSass$2", 48);
+				_static_2(B, "node___render$closure", "_render", 552);
+				_static_1(B, "node___renderSync$closure", "_renderSync", 553);
+				_instance_2_u(T.SassNumber0.prototype, "get$moduloLikeSass", "moduloLikeSass$2", 49);
 				_instance_0_u(_ = G.Parser1.prototype, "get$whitespace", "whitespace$0", 0);
 				_instance_0_u(_, "get$loudComment", "loudComment$0", 0);
 				_instance_0_u(_, "get$string", "string$0", 27);
 				_instance_1_u(F.PrefixedMapView0.prototype, "get$containsKey", "containsKey$1", 9);
 				_instance_1_u(U.PublicMemberMapView0.prototype, "get$containsKey", "containsKey$1", 9);
-				_static_1(U, "sass__main$closure", "main", 556);
+				_static_1(U, "sass__main$closure", "main", 554);
 				_instance_0_u(U.SassParser0.prototype, "get$loudComment", "loudComment$0", 0);
-				_instance_1_u(_ = N._SerializeVisitor.prototype, "get$_serialize0$_visitMediaQuery", "_serialize0$_visitMediaQuery$1", 503);
+				_instance_1_u(_ = N._SerializeVisitor.prototype, "get$_serialize0$_visitMediaQuery", "_serialize0$_visitMediaQuery$1", 501);
 				_instance_1_u(_, "get$_serialize0$_isInvisible", "_serialize0$_isInvisible$1", 8);
 				_instance_1_i(D.SourceMapBuffer.prototype, "get$write", "write$1", 28);
 				_instance_1_u(_ = A.StatementSearchVisitor0.prototype, "get$visitContentBlock", "visitContentBlock$1", "StatementSearchVisitor0.T?(ContentBlock0)");
 				_instance_1_u(_, "get$visitChildren", "visitChildren$1", "StatementSearchVisitor0.T?(List<Statement0>)");
-				_instance(_ = V.StylesheetParser0.prototype, "get$_stylesheet0$_statement", 0, 0, null, ["call$1$root", "call$0"], ["_stylesheet0$_statement$1$root", "_stylesheet0$_statement$0"], 509, 0);
+				_instance(_ = V.StylesheetParser0.prototype, "get$_stylesheet0$_statement", 0, 0, null, ["call$1$root", "call$0"], ["_stylesheet0$_statement$1$root", "_stylesheet0$_statement$0"], 507, 0);
 				_instance_0_u(_, "get$_stylesheet0$_declarationChild", "_stylesheet0$_declarationChild$0", 103);
 				_instance_0_u(_, "get$_stylesheet0$_functionChild", "_stylesheet0$_functionChild$0", 103);
-				_instance_0_u(_, "get$_stylesheet0$_number", "_stylesheet0$_number$0", 511);
+				_instance_0_u(_, "get$_stylesheet0$_number", "_stylesheet0$_number$0", 509);
 				_instance_1_u(R.UnprefixedMapView0.prototype, "get$containsKey", "containsKey$1", 9);
 				_static_1(B, "utils0__isPublic$closure", "isPublic0", 6);
 				_static(D, "path__absolute$closure", 1, function() {
@@ -94377,9 +94605,8 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					return D.absolute(part1, part2, part3, part4, part5, part6, null);
 				}, function(part1, part2, part3, part4, part5) {
 					return D.absolute(part1, part2, part3, part4, part5, null, null);
-				}], 557, 0);
-				_static_1(D, "path__fromUri$closure", "fromUri", 61);
-				_static_1(D, "path__prettyUri$closure", "prettyUri", 61);
+				}], 555, 0);
+				_static_1(D, "path__prettyUri$closure", "prettyUri", 79);
 				_static_1(T, "character__isWhitespace$closure", "isWhitespace", 30);
 				_static_1(T, "character__isNewline$closure", "isNewline", 30);
 				_static_1(T, "character__isHex$closure", "isHex", 30);
@@ -94396,14 +94623,14 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_static_2(T, "number2__fuzzyGreaterThan$closure", "fuzzyGreaterThan0", 41);
 				_static_2(T, "number2__fuzzyGreaterThanOrEquals$closure", "fuzzyGreaterThanOrEquals0", 41);
 				_static_1(T, "number2__fuzzyRound$closure", "fuzzyRound0", 40);
-				_static_1(F, "value1__wrapValue$closure", "wrapValue", 372);
+				_static_1(F, "value1__wrapValue$closure", "wrapValue", 371);
 			})();
 			(function inheritance() {
 				var _mixin = hunkHelpers.mixin,
 					_inherit = hunkHelpers.inherit,
 					_inheritMany = hunkHelpers.inheritMany;
 				_inherit(P.Object, null);
-				_inheritMany(P.Object, [H.JS_CONST, J.Interceptor, J.ArrayIterator, P.Iterable, H.CastIterator, H.Closure, P.MapMixin, P.Error, P._ListBase_Object_ListMixin, H.ListIterator, P.Iterator, H.ExpandIterator, H.EmptyIterator, H.FollowedByIterator, H.WhereTypeIterator, H.FixedLengthListMixin, H.UnmodifiableListMixin, H.Symbol, P.MapView, H.ConstantMap, H.JSInvocationMirror, H.TypeErrorDecoder, H.NullThrownFromJavaScriptException, H.ExceptionAndStackTrace, H._StackTrace, H._Required, H.LinkedHashMapCell, H.LinkedHashMapKeyIterator, H.JSSyntaxRegExp, H._MatchImplementation, H._AllMatchesIterator, H.StringMatch, H._StringAllMatchesIterator, H.Rti, H._FunctionParameters, H._Type, P._TimerImpl, P._AsyncAwaitCompleter, P._IterationMarker, P._SyncStarIterator, P.AsyncError, P._Completer, P._FutureListener, P._Future, P._AsyncCallbackEntry, P.Stream, P.StreamTransformerBase, P._StreamController, P._SyncStreamControllerDispatch, P._AsyncStreamControllerDispatch, P._BufferingStreamSubscription, P._AddStreamState, P._DelayedEvent, P._DelayedDone, P._PendingEvents, P._StreamIterator, P._ZoneFunction, P._RunNullaryZoneFunction, P._RunUnaryZoneFunction, P._RunBinaryZoneFunction, P._RegisterNullaryZoneFunction, P._RegisterUnaryZoneFunction, P._RegisterBinaryZoneFunction, P._ZoneSpecification, P._ZoneDelegate, P._Zone, P._HashMapKeyIterator, P.__SetBase_Object_SetMixin, P._LinkedHashSetCell, P._LinkedHashSetIterator, P.ListMixin, P._MapBaseValueIterator, P._UnmodifiableMapMixin, P._ListQueueIterator, P.SetMixin, P._UnmodifiableSetMixin, P.Codec, P._Base64Encoder, P.ChunkedConversionSink, P._JsonStringifier, P.StringConversionSinkMixin, P._Utf8Encoder, P._Utf8Decoder, P.DateTime, P.Duration, P.OutOfMemoryError, P.StackOverflowError, P._Exception, P.FormatException, P.MapEntry, P.Null, P._StringStackTrace, P.RuneIterator, P.StringBuffer, P._Uri, P.UriData, P._SimpleUri, P._JSRandom, N.ArgParser, V.ArgResults, G.Option, G.OptionType, G.Parser0, G._Usage, V.ErrorResult, F.ValueResult, Y.StreamCompleter, L.StreamGroup, L._StreamGroupState, G.StreamQueue, G._NextRequest, Q.Repl, B.ReplAdapter, U.DefaultEquality, U.IterableEquality, U.ListEquality, U._MapEntry, U.MapEquality, Q._QueueList_Object_ListMixin, M._DelegatingIterableBase, L.UnmodifiableSetMixin, M.Context, M._PathDirection, M._PathRelation, O.Style, X.ParsedPath, X.PathException, F.CssMediaQuery, F._SingletonCssMediaQueryMergeResult, F.MediaQuerySuccessfulMergeResult, B.AstNode, F.ModifiableCssValue, F.CssValue, B._FakeAstNode, Z.Argument, B.ArgumentDeclaration, X.ArgumentInvocation, V.AtRootQuery, Z.ConfiguredVariable, V.BinaryOperationExpression, V.BinaryOperator, Z.BooleanExpression, K.ColorExpression, F.FunctionExpression, L.IfExpression, D.ListExpression, A.MapExpression, O.NullExpression, T.NumberExpression, T.ParenthesizedExpression, T.SelectorExpression, D.StringExpression, X.UnaryOperationExpression, X.UnaryOperator, F.ValueExpression, S.VariableExpression, B.DynamicImport, Q.StaticImport, X.Interpolation, M.ParentStatement, Q.ContentRule, Q.DebugRule, D.ErrorRule, X.ExtendRule, L.ForwardRule, V.IfRule, V.IfRuleClause, B.ImportRule, A.IncludeRule, L.LoudComment, A.StatementSearchVisitor, B.ReturnRule, B.SilentComment, T.UseRule, Z.VariableDeclaration, Y.WarnRule, Y.SupportsAnything, L.SupportsDeclaration, F.SupportsFunction, X.SupportsInterpolation, M.SupportsNegation, U.SupportsOperation, T.Selector, N.AttributeOperator, S.Combinator, D.QualifiedName, Q.AsyncEnvironment, Q._EnvironmentModule0, O.AsyncImportCache, S.AsyncBuiltInCallable, Q.BuiltInCallable, L.PlainCssCallable, E.UserDefinedCallable, U.CompileResult, A.Configuration, Z.ConfiguredValue, O.Environment, O._EnvironmentModule, G.SourceSpanException, E.SassScriptException,/*DSH- B.ExecutableOptions,*/ B.UsageException, A._Watcher, F.EmptyExtensionStore, S.Extension, S.Extender, X.ExtensionStore, L.ExtendMode, R.ImportCache, B.AsyncImporter, E.ImporterResult, Z.InterpolationBuffer, B.FileSystemException, B.Stderr, F._QuietLogger, S.StderrLogger, Y.TerseLogger, T.TrackingLogger, Q.BuiltInModule, R.ForwardedModuleView, B.ShadowedModuleView, G.Parser, M.StylesheetGraph, M.StylesheetNode, M.Syntax, U.MultiDirWatcher, N.NoSourceMapBuffer0, D.SourceMapBuffer0, F.Value, D.ListSeparator, E._EvaluateVisitor0, E._ImportedCssVisitor0, E.EvaluateResult, E._ArgumentResults0, E._LoadedStylesheet0, V._CloneCssVisitor, R.Evaluator, R._EvaluateVisitor, R._ImportedCssVisitor, R._ArgumentResults, R._LoadedStylesheet, D.RecursiveStatementVisitor, N._SerializeVisitor0, N.OutputStyle, N.LineFeed, N.SerializeResult, L.Entry, T.Mapping, T.TargetLineEntry, T.TargetEntry, Y.SourceFile, D.SourceLocationMixin, Y.SourceSpanMixin, U.Highlighter, U._Highlight, U._Line, V.SourceLocation, U.Chain, A.Frame, T.LazyTrace, Y.Trace, N.UnparsedFrame, X.StringScanner, S._SpanScannerState, A.AsciiGlyphSet, K.UnicodeGlyphSet, S.Tuple2, S.Tuple3, E.WatchEvent, E.ChangeType, Y.SupportsAnything0, Z.Argument0, B.ArgumentDeclaration0, X.ArgumentInvocation0, F.Value0, B.AsyncImporter0, S.AsyncBuiltInCallable0, Q.AsyncEnvironment0, Q._EnvironmentModule2, E._EvaluateVisitor2, E._ImportedCssVisitor2, E.EvaluateResult0, E._ArgumentResults2, E._LoadedStylesheet2, O.AsyncImportCache0, G.Parser1, V.AtRootQuery0, M.ParentStatement0, B.AstNode0, T.Selector0, N.AttributeOperator0, V.BinaryOperationExpression0, V.BinaryOperator0, Z.BooleanExpression0, Q.BuiltInCallable0, Q.BuiltInModule0, V._CloneCssVisitor0, K.ColorExpression0, U.CompileResult0, S.Combinator0, A.Configuration0, Z.ConfiguredValue0, Z.ConfiguredVariable0, Q.ContentRule0, Q.DebugRule0, L.SupportsDeclaration0, B.DynamicImport0, F.EmptyExtensionStore0, O.Environment0, O._EnvironmentModule1, D.ErrorRule0, R._EvaluateVisitor1, R._ImportedCssVisitor1, R._ArgumentResults1, R._LoadedStylesheet1, E.SassScriptException0, X.ExtendRule0, S.Extension0, S.Extender0, X.ExtensionStore0, L.ForwardRule0, R.ForwardedModuleView0, F.FunctionExpression0, F.SupportsFunction0, L.IfExpression0, V.IfRule0, V.IfRuleClause0, F.NodeImporter, R.ImportCache0, B.ImportRule0, A.IncludeRule0, X.Interpolation0, X.SupportsInterpolation0, Z.InterpolationBuffer0, D.ListExpression0, D.ListSeparator0, F._QuietLogger0, L.LoudComment0, A.MapExpression0, F.CssMediaQuery0, F._SingletonCssMediaQueryMergeResult0, F.MediaQuerySuccessfulMergeResult0, A.StatementSearchVisitor0, L.ExtendMode0, M.SupportsNegation0, N.NoSourceMapBuffer, B._FakeAstNode0, B.FileSystemException0, B.Stderr0, O.NullExpression0, T.NumberExpression0, U.SupportsOperation0, T.ParenthesizedExpression0, L.PlainCssCallable0, D.QualifiedName0, E.ImporterResult0, B.ReturnRule0, T.SelectorExpression0, N._SerializeVisitor, N.OutputStyle0, N.LineFeed0, N.SerializeResult0, B.ShadowedModuleView0, B.SilentComment0, D.SourceMapBuffer, Q.StaticImport0, S.StderrLogger0, D.StringExpression0, M.Syntax0, Y.TerseLogger0, X.UnaryOperationExpression0, X.UnaryOperator0, T.UseRule0, E.UserDefinedCallable0, F.CssValue0, F.ValueExpression0, F.ModifiableCssValue0, S.VariableExpression0, Z.VariableDeclaration0, Y.WarnRule0]);
+				_inheritMany(P.Object, [H.JS_CONST, J.Interceptor, J.ArrayIterator, P.Iterable, H.CastIterator, H.Closure, P.MapMixin, P.Error, P._ListBase_Object_ListMixin, H.ListIterator, P.Iterator, H.ExpandIterator, H.EmptyIterator, H.FollowedByIterator, H.WhereTypeIterator, H.FixedLengthListMixin, H.UnmodifiableListMixin, H.Symbol, P.MapView, H.ConstantMap, H.JSInvocationMirror, H.TypeErrorDecoder, H.NullThrownFromJavaScriptException, H.ExceptionAndStackTrace, H._StackTrace, H._Required, H.LinkedHashMapCell, H.LinkedHashMapKeyIterator, H.JSSyntaxRegExp, H._MatchImplementation, H._AllMatchesIterator, H.StringMatch, H._StringAllMatchesIterator, H.Rti, H._FunctionParameters, H._Type, P._TimerImpl, P._AsyncAwaitCompleter, P._IterationMarker, P._SyncStarIterator, P.AsyncError, P._Completer, P._FutureListener, P._Future, P._AsyncCallbackEntry, P.Stream, P.StreamTransformerBase, P._StreamController, P._SyncStreamControllerDispatch, P._AsyncStreamControllerDispatch, P._BufferingStreamSubscription, P._AddStreamState, P._DelayedEvent, P._DelayedDone, P._PendingEvents, P._StreamIterator, P._ZoneFunction, P._RunNullaryZoneFunction, P._RunUnaryZoneFunction, P._RunBinaryZoneFunction, P._RegisterNullaryZoneFunction, P._RegisterUnaryZoneFunction, P._RegisterBinaryZoneFunction, P._ZoneSpecification, P._ZoneDelegate, P._Zone, P._HashMapKeyIterator, P.__SetBase_Object_SetMixin, P._LinkedHashSetCell, P._LinkedHashSetIterator, P.ListMixin, P._MapBaseValueIterator, P._UnmodifiableMapMixin, P._ListQueueIterator, P.SetMixin, P._UnmodifiableSetMixin, P.Codec, P._Base64Encoder, P.ChunkedConversionSink, P._JsonStringifier, P.StringConversionSinkMixin, P._Utf8Encoder, P._Utf8Decoder, P.DateTime, P.Duration, P.OutOfMemoryError, P.StackOverflowError, P._Exception, P.FormatException, P.MapEntry, P.Null, P._StringStackTrace, P.RuneIterator, P.StringBuffer, P._Uri, P.UriData, P._SimpleUri, P._JSRandom, N.ArgParser, V.ArgResults, G.Option, G.OptionType, G.Parser0, G._Usage, V.ErrorResult, F.ValueResult, Y.StreamCompleter, L.StreamGroup, L._StreamGroupState, G.StreamQueue, G._NextRequest, Q.Repl, B.ReplAdapter, U.DefaultEquality, U.IterableEquality, U.ListEquality, U._MapEntry, U.MapEquality, Q._QueueList_Object_ListMixin, M._DelegatingIterableBase, L.UnmodifiableSetMixin, M.Context, M._PathDirection, M._PathRelation, O.Style, X.ParsedPath, X.PathException, F.CssMediaQuery, F._SingletonCssMediaQueryMergeResult, F.MediaQuerySuccessfulMergeResult, B.AstNode, F.ModifiableCssValue, F.CssValue, B._FakeAstNode, Z.Argument, B.ArgumentDeclaration, X.ArgumentInvocation, V.AtRootQuery, Z.ConfiguredVariable, V.BinaryOperationExpression, V.BinaryOperator, Z.BooleanExpression, K.ColorExpression, F.FunctionExpression, L.IfExpression, N.InterpolatedFunctionExpression, D.ListExpression, A.MapExpression, O.NullExpression, T.NumberExpression, T.ParenthesizedExpression, T.SelectorExpression, D.StringExpression, X.UnaryOperationExpression, X.UnaryOperator, F.ValueExpression, S.VariableExpression, B.DynamicImport, Q.StaticImport, X.Interpolation, M.ParentStatement, Q.ContentRule, Q.DebugRule, D.ErrorRule, X.ExtendRule, L.ForwardRule, V.IfRule, V.IfRuleClause, B.ImportRule, A.IncludeRule, L.LoudComment, A.StatementSearchVisitor, B.ReturnRule, B.SilentComment, T.UseRule, Z.VariableDeclaration, Y.WarnRule, Y.SupportsAnything, L.SupportsDeclaration, F.SupportsFunction, X.SupportsInterpolation, M.SupportsNegation, U.SupportsOperation, T.Selector, N.AttributeOperator, S.Combinator, D.QualifiedName, Q.AsyncEnvironment, Q._EnvironmentModule0, O.AsyncImportCache, S.AsyncBuiltInCallable, Q.BuiltInCallable, L.PlainCssCallable, E.UserDefinedCallable, U.CompileResult, A.Configuration, Z.ConfiguredValue, O.Environment, O._EnvironmentModule, G.SourceSpanException, E.SassScriptException,/*DSH- B.ExecutableOptions,*/ B.UsageException, A._Watcher, F.EmptyExtensionStore, S.Extension, S.Extender, X.ExtensionStore, L.ExtendMode, R.ImportCache, B.AsyncImporter, E.ImporterResult, Z.InterpolationBuffer, B.FileSystemException, B.Stderr, F._QuietLogger, S.StderrLogger, Y.TerseLogger, T.TrackingLogger, Q.BuiltInModule, R.ForwardedModuleView, B.ShadowedModuleView, G.Parser, M.StylesheetGraph, M.StylesheetNode, M.Syntax, U.MultiDirWatcher, N.NoSourceMapBuffer0, D.SourceMapBuffer0, F.Value, D.ListSeparator, E._EvaluateVisitor0, E._ImportedCssVisitor0, E.EvaluateResult, E._ArgumentResults0, E._LoadedStylesheet0, V._CloneCssVisitor, R.Evaluator, R._EvaluateVisitor, R._ImportedCssVisitor, R._ArgumentResults, R._LoadedStylesheet, D.RecursiveStatementVisitor, N._SerializeVisitor0, N.OutputStyle, N.LineFeed, N.SerializeResult, L.Entry, T.Mapping, T.TargetLineEntry, T.TargetEntry, Y.SourceFile, D.SourceLocationMixin, Y.SourceSpanMixin, U.Highlighter, U._Highlight, U._Line, V.SourceLocation, U.Chain, A.Frame, T.LazyTrace, Y.Trace, N.UnparsedFrame, X.StringScanner, S._SpanScannerState, A.AsciiGlyphSet, K.UnicodeGlyphSet, S.Tuple2, S.Tuple3, E.WatchEvent, E.ChangeType, Y.SupportsAnything0, Z.Argument0, B.ArgumentDeclaration0, X.ArgumentInvocation0, F.Value0, B.AsyncImporter0, S.AsyncBuiltInCallable0, Q.AsyncEnvironment0, Q._EnvironmentModule2, E._EvaluateVisitor2, E._ImportedCssVisitor2, E.EvaluateResult0, E._ArgumentResults2, E._LoadedStylesheet2, O.AsyncImportCache0, G.Parser1, V.AtRootQuery0, M.ParentStatement0, B.AstNode0, T.Selector0, N.AttributeOperator0, V.BinaryOperationExpression0, V.BinaryOperator0, Z.BooleanExpression0, Q.BuiltInCallable0, Q.BuiltInModule0, V._CloneCssVisitor0, K.ColorExpression0, U.CompileResult0, S.Combinator0, A.Configuration0, Z.ConfiguredValue0, Z.ConfiguredVariable0, Q.ContentRule0, Q.DebugRule0, L.SupportsDeclaration0, B.DynamicImport0, F.EmptyExtensionStore0, O.Environment0, O._EnvironmentModule1, D.ErrorRule0, R._EvaluateVisitor1, R._ImportedCssVisitor1, R._ArgumentResults1, R._LoadedStylesheet1, E.SassScriptException0, X.ExtendRule0, S.Extension0, S.Extender0, X.ExtensionStore0, L.ForwardRule0, R.ForwardedModuleView0, F.FunctionExpression0, F.SupportsFunction0, L.IfExpression0, V.IfRule0, V.IfRuleClause0, F.NodeImporter, R.ImportCache0, B.ImportRule0, A.IncludeRule0, N.InterpolatedFunctionExpression0, X.Interpolation0, X.SupportsInterpolation0, Z.InterpolationBuffer0, D.ListExpression0, D.ListSeparator0, F._QuietLogger0, L.LoudComment0, A.MapExpression0, F.CssMediaQuery0, F._SingletonCssMediaQueryMergeResult0, F.MediaQuerySuccessfulMergeResult0, A.StatementSearchVisitor0, L.ExtendMode0, M.SupportsNegation0, N.NoSourceMapBuffer, B._FakeAstNode0, B.FileSystemException0, B.Stderr0, O.NullExpression0, T.NumberExpression0, U.SupportsOperation0, T.ParenthesizedExpression0, L.PlainCssCallable0, D.QualifiedName0, E.ImporterResult0, B.ReturnRule0, T.SelectorExpression0, N._SerializeVisitor, N.OutputStyle0, N.LineFeed0, N.SerializeResult0, B.ShadowedModuleView0, B.SilentComment0, D.SourceMapBuffer, Q.StaticImport0, S.StderrLogger0, D.StringExpression0, M.Syntax0, Y.TerseLogger0, X.UnaryOperationExpression0, X.UnaryOperator0, T.UseRule0, E.UserDefinedCallable0, F.CssValue0, F.ValueExpression0, F.ModifiableCssValue0, S.VariableExpression0, Z.VariableDeclaration0, Y.WarnRule0]);
 				_inheritMany(J.Interceptor, [J.JSBool, J.JSNull, J.JavaScriptObject, J.JSArray, J.JSNumber, J.JSString, H.NativeTypedData]);
 				_inheritMany(J.JavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction, B.Stdin, B.Stdout, B.ReadlineModule, B.ReadlineOptions, B.ReadlineInterface, V.BufferModule, V.BufferConstants, V.Buffer, F.ConsoleModule, F.Console, F.EventEmitter, D.FS, D.FSConstants, D.FSWatcher, D.ReadStream, D.ReadStreamOptions, D.WriteStream, D.WriteStreamOptions, D.FileOptions, D.StatOptions, D.MkdirOptions, D.RmdirOptions, D.WatchOptions, D.WatchFileOptions, D.Stats, E.Promise, E.Date, E.JsError, E.Atomics, Y.Modules, Y.Module1, Y.Net, Y.Socket, Y.NetAddress, Y.NetServer, X.NodeJsError, X.Process, X.CPUUsage, X.Release, D.StreamModule, D.Readable, D.Writable, D.Duplex, D.Transform, D.WritableOptions, D.ReadableOptions, L.Immediate, L.Timeout, N.TTY, M.Util,/*DSH- Y.Chokidar, Y.ChokidarOptions, Y.ChokidarWatcher,*/ F.JSFunction, F.NodeImporterResult, Z.RenderContext, Z.RenderContextOptions, Z.RenderContextResult, Z.RenderContextResultStats, B._PropertyDescriptor,/*DSH- Y.Chokidar0, Y.ChokidarOptions0, Y.ChokidarWatcher0,*/ K._NodeSassColor, D.Exports, E.FiberClass, E.Fiber, F.JSFunction0, F.NodeImporterResult0, D._NodeSassList, A._NodeSassMap, T._NodeSassNumber, Z.RenderContext0, Z.RenderContextOptions0, Z.RenderContextResult0, Z.RenderContextResultStats0, R.RenderOptions, U.RenderResult, U.RenderResultStats, R._Exports, D._NodeSassString, G.Types, B._PropertyDescriptor0]);
 				_inherit(J.JSUnmodifiableArray, J.JSArray);
@@ -94412,7 +94639,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				_inheritMany(H._CastIterableBase, [H.CastIterable, H.__CastListBase__CastIterableBase_ListMixin, H.CastSet]);
 				_inherit(H._EfficientLengthCastIterable, H.CastIterable);
 				_inherit(H._CastListBase, H.__CastListBase__CastIterableBase_ListMixin);
-				_inheritMany(H.Closure, [H._CastListBase_sort_closure, H.CastMap_putIfAbsent_closure, H.CastMap_forEach_closure, H.CastMap_entries_closure, H.nullFuture_closure, H.ConstantStringMap_values_closure, H.Instantiation, H.Primitives_functionNoSuchMethod_closure, H.TearOffClosure, H.JsLinkedHashMap_values_closure, H.JsLinkedHashMap_addAll_closure, H.initHooks_closure, H.initHooks_closure0, H.initHooks_closure1, P._AsyncRun__initializeScheduleImmediate_internalCallback, P._AsyncRun__initializeScheduleImmediate_closure, P._AsyncRun__scheduleImmediateJsOverride_internalCallback, P._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, P._TimerImpl_internalCallback, P._TimerImpl$periodic_closure, P._awaitOnObject_closure, P._awaitOnObject_closure0, P._wrapJsFunctionForAsync_closure, P.Future_wait__error_set, P.Future_wait__stackTrace_set, P.Future_wait__error_get, P.Future_wait__stackTrace_get, P.Future_wait_handleError, P.Future_wait_closure, P._Future__addListener_closure, P._Future__prependListeners_closure, P._Future__chainForeignFuture_closure, P._Future__chainForeignFuture_closure0, P._Future__chainForeignFuture_closure1, P._Future__asyncCompleteWithValue_closure, P._Future__chainFuture_closure, P._Future__asyncCompleteError_closure, P._Future__propagateToListeners_handleWhenCompleteCallback, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P._Future__propagateToListeners_handleValueCallback, P._Future__propagateToListeners_handleError, P.Stream_Stream$fromFuture_closure, P.Stream_Stream$fromFuture_closure0, P.Stream_length_closure, P.Stream_length_closure0, P._StreamController__subscribe_closure, P._StreamController__recordCancel_complete, P._AddStreamState_cancel_closure, P._BufferingStreamSubscription__sendError_sendError, P._BufferingStreamSubscription__sendDone_sendDone, P._PendingEvents_schedule_closure, P._CustomZone_bindCallback_closure, P._CustomZone_bindUnaryCallback_closure, P._CustomZone_bindCallbackGuarded_closure, P._rootHandleUncaughtError_closure, P._RootZone_bindCallback_closure, P._RootZone_bindCallbackGuarded_closure, P._HashMap_values_closure, P._HashMap_addAll_closure, P._LinkedCustomHashMap_closure, P.HashMap_HashMap$from_closure, P.LinkedHashMap_LinkedHashMap$from_closure, P.MapBase_mapToString_closure, P.MapMixin_entries_closure, P.Utf8Decoder__decoder_closure, P.Utf8Decoder__decoderNonfatal_closure, P._JsonStringifier_writeMap_closure, P.NoSuchMethodError_toString_closure, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits, P.Uri__parseIPv4Address_error, P.Uri_parseIPv6Address_error, P.Uri_parseIPv6Address_parseHex, P._Uri__makePath_closure, P._createTables_build, P._createTables_setChars, P._createTables_setRange, N.ArgParser__addOption_closure, G.Parser_parse_closure, G.Parser__setOption_closure, G._Usage__writeOption_closure, G._Usage__buildAllowedList_closure, L.StreamGroup_add_closure, L.StreamGroup_add_closure0, L.StreamGroup__onListen_closure, L.StreamGroup__onCancel_closure, L.StreamGroup__listenToStream_closure, G.StreamQueue__ensureListening_closure, G.StreamQueue__ensureListening_closure1, G.StreamQueue__ensureListening_closure0, Q.alwaysValid_closure, B.ReplAdapter_runAsync__runController_set, B.ReplAdapter_runAsync__runController_get, B.ReplAdapter_runAsync_closure, B.ReplAdapter_runAsync__closure, M.MapKeySet_difference_closure, M.futureToPromise_closure, M.futureToPromise__closure, M.Context_joinAll_closure, M.Context_split_closure, M._validateArgList_closure, X.ParsedPath__splitExtension_closure, X.ParsedPath__splitExtension_closure0, K.PathMap__create_closure, K.PathMap__create_closure0, K.PathMap__create_closure1, L.WindowsStyle_absolutePathToUri_closure, B.ArgumentDeclaration_verify_closure, B.ArgumentDeclaration_verify_closure0, D.ListExpression_toString_closure, A.MapExpression_toString_closure, X.Interpolation_toString_closure, V.EachRule_toString_closure, V.IfRule_toString_closure, V.IfRuleClause$__closure, V.IfRuleClause$___closure, M.ParentStatement_closure, M.ParentStatement__closure, S.ComplexSelector_isInvisible_closure, X.CompoundSelector_isInvisible_closure, N.IDSelector_unify_closure, D.SelectorList_isInvisible_closure, D.SelectorList_asSassList_closure, D.SelectorList_asSassList__closure, D.SelectorList_unify_closure, D.SelectorList_unify__closure, D.SelectorList_unify___closure, D.SelectorList_resolveParentSelectors_closure, D.SelectorList_resolveParentSelectors__closure, D.SelectorList_resolveParentSelectors__closure0, D.SelectorList__complexContainsParentSelector_closure, D.SelectorList__complexContainsParentSelector__closure, D.SelectorList__resolveParentSelectorsCompound_closure, D.SelectorList__resolveParentSelectorsCompound_closure0, D.SelectorList__resolveParentSelectorsCompound_closure1, X._compileStylesheet_closure0, Q.AsyncEnvironment_importForwards_closure, Q.AsyncEnvironment_importForwards_closure0, Q.AsyncEnvironment_importForwards_closure1, Q.AsyncEnvironment__getVariableFromGlobalModule_closure, Q.AsyncEnvironment_setVariable_closure, Q.AsyncEnvironment_setVariable_closure0, Q.AsyncEnvironment_setVariable_closure1, Q.AsyncEnvironment__getFunctionFromGlobalModule_closure, Q.AsyncEnvironment__getMixinFromGlobalModule_closure, Q.AsyncEnvironment_toModule_closure, Q.AsyncEnvironment_toDummyModule_closure, Q.AsyncEnvironment__fromOneModule_closure, Q.AsyncEnvironment__fromOneModule__closure, Q._EnvironmentModule__EnvironmentModule_closure5, Q._EnvironmentModule__EnvironmentModule_closure6, Q._EnvironmentModule__EnvironmentModule_closure7, Q._EnvironmentModule__EnvironmentModule_closure8, Q._EnvironmentModule__EnvironmentModule_closure9, Q._EnvironmentModule__EnvironmentModule_closure10, O.AsyncImportCache_canonicalize_closure, O.AsyncImportCache__canonicalize_closure, O.AsyncImportCache_importCanonical_closure, O.AsyncImportCache_humanize_closure, O.AsyncImportCache_humanize_closure0, O.AsyncImportCache_humanize_closure1, S.AsyncBuiltInCallable$mixin_closure, Q.BuiltInCallable$mixin_closure, U._compileStylesheet_closure, A.Configuration_toString_closure, O.Environment_importForwards_closure, O.Environment_importForwards_closure0, O.Environment_importForwards_closure1, O.Environment__getVariableFromGlobalModule_closure, O.Environment_setVariable_closure, O.Environment_setVariable_closure0, O.Environment_setVariable_closure1, O.Environment__getFunctionFromGlobalModule_closure, O.Environment__getMixinFromGlobalModule_closure, O.Environment_toModule_closure, O.Environment_toDummyModule_closure, O.Environment__fromOneModule_closure, O.Environment__fromOneModule__closure, O._EnvironmentModule__EnvironmentModule_closure, O._EnvironmentModule__EnvironmentModule_closure0, O._EnvironmentModule__EnvironmentModule_closure1, O._EnvironmentModule__EnvironmentModule_closure2, O._EnvironmentModule__EnvironmentModule_closure3, O._EnvironmentModule__EnvironmentModule_closure4, D._writeSourceMap_closure,/*DSH- B.ExecutableOptions__parser_closure, B.ExecutableOptions_interactive_closure, B.ExecutableOptions_emitErrorCss_closure,*/ A.watch_closure, A._Watcher__debounceEvents_closure, X.ExtensionStore_extensionsWhereTarget_closure, X.ExtensionStore__registerSelector_closure, X.ExtensionStore_addExtension_closure, X.ExtensionStore_addExtension_closure0, X.ExtensionStore_addExtension_closure1, X.ExtensionStore__extendExistingExtensions_closure, X.ExtensionStore__extendExistingExtensions_closure0, X.ExtensionStore_addExtensions_closure, X.ExtensionStore_addExtensions__closure1, X.ExtensionStore_addExtensions___closure, X.ExtensionStore_addExtensions___closure0, X.ExtensionStore_addExtensions_closure0, X.ExtensionStore_addExtensions__closure, X.ExtensionStore_addExtensions__closure0, X.ExtensionStore__extendComplex_closure, X.ExtensionStore__extendComplex_closure0, X.ExtensionStore__extendComplex__closure, X.ExtensionStore__extendComplex__closure0, X.ExtensionStore__extendComplex___closure, X.ExtensionStore__extendCompound_closure, X.ExtensionStore__extendCompound_closure0, X.ExtensionStore__extendCompound__closure, X.ExtensionStore__extendCompound__closure0, X.ExtensionStore__extendCompound_closure1, X.ExtensionStore__extendCompound_closure2, X.ExtensionStore__extendCompound_closure3, X.ExtensionStore__extendSimple_withoutPseudo, X.ExtensionStore__extendSimple_closure, X.ExtensionStore__extendSimple_closure0, X.ExtensionStore__extendPseudo_closure, X.ExtensionStore__extendPseudo_closure0, X.ExtensionStore__extendPseudo_closure1, X.ExtensionStore__extendPseudo_closure2, X.ExtensionStore__extendPseudo_closure3, X.ExtensionStore__trim_closure, X.ExtensionStore__trim_closure0, X.ExtensionStore_clone_closure, Y.unifyComplex_closure, Y._weaveParents_closure, Y._weaveParents_closure0, Y._weaveParents_closure1, Y._weaveParents__closure1, Y._weaveParents_closure2, Y._weaveParents_closure3, Y._weaveParents__closure0, Y._weaveParents_closure4, Y._weaveParents_closure5, Y._weaveParents__closure, Y._mustUnify_closure, Y._mustUnify__closure, Y.paths_closure, Y.paths__closure, Y.paths___closure, Y._hasRoot_closure, Y.listIsSuperselector_closure, Y.listIsSuperselector__closure, Y._simpleIsSuperselectorOfCompound_closure, Y._simpleIsSuperselectorOfCompound__closure, Y._selectorPseudoIsSuperselector_closure, Y._selectorPseudoIsSuperselector_closure0, Y._selectorPseudoIsSuperselector_closure1, Y._selectorPseudoIsSuperselector_closure2, Y._selectorPseudoIsSuperselector_closure3, Y._selectorPseudoIsSuperselector__closure, Y._selectorPseudoIsSuperselector___closure, Y._selectorPseudoIsSuperselector___closure0, Y._selectorPseudoIsSuperselector_closure4, Y._selectorPseudoIsSuperselector_closure5, Y._selectorPseudoArgs_closure, Y._selectorPseudoArgs_closure0, Y.globalFunctions_closure, K.global_closure, K.global_closure0, K.global_closure1, K.global_closure2, K.global_closure3, K.global_closure4, K.global_closure5, K.global_closure6, K.global_closure7, K.global_closure8, K.global_closure9, K.global_closure10, K.global_closure11, K.global_closure12, K.global_closure13, K.global_closure14, K.global_closure15, K.global_closure16, K.global_closure17, K.global_closure18, K.global_closure19, K.global_closure20, K.global_closure21, K.global_closure22, K.global_closure23, K.global_closure24, K.global__closure, K.global_closure25, K.module_closure, K.module_closure0, K.module_closure1, K.module_closure2, K.module_closure3, K.module_closure4, K.module_closure5, K.module_closure6, K.module__closure, K.module_closure7, K._red_closure, K._green_closure, K._blue_closure, K._mix_closure, K._hue_closure, K._saturation_closure, K._lightness_closure, K._complement_closure, K._adjust_closure, K._scale_closure, K._change_closure, K._ieHexStr_closure, K._ieHexStr_closure_hexString, K._updateComponents_getParam, K._updateComponents_closure, K._updateComponents_updateValue, K._updateComponents_updateRgb, K._functionString_closure, K._removedColorFunction_closure, K._rgb_closure, K._hsl_closure, K._removeUnits_closure, K._removeUnits_closure0, K._hwb_closure, K._parseChannels_closure, D._length_closure0, D._nth_closure, D._setNth_closure, D._join_closure, D._append_closure0, D._zip_closure, D._zip__closure, D._zip__closure0, D._zip__closure1, D._index_closure0, D._separator_closure, D._isBracketed_closure, D._slash_closure, A._get_closure, A._set_closure, A._set__closure0, A._set_closure0, A._set__closure, A._merge_closure, A._merge_closure0, A._merge__closure, A._deepMerge_closure, A._deepRemove_closure, A._deepRemove__closure, A._remove_closure, A._remove_closure0, A._keys_closure, A._values_closure, A._hasKey_closure, A._modify__modifyNestedMap, A._deepMergeImpl__ensureMutable, A._deepMergeImpl_closure, K._ceil_closure, K._clamp_closure, K._floor_closure, K._max_closure, K._min_closure, K._abs_closure, K._hypot_closure, K._hypot__closure, K._log_closure, K._pow_closure, K._sqrt_closure, K._acos_closure, K._asin_closure, K._atan_closure, K._atan2_closure, K._cos_closure, K._sin_closure, K._tan_closure, K._compatible_closure, K._isUnitless_closure, K._unit_closure, K._percentage_closure, K._randomFunction_closure, K._div_closure, K._numberFunction_closure, Q.global_closure26, Q.global_closure27, Q.global_closure28, Q.global_closure29, T._nest_closure, T._nest__closure, T._nest__closure0, T._append_closure, T._append__closure, T._append__closure0, T._append___closure, T._extend_closure, T._replace_closure, T._unify_closure, T._isSuperselector_closure, T._simpleSelectors_closure, T._simpleSelectors__closure, T._parse_closure, D._unquote_closure, D._quote_closure, D._length_closure, D._insert_closure, D._index_closure, D._slice_closure, D._toUpperCase_closure, D._toLowerCase_closure, D._uniqueId_closure, R.ImportCache_canonicalize_closure, R.ImportCache__canonicalize_closure, R.ImportCache_importCanonical_closure, R.ImportCache_humanize_closure, R.ImportCache_humanize_closure0, R.ImportCache_humanize_closure1, F.FilesystemImporter_canonicalize_closure, B.resolveImportPath_closure, B.resolveImportPath_closure0, B._tryPathAsDirectory_closure, B._exactlyOne_closure, F._realCasePath_helper, F._realCasePath_helper_closure, F._realCasePath_helper__closure, B._readFile_closure, B.writeFile_closure, B.deleteFile_closure, B.readStdin_closure, B.readStdin_closure0, B.readStdin_closure1, B.readStdin_closure2, B.fileExists_closure, B.dirExists_closure, B.ensureDir_closure, B.listDir_closure, B.listDir__closure, B.listDir__closure0, B.listDir_closure_list, B.listDir__list_closure, B.modificationTime_closure,/*DSH- B.watchDir_closure, B.watchDir_closure0, B.watchDir_closure1, B.watchDir_closure2, B.watchDir_closure3, B.watchDir__closure,*/ Y.TerseLogger_summarize_closure, Y.TerseLogger_summarize_closure0, V.AtRootQueryParser_parse_closure, Q._disallowedFunctionNames_closure, E.KeyframeSelectorParser_parse_closure, F.MediaQueryParser_parse_closure, G.Parser__parseIdentifier_closure, G.Parser_scanIdentChar_matches, U.SassParser_children_closure, U.SassParser__peekIndentation__containsSpace_set, U.SassParser__peekIndentation__containsTab_set, U.SassParser__peekIndentation__nextIndentation_set, U.SassParser__peekIndentation__containsTab_get, U.SassParser__peekIndentation__containsSpace_get, U.SassParser__peekIndentation__nextIndentation_get, T.SelectorParser_parse_closure, T.SelectorParser_parseCompoundSelector_closure, V.StylesheetParser_parse_closure, V.StylesheetParser_parse__closure, V.StylesheetParser_parse__closure0, V.StylesheetParser_parseArgumentDeclaration_closure, V.StylesheetParser_parseVariableDeclaration_closure, V.StylesheetParser_parseUseRule_closure, V.StylesheetParser__parseSingleProduction_closure, V.StylesheetParser__statement_closure, V.StylesheetParser_variableDeclarationWithoutNamespace_closure, V.StylesheetParser_variableDeclarationWithoutNamespace_closure0, V.StylesheetParser__declarationOrBuffer_closure, V.StylesheetParser__declarationOrBuffer_closure0, V.StylesheetParser__styleRule_closure, V.StylesheetParser__propertyOrVariableDeclaration_closure, V.StylesheetParser__propertyOrVariableDeclaration_closure0, V.StylesheetParser__atRootRule_closure, V.StylesheetParser__atRootRule_closure0, V.StylesheetParser__eachRule_closure, V.StylesheetParser__functionRule_closure, V.StylesheetParser__forRule_closure, V.StylesheetParser__forRule_closure0, V.StylesheetParser__memberList_closure, V.StylesheetParser__includeRule_closure, V.StylesheetParser_mediaRule_closure, V.StylesheetParser__mixinRule_closure, V.StylesheetParser_mozDocumentRule_closure, V.StylesheetParser_supportsRule_closure, V.StylesheetParser__whileRule_closure, V.StylesheetParser_unknownAtRule_closure, V.StylesheetParser_expression_resetState, V.StylesheetParser_expression_resolveOneOperation, V.StylesheetParser_expression_resolveOperations, V.StylesheetParser_expression_addSingleExpression, V.StylesheetParser_expression_addOperator, V.StylesheetParser_expression_resolveSpaceExpressions, V.StylesheetParser__expressionUntilComma_closure, V.StylesheetParser__unicodeRange_closure, V.StylesheetParser__unicodeRange_closure0, V.StylesheetParser_identifierLike_closure, V.StylesheetParser_trySpecialFunction_closure, V.StylesheetParser__expressionUntilComparison_closure, V.StylesheetParser__publicIdentifier_closure, M.StylesheetGraph_modifiedSince_transitiveModificationTime, M.StylesheetGraph_modifiedSince_transitiveModificationTime_closure, M.StylesheetGraph__add_closure, M.StylesheetGraph_addCanonical_closure, M.StylesheetGraph_reload_closure, M.StylesheetGraph__recanonicalizeImportsForNode_closure, M.StylesheetGraph__nodeFor_closure, M.StylesheetGraph__nodeFor_closure0, F._PrefixedKeys_iterator_closure, D.SourceMapBuffer_buildSourceMap_closure, R._UnprefixedKeys_iterator_closure, R._UnprefixedKeys_iterator_closure0, B.indent_closure, B.flattenVertically_closure, B.flattenVertically_closure0, B.longestCommonSubsequence_closure, B.longestCommonSubsequence_backtrack, B.mapAddAll2_closure, K.SassColor_SassColor$hwb_toRgb, D.SassList_isBlank_closure, A.SassMap_asList_closure, T.SassNumber__coerceOrConvertValue__compatibilityException, T.SassNumber__coerceOrConvertValue_closure, T.SassNumber__coerceOrConvertValue_closure0, T.SassNumber__coerceOrConvertValue_closure1, T.SassNumber__coerceOrConvertValue_closure2, T.SassNumber_plus_closure, T.SassNumber_minus_closure, T.SassNumber_multiplyUnits_closure, T.SassNumber_multiplyUnits_closure0, T.SassNumber_multiplyUnits_closure1, T.SassNumber_multiplyUnits_closure2, T.SassNumber__areAnyConvertible_closure, T.SassNumber__canonicalizeUnitList_closure, T.SassNumber__canonicalMultiplier_closure, L.SingleUnitSassNumber__coerceToUnit_closure, L.SingleUnitSassNumber__coerceValueToUnit_closure, L.SingleUnitSassNumber_multiplyUnits_closure, L.SingleUnitSassNumber_multiplyUnits_closure0, E._EvaluateVisitor_closure9, E._EvaluateVisitor_closure10, E._EvaluateVisitor_closure11, E._EvaluateVisitor_closure12, E._EvaluateVisitor_closure13, E._EvaluateVisitor_closure14, E._EvaluateVisitor_closure15, E._EvaluateVisitor_closure16, E._EvaluateVisitor__closure4, E._EvaluateVisitor_closure17, E._EvaluateVisitor_closure18, E._EvaluateVisitor__closure2, E._EvaluateVisitor__closure3, E._EvaluateVisitor_run_closure0, E._EvaluateVisitor__withWarnCallback_closure0, E._EvaluateVisitor__loadModule_closure1, E._EvaluateVisitor__loadModule_closure2, E._EvaluateVisitor__loadModule__closure0, E._EvaluateVisitor__execute__css_set0, E._EvaluateVisitor__execute__css_get0, E._EvaluateVisitor__execute_closure0, E._EvaluateVisitor__combineCss_closure2, E._EvaluateVisitor__combineCss_closure3, E._EvaluateVisitor__combineCss_closure4, E._EvaluateVisitor__extendModules_closure1, E._EvaluateVisitor__extendModules_closure2, E._EvaluateVisitor__topologicalModules_visitModule0, E._EvaluateVisitor_visitAtRootRule_closure2, E._EvaluateVisitor_visitAtRootRule_closure3, E._EvaluateVisitor_visitAtRootRule_closure4, E._EvaluateVisitor__scopeForAtRoot_closure5, E._EvaluateVisitor__scopeForAtRoot_closure6, E._EvaluateVisitor__scopeForAtRoot_closure7, E._EvaluateVisitor__scopeForAtRoot__closure0, E._EvaluateVisitor__scopeForAtRoot_closure8, E._EvaluateVisitor__scopeForAtRoot_closure9, E._EvaluateVisitor__scopeForAtRoot_closure10, E._EvaluateVisitor_visitContentRule_closure0, E._EvaluateVisitor_visitDeclaration_closure1, E._EvaluateVisitor_visitDeclaration_closure2, E._EvaluateVisitor_visitEachRule_closure2, E._EvaluateVisitor_visitEachRule_closure3, E._EvaluateVisitor_visitEachRule_closure4, E._EvaluateVisitor_visitEachRule__closure0, E._EvaluateVisitor_visitEachRule___closure0, E._EvaluateVisitor_visitExtendRule_closure0, E._EvaluateVisitor_visitAtRule_closure2, E._EvaluateVisitor_visitAtRule_closure3, E._EvaluateVisitor_visitAtRule__closure0, E._EvaluateVisitor_visitAtRule_closure4, E._EvaluateVisitor_visitForRule_closure4, E._EvaluateVisitor_visitForRule_closure5, E._EvaluateVisitor_visitForRule_closure6, E._EvaluateVisitor_visitForRule_closure7, E._EvaluateVisitor_visitForRule_closure8, E._EvaluateVisitor_visitForRule__closure0, E._EvaluateVisitor_visitForwardRule_closure1, E._EvaluateVisitor_visitForwardRule_closure2, E._EvaluateVisitor_visitIfRule_closure0, E._EvaluateVisitor_visitIfRule__closure0, E._EvaluateVisitor__visitDynamicImport_closure0, E._EvaluateVisitor__visitDynamicImport_closure__children_set0, E._EvaluateVisitor__visitDynamicImport__closure1, E._EvaluateVisitor__visitDynamicImport_closure__children_get0, E._EvaluateVisitor__visitDynamicImport__closure2, E._EvaluateVisitor__visitStaticImport_closure0, E._EvaluateVisitor_visitIncludeRule_closure3, E._EvaluateVisitor_visitIncludeRule_closure4, E._EvaluateVisitor_visitIncludeRule_closure6, E._EvaluateVisitor_visitIncludeRule_closure5, E._EvaluateVisitor_visitIncludeRule__closure0, E._EvaluateVisitor_visitIncludeRule___closure0, E._EvaluateVisitor_visitIncludeRule____closure0, E._EvaluateVisitor_visitMediaRule_closure2, E._EvaluateVisitor_visitMediaRule_closure3, E._EvaluateVisitor_visitMediaRule__closure0, E._EvaluateVisitor_visitMediaRule___closure0, E._EvaluateVisitor_visitMediaRule_closure4, E._EvaluateVisitor__visitMediaQueries_closure0, E._EvaluateVisitor_visitStyleRule_closure6, E._EvaluateVisitor_visitStyleRule_closure7, E._EvaluateVisitor_visitStyleRule_closure8, E._EvaluateVisitor_visitStyleRule_closure9, E._EvaluateVisitor_visitStyleRule_closure10, E._EvaluateVisitor_visitStyleRule_closure11, E._EvaluateVisitor_visitStyleRule__closure0, E._EvaluateVisitor_visitStyleRule_closure12, E._EvaluateVisitor_visitSupportsRule_closure1, E._EvaluateVisitor_visitSupportsRule__closure0, E._EvaluateVisitor_visitSupportsRule_closure2, E._EvaluateVisitor_visitVariableDeclaration_closure2, E._EvaluateVisitor_visitVariableDeclaration_closure3, E._EvaluateVisitor_visitVariableDeclaration_closure4, E._EvaluateVisitor_visitUseRule_closure0, E._EvaluateVisitor_visitWarnRule_closure0, E._EvaluateVisitor_visitWhileRule_closure0, E._EvaluateVisitor_visitWhileRule__closure0, E._EvaluateVisitor_visitBinaryOperationExpression_closure0, E._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation0, E._EvaluateVisitor_visitVariableExpression_closure0, E._EvaluateVisitor_visitListExpression_closure0, E._EvaluateVisitor_visitFunctionExpression_closure1, E._EvaluateVisitor_visitFunctionExpression_closure2, E._EvaluateVisitor__runUserDefinedCallable_closure0, E._EvaluateVisitor__runUserDefinedCallable__closure0, E._EvaluateVisitor__runUserDefinedCallable___closure0, E._EvaluateVisitor__runUserDefinedCallable____closure0, E._EvaluateVisitor__runFunctionCallable_closure0, E._EvaluateVisitor__runBuiltInCallable_closure2, E._EvaluateVisitor__runBuiltInCallable_closure3, E._EvaluateVisitor__runBuiltInCallable_closure4, E._EvaluateVisitor__evaluateArguments_closure3, E._EvaluateVisitor__evaluateArguments_closure4, E._EvaluateVisitor__evaluateArguments_closure5, E._EvaluateVisitor__evaluateArguments_closure6, E._EvaluateVisitor__evaluateMacroArguments_closure3, E._EvaluateVisitor__evaluateMacroArguments_closure4, E._EvaluateVisitor__evaluateMacroArguments_closure5, E._EvaluateVisitor__evaluateMacroArguments_closure6, E._EvaluateVisitor__addRestMap_closure0, E._EvaluateVisitor__verifyArguments_closure0, E._EvaluateVisitor_visitStringExpression_closure0, E._EvaluateVisitor_visitCssAtRule_closure1, E._EvaluateVisitor_visitCssAtRule_closure2, E._EvaluateVisitor_visitCssKeyframeBlock_closure1, E._EvaluateVisitor_visitCssKeyframeBlock_closure2, E._EvaluateVisitor_visitCssMediaRule_closure2, E._EvaluateVisitor_visitCssMediaRule_closure3, E._EvaluateVisitor_visitCssMediaRule__closure0, E._EvaluateVisitor_visitCssMediaRule___closure0, E._EvaluateVisitor_visitCssMediaRule_closure4, E._EvaluateVisitor_visitCssStyleRule_closure1, E._EvaluateVisitor_visitCssStyleRule__closure0, E._EvaluateVisitor_visitCssStyleRule_closure2, E._EvaluateVisitor_visitCssSupportsRule_closure1, E._EvaluateVisitor_visitCssSupportsRule__closure0, E._EvaluateVisitor_visitCssSupportsRule_closure2, E._EvaluateVisitor__performInterpolation_closure0, E._EvaluateVisitor__serialize_closure0, E._EvaluateVisitor__expressionNode_closure0, E._EvaluateVisitor__withoutSlash_recommendation0, E._EvaluateVisitor__stackFrame_closure0, E._EvaluateVisitor__stackTrace_closure0, E._ImportedCssVisitor_visitCssAtRule_closure0, E._ImportedCssVisitor_visitCssMediaRule_closure0, E._ImportedCssVisitor_visitCssStyleRule_closure0, E._ImportedCssVisitor_visitCssSupportsRule_closure0, R._EvaluateVisitor_closure, R._EvaluateVisitor_closure0, R._EvaluateVisitor_closure1, R._EvaluateVisitor_closure2, R._EvaluateVisitor_closure3, R._EvaluateVisitor_closure4, R._EvaluateVisitor_closure5, R._EvaluateVisitor_closure6, R._EvaluateVisitor__closure1, R._EvaluateVisitor_closure7, R._EvaluateVisitor_closure8, R._EvaluateVisitor__closure, R._EvaluateVisitor__closure0, R._EvaluateVisitor_run_closure, R._EvaluateVisitor_runExpression_closure, R._EvaluateVisitor_runExpression__closure, R._EvaluateVisitor_runStatement_closure, R._EvaluateVisitor_runStatement__closure, R._EvaluateVisitor__withWarnCallback_closure, R._EvaluateVisitor__loadModule_closure, R._EvaluateVisitor__loadModule_closure0, R._EvaluateVisitor__loadModule__closure, R._EvaluateVisitor__execute__css_set, R._EvaluateVisitor__execute__css_get, R._EvaluateVisitor__execute_closure, R._EvaluateVisitor__combineCss_closure, R._EvaluateVisitor__combineCss_closure0, R._EvaluateVisitor__combineCss_closure1, R._EvaluateVisitor__extendModules_closure, R._EvaluateVisitor__extendModules_closure0, R._EvaluateVisitor__topologicalModules_visitModule, R._EvaluateVisitor_visitAtRootRule_closure, R._EvaluateVisitor_visitAtRootRule_closure0, R._EvaluateVisitor_visitAtRootRule_closure1, R._EvaluateVisitor__scopeForAtRoot_closure, R._EvaluateVisitor__scopeForAtRoot_closure0, R._EvaluateVisitor__scopeForAtRoot_closure1, R._EvaluateVisitor__scopeForAtRoot__closure, R._EvaluateVisitor__scopeForAtRoot_closure2, R._EvaluateVisitor__scopeForAtRoot_closure3, R._EvaluateVisitor__scopeForAtRoot_closure4, R._EvaluateVisitor_visitContentRule_closure, R._EvaluateVisitor_visitDeclaration_closure, R._EvaluateVisitor_visitDeclaration_closure0, R._EvaluateVisitor_visitEachRule_closure, R._EvaluateVisitor_visitEachRule_closure0, R._EvaluateVisitor_visitEachRule_closure1, R._EvaluateVisitor_visitEachRule__closure, R._EvaluateVisitor_visitEachRule___closure, R._EvaluateVisitor_visitExtendRule_closure, R._EvaluateVisitor_visitAtRule_closure, R._EvaluateVisitor_visitAtRule_closure0, R._EvaluateVisitor_visitAtRule__closure, R._EvaluateVisitor_visitAtRule_closure1, R._EvaluateVisitor_visitForRule_closure, R._EvaluateVisitor_visitForRule_closure0, R._EvaluateVisitor_visitForRule_closure1, R._EvaluateVisitor_visitForRule_closure2, R._EvaluateVisitor_visitForRule_closure3, R._EvaluateVisitor_visitForRule__closure, R._EvaluateVisitor_visitForwardRule_closure, R._EvaluateVisitor_visitForwardRule_closure0, R._EvaluateVisitor_visitIfRule_closure, R._EvaluateVisitor_visitIfRule__closure, R._EvaluateVisitor__visitDynamicImport_closure, R._EvaluateVisitor__visitDynamicImport_closure__children_set, R._EvaluateVisitor__visitDynamicImport__closure, R._EvaluateVisitor__visitDynamicImport_closure__children_get, R._EvaluateVisitor__visitDynamicImport__closure0, R._EvaluateVisitor__visitStaticImport_closure, R._EvaluateVisitor_visitIncludeRule_closure, R._EvaluateVisitor_visitIncludeRule_closure0, R._EvaluateVisitor_visitIncludeRule_closure2, R._EvaluateVisitor_visitIncludeRule_closure1, R._EvaluateVisitor_visitIncludeRule__closure, R._EvaluateVisitor_visitIncludeRule___closure, R._EvaluateVisitor_visitIncludeRule____closure, R._EvaluateVisitor_visitMediaRule_closure, R._EvaluateVisitor_visitMediaRule_closure0, R._EvaluateVisitor_visitMediaRule__closure, R._EvaluateVisitor_visitMediaRule___closure, R._EvaluateVisitor_visitMediaRule_closure1, R._EvaluateVisitor__visitMediaQueries_closure, R._EvaluateVisitor_visitStyleRule_closure, R._EvaluateVisitor_visitStyleRule_closure0, R._EvaluateVisitor_visitStyleRule_closure1, R._EvaluateVisitor_visitStyleRule_closure2, R._EvaluateVisitor_visitStyleRule_closure3, R._EvaluateVisitor_visitStyleRule_closure4, R._EvaluateVisitor_visitStyleRule__closure, R._EvaluateVisitor_visitStyleRule_closure5, R._EvaluateVisitor_visitSupportsRule_closure, R._EvaluateVisitor_visitSupportsRule__closure, R._EvaluateVisitor_visitSupportsRule_closure0, R._EvaluateVisitor_visitVariableDeclaration_closure, R._EvaluateVisitor_visitVariableDeclaration_closure0, R._EvaluateVisitor_visitVariableDeclaration_closure1, R._EvaluateVisitor_visitUseRule_closure, R._EvaluateVisitor_visitWarnRule_closure, R._EvaluateVisitor_visitWhileRule_closure, R._EvaluateVisitor_visitWhileRule__closure, R._EvaluateVisitor_visitBinaryOperationExpression_closure, R._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation, R._EvaluateVisitor_visitVariableExpression_closure, R._EvaluateVisitor_visitListExpression_closure, R._EvaluateVisitor_visitFunctionExpression_closure, R._EvaluateVisitor_visitFunctionExpression_closure0, R._EvaluateVisitor__runUserDefinedCallable_closure, R._EvaluateVisitor__runUserDefinedCallable__closure, R._EvaluateVisitor__runUserDefinedCallable___closure, R._EvaluateVisitor__runUserDefinedCallable____closure, R._EvaluateVisitor__runFunctionCallable_closure, R._EvaluateVisitor__runBuiltInCallable_closure, R._EvaluateVisitor__runBuiltInCallable_closure0, R._EvaluateVisitor__runBuiltInCallable_closure1, R._EvaluateVisitor__evaluateArguments_closure, R._EvaluateVisitor__evaluateArguments_closure0, R._EvaluateVisitor__evaluateArguments_closure1, R._EvaluateVisitor__evaluateArguments_closure2, R._EvaluateVisitor__evaluateMacroArguments_closure, R._EvaluateVisitor__evaluateMacroArguments_closure0, R._EvaluateVisitor__evaluateMacroArguments_closure1, R._EvaluateVisitor__evaluateMacroArguments_closure2, R._EvaluateVisitor__addRestMap_closure, R._EvaluateVisitor__verifyArguments_closure, R._EvaluateVisitor_visitStringExpression_closure, R._EvaluateVisitor_visitCssAtRule_closure, R._EvaluateVisitor_visitCssAtRule_closure0, R._EvaluateVisitor_visitCssKeyframeBlock_closure, R._EvaluateVisitor_visitCssKeyframeBlock_closure0, R._EvaluateVisitor_visitCssMediaRule_closure, R._EvaluateVisitor_visitCssMediaRule_closure0, R._EvaluateVisitor_visitCssMediaRule__closure, R._EvaluateVisitor_visitCssMediaRule___closure, R._EvaluateVisitor_visitCssMediaRule_closure1, R._EvaluateVisitor_visitCssStyleRule_closure, R._EvaluateVisitor_visitCssStyleRule__closure, R._EvaluateVisitor_visitCssStyleRule_closure0, R._EvaluateVisitor_visitCssSupportsRule_closure, R._EvaluateVisitor_visitCssSupportsRule__closure, R._EvaluateVisitor_visitCssSupportsRule_closure0, R._EvaluateVisitor__performInterpolation_closure, R._EvaluateVisitor__serialize_closure, R._EvaluateVisitor__expressionNode_closure, R._EvaluateVisitor__withoutSlash_recommendation, R._EvaluateVisitor__stackFrame_closure, R._EvaluateVisitor__stackTrace_closure, R._ImportedCssVisitor_visitCssAtRule_closure, R._ImportedCssVisitor_visitCssMediaRule_closure, R._ImportedCssVisitor_visitCssStyleRule_closure, R._ImportedCssVisitor_visitCssSupportsRule_closure, N.serialize_closure, N._SerializeVisitor_visitCssComment_closure, N._SerializeVisitor_visitCssAtRule_closure, N._SerializeVisitor_visitCssMediaRule_closure, N._SerializeVisitor_visitCssImport_closure, N._SerializeVisitor_visitCssImport__closure, N._SerializeVisitor_visitCssKeyframeBlock_closure, N._SerializeVisitor_visitCssStyleRule_closure, N._SerializeVisitor_visitCssSupportsRule_closure, N._SerializeVisitor_visitCssDeclaration_closure, N._SerializeVisitor_visitCssDeclaration_closure0, N._SerializeVisitor_visitList_closure, N._SerializeVisitor_visitList_closure0, N._SerializeVisitor_visitList_closure1, N._SerializeVisitor_visitMap_closure, N._SerializeVisitor__removeExponent__exponent_set, N._SerializeVisitor__removeExponent__exponent_get, N._SerializeVisitor_visitSelectorList_closure, N._SerializeVisitor__write_closure, N._SerializeVisitor__visitChildren_closure, A.StatementSearchVisitor_visitIfRule_closure, A.StatementSearchVisitor_visitIfRule__closure0, A.StatementSearchVisitor_visitIfRule_closure0, A.StatementSearchVisitor_visitIfRule__closure, A.StatementSearchVisitor_visitChildren_closure, N.withWarnCallback_closure, T.SingleMapping_SingleMapping$fromEntries__targetEntries_set, T.SingleMapping_SingleMapping$fromEntries__targetEntries_get, T.SingleMapping_SingleMapping$fromEntries_closure, T.SingleMapping_SingleMapping$fromEntries_closure0, T.SingleMapping_SingleMapping$fromEntries_closure1, T.SingleMapping_toJson_closure, T.SingleMapping_toJson_closure0, U.Highlighter_closure, U.Highlighter$__closure, U.Highlighter$___closure, U.Highlighter$__closure0, U.Highlighter__collateLines_closure, U.Highlighter__collateLines_closure0, U.Highlighter__collateLines_closure1, U.Highlighter__collateLines__closure, U.Highlighter_highlight_closure, U.Highlighter__writeFileStart_closure, U.Highlighter__writeMultilineHighlights_closure, U.Highlighter__writeMultilineHighlights_closure0, U.Highlighter__writeMultilineHighlights_closure1, U.Highlighter__writeMultilineHighlights_closure2, U.Highlighter__writeMultilineHighlights__closure, U.Highlighter__writeMultilineHighlights__closure0, U.Highlighter__writeHighlightedText_closure, U.Highlighter__writeIndicator_closure, U.Highlighter__writeIndicator_closure0, U.Highlighter__writeIndicator_closure1, U.Highlighter__writeSidebar_closure, U._Highlight_closure, U.Chain_Chain$parse_closure, U.Chain_Chain$parse_closure0, U.Chain_Chain$parse_closure1, U.Chain_toTrace_closure, U.Chain_toString_closure0, U.Chain_toString__closure0, U.Chain_toString_closure, U.Chain_toString__closure, A.Frame_Frame$parseVM_closure, A.Frame_Frame$parseV8_closure, A.Frame_Frame$parseV8_closure_parseLocation, A.Frame_Frame$_parseFirefoxEval_closure, A.Frame_Frame$parseFirefox_closure, A.Frame_Frame$parseFriendly_closure, T.LazyTrace_terse_closure, Y.Trace_Trace$from_closure, Y.Trace__parseVM_closure, Y.Trace__parseVM_closure0, Y.Trace$parseV8_closure, Y.Trace$parseV8_closure0, Y.Trace$parseJSCore_closure, Y.Trace$parseJSCore_closure0, Y.Trace$parseFirefox_closure, Y.Trace$parseFirefox_closure0, Y.Trace$parseFriendly_closure, Y.Trace$parseFriendly_closure0, Y.Trace_terse_closure, Y.Trace_foldFrames_closure, Y.Trace_foldFrames_closure0, Y.Trace_toString_closure0, Y.Trace_toString_closure, L.TransformByHandlers_transformByHandlers_closure, L.TransformByHandlers_transformByHandlers__closure, L.TransformByHandlers_transformByHandlers__closure1, L.TransformByHandlers_transformByHandlers__closure0, L.TransformByHandlers_transformByHandlers__closure2, R.RateLimit__debounceAggregate_closure, R.RateLimit__debounceAggregate_closure_emit, R.RateLimit__debounceAggregate__closure, R.RateLimit__debounceAggregate_closure0, B.ArgumentDeclaration_verify_closure1, B.ArgumentDeclaration_verify_closure2, S.AsyncBuiltInCallable$mixin_closure0, X._compileStylesheet_closure2, Q.AsyncEnvironment_importForwards_closure2, Q.AsyncEnvironment_importForwards_closure3, Q.AsyncEnvironment_importForwards_closure4, Q.AsyncEnvironment__getVariableFromGlobalModule_closure0, Q.AsyncEnvironment_setVariable_closure2, Q.AsyncEnvironment_setVariable_closure3, Q.AsyncEnvironment_setVariable_closure4, Q.AsyncEnvironment__getFunctionFromGlobalModule_closure0, Q.AsyncEnvironment__getMixinFromGlobalModule_closure0, Q.AsyncEnvironment_toModule_closure0, Q.AsyncEnvironment_toDummyModule_closure0, Q.AsyncEnvironment__fromOneModule_closure0, Q.AsyncEnvironment__fromOneModule__closure0, Q._EnvironmentModule__EnvironmentModule_closure17, Q._EnvironmentModule__EnvironmentModule_closure18, Q._EnvironmentModule__EnvironmentModule_closure19, Q._EnvironmentModule__EnvironmentModule_closure20, Q._EnvironmentModule__EnvironmentModule_closure21, Q._EnvironmentModule__EnvironmentModule_closure22, E._EvaluateVisitor_closure29, E._EvaluateVisitor_closure30, E._EvaluateVisitor_closure31, E._EvaluateVisitor_closure32, E._EvaluateVisitor_closure33, E._EvaluateVisitor_closure34, E._EvaluateVisitor_closure35, E._EvaluateVisitor_closure36, E._EvaluateVisitor__closure10, E._EvaluateVisitor_closure37, E._EvaluateVisitor_closure38, E._EvaluateVisitor__closure8, E._EvaluateVisitor__closure9, E._EvaluateVisitor_run_closure2, E._EvaluateVisitor__withWarnCallback_closure2, E._EvaluateVisitor__loadModule_closure5, E._EvaluateVisitor__loadModule_closure6, E._EvaluateVisitor__loadModule__closure2, E._EvaluateVisitor__execute__css_set2, E._EvaluateVisitor__execute__css_get2, E._EvaluateVisitor__execute_closure2, E._EvaluateVisitor__combineCss_closure8, E._EvaluateVisitor__combineCss_closure9, E._EvaluateVisitor__combineCss_closure10, E._EvaluateVisitor__extendModules_closure5, E._EvaluateVisitor__extendModules_closure6, E._EvaluateVisitor__topologicalModules_visitModule2, E._EvaluateVisitor_visitAtRootRule_closure8, E._EvaluateVisitor_visitAtRootRule_closure9, E._EvaluateVisitor_visitAtRootRule_closure10, E._EvaluateVisitor__scopeForAtRoot_closure17, E._EvaluateVisitor__scopeForAtRoot_closure18, E._EvaluateVisitor__scopeForAtRoot_closure19, E._EvaluateVisitor__scopeForAtRoot__closure2, E._EvaluateVisitor__scopeForAtRoot_closure20, E._EvaluateVisitor__scopeForAtRoot_closure21, E._EvaluateVisitor__scopeForAtRoot_closure22, E._EvaluateVisitor_visitContentRule_closure2, E._EvaluateVisitor_visitDeclaration_closure5, E._EvaluateVisitor_visitDeclaration_closure6, E._EvaluateVisitor_visitEachRule_closure8, E._EvaluateVisitor_visitEachRule_closure9, E._EvaluateVisitor_visitEachRule_closure10, E._EvaluateVisitor_visitEachRule__closure2, E._EvaluateVisitor_visitEachRule___closure2, E._EvaluateVisitor_visitExtendRule_closure2, E._EvaluateVisitor_visitAtRule_closure8, E._EvaluateVisitor_visitAtRule_closure9, E._EvaluateVisitor_visitAtRule__closure2, E._EvaluateVisitor_visitAtRule_closure10, E._EvaluateVisitor_visitForRule_closure14, E._EvaluateVisitor_visitForRule_closure15, E._EvaluateVisitor_visitForRule_closure16, E._EvaluateVisitor_visitForRule_closure17, E._EvaluateVisitor_visitForRule_closure18, E._EvaluateVisitor_visitForRule__closure2, E._EvaluateVisitor_visitForwardRule_closure5, E._EvaluateVisitor_visitForwardRule_closure6, E._EvaluateVisitor_visitIfRule_closure2, E._EvaluateVisitor_visitIfRule__closure2, E._EvaluateVisitor__visitDynamicImport_closure2, E._EvaluateVisitor__visitDynamicImport_closure__children_set2, E._EvaluateVisitor__visitDynamicImport__closure5, E._EvaluateVisitor__visitDynamicImport_closure__children_get2, E._EvaluateVisitor__visitDynamicImport__closure6, E._EvaluateVisitor__visitStaticImport_closure2, E._EvaluateVisitor_visitIncludeRule_closure11, E._EvaluateVisitor_visitIncludeRule_closure12, E._EvaluateVisitor_visitIncludeRule_closure14, E._EvaluateVisitor_visitIncludeRule_closure13, E._EvaluateVisitor_visitIncludeRule__closure2, E._EvaluateVisitor_visitIncludeRule___closure2, E._EvaluateVisitor_visitIncludeRule____closure2, E._EvaluateVisitor_visitMediaRule_closure8, E._EvaluateVisitor_visitMediaRule_closure9, E._EvaluateVisitor_visitMediaRule__closure2, E._EvaluateVisitor_visitMediaRule___closure2, E._EvaluateVisitor_visitMediaRule_closure10, E._EvaluateVisitor__visitMediaQueries_closure2, E._EvaluateVisitor_visitStyleRule_closure20, E._EvaluateVisitor_visitStyleRule_closure21, E._EvaluateVisitor_visitStyleRule_closure22, E._EvaluateVisitor_visitStyleRule_closure23, E._EvaluateVisitor_visitStyleRule_closure24, E._EvaluateVisitor_visitStyleRule_closure25, E._EvaluateVisitor_visitStyleRule__closure2, E._EvaluateVisitor_visitStyleRule_closure26, E._EvaluateVisitor_visitSupportsRule_closure5, E._EvaluateVisitor_visitSupportsRule__closure2, E._EvaluateVisitor_visitSupportsRule_closure6, E._EvaluateVisitor_visitVariableDeclaration_closure8, E._EvaluateVisitor_visitVariableDeclaration_closure9, E._EvaluateVisitor_visitVariableDeclaration_closure10, E._EvaluateVisitor_visitUseRule_closure2, E._EvaluateVisitor_visitWarnRule_closure2, E._EvaluateVisitor_visitWhileRule_closure2, E._EvaluateVisitor_visitWhileRule__closure2, E._EvaluateVisitor_visitBinaryOperationExpression_closure2, E._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation2, E._EvaluateVisitor_visitVariableExpression_closure2, E._EvaluateVisitor_visitListExpression_closure2, E._EvaluateVisitor_visitFunctionExpression_closure5, E._EvaluateVisitor_visitFunctionExpression_closure6, E._EvaluateVisitor__runUserDefinedCallable_closure2, E._EvaluateVisitor__runUserDefinedCallable__closure2, E._EvaluateVisitor__runUserDefinedCallable___closure2, E._EvaluateVisitor__runUserDefinedCallable____closure2, E._EvaluateVisitor__runFunctionCallable_closure2, E._EvaluateVisitor__runBuiltInCallable_closure8, E._EvaluateVisitor__runBuiltInCallable_closure9, E._EvaluateVisitor__runBuiltInCallable_closure10, E._EvaluateVisitor__evaluateArguments_closure11, E._EvaluateVisitor__evaluateArguments_closure12, E._EvaluateVisitor__evaluateArguments_closure13, E._EvaluateVisitor__evaluateArguments_closure14, E._EvaluateVisitor__evaluateMacroArguments_closure11, E._EvaluateVisitor__evaluateMacroArguments_closure12, E._EvaluateVisitor__evaluateMacroArguments_closure13, E._EvaluateVisitor__evaluateMacroArguments_closure14, E._EvaluateVisitor__addRestMap_closure2, E._EvaluateVisitor__verifyArguments_closure2, E._EvaluateVisitor_visitStringExpression_closure2, E._EvaluateVisitor_visitCssAtRule_closure5, E._EvaluateVisitor_visitCssAtRule_closure6, E._EvaluateVisitor_visitCssKeyframeBlock_closure5, E._EvaluateVisitor_visitCssKeyframeBlock_closure6, E._EvaluateVisitor_visitCssMediaRule_closure8, E._EvaluateVisitor_visitCssMediaRule_closure9, E._EvaluateVisitor_visitCssMediaRule__closure2, E._EvaluateVisitor_visitCssMediaRule___closure2, E._EvaluateVisitor_visitCssMediaRule_closure10, E._EvaluateVisitor_visitCssStyleRule_closure5, E._EvaluateVisitor_visitCssStyleRule__closure2, E._EvaluateVisitor_visitCssStyleRule_closure6, E._EvaluateVisitor_visitCssSupportsRule_closure5, E._EvaluateVisitor_visitCssSupportsRule__closure2, E._EvaluateVisitor_visitCssSupportsRule_closure6, E._EvaluateVisitor__performInterpolation_closure2, E._EvaluateVisitor__serialize_closure2, E._EvaluateVisitor__expressionNode_closure2, E._EvaluateVisitor__withoutSlash_recommendation2, E._EvaluateVisitor__stackFrame_closure2, E._EvaluateVisitor__stackTrace_closure2, E._ImportedCssVisitor_visitCssAtRule_closure2, E._ImportedCssVisitor_visitCssMediaRule_closure2, E._ImportedCssVisitor_visitCssStyleRule_closure2, E._ImportedCssVisitor_visitCssSupportsRule_closure2, O.AsyncImportCache_canonicalize_closure0, O.AsyncImportCache__canonicalize_closure0, O.AsyncImportCache_importCanonical_closure0, O.AsyncImportCache_humanize_closure2, O.AsyncImportCache_humanize_closure3, O.AsyncImportCache_humanize_closure4, V.AtRootQueryParser_parse_closure0, Z.booleanConstructor_closure, Z.booleanConstructor__closure, Z.booleanConstructor__closure0, Q.BuiltInCallable$mixin_closure0, K.global_closure30, K.global_closure31, K.global_closure32, K.global_closure33, K.global_closure34, K.global_closure35, K.global_closure36, K.global_closure37, K.global_closure38, K.global_closure39, K.global_closure40, K.global_closure41, K.global_closure42, K.global_closure43, K.global_closure44, K.global_closure45, K.global_closure46, K.global_closure47, K.global_closure48, K.global_closure49, K.global_closure50, K.global_closure51, K.global_closure52, K.global_closure53, K.global_closure54, K.global_closure55, K.global__closure0, K.global_closure56, K.module_closure8, K.module_closure9, K.module_closure10, K.module_closure11, K.module_closure12, K.module_closure13, K.module_closure14, K.module_closure15, K.module__closure0, K.module_closure16, K._red_closure0, K._green_closure0, K._blue_closure0, K._mix_closure0, K._hue_closure0, K._saturation_closure0, K._lightness_closure0, K._complement_closure0, K._adjust_closure0, K._scale_closure0, K._change_closure0, K._ieHexStr_closure0, K._ieHexStr_closure_hexString0, K._updateComponents_getParam0, K._updateComponents_closure0, K._updateComponents_updateValue0, K._updateComponents_updateRgb0, K._functionString_closure0, K._removedColorFunction_closure0, K._rgb_closure0, K._hsl_closure0, K._removeUnits_closure1, K._removeUnits_closure2, K._hwb_closure0, K._parseChannels_closure0, K.colorConstructor_closure, K.colorConstructor_closure0, K.colorConstructor_closure1, K.colorConstructor_closure2, K.colorConstructor_closure3, K.colorConstructor_closure4, K.colorConstructor_closure5, K.colorConstructor_closure6, K.colorConstructor_closure7, K.colorConstructor_closure8, K.SassColor_SassColor$hwb_toRgb0, U._compileStylesheet_closure1, S.ComplexSelector_isInvisible_closure0, X.CompoundSelector_isInvisible_closure0, A.Configuration_toString_closure0, Q._disallowedFunctionNames_closure0, V.EachRule_toString_closure0, O.Environment_importForwards_closure2, O.Environment_importForwards_closure3, O.Environment_importForwards_closure4, O.Environment__getVariableFromGlobalModule_closure0, O.Environment_setVariable_closure2, O.Environment_setVariable_closure3, O.Environment_setVariable_closure4, O.Environment__getFunctionFromGlobalModule_closure0, O.Environment__getMixinFromGlobalModule_closure0, O.Environment_toModule_closure0, O.Environment_toDummyModule_closure0, O.Environment__fromOneModule_closure0, O.Environment__fromOneModule__closure0, O._EnvironmentModule__EnvironmentModule_closure11, O._EnvironmentModule__EnvironmentModule_closure12, O._EnvironmentModule__EnvironmentModule_closure13, O._EnvironmentModule__EnvironmentModule_closure14, O._EnvironmentModule__EnvironmentModule_closure15, O._EnvironmentModule__EnvironmentModule_closure16, R._EvaluateVisitor_closure19, R._EvaluateVisitor_closure20, R._EvaluateVisitor_closure21, R._EvaluateVisitor_closure22, R._EvaluateVisitor_closure23, R._EvaluateVisitor_closure24, R._EvaluateVisitor_closure25, R._EvaluateVisitor_closure26, R._EvaluateVisitor__closure7, R._EvaluateVisitor_closure27, R._EvaluateVisitor_closure28, R._EvaluateVisitor__closure5, R._EvaluateVisitor__closure6, R._EvaluateVisitor_run_closure1, R._EvaluateVisitor__withWarnCallback_closure1, R._EvaluateVisitor__loadModule_closure3, R._EvaluateVisitor__loadModule_closure4, R._EvaluateVisitor__loadModule__closure1, R._EvaluateVisitor__execute__css_set1, R._EvaluateVisitor__execute__css_get1, R._EvaluateVisitor__execute_closure1, R._EvaluateVisitor__combineCss_closure5, R._EvaluateVisitor__combineCss_closure6, R._EvaluateVisitor__combineCss_closure7, R._EvaluateVisitor__extendModules_closure3, R._EvaluateVisitor__extendModules_closure4, R._EvaluateVisitor__topologicalModules_visitModule1, R._EvaluateVisitor_visitAtRootRule_closure5, R._EvaluateVisitor_visitAtRootRule_closure6, R._EvaluateVisitor_visitAtRootRule_closure7, R._EvaluateVisitor__scopeForAtRoot_closure11, R._EvaluateVisitor__scopeForAtRoot_closure12, R._EvaluateVisitor__scopeForAtRoot_closure13, R._EvaluateVisitor__scopeForAtRoot__closure1, R._EvaluateVisitor__scopeForAtRoot_closure14, R._EvaluateVisitor__scopeForAtRoot_closure15, R._EvaluateVisitor__scopeForAtRoot_closure16, R._EvaluateVisitor_visitContentRule_closure1, R._EvaluateVisitor_visitDeclaration_closure3, R._EvaluateVisitor_visitDeclaration_closure4, R._EvaluateVisitor_visitEachRule_closure5, R._EvaluateVisitor_visitEachRule_closure6, R._EvaluateVisitor_visitEachRule_closure7, R._EvaluateVisitor_visitEachRule__closure1, R._EvaluateVisitor_visitEachRule___closure1, R._EvaluateVisitor_visitExtendRule_closure1, R._EvaluateVisitor_visitAtRule_closure5, R._EvaluateVisitor_visitAtRule_closure6, R._EvaluateVisitor_visitAtRule__closure1, R._EvaluateVisitor_visitAtRule_closure7, R._EvaluateVisitor_visitForRule_closure9, R._EvaluateVisitor_visitForRule_closure10, R._EvaluateVisitor_visitForRule_closure11, R._EvaluateVisitor_visitForRule_closure12, R._EvaluateVisitor_visitForRule_closure13, R._EvaluateVisitor_visitForRule__closure1, R._EvaluateVisitor_visitForwardRule_closure3, R._EvaluateVisitor_visitForwardRule_closure4, R._EvaluateVisitor_visitIfRule_closure1, R._EvaluateVisitor_visitIfRule__closure1, R._EvaluateVisitor__visitDynamicImport_closure1, R._EvaluateVisitor__visitDynamicImport_closure__children_set1, R._EvaluateVisitor__visitDynamicImport__closure3, R._EvaluateVisitor__visitDynamicImport_closure__children_get1, R._EvaluateVisitor__visitDynamicImport__closure4, R._EvaluateVisitor__visitStaticImport_closure1, R._EvaluateVisitor_visitIncludeRule_closure7, R._EvaluateVisitor_visitIncludeRule_closure8, R._EvaluateVisitor_visitIncludeRule_closure10, R._EvaluateVisitor_visitIncludeRule_closure9, R._EvaluateVisitor_visitIncludeRule__closure1, R._EvaluateVisitor_visitIncludeRule___closure1, R._EvaluateVisitor_visitIncludeRule____closure1, R._EvaluateVisitor_visitMediaRule_closure5, R._EvaluateVisitor_visitMediaRule_closure6, R._EvaluateVisitor_visitMediaRule__closure1, R._EvaluateVisitor_visitMediaRule___closure1, R._EvaluateVisitor_visitMediaRule_closure7, R._EvaluateVisitor__visitMediaQueries_closure1, R._EvaluateVisitor_visitStyleRule_closure13, R._EvaluateVisitor_visitStyleRule_closure14, R._EvaluateVisitor_visitStyleRule_closure15, R._EvaluateVisitor_visitStyleRule_closure16, R._EvaluateVisitor_visitStyleRule_closure17, R._EvaluateVisitor_visitStyleRule_closure18, R._EvaluateVisitor_visitStyleRule__closure1, R._EvaluateVisitor_visitStyleRule_closure19, R._EvaluateVisitor_visitSupportsRule_closure3, R._EvaluateVisitor_visitSupportsRule__closure1, R._EvaluateVisitor_visitSupportsRule_closure4, R._EvaluateVisitor_visitVariableDeclaration_closure5, R._EvaluateVisitor_visitVariableDeclaration_closure6, R._EvaluateVisitor_visitVariableDeclaration_closure7, R._EvaluateVisitor_visitUseRule_closure1, R._EvaluateVisitor_visitWarnRule_closure1, R._EvaluateVisitor_visitWhileRule_closure1, R._EvaluateVisitor_visitWhileRule__closure1, R._EvaluateVisitor_visitBinaryOperationExpression_closure1, R._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation1, R._EvaluateVisitor_visitVariableExpression_closure1, R._EvaluateVisitor_visitListExpression_closure1, R._EvaluateVisitor_visitFunctionExpression_closure3, R._EvaluateVisitor_visitFunctionExpression_closure4, R._EvaluateVisitor__runUserDefinedCallable_closure1, R._EvaluateVisitor__runUserDefinedCallable__closure1, R._EvaluateVisitor__runUserDefinedCallable___closure1, R._EvaluateVisitor__runUserDefinedCallable____closure1, R._EvaluateVisitor__runFunctionCallable_closure1, R._EvaluateVisitor__runBuiltInCallable_closure5, R._EvaluateVisitor__runBuiltInCallable_closure6, R._EvaluateVisitor__runBuiltInCallable_closure7, R._EvaluateVisitor__evaluateArguments_closure7, R._EvaluateVisitor__evaluateArguments_closure8, R._EvaluateVisitor__evaluateArguments_closure9, R._EvaluateVisitor__evaluateArguments_closure10, R._EvaluateVisitor__evaluateMacroArguments_closure7, R._EvaluateVisitor__evaluateMacroArguments_closure8, R._EvaluateVisitor__evaluateMacroArguments_closure9, R._EvaluateVisitor__evaluateMacroArguments_closure10, R._EvaluateVisitor__addRestMap_closure1, R._EvaluateVisitor__verifyArguments_closure1, R._EvaluateVisitor_visitStringExpression_closure1, R._EvaluateVisitor_visitCssAtRule_closure3, R._EvaluateVisitor_visitCssAtRule_closure4, R._EvaluateVisitor_visitCssKeyframeBlock_closure3, R._EvaluateVisitor_visitCssKeyframeBlock_closure4, R._EvaluateVisitor_visitCssMediaRule_closure5, R._EvaluateVisitor_visitCssMediaRule_closure6, R._EvaluateVisitor_visitCssMediaRule__closure1, R._EvaluateVisitor_visitCssMediaRule___closure1, R._EvaluateVisitor_visitCssMediaRule_closure7, R._EvaluateVisitor_visitCssStyleRule_closure3, R._EvaluateVisitor_visitCssStyleRule__closure1, R._EvaluateVisitor_visitCssStyleRule_closure4, R._EvaluateVisitor_visitCssSupportsRule_closure3, R._EvaluateVisitor_visitCssSupportsRule__closure1, R._EvaluateVisitor_visitCssSupportsRule_closure4, R._EvaluateVisitor__performInterpolation_closure1, R._EvaluateVisitor__serialize_closure1, R._EvaluateVisitor__expressionNode_closure1, R._EvaluateVisitor__withoutSlash_recommendation1, R._EvaluateVisitor__stackFrame_closure1, R._EvaluateVisitor__stackTrace_closure1, R._ImportedCssVisitor_visitCssAtRule_closure1, R._ImportedCssVisitor_visitCssMediaRule_closure1, R._ImportedCssVisitor_visitCssStyleRule_closure1, R._ImportedCssVisitor_visitCssSupportsRule_closure1, X.ExtensionStore_extensionsWhereTarget_closure0, X.ExtensionStore__registerSelector_closure0, X.ExtensionStore_addExtension_closure2, X.ExtensionStore_addExtension_closure3, X.ExtensionStore_addExtension_closure4, X.ExtensionStore__extendExistingExtensions_closure1, X.ExtensionStore__extendExistingExtensions_closure2, X.ExtensionStore_addExtensions_closure1, X.ExtensionStore_addExtensions__closure4, X.ExtensionStore_addExtensions___closure1, X.ExtensionStore_addExtensions___closure2, X.ExtensionStore_addExtensions_closure2, X.ExtensionStore_addExtensions__closure2, X.ExtensionStore_addExtensions__closure3, X.ExtensionStore__extendComplex_closure1, X.ExtensionStore__extendComplex_closure2, X.ExtensionStore__extendComplex__closure1, X.ExtensionStore__extendComplex__closure2, X.ExtensionStore__extendComplex___closure0, X.ExtensionStore__extendCompound_closure4, X.ExtensionStore__extendCompound_closure5, X.ExtensionStore__extendCompound__closure1, X.ExtensionStore__extendCompound__closure2, X.ExtensionStore__extendCompound_closure6, X.ExtensionStore__extendCompound_closure7, X.ExtensionStore__extendCompound_closure8, X.ExtensionStore__extendSimple_withoutPseudo0, X.ExtensionStore__extendSimple_closure1, X.ExtensionStore__extendSimple_closure2, X.ExtensionStore__extendPseudo_closure4, X.ExtensionStore__extendPseudo_closure5, X.ExtensionStore__extendPseudo_closure6, X.ExtensionStore__extendPseudo_closure7, X.ExtensionStore__extendPseudo_closure8, X.ExtensionStore__trim_closure1, X.ExtensionStore__trim_closure2, X.ExtensionStore_clone_closure0, F.FilesystemImporter_canonicalize_closure0, Y.unifyComplex_closure0, Y._weaveParents_closure6, Y._weaveParents_closure7, Y._weaveParents_closure8, Y._weaveParents__closure4, Y._weaveParents_closure9, Y._weaveParents_closure10, Y._weaveParents__closure3, Y._weaveParents_closure11, Y._weaveParents_closure12, Y._weaveParents__closure2, Y._mustUnify_closure0, Y._mustUnify__closure0, Y.paths_closure0, Y.paths__closure0, Y.paths___closure0, Y._hasRoot_closure0, Y.listIsSuperselector_closure0, Y.listIsSuperselector__closure0, Y._simpleIsSuperselectorOfCompound_closure0, Y._simpleIsSuperselectorOfCompound__closure0, Y._selectorPseudoIsSuperselector_closure6, Y._selectorPseudoIsSuperselector_closure7, Y._selectorPseudoIsSuperselector_closure8, Y._selectorPseudoIsSuperselector_closure9, Y._selectorPseudoIsSuperselector_closure10, Y._selectorPseudoIsSuperselector__closure0, Y._selectorPseudoIsSuperselector___closure1, Y._selectorPseudoIsSuperselector___closure2, Y._selectorPseudoIsSuperselector_closure11, Y._selectorPseudoIsSuperselector_closure12, Y._selectorPseudoArgs_closure1, Y._selectorPseudoArgs_closure2, Y.globalFunctions_closure0, N.IDSelector_unify_closure0, V.IfRule_toString_closure0, V.IfRuleClause$__closure0, V.IfRuleClause$___closure0, F.NodeImporter__tryPath_closure, F.NodeImporter__tryPath_closure0, R.ImportCache_canonicalize_closure0, R.ImportCache__canonicalize_closure0, R.ImportCache_importCanonical_closure0, R.ImportCache_humanize_closure2, R.ImportCache_humanize_closure3, R.ImportCache_humanize_closure4, X.Interpolation_toString_closure0, F._realCasePath_helper0, F._realCasePath_helper_closure0, F._realCasePath_helper__closure0, E.KeyframeSelectorParser_parse_closure0, D.ListExpression_toString_closure0, D._length_closure2, D._nth_closure0, D._setNth_closure0, D._join_closure0, D._append_closure2, D._zip_closure0, D._zip__closure2, D._zip__closure3, D._zip__closure4, D._index_closure2, D._separator_closure0, D._isBracketed_closure0, D._slash_closure0, D.SelectorList_isInvisible_closure0, D.SelectorList_asSassList_closure0, D.SelectorList_asSassList__closure0, D.SelectorList_unify_closure0, D.SelectorList_unify__closure0, D.SelectorList_unify___closure0, D.SelectorList_resolveParentSelectors_closure0, D.SelectorList_resolveParentSelectors__closure1, D.SelectorList_resolveParentSelectors__closure2, D.SelectorList__complexContainsParentSelector_closure0, D.SelectorList__complexContainsParentSelector__closure0, D.SelectorList__resolveParentSelectorsCompound_closure2, D.SelectorList__resolveParentSelectorsCompound_closure3, D.SelectorList__resolveParentSelectorsCompound_closure4, D.listConstructor_closure, D.listConstructor__closure, D.listConstructor_closure0, D.listConstructor_closure1, D.listConstructor_closure2, D.listConstructor_closure3, D.listConstructor_closure4, D.listConstructor_closure5, D.SassList_isBlank_closure0, A.MapExpression_toString_closure0, A._get_closure0, A._set_closure1, A._set__closure2, A._set_closure2, A._set__closure1, A._merge_closure1, A._merge_closure2, A._merge__closure0, A._deepMerge_closure0, A._deepRemove_closure0, A._deepRemove__closure0, A._remove_closure1, A._remove_closure2, A._keys_closure0, A._values_closure0, A._hasKey_closure0, A._modify__modifyNestedMap0, A._deepMergeImpl__ensureMutable0, A._deepMergeImpl_closure0, A.mapConstructor_closure, A.mapConstructor__closure, A.mapConstructor__closure0, A.mapConstructor_closure0, A.mapConstructor_closure1, A.mapConstructor_closure2, A.mapConstructor_closure3, A.mapConstructor_closure4, A.mapConstructor_closure5, A.SassMap_asList_closure0, K._ceil_closure0, K._clamp_closure0, K._floor_closure0, K._max_closure0, K._min_closure0, K._abs_closure0, K._hypot_closure0, K._hypot__closure0, K._log_closure0, K._pow_closure0, K._sqrt_closure0, K._acos_closure0, K._asin_closure0, K._atan_closure0, K._atan2_closure0, K._cos_closure0, K._sin_closure0, K._tan_closure0, K._compatible_closure0, K._isUnitless_closure0, K._unit_closure0, K._percentage_closure0, K._randomFunction_closure0, K._div_closure0, K._numberFunction_closure0, F.MediaQueryParser_parse_closure0, Q.global_closure57, Q.global_closure58, Q.global_closure59, Q.global_closure60, B._readFile_closure0, B.fileExists_closure0, B.dirExists_closure0, B.listDir_closure0, B.listDir__closure1, B.listDir__closure2, B.listDir_closure_list0, B.listDir__list_closure0, B._render_closure, B._render_closure0, B._render_closure1, B._parseFunctions_closure, B._parseFunctions__closure, B._parseFunctions___closure0, B._parseFunctions____closure, B._parseFunctions___closure1, B._parseFunctions__closure0, B._parseFunctions__closure1, B._parseFunctions___closure, B._parseImporter_closure, B._parseImporter__closure, B._parseImporter___closure, B._parseImporter____closure, B._parseImporter___closure0, O.nullConstructor_closure, O.nullConstructor__closure, O.nullConstructor__closure0, T.numberConstructor_closure, T.numberConstructor_closure0, T.numberConstructor_closure1, T.numberConstructor_closure2, T.numberConstructor_closure3, T.numberConstructor_closure4, T._parseNumber_closure, T._parseNumber_closure0, T.SassNumber__coerceOrConvertValue__compatibilityException0, T.SassNumber__coerceOrConvertValue_closure3, T.SassNumber__coerceOrConvertValue_closure4, T.SassNumber__coerceOrConvertValue_closure5, T.SassNumber__coerceOrConvertValue_closure6, T.SassNumber_plus_closure0, T.SassNumber_minus_closure0, T.SassNumber_multiplyUnits_closure3, T.SassNumber_multiplyUnits_closure4, T.SassNumber_multiplyUnits_closure5, T.SassNumber_multiplyUnits_closure6, T.SassNumber__areAnyConvertible_closure0, T.SassNumber__canonicalizeUnitList_closure0, T.SassNumber__canonicalMultiplier_closure0, M.ParentStatement_closure0, M.ParentStatement__closure0, G.Parser__parseIdentifier_closure0, G.Parser_scanIdentChar_matches0, F._PrefixedKeys_iterator_closure0, U.main_printError, U.main_closure, U.SassParser_children_closure0, U.SassParser__peekIndentation__containsSpace_set0, U.SassParser__peekIndentation__containsTab_set0, U.SassParser__peekIndentation__nextIndentation_set0, U.SassParser__peekIndentation__containsTab_get0, U.SassParser__peekIndentation__containsSpace_get0, U.SassParser__peekIndentation__nextIndentation_get0, R._wrapMain_closure, R._wrapMain_closure0, T._nest_closure0, T._nest__closure1, T._nest__closure2, T._append_closure1, T._append__closure1, T._append__closure2, T._append___closure0, T._extend_closure0, T._replace_closure0, T._unify_closure0, T._isSuperselector_closure0, T._simpleSelectors_closure0, T._simpleSelectors__closure0, T._parse_closure0, T.SelectorParser_parse_closure0, T.SelectorParser_parseCompoundSelector_closure0, N.serialize_closure0, N._SerializeVisitor_visitCssComment_closure0, N._SerializeVisitor_visitCssAtRule_closure0, N._SerializeVisitor_visitCssMediaRule_closure0, N._SerializeVisitor_visitCssImport_closure0, N._SerializeVisitor_visitCssImport__closure0, N._SerializeVisitor_visitCssKeyframeBlock_closure0, N._SerializeVisitor_visitCssStyleRule_closure0, N._SerializeVisitor_visitCssSupportsRule_closure0, N._SerializeVisitor_visitCssDeclaration_closure1, N._SerializeVisitor_visitCssDeclaration_closure2, N._SerializeVisitor_visitList_closure2, N._SerializeVisitor_visitList_closure3, N._SerializeVisitor_visitList_closure4, N._SerializeVisitor_visitMap_closure0, N._SerializeVisitor__removeExponent__exponent_set0, N._SerializeVisitor__removeExponent__exponent_get0, N._SerializeVisitor_visitSelectorList_closure0, N._SerializeVisitor__write_closure0, N._SerializeVisitor__visitChildren_closure0, L.SingleUnitSassNumber__coerceToUnit_closure0, L.SingleUnitSassNumber__coerceValueToUnit_closure0, L.SingleUnitSassNumber_multiplyUnits_closure1, L.SingleUnitSassNumber_multiplyUnits_closure2, D.SourceMapBuffer_buildSourceMap_closure0, A.StatementSearchVisitor_visitIfRule_closure1, A.StatementSearchVisitor_visitIfRule__closure2, A.StatementSearchVisitor_visitIfRule_closure2, A.StatementSearchVisitor_visitIfRule__closure1, A.StatementSearchVisitor_visitChildren_closure0, D._unquote_closure0, D._quote_closure0, D._length_closure1, D._insert_closure0, D._index_closure1, D._slice_closure0, D._toUpperCase_closure0, D._toLowerCase_closure0, D._uniqueId_closure0, D.stringConstructor_closure, D.stringConstructor_closure0, D.stringConstructor_closure1, D.stringConstructor_closure2, V.StylesheetParser_parse_closure0, V.StylesheetParser_parse__closure1, V.StylesheetParser_parse__closure2, V.StylesheetParser_parseArgumentDeclaration_closure0, V.StylesheetParser__parseSingleProduction_closure0, V.StylesheetParser_parseSignature_closure, V.StylesheetParser__statement_closure0, V.StylesheetParser_variableDeclarationWithoutNamespace_closure1, V.StylesheetParser_variableDeclarationWithoutNamespace_closure2, V.StylesheetParser__declarationOrBuffer_closure1, V.StylesheetParser__declarationOrBuffer_closure2, V.StylesheetParser__styleRule_closure0, V.StylesheetParser__propertyOrVariableDeclaration_closure1, V.StylesheetParser__propertyOrVariableDeclaration_closure2, V.StylesheetParser__atRootRule_closure1, V.StylesheetParser__atRootRule_closure2, V.StylesheetParser__eachRule_closure0, V.StylesheetParser__functionRule_closure0, V.StylesheetParser__forRule_closure1, V.StylesheetParser__forRule_closure2, V.StylesheetParser__memberList_closure0, V.StylesheetParser__includeRule_closure0, V.StylesheetParser_mediaRule_closure0, V.StylesheetParser__mixinRule_closure0, V.StylesheetParser_mozDocumentRule_closure0, V.StylesheetParser_supportsRule_closure0, V.StylesheetParser__whileRule_closure0, V.StylesheetParser_unknownAtRule_closure0, V.StylesheetParser_expression_resetState0, V.StylesheetParser_expression_resolveOneOperation0, V.StylesheetParser_expression_resolveOperations0, V.StylesheetParser_expression_addSingleExpression0, V.StylesheetParser_expression_addOperator0, V.StylesheetParser_expression_resolveSpaceExpressions0, V.StylesheetParser__expressionUntilComma_closure0, V.StylesheetParser__unicodeRange_closure1, V.StylesheetParser__unicodeRange_closure2, V.StylesheetParser_identifierLike_closure0, V.StylesheetParser_trySpecialFunction_closure0, V.StylesheetParser__expressionUntilComparison_closure0, V.StylesheetParser__publicIdentifier_closure0, Y.TerseLogger_summarize_closure1, Y.TerseLogger_summarize_closure2, R._UnprefixedKeys_iterator_closure1, R._UnprefixedKeys_iterator_closure2, B.resolveImportPath_closure1, B.resolveImportPath_closure2, B._tryPathAsDirectory_closure0, B._exactlyOne_closure0, B.forwardToString_closure, B.createClass_closure, B.indent_closure0, B.flattenVertically_closure1, B.flattenVertically_closure2, B.longestCommonSubsequence_closure0, B.longestCommonSubsequence_backtrack0, B.mapAddAll2_closure0, N.withWarnCallback_closure0]);
+				_inheritMany(H.Closure, [H._CastListBase_sort_closure, H.CastMap_forEach_closure, H.CastMap_entries_closure, H.nullFuture_closure, H.ConstantStringMap_values_closure, H.Instantiation, H.Primitives_functionNoSuchMethod_closure, H.TearOffClosure, H.JsLinkedHashMap_values_closure, H.JsLinkedHashMap_addAll_closure, H.initHooks_closure, H.initHooks_closure0, H.initHooks_closure1, P._AsyncRun__initializeScheduleImmediate_internalCallback, P._AsyncRun__initializeScheduleImmediate_closure, P._AsyncRun__scheduleImmediateJsOverride_internalCallback, P._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, P._TimerImpl_internalCallback, P._TimerImpl$periodic_closure, P._awaitOnObject_closure, P._awaitOnObject_closure0, P._wrapJsFunctionForAsync_closure, P.Future_wait__error_set, P.Future_wait__stackTrace_set, P.Future_wait__error_get, P.Future_wait__stackTrace_get, P.Future_wait_handleError, P.Future_wait_closure, P._Future__addListener_closure, P._Future__prependListeners_closure, P._Future__chainForeignFuture_closure, P._Future__chainForeignFuture_closure0, P._Future__chainForeignFuture_closure1, P._Future__asyncCompleteWithValue_closure, P._Future__chainFuture_closure, P._Future__asyncCompleteError_closure, P._Future__propagateToListeners_handleWhenCompleteCallback, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P._Future__propagateToListeners_handleValueCallback, P._Future__propagateToListeners_handleError, P.Stream_Stream$fromFuture_closure, P.Stream_Stream$fromFuture_closure0, P.Stream_length_closure, P.Stream_length_closure0, P._StreamController__subscribe_closure, P._StreamController__recordCancel_complete, P._AddStreamState_cancel_closure, P._BufferingStreamSubscription__sendError_sendError, P._BufferingStreamSubscription__sendDone_sendDone, P._PendingEvents_schedule_closure, P._CustomZone_bindCallback_closure, P._CustomZone_bindUnaryCallback_closure, P._CustomZone_bindCallbackGuarded_closure, P._rootHandleUncaughtError_closure, P._RootZone_bindCallback_closure, P._RootZone_bindCallbackGuarded_closure, P._HashMap_values_closure, P._HashMap_addAll_closure, P._LinkedCustomHashMap_closure, P.HashMap_HashMap$from_closure, P.LinkedHashMap_LinkedHashMap$from_closure, P.MapBase_mapToString_closure, P.MapMixin_entries_closure, P.Utf8Decoder__decoder_closure, P.Utf8Decoder__decoderNonfatal_closure, P._JsonStringifier_writeMap_closure, P.NoSuchMethodError_toString_closure, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits, P.Uri__parseIPv4Address_error, P.Uri_parseIPv6Address_error, P.Uri_parseIPv6Address_parseHex, P._Uri__makePath_closure, P._createTables_build, P._createTables_setChars, P._createTables_setRange, N.ArgParser__addOption_closure, G.Parser_parse_closure, G.Parser__setOption_closure, G._Usage__writeOption_closure, G._Usage__buildAllowedList_closure, L.StreamGroup_add_closure, L.StreamGroup_add_closure0, L.StreamGroup__onListen_closure, L.StreamGroup__onCancel_closure, L.StreamGroup__listenToStream_closure, G.StreamQueue__ensureListening_closure, G.StreamQueue__ensureListening_closure1, G.StreamQueue__ensureListening_closure0, Q.alwaysValid_closure, B.ReplAdapter_runAsync__runController_set, B.ReplAdapter_runAsync__runController_get, B.ReplAdapter_runAsync_closure, B.ReplAdapter_runAsync__closure, M.MapKeySet_difference_closure, M.futureToPromise_closure, M.futureToPromise__closure, M.Context_joinAll_closure, M.Context_split_closure, M._validateArgList_closure, X.ParsedPath__splitExtension_closure, X.ParsedPath__splitExtension_closure0, K.PathMap__create_closure, K.PathMap__create_closure0, K.PathMap__create_closure1, L.WindowsStyle_absolutePathToUri_closure, B.ArgumentDeclaration_verify_closure, B.ArgumentDeclaration_verify_closure0, D.ListExpression_toString_closure, A.MapExpression_toString_closure, X.Interpolation_toString_closure, V.EachRule_toString_closure, V.IfRule_toString_closure, V.IfRuleClause$__closure, V.IfRuleClause$___closure, M.ParentStatement_closure, M.ParentStatement__closure, S.ComplexSelector_isInvisible_closure, X.CompoundSelector_isInvisible_closure, N.IDSelector_unify_closure, D.SelectorList_isInvisible_closure, D.SelectorList_asSassList_closure, D.SelectorList_asSassList__closure, D.SelectorList_unify_closure, D.SelectorList_unify__closure, D.SelectorList_unify___closure, D.SelectorList_resolveParentSelectors_closure, D.SelectorList_resolveParentSelectors__closure, D.SelectorList_resolveParentSelectors__closure0, D.SelectorList__complexContainsParentSelector_closure, D.SelectorList__complexContainsParentSelector__closure, D.SelectorList__resolveParentSelectorsCompound_closure, D.SelectorList__resolveParentSelectorsCompound_closure0, D.SelectorList__resolveParentSelectorsCompound_closure1, X._compileStylesheet_closure0, Q.AsyncEnvironment_importForwards_closure, Q.AsyncEnvironment_importForwards_closure0, Q.AsyncEnvironment_importForwards_closure1, Q.AsyncEnvironment__getVariableFromGlobalModule_closure, Q.AsyncEnvironment_setVariable_closure, Q.AsyncEnvironment_setVariable_closure0, Q.AsyncEnvironment_setVariable_closure1, Q.AsyncEnvironment__getFunctionFromGlobalModule_closure, Q.AsyncEnvironment__getMixinFromGlobalModule_closure, Q.AsyncEnvironment_toModule_closure, Q.AsyncEnvironment_toDummyModule_closure, Q.AsyncEnvironment__fromOneModule_closure, Q.AsyncEnvironment__fromOneModule__closure, Q._EnvironmentModule__EnvironmentModule_closure5, Q._EnvironmentModule__EnvironmentModule_closure6, Q._EnvironmentModule__EnvironmentModule_closure7, Q._EnvironmentModule__EnvironmentModule_closure8, Q._EnvironmentModule__EnvironmentModule_closure9, Q._EnvironmentModule__EnvironmentModule_closure10, O.AsyncImportCache_canonicalize_closure, O.AsyncImportCache__canonicalize_closure, O.AsyncImportCache_importCanonical_closure, O.AsyncImportCache_humanize_closure, O.AsyncImportCache_humanize_closure0, O.AsyncImportCache_humanize_closure1, S.AsyncBuiltInCallable$mixin_closure, Q.BuiltInCallable$mixin_closure, U._compileStylesheet_closure, A.Configuration_toString_closure, O.Environment_importForwards_closure, O.Environment_importForwards_closure0, O.Environment_importForwards_closure1, O.Environment__getVariableFromGlobalModule_closure, O.Environment_setVariable_closure, O.Environment_setVariable_closure0, O.Environment_setVariable_closure1, O.Environment__getFunctionFromGlobalModule_closure, O.Environment__getMixinFromGlobalModule_closure, O.Environment_toModule_closure, O.Environment_toDummyModule_closure, O.Environment__fromOneModule_closure, O.Environment__fromOneModule__closure, O._EnvironmentModule__EnvironmentModule_closure, O._EnvironmentModule__EnvironmentModule_closure0, O._EnvironmentModule__EnvironmentModule_closure1, O._EnvironmentModule__EnvironmentModule_closure2, O._EnvironmentModule__EnvironmentModule_closure3, O._EnvironmentModule__EnvironmentModule_closure4, D._writeSourceMap_closure,/*DSH- B.ExecutableOptions__parser_closure, B.ExecutableOptions_interactive_closure, B.ExecutableOptions_emitErrorCss_closure,*/ A.watch_closure, A._Watcher__debounceEvents_closure, X.ExtensionStore_extensionsWhereTarget_closure, X.ExtensionStore__registerSelector_closure, X.ExtensionStore_addExtension_closure, X.ExtensionStore_addExtension_closure0, X.ExtensionStore_addExtension_closure1, X.ExtensionStore__extendExistingExtensions_closure, X.ExtensionStore__extendExistingExtensions_closure0, X.ExtensionStore_addExtensions_closure, X.ExtensionStore_addExtensions__closure1, X.ExtensionStore_addExtensions___closure, X.ExtensionStore_addExtensions_closure0, X.ExtensionStore_addExtensions__closure, X.ExtensionStore_addExtensions__closure0, X.ExtensionStore__extendComplex_closure, X.ExtensionStore__extendComplex_closure0, X.ExtensionStore__extendComplex__closure, X.ExtensionStore__extendComplex__closure0, X.ExtensionStore__extendComplex___closure, X.ExtensionStore__extendCompound_closure, X.ExtensionStore__extendCompound_closure0, X.ExtensionStore__extendCompound__closure, X.ExtensionStore__extendCompound__closure0, X.ExtensionStore__extendCompound_closure1, X.ExtensionStore__extendCompound_closure2, X.ExtensionStore__extendCompound_closure3, X.ExtensionStore__extendSimple_withoutPseudo, X.ExtensionStore__extendSimple_closure, X.ExtensionStore__extendSimple_closure0, X.ExtensionStore__extendPseudo_closure, X.ExtensionStore__extendPseudo_closure0, X.ExtensionStore__extendPseudo_closure1, X.ExtensionStore__extendPseudo_closure2, X.ExtensionStore__extendPseudo_closure3, X.ExtensionStore__trim_closure, X.ExtensionStore__trim_closure0, X.ExtensionStore_clone_closure, Y.unifyComplex_closure, Y._weaveParents_closure, Y._weaveParents_closure0, Y._weaveParents_closure1, Y._weaveParents__closure1, Y._weaveParents_closure2, Y._weaveParents_closure3, Y._weaveParents__closure0, Y._weaveParents_closure4, Y._weaveParents_closure5, Y._weaveParents__closure, Y._mustUnify_closure, Y._mustUnify__closure, Y.paths_closure, Y.paths__closure, Y.paths___closure, Y._hasRoot_closure, Y.listIsSuperselector_closure, Y.listIsSuperselector__closure, Y._simpleIsSuperselectorOfCompound_closure, Y._simpleIsSuperselectorOfCompound__closure, Y._selectorPseudoIsSuperselector_closure, Y._selectorPseudoIsSuperselector_closure0, Y._selectorPseudoIsSuperselector_closure1, Y._selectorPseudoIsSuperselector_closure2, Y._selectorPseudoIsSuperselector_closure3, Y._selectorPseudoIsSuperselector__closure, Y._selectorPseudoIsSuperselector___closure, Y._selectorPseudoIsSuperselector___closure0, Y._selectorPseudoIsSuperselector_closure4, Y._selectorPseudoIsSuperselector_closure5, Y._selectorPseudoArgs_closure, Y._selectorPseudoArgs_closure0, Y.globalFunctions_closure, K.global_closure, K.global_closure0, K.global_closure1, K.global_closure2, K.global_closure3, K.global_closure4, K.global_closure5, K.global_closure6, K.global_closure7, K.global_closure8, K.global_closure9, K.global_closure10, K.global_closure11, K.global_closure12, K.global_closure13, K.global_closure14, K.global_closure15, K.global_closure16, K.global_closure17, K.global_closure18, K.global_closure19, K.global_closure20, K.global_closure21, K.global_closure22, K.global_closure23, K.global_closure24, K.global__closure, K.global_closure25, K.module_closure, K.module_closure0, K.module_closure1, K.module_closure2, K.module_closure3, K.module_closure4, K.module_closure5, K.module_closure6, K.module__closure, K.module_closure7, K._red_closure, K._green_closure, K._blue_closure, K._mix_closure, K._hue_closure, K._saturation_closure, K._lightness_closure, K._complement_closure, K._adjust_closure, K._scale_closure, K._change_closure, K._ieHexStr_closure, K._ieHexStr_closure_hexString, K._updateComponents_getParam, K._updateComponents_closure, K._updateComponents_updateValue, K._updateComponents_updateRgb, K._functionString_closure, K._removedColorFunction_closure, K._rgb_closure, K._hsl_closure, K._removeUnits_closure, K._removeUnits_closure0, K._hwb_closure, K._parseChannels_closure, D._length_closure0, D._nth_closure, D._setNth_closure, D._join_closure, D._append_closure0, D._zip_closure, D._zip__closure, D._zip__closure0, D._zip__closure1, D._index_closure0, D._separator_closure, D._isBracketed_closure, D._slash_closure, A._get_closure, A._set_closure, A._set__closure0, A._set_closure0, A._set__closure, A._merge_closure, A._merge_closure0, A._merge__closure, A._deepMerge_closure, A._deepRemove_closure, A._deepRemove__closure, A._remove_closure, A._remove_closure0, A._keys_closure, A._values_closure, A._hasKey_closure, A._modify__modifyNestedMap, A._deepMergeImpl__ensureMutable, A._deepMergeImpl_closure, K._ceil_closure, K._clamp_closure, K._floor_closure, K._max_closure, K._min_closure, K._abs_closure, K._hypot_closure, K._hypot__closure, K._log_closure, K._pow_closure, K._sqrt_closure, K._acos_closure, K._asin_closure, K._atan_closure, K._atan2_closure, K._cos_closure, K._sin_closure, K._tan_closure, K._compatible_closure, K._isUnitless_closure, K._unit_closure, K._percentage_closure, K._randomFunction_closure, K._div_closure, K._numberFunction_closure, Q.global_closure26, Q.global_closure27, Q.global_closure28, Q.global_closure29, T._nest_closure, T._nest__closure, T._nest__closure0, T._append_closure, T._append__closure, T._append__closure0, T._append___closure, T._extend_closure, T._replace_closure, T._unify_closure, T._isSuperselector_closure, T._simpleSelectors_closure, T._simpleSelectors__closure, T._parse_closure, D._unquote_closure, D._quote_closure, D._length_closure, D._insert_closure, D._index_closure, D._slice_closure, D._toUpperCase_closure, D._toLowerCase_closure, D._uniqueId_closure, R.ImportCache_canonicalize_closure, R.ImportCache__canonicalize_closure, R.ImportCache_importCanonical_closure, R.ImportCache_humanize_closure, R.ImportCache_humanize_closure0, R.ImportCache_humanize_closure1, F.FilesystemImporter_canonicalize_closure, B.resolveImportPath_closure, B.resolveImportPath_closure0, B._tryPathAsDirectory_closure, B._exactlyOne_closure, F._realCasePath_helper, F._realCasePath_helper_closure, F._realCasePath_helper__closure, B._readFile_closure, B.writeFile_closure, B.deleteFile_closure, B.readStdin_closure, B.readStdin_closure0, B.readStdin_closure1, B.readStdin_closure2, B.fileExists_closure, B.dirExists_closure, B.ensureDir_closure, B.listDir_closure, B.listDir__closure, B.listDir__closure0, B.listDir_closure_list, B.listDir__list_closure, B.modificationTime_closure,/*DSH- B.watchDir_closure, B.watchDir_closure0, B.watchDir_closure1, B.watchDir_closure2, B.watchDir_closure3, B.watchDir__closure,*/ Y.TerseLogger_summarize_closure, Y.TerseLogger_summarize_closure0, V.AtRootQueryParser_parse_closure, Q._disallowedFunctionNames_closure, E.KeyframeSelectorParser_parse_closure, F.MediaQueryParser_parse_closure, G.Parser__parseIdentifier_closure, G.Parser_scanIdentChar_matches, U.SassParser_children_closure, U.SassParser__peekIndentation__containsSpace_set, U.SassParser__peekIndentation__containsTab_set, U.SassParser__peekIndentation__nextIndentation_set, U.SassParser__peekIndentation__containsTab_get, U.SassParser__peekIndentation__containsSpace_get, U.SassParser__peekIndentation__nextIndentation_get, T.SelectorParser_parse_closure, T.SelectorParser_parseCompoundSelector_closure, V.StylesheetParser_parse_closure, V.StylesheetParser_parse__closure, V.StylesheetParser_parse__closure0, V.StylesheetParser_parseArgumentDeclaration_closure, V.StylesheetParser_parseVariableDeclaration_closure, V.StylesheetParser_parseUseRule_closure, V.StylesheetParser__parseSingleProduction_closure, V.StylesheetParser__statement_closure, V.StylesheetParser_variableDeclarationWithoutNamespace_closure, V.StylesheetParser_variableDeclarationWithoutNamespace_closure0, V.StylesheetParser__declarationOrBuffer_closure, V.StylesheetParser__declarationOrBuffer_closure0, V.StylesheetParser__styleRule_closure, V.StylesheetParser__propertyOrVariableDeclaration_closure, V.StylesheetParser__propertyOrVariableDeclaration_closure0, V.StylesheetParser__atRootRule_closure, V.StylesheetParser__atRootRule_closure0, V.StylesheetParser__eachRule_closure, V.StylesheetParser__functionRule_closure, V.StylesheetParser__forRule_closure, V.StylesheetParser__forRule_closure0, V.StylesheetParser__memberList_closure, V.StylesheetParser__includeRule_closure, V.StylesheetParser_mediaRule_closure, V.StylesheetParser__mixinRule_closure, V.StylesheetParser_mozDocumentRule_closure, V.StylesheetParser_supportsRule_closure, V.StylesheetParser__whileRule_closure, V.StylesheetParser_unknownAtRule_closure, V.StylesheetParser_expression_resetState, V.StylesheetParser_expression_resolveOneOperation, V.StylesheetParser_expression_resolveOperations, V.StylesheetParser_expression_addSingleExpression, V.StylesheetParser_expression_addOperator, V.StylesheetParser_expression_resolveSpaceExpressions, V.StylesheetParser__expressionUntilComma_closure, V.StylesheetParser__unicodeRange_closure, V.StylesheetParser__unicodeRange_closure0, V.StylesheetParser_identifierLike_closure, V.StylesheetParser_trySpecialFunction_closure, V.StylesheetParser__expressionUntilComparison_closure, V.StylesheetParser__publicIdentifier_closure, M.StylesheetGraph_modifiedSince_transitiveModificationTime, M.StylesheetGraph_modifiedSince_transitiveModificationTime_closure, M.StylesheetGraph__add_closure, M.StylesheetGraph_addCanonical_closure, M.StylesheetGraph_reload_closure, M.StylesheetGraph__recanonicalizeImportsForNode_closure, M.StylesheetGraph__nodeFor_closure, M.StylesheetGraph__nodeFor_closure0, F._PrefixedKeys_iterator_closure, D.SourceMapBuffer_buildSourceMap_closure, R._UnprefixedKeys_iterator_closure, R._UnprefixedKeys_iterator_closure0, B.indent_closure, B.flattenVertically_closure, B.flattenVertically_closure0, B.longestCommonSubsequence_closure, B.longestCommonSubsequence_backtrack, B.mapAddAll2_closure, K.SassColor_SassColor$hwb_toRgb, D.SassList_isBlank_closure, A.SassMap_asList_closure, T.SassNumber__coerceOrConvertValue__compatibilityException, T.SassNumber__coerceOrConvertValue_closure, T.SassNumber__coerceOrConvertValue_closure0, T.SassNumber__coerceOrConvertValue_closure1, T.SassNumber__coerceOrConvertValue_closure2, T.SassNumber_plus_closure, T.SassNumber_minus_closure, T.SassNumber_multiplyUnits_closure, T.SassNumber_multiplyUnits_closure0, T.SassNumber_multiplyUnits_closure1, T.SassNumber_multiplyUnits_closure2, T.SassNumber__areAnyConvertible_closure, T.SassNumber__canonicalizeUnitList_closure, T.SassNumber__canonicalMultiplier_closure, L.SingleUnitSassNumber__coerceToUnit_closure, L.SingleUnitSassNumber__coerceValueToUnit_closure, L.SingleUnitSassNumber_multiplyUnits_closure, L.SingleUnitSassNumber_multiplyUnits_closure0, E._EvaluateVisitor_closure9, E._EvaluateVisitor_closure10, E._EvaluateVisitor_closure11, E._EvaluateVisitor_closure12, E._EvaluateVisitor_closure13, E._EvaluateVisitor_closure14, E._EvaluateVisitor_closure15, E._EvaluateVisitor_closure16, E._EvaluateVisitor__closure4, E._EvaluateVisitor_closure17, E._EvaluateVisitor_closure18, E._EvaluateVisitor__closure2, E._EvaluateVisitor__closure3, E._EvaluateVisitor_run_closure0, E._EvaluateVisitor__withWarnCallback_closure0, E._EvaluateVisitor__loadModule_closure1, E._EvaluateVisitor__loadModule_closure2, E._EvaluateVisitor__loadModule__closure0, E._EvaluateVisitor__execute__css_set0, E._EvaluateVisitor__execute__css_get0, E._EvaluateVisitor__execute_closure0, E._EvaluateVisitor__combineCss_closure2, E._EvaluateVisitor__combineCss_closure3, E._EvaluateVisitor__combineCss_closure4, E._EvaluateVisitor__extendModules_closure1, E._EvaluateVisitor__extendModules_closure2, E._EvaluateVisitor__topologicalModules_visitModule0, E._EvaluateVisitor_visitAtRootRule_closure2, E._EvaluateVisitor_visitAtRootRule_closure3, E._EvaluateVisitor_visitAtRootRule_closure4, E._EvaluateVisitor__scopeForAtRoot_closure5, E._EvaluateVisitor__scopeForAtRoot_closure6, E._EvaluateVisitor__scopeForAtRoot_closure7, E._EvaluateVisitor__scopeForAtRoot__closure0, E._EvaluateVisitor__scopeForAtRoot_closure8, E._EvaluateVisitor__scopeForAtRoot_closure9, E._EvaluateVisitor__scopeForAtRoot_closure10, E._EvaluateVisitor_visitContentRule_closure0, E._EvaluateVisitor_visitDeclaration_closure1, E._EvaluateVisitor_visitDeclaration_closure2, E._EvaluateVisitor_visitEachRule_closure2, E._EvaluateVisitor_visitEachRule_closure3, E._EvaluateVisitor_visitEachRule_closure4, E._EvaluateVisitor_visitEachRule__closure0, E._EvaluateVisitor_visitEachRule___closure0, E._EvaluateVisitor_visitExtendRule_closure0, E._EvaluateVisitor_visitAtRule_closure2, E._EvaluateVisitor_visitAtRule_closure3, E._EvaluateVisitor_visitAtRule__closure0, E._EvaluateVisitor_visitAtRule_closure4, E._EvaluateVisitor_visitForRule_closure4, E._EvaluateVisitor_visitForRule_closure5, E._EvaluateVisitor_visitForRule_closure6, E._EvaluateVisitor_visitForRule_closure7, E._EvaluateVisitor_visitForRule_closure8, E._EvaluateVisitor_visitForRule__closure0, E._EvaluateVisitor_visitForwardRule_closure1, E._EvaluateVisitor_visitForwardRule_closure2, E._EvaluateVisitor_visitIfRule_closure0, E._EvaluateVisitor_visitIfRule__closure0, E._EvaluateVisitor__visitDynamicImport_closure0, E._EvaluateVisitor__visitDynamicImport_closure__children_set0, E._EvaluateVisitor__visitDynamicImport__closure1, E._EvaluateVisitor__visitDynamicImport_closure__children_get0, E._EvaluateVisitor__visitDynamicImport__closure2, E._EvaluateVisitor__visitStaticImport_closure0, E._EvaluateVisitor_visitIncludeRule_closure3, E._EvaluateVisitor_visitIncludeRule_closure4, E._EvaluateVisitor_visitIncludeRule_closure6, E._EvaluateVisitor_visitIncludeRule_closure5, E._EvaluateVisitor_visitIncludeRule__closure0, E._EvaluateVisitor_visitIncludeRule___closure0, E._EvaluateVisitor_visitIncludeRule____closure0, E._EvaluateVisitor_visitMediaRule_closure2, E._EvaluateVisitor_visitMediaRule_closure3, E._EvaluateVisitor_visitMediaRule__closure0, E._EvaluateVisitor_visitMediaRule___closure0, E._EvaluateVisitor_visitMediaRule_closure4, E._EvaluateVisitor__visitMediaQueries_closure0, E._EvaluateVisitor_visitStyleRule_closure6, E._EvaluateVisitor_visitStyleRule_closure7, E._EvaluateVisitor_visitStyleRule_closure8, E._EvaluateVisitor_visitStyleRule_closure9, E._EvaluateVisitor_visitStyleRule_closure10, E._EvaluateVisitor_visitStyleRule_closure11, E._EvaluateVisitor_visitStyleRule__closure0, E._EvaluateVisitor_visitStyleRule_closure12, E._EvaluateVisitor_visitSupportsRule_closure1, E._EvaluateVisitor_visitSupportsRule__closure0, E._EvaluateVisitor_visitSupportsRule_closure2, E._EvaluateVisitor_visitVariableDeclaration_closure2, E._EvaluateVisitor_visitVariableDeclaration_closure3, E._EvaluateVisitor_visitVariableDeclaration_closure4, E._EvaluateVisitor_visitUseRule_closure0, E._EvaluateVisitor_visitWarnRule_closure0, E._EvaluateVisitor_visitWhileRule_closure0, E._EvaluateVisitor_visitWhileRule__closure0, E._EvaluateVisitor_visitBinaryOperationExpression_closure0, E._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation0, E._EvaluateVisitor_visitVariableExpression_closure0, E._EvaluateVisitor_visitListExpression_closure0, E._EvaluateVisitor_visitFunctionExpression_closure1, E._EvaluateVisitor_visitFunctionExpression_closure2, E._EvaluateVisitor_visitInterpolatedFunctionExpression_closure0, E._EvaluateVisitor__runUserDefinedCallable_closure0, E._EvaluateVisitor__runUserDefinedCallable__closure0, E._EvaluateVisitor__runUserDefinedCallable___closure0, E._EvaluateVisitor__runUserDefinedCallable____closure0, E._EvaluateVisitor__runFunctionCallable_closure0, E._EvaluateVisitor__runBuiltInCallable_closure2, E._EvaluateVisitor__runBuiltInCallable_closure3, E._EvaluateVisitor__runBuiltInCallable_closure4, E._EvaluateVisitor__evaluateArguments_closure3, E._EvaluateVisitor__evaluateArguments_closure4, E._EvaluateVisitor__evaluateArguments_closure5, E._EvaluateVisitor__evaluateArguments_closure6, E._EvaluateVisitor__evaluateMacroArguments_closure3, E._EvaluateVisitor__evaluateMacroArguments_closure4, E._EvaluateVisitor__evaluateMacroArguments_closure5, E._EvaluateVisitor__evaluateMacroArguments_closure6, E._EvaluateVisitor__addRestMap_closure0, E._EvaluateVisitor__verifyArguments_closure0, E._EvaluateVisitor_visitStringExpression_closure0, E._EvaluateVisitor_visitCssAtRule_closure1, E._EvaluateVisitor_visitCssAtRule_closure2, E._EvaluateVisitor_visitCssKeyframeBlock_closure1, E._EvaluateVisitor_visitCssKeyframeBlock_closure2, E._EvaluateVisitor_visitCssMediaRule_closure2, E._EvaluateVisitor_visitCssMediaRule_closure3, E._EvaluateVisitor_visitCssMediaRule__closure0, E._EvaluateVisitor_visitCssMediaRule___closure0, E._EvaluateVisitor_visitCssMediaRule_closure4, E._EvaluateVisitor_visitCssStyleRule_closure1, E._EvaluateVisitor_visitCssStyleRule__closure0, E._EvaluateVisitor_visitCssStyleRule_closure2, E._EvaluateVisitor_visitCssSupportsRule_closure1, E._EvaluateVisitor_visitCssSupportsRule__closure0, E._EvaluateVisitor_visitCssSupportsRule_closure2, E._EvaluateVisitor__performInterpolation_closure0, E._EvaluateVisitor__serialize_closure0, E._EvaluateVisitor__expressionNode_closure0, E._EvaluateVisitor__withoutSlash_recommendation0, E._EvaluateVisitor__stackFrame_closure0, E._EvaluateVisitor__stackTrace_closure0, E._ImportedCssVisitor_visitCssAtRule_closure0, E._ImportedCssVisitor_visitCssMediaRule_closure0, E._ImportedCssVisitor_visitCssStyleRule_closure0, E._ImportedCssVisitor_visitCssSupportsRule_closure0, R._EvaluateVisitor_closure, R._EvaluateVisitor_closure0, R._EvaluateVisitor_closure1, R._EvaluateVisitor_closure2, R._EvaluateVisitor_closure3, R._EvaluateVisitor_closure4, R._EvaluateVisitor_closure5, R._EvaluateVisitor_closure6, R._EvaluateVisitor__closure1, R._EvaluateVisitor_closure7, R._EvaluateVisitor_closure8, R._EvaluateVisitor__closure, R._EvaluateVisitor__closure0, R._EvaluateVisitor_run_closure, R._EvaluateVisitor_runExpression_closure, R._EvaluateVisitor_runExpression__closure, R._EvaluateVisitor_runStatement_closure, R._EvaluateVisitor_runStatement__closure, R._EvaluateVisitor__withWarnCallback_closure, R._EvaluateVisitor__loadModule_closure, R._EvaluateVisitor__loadModule_closure0, R._EvaluateVisitor__loadModule__closure, R._EvaluateVisitor__execute__css_set, R._EvaluateVisitor__execute__css_get, R._EvaluateVisitor__execute_closure, R._EvaluateVisitor__combineCss_closure, R._EvaluateVisitor__combineCss_closure0, R._EvaluateVisitor__combineCss_closure1, R._EvaluateVisitor__extendModules_closure, R._EvaluateVisitor__extendModules_closure0, R._EvaluateVisitor__topologicalModules_visitModule, R._EvaluateVisitor_visitAtRootRule_closure, R._EvaluateVisitor_visitAtRootRule_closure0, R._EvaluateVisitor_visitAtRootRule_closure1, R._EvaluateVisitor__scopeForAtRoot_closure, R._EvaluateVisitor__scopeForAtRoot_closure0, R._EvaluateVisitor__scopeForAtRoot_closure1, R._EvaluateVisitor__scopeForAtRoot__closure, R._EvaluateVisitor__scopeForAtRoot_closure2, R._EvaluateVisitor__scopeForAtRoot_closure3, R._EvaluateVisitor__scopeForAtRoot_closure4, R._EvaluateVisitor_visitContentRule_closure, R._EvaluateVisitor_visitDeclaration_closure, R._EvaluateVisitor_visitDeclaration_closure0, R._EvaluateVisitor_visitEachRule_closure, R._EvaluateVisitor_visitEachRule_closure0, R._EvaluateVisitor_visitEachRule_closure1, R._EvaluateVisitor_visitEachRule__closure, R._EvaluateVisitor_visitEachRule___closure, R._EvaluateVisitor_visitExtendRule_closure, R._EvaluateVisitor_visitAtRule_closure, R._EvaluateVisitor_visitAtRule_closure0, R._EvaluateVisitor_visitAtRule__closure, R._EvaluateVisitor_visitAtRule_closure1, R._EvaluateVisitor_visitForRule_closure, R._EvaluateVisitor_visitForRule_closure0, R._EvaluateVisitor_visitForRule_closure1, R._EvaluateVisitor_visitForRule_closure2, R._EvaluateVisitor_visitForRule_closure3, R._EvaluateVisitor_visitForRule__closure, R._EvaluateVisitor_visitForwardRule_closure, R._EvaluateVisitor_visitForwardRule_closure0, R._EvaluateVisitor_visitIfRule_closure, R._EvaluateVisitor_visitIfRule__closure, R._EvaluateVisitor__visitDynamicImport_closure, R._EvaluateVisitor__visitDynamicImport_closure__children_set, R._EvaluateVisitor__visitDynamicImport__closure, R._EvaluateVisitor__visitDynamicImport_closure__children_get, R._EvaluateVisitor__visitDynamicImport__closure0, R._EvaluateVisitor__visitStaticImport_closure, R._EvaluateVisitor_visitIncludeRule_closure, R._EvaluateVisitor_visitIncludeRule_closure0, R._EvaluateVisitor_visitIncludeRule_closure2, R._EvaluateVisitor_visitIncludeRule_closure1, R._EvaluateVisitor_visitIncludeRule__closure, R._EvaluateVisitor_visitIncludeRule___closure, R._EvaluateVisitor_visitIncludeRule____closure, R._EvaluateVisitor_visitMediaRule_closure, R._EvaluateVisitor_visitMediaRule_closure0, R._EvaluateVisitor_visitMediaRule__closure, R._EvaluateVisitor_visitMediaRule___closure, R._EvaluateVisitor_visitMediaRule_closure1, R._EvaluateVisitor__visitMediaQueries_closure, R._EvaluateVisitor_visitStyleRule_closure, R._EvaluateVisitor_visitStyleRule_closure0, R._EvaluateVisitor_visitStyleRule_closure1, R._EvaluateVisitor_visitStyleRule_closure2, R._EvaluateVisitor_visitStyleRule_closure3, R._EvaluateVisitor_visitStyleRule_closure4, R._EvaluateVisitor_visitStyleRule__closure, R._EvaluateVisitor_visitStyleRule_closure5, R._EvaluateVisitor_visitSupportsRule_closure, R._EvaluateVisitor_visitSupportsRule__closure, R._EvaluateVisitor_visitSupportsRule_closure0, R._EvaluateVisitor_visitVariableDeclaration_closure, R._EvaluateVisitor_visitVariableDeclaration_closure0, R._EvaluateVisitor_visitVariableDeclaration_closure1, R._EvaluateVisitor_visitUseRule_closure, R._EvaluateVisitor_visitWarnRule_closure, R._EvaluateVisitor_visitWhileRule_closure, R._EvaluateVisitor_visitWhileRule__closure, R._EvaluateVisitor_visitBinaryOperationExpression_closure, R._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation, R._EvaluateVisitor_visitVariableExpression_closure, R._EvaluateVisitor_visitListExpression_closure, R._EvaluateVisitor_visitFunctionExpression_closure, R._EvaluateVisitor_visitFunctionExpression_closure0, R._EvaluateVisitor_visitInterpolatedFunctionExpression_closure, R._EvaluateVisitor__runUserDefinedCallable_closure, R._EvaluateVisitor__runUserDefinedCallable__closure, R._EvaluateVisitor__runUserDefinedCallable___closure, R._EvaluateVisitor__runUserDefinedCallable____closure, R._EvaluateVisitor__runFunctionCallable_closure, R._EvaluateVisitor__runBuiltInCallable_closure, R._EvaluateVisitor__runBuiltInCallable_closure0, R._EvaluateVisitor__runBuiltInCallable_closure1, R._EvaluateVisitor__evaluateArguments_closure, R._EvaluateVisitor__evaluateArguments_closure0, R._EvaluateVisitor__evaluateArguments_closure1, R._EvaluateVisitor__evaluateArguments_closure2, R._EvaluateVisitor__evaluateMacroArguments_closure, R._EvaluateVisitor__evaluateMacroArguments_closure0, R._EvaluateVisitor__evaluateMacroArguments_closure1, R._EvaluateVisitor__evaluateMacroArguments_closure2, R._EvaluateVisitor__addRestMap_closure, R._EvaluateVisitor__verifyArguments_closure, R._EvaluateVisitor_visitStringExpression_closure, R._EvaluateVisitor_visitCssAtRule_closure, R._EvaluateVisitor_visitCssAtRule_closure0, R._EvaluateVisitor_visitCssKeyframeBlock_closure, R._EvaluateVisitor_visitCssKeyframeBlock_closure0, R._EvaluateVisitor_visitCssMediaRule_closure, R._EvaluateVisitor_visitCssMediaRule_closure0, R._EvaluateVisitor_visitCssMediaRule__closure, R._EvaluateVisitor_visitCssMediaRule___closure, R._EvaluateVisitor_visitCssMediaRule_closure1, R._EvaluateVisitor_visitCssStyleRule_closure, R._EvaluateVisitor_visitCssStyleRule__closure, R._EvaluateVisitor_visitCssStyleRule_closure0, R._EvaluateVisitor_visitCssSupportsRule_closure, R._EvaluateVisitor_visitCssSupportsRule__closure, R._EvaluateVisitor_visitCssSupportsRule_closure0, R._EvaluateVisitor__performInterpolation_closure, R._EvaluateVisitor__serialize_closure, R._EvaluateVisitor__expressionNode_closure, R._EvaluateVisitor__withoutSlash_recommendation, R._EvaluateVisitor__stackFrame_closure, R._EvaluateVisitor__stackTrace_closure, R._ImportedCssVisitor_visitCssAtRule_closure, R._ImportedCssVisitor_visitCssMediaRule_closure, R._ImportedCssVisitor_visitCssStyleRule_closure, R._ImportedCssVisitor_visitCssSupportsRule_closure, N.serialize_closure, N._SerializeVisitor_visitCssComment_closure, N._SerializeVisitor_visitCssAtRule_closure, N._SerializeVisitor_visitCssMediaRule_closure, N._SerializeVisitor_visitCssImport_closure, N._SerializeVisitor_visitCssImport__closure, N._SerializeVisitor_visitCssKeyframeBlock_closure, N._SerializeVisitor_visitCssStyleRule_closure, N._SerializeVisitor_visitCssSupportsRule_closure, N._SerializeVisitor_visitCssDeclaration_closure, N._SerializeVisitor_visitCssDeclaration_closure0, N._SerializeVisitor_visitList_closure, N._SerializeVisitor_visitList_closure0, N._SerializeVisitor_visitList_closure1, N._SerializeVisitor_visitMap_closure, N._SerializeVisitor__removeExponent__exponent_set, N._SerializeVisitor__removeExponent__exponent_get, N._SerializeVisitor_visitSelectorList_closure, N._SerializeVisitor__write_closure, N._SerializeVisitor__visitChildren_closure, A.StatementSearchVisitor_visitIfRule_closure, A.StatementSearchVisitor_visitIfRule__closure0, A.StatementSearchVisitor_visitIfRule_closure0, A.StatementSearchVisitor_visitIfRule__closure, A.StatementSearchVisitor_visitChildren_closure, N.withWarnCallback_closure, T.SingleMapping_SingleMapping$fromEntries__targetEntries_set, T.SingleMapping_SingleMapping$fromEntries__targetEntries_get, T.SingleMapping_SingleMapping$fromEntries_closure, T.SingleMapping_SingleMapping$fromEntries_closure0, T.SingleMapping_SingleMapping$fromEntries_closure1, T.SingleMapping_toJson_closure, T.SingleMapping_toJson_closure0, U.Highlighter_closure, U.Highlighter$__closure, U.Highlighter$___closure, U.Highlighter$__closure0, U.Highlighter__collateLines_closure, U.Highlighter__collateLines_closure0, U.Highlighter__collateLines_closure1, U.Highlighter__collateLines__closure, U.Highlighter_highlight_closure, U.Highlighter__writeFileStart_closure, U.Highlighter__writeMultilineHighlights_closure, U.Highlighter__writeMultilineHighlights_closure0, U.Highlighter__writeMultilineHighlights_closure1, U.Highlighter__writeMultilineHighlights_closure2, U.Highlighter__writeMultilineHighlights__closure, U.Highlighter__writeMultilineHighlights__closure0, U.Highlighter__writeHighlightedText_closure, U.Highlighter__writeIndicator_closure, U.Highlighter__writeIndicator_closure0, U.Highlighter__writeIndicator_closure1, U.Highlighter__writeSidebar_closure, U._Highlight_closure, U.Chain_Chain$parse_closure, U.Chain_Chain$parse_closure0, U.Chain_Chain$parse_closure1, U.Chain_toTrace_closure, U.Chain_toString_closure0, U.Chain_toString__closure0, U.Chain_toString_closure, U.Chain_toString__closure, A.Frame_Frame$parseVM_closure, A.Frame_Frame$parseV8_closure, A.Frame_Frame$parseV8_closure_parseLocation, A.Frame_Frame$_parseFirefoxEval_closure, A.Frame_Frame$parseFirefox_closure, A.Frame_Frame$parseFriendly_closure, T.LazyTrace_terse_closure, Y.Trace_Trace$from_closure, Y.Trace__parseVM_closure, Y.Trace__parseVM_closure0, Y.Trace$parseV8_closure, Y.Trace$parseV8_closure0, Y.Trace$parseJSCore_closure, Y.Trace$parseJSCore_closure0, Y.Trace$parseFirefox_closure, Y.Trace$parseFirefox_closure0, Y.Trace$parseFriendly_closure, Y.Trace$parseFriendly_closure0, Y.Trace_terse_closure, Y.Trace_foldFrames_closure, Y.Trace_foldFrames_closure0, Y.Trace_toString_closure0, Y.Trace_toString_closure, L.TransformByHandlers_transformByHandlers_closure, L.TransformByHandlers_transformByHandlers__closure, L.TransformByHandlers_transformByHandlers__closure1, L.TransformByHandlers_transformByHandlers__closure0, L.TransformByHandlers_transformByHandlers__closure2, R.RateLimit__debounceAggregate_closure, R.RateLimit__debounceAggregate_closure_emit, R.RateLimit__debounceAggregate__closure, R.RateLimit__debounceAggregate_closure0, B.ArgumentDeclaration_verify_closure1, B.ArgumentDeclaration_verify_closure2, S.AsyncBuiltInCallable$mixin_closure0, X._compileStylesheet_closure2, Q.AsyncEnvironment_importForwards_closure2, Q.AsyncEnvironment_importForwards_closure3, Q.AsyncEnvironment_importForwards_closure4, Q.AsyncEnvironment__getVariableFromGlobalModule_closure0, Q.AsyncEnvironment_setVariable_closure2, Q.AsyncEnvironment_setVariable_closure3, Q.AsyncEnvironment_setVariable_closure4, Q.AsyncEnvironment__getFunctionFromGlobalModule_closure0, Q.AsyncEnvironment__getMixinFromGlobalModule_closure0, Q.AsyncEnvironment_toModule_closure0, Q.AsyncEnvironment_toDummyModule_closure0, Q.AsyncEnvironment__fromOneModule_closure0, Q.AsyncEnvironment__fromOneModule__closure0, Q._EnvironmentModule__EnvironmentModule_closure17, Q._EnvironmentModule__EnvironmentModule_closure18, Q._EnvironmentModule__EnvironmentModule_closure19, Q._EnvironmentModule__EnvironmentModule_closure20, Q._EnvironmentModule__EnvironmentModule_closure21, Q._EnvironmentModule__EnvironmentModule_closure22, E._EvaluateVisitor_closure29, E._EvaluateVisitor_closure30, E._EvaluateVisitor_closure31, E._EvaluateVisitor_closure32, E._EvaluateVisitor_closure33, E._EvaluateVisitor_closure34, E._EvaluateVisitor_closure35, E._EvaluateVisitor_closure36, E._EvaluateVisitor__closure10, E._EvaluateVisitor_closure37, E._EvaluateVisitor_closure38, E._EvaluateVisitor__closure8, E._EvaluateVisitor__closure9, E._EvaluateVisitor_run_closure2, E._EvaluateVisitor__withWarnCallback_closure2, E._EvaluateVisitor__loadModule_closure5, E._EvaluateVisitor__loadModule_closure6, E._EvaluateVisitor__loadModule__closure2, E._EvaluateVisitor__execute__css_set2, E._EvaluateVisitor__execute__css_get2, E._EvaluateVisitor__execute_closure2, E._EvaluateVisitor__combineCss_closure8, E._EvaluateVisitor__combineCss_closure9, E._EvaluateVisitor__combineCss_closure10, E._EvaluateVisitor__extendModules_closure5, E._EvaluateVisitor__extendModules_closure6, E._EvaluateVisitor__topologicalModules_visitModule2, E._EvaluateVisitor_visitAtRootRule_closure8, E._EvaluateVisitor_visitAtRootRule_closure9, E._EvaluateVisitor_visitAtRootRule_closure10, E._EvaluateVisitor__scopeForAtRoot_closure17, E._EvaluateVisitor__scopeForAtRoot_closure18, E._EvaluateVisitor__scopeForAtRoot_closure19, E._EvaluateVisitor__scopeForAtRoot__closure2, E._EvaluateVisitor__scopeForAtRoot_closure20, E._EvaluateVisitor__scopeForAtRoot_closure21, E._EvaluateVisitor__scopeForAtRoot_closure22, E._EvaluateVisitor_visitContentRule_closure2, E._EvaluateVisitor_visitDeclaration_closure5, E._EvaluateVisitor_visitDeclaration_closure6, E._EvaluateVisitor_visitEachRule_closure8, E._EvaluateVisitor_visitEachRule_closure9, E._EvaluateVisitor_visitEachRule_closure10, E._EvaluateVisitor_visitEachRule__closure2, E._EvaluateVisitor_visitEachRule___closure2, E._EvaluateVisitor_visitExtendRule_closure2, E._EvaluateVisitor_visitAtRule_closure8, E._EvaluateVisitor_visitAtRule_closure9, E._EvaluateVisitor_visitAtRule__closure2, E._EvaluateVisitor_visitAtRule_closure10, E._EvaluateVisitor_visitForRule_closure14, E._EvaluateVisitor_visitForRule_closure15, E._EvaluateVisitor_visitForRule_closure16, E._EvaluateVisitor_visitForRule_closure17, E._EvaluateVisitor_visitForRule_closure18, E._EvaluateVisitor_visitForRule__closure2, E._EvaluateVisitor_visitForwardRule_closure5, E._EvaluateVisitor_visitForwardRule_closure6, E._EvaluateVisitor_visitIfRule_closure2, E._EvaluateVisitor_visitIfRule__closure2, E._EvaluateVisitor__visitDynamicImport_closure2, E._EvaluateVisitor__visitDynamicImport_closure__children_set2, E._EvaluateVisitor__visitDynamicImport__closure5, E._EvaluateVisitor__visitDynamicImport_closure__children_get2, E._EvaluateVisitor__visitDynamicImport__closure6, E._EvaluateVisitor__visitStaticImport_closure2, E._EvaluateVisitor_visitIncludeRule_closure11, E._EvaluateVisitor_visitIncludeRule_closure12, E._EvaluateVisitor_visitIncludeRule_closure14, E._EvaluateVisitor_visitIncludeRule_closure13, E._EvaluateVisitor_visitIncludeRule__closure2, E._EvaluateVisitor_visitIncludeRule___closure2, E._EvaluateVisitor_visitIncludeRule____closure2, E._EvaluateVisitor_visitMediaRule_closure8, E._EvaluateVisitor_visitMediaRule_closure9, E._EvaluateVisitor_visitMediaRule__closure2, E._EvaluateVisitor_visitMediaRule___closure2, E._EvaluateVisitor_visitMediaRule_closure10, E._EvaluateVisitor__visitMediaQueries_closure2, E._EvaluateVisitor_visitStyleRule_closure20, E._EvaluateVisitor_visitStyleRule_closure21, E._EvaluateVisitor_visitStyleRule_closure22, E._EvaluateVisitor_visitStyleRule_closure23, E._EvaluateVisitor_visitStyleRule_closure24, E._EvaluateVisitor_visitStyleRule_closure25, E._EvaluateVisitor_visitStyleRule__closure2, E._EvaluateVisitor_visitStyleRule_closure26, E._EvaluateVisitor_visitSupportsRule_closure5, E._EvaluateVisitor_visitSupportsRule__closure2, E._EvaluateVisitor_visitSupportsRule_closure6, E._EvaluateVisitor_visitVariableDeclaration_closure8, E._EvaluateVisitor_visitVariableDeclaration_closure9, E._EvaluateVisitor_visitVariableDeclaration_closure10, E._EvaluateVisitor_visitUseRule_closure2, E._EvaluateVisitor_visitWarnRule_closure2, E._EvaluateVisitor_visitWhileRule_closure2, E._EvaluateVisitor_visitWhileRule__closure2, E._EvaluateVisitor_visitBinaryOperationExpression_closure2, E._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation2, E._EvaluateVisitor_visitVariableExpression_closure2, E._EvaluateVisitor_visitListExpression_closure2, E._EvaluateVisitor_visitFunctionExpression_closure5, E._EvaluateVisitor_visitFunctionExpression_closure6, E._EvaluateVisitor_visitInterpolatedFunctionExpression_closure2, E._EvaluateVisitor__runUserDefinedCallable_closure2, E._EvaluateVisitor__runUserDefinedCallable__closure2, E._EvaluateVisitor__runUserDefinedCallable___closure2, E._EvaluateVisitor__runUserDefinedCallable____closure2, E._EvaluateVisitor__runFunctionCallable_closure2, E._EvaluateVisitor__runBuiltInCallable_closure8, E._EvaluateVisitor__runBuiltInCallable_closure9, E._EvaluateVisitor__runBuiltInCallable_closure10, E._EvaluateVisitor__evaluateArguments_closure11, E._EvaluateVisitor__evaluateArguments_closure12, E._EvaluateVisitor__evaluateArguments_closure13, E._EvaluateVisitor__evaluateArguments_closure14, E._EvaluateVisitor__evaluateMacroArguments_closure11, E._EvaluateVisitor__evaluateMacroArguments_closure12, E._EvaluateVisitor__evaluateMacroArguments_closure13, E._EvaluateVisitor__evaluateMacroArguments_closure14, E._EvaluateVisitor__addRestMap_closure2, E._EvaluateVisitor__verifyArguments_closure2, E._EvaluateVisitor_visitStringExpression_closure2, E._EvaluateVisitor_visitCssAtRule_closure5, E._EvaluateVisitor_visitCssAtRule_closure6, E._EvaluateVisitor_visitCssKeyframeBlock_closure5, E._EvaluateVisitor_visitCssKeyframeBlock_closure6, E._EvaluateVisitor_visitCssMediaRule_closure8, E._EvaluateVisitor_visitCssMediaRule_closure9, E._EvaluateVisitor_visitCssMediaRule__closure2, E._EvaluateVisitor_visitCssMediaRule___closure2, E._EvaluateVisitor_visitCssMediaRule_closure10, E._EvaluateVisitor_visitCssStyleRule_closure5, E._EvaluateVisitor_visitCssStyleRule__closure2, E._EvaluateVisitor_visitCssStyleRule_closure6, E._EvaluateVisitor_visitCssSupportsRule_closure5, E._EvaluateVisitor_visitCssSupportsRule__closure2, E._EvaluateVisitor_visitCssSupportsRule_closure6, E._EvaluateVisitor__performInterpolation_closure2, E._EvaluateVisitor__serialize_closure2, E._EvaluateVisitor__expressionNode_closure2, E._EvaluateVisitor__withoutSlash_recommendation2, E._EvaluateVisitor__stackFrame_closure2, E._EvaluateVisitor__stackTrace_closure2, E._ImportedCssVisitor_visitCssAtRule_closure2, E._ImportedCssVisitor_visitCssMediaRule_closure2, E._ImportedCssVisitor_visitCssStyleRule_closure2, E._ImportedCssVisitor_visitCssSupportsRule_closure2, O.AsyncImportCache_canonicalize_closure0, O.AsyncImportCache__canonicalize_closure0, O.AsyncImportCache_importCanonical_closure0, O.AsyncImportCache_humanize_closure2, O.AsyncImportCache_humanize_closure3, O.AsyncImportCache_humanize_closure4, V.AtRootQueryParser_parse_closure0, Z.booleanConstructor_closure, Z.booleanConstructor__closure, Z.booleanConstructor__closure0, Q.BuiltInCallable$mixin_closure0, K.global_closure30, K.global_closure31, K.global_closure32, K.global_closure33, K.global_closure34, K.global_closure35, K.global_closure36, K.global_closure37, K.global_closure38, K.global_closure39, K.global_closure40, K.global_closure41, K.global_closure42, K.global_closure43, K.global_closure44, K.global_closure45, K.global_closure46, K.global_closure47, K.global_closure48, K.global_closure49, K.global_closure50, K.global_closure51, K.global_closure52, K.global_closure53, K.global_closure54, K.global_closure55, K.global__closure0, K.global_closure56, K.module_closure8, K.module_closure9, K.module_closure10, K.module_closure11, K.module_closure12, K.module_closure13, K.module_closure14, K.module_closure15, K.module__closure0, K.module_closure16, K._red_closure0, K._green_closure0, K._blue_closure0, K._mix_closure0, K._hue_closure0, K._saturation_closure0, K._lightness_closure0, K._complement_closure0, K._adjust_closure0, K._scale_closure0, K._change_closure0, K._ieHexStr_closure0, K._ieHexStr_closure_hexString0, K._updateComponents_getParam0, K._updateComponents_closure0, K._updateComponents_updateValue0, K._updateComponents_updateRgb0, K._functionString_closure0, K._removedColorFunction_closure0, K._rgb_closure0, K._hsl_closure0, K._removeUnits_closure1, K._removeUnits_closure2, K._hwb_closure0, K._parseChannels_closure0, K.colorConstructor_closure, K.colorConstructor_closure0, K.colorConstructor_closure1, K.colorConstructor_closure2, K.colorConstructor_closure3, K.colorConstructor_closure4, K.colorConstructor_closure5, K.colorConstructor_closure6, K.colorConstructor_closure7, K.colorConstructor_closure8, K.SassColor_SassColor$hwb_toRgb0, U._compileStylesheet_closure1, S.ComplexSelector_isInvisible_closure0, X.CompoundSelector_isInvisible_closure0, A.Configuration_toString_closure0, Q._disallowedFunctionNames_closure0, V.EachRule_toString_closure0, O.Environment_importForwards_closure2, O.Environment_importForwards_closure3, O.Environment_importForwards_closure4, O.Environment__getVariableFromGlobalModule_closure0, O.Environment_setVariable_closure2, O.Environment_setVariable_closure3, O.Environment_setVariable_closure4, O.Environment__getFunctionFromGlobalModule_closure0, O.Environment__getMixinFromGlobalModule_closure0, O.Environment_toModule_closure0, O.Environment_toDummyModule_closure0, O.Environment__fromOneModule_closure0, O.Environment__fromOneModule__closure0, O._EnvironmentModule__EnvironmentModule_closure11, O._EnvironmentModule__EnvironmentModule_closure12, O._EnvironmentModule__EnvironmentModule_closure13, O._EnvironmentModule__EnvironmentModule_closure14, O._EnvironmentModule__EnvironmentModule_closure15, O._EnvironmentModule__EnvironmentModule_closure16, R._EvaluateVisitor_closure19, R._EvaluateVisitor_closure20, R._EvaluateVisitor_closure21, R._EvaluateVisitor_closure22, R._EvaluateVisitor_closure23, R._EvaluateVisitor_closure24, R._EvaluateVisitor_closure25, R._EvaluateVisitor_closure26, R._EvaluateVisitor__closure7, R._EvaluateVisitor_closure27, R._EvaluateVisitor_closure28, R._EvaluateVisitor__closure5, R._EvaluateVisitor__closure6, R._EvaluateVisitor_run_closure1, R._EvaluateVisitor__withWarnCallback_closure1, R._EvaluateVisitor__loadModule_closure3, R._EvaluateVisitor__loadModule_closure4, R._EvaluateVisitor__loadModule__closure1, R._EvaluateVisitor__execute__css_set1, R._EvaluateVisitor__execute__css_get1, R._EvaluateVisitor__execute_closure1, R._EvaluateVisitor__combineCss_closure5, R._EvaluateVisitor__combineCss_closure6, R._EvaluateVisitor__combineCss_closure7, R._EvaluateVisitor__extendModules_closure3, R._EvaluateVisitor__extendModules_closure4, R._EvaluateVisitor__topologicalModules_visitModule1, R._EvaluateVisitor_visitAtRootRule_closure5, R._EvaluateVisitor_visitAtRootRule_closure6, R._EvaluateVisitor_visitAtRootRule_closure7, R._EvaluateVisitor__scopeForAtRoot_closure11, R._EvaluateVisitor__scopeForAtRoot_closure12, R._EvaluateVisitor__scopeForAtRoot_closure13, R._EvaluateVisitor__scopeForAtRoot__closure1, R._EvaluateVisitor__scopeForAtRoot_closure14, R._EvaluateVisitor__scopeForAtRoot_closure15, R._EvaluateVisitor__scopeForAtRoot_closure16, R._EvaluateVisitor_visitContentRule_closure1, R._EvaluateVisitor_visitDeclaration_closure3, R._EvaluateVisitor_visitDeclaration_closure4, R._EvaluateVisitor_visitEachRule_closure5, R._EvaluateVisitor_visitEachRule_closure6, R._EvaluateVisitor_visitEachRule_closure7, R._EvaluateVisitor_visitEachRule__closure1, R._EvaluateVisitor_visitEachRule___closure1, R._EvaluateVisitor_visitExtendRule_closure1, R._EvaluateVisitor_visitAtRule_closure5, R._EvaluateVisitor_visitAtRule_closure6, R._EvaluateVisitor_visitAtRule__closure1, R._EvaluateVisitor_visitAtRule_closure7, R._EvaluateVisitor_visitForRule_closure9, R._EvaluateVisitor_visitForRule_closure10, R._EvaluateVisitor_visitForRule_closure11, R._EvaluateVisitor_visitForRule_closure12, R._EvaluateVisitor_visitForRule_closure13, R._EvaluateVisitor_visitForRule__closure1, R._EvaluateVisitor_visitForwardRule_closure3, R._EvaluateVisitor_visitForwardRule_closure4, R._EvaluateVisitor_visitIfRule_closure1, R._EvaluateVisitor_visitIfRule__closure1, R._EvaluateVisitor__visitDynamicImport_closure1, R._EvaluateVisitor__visitDynamicImport_closure__children_set1, R._EvaluateVisitor__visitDynamicImport__closure3, R._EvaluateVisitor__visitDynamicImport_closure__children_get1, R._EvaluateVisitor__visitDynamicImport__closure4, R._EvaluateVisitor__visitStaticImport_closure1, R._EvaluateVisitor_visitIncludeRule_closure7, R._EvaluateVisitor_visitIncludeRule_closure8, R._EvaluateVisitor_visitIncludeRule_closure10, R._EvaluateVisitor_visitIncludeRule_closure9, R._EvaluateVisitor_visitIncludeRule__closure1, R._EvaluateVisitor_visitIncludeRule___closure1, R._EvaluateVisitor_visitIncludeRule____closure1, R._EvaluateVisitor_visitMediaRule_closure5, R._EvaluateVisitor_visitMediaRule_closure6, R._EvaluateVisitor_visitMediaRule__closure1, R._EvaluateVisitor_visitMediaRule___closure1, R._EvaluateVisitor_visitMediaRule_closure7, R._EvaluateVisitor__visitMediaQueries_closure1, R._EvaluateVisitor_visitStyleRule_closure13, R._EvaluateVisitor_visitStyleRule_closure14, R._EvaluateVisitor_visitStyleRule_closure15, R._EvaluateVisitor_visitStyleRule_closure16, R._EvaluateVisitor_visitStyleRule_closure17, R._EvaluateVisitor_visitStyleRule_closure18, R._EvaluateVisitor_visitStyleRule__closure1, R._EvaluateVisitor_visitStyleRule_closure19, R._EvaluateVisitor_visitSupportsRule_closure3, R._EvaluateVisitor_visitSupportsRule__closure1, R._EvaluateVisitor_visitSupportsRule_closure4, R._EvaluateVisitor_visitVariableDeclaration_closure5, R._EvaluateVisitor_visitVariableDeclaration_closure6, R._EvaluateVisitor_visitVariableDeclaration_closure7, R._EvaluateVisitor_visitUseRule_closure1, R._EvaluateVisitor_visitWarnRule_closure1, R._EvaluateVisitor_visitWhileRule_closure1, R._EvaluateVisitor_visitWhileRule__closure1, R._EvaluateVisitor_visitBinaryOperationExpression_closure1, R._EvaluateVisitor_visitBinaryOperationExpression_closure_recommendation1, R._EvaluateVisitor_visitVariableExpression_closure1, R._EvaluateVisitor_visitListExpression_closure1, R._EvaluateVisitor_visitFunctionExpression_closure3, R._EvaluateVisitor_visitFunctionExpression_closure4, R._EvaluateVisitor_visitInterpolatedFunctionExpression_closure1, R._EvaluateVisitor__runUserDefinedCallable_closure1, R._EvaluateVisitor__runUserDefinedCallable__closure1, R._EvaluateVisitor__runUserDefinedCallable___closure1, R._EvaluateVisitor__runUserDefinedCallable____closure1, R._EvaluateVisitor__runFunctionCallable_closure1, R._EvaluateVisitor__runBuiltInCallable_closure5, R._EvaluateVisitor__runBuiltInCallable_closure6, R._EvaluateVisitor__runBuiltInCallable_closure7, R._EvaluateVisitor__evaluateArguments_closure7, R._EvaluateVisitor__evaluateArguments_closure8, R._EvaluateVisitor__evaluateArguments_closure9, R._EvaluateVisitor__evaluateArguments_closure10, R._EvaluateVisitor__evaluateMacroArguments_closure7, R._EvaluateVisitor__evaluateMacroArguments_closure8, R._EvaluateVisitor__evaluateMacroArguments_closure9, R._EvaluateVisitor__evaluateMacroArguments_closure10, R._EvaluateVisitor__addRestMap_closure1, R._EvaluateVisitor__verifyArguments_closure1, R._EvaluateVisitor_visitStringExpression_closure1, R._EvaluateVisitor_visitCssAtRule_closure3, R._EvaluateVisitor_visitCssAtRule_closure4, R._EvaluateVisitor_visitCssKeyframeBlock_closure3, R._EvaluateVisitor_visitCssKeyframeBlock_closure4, R._EvaluateVisitor_visitCssMediaRule_closure5, R._EvaluateVisitor_visitCssMediaRule_closure6, R._EvaluateVisitor_visitCssMediaRule__closure1, R._EvaluateVisitor_visitCssMediaRule___closure1, R._EvaluateVisitor_visitCssMediaRule_closure7, R._EvaluateVisitor_visitCssStyleRule_closure3, R._EvaluateVisitor_visitCssStyleRule__closure1, R._EvaluateVisitor_visitCssStyleRule_closure4, R._EvaluateVisitor_visitCssSupportsRule_closure3, R._EvaluateVisitor_visitCssSupportsRule__closure1, R._EvaluateVisitor_visitCssSupportsRule_closure4, R._EvaluateVisitor__performInterpolation_closure1, R._EvaluateVisitor__serialize_closure1, R._EvaluateVisitor__expressionNode_closure1, R._EvaluateVisitor__withoutSlash_recommendation1, R._EvaluateVisitor__stackFrame_closure1, R._EvaluateVisitor__stackTrace_closure1, R._ImportedCssVisitor_visitCssAtRule_closure1, R._ImportedCssVisitor_visitCssMediaRule_closure1, R._ImportedCssVisitor_visitCssStyleRule_closure1, R._ImportedCssVisitor_visitCssSupportsRule_closure1, X.ExtensionStore_extensionsWhereTarget_closure0, X.ExtensionStore__registerSelector_closure0, X.ExtensionStore_addExtension_closure2, X.ExtensionStore_addExtension_closure3, X.ExtensionStore_addExtension_closure4, X.ExtensionStore__extendExistingExtensions_closure1, X.ExtensionStore__extendExistingExtensions_closure2, X.ExtensionStore_addExtensions_closure1, X.ExtensionStore_addExtensions__closure4, X.ExtensionStore_addExtensions___closure0, X.ExtensionStore_addExtensions_closure2, X.ExtensionStore_addExtensions__closure2, X.ExtensionStore_addExtensions__closure3, X.ExtensionStore__extendComplex_closure1, X.ExtensionStore__extendComplex_closure2, X.ExtensionStore__extendComplex__closure1, X.ExtensionStore__extendComplex__closure2, X.ExtensionStore__extendComplex___closure0, X.ExtensionStore__extendCompound_closure4, X.ExtensionStore__extendCompound_closure5, X.ExtensionStore__extendCompound__closure1, X.ExtensionStore__extendCompound__closure2, X.ExtensionStore__extendCompound_closure6, X.ExtensionStore__extendCompound_closure7, X.ExtensionStore__extendCompound_closure8, X.ExtensionStore__extendSimple_withoutPseudo0, X.ExtensionStore__extendSimple_closure1, X.ExtensionStore__extendSimple_closure2, X.ExtensionStore__extendPseudo_closure4, X.ExtensionStore__extendPseudo_closure5, X.ExtensionStore__extendPseudo_closure6, X.ExtensionStore__extendPseudo_closure7, X.ExtensionStore__extendPseudo_closure8, X.ExtensionStore__trim_closure1, X.ExtensionStore__trim_closure2, X.ExtensionStore_clone_closure0, F.FilesystemImporter_canonicalize_closure0, Y.unifyComplex_closure0, Y._weaveParents_closure6, Y._weaveParents_closure7, Y._weaveParents_closure8, Y._weaveParents__closure4, Y._weaveParents_closure9, Y._weaveParents_closure10, Y._weaveParents__closure3, Y._weaveParents_closure11, Y._weaveParents_closure12, Y._weaveParents__closure2, Y._mustUnify_closure0, Y._mustUnify__closure0, Y.paths_closure0, Y.paths__closure0, Y.paths___closure0, Y._hasRoot_closure0, Y.listIsSuperselector_closure0, Y.listIsSuperselector__closure0, Y._simpleIsSuperselectorOfCompound_closure0, Y._simpleIsSuperselectorOfCompound__closure0, Y._selectorPseudoIsSuperselector_closure6, Y._selectorPseudoIsSuperselector_closure7, Y._selectorPseudoIsSuperselector_closure8, Y._selectorPseudoIsSuperselector_closure9, Y._selectorPseudoIsSuperselector_closure10, Y._selectorPseudoIsSuperselector__closure0, Y._selectorPseudoIsSuperselector___closure1, Y._selectorPseudoIsSuperselector___closure2, Y._selectorPseudoIsSuperselector_closure11, Y._selectorPseudoIsSuperselector_closure12, Y._selectorPseudoArgs_closure1, Y._selectorPseudoArgs_closure2, Y.globalFunctions_closure0, N.IDSelector_unify_closure0, V.IfRule_toString_closure0, V.IfRuleClause$__closure0, V.IfRuleClause$___closure0, F.NodeImporter__tryPath_closure, F.NodeImporter__tryPath_closure0, R.ImportCache_canonicalize_closure0, R.ImportCache__canonicalize_closure0, R.ImportCache_importCanonical_closure0, R.ImportCache_humanize_closure2, R.ImportCache_humanize_closure3, R.ImportCache_humanize_closure4, X.Interpolation_toString_closure0, F._realCasePath_helper0, F._realCasePath_helper_closure0, F._realCasePath_helper__closure0, E.KeyframeSelectorParser_parse_closure0, D.ListExpression_toString_closure0, D._length_closure2, D._nth_closure0, D._setNth_closure0, D._join_closure0, D._append_closure2, D._zip_closure0, D._zip__closure2, D._zip__closure3, D._zip__closure4, D._index_closure2, D._separator_closure0, D._isBracketed_closure0, D._slash_closure0, D.SelectorList_isInvisible_closure0, D.SelectorList_asSassList_closure0, D.SelectorList_asSassList__closure0, D.SelectorList_unify_closure0, D.SelectorList_unify__closure0, D.SelectorList_unify___closure0, D.SelectorList_resolveParentSelectors_closure0, D.SelectorList_resolveParentSelectors__closure1, D.SelectorList_resolveParentSelectors__closure2, D.SelectorList__complexContainsParentSelector_closure0, D.SelectorList__complexContainsParentSelector__closure0, D.SelectorList__resolveParentSelectorsCompound_closure2, D.SelectorList__resolveParentSelectorsCompound_closure3, D.SelectorList__resolveParentSelectorsCompound_closure4, D.listConstructor_closure, D.listConstructor__closure, D.listConstructor_closure0, D.listConstructor_closure1, D.listConstructor_closure2, D.listConstructor_closure3, D.listConstructor_closure4, D.listConstructor_closure5, D.SassList_isBlank_closure0, A.MapExpression_toString_closure0, A._get_closure0, A._set_closure1, A._set__closure2, A._set_closure2, A._set__closure1, A._merge_closure1, A._merge_closure2, A._merge__closure0, A._deepMerge_closure0, A._deepRemove_closure0, A._deepRemove__closure0, A._remove_closure1, A._remove_closure2, A._keys_closure0, A._values_closure0, A._hasKey_closure0, A._modify__modifyNestedMap0, A._deepMergeImpl__ensureMutable0, A._deepMergeImpl_closure0, A.mapConstructor_closure, A.mapConstructor__closure, A.mapConstructor__closure0, A.mapConstructor_closure0, A.mapConstructor_closure1, A.mapConstructor_closure2, A.mapConstructor_closure3, A.mapConstructor_closure4, A.mapConstructor_closure5, A.SassMap_asList_closure0, K._ceil_closure0, K._clamp_closure0, K._floor_closure0, K._max_closure0, K._min_closure0, K._abs_closure0, K._hypot_closure0, K._hypot__closure0, K._log_closure0, K._pow_closure0, K._sqrt_closure0, K._acos_closure0, K._asin_closure0, K._atan_closure0, K._atan2_closure0, K._cos_closure0, K._sin_closure0, K._tan_closure0, K._compatible_closure0, K._isUnitless_closure0, K._unit_closure0, K._percentage_closure0, K._randomFunction_closure0, K._div_closure0, K._numberFunction_closure0, F.MediaQueryParser_parse_closure0, Q.global_closure57, Q.global_closure58, Q.global_closure59, Q.global_closure60, B._readFile_closure0, B.fileExists_closure0, B.dirExists_closure0, B.listDir_closure0, B.listDir__closure1, B.listDir__closure2, B.listDir_closure_list0, B.listDir__list_closure0, B._render_closure, B._render_closure0, B._render_closure1, B._parseFunctions_closure, B._parseFunctions__closure, B._parseFunctions___closure0, B._parseFunctions____closure, B._parseFunctions___closure1, B._parseFunctions__closure0, B._parseFunctions__closure1, B._parseFunctions___closure, B._parseImporter_closure, B._parseImporter__closure, B._parseImporter___closure, B._parseImporter____closure, B._parseImporter___closure0, O.nullConstructor_closure, O.nullConstructor__closure, O.nullConstructor__closure0, T.numberConstructor_closure, T.numberConstructor_closure0, T.numberConstructor_closure1, T.numberConstructor_closure2, T.numberConstructor_closure3, T.numberConstructor_closure4, T._parseNumber_closure, T._parseNumber_closure0, T.SassNumber__coerceOrConvertValue__compatibilityException0, T.SassNumber__coerceOrConvertValue_closure3, T.SassNumber__coerceOrConvertValue_closure4, T.SassNumber__coerceOrConvertValue_closure5, T.SassNumber__coerceOrConvertValue_closure6, T.SassNumber_plus_closure0, T.SassNumber_minus_closure0, T.SassNumber_multiplyUnits_closure3, T.SassNumber_multiplyUnits_closure4, T.SassNumber_multiplyUnits_closure5, T.SassNumber_multiplyUnits_closure6, T.SassNumber__areAnyConvertible_closure0, T.SassNumber__canonicalizeUnitList_closure0, T.SassNumber__canonicalMultiplier_closure0, M.ParentStatement_closure0, M.ParentStatement__closure0, G.Parser__parseIdentifier_closure0, G.Parser_scanIdentChar_matches0, F._PrefixedKeys_iterator_closure0, U.main_printError, U.main_closure, U.SassParser_children_closure0, U.SassParser__peekIndentation__containsSpace_set0, U.SassParser__peekIndentation__containsTab_set0, U.SassParser__peekIndentation__nextIndentation_set0, U.SassParser__peekIndentation__containsTab_get0, U.SassParser__peekIndentation__containsSpace_get0, U.SassParser__peekIndentation__nextIndentation_get0, R._wrapMain_closure, R._wrapMain_closure0, T._nest_closure0, T._nest__closure1, T._nest__closure2, T._append_closure1, T._append__closure1, T._append__closure2, T._append___closure0, T._extend_closure0, T._replace_closure0, T._unify_closure0, T._isSuperselector_closure0, T._simpleSelectors_closure0, T._simpleSelectors__closure0, T._parse_closure0, T.SelectorParser_parse_closure0, T.SelectorParser_parseCompoundSelector_closure0, N.serialize_closure0, N._SerializeVisitor_visitCssComment_closure0, N._SerializeVisitor_visitCssAtRule_closure0, N._SerializeVisitor_visitCssMediaRule_closure0, N._SerializeVisitor_visitCssImport_closure0, N._SerializeVisitor_visitCssImport__closure0, N._SerializeVisitor_visitCssKeyframeBlock_closure0, N._SerializeVisitor_visitCssStyleRule_closure0, N._SerializeVisitor_visitCssSupportsRule_closure0, N._SerializeVisitor_visitCssDeclaration_closure1, N._SerializeVisitor_visitCssDeclaration_closure2, N._SerializeVisitor_visitList_closure2, N._SerializeVisitor_visitList_closure3, N._SerializeVisitor_visitList_closure4, N._SerializeVisitor_visitMap_closure0, N._SerializeVisitor__removeExponent__exponent_set0, N._SerializeVisitor__removeExponent__exponent_get0, N._SerializeVisitor_visitSelectorList_closure0, N._SerializeVisitor__write_closure0, N._SerializeVisitor__visitChildren_closure0, L.SingleUnitSassNumber__coerceToUnit_closure0, L.SingleUnitSassNumber__coerceValueToUnit_closure0, L.SingleUnitSassNumber_multiplyUnits_closure1, L.SingleUnitSassNumber_multiplyUnits_closure2, D.SourceMapBuffer_buildSourceMap_closure0, A.StatementSearchVisitor_visitIfRule_closure1, A.StatementSearchVisitor_visitIfRule__closure2, A.StatementSearchVisitor_visitIfRule_closure2, A.StatementSearchVisitor_visitIfRule__closure1, A.StatementSearchVisitor_visitChildren_closure0, D._unquote_closure0, D._quote_closure0, D._length_closure1, D._insert_closure0, D._index_closure1, D._slice_closure0, D._toUpperCase_closure0, D._toLowerCase_closure0, D._uniqueId_closure0, D.stringConstructor_closure, D.stringConstructor_closure0, D.stringConstructor_closure1, D.stringConstructor_closure2, V.StylesheetParser_parse_closure0, V.StylesheetParser_parse__closure1, V.StylesheetParser_parse__closure2, V.StylesheetParser_parseArgumentDeclaration_closure0, V.StylesheetParser__parseSingleProduction_closure0, V.StylesheetParser_parseSignature_closure, V.StylesheetParser__statement_closure0, V.StylesheetParser_variableDeclarationWithoutNamespace_closure1, V.StylesheetParser_variableDeclarationWithoutNamespace_closure2, V.StylesheetParser__declarationOrBuffer_closure1, V.StylesheetParser__declarationOrBuffer_closure2, V.StylesheetParser__styleRule_closure0, V.StylesheetParser__propertyOrVariableDeclaration_closure1, V.StylesheetParser__propertyOrVariableDeclaration_closure2, V.StylesheetParser__atRootRule_closure1, V.StylesheetParser__atRootRule_closure2, V.StylesheetParser__eachRule_closure0, V.StylesheetParser__functionRule_closure0, V.StylesheetParser__forRule_closure1, V.StylesheetParser__forRule_closure2, V.StylesheetParser__memberList_closure0, V.StylesheetParser__includeRule_closure0, V.StylesheetParser_mediaRule_closure0, V.StylesheetParser__mixinRule_closure0, V.StylesheetParser_mozDocumentRule_closure0, V.StylesheetParser_supportsRule_closure0, V.StylesheetParser__whileRule_closure0, V.StylesheetParser_unknownAtRule_closure0, V.StylesheetParser_expression_resetState0, V.StylesheetParser_expression_resolveOneOperation0, V.StylesheetParser_expression_resolveOperations0, V.StylesheetParser_expression_addSingleExpression0, V.StylesheetParser_expression_addOperator0, V.StylesheetParser_expression_resolveSpaceExpressions0, V.StylesheetParser__expressionUntilComma_closure0, V.StylesheetParser__unicodeRange_closure1, V.StylesheetParser__unicodeRange_closure2, V.StylesheetParser_identifierLike_closure0, V.StylesheetParser_trySpecialFunction_closure0, V.StylesheetParser__expressionUntilComparison_closure0, V.StylesheetParser__publicIdentifier_closure0, Y.TerseLogger_summarize_closure1, Y.TerseLogger_summarize_closure2, R._UnprefixedKeys_iterator_closure1, R._UnprefixedKeys_iterator_closure2, B.resolveImportPath_closure1, B.resolveImportPath_closure2, B._tryPathAsDirectory_closure0, B._exactlyOne_closure0, B.forwardToString_closure, B.createClass_closure, B.indent_closure0, B.flattenVertically_closure1, B.flattenVertically_closure2, B.longestCommonSubsequence_closure0, B.longestCommonSubsequence_backtrack0, B.mapAddAll2_closure0, N.withWarnCallback_closure0]);
 				_inherit(H.CastList, H._CastListBase);
 				_inherit(P.MapBase, P.MapMixin);
 				_inheritMany(P.MapBase, [H.CastMap, H.JsLinkedHashMap, P._HashMap, P.UnmodifiableMapBase, Z.MergedMapView, Z.MergedMapView0]);
@@ -94569,12 +94796,12 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				mangledNames: {},
 				getTypeFromName: getGlobalFromName,
 				metadata: [],
-				types: ["~()", "Null()", "Future<Null>()", "Value0(List<Value0>)", "Value(List<Value>)", "String(String)", "bool(String)", "bool(CssNode)", "bool(CssNode0)", "bool(Object?)", "SassNumber0(List<Value0>)", "SassNumber(List<Value>)", "int()", "SassString0(List<Value0>)", "SassString(List<Value>)", "SassBoolean(List<Value>)", "bool(SimpleSelector)", "bool(ComplexSelector)", "bool(SimpleSelector0)", "bool(ComplexSelector0)", "SassBoolean0(List<Value0>)", "bool()", "SassList0(List<Value0>)", "SassList(List<Value>)", "SassColor0(List<Value0>)", "SassColor(List<Value>)", "Null(~())", "String()", "~(Object?)", "Future<Null>(Future<~>())", "bool(int?)", "FileSpan()", "SassMap0(List<Value0>)", "Value?()", "Value0?()", "Value(Value)", "SassMap(List<Value>)", "Future<~>()", "Value0(Value0)", "String?()", "int(num)", "bool(num,num)", "String(Object)", "SelectorList()", "List<String>()", "Value()", "SelectorList0()", "~(Value,Value)", "num(num,num)", "ValueExpression0(Value0)", "~(Value)", "bool(int)", "ValueExpression(Value)", "~(Value0)", "~(Value0,Value0)", "Value0()", "~(Object,StackTrace)", "~(Module0<Callable0>)", "bool(Value0)", "bool(Value)", "Future<Value?>()", "String(@)", "Future<Value0?>()", "~(Module<Callable>)", "Frame(String)", "Frame()", "Value?(Statement)", "Declaration0(List<Statement0>,FileSpan)", "~(String,Value)", "int(Uri)", "Uri(Uri)", "SassRuntimeException0(AstNode0)", "ComplexSelector(List<ComplexSelectorComponent>)", "Future<String>(Object?)", "Future<Value>()", "Future<Value0?>(Statement0)", "bool(SelectorList)", "Stylesheet?()", "List<CssMediaQuery0>?(List<CssMediaQuery0>)", "List<CssMediaQuery>?(List<CssMediaQuery>)", "Future<Value0>()", "Future<Value?>(Statement)", "~(String,Value0)", "SassRuntimeException(AstNode)", "~(String,bool)", "String(int)", "@()", "Null([Object?])", "Null(Object,StackTrace)", "Null(_NodeSassColor,num)", "Declaration(List<Statement>,FileSpan)", "Value0?(Statement0)", "@(int)", "ComplexSelector0(List<ComplexSelectorComponent0>)", "num(num)", "bool(SelectorList0)", "@(@)", "@(bool)", "Iterable<ComplexSelector0>(ComplexSelector0)", "AsyncCallable0?()", "Statement()", "~(~())", "Map<ComplexSelector,Extension>()", "Statement0()", "ComplexSelector0(ComplexSelector0)", "List<ComplexSelectorComponent0>(List<ComplexSelectorComponent0>)", "Map<ComplexSelector0,Extension0>()", "Iterable<String>(Module<Callable>)", "List<ComplexSelectorComponent>(List<ComplexSelectorComponent>)", "bool(Module0<Callable0>)", "Iterable<String>(Module0<Callable0>)", "bool(ComplexSelectorComponent0)", "bool(@)", "int(_NodeSassColor)", "bool(Module0<AsyncCallable0>)", "ComplexSelector(ComplexSelector)", "Callable0?()", "Iterable<String>(Module<AsyncCallable>)", "Null(@)", "List<CssMediaQuery>()", "AtRootQuery()", "String(Expression)", "AtRootQuery0()", "bool(ComplexSelectorComponent)", "~(String)", "Tuple3<Importer,Uri,Uri>?()", "Object()", "Null(Module0<AsyncCallable0>)", "Callable?()", "AsyncCallable?()", "bool(_Highlight)", "List<CssMediaQuery0>()", "String(Expression0)", "bool(Module<AsyncCallable>)", "~(@)", "num(Value)", "Null(Module<AsyncCallable>)", "bool(Module<Callable>)", "Iterable<ComplexSelector>(ComplexSelector)", "num(Value0)", "Future<Value0>(List<Value0>)", "Iterable<String>(Module0<AsyncCallable0>)", "~(Object[StackTrace?])", "~(@,@)", "num?(String,num{assertPercent:bool,checkPercent:bool})", "~(Iterable<ExtensionStore0>)", "int(int,num?)", "Future<Value>(List<Value>)", "0&([@])", "Callable0?(Module0<Callable0>)", "~(Object?,Object?)", "Frame(Tuple2<String,AstNode0>)", "String(SassNumber0)", "AstNode0?()", "Uri?/()", "MapKeySet<Module0<Callable0>>(Map<Module0<Callable0>,AstNode0>)", "bool(Queue<Object?>)", "Iterable<ComplexSelectorComponent>(List<List<ComplexSelectorComponent>>)", "Map<String,AsyncCallable>(Module<AsyncCallable>)", "Map<String,Callable0>(Module0<Callable0>)", "List<ModifiableCssNode0>()", "@(List<ModifiableCssNode0>)", "SelectorList(Value)", "SelectorList(SelectorList,SelectorList)", "SassNumber0()", "List<Extension0>()", "Uri?()", "Future<SassNumber0>()", "num(num,num?,num)", "AsyncCallable?(Module<AsyncCallable>)", "Uri(String)", "bool(ModifiableCssParentNode0)", "~(Uint8List,String,int)", "Callable?(Module<Callable>)", "Iterable<ComplexSelectorComponent0>(List<List<ComplexSelectorComponent0>>)", "MapKeySet<Module<Callable>>(Map<Module<Callable>,AstNode>)", "Iterable<String>(String)", "Iterable<String>(@)", "DateTime()", "~(String[~])", "List<ExtensionStore0>()", "CssStylesheet0()", "int(int)", "bool(Statement0)", "@(CssStylesheet0)", "bool(Import0)", "Value0(int)", "~(Module0<AsyncCallable0>)", "Object(_NodeSassMap,int)", "SassFunction0(List<Value0>)", "Null(_NodeSassMap,int,Object)", "List<ExtensionStore>()", "AstNode0(AstNode0)", "String(_NodeSassNumber)", "Map<String,AsyncCallable0>(Module0<AsyncCallable0>)", "MapKeySet<Module0<AsyncCallable0>>(Map<Module0<AsyncCallable0>,AstNode0>)", "AsyncCallable0?(Module0<AsyncCallable0>)", "SelectorList0(Value0)", "VariableDeclaration()", "SelectorList0(SelectorList0,SelectorList0)", "bool(Frame)", "String(_NodeSassString)", "Trace()", "AtRootRule(List<Statement>,FileSpan)", "String(Frame)", "int(Frame)", "Trace(String)", "List<Extension>()", "0&([@])()", "SassNumber()", "AtRule(List<Statement>,FileSpan)", "~(String,@)", "~([Object?])", "AtRootRule0(List<Statement0>,FileSpan)", "Frame(Tuple2<String,AstNode>)", "AtRule0(List<Statement0>,FileSpan)", "~(Iterable<ExtensionStore>)", "String(SassNumber)", "AstNode?()", "Entry(Entry)", "bool(Import)", "bool(Statement)", "num(num,String)", "int(@,@)", "Map<String,Callable>(Module<Callable>)", "List<ModifiableCssNode>()", "AstNode(AstNode)", "SassFunction(List<Value>)", "bool(Object?,Object?)", "@(List<ModifiableCssNode>)", "~(Module<AsyncCallable>)", "int(Object?)", "Future<SassNumber>()", "bool(String?)", "@(CssStylesheet)", "CssStylesheet()", "bool(ModifiableCssParentNode)", "MapKeySet<Module<AsyncCallable>>(Map<Module<AsyncCallable>,AstNode>)", "Iterable<String>()", "Uri(Tuple3<Importer,Uri,Uri>)", "Future<CssValue<Value>>(Expression)", "int(String?)", "StackTrace()", "Future<Value?>(Value)", "String(Argument)", "Future<CssValue<String>>(Interpolation)", "String(String?)", "Future<EvaluateResult>()", "Future<~>(List<Value>)", "Future<String>(SupportsCondition)", "Future<CssValue<String>>(SupportsCondition)", "UserDefinedCallable<AsyncEnvironment>(ContentBlock)", "Future<List<CssMediaQuery>>(Interpolation)", "String(Tuple2<Expression,Expression>)", "SingleUnitSassNumber(num)", "Future<Value>(Expression)", "Value/()", "String(IfClause)", "SassScriptException()", "Null(Function,Function)", "~(Uri,StylesheetNode?)", "DateTime(StylesheetNode)", "StringExpression(Interpolation)", "~(BinaryOperator)", "List<CssMediaQuery>(Interpolation)", "String(SupportsCondition)", "~(Expression{number:bool})", "~(List<Value>)", "WhileRule(List<Statement>,FileSpan)", "EvaluateResult()", "SupportsRule(List<Statement>,FileSpan)", "Module<Callable>(Module<Callable>)", "CssValue<Value>(Expression)", "Value?(Value)", "SassList(ComplexSelector)", "CssValue<String>(Interpolation)", "MixinRule(List<Statement>,FileSpan)", "CssValue<String>(SupportsCondition)", "UserDefinedCallable<Environment>(ContentBlock)", "MediaRule(List<Statement>,FileSpan)", "~(ContentBlock)", "~(List<Statement>)", "~(CssMediaQuery)", "~(MapEntry<Value,Value>)", "@(List<TargetEntry>)", "List<TargetEntry>()", "SourceFile()", "SourceFile?(int)", "String?(SourceFile?)", "int(_Line)", "ContentBlock(List<Statement>,FileSpan)", "Uri?(_Line)", "Uri?(_Highlight)", "int(_Highlight,_Highlight)", "List<_Line>(List<_Highlight>)", "SourceSpanWithContext()", "String(String{color:@})", "ForRule(List<Statement>,FileSpan)", "List<Frame>(Trace)", "int(Trace)", "FunctionRule(List<Statement>,FileSpan)", "String(Trace)", "EachRule(List<Statement>,FileSpan)", "SassString(ComplexSelectorComponent)", "Frame(String,String)", "StyleRule(List<Statement>,FileSpan)", "StreamController<String>()", "@(StreamController<String>)", "Frame(Frame)", "Future<~>?()", "String(Argument0)", "UseRule()", "ArgumentDeclaration()", "Value0?(Module0<AsyncCallable0>)", "Module0<AsyncCallable0>?(Module0<AsyncCallable0>)", "VariableDeclaration(VariableDeclaration)", "Statement?()", "FileSpan?(MapEntry<Module0<AsyncCallable0>,AstNode0>)", "Map<String,Value0>(Module0<AsyncCallable0>)", "Map<String,AstNode0>(Module0<AsyncCallable0>)", "Stylesheet()", "NumberExpression()", "Future<List<CssMediaQuery0>>(Interpolation0)", "Future<String>(SupportsCondition0)", "Expression({bracketList:bool,singleEquals:bool,until:bool()?})", "_Future<@>(@)", "Statement({root:bool})", "CompoundSelector()", "Future<@>?()", "Future<~>(List<Value0>)", "SimpleSelector(SimpleSelector)", "@(StackTrace)", "Future<EvaluateResult0>()", "@(Object)", "String(BuiltInCallable)", "~(String,Option)", "Value?(Module<AsyncCallable>)", "Module0<AsyncCallable0>(Module0<AsyncCallable0>)", "~(Object)", "~(int,@)", "Uint8List(@,@)", "Future<CssValue0<Value0>>(Expression0)", "Null(@,@)", "Module<AsyncCallable>?(Module<AsyncCallable>)", "Future<Value0?>(Value0)", "Module<AsyncCallable>(Module<AsyncCallable>)", "bool(Tuple3<Importer,Uri,Uri>)", "Future<CssValue0<String>>(Interpolation0)", "FileSpan?(MapEntry<Module<AsyncCallable>,AstNode>)", "Null(@,StackTrace)", "SassString(SimpleSelector)", "SassNumber(Value)", "int(int,int)", "Future<CssValue0<String>>(SupportsCondition0)", "UserDefinedCallable0<AsyncEnvironment0>(ContentBlock0)", "Map<String,Value>(Module<AsyncCallable>)", "~(String[@])", "Map<String,AstNode>(Module<AsyncCallable>)", "~(String,int)", "SassMap(SassMap)", "Future<Value0>(Expression0)", "Value0/()", "SassMap(Value)", "Future<Tuple3<AsyncImporter,Uri,Uri>?>()", "~(Symbol0,@)", "@(String)", "bool(List<Value>)", "List<Value>(Value)", "Future<Tuple3<AsyncImporter0,Uri,Uri>?>()", "Future<Stylesheet0?>()", "bool(Tuple3<AsyncImporter0,Uri,Uri>)", "Uri(Tuple3<AsyncImporter0,Uri,Uri>)", "Object(Value0)", "0&(List<Value>)", "bool(Object)", "Future<Stylesheet?>()", "bool(Tuple3<AsyncImporter,Uri,Uri>)", "Uri(Tuple3<AsyncImporter,Uri,Uri>)", "@(@,String)", "String(Value)", "String(Value0)", "0&(List<Value0>)", "Set<0^>()<Object?>", "Null(_NodeSassColor,num?[num?,num?,num?,SassColor0?])", "Set<0^>()<Object?>", "num(_NodeSassColor)", "SelectorList?(PseudoSelector)", "String(_NodeSassColor)", "bool(PseudoSelector)", "String(MapEntry<String,ConfiguredValue0>)", "String(BuiltInCallable0)", "~(@,StackTrace)", "Iterable<ComplexSelectorComponent>(Iterable<ComplexSelectorComponent>)", "Value0?(Module0<Callable0>)", "Module0<Callable0>?(Module0<Callable0>)", "List<ComplexSelectorComponent>(List<Iterable<ComplexSelectorComponent>>)", "bool(List<Iterable<ComplexSelectorComponent>>)", "FileSpan?(MapEntry<Module0<Callable0>,AstNode0>)", "Map<String,Value0>(Module0<Callable0>)", "Map<String,AstNode0>(Module0<Callable0>)", "bool(Queue<List<ComplexSelectorComponent>>)", "List<ComplexSelectorComponent>?(List<ComplexSelectorComponent>,List<ComplexSelectorComponent>)", "List<CssMediaQuery0>(Interpolation0)", "String(SupportsCondition0)", "Map<String,AstNode>(Module<Callable>)", "~(List<Value0>)", "String(MapEntry<String,ConfiguredValue>)", "EvaluateResult0()", "Module0<Callable0>(Module0<Callable0>)", "CssValue0<Value0>(Expression0)", "Value0?(Value0)", "~(SimpleSelector,Set<ModifiableCssValue<SelectorList>>)", "CssValue0<String>(Interpolation0)", "PseudoSelector(ComplexSelector)", "CssValue0<String>(SupportsCondition0)", "UserDefinedCallable0<Environment0>(ContentBlock0)", "Value?(Module<Callable>)", "Value0(Expression0)", "bool(Extension0)", "Set<ModifiableCssValue0<SelectorList0>>()", "List<ComplexSelector>(ComplexSelector)", "List<List<Extender>>(List<Extender>)", "~(SimpleSelector0,Map<ComplexSelector0,Extension0>)", "~(ComplexSelector0,Extension0)", "Extension0()", "Null(Map<SimpleSelector0,Map<ComplexSelector0,Extension0>>)", "Map<SimpleSelector0,Map<ComplexSelector0,Extension0>>?(List<Extension0>)", "~(Set<ModifiableCssValue0<SelectorList0>>)", "List<ComplexSelector0>(ComplexSelectorComponent0)", "Iterable<ComplexSelector0>(List<ComplexSelector0>)", "List<ComplexSelectorComponent0>(ComplexSelector0)", "Future<@>()", "List<Extender>(PseudoSelector)", "ComplexSelector0(Extender0)", "List<ComplexSelector0>?(List<Extender0>)", "List<SimpleSelector0>(Extender0)", "List<ComplexSelector0>(List<ComplexSelector0>)", "List<Extender0>?(SimpleSelector0)", "List<Extender0>(PseudoSelector0)", "List<List<Extender0>>(List<Extender0>)", "List<ComplexSelector0>(ComplexSelector0)", "PseudoSelector0(ComplexSelector0)", "~(SimpleSelector0,Set<ModifiableCssValue0<SelectorList0>>)", "List<Extender>?(SimpleSelector)", "List<ComplexSelectorComponent0>?(List<ComplexSelectorComponent0>,List<ComplexSelectorComponent0>)", "bool(Queue<List<ComplexSelectorComponent0>>)", "List<ComplexSelector>(List<ComplexSelector>)", "bool(List<Iterable<ComplexSelectorComponent0>>)", "List<ComplexSelectorComponent0>(List<Iterable<ComplexSelectorComponent0>>)", "Iterable<ComplexSelectorComponent0>(Iterable<ComplexSelectorComponent0>)", "List<SimpleSelector>(Extender)", "bool(String?,String?)", "SelectorList0?(PseudoSelector0)", "String(IfClause0)", "List<ComplexSelector>?(List<Extender>)", "ComplexSelector(Extender)", "Tuple2<String,String>(String)", "Tuple3<Importer0,Uri,Uri>?()", "Stylesheet0?()", "bool(Tuple3<Importer0,Uri,Uri>)", "Uri(Tuple3<Importer0,Uri,Uri>)", "FileSpan?(MapEntry<Module<Callable>,AstNode>)", "List<Value0>(Value0)", "bool(List<Value0>)", "SassList0(ComplexSelector0)", "SassString0(ComplexSelectorComponent0)", "Module<Callable>?(Module<Callable>)", "List<ComplexSelectorComponent>(ComplexSelector)", "SimpleSelector0(SimpleSelector0)", "Null(_NodeSassList,int?[bool?,SassList0?])", "Iterable<ComplexSelector>(List<ComplexSelector>)", "Object(_NodeSassList,int)", "Null(_NodeSassList,int,Object)", "bool(_NodeSassList)", "Null(_NodeSassList,bool)", "int(_NodeSassList)", "String(_NodeSassList)", "String(Tuple2<Expression0,Expression0>)", "SassMap0(Value0)", "SassMap0(SassMap0)", "Null(_NodeSassMap,int?[SassMap0?])", "SassNumber0(int)", "List<ComplexSelector>(ComplexSelectorComponent)", "int(_NodeSassMap)", "~(Set<ModifiableCssValue<SelectorList>>)", "String(_NodeSassMap)", "SassNumber0(Value0)", "Null(RenderResult)", "~(Object,Object?)", "JSFunction0(JSFunction0)", "Object?(Object,String,String[Object?])", "Null(Object)", "Null(_NodeSassNumber,num?[String?,SassNumber0?])", "num(_NodeSassNumber)", "Null(_NodeSassNumber,num)", "Map<SimpleSelector,Map<ComplexSelector,Extension>>?(List<Extension>)", "Null(_NodeSassNumber,String)", "SassScriptException0()", "~(String,StackTrace?)", "Null(Map<SimpleSelector,Map<ComplexSelector,Extension>>)", "Extension()", "SassString0(SimpleSelector0)", "CompoundSelector0()", "~(CssMediaQuery0)", "~(MapEntry<Value0,Value0>)", "SingleUnitSassNumber0(num)", "Null(_NodeSassString,String?[SassString0?])", "~(ComplexSelector,Extension)", "Null(_NodeSassString,String)", "Statement0({root:bool})", "~(SimpleSelector,Map<ComplexSelector,Extension>)", "NumberExpression0()", "Stylesheet0()", "Statement0?()", "VariableDeclaration0(VariableDeclaration0)", "ArgumentDeclaration0()", "Tuple2<String,ArgumentDeclaration0>()", "VariableDeclaration0()", "Map<String,Value>(Module<Callable>)", "StyleRule0(List<Statement0>,FileSpan)", "Set<ModifiableCssValue<SelectorList>>()", "EachRule0(List<Statement0>,FileSpan)", "FunctionRule0(List<Statement0>,FileSpan)", "ForRule0(List<Statement0>,FileSpan)", "ContentBlock0(List<Statement0>,FileSpan)", "MediaRule0(List<Statement0>,FileSpan)", "MixinRule0(List<Statement0>,FileSpan)", "bool(Extension)", "SupportsRule0(List<Statement0>,FileSpan)", "WhileRule0(List<Statement0>,FileSpan)", "~(Expression0{number:bool})", "~(BinaryOperator0)", "StringExpression0(Interpolation0)", "~(String,Function)", "List<WatchEvent>(List<WatchEvent>)", "Future<~>(String)", "~(Zone?,ZoneDelegate?,Zone,Object,StackTrace)", "0^(Zone?,ZoneDelegate?,Zone,0^())<Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^),1^)<Object?Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^,2^),1^,2^)<Object?Object?Object?>", "0^()(Zone,ZoneDelegate,Zone,0^())<Object?>", "0^(1^)(Zone,ZoneDelegate,Zone,0^(1^))<Object?Object?>", "0^(1^,2^)(Zone,ZoneDelegate,Zone,0^(1^,2^))<Object?Object?Object?>", "AsyncError?(Zone,ZoneDelegate,Zone,Object,StackTrace?)", "~(Zone?,ZoneDelegate?,Zone,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~(Timer))", "~(Zone,ZoneDelegate,Zone,String)", "Zone(Zone?,ZoneDelegate?,Zone,ZoneSpecification?,Map<Object?,Object?>?)", "~([Future<~>?])", "ArgParser()", "0^(0^,0^)<num>", "~(Object,StackTrace,EventSink<0^>)<Object?>", "List<0^>(0^,List<0^>?)<Object?>", "~(RenderOptions,~(Object?,RenderResult?))", "RenderResult(RenderOptions)", "Future<~>(List<String>)", "String(String[String?,String?,String?,String?,String?,String?])", "bool(PseudoSelector0)", "Value(Expression)"],
+				types: ["~()", "Null()", "Future<Null>()", "Value0(List<Value0>)", "Value(List<Value>)", "String(String)", "bool(String)", "bool(CssNode)", "bool(CssNode0)", "bool(Object?)", "SassNumber0(List<Value0>)", "SassNumber(List<Value>)", "int()", "SassString0(List<Value0>)", "SassString(List<Value>)", "SassBoolean(List<Value>)", "bool(SimpleSelector)", "bool(ComplexSelector)", "bool(SimpleSelector0)", "bool(ComplexSelector0)", "SassBoolean0(List<Value0>)", "bool()", "SassList0(List<Value0>)", "SassList(List<Value>)", "SassColor0(List<Value0>)", "SassColor(List<Value>)", "Null(~())", "String()", "~(Object?)", "Future<Null>(Future<~>())", "bool(int?)", "FileSpan()", "SassMap0(List<Value0>)", "Value?()", "Value0?()", "Value(Value)", "SassMap(List<Value>)", "Future<~>()", "Value0(Value0)", "Value()", "int(num)", "bool(num,num)", "String?()", "String(Object)", "SelectorList()", "List<String>()", "SelectorList0()", "~(Value,Value)", "Value0()", "num(num,num)", "~(Value)", "ValueExpression0(Value0)", "bool(int)", "ValueExpression(Value)", "~(Value0)", "~(Value0,Value0)", "~(Object,StackTrace)", "~(Module0<Callable0>)", "bool(Value0)", "bool(Value)", "Future<Value?>()", "Future<Value0>()", "Future<Value>()", "Future<Value0?>()", "~(Module<Callable>)", "Frame(String)", "Frame()", "Value?(Statement)", "~(String,Value)", "int(Uri)", "Declaration0(List<Statement0>,FileSpan)", "SassRuntimeException0(AstNode0)", "ComplexSelector(List<ComplexSelectorComponent>)", "Uri(Uri)", "Future<String>(Object?)", "Future<Value0?>(Statement0)", "bool(SelectorList)", "Stylesheet?()", "List<CssMediaQuery0>?(List<CssMediaQuery0>)", "String(@)", "List<CssMediaQuery>?(List<CssMediaQuery>)", "num(num)", "~(String,Value0)", "Future<Value?>(Statement)", "SassRuntimeException(AstNode)", "String(int)", "@()", "~(String,bool)", "Null(Object,StackTrace)", "Null(_NodeSassColor,num)", "Null([Object?])", "Value0?(Statement0)", "Declaration(List<Statement>,FileSpan)", "ComplexSelector0(List<ComplexSelectorComponent0>)", "@(int)", "bool(SelectorList0)", "@(@)", "@(bool)", "Iterable<ComplexSelector0>(ComplexSelector0)", "AsyncCallable0?()", "Object()", "~(~())", "Map<ComplexSelector,Extension>()", "Statement0()", "ComplexSelector0(ComplexSelector0)", "List<ComplexSelectorComponent0>(List<ComplexSelectorComponent0>)", "Map<ComplexSelector0,Extension0>()", "List<ComplexSelectorComponent>(List<ComplexSelectorComponent>)", "Iterable<String>(Module<Callable>)", "bool(Module0<Callable0>)", "Iterable<String>(Module0<Callable0>)", "bool(ComplexSelectorComponent0)", "bool(@)", "int(_NodeSassColor)", "Statement()", "Callable0?()", "Iterable<String>(Module<AsyncCallable>)", "List<CssMediaQuery>()", "Null(@)", "AtRootQuery()", "AtRootQuery0()", "String(Expression)", "~(String)", "bool(ComplexSelectorComponent)", "ComplexSelector(ComplexSelector)", "Null(Module0<AsyncCallable0>)", "Callable?()", "Tuple3<Importer,Uri,Uri>?()", "bool(_Highlight)", "AsyncCallable?()", "Iterable<ComplexSelector>(ComplexSelector)", "List<CssMediaQuery0>()", "String(Expression0)", "bool(Module<AsyncCallable>)", "~(@)", "num(Value)", "Null(Module<AsyncCallable>)", "num(Value0)", "Future<Value0>(List<Value0>)", "Iterable<String>(Module0<AsyncCallable0>)", "bool(Module<Callable>)", "bool(Module0<AsyncCallable0>)", "~(@,@)", "num?(String,num{assertPercent:bool,checkPercent:bool})", "num(num,num?,num)", "~(Object[StackTrace?])", "~(Iterable<ExtensionStore0>)", "Future<Value>(List<Value>)", "Callable0?(Module0<Callable0>)", "~(Object?,Object?)", "0&([@])", "Frame(Tuple2<String,AstNode0>)", "String(SassNumber0)", "AstNode0?()", "MapKeySet<Module0<Callable0>>(Map<Module0<Callable0>,AstNode0>)", "Uri?/()", "Map<String,Callable0>(Module0<Callable0>)", "bool(Queue<Object?>)", "Map<String,AsyncCallable>(Module<AsyncCallable>)", "Iterable<ComplexSelectorComponent>(List<List<ComplexSelectorComponent>>)", "List<ModifiableCssNode0>()", "SelectorList(Value)", "SelectorList(SelectorList,SelectorList)", "@(List<ModifiableCssNode0>)", "SassNumber0()", "Uri?()", "List<Extension0>()", "Future<SassNumber0>()", "Callable?(Module<Callable>)", "Uri(String)", "AsyncCallable?(Module<AsyncCallable>)", "~(Uint8List,String,int)", "Iterable<ComplexSelectorComponent0>(List<List<ComplexSelectorComponent0>>)", "bool(ModifiableCssParentNode0)", "Iterable<String>()", "MapKeySet<Module<Callable>>(Map<Module<Callable>,AstNode>)", "Iterable<String>(@)", "DateTime()", "~(String[~])", "bool(Statement0)", "List<ExtensionStore0>()", "int(int)", "bool(Import0)", "CssStylesheet0()", "Value0(int)", "@(CssStylesheet0)", "Object(_NodeSassMap,int)", "~(Module0<AsyncCallable0>)", "Null(_NodeSassMap,int,Object)", "SassFunction0(List<Value0>)", "String(_NodeSassNumber)", "bool(ModifiableCssParentNode)", "AstNode0(AstNode0)", "SelectorList0(Value0)", "Map<String,AsyncCallable0>(Module0<AsyncCallable0>)", "MapKeySet<Module0<AsyncCallable0>>(Map<Module0<AsyncCallable0>,AstNode0>)", "AsyncCallable0?(Module0<AsyncCallable0>)", "VariableDeclaration()", "SelectorList0(SelectorList0,SelectorList0)", "String(_NodeSassString)", "bool(Frame)", "List<Extension>()", "AtRootRule(List<Statement>,FileSpan)", "Trace()", "String(Frame)", "int(Frame)", "Trace(String)", "AtRootRule0(List<Statement0>,FileSpan)", "0&([@])()", "AtRule(List<Statement>,FileSpan)", "SassNumber()", "~(String,@)", "~([Object?])", "AtRule0(List<Statement0>,FileSpan)", "int(int,num?)", "Frame(Tuple2<String,AstNode>)", "~(Iterable<ExtensionStore>)", "String(SassNumber)", "Entry(Entry)", "AstNode?()", "bool(Import)", "num(num,String)", "bool(Statement)", "int(@,@)", "Map<String,Callable>(Module<Callable>)", "AstNode(AstNode)", "SassFunction(List<Value>)", "bool(Object?,Object?)", "List<ModifiableCssNode>()", "~(Module<AsyncCallable>)", "@(List<ModifiableCssNode>)", "int(Object?)", "bool(String?)", "@(CssStylesheet)", "CssStylesheet()", "Future<SassNumber>()", "List<ExtensionStore>()", "MapKeySet<Module<AsyncCallable>>(Map<Module<AsyncCallable>,AstNode>)", "Iterable<String>(String)", "Uint8List(@,@)", "int(String?)", "StackTrace()", "Future<Value?>(Value)", "String(Argument)", "Future<CssValue<String>>(Interpolation)", "Module<AsyncCallable>(Module<AsyncCallable>)", "String(String?)", "Future<EvaluateResult>()", "Future<~>(List<Value>)", "Future<CssValue<String>>(SupportsCondition)", "UserDefinedCallable<AsyncEnvironment>(ContentBlock)", "Future<String>(SupportsCondition)", "String(Tuple2<Expression,Expression>)", "Future<List<CssMediaQuery>>(Interpolation)", "Future<Value>(Expression)", "Value/()", "String(IfClause)", "SingleUnitSassNumber(num)", "SassScriptException()", "Null(Function,Function)", "~(Uri,StylesheetNode?)", "DateTime(StylesheetNode)", "StringExpression(Interpolation)", "List<CssMediaQuery>(Interpolation)", "String(SupportsCondition)", "~(BinaryOperator)", "~(List<Value>)", "~(Expression{number:bool})", "EvaluateResult()", "WhileRule(List<Statement>,FileSpan)", "Module<Callable>(Module<Callable>)", "CssValue<Value>(Expression)", "Value?(Value)", "SassList(ComplexSelector)", "CssValue<String>(Interpolation)", "SupportsRule(List<Statement>,FileSpan)", "CssValue<String>(SupportsCondition)", "UserDefinedCallable<Environment>(ContentBlock)", "MixinRule(List<Statement>,FileSpan)", "~(ContentBlock)", "~(List<Statement>)", "~(CssMediaQuery)", "~(MapEntry<Value,Value>)", "@(List<TargetEntry>)", "List<TargetEntry>()", "SourceFile()", "SourceFile?(int)", "String?(SourceFile?)", "int(_Line)", "MediaRule(List<Statement>,FileSpan)", "Uri?(_Line)", "Uri?(_Highlight)", "int(_Highlight,_Highlight)", "List<_Line>(List<_Highlight>)", "SourceSpanWithContext()", "String(String{color:@})", "ContentBlock(List<Statement>,FileSpan)", "List<Frame>(Trace)", "int(Trace)", "ForRule(List<Statement>,FileSpan)", "String(Trace)", "FunctionRule(List<Statement>,FileSpan)", "SassString(ComplexSelectorComponent)", "Frame(String,String)", "EachRule(List<Statement>,FileSpan)", "StyleRule(List<Statement>,FileSpan)", "StreamController<String>()", "Frame(Frame)", "Future<~>?()", "String(Argument0)", "@(StreamController<String>)", "UseRule()", "Value0?(Module0<AsyncCallable0>)", "Module0<AsyncCallable0>?(Module0<AsyncCallable0>)", "ArgumentDeclaration()", "VariableDeclaration(VariableDeclaration)", "FileSpan?(MapEntry<Module0<AsyncCallable0>,AstNode0>)", "Map<String,Value0>(Module0<AsyncCallable0>)", "Map<String,AstNode0>(Module0<AsyncCallable0>)", "Statement?()", "Stylesheet()", "Future<List<CssMediaQuery0>>(Interpolation0)", "Future<String>(SupportsCondition0)", "NumberExpression()", "_Future<@>(@)", "Expression({bracketList:bool,singleEquals:bool,until:bool()?})", "Statement({root:bool})", "CompoundSelector()", "Future<~>(List<Value0>)", "SimpleSelector(SimpleSelector)", "Future<@>?()", "Future<EvaluateResult0>()", "@(StackTrace)", "@(Object)", "String(BuiltInCallable)", "Value?(Module<AsyncCallable>)", "Module0<AsyncCallable0>(Module0<AsyncCallable0>)", "~(String,Option)", "~(Object)", "~(int,@)", "Future<CssValue0<Value0>>(Expression0)", "Null(@,@)", "Module<AsyncCallable>?(Module<AsyncCallable>)", "Future<Value0?>(Value0)", "Future<CssValue<Value>>(Expression)", "Uri(Tuple3<Importer,Uri,Uri>)", "Future<CssValue0<String>>(Interpolation0)", "FileSpan?(MapEntry<Module<AsyncCallable>,AstNode>)", "bool(Tuple3<Importer,Uri,Uri>)", "Null(@,StackTrace)", "SassString(SimpleSelector)", "SassNumber(Value)", "Future<CssValue0<String>>(SupportsCondition0)", "UserDefinedCallable0<AsyncEnvironment0>(ContentBlock0)", "Map<String,Value>(Module<AsyncCallable>)", "int(int,int)", "Map<String,AstNode>(Module<AsyncCallable>)", "~(String[@])", "~(String,int)", "Future<Value0>(Expression0)", "Value0/()", "SassMap(SassMap)", "Future<Tuple3<AsyncImporter,Uri,Uri>?>()", "SassMap(Value)", "~(Symbol0,@)", "@(String)", "bool(List<Value>)", "Future<Tuple3<AsyncImporter0,Uri,Uri>?>()", "Future<Stylesheet0?>()", "bool(Tuple3<AsyncImporter0,Uri,Uri>)", "Uri(Tuple3<AsyncImporter0,Uri,Uri>)", "Object(Value0)", "List<Value>(Value)", "bool(Object)", "Future<Stylesheet?>()", "bool(Tuple3<AsyncImporter,Uri,Uri>)", "Uri(Tuple3<AsyncImporter,Uri,Uri>)", "@(@,String)", "0&(List<Value>)", "String(Value0)", "0&(List<Value0>)", "String(Value)", "Null(_NodeSassColor,num?[num?,num?,num?,SassColor0?])", "Set<0^>()<Object?>", "num(_NodeSassColor)", "Set<0^>()<Object?>", "String(_NodeSassColor)", "SelectorList?(PseudoSelector)", "String(MapEntry<String,ConfiguredValue0>)", "String(BuiltInCallable0)", "bool(PseudoSelector)", "~(@,StackTrace)", "Value0?(Module0<Callable0>)", "Module0<Callable0>?(Module0<Callable0>)", "Iterable<ComplexSelectorComponent>(Iterable<ComplexSelectorComponent>)", "List<ComplexSelectorComponent>(List<Iterable<ComplexSelectorComponent>>)", "FileSpan?(MapEntry<Module0<Callable0>,AstNode0>)", "Map<String,Value0>(Module0<Callable0>)", "Map<String,AstNode0>(Module0<Callable0>)", "bool(List<Iterable<ComplexSelectorComponent>>)", "bool(Queue<List<ComplexSelectorComponent>>)", "List<CssMediaQuery0>(Interpolation0)", "String(SupportsCondition0)", "Map<String,AstNode>(Module<Callable>)", "~(List<Value0>)", "String(MapEntry<String,ConfiguredValue>)", "EvaluateResult0()", "Module0<Callable0>(Module0<Callable0>)", "CssValue0<Value0>(Expression0)", "Value0?(Value0)", "List<ComplexSelectorComponent>?(List<ComplexSelectorComponent>,List<ComplexSelectorComponent>)", "CssValue0<String>(Interpolation0)", "~(SimpleSelector,Set<ModifiableCssValue<SelectorList>>)", "CssValue0<String>(SupportsCondition0)", "UserDefinedCallable0<Environment0>(ContentBlock0)", "Value?(Module<Callable>)", "Value0(Expression0)", "bool(Extension0)", "Set<ModifiableCssValue0<SelectorList0>>()", "PseudoSelector(ComplexSelector)", "List<ComplexSelector>(ComplexSelector)", "~(SimpleSelector0,Map<ComplexSelector0,Extension0>)", "~(ComplexSelector0,Extension0)", "Null(Map<SimpleSelector0,Map<ComplexSelector0,Extension0>>)", "Map<SimpleSelector0,Map<ComplexSelector0,Extension0>>?(List<Extension0>)", "~(Set<ModifiableCssValue0<SelectorList0>>)", "List<ComplexSelector0>(ComplexSelectorComponent0)", "Iterable<ComplexSelector0>(List<ComplexSelector0>)", "List<ComplexSelectorComponent0>(ComplexSelector0)", "Future<@>()", "List<List<Extender>>(List<Extender>)", "ComplexSelector0(Extender0)", "List<ComplexSelector0>?(List<Extender0>)", "List<SimpleSelector0>(Extender0)", "List<ComplexSelector0>(List<ComplexSelector0>)", "List<Extender0>?(SimpleSelector0)", "List<Extender0>(PseudoSelector0)", "List<List<Extender0>>(List<Extender0>)", "List<ComplexSelector0>(ComplexSelector0)", "PseudoSelector0(ComplexSelector0)", "~(SimpleSelector0,Set<ModifiableCssValue0<SelectorList0>>)", "List<Extender>(PseudoSelector)", "List<ComplexSelectorComponent0>?(List<ComplexSelectorComponent0>,List<ComplexSelectorComponent0>)", "bool(Queue<List<ComplexSelectorComponent0>>)", "List<Extender>?(SimpleSelector)", "bool(List<Iterable<ComplexSelectorComponent0>>)", "List<ComplexSelectorComponent0>(List<Iterable<ComplexSelectorComponent0>>)", "Iterable<ComplexSelectorComponent0>(Iterable<ComplexSelectorComponent0>)", "List<ComplexSelector>(List<ComplexSelector>)", "bool(PseudoSelector0)", "bool(String?,String?)", "String(IfClause0)", "List<SimpleSelector>(Extender)", "List<ComplexSelector>?(List<Extender>)", "Tuple2<String,String>(String)", "Tuple3<Importer0,Uri,Uri>?()", "Stylesheet0?()", "bool(Tuple3<Importer0,Uri,Uri>)", "Uri(Tuple3<Importer0,Uri,Uri>)", "FileSpan?(MapEntry<Module<Callable>,AstNode>)", "List<Value0>(Value0)", "bool(List<Value0>)", "SassList0(ComplexSelector0)", "SassString0(ComplexSelectorComponent0)", "Module<Callable>?(Module<Callable>)", "ComplexSelector(Extender)", "SimpleSelector0(SimpleSelector0)", "Null(_NodeSassList,int?[bool?,SassList0?])", "List<ComplexSelectorComponent>(ComplexSelector)", "Object(_NodeSassList,int)", "Null(_NodeSassList,int,Object)", "bool(_NodeSassList)", "Null(_NodeSassList,bool)", "int(_NodeSassList)", "String(_NodeSassList)", "String(Tuple2<Expression0,Expression0>)", "SassMap0(Value0)", "SassMap0(SassMap0)", "Null(_NodeSassMap,int?[SassMap0?])", "SassNumber0(int)", "Iterable<ComplexSelector>(List<ComplexSelector>)", "int(_NodeSassMap)", "List<ComplexSelector>(ComplexSelectorComponent)", "String(_NodeSassMap)", "SassNumber0(Value0)", "Null(RenderResult)", "~(Object,Object?)", "JSFunction0(JSFunction0)", "Object?(Object,String,String[Object?])", "Null(Object)", "Null(_NodeSassNumber,num?[String?,SassNumber0?])", "num(_NodeSassNumber)", "Null(_NodeSassNumber,num)", "~(Set<ModifiableCssValue<SelectorList>>)", "Null(_NodeSassNumber,String)", "SassScriptException0()", "~(String,StackTrace?)", "Map<SimpleSelector,Map<ComplexSelector,Extension>>?(List<Extension>)", "Null(Map<SimpleSelector,Map<ComplexSelector,Extension>>)", "SassString0(SimpleSelector0)", "CompoundSelector0()", "~(CssMediaQuery0)", "~(MapEntry<Value0,Value0>)", "SingleUnitSassNumber0(num)", "Null(_NodeSassString,String?[SassString0?])", "~(ComplexSelector,Extension)", "Null(_NodeSassString,String)", "Statement0({root:bool})", "~(SimpleSelector,Map<ComplexSelector,Extension>)", "NumberExpression0()", "Stylesheet0()", "Statement0?()", "VariableDeclaration0(VariableDeclaration0)", "ArgumentDeclaration0()", "Tuple2<String,ArgumentDeclaration0>()", "VariableDeclaration0()", "Map<String,Value>(Module<Callable>)", "StyleRule0(List<Statement0>,FileSpan)", "Set<ModifiableCssValue<SelectorList>>()", "EachRule0(List<Statement0>,FileSpan)", "FunctionRule0(List<Statement0>,FileSpan)", "ForRule0(List<Statement0>,FileSpan)", "ContentBlock0(List<Statement0>,FileSpan)", "MediaRule0(List<Statement0>,FileSpan)", "MixinRule0(List<Statement0>,FileSpan)", "bool(Extension)", "SupportsRule0(List<Statement0>,FileSpan)", "WhileRule0(List<Statement0>,FileSpan)", "~(Expression0{number:bool})", "~(BinaryOperator0)", "StringExpression0(Interpolation0)", "~(String,Function)", "List<WatchEvent>(List<WatchEvent>)", "Future<~>(String)", "~(Zone?,ZoneDelegate?,Zone,Object,StackTrace)", "0^(Zone?,ZoneDelegate?,Zone,0^())<Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^),1^)<Object?Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^,2^),1^,2^)<Object?Object?Object?>", "0^()(Zone,ZoneDelegate,Zone,0^())<Object?>", "0^(1^)(Zone,ZoneDelegate,Zone,0^(1^))<Object?Object?>", "0^(1^,2^)(Zone,ZoneDelegate,Zone,0^(1^,2^))<Object?Object?Object?>", "AsyncError?(Zone,ZoneDelegate,Zone,Object,StackTrace?)", "~(Zone?,ZoneDelegate?,Zone,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~(Timer))", "~(Zone,ZoneDelegate,Zone,String)", "Zone(Zone?,ZoneDelegate?,Zone,ZoneSpecification?,Map<Object?,Object?>?)", "~([Future<~>?])", "ArgParser()", "0^(0^,0^)<num>", "~(Object,StackTrace,EventSink<0^>)<Object?>", "List<0^>(0^,List<0^>?)<Object?>", "~(RenderOptions,~(Object?,RenderResult?))", "RenderResult(RenderOptions)", "Future<~>(List<String>)", "String(String[String?,String?,String?,String?,String?,String?])", "SelectorList0?(PseudoSelector0)", "Value(Expression)"],
 				interceptorsByTag: null,
 				leafTags: null,
 				arrayRti: typeof Symbol == "function" && typeof Symbol() == "symbol" ? Symbol("$ti") : "$ti"
 			};
-			H._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"JavaScriptObject","UnknownJavaScriptObject":"JavaScriptObject","JavaScriptFunction":"JavaScriptObject","Stdin":"JavaScriptObject","Stdout":"JavaScriptObject","ReadlineModule":"JavaScriptObject","ReadlineOptions":"JavaScriptObject","ReadlineInterface":"JavaScriptObject","BufferModule":"JavaScriptObject","BufferConstants":"JavaScriptObject","Buffer":"JavaScriptObject","ConsoleModule":"JavaScriptObject","Console":"JavaScriptObject","EventEmitter":"JavaScriptObject","FS":"JavaScriptObject","FSConstants":"JavaScriptObject","FSWatcher":"JavaScriptObject","ReadStream":"JavaScriptObject","ReadStreamOptions":"JavaScriptObject","WriteStream":"JavaScriptObject","WriteStreamOptions":"JavaScriptObject","FileOptions":"JavaScriptObject","StatOptions":"JavaScriptObject","MkdirOptions":"JavaScriptObject","RmdirOptions":"JavaScriptObject","WatchOptions":"JavaScriptObject","WatchFileOptions":"JavaScriptObject","Stats":"JavaScriptObject","Promise":"JavaScriptObject","Date":"JavaScriptObject","JsError":"JavaScriptObject","Atomics":"JavaScriptObject","Modules":"JavaScriptObject","Module1":"JavaScriptObject","Net":"JavaScriptObject","Socket":"JavaScriptObject","NetAddress":"JavaScriptObject","NetServer":"JavaScriptObject","NodeJsError":"JavaScriptObject","JsAssertionError":"JavaScriptObject","JsRangeError":"JavaScriptObject","JsReferenceError":"JavaScriptObject","JsSyntaxError":"JavaScriptObject","JsTypeError":"JavaScriptObject","JsSystemError":"JavaScriptObject","Process":"JavaScriptObject","CPUUsage":"JavaScriptObject","Release":"JavaScriptObject","StreamModule":"JavaScriptObject","Readable":"JavaScriptObject","Writable":"JavaScriptObject","Duplex":"JavaScriptObject","Transform":"JavaScriptObject","WritableOptions":"JavaScriptObject","ReadableOptions":"JavaScriptObject","Immediate":"JavaScriptObject","Timeout":"JavaScriptObject","TTY":"JavaScriptObject","TTYReadStream":"JavaScriptObject","TTYWriteStream":"JavaScriptObject","Util":"JavaScriptObject",' + /*DSH- '"Chokidar":"JavaScriptObject","ChokidarOptions":"JavaScriptObject","ChokidarWatcher":"JavaScriptObject",' + */'"JSFunction":"JavaScriptObject","NodeImporterResult":"JavaScriptObject","RenderContext":"JavaScriptObject","RenderContextOptions":"JavaScriptObject","RenderContextResult":"JavaScriptObject","RenderContextResultStats":"JavaScriptObject","_PropertyDescriptor":"JavaScriptObject",' + /*DSH- '"Chokidar0":"JavaScriptObject","ChokidarOptions0":"JavaScriptObject","ChokidarWatcher0":"JavaScriptObject",' + */'"_NodeSassColor":"JavaScriptObject","Exports":"JavaScriptObject","Fiber":"JavaScriptObject","FiberClass":"JavaScriptObject","JSFunction0":"JavaScriptObject","NodeImporterResult0":"JavaScriptObject","_NodeSassList":"JavaScriptObject","_NodeSassMap":"JavaScriptObject","_NodeSassNumber":"JavaScriptObject","RenderContext0":"JavaScriptObject","RenderContextOptions0":"JavaScriptObject","RenderContextResult0":"JavaScriptObject","RenderContextResultStats0":"JavaScriptObject","RenderOptions":"JavaScriptObject","RenderResult":"JavaScriptObject","RenderResultStats":"JavaScriptObject","_Exports":"JavaScriptObject","_NodeSassString":"JavaScriptObject","Types":"JavaScriptObject","_PropertyDescriptor0":"JavaScriptObject","JavaScriptObject":{"JsSystemError":[],"_NodeSassColor":[],"Fiber":[],"JSFunction0":[],"NodeImporterResult0":[],"_NodeSassList":[],"_NodeSassMap":[],"_NodeSassNumber":[],"RenderContextOptions0":[],"RenderOptions":[],"RenderResult":[],"_NodeSassString":[]},"JSBool":{"bool":[]},"JSNull":{"Null":[]},"JSArray":{"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"JSNumber":{"double":[],"num":[],"Comparable":["num"]},"JSInt":{"double":[],"int":[],"num":[],"Comparable":["num"]},"JSNumNotInt":{"double":[],"num":[],"Comparable":["num"]},"JSString":{"String":[],"Comparable":["String"]},"EfficientLengthIterable":{"Iterable":["1"]},"_CastIterableBase":{"Iterable":["2"]},"CastIterable":{"_CastIterableBase":["1","2"],"Iterable":["2"],"Iterable.E":"2"},"_EfficientLengthCastIterable":{"CastIterable":["1","2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"_CastListBase":{"ListMixin":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"]},"CastList":{"_CastListBase":["1","2"],"ListMixin":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListMixin.E":"2"},"CastSet":{"Set":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"CastMap":{"MapMixin":["3","4"],"Map":["3","4"],"MapMixin.K":"3","MapMixin.V":"4"},"LateError":{"Error":[]},"CodeUnits":{"ListMixin":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"ListIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"SubListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"MappedIterable":{"Iterable":["2"],"Iterable.E":"2"},"EfficientLengthMappedIterable":{"MappedIterable":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MappedListIterable":{"ListIterable":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListIterable.E":"2"},"WhereIterable":{"Iterable":["1"],"Iterable.E":"1"},"ExpandIterable":{"Iterable":["2"],"Iterable.E":"2"},"TakeIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthTakeIterable":{"TakeIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"SkipIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthSkipIterable":{"SkipIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"SkipWhileIterable":{"Iterable":["1"],"Iterable.E":"1"},"EmptyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"FollowedByIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthFollowedByIterable":{"FollowedByIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"WhereTypeIterable":{"Iterable":["1"],"Iterable.E":"1"},"UnmodifiableListBase":{"ListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ReversedListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"Symbol":{"Symbol0":[]},"ConstantMapView":{"UnmodifiableMapView":["1","2"],"Map":["1","2"]},"ConstantMap":{"Map":["1","2"]},"ConstantStringMap":{"ConstantMap":["1","2"],"Map":["1","2"]},"ConstantProtoMap":{"ConstantStringMap":["1","2"],"ConstantMap":["1","2"],"Map":["1","2"]},"_ConstantMapKeyIterable":{"Iterable":["1"],"Iterable.E":"1"},"Instantiation":{"Function":[]},"Instantiation1":{"Function":[]},"NullError":{"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"NullThrownFromJavaScriptException":{"Exception":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"LinkedHashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_MatchImplementation":{"RegExpMatch":[],"Match":[]},"_AllMatchesIterable":{"Iterable":["RegExpMatch"],"Iterable.E":"RegExpMatch"},"StringMatch":{"Match":[]},"_StringAllMatchesIterable":{"Iterable":["Match"],"Iterable.E":"Match"},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"]},"NativeTypedArrayOfDouble":{"ListMixin":["double"],"JavaScriptIndexingBehavior":["double"],"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"NativeTypedArrayOfInt":{"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"NativeFloat32List":{"NativeTypedArrayOfDouble":[],"ListMixin":["double"],"JavaScriptIndexingBehavior":["double"],"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"],"ListMixin.E":"double"},"NativeFloat64List":{"NativeTypedArrayOfDouble":[],"ListMixin":["double"],"JavaScriptIndexingBehavior":["double"],"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"],"ListMixin.E":"double"},"NativeInt16List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeInt32List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeInt8List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeUint16List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeUint32List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeUint8ClampedList":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeUint8List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"Uint8List":[],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"_Error":{"Error":[]},"_TypeError":{"Error":[]},"AsyncError":{"Error":[]},"_Future":{"Future":["1"]},"StreamController":{"EventSink":["1"]},"_SyncStarIterable":{"Iterable":["1"],"Iterable.E":"1"},"_AsyncCompleter":{"_Completer":["1"]},"_StreamController":{"StreamController":["1"],"EventSink":["1"]},"_AsyncStreamController":{"_StreamController":["1"],"StreamController":["1"],"EventSink":["1"]},"_SyncStreamController":{"_StreamController":["1"],"StreamController":["1"],"EventSink":["1"]},"_ControllerStream":{"_StreamImpl":["1"],"Stream":["1"],"Stream.T":"1"},"_ControllerSubscription":{"_BufferingStreamSubscription":["1"],"StreamSubscription":["1"],"_BufferingStreamSubscription.T":"1"},"_BufferingStreamSubscription":{"StreamSubscription":["1"],"_BufferingStreamSubscription.T":"1"},"_StreamImpl":{"Stream":["1"]},"_ForwardingStream":{"Stream":["2"]},"_ForwardingStreamSubscription":{"_BufferingStreamSubscription":["2"],"StreamSubscription":["2"],"_BufferingStreamSubscription.T":"2"},"_ExpandStream":{"_ForwardingStream":["1","2"],"Stream":["2"],"Stream.T":"2"},"_ZoneSpecification":{"ZoneSpecification":[]},"_ZoneDelegate":{"ZoneDelegate":[]},"_Zone":{"Zone":[]},"_CustomZone":{"Zone":[]},"_RootZone":{"Zone":[]},"Queue":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashMap":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"_HashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_LinkedIdentityHashMap":{"JsLinkedHashMap":["1","2"],"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"_LinkedCustomHashMap":{"JsLinkedHashMap":["1","2"],"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"_LinkedHashSet":{"_SetBase":["1"],"SetMixin":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_LinkedIdentityHashSet":{"_LinkedHashSet":["1"],"_SetBase":["1"],"SetMixin":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableListView":{"ListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListMixin.E":"1"},"IterableBase":{"Iterable":["1"]},"ListBase":{"ListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapBase":{"MapMixin":["1","2"],"Map":["1","2"]},"MapMixin":{"Map":["1","2"]},"UnmodifiableMapBase":{"MapMixin":["1","2"],"Map":["1","2"]},"_MapBaseValueIterable":{"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MapView":{"Map":["1","2"]},"UnmodifiableMapView":{"Map":["1","2"]},"ListQueue":{"ListIterable":["1"],"Queue":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"_SetBase":{"SetMixin":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_UnmodifiableSet":{"_SetBase":["1"],"SetMixin":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"AsciiCodec":{"Codec":["String","List<int>"]},"_UnicodeSubsetEncoder":{"Converter":["String","List<int>"]},"AsciiEncoder":{"Converter":["String","List<int>"]},"Base64Codec":{"Codec":["List<int>","String"]},"Base64Encoder":{"Converter":["List<int>","String"]},"Encoding":{"Codec":["String","List<int>"]},"JsonUnsupportedObjectError":{"Error":[]},"JsonCyclicError":{"Error":[]},"JsonCodec":{"Codec":["Object?","String"]},"JsonEncoder":{"Converter":["Object?","String"]},"Utf8Codec":{"Codec":["String","List<int>"]},"Utf8Encoder":{"Converter":["String","List<int>"]},"Utf8Decoder":{"Converter":["List<int>","String"]},"DateTime":{"Comparable":["DateTime"]},"double":{"num":[],"Comparable":["num"]},"Duration":{"Comparable":["Duration"]},"int":{"num":[],"Comparable":["num"]},"List":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"num":{"Comparable":["num"]},"RegExpMatch":{"Match":[]},"Set":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"String":{"Comparable":["String"]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"NullThrownError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"RangeError":[],"Error":[]},"NoSuchMethodError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"StateError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"CyclicInitializationError":{"Error":[]},"_Exception":{"Exception":[]},"FormatException":{"Exception":[]},"_GeneratorIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"_StringStackTrace":{"StackTrace":[]},"Runes":{"Iterable":["int"],"Iterable.E":"int"},"_Uri":{"Uri":[]},"_SimpleUri":{"Uri":[]},"_DataUri":{"Uri":[]},"ArgParserException":{"FormatException":[],"Exception":[]},"ErrorResult":{"Result":["0&"]},"ValueResult":{"Result":["1"]},"_CompleterStream":{"Stream":["1"],"Stream.T":"1"},"_NextRequest":{"_EventRequest":["1"]},"EmptyUnmodifiableSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"QueueList":{"ListMixin":["1"],"List":["1"],"Queue":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListMixin.E":"1","QueueList.E":"1"},"_CastQueueList":{"QueueList":["2"],"ListMixin":["2"],"List":["2"],"Queue":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListMixin.E":"2","QueueList.E":"2"},"UnmodifiableSetView":{"DelegatingSet":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_DelegatingIterableBase":{"Iterable":["1"]},"MapKeySet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"DelegatingSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"PathException":{"Exception":[]},"PathMap":{"Map":["String?","1"]},"PosixStyle":{"InternalStyle":[]},"UrlStyle":{"InternalStyle":[]},"WindowsStyle":{"InternalStyle":[]},"ModifiableCssAtRule":{"ModifiableCssParentNode":[],"CssAtRule":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssComment":{"ModifiableCssNode":[],"CssComment":[],"CssNode":[],"AstNode":[]},"ModifiableCssDeclaration":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssImport":{"ModifiableCssNode":[],"CssImport":[],"CssNode":[],"AstNode":[]},"ModifiableCssKeyframeBlock":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssMediaRule":{"ModifiableCssParentNode":[],"CssMediaRule":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssNode":{"CssNode":[],"AstNode":[]},"ModifiableCssParentNode":{"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStyleRule":{"ModifiableCssParentNode":[],"CssStyleRule":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStylesheet":{"ModifiableCssParentNode":[],"CssStylesheet":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssSupportsRule":{"ModifiableCssParentNode":[],"CssSupportsRule":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssValue":{"CssValue":["1"],"AstNode":[]},"CssNode":{"AstNode":[]},"CssParentNode":{"CssNode":[],"AstNode":[]},"CssStylesheet":{"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssValue":{"AstNode":[]},"_FakeAstNode":{"AstNode":[]},"Argument":{"AstNode":[]},"ArgumentDeclaration":{"AstNode":[]},"ArgumentInvocation":{"AstNode":[]},"ConfiguredVariable":{"AstNode":[]},"BinaryOperationExpression":{"Expression":[],"AstNode":[]},"BooleanExpression":{"Expression":[],"AstNode":[]},"ColorExpression":{"Expression":[],"AstNode":[]},"FunctionExpression":{"Expression":[],"AstNode":[]},"IfExpression":{"Expression":[],"AstNode":[]},"ListExpression":{"Expression":[],"AstNode":[]},"MapExpression":{"Expression":[],"AstNode":[]},"NullExpression":{"Expression":[],"AstNode":[]},"NumberExpression":{"Expression":[],"AstNode":[]},"ParenthesizedExpression":{"Expression":[],"AstNode":[]},"SelectorExpression":{"Expression":[],"AstNode":[]},"StringExpression":{"Expression":[],"AstNode":[]},"UnaryOperationExpression":{"Expression":[],"AstNode":[]},"ValueExpression":{"Expression":[],"AstNode":[]},"VariableExpression":{"Expression":[],"AstNode":[]},"DynamicImport":{"Import":[],"AstNode":[]},"StaticImport":{"Import":[],"AstNode":[]},"Interpolation":{"AstNode":[]},"AtRootRule":{"Statement":[],"AstNode":[]},"AtRule":{"Statement":[],"AstNode":[]},"CallableDeclaration":{"Statement":[],"AstNode":[]},"ContentBlock":{"Statement":[],"AstNode":[]},"ContentRule":{"Statement":[],"AstNode":[]},"DebugRule":{"Statement":[],"AstNode":[]},"Declaration":{"Statement":[],"AstNode":[]},"EachRule":{"Statement":[],"AstNode":[]},"ErrorRule":{"Statement":[],"AstNode":[]},"ExtendRule":{"Statement":[],"AstNode":[]},"ForRule":{"Statement":[],"AstNode":[]},"ForwardRule":{"Statement":[],"AstNode":[]},"FunctionRule":{"Statement":[],"AstNode":[]},"IfRule":{"Statement":[],"AstNode":[]},"ImportRule":{"Statement":[],"AstNode":[]},"IncludeRule":{"Statement":[],"AstNode":[]},"LoudComment":{"Statement":[],"AstNode":[]},"MediaRule":{"Statement":[],"AstNode":[]},"MixinRule":{"Statement":[],"AstNode":[]},"_HasContentVisitor":{"StatementSearchVisitor":["bool"],"StatementSearchVisitor.T":"bool"},"ParentStatement":{"Statement":[],"AstNode":[]},"ReturnRule":{"Statement":[],"AstNode":[]},"SilentComment":{"Statement":[],"AstNode":[]},"StyleRule":{"Statement":[],"AstNode":[]},"Stylesheet":{"Statement":[],"AstNode":[]},"SupportsRule":{"Statement":[],"AstNode":[]},"UseRule":{"Statement":[],"AstNode":[]},"VariableDeclaration":{"Statement":[],"AstNode":[]},"WarnRule":{"Statement":[],"AstNode":[]},"WhileRule":{"Statement":[],"AstNode":[]},"SupportsAnything":{"SupportsCondition":[],"AstNode":[]},"SupportsDeclaration":{"SupportsCondition":[],"AstNode":[]},"SupportsFunction":{"SupportsCondition":[],"AstNode":[]},"SupportsInterpolation":{"SupportsCondition":[],"AstNode":[]},"SupportsNegation":{"SupportsCondition":[],"AstNode":[]},"SupportsOperation":{"SupportsCondition":[],"AstNode":[]},"AttributeSelector":{"SimpleSelector":[]},"ClassSelector":{"SimpleSelector":[]},"Combinator":{"ComplexSelectorComponent":[]},"CompoundSelector":{"ComplexSelectorComponent":[]},"IDSelector":{"SimpleSelector":[]},"ParentSelector":{"SimpleSelector":[]},"PlaceholderSelector":{"SimpleSelector":[]},"PseudoSelector":{"SimpleSelector":[]},"TypeSelector":{"SimpleSelector":[]},"UniversalSelector":{"SimpleSelector":[]},"_EnvironmentModule0":{"Module":["AsyncCallable"]},"AsyncBuiltInCallable":{"AsyncCallable":[]},"BuiltInCallable":{"Callable":[],"AsyncBuiltInCallable":[],"AsyncCallable":[]},"PlainCssCallable":{"Callable":[],"AsyncCallable":[]},"UserDefinedCallable":{"Callable":[],"AsyncCallable":[]},"ExplicitConfiguration":{"Configuration":[]},"_EnvironmentModule":{"Module":["Callable"]},"SassException":{"Exception":[]},"SassRuntimeException":{"Exception":[]},"MultiSpanSassException":{"Exception":[]},"MultiSpanSassRuntimeException":{"SassRuntimeException":[],"Exception":[]},"SassFormatException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"UsageException":{"Exception":[]},"EmptyExtensionStore":{"ExtensionStore":[]},"MergedExtension":{"Extension":[]},"Importer":{"AsyncImporter":[]},"FilesystemImporter":{"Importer":[],"AsyncImporter":[]},"BuiltInModule":{"Module":["1"]},"ForwardedModuleView":{"Module":["1"]},"ShadowedModuleView":{"Module":["1"]},"LimitedMapView":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"MergedMapView":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"PrefixedMapView":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"_PrefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"PublicMemberMapView":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"UnprefixedMapView":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"_UnprefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"SassArgumentList":{"SassList":[],"Value":[]},"SassBoolean":{"Value":[]},"SassColor":{"Value":[]},"SassFunction":{"Value":[]},"SassList":{"Value":[]},"SassMap":{"Value":[]},"_SassNull":{"Value":[]},"SassNumber":{"Value":[]},"ComplexSassNumber":{"SassNumber":[],"Value":[]},"SingleUnitSassNumber":{"SassNumber":[],"Value":[]},"UnitlessSassNumber":{"SassNumber":[],"Value":[]},"SassString":{"Value":[]},"Entry":{"Comparable":["Entry"]},"FileSpan":{"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"FileLocation":{"SourceLocation":[],"Comparable":["SourceLocation"]},"_FileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceLocation":{"Comparable":["SourceLocation"]},"SourceLocationMixin":{"SourceLocation":[],"Comparable":["SourceLocation"]},"SourceSpan":{"Comparable":["SourceSpan"]},"SourceSpanBase":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanException":{"Exception":[]},"SourceSpanFormatException":{"FormatException":[],"Exception":[]},"SourceSpanMixin":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanWithContext":{"SourceSpan":[],"Comparable":["SourceSpan"]},"Chain":{"StackTrace":[]},"LazyTrace":{"Trace":[],"StackTrace":[]},"Trace":{"StackTrace":[]},"UnparsedFrame":{"Frame":[]},"StringScannerException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"SupportsAnything0":{"SupportsCondition0":[],"AstNode0":[]},"Argument0":{"AstNode0":[]},"ArgumentDeclaration0":{"AstNode0":[]},"ArgumentInvocation0":{"AstNode0":[]},"SassArgumentList0":{"SassList0":[],"Value0":[]},"AsyncBuiltInCallable0":{"AsyncCallable0":[]},"_EnvironmentModule2":{"Module0":["AsyncCallable0"]},"AtRootRule0":{"Statement0":[],"AstNode0":[]},"ModifiableCssAtRule0":{"ModifiableCssParentNode0":[],"CssAtRule0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"AtRule0":{"Statement0":[],"AstNode0":[]},"AttributeSelector0":{"SimpleSelector0":[]},"BinaryOperationExpression0":{"Expression0":[],"AstNode0":[]},"BooleanExpression0":{"Expression0":[],"AstNode0":[]},"SassBoolean0":{"Value0":[]},"BuiltInCallable0":{"Callable0":[],"AsyncBuiltInCallable0":[],"AsyncCallable0":[]},"BuiltInModule0":{"Module0":["1"]},"CallableDeclaration0":{"Statement0":[],"AstNode0":[]},"ClassSelector0":{"SimpleSelector0":[]},"ColorExpression0":{"Expression0":[],"AstNode0":[]},"SassColor0":{"Value0":[]},"ModifiableCssComment0":{"ModifiableCssNode0":[],"CssComment0":[],"CssNode0":[],"AstNode0":[]},"ComplexSassNumber0":{"SassNumber0":[],"Value0":[]},"Combinator0":{"ComplexSelectorComponent0":[]},"CompoundSelector0":{"ComplexSelectorComponent0":[]},"ExplicitConfiguration0":{"Configuration0":[]},"ConfiguredVariable0":{"AstNode0":[]},"ContentBlock0":{"Statement0":[],"AstNode0":[]},"ContentRule0":{"Statement0":[],"AstNode0":[]},"DebugRule0":{"Statement0":[],"AstNode0":[]},"ModifiableCssDeclaration0":{"ModifiableCssNode0":[],"CssNode0":[],"AstNode0":[]},"Declaration0":{"Statement0":[],"AstNode0":[]},"SupportsDeclaration0":{"SupportsCondition0":[],"AstNode0":[]},"DynamicImport0":{"Import0":[],"AstNode0":[]},"EachRule0":{"Statement0":[],"AstNode0":[]},"EmptyExtensionStore0":{"ExtensionStore0":[]},"_EnvironmentModule1":{"Module0":["Callable0"]},"ErrorRule0":{"Statement0":[],"AstNode0":[]},"SassException0":{"Exception":[]},"SassRuntimeException0":{"Exception":[]},"MultiSpanSassException0":{"Exception":[]},"MultiSpanSassRuntimeException0":{"SassRuntimeException0":[],"Exception":[]},"SassFormatException0":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"ExtendRule0":{"Statement0":[],"AstNode0":[]},"FilesystemImporter0":{"Importer0":[],"AsyncImporter0":[]},"ForRule0":{"Statement0":[],"AstNode0":[]},"ForwardRule0":{"Statement0":[],"AstNode0":[]},"ForwardedModuleView0":{"Module0":["1"]},"FunctionExpression0":{"Expression0":[],"AstNode0":[]},"SupportsFunction0":{"SupportsCondition0":[],"AstNode0":[]},"SassFunction0":{"Value0":[]},"FunctionRule0":{"Statement0":[],"AstNode0":[]},"IDSelector0":{"SimpleSelector0":[]},"IfExpression0":{"Expression0":[],"AstNode0":[]},"IfRule0":{"Statement0":[],"AstNode0":[]},"ModifiableCssImport0":{"ModifiableCssNode0":[],"CssImport0":[],"CssNode0":[],"AstNode0":[]},"ImportRule0":{"Statement0":[],"AstNode0":[]},"Importer0":{"AsyncImporter0":[]},"IncludeRule0":{"Statement0":[],"AstNode0":[]},"Interpolation0":{"AstNode0":[]},"SupportsInterpolation0":{"SupportsCondition0":[],"AstNode0":[]},"ModifiableCssKeyframeBlock0":{"ModifiableCssParentNode0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"LimitedMapView0":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"ListExpression0":{"Expression0":[],"AstNode0":[]},"SassList0":{"Value0":[]},"LoudComment0":{"Statement0":[],"AstNode0":[]},"MapExpression0":{"Expression0":[],"AstNode0":[]},"SassMap0":{"Value0":[]},"ModifiableCssMediaRule0":{"ModifiableCssParentNode0":[],"CssMediaRule0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"MediaRule0":{"Statement0":[],"AstNode0":[]},"MergedExtension0":{"Extension0":[]},"MergedMapView0":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"MixinRule0":{"Statement0":[],"AstNode0":[]},"_HasContentVisitor0":{"StatementSearchVisitor0":["bool"],"StatementSearchVisitor0.T":"bool"},"SupportsNegation0":{"SupportsCondition0":[],"AstNode0":[]},"_FakeAstNode0":{"AstNode0":[]},"CssNode0":{"AstNode0":[]},"CssParentNode0":{"CssNode0":[],"AstNode0":[]},"ModifiableCssNode0":{"CssNode0":[],"AstNode0":[]},"ModifiableCssParentNode0":{"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"NullExpression0":{"Expression0":[],"AstNode0":[]},"_SassNull0":{"Value0":[]},"NumberExpression0":{"Expression0":[],"AstNode0":[]},"SassNumber0":{"Value0":[]},"SupportsOperation0":{"SupportsCondition0":[],"AstNode0":[]},"ParentSelector0":{"SimpleSelector0":[]},"ParentStatement0":{"Statement0":[],"AstNode0":[]},"ParenthesizedExpression0":{"Expression0":[],"AstNode0":[]},"PlaceholderSelector0":{"SimpleSelector0":[]},"PlainCssCallable0":{"Callable0":[],"AsyncCallable0":[]},"PrefixedMapView0":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"_PrefixedKeys0":{"Iterable":["String"],"Iterable.E":"String"},"PseudoSelector0":{"SimpleSelector0":[]},"PublicMemberMapView0":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"ReturnRule0":{"Statement0":[],"AstNode0":[]},"SelectorExpression0":{"Expression0":[],"AstNode0":[]},"ShadowedModuleView0":{"Module0":["1"]},"SilentComment0":{"Statement0":[],"AstNode0":[]},"SingleUnitSassNumber0":{"SassNumber0":[],"Value0":[]},"StaticImport0":{"Import0":[],"AstNode0":[]},"StringExpression0":{"Expression0":[],"AstNode0":[]},"SassString0":{"Value0":[]},"ModifiableCssStyleRule0":{"ModifiableCssParentNode0":[],"CssStyleRule0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"StyleRule0":{"Statement0":[],"AstNode0":[]},"CssStylesheet0":{"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"ModifiableCssStylesheet0":{"ModifiableCssParentNode0":[],"CssStylesheet0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"Stylesheet0":{"Statement0":[],"AstNode0":[]},"ModifiableCssSupportsRule0":{"ModifiableCssParentNode0":[],"CssSupportsRule0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"SupportsRule0":{"Statement0":[],"AstNode0":[]},"TypeSelector0":{"SimpleSelector0":[]},"UnaryOperationExpression0":{"Expression0":[],"AstNode0":[]},"UnitlessSassNumber0":{"SassNumber0":[],"Value0":[]},"UniversalSelector0":{"SimpleSelector0":[]},"UnprefixedMapView0":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"_UnprefixedKeys0":{"Iterable":["String"],"Iterable.E":"String"},"UseRule0":{"Statement0":[],"AstNode0":[]},"UserDefinedCallable0":{"Callable0":[],"AsyncCallable0":[]},"CssValue0":{"AstNode0":[]},"ValueExpression0":{"Expression0":[],"AstNode0":[]},"ModifiableCssValue0":{"CssValue0":["1"],"AstNode0":[]},"VariableExpression0":{"Expression0":[],"AstNode0":[]},"VariableDeclaration0":{"Statement0":[],"AstNode0":[]},"WarnRule0":{"Statement0":[],"AstNode0":[]},"WhileRule0":{"Statement0":[],"AstNode0":[]},"Uint8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Expression":{"AstNode":[]},"Import":{"AstNode":[]},"SassNode":{"AstNode":[]},"Statement":{"AstNode":[]},"SupportsCondition":{"AstNode":[]},"Callable":{"AsyncCallable":[]},"Callable0":{"AsyncCallable0":[]},"Expression0":{"AstNode0":[]},"Import0":{"AstNode0":[]},"SassNode0":{"AstNode0":[]},"Statement0":{"AstNode0":[]},"SupportsCondition0":{"AstNode0":[]}}'));
+			H._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"JavaScriptObject","UnknownJavaScriptObject":"JavaScriptObject","JavaScriptFunction":"JavaScriptObject","Stdin":"JavaScriptObject","Stdout":"JavaScriptObject","ReadlineModule":"JavaScriptObject","ReadlineOptions":"JavaScriptObject","ReadlineInterface":"JavaScriptObject","BufferModule":"JavaScriptObject","BufferConstants":"JavaScriptObject","Buffer":"JavaScriptObject","ConsoleModule":"JavaScriptObject","Console":"JavaScriptObject","EventEmitter":"JavaScriptObject","FS":"JavaScriptObject","FSConstants":"JavaScriptObject","FSWatcher":"JavaScriptObject","ReadStream":"JavaScriptObject","ReadStreamOptions":"JavaScriptObject","WriteStream":"JavaScriptObject","WriteStreamOptions":"JavaScriptObject","FileOptions":"JavaScriptObject","StatOptions":"JavaScriptObject","MkdirOptions":"JavaScriptObject","RmdirOptions":"JavaScriptObject","WatchOptions":"JavaScriptObject","WatchFileOptions":"JavaScriptObject","Stats":"JavaScriptObject","Promise":"JavaScriptObject","Date":"JavaScriptObject","JsError":"JavaScriptObject","Atomics":"JavaScriptObject","Modules":"JavaScriptObject","Module1":"JavaScriptObject","Net":"JavaScriptObject","Socket":"JavaScriptObject","NetAddress":"JavaScriptObject","NetServer":"JavaScriptObject","NodeJsError":"JavaScriptObject","JsAssertionError":"JavaScriptObject","JsRangeError":"JavaScriptObject","JsReferenceError":"JavaScriptObject","JsSyntaxError":"JavaScriptObject","JsTypeError":"JavaScriptObject","JsSystemError":"JavaScriptObject","Process":"JavaScriptObject","CPUUsage":"JavaScriptObject","Release":"JavaScriptObject","StreamModule":"JavaScriptObject","Readable":"JavaScriptObject","Writable":"JavaScriptObject","Duplex":"JavaScriptObject","Transform":"JavaScriptObject","WritableOptions":"JavaScriptObject","ReadableOptions":"JavaScriptObject","Immediate":"JavaScriptObject","Timeout":"JavaScriptObject","TTY":"JavaScriptObject","TTYReadStream":"JavaScriptObject","TTYWriteStream":"JavaScriptObject","Util":"JavaScriptObject",' + /*DSH- '"Chokidar":"JavaScriptObject","ChokidarOptions":"JavaScriptObject","ChokidarWatcher":"JavaScriptObject",' + */'"JSFunction":"JavaScriptObject","NodeImporterResult":"JavaScriptObject","RenderContext":"JavaScriptObject","RenderContextOptions":"JavaScriptObject","RenderContextResult":"JavaScriptObject","RenderContextResultStats":"JavaScriptObject","_PropertyDescriptor":"JavaScriptObject",' + /*DSH- '"Chokidar0":"JavaScriptObject","ChokidarOptions0":"JavaScriptObject","ChokidarWatcher0":"JavaScriptObject",' + */'"_NodeSassColor":"JavaScriptObject","Exports":"JavaScriptObject","Fiber":"JavaScriptObject","FiberClass":"JavaScriptObject","JSFunction0":"JavaScriptObject","NodeImporterResult0":"JavaScriptObject","_NodeSassList":"JavaScriptObject","_NodeSassMap":"JavaScriptObject","_NodeSassNumber":"JavaScriptObject","RenderContext0":"JavaScriptObject","RenderContextOptions0":"JavaScriptObject","RenderContextResult0":"JavaScriptObject","RenderContextResultStats0":"JavaScriptObject","RenderOptions":"JavaScriptObject","RenderResult":"JavaScriptObject","RenderResultStats":"JavaScriptObject","_Exports":"JavaScriptObject","_NodeSassString":"JavaScriptObject","Types":"JavaScriptObject","_PropertyDescriptor0":"JavaScriptObject","JavaScriptObject":{"JsSystemError":[],"_NodeSassColor":[],"Fiber":[],"JSFunction0":[],"NodeImporterResult0":[],"_NodeSassList":[],"_NodeSassMap":[],"_NodeSassNumber":[],"RenderContextOptions0":[],"RenderOptions":[],"RenderResult":[],"_NodeSassString":[]},"JSBool":{"bool":[]},"JSNull":{"Null":[]},"JSArray":{"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"JSNumber":{"double":[],"num":[],"Comparable":["num"]},"JSInt":{"double":[],"int":[],"num":[],"Comparable":["num"]},"JSNumNotInt":{"double":[],"num":[],"Comparable":["num"]},"JSString":{"String":[],"Comparable":["String"]},"EfficientLengthIterable":{"Iterable":["1"]},"_CastIterableBase":{"Iterable":["2"]},"CastIterable":{"_CastIterableBase":["1","2"],"Iterable":["2"],"Iterable.E":"2"},"_EfficientLengthCastIterable":{"CastIterable":["1","2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"_CastListBase":{"ListMixin":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"]},"CastList":{"_CastListBase":["1","2"],"ListMixin":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListMixin.E":"2"},"CastSet":{"Set":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"CastMap":{"MapMixin":["3","4"],"Map":["3","4"],"MapMixin.K":"3","MapMixin.V":"4"},"LateError":{"Error":[]},"CodeUnits":{"ListMixin":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"ListIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"SubListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"MappedIterable":{"Iterable":["2"],"Iterable.E":"2"},"EfficientLengthMappedIterable":{"MappedIterable":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MappedListIterable":{"ListIterable":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListIterable.E":"2"},"WhereIterable":{"Iterable":["1"],"Iterable.E":"1"},"ExpandIterable":{"Iterable":["2"],"Iterable.E":"2"},"TakeIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthTakeIterable":{"TakeIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"SkipIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthSkipIterable":{"SkipIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"SkipWhileIterable":{"Iterable":["1"],"Iterable.E":"1"},"EmptyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"FollowedByIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthFollowedByIterable":{"FollowedByIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"WhereTypeIterable":{"Iterable":["1"],"Iterable.E":"1"},"UnmodifiableListBase":{"ListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ReversedListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"Symbol":{"Symbol0":[]},"ConstantMapView":{"UnmodifiableMapView":["1","2"],"Map":["1","2"]},"ConstantMap":{"Map":["1","2"]},"ConstantStringMap":{"ConstantMap":["1","2"],"Map":["1","2"]},"ConstantProtoMap":{"ConstantStringMap":["1","2"],"ConstantMap":["1","2"],"Map":["1","2"]},"_ConstantMapKeyIterable":{"Iterable":["1"],"Iterable.E":"1"},"Instantiation":{"Function":[]},"Instantiation1":{"Function":[]},"NullError":{"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"NullThrownFromJavaScriptException":{"Exception":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"LinkedHashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_MatchImplementation":{"RegExpMatch":[],"Match":[]},"_AllMatchesIterable":{"Iterable":["RegExpMatch"],"Iterable.E":"RegExpMatch"},"StringMatch":{"Match":[]},"_StringAllMatchesIterable":{"Iterable":["Match"],"Iterable.E":"Match"},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"]},"NativeTypedArrayOfDouble":{"ListMixin":["double"],"JavaScriptIndexingBehavior":["double"],"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"NativeTypedArrayOfInt":{"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"NativeFloat32List":{"NativeTypedArrayOfDouble":[],"ListMixin":["double"],"JavaScriptIndexingBehavior":["double"],"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"],"ListMixin.E":"double"},"NativeFloat64List":{"NativeTypedArrayOfDouble":[],"ListMixin":["double"],"JavaScriptIndexingBehavior":["double"],"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"],"ListMixin.E":"double"},"NativeInt16List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeInt32List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeInt8List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeUint16List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeUint32List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeUint8ClampedList":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"NativeUint8List":{"NativeTypedArrayOfInt":[],"ListMixin":["int"],"Uint8List":[],"JavaScriptIndexingBehavior":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListMixin.E":"int"},"_Error":{"Error":[]},"_TypeError":{"Error":[]},"AsyncError":{"Error":[]},"_Future":{"Future":["1"]},"StreamController":{"EventSink":["1"]},"_SyncStarIterable":{"Iterable":["1"],"Iterable.E":"1"},"_AsyncCompleter":{"_Completer":["1"]},"_StreamController":{"StreamController":["1"],"EventSink":["1"]},"_AsyncStreamController":{"_StreamController":["1"],"StreamController":["1"],"EventSink":["1"]},"_SyncStreamController":{"_StreamController":["1"],"StreamController":["1"],"EventSink":["1"]},"_ControllerStream":{"_StreamImpl":["1"],"Stream":["1"],"Stream.T":"1"},"_ControllerSubscription":{"_BufferingStreamSubscription":["1"],"StreamSubscription":["1"],"_BufferingStreamSubscription.T":"1"},"_BufferingStreamSubscription":{"StreamSubscription":["1"],"_BufferingStreamSubscription.T":"1"},"_StreamImpl":{"Stream":["1"]},"_ForwardingStream":{"Stream":["2"]},"_ForwardingStreamSubscription":{"_BufferingStreamSubscription":["2"],"StreamSubscription":["2"],"_BufferingStreamSubscription.T":"2"},"_ExpandStream":{"_ForwardingStream":["1","2"],"Stream":["2"],"Stream.T":"2"},"_ZoneSpecification":{"ZoneSpecification":[]},"_ZoneDelegate":{"ZoneDelegate":[]},"_Zone":{"Zone":[]},"_CustomZone":{"Zone":[]},"_RootZone":{"Zone":[]},"Queue":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashMap":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"_HashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_LinkedIdentityHashMap":{"JsLinkedHashMap":["1","2"],"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"_LinkedCustomHashMap":{"JsLinkedHashMap":["1","2"],"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"_LinkedHashSet":{"_SetBase":["1"],"SetMixin":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_LinkedIdentityHashSet":{"_LinkedHashSet":["1"],"_SetBase":["1"],"SetMixin":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableListView":{"ListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListMixin.E":"1"},"IterableBase":{"Iterable":["1"]},"ListBase":{"ListMixin":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapBase":{"MapMixin":["1","2"],"Map":["1","2"]},"MapMixin":{"Map":["1","2"]},"UnmodifiableMapBase":{"MapMixin":["1","2"],"Map":["1","2"]},"_MapBaseValueIterable":{"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MapView":{"Map":["1","2"]},"UnmodifiableMapView":{"Map":["1","2"]},"ListQueue":{"ListIterable":["1"],"Queue":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"_SetBase":{"SetMixin":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_UnmodifiableSet":{"_SetBase":["1"],"SetMixin":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"AsciiCodec":{"Codec":["String","List<int>"]},"_UnicodeSubsetEncoder":{"Converter":["String","List<int>"]},"AsciiEncoder":{"Converter":["String","List<int>"]},"Base64Codec":{"Codec":["List<int>","String"]},"Base64Encoder":{"Converter":["List<int>","String"]},"Encoding":{"Codec":["String","List<int>"]},"JsonUnsupportedObjectError":{"Error":[]},"JsonCyclicError":{"Error":[]},"JsonCodec":{"Codec":["Object?","String"]},"JsonEncoder":{"Converter":["Object?","String"]},"Utf8Codec":{"Codec":["String","List<int>"]},"Utf8Encoder":{"Converter":["String","List<int>"]},"Utf8Decoder":{"Converter":["List<int>","String"]},"DateTime":{"Comparable":["DateTime"]},"double":{"num":[],"Comparable":["num"]},"Duration":{"Comparable":["Duration"]},"int":{"num":[],"Comparable":["num"]},"List":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"num":{"Comparable":["num"]},"RegExpMatch":{"Match":[]},"Set":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"String":{"Comparable":["String"]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"NullThrownError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"RangeError":[],"Error":[]},"NoSuchMethodError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"StateError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"CyclicInitializationError":{"Error":[]},"_Exception":{"Exception":[]},"FormatException":{"Exception":[]},"_GeneratorIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"_StringStackTrace":{"StackTrace":[]},"Runes":{"Iterable":["int"],"Iterable.E":"int"},"_Uri":{"Uri":[]},"_SimpleUri":{"Uri":[]},"_DataUri":{"Uri":[]},"ArgParserException":{"FormatException":[],"Exception":[]},"ErrorResult":{"Result":["0&"]},"ValueResult":{"Result":["1"]},"_CompleterStream":{"Stream":["1"],"Stream.T":"1"},"_NextRequest":{"_EventRequest":["1"]},"EmptyUnmodifiableSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"QueueList":{"ListMixin":["1"],"List":["1"],"Queue":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListMixin.E":"1","QueueList.E":"1"},"_CastQueueList":{"QueueList":["2"],"ListMixin":["2"],"List":["2"],"Queue":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListMixin.E":"2","QueueList.E":"2"},"UnmodifiableSetView":{"DelegatingSet":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_DelegatingIterableBase":{"Iterable":["1"]},"MapKeySet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"DelegatingSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"PathException":{"Exception":[]},"PathMap":{"Map":["String?","1"]},"PosixStyle":{"InternalStyle":[]},"UrlStyle":{"InternalStyle":[]},"WindowsStyle":{"InternalStyle":[]},"ModifiableCssAtRule":{"ModifiableCssParentNode":[],"CssAtRule":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssComment":{"ModifiableCssNode":[],"CssComment":[],"CssNode":[],"AstNode":[]},"ModifiableCssDeclaration":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssImport":{"ModifiableCssNode":[],"CssImport":[],"CssNode":[],"AstNode":[]},"ModifiableCssKeyframeBlock":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssMediaRule":{"ModifiableCssParentNode":[],"CssMediaRule":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssNode":{"CssNode":[],"AstNode":[]},"ModifiableCssParentNode":{"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStyleRule":{"ModifiableCssParentNode":[],"CssStyleRule":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStylesheet":{"ModifiableCssParentNode":[],"CssStylesheet":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssSupportsRule":{"ModifiableCssParentNode":[],"CssSupportsRule":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssValue":{"CssValue":["1"],"AstNode":[]},"CssNode":{"AstNode":[]},"CssParentNode":{"CssNode":[],"AstNode":[]},"CssStylesheet":{"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssValue":{"AstNode":[]},"_FakeAstNode":{"AstNode":[]},"Argument":{"AstNode":[]},"ArgumentDeclaration":{"AstNode":[]},"ArgumentInvocation":{"AstNode":[]},"ConfiguredVariable":{"AstNode":[]},"BinaryOperationExpression":{"Expression":[],"AstNode":[]},"BooleanExpression":{"Expression":[],"AstNode":[]},"ColorExpression":{"Expression":[],"AstNode":[]},"FunctionExpression":{"Expression":[],"AstNode":[]},"IfExpression":{"Expression":[],"AstNode":[]},"InterpolatedFunctionExpression":{"Expression":[],"AstNode":[]},"ListExpression":{"Expression":[],"AstNode":[]},"MapExpression":{"Expression":[],"AstNode":[]},"NullExpression":{"Expression":[],"AstNode":[]},"NumberExpression":{"Expression":[],"AstNode":[]},"ParenthesizedExpression":{"Expression":[],"AstNode":[]},"SelectorExpression":{"Expression":[],"AstNode":[]},"StringExpression":{"Expression":[],"AstNode":[]},"UnaryOperationExpression":{"Expression":[],"AstNode":[]},"ValueExpression":{"Expression":[],"AstNode":[]},"VariableExpression":{"Expression":[],"AstNode":[]},"DynamicImport":{"Import":[],"AstNode":[]},"StaticImport":{"Import":[],"AstNode":[]},"Interpolation":{"AstNode":[]},"AtRootRule":{"Statement":[],"AstNode":[]},"AtRule":{"Statement":[],"AstNode":[]},"CallableDeclaration":{"Statement":[],"AstNode":[]},"ContentBlock":{"Statement":[],"AstNode":[]},"ContentRule":{"Statement":[],"AstNode":[]},"DebugRule":{"Statement":[],"AstNode":[]},"Declaration":{"Statement":[],"AstNode":[]},"EachRule":{"Statement":[],"AstNode":[]},"ErrorRule":{"Statement":[],"AstNode":[]},"ExtendRule":{"Statement":[],"AstNode":[]},"ForRule":{"Statement":[],"AstNode":[]},"ForwardRule":{"Statement":[],"AstNode":[]},"FunctionRule":{"Statement":[],"AstNode":[]},"IfRule":{"Statement":[],"AstNode":[]},"ImportRule":{"Statement":[],"AstNode":[]},"IncludeRule":{"Statement":[],"AstNode":[]},"LoudComment":{"Statement":[],"AstNode":[]},"MediaRule":{"Statement":[],"AstNode":[]},"MixinRule":{"Statement":[],"AstNode":[]},"_HasContentVisitor":{"StatementSearchVisitor":["bool"],"StatementSearchVisitor.T":"bool"},"ParentStatement":{"Statement":[],"AstNode":[]},"ReturnRule":{"Statement":[],"AstNode":[]},"SilentComment":{"Statement":[],"AstNode":[]},"StyleRule":{"Statement":[],"AstNode":[]},"Stylesheet":{"Statement":[],"AstNode":[]},"SupportsRule":{"Statement":[],"AstNode":[]},"UseRule":{"Statement":[],"AstNode":[]},"VariableDeclaration":{"Statement":[],"AstNode":[]},"WarnRule":{"Statement":[],"AstNode":[]},"WhileRule":{"Statement":[],"AstNode":[]},"SupportsAnything":{"SupportsCondition":[],"AstNode":[]},"SupportsDeclaration":{"SupportsCondition":[],"AstNode":[]},"SupportsFunction":{"SupportsCondition":[],"AstNode":[]},"SupportsInterpolation":{"SupportsCondition":[],"AstNode":[]},"SupportsNegation":{"SupportsCondition":[],"AstNode":[]},"SupportsOperation":{"SupportsCondition":[],"AstNode":[]},"AttributeSelector":{"SimpleSelector":[]},"ClassSelector":{"SimpleSelector":[]},"Combinator":{"ComplexSelectorComponent":[]},"CompoundSelector":{"ComplexSelectorComponent":[]},"IDSelector":{"SimpleSelector":[]},"ParentSelector":{"SimpleSelector":[]},"PlaceholderSelector":{"SimpleSelector":[]},"PseudoSelector":{"SimpleSelector":[]},"TypeSelector":{"SimpleSelector":[]},"UniversalSelector":{"SimpleSelector":[]},"_EnvironmentModule0":{"Module":["AsyncCallable"]},"AsyncBuiltInCallable":{"AsyncCallable":[]},"BuiltInCallable":{"Callable":[],"AsyncBuiltInCallable":[],"AsyncCallable":[]},"PlainCssCallable":{"Callable":[],"AsyncCallable":[]},"UserDefinedCallable":{"Callable":[],"AsyncCallable":[]},"ExplicitConfiguration":{"Configuration":[]},"_EnvironmentModule":{"Module":["Callable"]},"SassException":{"Exception":[]},"SassRuntimeException":{"Exception":[]},"MultiSpanSassException":{"Exception":[]},"MultiSpanSassRuntimeException":{"SassRuntimeException":[],"Exception":[]},"SassFormatException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"UsageException":{"Exception":[]},"EmptyExtensionStore":{"ExtensionStore":[]},"MergedExtension":{"Extension":[]},"Importer":{"AsyncImporter":[]},"FilesystemImporter":{"Importer":[],"AsyncImporter":[]},"BuiltInModule":{"Module":["1"]},"ForwardedModuleView":{"Module":["1"]},"ShadowedModuleView":{"Module":["1"]},"LimitedMapView":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"MergedMapView":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"PrefixedMapView":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"_PrefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"PublicMemberMapView":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"UnprefixedMapView":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"_UnprefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"SassArgumentList":{"SassList":[],"Value":[]},"SassBoolean":{"Value":[]},"SassColor":{"Value":[]},"SassFunction":{"Value":[]},"SassList":{"Value":[]},"SassMap":{"Value":[]},"_SassNull":{"Value":[]},"SassNumber":{"Value":[]},"ComplexSassNumber":{"SassNumber":[],"Value":[]},"SingleUnitSassNumber":{"SassNumber":[],"Value":[]},"UnitlessSassNumber":{"SassNumber":[],"Value":[]},"SassString":{"Value":[]},"Entry":{"Comparable":["Entry"]},"FileSpan":{"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"FileLocation":{"SourceLocation":[],"Comparable":["SourceLocation"]},"_FileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceLocation":{"Comparable":["SourceLocation"]},"SourceLocationMixin":{"SourceLocation":[],"Comparable":["SourceLocation"]},"SourceSpan":{"Comparable":["SourceSpan"]},"SourceSpanBase":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanException":{"Exception":[]},"SourceSpanFormatException":{"FormatException":[],"Exception":[]},"SourceSpanMixin":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanWithContext":{"SourceSpan":[],"Comparable":["SourceSpan"]},"Chain":{"StackTrace":[]},"LazyTrace":{"Trace":[],"StackTrace":[]},"Trace":{"StackTrace":[]},"UnparsedFrame":{"Frame":[]},"StringScannerException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"SupportsAnything0":{"SupportsCondition0":[],"AstNode0":[]},"Argument0":{"AstNode0":[]},"ArgumentDeclaration0":{"AstNode0":[]},"ArgumentInvocation0":{"AstNode0":[]},"SassArgumentList0":{"SassList0":[],"Value0":[]},"AsyncBuiltInCallable0":{"AsyncCallable0":[]},"_EnvironmentModule2":{"Module0":["AsyncCallable0"]},"AtRootRule0":{"Statement0":[],"AstNode0":[]},"ModifiableCssAtRule0":{"ModifiableCssParentNode0":[],"CssAtRule0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"AtRule0":{"Statement0":[],"AstNode0":[]},"AttributeSelector0":{"SimpleSelector0":[]},"BinaryOperationExpression0":{"Expression0":[],"AstNode0":[]},"BooleanExpression0":{"Expression0":[],"AstNode0":[]},"SassBoolean0":{"Value0":[]},"BuiltInCallable0":{"Callable0":[],"AsyncBuiltInCallable0":[],"AsyncCallable0":[]},"BuiltInModule0":{"Module0":["1"]},"CallableDeclaration0":{"Statement0":[],"AstNode0":[]},"ClassSelector0":{"SimpleSelector0":[]},"ColorExpression0":{"Expression0":[],"AstNode0":[]},"SassColor0":{"Value0":[]},"ModifiableCssComment0":{"ModifiableCssNode0":[],"CssComment0":[],"CssNode0":[],"AstNode0":[]},"ComplexSassNumber0":{"SassNumber0":[],"Value0":[]},"Combinator0":{"ComplexSelectorComponent0":[]},"CompoundSelector0":{"ComplexSelectorComponent0":[]},"ExplicitConfiguration0":{"Configuration0":[]},"ConfiguredVariable0":{"AstNode0":[]},"ContentBlock0":{"Statement0":[],"AstNode0":[]},"ContentRule0":{"Statement0":[],"AstNode0":[]},"DebugRule0":{"Statement0":[],"AstNode0":[]},"ModifiableCssDeclaration0":{"ModifiableCssNode0":[],"CssNode0":[],"AstNode0":[]},"Declaration0":{"Statement0":[],"AstNode0":[]},"SupportsDeclaration0":{"SupportsCondition0":[],"AstNode0":[]},"DynamicImport0":{"Import0":[],"AstNode0":[]},"EachRule0":{"Statement0":[],"AstNode0":[]},"EmptyExtensionStore0":{"ExtensionStore0":[]},"_EnvironmentModule1":{"Module0":["Callable0"]},"ErrorRule0":{"Statement0":[],"AstNode0":[]},"SassException0":{"Exception":[]},"SassRuntimeException0":{"Exception":[]},"MultiSpanSassException0":{"Exception":[]},"MultiSpanSassRuntimeException0":{"SassRuntimeException0":[],"Exception":[]},"SassFormatException0":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"ExtendRule0":{"Statement0":[],"AstNode0":[]},"FilesystemImporter0":{"Importer0":[],"AsyncImporter0":[]},"ForRule0":{"Statement0":[],"AstNode0":[]},"ForwardRule0":{"Statement0":[],"AstNode0":[]},"ForwardedModuleView0":{"Module0":["1"]},"FunctionExpression0":{"Expression0":[],"AstNode0":[]},"SupportsFunction0":{"SupportsCondition0":[],"AstNode0":[]},"SassFunction0":{"Value0":[]},"FunctionRule0":{"Statement0":[],"AstNode0":[]},"IDSelector0":{"SimpleSelector0":[]},"IfExpression0":{"Expression0":[],"AstNode0":[]},"IfRule0":{"Statement0":[],"AstNode0":[]},"ModifiableCssImport0":{"ModifiableCssNode0":[],"CssImport0":[],"CssNode0":[],"AstNode0":[]},"ImportRule0":{"Statement0":[],"AstNode0":[]},"Importer0":{"AsyncImporter0":[]},"IncludeRule0":{"Statement0":[],"AstNode0":[]},"InterpolatedFunctionExpression0":{"Expression0":[],"AstNode0":[]},"Interpolation0":{"AstNode0":[]},"SupportsInterpolation0":{"SupportsCondition0":[],"AstNode0":[]},"ModifiableCssKeyframeBlock0":{"ModifiableCssParentNode0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"LimitedMapView0":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"ListExpression0":{"Expression0":[],"AstNode0":[]},"SassList0":{"Value0":[]},"LoudComment0":{"Statement0":[],"AstNode0":[]},"MapExpression0":{"Expression0":[],"AstNode0":[]},"SassMap0":{"Value0":[]},"ModifiableCssMediaRule0":{"ModifiableCssParentNode0":[],"CssMediaRule0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"MediaRule0":{"Statement0":[],"AstNode0":[]},"MergedExtension0":{"Extension0":[]},"MergedMapView0":{"MapMixin":["1","2"],"Map":["1","2"],"MapMixin.K":"1","MapMixin.V":"2"},"MixinRule0":{"Statement0":[],"AstNode0":[]},"_HasContentVisitor0":{"StatementSearchVisitor0":["bool"],"StatementSearchVisitor0.T":"bool"},"SupportsNegation0":{"SupportsCondition0":[],"AstNode0":[]},"_FakeAstNode0":{"AstNode0":[]},"CssNode0":{"AstNode0":[]},"CssParentNode0":{"CssNode0":[],"AstNode0":[]},"ModifiableCssNode0":{"CssNode0":[],"AstNode0":[]},"ModifiableCssParentNode0":{"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"NullExpression0":{"Expression0":[],"AstNode0":[]},"_SassNull0":{"Value0":[]},"NumberExpression0":{"Expression0":[],"AstNode0":[]},"SassNumber0":{"Value0":[]},"SupportsOperation0":{"SupportsCondition0":[],"AstNode0":[]},"ParentSelector0":{"SimpleSelector0":[]},"ParentStatement0":{"Statement0":[],"AstNode0":[]},"ParenthesizedExpression0":{"Expression0":[],"AstNode0":[]},"PlaceholderSelector0":{"SimpleSelector0":[]},"PlainCssCallable0":{"Callable0":[],"AsyncCallable0":[]},"PrefixedMapView0":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"_PrefixedKeys0":{"Iterable":["String"],"Iterable.E":"String"},"PseudoSelector0":{"SimpleSelector0":[]},"PublicMemberMapView0":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"ReturnRule0":{"Statement0":[],"AstNode0":[]},"SelectorExpression0":{"Expression0":[],"AstNode0":[]},"ShadowedModuleView0":{"Module0":["1"]},"SilentComment0":{"Statement0":[],"AstNode0":[]},"SingleUnitSassNumber0":{"SassNumber0":[],"Value0":[]},"StaticImport0":{"Import0":[],"AstNode0":[]},"StringExpression0":{"Expression0":[],"AstNode0":[]},"SassString0":{"Value0":[]},"ModifiableCssStyleRule0":{"ModifiableCssParentNode0":[],"CssStyleRule0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"StyleRule0":{"Statement0":[],"AstNode0":[]},"CssStylesheet0":{"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"ModifiableCssStylesheet0":{"ModifiableCssParentNode0":[],"CssStylesheet0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"Stylesheet0":{"Statement0":[],"AstNode0":[]},"ModifiableCssSupportsRule0":{"ModifiableCssParentNode0":[],"CssSupportsRule0":[],"ModifiableCssNode0":[],"CssParentNode0":[],"CssNode0":[],"AstNode0":[]},"SupportsRule0":{"Statement0":[],"AstNode0":[]},"TypeSelector0":{"SimpleSelector0":[]},"UnaryOperationExpression0":{"Expression0":[],"AstNode0":[]},"UnitlessSassNumber0":{"SassNumber0":[],"Value0":[]},"UniversalSelector0":{"SimpleSelector0":[]},"UnprefixedMapView0":{"MapMixin":["String","1"],"Map":["String","1"],"MapMixin.K":"String","MapMixin.V":"1"},"_UnprefixedKeys0":{"Iterable":["String"],"Iterable.E":"String"},"UseRule0":{"Statement0":[],"AstNode0":[]},"UserDefinedCallable0":{"Callable0":[],"AsyncCallable0":[]},"CssValue0":{"AstNode0":[]},"ValueExpression0":{"Expression0":[],"AstNode0":[]},"ModifiableCssValue0":{"CssValue0":["1"],"AstNode0":[]},"VariableExpression0":{"Expression0":[],"AstNode0":[]},"VariableDeclaration0":{"Statement0":[],"AstNode0":[]},"WarnRule0":{"Statement0":[],"AstNode0":[]},"WhileRule0":{"Statement0":[],"AstNode0":[]},"Uint8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Expression":{"AstNode":[]},"Import":{"AstNode":[]},"SassNode":{"AstNode":[]},"Statement":{"AstNode":[]},"SupportsCondition":{"AstNode":[]},"Callable":{"AsyncCallable":[]},"Callable0":{"AsyncCallable0":[]},"Expression0":{"AstNode0":[]},"Import0":{"AstNode0":[]},"SassNode0":{"AstNode0":[]},"Statement0":{"AstNode0":[]},"SupportsCondition0":{"AstNode0":[]}}'));
 			H._Universe_addErasedTypes(init.typeUniverse, JSON.parse('{"ArrayIterator":1,"ListIterator":1,"MappedIterator":2,"WhereIterator":1,"ExpandIterator":2,"TakeIterator":1,"SkipIterator":1,"SkipWhileIterator":1,"EmptyIterator":1,"FollowedByIterator":1,"FixedLengthListMixin":1,"UnmodifiableListMixin":1,"UnmodifiableListBase":1,"__CastListBase__CastIterableBase_ListMixin":2,"LinkedHashMapKeyIterator":1,"NativeTypedArray":1,"EventSink":1,"_SyncStarIterator":1,"StreamTransformerBase":2,"_SyncStreamControllerDispatch":1,"_AsyncStreamControllerDispatch":1,"_AddStreamState":1,"_StreamControllerAddStreamState":1,"_DelayedEvent":1,"_DelayedData":1,"_PendingEvents":1,"_StreamImplEvents":1,"_StreamIterator":1,"_ZoneFunction":1,"Queue":1,"_HashMapKeyIterator":1,"_LinkedHashSetIterator":1,"IterableBase":1,"ListBase":1,"MapBase":2,"UnmodifiableMapBase":2,"_MapBaseValueIterator":2,"_UnmodifiableMapMixin":2,"MapView":2,"_ListQueueIterator":1,"_UnmodifiableSetMixin":1,"_ListBase_Object_ListMixin":1,"_UnmodifiableMapView_MapView__UnmodifiableMapMixin":2,"__SetBase_Object_SetMixin":1,"__UnmodifiableSet__SetBase__UnmodifiableSetMixin":1,"ChunkedConversionSink":1,"_StringSinkConversionSink":1,"Iterator":1,"_EventRequest":1,"_EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin":1,"DefaultEquality":1,"IterableEquality":1,"ListEquality":1,"MapEquality":2,"_QueueList_Object_ListMixin":1,"UnmodifiableSetMixin":1,"_UnmodifiableSetView_DelegatingSet_UnmodifiableSetMixin":1,"_DelegatingIterableBase":1,"_MapKeySet__DelegatingIterableBase_UnmodifiableSetMixin":1,"ParentStatement":1,"ParentStatement0":1}'));
 			var string$ = {
 				x0a_BUG_: "\n\nBUG: This should include a source span!",
