@@ -140,9 +140,6 @@
   <data name="ErrorDetails_Description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="ErrorDetails_ErrorCode" xml:space="preserve">
-    <value>Error code</value>
-  </data>
   <data name="ErrorDetails_File" xml:space="preserve">
     <value>File</value>
   </data>
@@ -154,6 +151,9 @@
   </data>
   <data name="ErrorDetails_SourceFragment" xml:space="preserve">
     <value>Source fragment</value>
+  </data>
+  <data name="ErrorDetails_Status" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="JsonReader_UnexpectedCharacterEncountered" xml:space="preserve">
     <value>Unexpected character encountered, excepted a JSON {0} token.</value>

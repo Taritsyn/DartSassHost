@@ -334,10 +334,10 @@ namespace DartSassHost.Helpers
 		private static void WriteCompilationErrorDetails(StringBuilder buffer,
 			SassCompilationException sassСompilationException)
 		{
-			//if (sassСompilationException.ErrorCode > 0)
-			//{
-			//	buffer.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_ErrorCode, sassСompilationException.ErrorCode);
-			//}
+			if (sassСompilationException.Status > 0)
+			{
+				buffer.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_Status, sassСompilationException.Status);
+			}
 			buffer.AppendFormatLine("{0}: {1}", Strings.ErrorDetails_Description, sassСompilationException.Description);
 			if (!string.IsNullOrWhiteSpace(sassСompilationException.File))
 			{

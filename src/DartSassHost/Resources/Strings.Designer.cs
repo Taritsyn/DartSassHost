@@ -114,14 +114,6 @@ namespace DartSassHost.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "Error code"
-		/// </summary>
-		internal static string ErrorDetails_ErrorCode
-		{
-			get { return GetString("ErrorDetails_ErrorCode"); }
-		}
-
-		/// <summary>
 		/// Looks up a localized string similar to "File"
 		/// </summary>
 		internal static string ErrorDetails_File
@@ -151,6 +143,14 @@ namespace DartSassHost.Resources
 		internal static string ErrorDetails_SourceFragment
 		{
 			get { return GetString("ErrorDetails_SourceFragment"); }
+		}
+
+		/// <summary>
+		/// Looks up a localized string similar to "Status"
+		/// </summary>
+		internal static string ErrorDetails_Status
+		{
+			get { return GetString("ErrorDetails_Status"); }
 		}
 
 		/// <summary>
