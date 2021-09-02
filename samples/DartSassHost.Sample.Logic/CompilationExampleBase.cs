@@ -50,11 +50,12 @@ body {
 
 			try
 			{
-				var options = new CompilationOptions { SourceMap = true };
-				var sassCompiler = new SassCompiler(options);
-				CompilationResult result = sassCompiler.Compile(inputContent, "input.scss", "output.css");
-				WriteVersion(sassCompiler.Version);
-				WriteOutput(result);
+				using (var sassCompiler = new SassCompiler(new CompilationOptions { SourceMap = true }))
+				{
+					CompilationResult result = sassCompiler.Compile(inputContent, "input.scss", "output.css");
+					WriteVersion(sassCompiler.Version);
+					WriteOutput(result);
+				}
 			}
 			catch (SassException e)
 			{
@@ -71,11 +72,12 @@ body {
 
 			try
 			{
-				var options = new CompilationOptions { SourceMap = true };
-				var sassCompiler = new SassCompiler(options);
-				CompilationResult result = sassCompiler.CompileFile(inputFilePath, outputFilePath);
-				WriteVersion(sassCompiler.Version);
-				WriteOutput(result);
+				using (var sassCompiler = new SassCompiler(new CompilationOptions { SourceMap = true }))
+				{
+					CompilationResult result = sassCompiler.CompileFile(inputFilePath, outputFilePath);
+					WriteVersion(sassCompiler.Version);
+					WriteOutput(result);
+				}
 			}
 			catch (SassException e)
 			{
