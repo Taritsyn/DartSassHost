@@ -9,7 +9,7 @@
 		/// <summary>
 		/// File manager
 		/// </summary>
-		IFileManager _fileManager;
+		private IFileManager _fileManager;
 
 
 		/// <summary>

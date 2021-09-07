@@ -1,4 +1,4 @@
-var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
+var Sass = (function(currentOsPlatformName /*DSH+*/){
 	"use strict";
 
 	var modules = {},
@@ -2459,121 +2459,11 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 
 		 /** * @license MIT
 		 */
-		var dshUtils = (function (fileManager) { //DSH+
-			var exports = {}, //DSH+
-				fileScheme = "file://", //DSH+
-				urlFunctionBeginPart = "url(", //DSH+
-				urlFunctionEndPart = ")", //DSH+
-				supportsVirtualPaths = fileManager.SupportsVirtualPaths //DSH+
-				; //DSH+
-
-			function removeFileSchemeFromPath(path) { //DSH+
-				var processedPath = path; //DSH+
-
-				if (path && path.startsWith(fileScheme)) { //DSH+
-					processedPath = path.substring(fileScheme.length); //DSH+
-				} //DSH+
-
-				return processedPath; //DSH+
-			} //DSH+
-
-			function convertPathToAbsolute(path) { //DSH+
-				var processedPath = path; //DSH+
-
-				if (path && supportsVirtualPaths && fileManager.IsAppRelativeVirtualPath(path)) { //DSH+
-					processedPath = fileManager.ToAbsoluteVirtualPath(path); //DSH+
-				} //DSH+
-
-				return processedPath; //DSH+
-			} //DSH+
-
-			function unquote(quotedValue) { //DSH+
-				var value = quotedValue, //DSH+
-					quoteChar = "", //DSH+
-					firstChar, //DSH+
-					lastChar //DSH+
-					; //DSH+
-
-				if (quotedValue && quotedValue.length >= 2) { //DSH+
-					firstChar = quotedValue.charAt(0); //DSH+
-					lastChar = quotedValue.charAt(quotedValue.length - 1); //DSH+
-
-					if (firstChar === lastChar) { //DSH+
-						value = quotedValue.substring(1, value.length - 1); //DSH+
-						quoteChar = firstChar; //DSH+
-					} //DSH+
-				} //DSH+
-
-				return { value: value, quoteChar: quoteChar }; //DSH+
-			} //DSH+
-
-			function quote(value, quoteChar) { //DSH+
-				var quotedValue = quoteChar + value + quoteChar; //DSH+
-
-				return quotedValue; //DSH+
-			} //DSH+
-
-			function convertPathToAbsoluteInQuotedValue(quotedValue) { //DSH+
-				var processedQuotedValue = quotedValue, //DSH+
-					quotedResult, //DSH+
-					path, //DSH+
-					quoteChar //DSH+
-					; //DSH+
-
-				if (supportsVirtualPaths) { //DSH+
-					quotedResult = unquote(quotedValue); //DSH+
-					path = quotedResult.value; //DSH+
-					quoteChar = quotedResult.quoteChar; //DSH+
-
-					if (path && fileManager.IsAppRelativeVirtualPath(path)) { //DSH+
-						path = fileManager.ToAbsoluteVirtualPath(path); //DSH+
-						processedQuotedValue = quote(path, quoteChar); //DSH+
-					} //DSH+
-				} //DSH+
-
-				return processedQuotedValue; //DSH+
-			} //DSH+
-
-			function isUrlFunction(value) { //DSH+
-				return value && value.length > 6 && value.startsWith(urlFunctionBeginPart)
-					&& value.endsWith(urlFunctionEndPart); //DSH+
-			} //DSH+
-
-			function extractPathFromUrlFunction(value) { //DSH+
-				return value.substring(urlFunctionBeginPart.length, value.length - urlFunctionEndPart.length); //DSH+
-			} //DSH+
-
-			function wrapPathInUrlFunction(value) { //DSH+
-				return urlFunctionBeginPart + value + urlFunctionEndPart; //DSH+
-			} //DSH+
-
-			function convertPathToAbsoluteInUrlFunction(urlfunction) { //DSH+
-				var path, //DSH+
-					processedUrlFunction = urlfunction //DSH+
-					; //DSH+
-
-				if (isUrlFunction(urlfunction) && supportsVirtualPaths) { //DSH+
-					path = extractPathFromUrlFunction(urlfunction); //DSH+
-					if (path && fileManager.IsAppRelativeVirtualPath(path)) { //DSH+
-						path = fileManager.ToAbsoluteVirtualPath(path); //DSH+
-						processedUrlFunction = wrapPathInUrlFunction(path); //DSH+
-					} //DSH+
-				} //DSH+
-
-				return processedUrlFunction; //DSH+
-			} //DSH+
-
-			exports.supportsVirtualPaths = supportsVirtualPaths; //DSH+
-			exports.removeFileSchemeFromPath = removeFileSchemeFromPath; //DSH+
-			exports.convertPathToAbsolute = convertPathToAbsolute; //DSH+
-			exports.convertPathToAbsoluteInUrlFunction = convertPathToAbsoluteInUrlFunction; //DSH+
-			exports.convertPathToAbsoluteInQuotedValue = convertPathToAbsoluteInQuotedValue; //DSH+
-
-			return exports; //DSH+
-		})(fileManager); //DSH+
-
 		var exports = {};
-		exports.removeFileSchemeFromPath = dshUtils.removeFileSchemeFromPath; //DSH+
+		var dsh = { //DSH+
+			fileManagerProxy: null, //DSH+
+			logger: null //DSH+
+		}; //DSH+
 
 		// make sure to keep this as 'var'
 		// we don't want block scoping
@@ -2600,7 +2490,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			env: { }, //DSH+
 
 			cwd: function() { //DSH+
-				return fileManager.GetCurrentDirectory(); //DSH+
+				throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "cwd")); //DSH+
 			}, //DSH+
 			toString: function() { //DSH+
 				return "[object process]"; //DSH+
@@ -2670,7 +2560,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							// For example, it will fail for paths that contain characters that need
 							// to be escaped in URLs.
 							return "file://" + (function() {
-								var cwd = process.cwd();
+								var cwd = /*DSH- process.cwd()*/dsh.fileManagerProxy.getCurrentDirectory();
 								if (process.platform != "win32") return cwd;
 								return "/" + cwd.replace(/\\/g, "/");
 							})() + "/"
@@ -15655,7 +15545,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						t1 = J.getInterceptor$x(options);
 						data = t1.get$data(options);
 						file = X.NullableExtension_andThen0(t1.get$file(options), D.path__absolute$closure());
-						logger = options.dshLogger; //DSH+
+						logger = dsh.logger; //DSH+
 						if (data != null) {
 							t2 = B._parseImporter(options, start);
 							t3 = B._parseFunctions(options, start, false);
@@ -15880,7 +15770,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						/*DSH-
 						sourceMapDirUrl = t4.toUri$1(sourceMapDir).toString$0(0);
 						*/
-						sourceMapDirUrl = t4.toUri$1(sourceMapDir === "." ? D.absolute(".") : dshUtils.convertPathToAbsolute(sourceMapDir)).toString$0(0); // DSH+
+						sourceMapDirUrl = t4.toUri$1(sourceMapDir === "." ? D.absolute(".") : dsh.fileManagerProxy.convertPathToAbsolute(sourceMapDir)).toString$0(0); // DSH+
 						for (t4 = t2.urls, i = 0; i < t4.length; ++i) {
 							source = t4[i];
 							if (source === "stdin")
@@ -16627,7 +16517,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				}, _EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin: function _EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin() {
 				},
 				Style__getPlatformStyle: function() {
-					if (dshUtils.supportsVirtualPaths) //DSH+
+					if (dsh.fileManagerProxy.supportsVirtualPaths) //DSH+
 						return $.$get$Style_url(); //DSH+
 					if (P.Uri_base().get$scheme() !== "file")
 						return $.$get$Style_url();
@@ -24085,6 +23975,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 
 					self.exports.FileLocation = Y.FileLocation; // DSH+
 					self.exports.FileSpan = Y._FileSpan; // DSH+
+					self.exports.dsh = dsh; // DSH+
 				},
 				_wrapMain: function(main) {
 					if (type$.dynamic_Function._is(main))
@@ -35134,7 +35025,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 			M.Context.prototype = {
 				absolute$7: function(part1, part2, part3, part4, part5, part6, part7) {
 					var t1;
-					part1 = dshUtils.convertPathToAbsolute(part1); //DSH+
+					part1 = dsh.fileManagerProxy.convertPathToAbsolute(part1); //DSH+
 					M._validateArgList("absolute", H.setRuntimeTypeInfo([part1, part2, part3, part4, part5, part6, part7], type$.JSArray_nullable_String));
 					if (part2 == null) {
 						t1 = this.style;
@@ -44791,9 +44682,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					/*DSH-
 					return J.readFileSync$2$x(D.fs(), this.path, this.encoding);
 					*/
-					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
-
-					return fileManager.ReadFile(path); //DSH+
+					return dsh.fileManagerProxy.readFile(this.path); //DSH+
 				},
 				$signature: 86
 			};
@@ -44886,9 +44775,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						throw exception;
 					}
 					*/
-					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
-
-					return fileManager.FileExists(path); //DSH+
+					return dsh.fileManagerProxy.fileExists(this.path); //DSH+
 				},
 				$signature: 21
 			};
@@ -49616,7 +49503,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t2 = P.List_List$of(t4, true, t5);
 								t4 = t3._contents;
 								if (t4.length !== 0) { /*DSH+*/
-									t4 = dshUtils.convertPathToAbsoluteInUrlFunction(t4); //DSH+
+									t4 = dsh.fileManagerProxy.convertPathToAbsoluteInUrlFunction(t4); //DSH+
 									t2.push(t4.charCodeAt(0) == 0 ? t4 : t4);
 								} //DSH+
 								result = P.List_List$from(t2, false, t5);
@@ -63383,7 +63270,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				_writeImportUrl$1: function(url) {
 					var urlContents, maybeQuote, _this = this;
-					url = dshUtils.convertPathToAbsoluteInQuotedValue(url); // DSH+
+					url = dsh.fileManagerProxy.convertPathToAbsoluteInQuotedValue(url); // DSH+
 					if (_this._style !== C.OutputStyle_compressed || C.JSString_methods._codeUnitAt$1(url, 0) !== 117) {
 						_this._serialize$_buffer.write$1(0, url);
 						return;
@@ -78581,7 +78468,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 							*/
 							evaluatedValue = argument.accept$1(_this); //DSH+
 							if (isUrlFunction) { //DSH+
-								evaluatedValue.text = dshUtils.convertPathToAbsolute(evaluatedValue.text); //DSH+
+								evaluatedValue.text = dsh.fileManagerProxy.convertPathToAbsolute(evaluatedValue.text); //DSH+
 							} //DSH+
 							t1 += _this._evaluate0$_serialize$3$quote(evaluatedValue, argument, true); //DSH+
 						}
@@ -84927,9 +84814,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 					/*DSH-
 					return J.readFileSync$2$x(D.fs(), this.path, this.encoding);
 					*/
-					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
-
-					return fileManager.ReadFile(path); //DSH+
+					return dsh.fileManagerProxy.readFile(this.path); //DSH+
 				},
 				$signature: 86
 			};
@@ -84951,9 +84836,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 						throw exception;
 					}
 					*/
-					var path = dshUtils.removeFileSchemeFromPath(this.path); //DSH+
-
-					return fileManager.FileExists(path); //DSH+
+					return dsh.fileManagerProxy.fileExists(this.path); //DSH+
 				},
 				$signature: 21
 			};
@@ -88143,7 +88026,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 				},
 				_serialize0$_writeImportUrl$1: function(url) {
 					var urlContents, maybeQuote, _this = this;
-					url = dshUtils.convertPathToAbsoluteInQuotedValue(url); // DSH+
+					url = dsh.fileManagerProxy.convertPathToAbsoluteInQuotedValue(url); // DSH+
 					if (_this._serialize0$_style !== C.OutputStyle_compressed0 || C.JSString_methods._codeUnitAt$1(url, 0) !== 117) {
 						_this._buffer.write$1(0, url);
 						return;
@@ -92352,7 +92235,7 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 								t2 = P.List_List$of(t4, true, t5);
 								t4 = t3._contents;
 								if (t4.length !== 0) { /*DSH+*/
-									t4 = dshUtils.convertPathToAbsoluteInUrlFunction(t4); //DSH+
+									t4 = dsh.fileManagerProxy.convertPathToAbsoluteInUrlFunction(t4); //DSH+
 									t2.push(t4.charCodeAt(0) == 0 ? t4 : t4);
 								} //DSH+
 								result = P.List_List$from(t2, false, t5);
@@ -96924,4 +96807,4 @@ var Sass = (function(fileManager, currentOsPlatformName /*DSH+*/){
 	//#endregion
 
 	return require('/sass.dart.js');
-})(FileManager, CURRENT_OS_PLATFORM_NAME /*DSH+*/);
+})(CURRENT_OS_PLATFORM_NAME /*DSH+*/);

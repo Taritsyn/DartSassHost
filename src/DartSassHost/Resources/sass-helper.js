@@ -1,66 +1,228 @@
-/*global Sass, FileManager, CURRENT_OS_PLATFORM_NAME  */
+/*global Sass, FileManager, CURRENT_OS_PLATFORM_NAME, Map */
 var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined) {
 	'use strict';
 
-	var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/,
+	var dshUtils,
+		DshFileManagerProxy,
 		DshLogger
 		;
 
-	function mix() {
-		var arg,
-			argIndex,
-			propertyName,
-			result = {}
+	//#region dshUtils module
+	dshUtils = (function (currentOsPlatformName, undefined) {
+		var exports = {},
+			fileScheme = 'file://'
 			;
 
-		for (argIndex = 0; argIndex < arguments.length; argIndex++) {
-			arg = arguments[argIndex];
+		function mix() {
+			var arg,
+				argIndex,
+				propertyName,
+				result = {}
+				;
 
-			for (propertyName in arg) {
-				if (arg.hasOwnProperty(propertyName)) {
-					result[propertyName] = arg[propertyName];
+			for (argIndex = 0; argIndex < arguments.length; argIndex++) {
+				arg = arguments[argIndex];
+
+				for (propertyName in arg) {
+					if (arg.hasOwnProperty(propertyName)) {
+						result[propertyName] = arg[propertyName];
+					}
 				}
 			}
+
+			return result;
 		}
 
-		return result;
-	}
+		function removeFileSchemeFromPath(path) {
+			var processedPath = path;
 
-	function fixIncludedFilePaths(paths) {
-		var fixedPaths,
-			currentDirectory,
-			path,
-			pathIndex
+			if (path && path.startsWith(fileScheme)) {
+				processedPath = path.substring(fileScheme.length);
+			}
+
+			return processedPath;
+		}
+
+		function getCanonicalFilePath(path) {
+			var canonicalPath = path.replace(/\\/g, '/');
+			if (currentOsPlatformName === 'win32') {
+				canonicalPath = canonicalPath.toLowerCase();
+			}
+
+			return canonicalPath;
+		}
+
+		exports.mix = mix;
+		exports.removeFileSchemeFromPath = removeFileSchemeFromPath;
+		exports.getCanonicalFilePath = getCanonicalFilePath;
+
+		return exports;
+	})(currentOsPlatformName);
+	//#endregion
+
+	//#region DshFileManagerProxy class
+	DshFileManagerProxy = (function (dshUtils, undefined) {
+		var urlFunctionBeginPart = 'url(',
+			urlFunctionEndPart = ')'
 			;
 
-		if (paths.length == 0) {
-			return paths;
-		}
+		function unquote(quotedValue) {
+			var value = quotedValue,
+				quoteChar = '',
+				firstChar,
+				lastChar
+				;
 
-		currentDirectory = getCanonicalFilePath(fileManager.GetCurrentDirectory());
-		fixedPaths = [];
+			if (quotedValue && quotedValue.length >= 2) {
+				firstChar = quotedValue.charAt(0);
+				lastChar = quotedValue.charAt(quotedValue.length - 1);
 
-		for (pathIndex = 0; pathIndex < paths.length; pathIndex++) {
-			path = sass.removeFileSchemeFromPath(paths[pathIndex]);
-			if (getCanonicalFilePath(path) !== currentDirectory) {
-				fixedPaths.push(path);
+				if (firstChar === lastChar) {
+					value = quotedValue.substring(1, value.length - 1);
+					quoteChar = firstChar;
+				}
 			}
+
+			return { value: value, quoteChar: quoteChar };
 		}
 
-		return fixedPaths;
-	}
+		function quote(value, quoteChar) {
+			var quotedValue = quoteChar + value + quoteChar;
 
-	function getCanonicalFilePath(path) {
-		var canonicalPath = path.replace(/\\/g, '/');
-		if (currentOsPlatformName === 'win32') {
-			canonicalPath = canonicalPath.toLowerCase();
+			return quotedValue;
 		}
 
-		return canonicalPath;
-	}
+		function isUrlFunction(value) {
+			return value && value.length > 6 && value.startsWith(urlFunctionBeginPart)
+				&& value.endsWith(urlFunctionEndPart);
+		}
+
+		function extractPathFromUrlFunction(value) {
+			return value.substring(urlFunctionBeginPart.length, value.length - urlFunctionEndPart.length);
+		}
+
+		function wrapPathInUrlFunction(value) {
+			return urlFunctionBeginPart + value + urlFunctionEndPart;
+		}
+
+
+		function DshFileManagerProxy(fileManager) {
+			this._fileManager = fileManager;
+			this._currentDirectory = fileManager.GetCurrentDirectory();
+			this._fileExistenceCache = new Map();
+			this._fileContentCache = new Map();
+
+			this.supportsVirtualPaths = fileManager.SupportsVirtualPaths;
+		}
+
+
+		DshFileManagerProxy.prototype.getCurrentDirectory = function () {
+			return this._currentDirectory;
+		};
+
+		DshFileManagerProxy.prototype.convertPathToAbsolute = function (path) {
+			var processedPath = path;
+
+			if (path && this.supportsVirtualPaths && this._fileManager.IsAppRelativeVirtualPath(path)) {
+				processedPath = this._fileManager.ToAbsoluteVirtualPath(path);
+			}
+
+			return processedPath;
+		};
+
+		DshFileManagerProxy.prototype.convertPathToAbsoluteInQuotedValue = function (quotedValue) {
+			var processedQuotedValue = quotedValue,
+				quotedResult,
+				path,
+				quoteChar
+				;
+
+			if (this.supportsVirtualPaths) {
+				quotedResult = unquote(quotedValue);
+				path = quotedResult.value;
+				quoteChar = quotedResult.quoteChar;
+
+				if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
+					path = this._fileManager.ToAbsoluteVirtualPath(path);
+					processedQuotedValue = quote(path, quoteChar);
+				}
+			}
+
+			return processedQuotedValue;
+		};
+
+		DshFileManagerProxy.prototype.convertPathToAbsoluteInUrlFunction = function (urlfunction) {
+			var path,
+				processedUrlFunction = urlfunction
+				;
+
+			if (isUrlFunction(urlfunction) && this.supportsVirtualPaths) {
+				path = extractPathFromUrlFunction(urlfunction);
+				if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
+					path = this._fileManager.ToAbsoluteVirtualPath(path);
+					processedUrlFunction = wrapPathInUrlFunction(path);
+				}
+			}
+
+			return processedUrlFunction;
+		};
+
+		DshFileManagerProxy.prototype.fileExists = function (path) {
+			var processedPath,
+				cacheItemName,
+				result
+				;
+
+			processedPath = dshUtils.removeFileSchemeFromPath(path);
+			cacheItemName = dshUtils.getCanonicalFilePath(processedPath);
+
+			if (this._fileExistenceCache.has(cacheItemName)) {
+				result = this._fileExistenceCache.get(cacheItemName);
+			}
+			else {
+				result = this._fileManager.FileExists(processedPath);
+				this._fileExistenceCache.set(cacheItemName, result);
+			}
+
+			return result;
+		};
+
+		DshFileManagerProxy.prototype.readFile = function (path) {
+			var processedPath,
+				cacheItemName,
+				content
+				;
+
+			processedPath = dshUtils.removeFileSchemeFromPath(path);
+			cacheItemName = dshUtils.getCanonicalFilePath(processedPath);
+
+			if (this._fileContentCache.has(cacheItemName)) {
+				content = this._fileContentCache.get(cacheItemName);
+			}
+			else {
+				content = this._fileManager.ReadFile(processedPath);
+				this._fileContentCache.set(cacheItemName, content);
+			}
+
+			return content;
+		};
+
+		DshFileManagerProxy.prototype.dispose = function () {
+			this._fileManager = null;
+
+			this._fileExistenceCache.clear();
+			this._fileExistenceCache = null;
+
+			this._fileContentCache.clear();
+			this._fileContentCache = null;
+		};
+
+		return DshFileManagerProxy;
+	})(dshUtils);
+	//#endregion
 
 	//#region DshLogger class
-	DshLogger = (function () {
+	DshLogger = (function (sass, currentOsPlatformName, dshUtils, undefined) {
 		var pathWithDriveLetterRegEx = /^[/\\]?[a-zA-z]:[/\\]/;
 
 		function fixAbsolutePath(path) {
@@ -70,7 +232,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				return path;
 			}
 
-			processedPath = sass.removeFileSchemeFromPath(path);
+			processedPath = dshUtils.removeFileSchemeFromPath(path);
 
 			if (pathWithDriveLetterRegEx.test(processedPath)
 				&& (processedPath.startsWith('/') || processedPath.startsWith('\\'))) {
@@ -203,128 +365,169 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		};
 
 		return DshLogger;
-	})();
+	})(sass, currentOsPlatformName, dshUtils);
 	//#endregion
 
 	//#region SassHelper class
-	function SassHelper(options) {
-		this._options = options || {};
-	}
+	SassHelper = (function (sass, fileManager, DshFileManagerProxy, DshLogger, dshUtils, undefined) {
+		var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/;
 
-	SassHelper.getVersion = function() {
-		var version = '0.0.0',
-			versionMatch
-			;
+		function fixIncludedPaths(paths, currentDirectory) {
+			var fixedPaths,
+				path,
+				pathIndex,
+				canonicalCurrentDirectory
+				;
 
-		versionMatch = sass.info.match(versionRegEx);
-		if (versionMatch) {
-			version = versionMatch[1];
-		}
-
-		return version;
-	};
-
-	function innerCompile(compilationOptions) {
-		var result,
-			compilationResult,
-			compiledContent = '',
-			sourceMap = '',
-			includedFilePaths = [],
-			errors = [],
-			warnings = [],
-			warningSources = {},
-			logger
-			;
-
-		logger = new DshLogger();
-		compilationOptions.dshLogger = logger;
-
-		try
-		{
-			compilationResult = sass.renderSync(compilationOptions);
-			compiledContent = compilationResult.css || '';
-			sourceMap = compilationResult.map ? compilationResult.map : '';
-			includedFilePaths = fixIncludedFilePaths(compilationResult.stats.includedFiles);
-			warnings = logger.getWarnings();
-			warningSources = logger.getSources();
-		}
-		catch (e)
-		{
-			if (e.formatted) {
-				errors.push({
-					'message': e.message,
-					'description': e.description || e.message,
-					'type': e.name || '',
-					'file': e.file ? sass.removeFileSchemeFromPath(e.file) : '',
-					'lineNumber': e.line || 0,
-					'columnNumber': e.column || 0,
-					'source': e.source || '',
-					'status': e.status
-				});
+			if (paths.length == 0) {
+				return paths;
 			}
-			else {
-				throw (e);
+
+			canonicalCurrentDirectory = dshUtils.getCanonicalFilePath(currentDirectory);
+			fixedPaths = [];
+
+			for (pathIndex = 0; pathIndex < paths.length; pathIndex++) {
+				path = dshUtils.removeFileSchemeFromPath(paths[pathIndex]);
+				if (dshUtils.getCanonicalFilePath(path) !== canonicalCurrentDirectory) {
+					fixedPaths.push(path);
+				}
 			}
+
+			return fixedPaths;
 		}
 
-		result = {
-			compiledContent: compiledContent,
-			sourceMap: sourceMap,
-			includedFilePaths: includedFilePaths
+		function innerCompile(compilationOptions) {
+			var result,
+				compilationResult,
+				compiledContent = '',
+				sourceMap = '',
+				includedFilePaths = [],
+				errors = [],
+				warnings = [],
+				warningSources = {},
+				fileManagerProxy,
+				logger
+				;
+
+			fileManagerProxy = new DshFileManagerProxy(fileManager);
+			logger = new DshLogger();
+
+			sass.dsh.fileManagerProxy = fileManagerProxy;
+			sass.dsh.logger = logger;
+
+			try
+			{
+				compilationResult = sass.renderSync(compilationOptions);
+				compiledContent = compilationResult.css || '';
+				sourceMap = compilationResult.map ? compilationResult.map : '';
+				includedFilePaths = fixIncludedPaths(compilationResult.stats.includedFiles,
+					fileManagerProxy.getCurrentDirectory());
+				warnings = logger.getWarnings();
+				warningSources = logger.getSources();
+			}
+			catch (e)
+			{
+				if (e.formatted) {
+					errors.push({
+						'message': e.message,
+						'description': e.description || e.message,
+						'type': e.name || '',
+						'file': e.file ? dshUtils.removeFileSchemeFromPath(e.file) : '',
+						'lineNumber': e.line || 0,
+						'columnNumber': e.column || 0,
+						'source': e.source || '',
+						'status': e.status
+					});
+				}
+				else {
+					throw (e);
+				}
+			}
+			finally {
+				fileManagerProxy.dispose();
+				sass.dsh.fileManagerProxy = null;
+
+				logger.dispose();
+				sass.dsh.logger = null;
+			}
+
+			result = {
+				compiledContent: compiledContent,
+				sourceMap: sourceMap,
+				includedFilePaths: includedFilePaths
+			};
+			if (errors.length > 0) {
+				result.errors = errors;
+			}
+			if (warnings.length > 0) {
+				result.warningSources = warningSources;
+				result.warnings = warnings;
+			}
+
+			return JSON.stringify(result);
+		}
+
+
+		function SassHelper(options) {
+			this._options = options || {};
+		}
+
+
+		SassHelper.getVersion = function() {
+			var version = '0.0.0',
+				versionMatch
+				;
+
+			versionMatch = sass.info.match(versionRegEx);
+			if (versionMatch) {
+				version = versionMatch[1];
+			}
+
+			return version;
 		};
-		if (errors.length > 0) {
-			result.errors = errors;
-		}
-		if (warnings.length > 0) {
-			result.warningSources = warningSources;
-			result.warnings = warnings;
-		}
 
-		compilationOptions.dshLogger = null;
-		logger.dispose();
+		SassHelper.prototype.compile = function (content, indentedSyntax, inputPath, outputPath, sourceMapPath, options) {
+			var currentOptions,
+				compilationOptions,
+				optionsFromParameters
+				;
 
-		return JSON.stringify(result);
-	}
+			currentOptions = options || this._options;
+			optionsFromParameters = {
+				data: content,
+				indentedSyntax: indentedSyntax,
+				file: inputPath,
+				outFile: outputPath
+			};
+			if (currentOptions.sourceMap) {
+				optionsFromParameters.sourceMap = sourceMapPath ? sourceMapPath : true;
+			}
+			compilationOptions = dshUtils.mix(currentOptions, optionsFromParameters);
 
-	SassHelper.prototype.compile = function (content, indentedSyntax, inputPath, outputPath, sourceMapPath, options) {
-		var currentOptions,
-			compilationOptions,
-			optionsFromParameters
-			;
-
-		currentOptions = options || this._options;
-		optionsFromParameters = {
-			data: content,
-			indentedSyntax: indentedSyntax,
-			file: inputPath,
-			outFile: outputPath
+			return innerCompile(compilationOptions);
 		};
-		if (currentOptions.sourceMap) {
-			optionsFromParameters.sourceMap = sourceMapPath ? sourceMapPath : true;
-		}
-		compilationOptions = mix(currentOptions, optionsFromParameters);
 
-		return innerCompile(compilationOptions);
-	};
+		SassHelper.prototype.compileFile = function (inputPath, outputPath, sourceMapPath, options) {
+			var currentOptions,
+				compilationOptions,
+				optionsFromParameters
+				;
 
-	SassHelper.prototype.compileFile = function (inputPath, outputPath, sourceMapPath, options) {
-		var currentOptions,
-			compilationOptions,
-			optionsFromParameters
-			;
+			currentOptions = options || this._options;
+			optionsFromParameters = {
+				file: inputPath,
+				outFile: outputPath
+			};
+			if (currentOptions.sourceMap) {
+				optionsFromParameters.sourceMap = sourceMapPath ? sourceMapPath : true;
+			}
+			compilationOptions = dshUtils.mix(currentOptions, optionsFromParameters);
 
-		currentOptions = options || this._options;
-		optionsFromParameters = {
-			file: inputPath,
-			outFile: outputPath
+			return innerCompile(compilationOptions);
 		};
-		if (currentOptions.sourceMap) {
-			optionsFromParameters.sourceMap = sourceMapPath ? sourceMapPath : true;
-		}
-		compilationOptions = mix(currentOptions, optionsFromParameters);
 
-		return innerCompile(compilationOptions);
-	};
+		return SassHelper;
+	})(sass, fileManager, DshFileManagerProxy, DshLogger, dshUtils);
 	//#endregion
 
 	return SassHelper;
