@@ -4,7 +4,7 @@
     "hoist_vars": true,
     "passes": 2
   },
-  "mangle": false,
+  "mangle": {},
   "output": {
     "comments": "/^!/"
   }
