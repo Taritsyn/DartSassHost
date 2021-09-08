@@ -5,13 +5,14 @@
     "@babel/cli": "7.12.17",
     "@babel/core": "7.12.17",
     "@babel/preset-env": "7.12.17",
-    "uglify-js": "3.14.1"
+    "esbuild": "0.12.25",
+    "uglify-js": "3.14.2"
   },
   "scripts": {
     "transpile-sass-combined-es6": "babel --out-dir ./Resources --config-file ./.babelrc ./Resources/sass-combined.es6",
-    "minify-es6-polyfills-js": "uglifyjs ./Resources/es6-polyfills.js --output ./Resources/es6-polyfills.min.js --config-file ./.uglifyjsrc",
-    "minify-sass-combined-js": "uglifyjs ./Resources/sass-combined.js --output ./Resources/sass-combined.min.js --config-file ./.uglifyjsrc --keep-fnames",
-    "minify-sass-helper-js": "uglifyjs ./Resources/sass-helper.js --output ./Resources/sass-helper.min.js --config-file ./.uglifyjsrc",
+    "minify-es6-polyfills-js": "uglifyjs ./Resources/es6-polyfills.js --output ./Resources/es6-polyfills.min.js --config-file ./.uglifyjsrc --mangle",
+    "minify-sass-combined-js": "uglifyjs ./Resources/sass-combined.js --config-file ./.uglifyjsrc | esbuild --minify --target=es5 --log-level=warning > ./Resources/sass-combined.min.js",
+    "minify-sass-helper-js": "uglifyjs ./Resources/sass-helper.js --output ./Resources/sass-helper.min.js --config-file ./.uglifyjsrc --mangle",
     "transpile-es6": "npm run -s transpile-sass-combined-es6",
     "minify-js": "npm run -s minify-es6-polyfills-js && npm run -s minify-sass-combined-js && npm run -s minify-sass-helper-js"
   }
