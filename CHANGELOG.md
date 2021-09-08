@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v1.0.0 Preview 6 - September 8, 2021
+ * Reduced a number of accesses to the file system due to caching
+
 ## v1.0.0 Preview 5 - September 1, 2021
  * Now, when reading a script code from the embedded resources, caching is performed
  * Optimized a source code fetching for warnings
