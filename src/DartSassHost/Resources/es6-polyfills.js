@@ -499,13 +499,94 @@
     }
   });
 
+  var _wks = {exports: {}};
+
+  var store = _shared.exports('wks');
+  var uid$3 = _uid;
+  var Symbol = _global.exports.Symbol;
+  var USE_SYMBOL = typeof Symbol == 'function';
+
+  var $exports = _wks.exports = function (name) {
+    return store[name] || (store[name] =
+      USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid$3)('Symbol.' + name));
+  };
+
+  $exports.store = store;
+
+  // 7.2.8 IsRegExp(argument)
+  var isObject$9 = _isObject;
+  var cof$4 = _cof;
+  var MATCH$1 = _wks.exports('match');
+  var _isRegexp = function (it) {
+    var isRegExp;
+    return isObject$9(it) && ((isRegExp = it[MATCH$1]) !== undefined ? !!isRegExp : cof$4(it) == 'RegExp');
+  };
+
+  // helper for String#{startsWith, endsWith, includes}
+  var isRegExp$2 = _isRegexp;
+  var defined$4 = _defined;
+
+  var _stringContext = function (that, searchString, NAME) {
+    if (isRegExp$2(searchString)) throw TypeError('String#' + NAME + " doesn't accept regex!");
+    return String(defined$4(that));
+  };
+
+  var MATCH = _wks.exports('match');
+  var _failsIsRegexp = function (KEY) {
+    var re = /./;
+    try {
+      '/./'[KEY](re);
+    } catch (e) {
+      try {
+        re[MATCH] = false;
+        return !'/./'[KEY](re);
+      } catch (f) { /* empty */ }
+    } return true;
+  };
+
+  var $export$f = _export;
+  var toLength$b = _toLength;
+  var context$2 = _stringContext;
+  var ENDS_WITH = 'endsWith';
+  var $endsWith = ''[ENDS_WITH];
+
+  $export$f($export$f.P + $export$f.F * _failsIsRegexp(ENDS_WITH), 'String', {
+    endsWith: function endsWith(searchString /* , endPosition = @length */) {
+      var that = context$2(this, searchString, ENDS_WITH);
+      var endPosition = arguments.length > 1 ? arguments[1] : undefined;
+      var len = toLength$b(that.length);
+      var end = endPosition === undefined ? len : Math.min(toLength$b(endPosition), len);
+      var search = String(searchString);
+      return $endsWith
+        ? $endsWith.call(that, search, end)
+        : that.slice(end - search.length, end) === search;
+    }
+  });
+
+  var $export$e = _export;
+  var toLength$a = _toLength;
+  var context$1 = _stringContext;
+  var STARTS_WITH = 'startsWith';
+  var $startsWith = ''[STARTS_WITH];
+
+  $export$e($export$e.P + $export$e.F * _failsIsRegexp(STARTS_WITH), 'String', {
+    startsWith: function startsWith(searchString /* , position = 0 */) {
+      var that = context$1(this, searchString, STARTS_WITH);
+      var index = toLength$a(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
+      var search = String(searchString);
+      return $startsWith
+        ? $startsWith.call(that, search, index)
+        : that.slice(index, index + search.length) === search;
+    }
+  });
+
   var _typedArray = {exports: {}};
 
   var global$8 = _global.exports;
   var hide$4 = _hide;
-  var uid$3 = _uid;
-  var TYPED = uid$3('typed_array');
-  var VIEW$1 = uid$3('view');
+  var uid$2 = _uid;
+  var TYPED = uid$2('typed_array');
+  var VIEW$1 = uid$2('view');
   var ABV = !!(global$8.ArrayBuffer && global$8.DataView);
   var CONSTR = ABV;
   var i$2 = 0;
@@ -546,11 +627,11 @@
 
   // https://tc39.github.io/ecma262/#sec-toindex
   var toInteger$3 = _toInteger;
-  var toLength$b = _toLength;
+  var toLength$9 = _toLength;
   var _toIndex = function (it) {
     if (it === undefined) return 0;
     var number = toInteger$3(it);
-    var length = toLength$b(number);
+    var length = toLength$9(number);
     if (number !== length) throw RangeError('Wrong length!');
     return length;
   };
@@ -566,17 +647,17 @@
   };
 
   // 7.1.13 ToObject(argument)
-  var defined$4 = _defined;
+  var defined$3 = _defined;
   var _toObject = function (it) {
-    return Object(defined$4(it));
+    return Object(defined$3(it));
   };
 
   var toObject$7 = _toObject;
   var toAbsoluteIndex$3 = _toAbsoluteIndex;
-  var toLength$a = _toLength;
+  var toLength$8 = _toLength;
   var _arrayFill = function fill(value /* , start = 0, end = @length */) {
     var O = toObject$7(this);
-    var length = toLength$a(O.length);
+    var length = toLength$8(O.length);
     var aLen = arguments.length;
     var index = toAbsoluteIndex$3(aLen > 1 ? arguments[1] : undefined, length);
     var end = aLen > 2 ? arguments[2] : undefined;
@@ -584,20 +665,6 @@
     while (endPos > index) O[index++] = value;
     return O;
   };
-
-  var _wks = {exports: {}};
-
-  var store = _shared.exports('wks');
-  var uid$2 = _uid;
-  var Symbol = _global.exports.Symbol;
-  var USE_SYMBOL = typeof Symbol == 'function';
-
-  var $exports = _wks.exports = function (name) {
-    return store[name] || (store[name] =
-      USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid$2)('Symbol.' + name));
-  };
-
-  $exports.store = store;
 
   var def = _objectDp.f;
   var has$6 = _has;
@@ -885,10 +952,10 @@
   }(_typedBuffer));
 
   // getting tag from 19.1.3.6 Object.prototype.toString()
-  var cof$4 = _cof;
+  var cof$3 = _cof;
   var TAG$1 = _wks.exports('toStringTag');
   // ES3 wrong here
-  var ARG = cof$4(function () { return arguments; }()) == 'Arguments';
+  var ARG = cof$3(function () { return arguments; }()) == 'Arguments';
 
   // fallback for IE11 Script Access Denied error
   var tryGet = function (it, key) {
@@ -903,9 +970,9 @@
       // @@toStringTag case
       : typeof (T = tryGet(O = Object(it), TAG$1)) == 'string' ? T
       // builtinTag case
-      : ARG ? cof$4(O)
+      : ARG ? cof$3(O)
       // ES3 arguments fallback
-      : (B = cof$4(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+      : (B = cof$3(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
   };
 
   var _iterators = {};
@@ -943,12 +1010,12 @@
   };
 
   // 7.2.2 IsArray(argument)
-  var cof$3 = _cof;
+  var cof$2 = _cof;
   var _isArray = Array.isArray || function isArray(arg) {
-    return cof$3(arg) == 'Array';
+    return cof$2(arg) == 'Array';
   };
 
-  var isObject$9 = _isObject;
+  var isObject$8 = _isObject;
   var isArray$1 = _isArray;
   var SPECIES$3 = _wks.exports('species');
 
@@ -958,7 +1025,7 @@
       C = original.constructor;
       // cross-realm fallback
       if (typeof C == 'function' && (C === Array || isArray$1(C.prototype))) C = undefined;
-      if (isObject$9(C)) {
+      if (isObject$8(C)) {
         C = C[SPECIES$3];
         if (C === null) C = undefined;
       }
@@ -982,7 +1049,7 @@
   var ctx$3 = _ctx;
   var IObject = _iobject;
   var toObject$5 = _toObject;
-  var toLength$9 = _toLength;
+  var toLength$7 = _toLength;
   var asc = _arraySpeciesCreate;
   var _arrayMethods = function (TYPE, $create) {
     var IS_MAP = TYPE == 1;
@@ -996,7 +1063,7 @@
       var O = toObject$5($this);
       var self = IObject(O);
       var f = ctx$3(callbackfn, that, 3);
-      var length = toLength$9(self.length);
+      var length = toLength$7(self.length);
       var index = 0;
       var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
       var val, res;
@@ -1052,7 +1119,7 @@
     setToStringTag$3(Constructor, NAME + ' Iterator');
   };
 
-  var $export$f = _export;
+  var $export$d = _export;
   var redefine$4 = _redefine.exports;
   var hide$3 = _hide;
   var Iterators$3 = _iterators;
@@ -1115,7 +1182,7 @@
       };
       if (FORCED) for (key in methods) {
         if (!(key in proto)) redefine$4(proto, key, methods[key]);
-      } else $export$f($export$f.P + $export$f.F * (BUGGY || VALUES_BUG), NAME, methods);
+      } else $export$d($export$d.P + $export$d.F * (BUGGY || VALUES_BUG), NAME, methods);
     }
     return methods;
   };
@@ -1192,11 +1259,11 @@
 
   var toObject$4 = _toObject;
   var toAbsoluteIndex$2 = _toAbsoluteIndex;
-  var toLength$8 = _toLength;
+  var toLength$6 = _toLength;
 
   var _arrayCopyWithin = [].copyWithin || function copyWithin(target /* = 0 */, start /* = 0, end = @length */) {
     var O = toObject$4(this);
-    var len = toLength$8(O.length);
+    var len = toLength$6(O.length);
     var to = toAbsoluteIndex$2(target, len);
     var from = toAbsoluteIndex$2(start, len);
     var end = arguments.length > 2 ? arguments[2] : undefined;
@@ -1242,7 +1309,7 @@
     var LIBRARY = _library;
     var global$6 = _global.exports;
     var fails$7 = _fails;
-    var $export$e = _export;
+    var $export$c = _export;
     var $typed = _typed;
     var $buffer = _typedBuffer;
     var ctx$2 = _ctx;
@@ -1251,13 +1318,13 @@
     var hide$2 = _hide;
     var redefineAll$2 = _redefineAll;
     var toInteger$2 = _toInteger;
-    var toLength$7 = _toLength;
+    var toLength$5 = _toLength;
     var toIndex = _toIndex;
     var toAbsoluteIndex$1 = _toAbsoluteIndex;
     var toPrimitive$2 = _toPrimitive;
     var has$3 = _has;
     var classof$2 = _classof;
-    var isObject$8 = _isObject;
+    var isObject$7 = _isObject;
     var toObject$3 = _toObject;
     var isArrayIter$1 = _isArrayIter;
     var create$1 = _objectCreate;
@@ -1337,12 +1404,12 @@
     };
 
     var validate$2 = function (it) {
-      if (isObject$8(it) && TYPED_ARRAY in it) return it;
+      if (isObject$7(it) && TYPED_ARRAY in it) return it;
       throw TypeError$1(it + ' is not a typed array!');
     };
 
     var allocate = function (C, length) {
-      if (!(isObject$8(C) && TYPED_CONSTRUCTOR in C)) {
+      if (!(isObject$7(C) && TYPED_CONSTRUCTOR in C)) {
         throw TypeError$1('It is not a typed array constructor!');
       } return new C(length);
     };
@@ -1376,7 +1443,7 @@
         } O = values;
       }
       if (mapping && aLen > 2) mapfn = ctx$2(mapfn, arguments[2], 2);
-      for (i = 0, length = toLength$7(O.length), result = allocate(this, length); length > i; i++) {
+      for (i = 0, length = toLength$5(O.length), result = allocate(this, length); length > i; i++) {
         result[i] = mapping ? mapfn(O[i], i) : O[i];
       }
       return result;
@@ -1466,7 +1533,7 @@
         return new (speciesConstructor$1(O, O[DEF_CONSTRUCTOR]))(
           O.buffer,
           O.byteOffset + $begin * O.BYTES_PER_ELEMENT,
-          toLength$7((end === undefined ? length : toAbsoluteIndex$1(end, length)) - $begin)
+          toLength$5((end === undefined ? length : toAbsoluteIndex$1(end, length)) - $begin)
         );
       }
     };
@@ -1480,7 +1547,7 @@
       var offset = toOffset(arguments[1], 1);
       var length = this.length;
       var src = toObject$3(arrayLike);
-      var len = toLength$7(src.length);
+      var len = toLength$5(src.length);
       var index = 0;
       if (len + offset > length) throw RangeError$1(WRONG_LENGTH);
       while (index < len) this[offset + index] = src[index++];
@@ -1499,7 +1566,7 @@
     };
 
     var isTAIndex = function (target, key) {
-      return isObject$8(target)
+      return isObject$7(target)
         && target[TYPED_ARRAY]
         && typeof key != 'symbol'
         && key in target
@@ -1512,7 +1579,7 @@
     };
     var $setDesc = function defineProperty(target, key, desc) {
       if (isTAIndex(target, key = toPrimitive$2(key, true))
-        && isObject$8(desc)
+        && isObject$7(desc)
         && has$3(desc, 'value')
         && !has$3(desc, 'get')
         && !has$3(desc, 'set')
@@ -1531,7 +1598,7 @@
       $DP$1.f = $setDesc;
     }
 
-    $export$e($export$e.S + $export$e.F * !ALL_CONSTRUCTORS, 'Object', {
+    $export$c($export$c.S + $export$c.F * !ALL_CONSTRUCTORS, 'Object', {
       getOwnPropertyDescriptor: $getDesc,
       defineProperty: $setDesc
     });
@@ -1598,7 +1665,7 @@
           var index = 0;
           var offset = 0;
           var buffer, byteLength, length, klass;
-          if (!isObject$8(data)) {
+          if (!isObject$7(data)) {
             length = toIndex(data);
             byteLength = length * BYTES;
             buffer = new $ArrayBuffer(byteLength);
@@ -1611,7 +1678,7 @@
               byteLength = $len - offset;
               if (byteLength < 0) throw RangeError$1(WRONG_LENGTH);
             } else {
-              byteLength = toLength$7($length) * BYTES;
+              byteLength = toLength$5($length) * BYTES;
               if (byteLength + offset > $len) throw RangeError$1(WRONG_LENGTH);
             }
             length = byteLength / BYTES;
@@ -1646,7 +1713,7 @@
           var klass;
           // `ws` module bug, temporarily remove validation length for Uint8Array
           // https://github.com/websockets/ws/pull/645
-          if (!isObject$8(data)) return new Base(toIndex(data));
+          if (!isObject$7(data)) return new Base(toIndex(data));
           if (data instanceof $ArrayBuffer || (klass = classof$2(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
             return $length !== undefined
               ? new Base(data, toOffset($offset, BYTES), $length)
@@ -1680,34 +1747,34 @@
 
       O[NAME] = TypedArray;
 
-      $export$e($export$e.G + $export$e.W + $export$e.F * (TypedArray != Base), O);
+      $export$c($export$c.G + $export$c.W + $export$c.F * (TypedArray != Base), O);
 
-      $export$e($export$e.S, NAME, {
+      $export$c($export$c.S, NAME, {
         BYTES_PER_ELEMENT: BYTES
       });
 
-      $export$e($export$e.S + $export$e.F * fails$7(function () { Base.of.call(TypedArray, 1); }), NAME, {
+      $export$c($export$c.S + $export$c.F * fails$7(function () { Base.of.call(TypedArray, 1); }), NAME, {
         from: $from,
         of: $of
       });
 
       if (!(BYTES_PER_ELEMENT in TypedArrayPrototype)) hide$2(TypedArrayPrototype, BYTES_PER_ELEMENT, BYTES);
 
-      $export$e($export$e.P, NAME, proto$3);
+      $export$c($export$c.P, NAME, proto$3);
 
       setSpecies$1(NAME);
 
-      $export$e($export$e.P + $export$e.F * FORCED_SET, NAME, { set: $set });
+      $export$c($export$c.P + $export$c.F * FORCED_SET, NAME, { set: $set });
 
-      $export$e($export$e.P + $export$e.F * !CORRECT_ITER_NAME, NAME, $iterators$1);
+      $export$c($export$c.P + $export$c.F * !CORRECT_ITER_NAME, NAME, $iterators$1);
 
       if (!LIBRARY && TypedArrayPrototype.toString != arrayToString) TypedArrayPrototype.toString = arrayToString;
 
-      $export$e($export$e.P + $export$e.F * fails$7(function () {
+      $export$c($export$c.P + $export$c.F * fails$7(function () {
         new TypedArray(1).slice();
       }), NAME, { slice: $slice });
 
-      $export$e($export$e.P + $export$e.F * (fails$7(function () {
+      $export$c($export$c.P + $export$c.F * (fails$7(function () {
         return [1, 2].toLocaleString() != new TypedArray([1, 2]).toLocaleString();
       }) || !fails$7(function () {
         TypedArrayPrototype.toLocaleString.call([1, 2]);
@@ -1776,8 +1843,8 @@
   var _stringWs = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
     '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
-  var $export$d = _export;
-  var defined$3 = _defined;
+  var $export$b = _export;
+  var defined$2 = _defined;
   var fails$6 = _fails;
   var spaces = _stringWs;
   var space = '[' + spaces + ']';
@@ -1792,14 +1859,14 @@
     });
     var fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
     if (ALIAS) exp[ALIAS] = fn;
-    $export$d($export$d.P + $export$d.F * FORCE, 'String', exp);
+    $export$b($export$b.P + $export$b.F * FORCE, 'String', exp);
   };
 
   // 1 -> String#trimLeft
   // 2 -> String#trimRight
   // 3 -> String#trim
   var trim = exporter.trim = function (string, TYPE) {
-    string = String(defined$3(string));
+    string = String(defined$2(string));
     if (TYPE & 1) string = string.replace(ltrim, '');
     if (TYPE & 2) string = string.replace(rtrim, '');
     return string;
@@ -1814,25 +1881,6 @@
     };
   }, 'trimEnd');
 
-  var fails$5 = _fails;
-
-  var _strictMethod = function (method, arg) {
-    return !!method && fails$5(function () {
-      // eslint-disable-next-line no-useless-call
-      arg ? method.call(null, function () { /* empty */ }, 1) : method.call(null);
-    });
-  };
-
-  var $export$c = _export;
-  var $map = _arrayMethods(1);
-
-  $export$c($export$c.P + $export$c.F * !_strictMethod([].map, true), 'Array', {
-    // 22.1.3.15 / 15.4.4.19 Array.prototype.map(callbackfn [, thisArg])
-    map: function map(callbackfn /* , thisArg */) {
-      return $map(this, callbackfn, arguments[1]);
-    }
-  });
-
   _typedArray.exports('Uint32', 4, function (init) {
     return function Uint32Array(data, byteOffset, length) {
       return init(this, data, byteOffset, length);
@@ -1840,12 +1888,12 @@
   });
 
   var toInteger$1 = _toInteger;
-  var defined$2 = _defined;
+  var defined$1 = _defined;
   // true  -> String#at
   // false -> String#codePointAt
   var _stringAt = function (TO_STRING) {
     return function (that, pos) {
-      var s = String(defined$2(that));
+      var s = String(defined$1(that));
       var i = toInteger$1(pos);
       var l = s.length;
       var a, b;
@@ -1893,7 +1941,7 @@
   var call = _iterCall;
   var isArrayIter = _isArrayIter;
   var anObject$6 = _anObject;
-  var toLength$6 = _toLength;
+  var toLength$4 = _toLength;
   var getIterFn = core_getIteratorMethod;
   var BREAK = {};
   var RETURN = {};
@@ -1904,7 +1952,7 @@
     var length, step, iterator, result;
     if (typeof iterFn != 'function') throw TypeError(iterable + ' is not iterable!');
     // fast case for arrays with default iterator
-    if (isArrayIter(iterFn)) for (length = toLength$6(iterable.length); length > index; index++) {
+    if (isArrayIter(iterFn)) for (length = toLength$4(iterable.length); length > index; index++) {
       result = entries ? f(anObject$6(step = iterable[index])[0], step[1]) : f(iterable[index]);
       if (result === BREAK || result === RETURN) return result;
     } else for (iterator = iterFn.call(iterable); !(step = iterator.next()).done;) {
@@ -1918,7 +1966,7 @@
   var _meta = {exports: {}};
 
   var META$1 = _uid('meta');
-  var isObject$7 = _isObject;
+  var isObject$6 = _isObject;
   var has$2 = _has;
   var setDesc = _objectDp.f;
   var id = 0;
@@ -1936,7 +1984,7 @@
   };
   var fastKey$1 = function (it, create) {
     // return primitive with prefix
-    if (!isObject$7(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+    if (!isObject$6(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
     if (!has$2(it, META$1)) {
       // can't set metadata to uncaught frozen object
       if (!isExtensible(it)) return 'F';
@@ -1971,9 +2019,9 @@
     onFreeze: onFreeze
   };
 
-  var isObject$6 = _isObject;
+  var isObject$5 = _isObject;
   var _validateCollection = function (it, TYPE) {
-    if (!isObject$6(it) || it._t !== TYPE) throw TypeError('Incompatible receiver, ' + TYPE + ' required!');
+    if (!isObject$5(it) || it._t !== TYPE) throw TypeError('Incompatible receiver, ' + TYPE + ' required!');
     return it;
   };
 
@@ -2123,11 +2171,11 @@
 
   // Works with __proto__ only. Old v8 can't work with null proto objects.
   /* eslint-disable no-proto */
-  var isObject$5 = _isObject;
+  var isObject$4 = _isObject;
   var anObject$5 = _anObject;
   var check = function (O, proto) {
     anObject$5(O);
-    if (!isObject$5(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
+    if (!isObject$4(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
   };
   var _setProto = {
     set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
@@ -2147,25 +2195,25 @@
     check: check
   };
 
-  var isObject$4 = _isObject;
+  var isObject$3 = _isObject;
   var setPrototypeOf = _setProto.set;
   var _inheritIfRequired = function (that, target, C) {
     var S = target.constructor;
     var P;
-    if (S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject$4(P) && setPrototypeOf) {
+    if (S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject$3(P) && setPrototypeOf) {
       setPrototypeOf(that, P);
     } return that;
   };
 
   var global$5 = _global.exports;
-  var $export$b = _export;
+  var $export$a = _export;
   var redefine$3 = _redefine.exports;
   var redefineAll = _redefineAll;
   var meta = _meta.exports;
   var forOf = _forOf.exports;
   var anInstance = _anInstance;
-  var isObject$3 = _isObject;
-  var fails$4 = _fails;
+  var isObject$2 = _isObject;
+  var fails$5 = _fails;
   var $iterDetect = _iterDetect;
   var setToStringTag$1 = _setToStringTag;
   var inheritIfRequired$2 = _inheritIfRequired;
@@ -2180,16 +2228,16 @@
       var fn = proto[KEY];
       redefine$3(proto, KEY,
         KEY == 'delete' ? function (a) {
-          return IS_WEAK && !isObject$3(a) ? false : fn.call(this, a === 0 ? 0 : a);
+          return IS_WEAK && !isObject$2(a) ? false : fn.call(this, a === 0 ? 0 : a);
         } : KEY == 'has' ? function has(a) {
-          return IS_WEAK && !isObject$3(a) ? false : fn.call(this, a === 0 ? 0 : a);
+          return IS_WEAK && !isObject$2(a) ? false : fn.call(this, a === 0 ? 0 : a);
         } : KEY == 'get' ? function get(a) {
-          return IS_WEAK && !isObject$3(a) ? undefined : fn.call(this, a === 0 ? 0 : a);
+          return IS_WEAK && !isObject$2(a) ? undefined : fn.call(this, a === 0 ? 0 : a);
         } : KEY == 'add' ? function add(a) { fn.call(this, a === 0 ? 0 : a); return this; }
           : function set(a, b) { fn.call(this, a === 0 ? 0 : a, b); return this; }
       );
     };
-    if (typeof C != 'function' || !(IS_WEAK || proto.forEach && !fails$4(function () {
+    if (typeof C != 'function' || !(IS_WEAK || proto.forEach && !fails$5(function () {
       new C().entries().next();
     }))) {
       // create collection constructor
@@ -2201,11 +2249,11 @@
       // early implementations not supports chaining
       var HASNT_CHAINING = instance[ADDER](IS_WEAK ? {} : -0, 1) != instance;
       // V8 ~  Chromium 40- weak-collections throws on primitives, but should return false
-      var THROWS_ON_PRIMITIVES = fails$4(function () { instance.has(1); });
+      var THROWS_ON_PRIMITIVES = fails$5(function () { instance.has(1); });
       // most early implementations doesn't supports iterables, most modern - not close it correctly
       var ACCEPT_ITERABLES = $iterDetect(function (iter) { new C(iter); }); // eslint-disable-line no-new
       // for early implementations -0 and +0 not the same
-      var BUGGY_ZERO = !IS_WEAK && fails$4(function () {
+      var BUGGY_ZERO = !IS_WEAK && fails$5(function () {
         // V8 ~ Chromium 42- fails only with 5+ elements
         var $instance = new C();
         var index = 5;
@@ -2235,7 +2283,7 @@
     setToStringTag$1(C, NAME);
 
     O[NAME] = C;
-    $export$b($export$b.G + $export$b.W + $export$b.F * (C != Base), O);
+    $export$a($export$a.G + $export$a.W + $export$a.F * (C != Base), O);
 
     if (!IS_WEAK) common.setStrong(C, NAME, IS_MAP);
 
@@ -2363,14 +2411,14 @@
 
   var redefine$2 = _redefine.exports;
   var hide$1 = _hide;
-  var fails$3 = _fails;
-  var defined$1 = _defined;
+  var fails$4 = _fails;
+  var defined = _defined;
   var wks$2 = _wks.exports;
   var regexpExec$1 = _regexpExec;
 
   var SPECIES = wks$2('species');
 
-  var REPLACE_SUPPORTS_NAMED_GROUPS = !fails$3(function () {
+  var REPLACE_SUPPORTS_NAMED_GROUPS = !fails$4(function () {
     // #replace needs built-in support for named groups.
     // #match works fine because it just return the exec results, even if it has
     // a "grops" property.
@@ -2395,14 +2443,14 @@
   var _fixReWks = function (KEY, length, exec) {
     var SYMBOL = wks$2(KEY);
 
-    var DELEGATES_TO_SYMBOL = !fails$3(function () {
+    var DELEGATES_TO_SYMBOL = !fails$4(function () {
       // String methods call symbol-named RegEp methods
       var O = {};
       O[SYMBOL] = function () { return 7; };
       return ''[KEY](O) != 7;
     });
 
-    var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL ? !fails$3(function () {
+    var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL ? !fails$4(function () {
       // Symbol-named RegExp methods call .exec
       var execCalled = false;
       var re = /a/;
@@ -2425,7 +2473,7 @@
     ) {
       var nativeRegExpMethod = /./[SYMBOL];
       var fns = exec(
-        defined$1,
+        defined,
         SYMBOL,
         ''[KEY],
         function maybeCallNative(nativeMethod, regexp, str, arg2, forceStringMethod) {
@@ -2457,7 +2505,7 @@
   };
 
   var anObject$4 = _anObject;
-  var toLength$5 = _toLength;
+  var toLength$3 = _toLength;
   var advanceStringIndex$2 = _advanceStringIndex;
   var regExpExec$1 = _regexpExecAbstract;
 
@@ -2487,12 +2535,31 @@
         while ((result = regExpExec$1(rx, S)) !== null) {
           var matchStr = String(result[0]);
           A[n] = matchStr;
-          if (matchStr === '') rx.lastIndex = advanceStringIndex$2(S, toLength$5(rx.lastIndex), fullUnicode);
+          if (matchStr === '') rx.lastIndex = advanceStringIndex$2(S, toLength$3(rx.lastIndex), fullUnicode);
           n++;
         }
         return n === 0 ? null : A;
       }
     ];
+  });
+
+  var fails$3 = _fails;
+
+  var _strictMethod = function (method, arg) {
+    return !!method && fails$3(function () {
+      // eslint-disable-next-line no-useless-call
+      arg ? method.call(null, function () { /* empty */ }, 1) : method.call(null);
+    });
+  };
+
+  var $export$9 = _export;
+  var $map = _arrayMethods(1);
+
+  $export$9($export$9.P + $export$9.F * !_strictMethod([].map, true), 'Array', {
+    // 22.1.3.15 / 15.4.4.19 Array.prototype.map(callbackfn [, thisArg])
+    map: function map(callbackfn /* , thisArg */) {
+      return $map(this, callbackfn, arguments[1]);
+    }
   });
 
   var $iterators = es6_array_iterator;
@@ -2555,14 +2622,14 @@
   }
 
   // most Object methods by ES6 should accept primitives
-  var $export$a = _export;
+  var $export$8 = _export;
   var core$1 = _core.exports;
   var fails$2 = _fails;
   var _objectSap = function (KEY, exec) {
     var fn = (core$1.Object || {})[KEY] || Object[KEY];
     var exp = {};
     exp[KEY] = exec(fn);
-    $export$a($export$a.S + $export$a.F * fails$2(function () { fn(1); }), 'Object', exp);
+    $export$8($export$8.S + $export$8.F * fails$2(function () { fn(1); }), 'Object', exp);
   };
 
   // 19.1.2.14 Object.keys(O)
@@ -2573,73 +2640,6 @@
     return function keys(it) {
       return $keys$1(toObject$2(it));
     };
-  });
-
-  // 7.2.8 IsRegExp(argument)
-  var isObject$2 = _isObject;
-  var cof$2 = _cof;
-  var MATCH$1 = _wks.exports('match');
-  var _isRegexp = function (it) {
-    var isRegExp;
-    return isObject$2(it) && ((isRegExp = it[MATCH$1]) !== undefined ? !!isRegExp : cof$2(it) == 'RegExp');
-  };
-
-  // helper for String#{startsWith, endsWith, includes}
-  var isRegExp$2 = _isRegexp;
-  var defined = _defined;
-
-  var _stringContext = function (that, searchString, NAME) {
-    if (isRegExp$2(searchString)) throw TypeError('String#' + NAME + " doesn't accept regex!");
-    return String(defined(that));
-  };
-
-  var MATCH = _wks.exports('match');
-  var _failsIsRegexp = function (KEY) {
-    var re = /./;
-    try {
-      '/./'[KEY](re);
-    } catch (e) {
-      try {
-        re[MATCH] = false;
-        return !'/./'[KEY](re);
-      } catch (f) { /* empty */ }
-    } return true;
-  };
-
-  var $export$9 = _export;
-  var toLength$4 = _toLength;
-  var context$2 = _stringContext;
-  var ENDS_WITH = 'endsWith';
-  var $endsWith = ''[ENDS_WITH];
-
-  $export$9($export$9.P + $export$9.F * _failsIsRegexp(ENDS_WITH), 'String', {
-    endsWith: function endsWith(searchString /* , endPosition = @length */) {
-      var that = context$2(this, searchString, ENDS_WITH);
-      var endPosition = arguments.length > 1 ? arguments[1] : undefined;
-      var len = toLength$4(that.length);
-      var end = endPosition === undefined ? len : Math.min(toLength$4(endPosition), len);
-      var search = String(searchString);
-      return $endsWith
-        ? $endsWith.call(that, search, end)
-        : that.slice(end - search.length, end) === search;
-    }
-  });
-
-  var $export$8 = _export;
-  var toLength$3 = _toLength;
-  var context$1 = _stringContext;
-  var STARTS_WITH = 'startsWith';
-  var $startsWith = ''[STARTS_WITH];
-
-  $export$8($export$8.P + $export$8.F * _failsIsRegexp(STARTS_WITH), 'String', {
-    startsWith: function startsWith(searchString /* , position = 0 */) {
-      var that = context$1(this, searchString, STARTS_WITH);
-      var index = toLength$3(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
-      var search = String(searchString);
-      return $startsWith
-        ? $startsWith.call(that, search, index)
-        : that.slice(index, index + search.length) === search;
-    }
   });
 
   var isRegExp$1 = _isRegexp;
