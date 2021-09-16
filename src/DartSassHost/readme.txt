@@ -29,7 +29,9 @@
    =============
    RELEASE NOTES
    =============
-   Added support of the Dart Sass version 1.40.1.
+   1. Added support of the Dart Sass version 1.40.1;
+   2. In compilation options was added one new property - `Charset` (default
+      `true`).
 
    ============
    PROJECT SITE

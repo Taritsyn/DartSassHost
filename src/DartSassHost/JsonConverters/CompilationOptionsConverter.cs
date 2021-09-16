@@ -46,6 +46,7 @@ namespace DartSassHost.JsonConverters
 
 			writer.WriteEndArray();
 
+			writer.WriteBoolean("charset", value.Charset);
 			writer.WriteString("indentType", GetIndentTypeCode(value.IndentType));
 			writer.WriteNumber("indentWidth", value.IndentWidth);
 			writer.WriteString("linefeed", GetLineFeedString(value.LineFeedType));

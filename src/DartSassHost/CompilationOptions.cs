@@ -8,6 +8,15 @@ namespace DartSassHost
 	public sealed class CompilationOptions
 	{
 		/// <summary>
+		/// Gets or sets a flag for whether to emit a <c>@charset</c> or BOM for CSS with non-ASCII characters
+		/// </summary>
+		public bool Charset
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a list of paths that library can look in to attempt to resolve <code>@import</code> declarations.
 		/// </summary>
 		/// <remarks>
@@ -106,6 +115,7 @@ namespace DartSassHost
 		/// </summary>
 		public CompilationOptions()
 		{
+			Charset = true;
 			IncludePaths = new List<string>();
 			IndentType = IndentType.Space;
 			IndentWidth = 2;

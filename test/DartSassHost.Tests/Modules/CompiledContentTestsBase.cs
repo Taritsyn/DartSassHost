@@ -179,47 +179,65 @@ namespace DartSassHost.Tests.Modules
 		}
 
 		[Test]
-		public void CompilationOfCodeWithUtf8Characters()
+		public void UsageOfCharsetPropertyDuringCompilationOfCodeWithUtf8Characters()
 		{
 			// Arrange
+			var charsetDisabledOptions = new CompilationOptions { Charset = false };
+			var charsetEnabledOptions = new CompilationOptions { Charset = true };
+
 			string inputPath = GenerateSassFilePath("ютф-8", "главный");
 			string input = GetFileContent(inputPath);
 
-			string targetOutputPath = GenerateCssFilePath("ютф-8", "главный");
-			string targetOutput = GetFileContent(targetOutputPath);
+			string targetOutputPath1 = GenerateCssFilePath("ютф-8", "главный-без-кодировки");
+			string targetOutput1 = GetFileContent(targetOutputPath1);
+
+			string targetOutputPath2 = GenerateCssFilePath("ютф-8", "главный-с-кодировкой");
+			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			// Act
-			string output;
+			string output1;
+			string output2;
 
 			using (var compiler = CreateSassCompiler())
 			{
-				output = compiler.Compile(input, inputPath).CompiledContent;
+				output1 = compiler.Compile(input, inputPath, options: charsetDisabledOptions).CompiledContent;
+				output2 = compiler.Compile(input, inputPath, options: charsetEnabledOptions).CompiledContent;
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.AreEqual(targetOutput1, output1);
+			Assert.AreEqual(targetOutput2, output2);
 		}
 
 		[Test]
-		public void CompilationOfCodeWithUtf16Characters()
+		public void UsageOfCharsetPropertyDuringCompilationOfCodeWithUtf16Characters()
 		{
 			// Arrange
+			var charsetDisabledOptions = new CompilationOptions { Charset = false };
+			var charsetEnabledOptions = new CompilationOptions { Charset = true };
+
 			string inputPath = GenerateSassFilePath("ютф-16", "главный");
 			string input = GetFileContent(inputPath);
 
-			string targetOutputPath = GenerateCssFilePath("ютф-16", "главный");
-			string targetOutput = GetFileContent(targetOutputPath);
+			string targetOutputPath1 = GenerateCssFilePath("ютф-16", "главный-без-кодировки");
+			string targetOutput1 = GetFileContent(targetOutputPath1);
+
+			string targetOutputPath2 = GenerateCssFilePath("ютф-16", "главный-с-кодировкой");
+			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			// Act
-			string output;
+			string output1;
+			string output2;
 
 			using (var compiler = CreateSassCompiler())
 			{
-				output = compiler.Compile(input, inputPath).CompiledContent;
+				output1 = compiler.Compile(input, inputPath, options: charsetDisabledOptions).CompiledContent;
+				output2 = compiler.Compile(input, inputPath, options: charsetEnabledOptions).CompiledContent;
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.AreEqual(targetOutput1, output1);
+			Assert.AreEqual(targetOutput2, output2);
 		}
 
 		#endregion
@@ -385,45 +403,63 @@ namespace DartSassHost.Tests.Modules
 		}
 
 		[Test]
-		public void CompilationOfFileWithUtf8Characters()
+		public void UsageOfCharsetPropertyDuringCompilationOfFileWithUtf8Characters()
 		{
 			// Arrange
+			var charsetDisabledOptions = new CompilationOptions { Charset = false };
+			var charsetEnabledOptions = new CompilationOptions { Charset = true };
+
 			string inputPath = GenerateSassFilePath("ютф-8", "главный");
 
-			string targetOutputPath = GenerateCssFilePath("ютф-8", "главный");
-			string targetOutput = GetFileContent(targetOutputPath);
+			string targetOutputPath1 = GenerateCssFilePath("ютф-8", "главный-без-кодировки");
+			string targetOutput1 = GetFileContent(targetOutputPath1);
+
+			string targetOutputPath2 = GenerateCssFilePath("ютф-8", "главный-с-кодировкой");
+			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			// Act
-			string output;
+			string output1;
+			string output2;
 
 			using (var compiler = CreateSassCompiler())
 			{
-				output = compiler.CompileFile(inputPath).CompiledContent;
+				output1 = compiler.CompileFile(inputPath, options: charsetDisabledOptions).CompiledContent;
+				output2 = compiler.CompileFile(inputPath, options: charsetEnabledOptions).CompiledContent;
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.AreEqual(targetOutput1, output1);
+			Assert.AreEqual(targetOutput2, output2);
 		}
 
 		[Test]
-		public void CompilationOfFileWithUtf16Characters()
+		public void UsageOfCharsetPropertyDuringCompilationOfFileWithUtf16Characters()
 		{
 			// Arrange
+			var charsetDisabledOptions = new CompilationOptions { Charset = false };
+			var charsetEnabledOptions = new CompilationOptions { Charset = true };
+
 			string inputPath = GenerateSassFilePath("ютф-16", "главный");
 
-			string targetOutputPath = GenerateCssFilePath("ютф-16", "главный");
-			string targetOutput = GetFileContent(targetOutputPath);
+			string targetOutputPath1 = GenerateCssFilePath("ютф-16", "главный-без-кодировки");
+			string targetOutput1 = GetFileContent(targetOutputPath1);
+
+			string targetOutputPath2 = GenerateCssFilePath("ютф-16", "главный-с-кодировкой");
+			string targetOutput2 = GetFileContent(targetOutputPath2);
 
 			// Act
-			string output;
+			string output1;
+			string output2;
 
 			using (var compiler = CreateSassCompiler())
 			{
-				output = compiler.CompileFile(inputPath).CompiledContent;
+				output1 = compiler.CompileFile(inputPath, options: charsetDisabledOptions).CompiledContent;
+				output2 = compiler.CompileFile(inputPath, options: charsetEnabledOptions).CompiledContent;
 			}
 
 			// Assert
-			Assert.AreEqual(targetOutput, output);
+			Assert.AreEqual(targetOutput1, output1);
+			Assert.AreEqual(targetOutput2, output2);
 		}
 
 		#endregion
