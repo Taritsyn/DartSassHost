@@ -17,10 +17,11 @@ namespace DartSassHost
 		}
 
 		/// <summary>
-		/// Gets or sets a list of paths that library can look in to attempt to resolve <code>@import</code> declarations.
+		/// Gets or sets a list of paths that library can look in to attempt to resolve <с>@import</с> declarations
 		/// </summary>
 		/// <remarks>
-		/// <para>When using <see cref="SassCompiler.Compile(string, bool, CompilationOptions)"/> method, it is recommended that use this property.</para>
+		/// <para>When using <see cref="SassCompiler.Compile(string, bool, CompilationOptions)"/> method, it is
+		/// recommended that use this property.</para>
 		/// </remarks>
 		public IList<string> IncludePaths
 		{
@@ -47,7 +48,7 @@ namespace DartSassHost
 		}
 
 		/// <summary>
-		/// Gets or sets a flag for whether to embed <code>sourceMappingUrl</code> as data uri
+		/// Gets or sets a flag for whether to embed <с>sourceMappingUrl</с> as data uri
 		/// </summary>
 		public bool InlineSourceMap
 		{
@@ -65,7 +66,7 @@ namespace DartSassHost
 		}
 
 		/// <summary>
-		/// Gets or sets a flag for whether to disable <code>sourceMappingUrl</code> in css output
+		/// Gets or sets a flag for whether to disable <с>sourceMappingUrl</с> in css output
 		/// </summary>
 		public bool OmitSourceMapUrl
 		{
@@ -101,7 +102,7 @@ namespace DartSassHost
 		}
 
 		/// <summary>
-		/// Gets or sets a value will be emitted as <code>sourceRoot</code> in the source map information
+		/// Gets or sets a value will be emitted as <с>sourceRoot</с> in the source map information
 		/// </summary>
 		public string SourceMapRootPath
 		{

@@ -43,7 +43,7 @@ namespace DartSassHost
 
 		/// <summary>
 		/// Gets or sets a status code
-		///		1 - normal errors like parsing or <code>eval</code> errors;
+		///		1 - normal errors like parsing or <с>eval</с> errors;
 		///		3 - "untranslated" exceptions like file not found.
 		/// </summary>
 		public int Status

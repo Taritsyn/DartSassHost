@@ -34,7 +34,7 @@
 		}
 
 		/// <summary>
-		/// Represents a node coordinates that has line number and column number values set to zero.
+		/// Represents a node coordinates that has line number and column number values set to zero
 		/// </summary>
 		internal static readonly SourceCodeNodeCoordinates Empty = new SourceCodeNodeCoordinates(0, 0);
 
