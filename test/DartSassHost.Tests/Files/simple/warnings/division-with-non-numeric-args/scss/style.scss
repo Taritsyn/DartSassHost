@@ -1,0 +1,41 @@
+@use "sass:math";
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 3% !default;
+
+%clearfix:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.row {
+  @extend %clearfix;
+
+  & + & {
+    margin-top: $grid-gutter-width;
+  }
+}
+
+[class^="col-"] {
+  float: left;
+  margin-right: math.div("#{$grid-gutter-width}", 2);
+  margin-left: math.div("" + $grid-gutter-width, 2);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@for $num from 1 through $grid-columns {
+  .col-#{$num} {
+    width: math.div(100% * $num - $grid-gutter-width * ($grid-columns - $num), "#{$grid-columns}");
+  }
+}

@@ -1,0 +1,10 @@
+@use "mixins" as *
+
+.main
+  @include make-row
+
+  .sidebar
+    @include make-column(4)
+
+  .content
+    @include make-column(8)
