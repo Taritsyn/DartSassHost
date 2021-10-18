@@ -14,6 +14,29 @@ namespace DartSassHost.Helpers
 	public static class SassErrorHelpers
 	{
 		/// <summary>
+		/// Gets a error location line
+		/// </summary>
+		/// <param name="memberName">Member name</param>
+		/// <param name="documentName">Document name</param>
+		/// <param name="lineNumber">Line number</param>
+		/// <param name="columnNumber">Column number</param>
+		/// <param name="sourceFragment">Source fragment</param>
+		internal static string GetErrorLocationLine(string memberName, string documentName, int lineNumber,
+			int columnNumber, string sourceFragment = "")
+		{
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder errorLocationBuilder = stringBuilderPool.Rent();
+
+			WriteErrorLocationLine(errorLocationBuilder, memberName, documentName, lineNumber, columnNumber,
+				sourceFragment);
+
+			string errorLocation = errorLocationBuilder.ToString();
+			stringBuilderPool.Return(errorLocationBuilder);
+
+			return errorLocation;
+		}
+
+		/// <summary>
 		/// Writes a error location line to the buffer
 		/// </summary>
 		/// <param name="buffer">Instance of <see cref="StringBuilder"/></param>
@@ -175,8 +198,8 @@ namespace DartSassHost.Helpers
 		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation,
 			string documentName, int lineNumber, int columnNumber, string sourceFragment = "")
 		{
-			return GenerateCompilationWarningMessage(description, isDeprecation, documentName, lineNumber, columnNumber,
-				sourceFragment, string.Empty);
+			return GenerateCompilationWarningMessage(description, isDeprecation, documentName, lineNumber,
+				columnNumber, sourceFragment, null);
 		}
 
 		/// <summary>
@@ -184,11 +207,14 @@ namespace DartSassHost.Helpers
 		/// </summary>
 		/// <param name="description">Description of problem</param>
 		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
-		/// <param name="callStack">String representation of the script call stack</param>
+		/// <param name="sourceFragment">Source fragment</param>
+		/// <param name="callStackLines">Call stack lines</param>
 		/// <returns>Compilation warning message</returns>
-		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation, string callStack)
+		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation,
+			string sourceFragment, string[] callStackLines)
 		{
-			return GenerateCompilationWarningMessage(description, isDeprecation, string.Empty, 0, 0, string.Empty, callStack);
+			return GenerateCompilationWarningMessage(description, isDeprecation, string.Empty, 0, 0, sourceFragment,
+				callStackLines);
 		}
 
 		/// <summary>
@@ -200,10 +226,10 @@ namespace DartSassHost.Helpers
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="columnNumber">Column number</param>
 		/// <param name="sourceFragment">Source fragment</param>
-		/// <param name="callStack">String representation of the call stack</param>
+		/// <param name="callStackLines">Call stack lines</param>
 		/// <returns>Compilation warning message</returns>
 		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation, string documentName,
-			int lineNumber, int columnNumber, string sourceFragment, string callStack)
+			int lineNumber, int columnNumber, string sourceFragment, string[] callStackLines)
 		{
 			if (description == null)
 			{
@@ -227,10 +253,18 @@ namespace DartSassHost.Helpers
 			messageBuilder.Append("Warning: ");
 			messageBuilder.Append(description);
 
-			if (!string.IsNullOrWhiteSpace(callStack))
+			if (callStackLines?.Length > 0)
 			{
-				messageBuilder.AppendLine();
-				messageBuilder.Append(callStack);
+				for (int lineIndex = 0; lineIndex < callStackLines.Length; lineIndex++)
+				{
+					messageBuilder.AppendLine();
+					messageBuilder.Append(callStackLines[lineIndex]);
+					if (lineIndex == 0 && !string.IsNullOrWhiteSpace(sourceFragment))
+					{
+						messageBuilder.Append(" -> ");
+						messageBuilder.Append(sourceFragment);
+					}
+				}
 			}
 			else
 			{

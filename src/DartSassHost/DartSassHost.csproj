@@ -35,7 +35,8 @@ After installing the packages, you will need to register the default JS engine (
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReleaseNotes>1. Added support of the Dart Sass version 1.40.1;
-2. In compilation options was added one new property - `Charset` (default `true`).</PackageReleaseNotes>
+2. In compilation options was added one new property - `Charset` (default `true`);
+3. Fragments of source code is now added to warning messages.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>

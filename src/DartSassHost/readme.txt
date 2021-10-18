@@ -31,7 +31,8 @@
    =============
    1. Added support of the Dart Sass version 1.40.1;
    2. In compilation options was added one new property - `Charset` (default
-      `true`).
+      `true`);
+   3. Fragments of source code is now added to warning messages.
 
    ============
    PROJECT SITE

@@ -36,7 +36,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:13:10)" + Environment.NewLine +
+				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:13:10) -> " +
+				"  width: math.div(100% * $columns - $grid-gutter-width * ($grid-columns - $columns), \"#{$grid-column" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/division-with-non-numeric-args/scss/base.scss:8:5)",
 				warnings[0].Message
 			);
@@ -60,7 +61,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:14:17)" + Environment.NewLine +
+				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:14:17) -> " +
+				"  margin-right: math.div(\"#{$grid-gutter-width}\", 2);" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/division-with-non-numeric-args/scss/base.scss:8:5)",
 				warnings[1].Message
 			);
@@ -84,7 +86,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:15:16)" + Environment.NewLine +
+				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:15:16) -> " +
+				"  margin-left: math.div(\"\" + $grid-gutter-width, 2);" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/division-with-non-numeric-args/scss/base.scss:8:5)",
 				warnings[2].Message
 			);
@@ -129,7 +132,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description + Environment.NewLine +
-				"   at responsive-ratio (Files/imports/warnings/deprecated-division/scss/_mixins.scss:8:22)" + Environment.NewLine +
+				"   at responsive-ratio (Files/imports/warnings/deprecated-division/scss/_mixins.scss:8:22) -> " +
+				"  $padding: unquote(($y / $x) * 100 + '%');" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/deprecated-division/scss/base.scss:12:3)",
 				warnings[0].Message
 			);
@@ -175,7 +179,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Warning: " + description + Environment.NewLine +
-				"   at prefix (Files/imports/warnings/custom-warning/scss/_mixins.scss:6:7)" + Environment.NewLine +
+				"   at prefix (Files/imports/warnings/custom-warning/scss/_mixins.scss:6:7) -> " +
+				"      @warn \"Unknown prefix #{$prefix}.\";" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/custom-warning/scss/base.scss:4:3)",
 				warnings[0].Message
 			);
@@ -222,7 +227,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:13:10)" + Environment.NewLine +
+				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:13:10) -> " +
+				"  width: math.div(100% * $columns - $grid-gutter-width * ($grid-columns - $columns), \"#{$grid-column" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/division-with-non-numeric-args/scss/base.scss:8:5)",
 				warnings[0].Message
 			);
@@ -246,7 +252,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:14:17)" + Environment.NewLine +
+				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:14:17) -> " +
+				"  margin-right: math.div(\"#{$grid-gutter-width}\", 2);" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/division-with-non-numeric-args/scss/base.scss:8:5)",
 				warnings[1].Message
 			);
@@ -270,7 +277,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:15:16)" + Environment.NewLine +
+				"   at make-column (Files/imports/warnings/division-with-non-numeric-args/scss/mixins/_grid.scss:15:16) -> " +
+				"  margin-left: math.div(\"\" + $grid-gutter-width, 2);" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/division-with-non-numeric-args/scss/base.scss:8:5)",
 				warnings[2].Message
 			);
@@ -314,7 +322,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description + Environment.NewLine +
-				"   at responsive-ratio (Files/imports/warnings/deprecated-division/scss/_mixins.scss:8:22)" + Environment.NewLine +
+				"   at responsive-ratio (Files/imports/warnings/deprecated-division/scss/_mixins.scss:8:22) -> " +
+				"  $padding: unquote(($y / $x) * 100 + '%');" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/deprecated-division/scss/base.scss:12:3)",
 				warnings[0].Message
 			);
@@ -359,7 +368,8 @@ namespace DartSassHost.Tests.Imports
 
 			Assert.AreEqual(
 				"Warning: " + description + Environment.NewLine +
-				"   at prefix (Files/imports/warnings/custom-warning/scss/_mixins.scss:6:7)" + Environment.NewLine +
+				"   at prefix (Files/imports/warnings/custom-warning/scss/_mixins.scss:6:7) -> " +
+				"      @warn \"Unknown prefix #{$prefix}.\";" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/custom-warning/scss/base.scss:4:3)",
 				warnings[0].Message
 			);

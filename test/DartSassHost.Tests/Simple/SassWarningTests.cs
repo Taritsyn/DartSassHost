@@ -35,7 +35,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:19:17)",
+				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:19:17) -> " +
+				"  margin-right: math.div(\"#{$grid-gutter-width}\", 2)",
 				warnings[0].Message
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[0].Description);
@@ -57,7 +58,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:20:16)",
+				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:20:16) -> " +
+				"  margin-left: math.div(\"\" + $grid-gutter-width, 2)",
 				warnings[1].Message
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments,	warnings[1].Description);
@@ -78,7 +80,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:33:12)",
+				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:33:12) -> " +
+				"    width: math.div(100% * $num - $grid-gutter-width * ($grid-columns - $num), \"#{$grid-columns}\")",
 				warnings[2].Message
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments,	warnings[2].Description);
@@ -121,7 +124,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description1 + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/deprecated-division/sass/style.sass:3:19)",
+				"   at root stylesheet (Files/simple/warnings/deprecated-division/sass/style.sass:3:19) -> " +
+				"$col-padding-xs:  map-get($grid-gutter-widths, xs) / 2",
 				warnings[0].Message
 			);
 			Assert.AreEqual(description1, warnings[0].Description);
@@ -143,7 +147,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description2 + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/deprecated-division/sass/style.sass:6:18)",
+				"   at root stylesheet (Files/simple/warnings/deprecated-division/sass/style.sass:6:18) -> " +
+				"  padding-right: $col-padding-xs / 2",
 				warnings[1].Message
 			);
 			Assert.AreEqual(description2, warnings[1].Description);
@@ -185,7 +190,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Warning: " + description + Environment.NewLine +
-				"   at prefix (Files/simple/warnings/custom-warning/sass/style.sass:6:7)" + Environment.NewLine +
+				"   at prefix (Files/simple/warnings/custom-warning/sass/style.sass:6:7) -> " +
+				"      @warn \"Unknown prefix #{$prefix}.\"" + Environment.NewLine +
 				"   at root stylesheet (Files/simple/warnings/custom-warning/sass/style.sass:15:3)",
 				warnings[0].Message
 			);
@@ -230,7 +236,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:19:17)",
+				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:19:17) -> " +
+				"  margin-right: math.div(\"#{$grid-gutter-width}\", 2)",
 				warnings[0].Message
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[0].Description);
@@ -252,7 +259,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:20:16)",
+				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:20:16) -> " +
+				"  margin-left: math.div(\"\" + $grid-gutter-width, 2)",
 				warnings[1].Message
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[1].Description);
@@ -273,7 +281,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Warning: " + WarningConstants.MathDivOnlySupportNumberArguments + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:33:12)",
+				"   at root stylesheet (Files/simple/warnings/division-with-non-numeric-args/sass/style.sass:33:12) -> " +
+				"    width: math.div(100% * $num - $grid-gutter-width * ($grid-columns - $num), \"#{$grid-columns}\")",
 				warnings[2].Message
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[2].Description);
@@ -315,7 +324,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description1 + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/deprecated-division/sass/style.sass:3:19)",
+				"   at root stylesheet (Files/simple/warnings/deprecated-division/sass/style.sass:3:19) -> " +
+				"$col-padding-xs:  map-get($grid-gutter-widths, xs) / 2",
 				warnings[0].Message
 			);
 			Assert.AreEqual(description1, warnings[0].Description);
@@ -337,7 +347,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description2 + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/deprecated-division/sass/style.sass:6:18)",
+				"   at root stylesheet (Files/simple/warnings/deprecated-division/sass/style.sass:6:18) -> " +
+				"  padding-right: $col-padding-xs / 2",
 				warnings[1].Message
 			);
 			Assert.AreEqual(description2, warnings[1].Description);
@@ -378,7 +389,8 @@ namespace DartSassHost.Tests.Simple
 
 			Assert.AreEqual(
 				"Warning: " + description + Environment.NewLine +
-				"   at prefix (Files/simple/warnings/custom-warning/sass/style.sass:6:7)" + Environment.NewLine +
+				"   at prefix (Files/simple/warnings/custom-warning/sass/style.sass:6:7) -> " +
+				"      @warn \"Unknown prefix #{$prefix}.\"" + Environment.NewLine +
 				"   at root stylesheet (Files/simple/warnings/custom-warning/sass/style.sass:15:3)",
 				warnings[0].Message
 			);
