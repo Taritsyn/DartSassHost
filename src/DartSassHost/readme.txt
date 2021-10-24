@@ -32,7 +32,8 @@
    1. Added support of the Dart Sass version 1.40.1;
    2. In compilation options was added one new property - `Charset` (default
       `true`);
-   3. Fragments of source code is now added to warning messages.
+   3. Fragments of source code is now added to warning messages;
+   4. Call stack is now added to compilation exceptions and error messages.
 
    ============
    PROJECT SITE

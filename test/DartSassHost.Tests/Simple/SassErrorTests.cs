@@ -55,6 +55,7 @@ namespace DartSassHost.Tests.Simple
 				"------------------------------------------^",
 				exception.SourceFragment
 			);
+			Assert.IsEmpty(exception.CallStack);
 		}
 
 		#endregion
@@ -101,6 +102,7 @@ namespace DartSassHost.Tests.Simple
 				"------------------------------------------^",
 				exception.SourceFragment
 			);
+			Assert.IsEmpty(exception.CallStack);
 		}
 
 		#endregion

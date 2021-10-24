@@ -124,8 +124,9 @@ namespace DartSassHost.Tests.Simple
 			Assert.AreEqual(0, exception.LineNumber);
 			Assert.AreEqual(0, exception.ColumnNumber);
 			Assert.IsEmpty(exception.SourceFragment);
+			Assert.IsEmpty(exception.CallStack);
 		}
 
-#endregion
+		#endregion
 	}
 }

@@ -189,6 +189,7 @@ namespace DartSassHost.JsonConverters
 		{
 			reader.CheckStartObject();
 
+			string currentDirectory = _fileManager?.GetCurrentDirectory();
 			string description = string.Empty;
 			int status = 0;
 			string type = string.Empty;
@@ -196,6 +197,7 @@ namespace DartSassHost.JsonConverters
 			int lineNumber = 0;
 			int columnNumber = 0;
 			string content = string.Empty;
+			string[] callStackLines = null;
 
 			while (reader.Read() && reader.IsTokenTypeProperty())
 			{
@@ -224,6 +226,16 @@ namespace DartSassHost.JsonConverters
 					case "source":
 						content = reader.ReadAsString();
 						break;
+					case "stackFrames":
+						callStackLines = ReadStackFrames(
+#if MODERN_JSON_CONVERTER
+							ref reader,
+#else
+							reader,
+#endif
+							currentDirectory
+						);
+						break;
 					default:
 						reader.Skip();
 						break;
@@ -232,15 +244,10 @@ namespace DartSassHost.JsonConverters
 
 			reader.CheckEndObject();
 
-			string relativeFilePath = absoluteFilePath;
+			string message;
 			string sourceFragment = string.Empty;
 			string sourceLineFragment = string.Empty;
-
-			if (!string.IsNullOrWhiteSpace(absoluteFilePath) && _fileManager != null)
-			{
-				string currentDirectory = _fileManager.GetCurrentDirectory();
-				relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
-			}
+			string callStack = string.Empty;
 
 			if (string.IsNullOrWhiteSpace(content))
 			{
@@ -257,8 +264,23 @@ namespace DartSassHost.JsonConverters
 				sourceLineFragment = TextHelpers.GetTextFragment(content, lineNumber, columnNumber);
 			}
 
-			string message = SassErrorHelpers.GenerateCompilationErrorMessage(type, description, relativeFilePath,
-				lineNumber, columnNumber, sourceLineFragment);
+			if (callStackLines?.Length > 0)
+			{
+				callStack = string.Join(Environment.NewLine, callStackLines);
+				message = SassErrorHelpers.GenerateCompilationErrorMessage(type, description, sourceLineFragment,
+					callStackLines);
+			}
+			else
+			{
+				string relativeFilePath = absoluteFilePath;
+				if (!string.IsNullOrWhiteSpace(absoluteFilePath))
+				{
+					relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
+				}
+
+				message = SassErrorHelpers.GenerateCompilationErrorMessage(type, description, relativeFilePath,
+					lineNumber, columnNumber, sourceLineFragment);
+			}
 
 			var compilationException = new SassCompilationException(message)
 			{
@@ -267,7 +289,8 @@ namespace DartSassHost.JsonConverters
 				File = absoluteFilePath,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber,
-				SourceFragment = sourceFragment
+				SourceFragment = sourceFragment,
+				CallStack = callStack
 			};
 
 			return compilationException;
@@ -398,8 +421,7 @@ namespace DartSassHost.JsonConverters
 #else
 							reader,
 #endif
-							currentDirectory,
-							sourcesCache
+							currentDirectory
 						);
 						break;
 					default:
@@ -425,7 +447,7 @@ namespace DartSassHost.JsonConverters
 			if (callStackLines?.Length > 0)
 			{
 				callStack = string.Join(Environment.NewLine, callStackLines);
-				message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation,
+				message = SassErrorHelpers.GenerateCompilationWarningMessage(isDeprecation, description,
 					sourceLineFragment, callStackLines);
 			}
 			else
@@ -436,7 +458,7 @@ namespace DartSassHost.JsonConverters
 					relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
 				}
 
-				message = SassErrorHelpers.GenerateCompilationWarningMessage(description, isDeprecation,
+				message = SassErrorHelpers.GenerateCompilationWarningMessage(isDeprecation, description,
 					relativeFilePath, lineNumber, columnNumber, sourceLineFragment);
 			}
 
@@ -461,8 +483,7 @@ namespace DartSassHost.JsonConverters
 #else
 			JsonTextReader reader,
 #endif
-			string currentDirectory,
-			Dictionary<string, string> sourcesCache
+			string currentDirectory
 		)
 		{
 			reader.ReadStartArray();
@@ -477,8 +498,7 @@ namespace DartSassHost.JsonConverters
 #else
 					reader,
 #endif
-					currentDirectory,
-					sourcesCache
+					currentDirectory
 				);
 				callStackLines.Add(callStackLine);
 			}
@@ -494,8 +514,7 @@ namespace DartSassHost.JsonConverters
 #else
 			JsonTextReader reader,
 #endif
-			string currentDirectory,
-			Dictionary<string, string> sourcesCache
+			string currentDirectory
 		)
 		{
 			reader.CheckStartObject();
@@ -537,7 +556,7 @@ namespace DartSassHost.JsonConverters
 				relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
 			}
 
-			string callStackLine = SassErrorHelpers.GetErrorLocationLine(memberName, relativeFilePath, lineNumber,
+			string callStackLine = SassErrorHelpers.GetProblemLocationLine(memberName, relativeFilePath, lineNumber,
 				columnNumber);
 
 			return callStackLine;

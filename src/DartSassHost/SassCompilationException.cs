@@ -42,6 +42,11 @@ namespace DartSassHost
 		private string _sourceFragment = string.Empty;
 
 		/// <summary>
+		/// String representation of the call stack
+		/// </summary>
+		private string _callStack = string.Empty;
+
+		/// <summary>
 		/// Gets or sets a status code
 		///		1 - normal errors like parsing or <с>eval</с> errors;
 		///		3 - "untranslated" exceptions like file not found.
@@ -88,6 +93,15 @@ namespace DartSassHost
 			set { _sourceFragment = value; }
 		}
 
+		/// <summary>
+		/// Gets or sets a string representation of the call stack
+		/// </summary>
+		public string CallStack
+		{
+			get { return _callStack; }
+			set { _callStack = value; }
+		}
+
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SassCompilationException"/> class
@@ -125,6 +139,7 @@ namespace DartSassHost
 				_lineNumber = info.GetInt32("LineNumber");
 				_columnNumber = info.GetInt32("ColumnNumber");
 				_sourceFragment = info.GetString("SourceFragment");
+				_callStack = info.GetString("CallStack");
 			}
 		}
 
@@ -152,6 +167,7 @@ namespace DartSassHost
 			info.AddValue("LineNumber", _lineNumber);
 			info.AddValue("ColumnNumber", _columnNumber);
 			info.AddValue("SourceFragment", _sourceFragment);
+			info.AddValue("CallStack", _callStack);
 		}
 
 		#endregion

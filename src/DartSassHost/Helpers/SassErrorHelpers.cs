@@ -14,20 +14,20 @@ namespace DartSassHost.Helpers
 	public static class SassErrorHelpers
 	{
 		/// <summary>
-		/// Gets a error location line
+		/// Gets a problem location line
 		/// </summary>
 		/// <param name="memberName">Member name</param>
 		/// <param name="documentName">Document name</param>
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="columnNumber">Column number</param>
 		/// <param name="sourceFragment">Source fragment</param>
-		internal static string GetErrorLocationLine(string memberName, string documentName, int lineNumber,
+		internal static string GetProblemLocationLine(string memberName, string documentName, int lineNumber,
 			int columnNumber, string sourceFragment = "")
 		{
 			var stringBuilderPool = StringBuilderPool.Shared;
 			StringBuilder errorLocationBuilder = stringBuilderPool.Rent();
 
-			WriteErrorLocationLine(errorLocationBuilder, memberName, documentName, lineNumber, columnNumber,
+			WriteProblemLocationLine(errorLocationBuilder, memberName, documentName, lineNumber, columnNumber,
 				sourceFragment);
 
 			string errorLocation = errorLocationBuilder.ToString();
@@ -37,7 +37,7 @@ namespace DartSassHost.Helpers
 		}
 
 		/// <summary>
-		/// Writes a error location line to the buffer
+		/// Writes a problem location line to the buffer
 		/// </summary>
 		/// <param name="buffer">Instance of <see cref="StringBuilder"/></param>
 		/// <param name="memberName">Member name</param>
@@ -45,7 +45,7 @@ namespace DartSassHost.Helpers
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="columnNumber">Column number</param>
 		/// <param name="sourceFragment">Source fragment</param>
-		internal static void WriteErrorLocationLine(StringBuilder buffer, string memberName,
+		private static void WriteProblemLocationLine(StringBuilder buffer, string memberName,
 			string documentName, int lineNumber, int columnNumber, string sourceFragment = "")
 		{
 			bool memberNameNotEmpty = !string.IsNullOrWhiteSpace(memberName);
@@ -94,6 +94,71 @@ namespace DartSassHost.Helpers
 			}
 		}
 
+		/// <summary>
+		/// Generates a compilation problem message
+		/// </summary>
+		/// <param name="type">Type of the compilation problem</param>
+		/// <param name="description">Description of problem</param>
+		/// <param name="documentName">Document name</param>
+		/// <param name="lineNumber">Line number</param>
+		/// <param name="columnNumber">Column number</param>
+		/// <param name="sourceFragment">Source fragment</param>
+		/// <param name="callStackLines">Call stack lines</param>
+		/// <returns>Compilation problem message</returns>
+		private static string GenerateCompilationProblemMessage(string type, string description, string documentName,
+			int lineNumber, int columnNumber, string sourceFragment, string[] callStackLines)
+		{
+			if (description == null)
+			{
+				throw new ArgumentNullException(nameof(description));
+			}
+
+			if (string.IsNullOrWhiteSpace(description))
+			{
+				throw new ArgumentException(
+					string.Format(Strings.Common_ArgumentIsEmpty, nameof(description)),
+					nameof(description)
+				);
+			}
+
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder messageBuilder = stringBuilderPool.Rent();
+			if (!string.IsNullOrWhiteSpace(type))
+			{
+				messageBuilder.Append(type);
+				messageBuilder.Append(": ");
+			}
+			messageBuilder.Append(description);
+
+			if (callStackLines?.Length > 0)
+			{
+				for (int lineIndex = 0; lineIndex < callStackLines.Length; lineIndex++)
+				{
+					messageBuilder.AppendLine();
+					messageBuilder.Append(callStackLines[lineIndex]);
+					if (lineIndex == 0 && !string.IsNullOrWhiteSpace(sourceFragment))
+					{
+						messageBuilder.Append(" -> ");
+						messageBuilder.Append(sourceFragment);
+					}
+				}
+			}
+			else
+			{
+				if (!string.IsNullOrWhiteSpace(documentName) || lineNumber > 0)
+				{
+					messageBuilder.AppendLine();
+					WriteProblemLocationLine(messageBuilder, string.Empty, documentName, lineNumber, columnNumber,
+						sourceFragment);
+				}
+			}
+
+			string errorMessage = messageBuilder.ToString();
+			stringBuilderPool.Return(messageBuilder);
+
+			return errorMessage;
+		}
+
 		#region Generation of error messages
 
 		/// <summary>
@@ -138,6 +203,21 @@ namespace DartSassHost.Helpers
 		/// </summary>
 		/// <param name="type">Type of the compilation error</param>
 		/// <param name="description">Description of error</param>
+		/// <param name="sourceFragment">Source fragment</param>
+		/// <param name="callStackLines">Call stack lines</param>
+		/// <returns>Compilation error message</returns>
+		internal static string GenerateCompilationErrorMessage(string type, string description,
+			string sourceFragment, string[] callStackLines)
+		{
+			return GenerateCompilationProblemMessage(type, description, string.Empty, 0, 0, sourceFragment,
+				callStackLines);
+		}
+
+		/// <summary>
+		/// Generates a compilation error message
+		/// </summary>
+		/// <param name="type">Type of the compilation error</param>
+		/// <param name="description">Description of error</param>
 		/// <param name="documentName">Document name</param>
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="columnNumber">Column number</param>
@@ -146,39 +226,8 @@ namespace DartSassHost.Helpers
 		internal static string GenerateCompilationErrorMessage(string type, string description, string documentName,
 			int lineNumber, int columnNumber, string sourceFragment)
 		{
-			if (description == null)
-			{
-				throw new ArgumentNullException(nameof(description));
-			}
-
-			if (string.IsNullOrWhiteSpace(description))
-			{
-				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, nameof(description)),
-					nameof(description)
-				);
-			}
-
-			var stringBuilderPool = StringBuilderPool.Shared;
-			StringBuilder messageBuilder = stringBuilderPool.Rent();
-			if (!string.IsNullOrWhiteSpace(type))
-			{
-				messageBuilder.Append(type);
-				messageBuilder.Append(": ");
-			}
-			messageBuilder.Append(description);
-
-			bool documentNameNotEmpty = !string.IsNullOrWhiteSpace(documentName);
-			if (documentNameNotEmpty || lineNumber > 0)
-			{
-				messageBuilder.AppendLine();
-				WriteErrorLocationLine(messageBuilder, string.Empty, documentName, lineNumber, columnNumber, sourceFragment);
-			}
-
-			string errorMessage = messageBuilder.ToString();
-			stringBuilderPool.Return(messageBuilder);
-
-			return errorMessage;
+			return GenerateCompilationProblemMessage(type, description, documentName, lineNumber, columnNumber,
+				sourceFragment, null);
 		}
 
 		#endregion
@@ -186,100 +235,51 @@ namespace DartSassHost.Helpers
 		#region Generation of warning messages
 
 		/// <summary>
-		/// Generates a compilation warning message
+		/// Gets a type of the compilation warning
 		/// </summary>
-		/// <param name="description">Description of problem</param>
 		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
-		/// <param name="documentName">Document name</param>
-		/// <param name="lineNumber">Line number</param>
-		/// <param name="columnNumber">Column number</param>
-		/// <param name="sourceFragment">Source fragment</param>
-		/// <returns>Compilation warning message</returns>
-		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation,
-			string documentName, int lineNumber, int columnNumber, string sourceFragment = "")
+		/// <returns>Type of the compilation warning</returns>
+		private static string GetCompilationWarningType(bool isDeprecation)
 		{
-			return GenerateCompilationWarningMessage(description, isDeprecation, documentName, lineNumber,
-				columnNumber, sourceFragment, null);
+			string type = isDeprecation ? "Deprecation Warning" : "Warning";
+
+			return type;
 		}
 
 		/// <summary>
 		/// Generates a compilation warning message
 		/// </summary>
-		/// <param name="description">Description of problem</param>
 		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
+		/// <param name="description">Description of problem</param>
 		/// <param name="sourceFragment">Source fragment</param>
 		/// <param name="callStackLines">Call stack lines</param>
 		/// <returns>Compilation warning message</returns>
-		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation,
+		internal static string GenerateCompilationWarningMessage(bool isDeprecation, string description,
 			string sourceFragment, string[] callStackLines)
 		{
-			return GenerateCompilationWarningMessage(description, isDeprecation, string.Empty, 0, 0, sourceFragment,
+			string type = GetCompilationWarningType(isDeprecation);
+
+			return GenerateCompilationProblemMessage(type, description, string.Empty, 0, 0, sourceFragment,
 				callStackLines);
 		}
 
 		/// <summary>
 		/// Generates a compilation warning message
 		/// </summary>
-		/// <param name="description">Description of problem</param>
 		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
+		/// <param name="description">Description of problem</param>
 		/// <param name="documentName">Document name</param>
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="columnNumber">Column number</param>
 		/// <param name="sourceFragment">Source fragment</param>
-		/// <param name="callStackLines">Call stack lines</param>
 		/// <returns>Compilation warning message</returns>
-		internal static string GenerateCompilationWarningMessage(string description, bool isDeprecation, string documentName,
-			int lineNumber, int columnNumber, string sourceFragment, string[] callStackLines)
+		internal static string GenerateCompilationWarningMessage(bool isDeprecation, string description, string documentName,
+			int lineNumber, int columnNumber, string sourceFragment)
 		{
-			if (description == null)
-			{
-				throw new ArgumentNullException(nameof(description));
-			}
+			string type = GetCompilationWarningType(isDeprecation);
 
-			if (string.IsNullOrWhiteSpace(description))
-			{
-				throw new ArgumentException(
-					string.Format(Strings.Common_ArgumentIsEmpty, nameof(description)),
-					nameof(description)
-				);
-			}
-
-			var stringBuilderPool = StringBuilderPool.Shared;
-			StringBuilder messageBuilder = stringBuilderPool.Rent();
-			if (isDeprecation)
-			{
-				messageBuilder.Append("Deprecation ");
-			}
-			messageBuilder.Append("Warning: ");
-			messageBuilder.Append(description);
-
-			if (callStackLines?.Length > 0)
-			{
-				for (int lineIndex = 0; lineIndex < callStackLines.Length; lineIndex++)
-				{
-					messageBuilder.AppendLine();
-					messageBuilder.Append(callStackLines[lineIndex]);
-					if (lineIndex == 0 && !string.IsNullOrWhiteSpace(sourceFragment))
-					{
-						messageBuilder.Append(" -> ");
-						messageBuilder.Append(sourceFragment);
-					}
-				}
-			}
-			else
-			{
-				if (!string.IsNullOrWhiteSpace(documentName) || lineNumber > 0)
-				{
-					messageBuilder.AppendLine();
-					WriteErrorLocationLine(messageBuilder, string.Empty, documentName, lineNumber, columnNumber,
-						sourceFragment);
-				}
-			}
-
-			string errorMessage = messageBuilder.ToString();
-			stringBuilderPool.Return(messageBuilder);
-
-			return errorMessage;
+			return GenerateCompilationProblemMessage(type, description, documentName, lineNumber, columnNumber,
+				sourceFragment, null);
 		}
 
 		#endregion

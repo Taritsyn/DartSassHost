@@ -4513,7 +4513,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 							$.$get$_jsThrow().call$1(t1);
 						} else {
 							error0 = t1;
-							t1 = B._newRenderError(J.toString$0$(error0), error0.description || error0.message /*DSH+*/, _null, _null, _null, _null /*DSH+*/, 3);
+							t1 = B._newRenderError(J.toString$0$(error0), error0.description || error0.message /*DSH+*/, _null, _null, _null, _null /*DSH+*/, _null /*DSH+*/, 3);
 							$.$get$_jsThrow().call$1(t1);
 						}
 					}
@@ -4522,7 +4522,8 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 				_wrapException(exception) {
 					var file, t1, t2, t3,
 						url = G.SourceSpanException.prototype.get$span.call(exception).file.url,
-						source //DSH+
+						source, //DSH+
+						stackFrames //DSH+
 						;
 					if (url == null)
 						file = "stdin";
@@ -4535,7 +4536,8 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 					t3 = G.SourceSpanException.prototype.get$span.call(exception);
 					t3 = Y.FileLocation$_(t3.file, t3._file$_start);
 					source = exception.get$source ? exception.get$source() : ""; //DSH+;
-					return B._newRenderError(t1, exception.get$message() /*DSH+*/, t3.file.getColumn$1(t3.offset) + 1, file, t2 + 1, source /*DSH+*/, 1);
+					stackFrames = exception.trace ? exception.trace.frames : null;
+					return B._newRenderError(t1, exception.get$message() /*DSH+*/, t3.file.getColumn$1(t3.offset) + 1, file, t2 + 1, source /*DSH+*/, stackFrames /*DSH+*/, 1);
 				},
 				_parseFunctions(options, start, asynch) {
 					var result,
@@ -4723,7 +4725,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 						t1 = true;
 					return t1;
 				},
-				_newRenderError(message, description /*DSH+*/, column, file, line, source /*DSH+*/, $status) {
+				_newRenderError(message, description /*DSH+*/, column, file, line, source /*DSH+*/, stackFrames /*DSH+*/, $status) {
 					var error = new self.Error(message);
 					error.formatted = "Error: " + message;
 					if (description != null) //DSH+
@@ -4736,6 +4738,8 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 						error.file = file;
 					if (source != null) //DSH+
 						error.source = source; //DSH+
+					if (stackFrames != null) //DSH+
+						error.stackFrames = stackFrames; //DSH+
 					error.status = $status;
 					return error;
 				},
@@ -86445,7 +86449,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 					if (error instanceof E.SassException0)
 						t1.call$2(B._wrapException(error), _null);
 					else
-						t1.call$2(B._newRenderError(J.toString$0$(error), error.description || error.message /*DSH+*/, _null, _null, _null, _null /*DSH+*/, 3), _null);
+						t1.call$2(B._newRenderError(J.toString$0$(error), error.description || error.message /*DSH+*/, _null, _null, _null, _null /*DSH+*/, _null /*DSH+*/, 3), _null);
 				},
 				$signature: 85
 			};

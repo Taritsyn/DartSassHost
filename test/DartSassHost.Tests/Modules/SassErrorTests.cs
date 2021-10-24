@@ -41,7 +41,8 @@ namespace DartSassHost.Tests.Modules
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Can't find stylesheet to import." + Environment.NewLine +
-				"   at Files/modules/errors/non-existing-files/sass/base.sass:1:1 -> @use 'normalize'",
+				"   at root stylesheet (Files/modules/errors/non-existing-files/sass/base.sass:1:1) -> " +
+				"@use 'normalize'",
 				exception.Message
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
@@ -53,6 +54,10 @@ namespace DartSassHost.Tests.Modules
 				"Line 1: @use 'normalize'" + Environment.NewLine +
 				"--------^",
 				exception.SourceFragment
+			);
+			Assert.AreEqual(
+				"   at root stylesheet (Files/modules/errors/non-existing-files/sass/base.sass:1:1)",
+				exception.CallStack
 			);
 		}
 
@@ -84,7 +89,9 @@ namespace DartSassHost.Tests.Modules
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Expected newline." + Environment.NewLine +
-				"   at Files/modules/errors/invalid-syntax/sass/_reset.sass:6:10 ->   padding; 0",
+				"   at @use (Files/modules/errors/invalid-syntax/sass/_reset.sass:6:10) -> " +
+				"  padding; 0" + Environment.NewLine +
+				"   at root stylesheet (Files/modules/errors/invalid-syntax/sass/base.sass:1:1)",
 				exception.Message
 			);
 			Assert.AreEqual("Expected newline.", exception.Description);
@@ -97,6 +104,11 @@ namespace DartSassHost.Tests.Modules
 				"Line 6:   padding; 0" + Environment.NewLine +
 				"-----------------^",
 				exception.SourceFragment
+			);
+			Assert.AreEqual(
+				"   at @use (Files/modules/errors/invalid-syntax/sass/_reset.sass:6:10)" + Environment.NewLine +
+				"   at root stylesheet (Files/modules/errors/invalid-syntax/sass/base.sass:1:1)",
+				exception.CallStack
 			);
 		}
 
@@ -130,7 +142,8 @@ namespace DartSassHost.Tests.Modules
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Can't find stylesheet to import." + Environment.NewLine +
-				"   at Files/modules/errors/non-existing-files/sass/base.sass:1:1 -> @use 'normalize'",
+				"   at root stylesheet (Files/modules/errors/non-existing-files/sass/base.sass:1:1) -> " +
+				"@use 'normalize'",
 				exception.Message
 			);
 			Assert.AreEqual("Can't find stylesheet to import.", exception.Description);
@@ -142,6 +155,10 @@ namespace DartSassHost.Tests.Modules
 				"Line 1: @use 'normalize'" + Environment.NewLine +
 				"--------^",
 				exception.SourceFragment
+			);
+			Assert.AreEqual(
+				"   at root stylesheet (Files/modules/errors/non-existing-files/sass/base.sass:1:1)",
+				exception.CallStack
 			);
 		}
 
@@ -172,7 +189,9 @@ namespace DartSassHost.Tests.Modules
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Expected newline." + Environment.NewLine +
-				"   at Files/modules/errors/invalid-syntax/sass/_reset.sass:6:10 ->   padding; 0",
+				"   at @use (Files/modules/errors/invalid-syntax/sass/_reset.sass:6:10) -> " +
+				"  padding; 0" + Environment.NewLine +
+				"   at root stylesheet (Files/modules/errors/invalid-syntax/sass/base.sass:1:1)",
 				exception.Message
 			);
 			Assert.AreEqual("Expected newline.", exception.Description);
@@ -185,6 +204,11 @@ namespace DartSassHost.Tests.Modules
 				"Line 6:   padding; 0" + Environment.NewLine +
 				"-----------------^",
 				exception.SourceFragment
+			);
+			Assert.AreEqual(
+				"   at @use (Files/modules/errors/invalid-syntax/sass/_reset.sass:6:10)" + Environment.NewLine +
+				"   at root stylesheet (Files/modules/errors/invalid-syntax/sass/base.sass:1:1)",
+				exception.CallStack
 			);
 		}
 

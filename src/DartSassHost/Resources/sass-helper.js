@@ -10,7 +10,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 	//#region dshUtils module
 	dshUtils = (function (currentOsPlatformName, undefined) {
 		var exports = {},
-			fileScheme = 'file://'
+			fileScheme = 'file://',
+			pathWithDriveLetterRegEx = /^[/\\]?[a-zA-z]:[/\\]/
 			;
 
 		function mix() {
@@ -52,9 +53,67 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			return canonicalPath;
 		}
 
+		function fixAbsolutePath(path) {
+			var processedPath;
+
+			if (!path) {
+				return path;
+			}
+
+			processedPath = removeFileSchemeFromPath(path);
+
+			if (pathWithDriveLetterRegEx.test(processedPath)
+				&& (processedPath.startsWith('/') || processedPath.startsWith('\\'))) {
+				processedPath = processedPath.substring(1);
+			}
+
+			if (currentOsPlatformName === 'win32') {
+				processedPath = processedPath.replace(/\//g, '\\');
+			}
+
+			return processedPath;
+		}
+
+		function removeEndingParenthesesFromMemberName(memberName) {
+			var processedMemberName = memberName,
+				endingParentheses = '()'
+				;
+
+			if (memberName && memberName.endsWith(endingParentheses)) {
+				processedMemberName = memberName.substring(0, memberName.length - endingParentheses.length);
+			}
+
+			return processedMemberName;
+		}
+
+		function mapStackFrames(frames) {
+			var stackFrames = [],
+				frameIndex,
+				frame
+				;
+
+			if (!frames) {
+				return stackFrames;
+			}
+
+			for (frameIndex = 0; frameIndex < frames.length; frameIndex++) {
+				frame = frames[frameIndex];
+				stackFrames.push({
+					'file': fixAbsolutePath(frame.uri.path),
+					'lineNumber': frame.line,
+					'columnNumber': frame.column,
+					'memberName': removeEndingParenthesesFromMemberName(frame.member)
+				});
+			}
+
+			return stackFrames;
+		}
+
 		exports.mix = mix;
 		exports.removeFileSchemeFromPath = removeFileSchemeFromPath;
 		exports.getCanonicalFilePath = getCanonicalFilePath;
+		exports.fixAbsolutePath = fixAbsolutePath;
+		exports.mapStackFrames = mapStackFrames;
 
 		return exports;
 	})(currentOsPlatformName);
@@ -223,42 +282,6 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 	//#region DshLogger class
 	DshLogger = (function (sass, currentOsPlatformName, dshUtils, undefined) {
-		var pathWithDriveLetterRegEx = /^[/\\]?[a-zA-z]:[/\\]/;
-
-		function fixAbsolutePath(path) {
-			var processedPath;
-
-			if (!path) {
-				return path;
-			}
-
-			processedPath = dshUtils.removeFileSchemeFromPath(path);
-
-			if (pathWithDriveLetterRegEx.test(processedPath)
-				&& (processedPath.startsWith('/') || processedPath.startsWith('\\'))) {
-				processedPath = processedPath.substring(1);
-			}
-
-			if (currentOsPlatformName === 'win32') {
-				processedPath = processedPath.replace(/\//g, '\\');
-			}
-
-			return processedPath;
-		}
-
-		function removeEndingParenthesesFromMemberName(memberName) {
-			var processedMemberName = memberName,
-				endingParentheses = '()'
-				;
-
-			if (memberName && memberName.endsWith(endingParentheses)) {
-				processedMemberName = memberName.substring(0, memberName.length - endingParentheses.length);
-			}
-
-			return processedMemberName;
-		}
-
-
 		function DshLogger() {
 			this._warnings = [];
 			this._sources = {};
@@ -271,11 +294,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				fileLocation,
 				fileSpan,
 				filePath,
-				frames,
-				frameIndex,
-				frame,
-				firstFrame,
-				stackFrames = []
+				stackFrames = [],
+				firstStackFrame
 				;
 
 			warning = {
@@ -287,7 +307,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				file = span.file;
 				fileLocation = new sass.FileLocation(file, span._file$_start);
 				fileSpan = new sass.FileSpan(file, 0, file._decodedChars.length);
-				filePath = fixAbsolutePath(fileLocation.get$sourceUrl().path);
+				filePath = dshUtils.fixAbsolutePath(fileLocation.get$sourceUrl().path);
 
 				warning.file = filePath;
 				warning.lineNumber = fileLocation.get$line() + 1;
@@ -299,27 +319,17 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			}
 
 			if (trace && trace.frames) {
-				frames = trace.frames;
-
-				if (!span) {
-					firstFrame = frames[0];
-
-					warning.file = fixAbsolutePath(firstFrame.uri.path);
-					warning.lineNumber = firstFrame.line;
-					warning.columnNumber = firstFrame.column;
-				}
-
-				for (frameIndex = 0; frameIndex < frames.length; frameIndex++) {
-					frame = frames[frameIndex];
-					stackFrames.push({
-						'file': fixAbsolutePath(frame.uri.path),
-						'lineNumber': frame.line,
-						'columnNumber': frame.column,
-						'memberName': removeEndingParenthesesFromMemberName(frame.member)
-					});
-				}
+				stackFrames = dshUtils.mapStackFrames(trace.frames);
 
 				if (stackFrames.length > 0) {
+					if (!span) {
+						firstStackFrame = stackFrames[0];
+
+						warning.file = firstStackFrame.file;
+						warning.lineNumber = firstStackFrame.lineNumber;
+						warning.columnNumber = firstStackFrame.columnNumber;
+					}
+
 					warning.stackFrames = stackFrames;
 				}
 			}
@@ -402,7 +412,9 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				compiledContent = '',
 				sourceMap = '',
 				includedFilePaths = [],
+				stackFrames,
 				errors = [],
+				error,
 				warnings = [],
 				warningSources = {},
 				fileManagerProxy,
@@ -428,7 +440,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			catch (e)
 			{
 				if (e.formatted) {
-					errors.push({
+					stackFrames = dshUtils.mapStackFrames(e.stackFrames);
+					error = {
 						'message': e.message,
 						'description': e.description || e.message,
 						'type': e.name || '',
@@ -437,7 +450,12 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 						'columnNumber': e.column || 0,
 						'source': e.source || '',
 						'status': e.status
-					});
+					};
+					if (stackFrames && stackFrames.length > 0) {
+						error.stackFrames = stackFrames;
+					}
+
+					errors.push(error);
 				}
 				else {
 					throw (e);
