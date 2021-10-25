@@ -112,6 +112,54 @@ namespace DartSassHost.Tests.Modules
 			);
 		}
 
+		[Test]
+		public void MappingSassCustomErrorDuringCompilationOfCode()
+		{
+			// Arrange
+			string inputPath = GenerateSassFilePath("custom-error", "base");
+			string input = GetFileContent(inputPath);
+
+			// Act
+			string output;
+			SassCompilationException exception = null;
+
+			try
+			{
+				using (var sassCompiler = CreateSassCompiler())
+				{
+					output = sassCompiler.Compile(input, inputPath).CompiledContent;
+				}
+			}
+			catch (SassCompilationException e)
+			{
+				exception = e;
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.AreEqual(
+				"Error: \"Property top must be either left or right.\"" + Environment.NewLine +
+				"   at root stylesheet (Files/modules/errors/custom-error/sass/base.sass:4:3) -> " +
+				"  @include m.reflexive-position(top, 12px)",
+				exception.Message
+			);
+			Assert.AreEqual("\"Property top must be either left or right.\"", exception.Description);
+			Assert.AreEqual(1, exception.Status);
+			Assert.AreEqual(inputPath, exception.File);
+			Assert.AreEqual(4, exception.LineNumber);
+			Assert.AreEqual(3, exception.ColumnNumber);
+			Assert.AreEqual(
+				"Line 3: .sidebar" + Environment.NewLine +
+				"Line 4:   @include m.reflexive-position(top, 12px)" + Environment.NewLine +
+				"----------^",
+				exception.SourceFragment
+			);
+			Assert.AreEqual(
+				"   at root stylesheet (Files/modules/errors/custom-error/sass/base.sass:4:3)",
+				exception.CallStack
+			);
+		}
+
 		#endregion
 
 		#region Files
@@ -208,6 +256,53 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(
 				"   at @use (Files/modules/errors/invalid-syntax/sass/_reset.sass:6:10)" + Environment.NewLine +
 				"   at root stylesheet (Files/modules/errors/invalid-syntax/sass/base.sass:1:1)",
+				exception.CallStack
+			);
+		}
+
+		[Test]
+		public void MappingSassCustomErrorDuringCompilationOfFile()
+		{
+			// Arrange
+			string inputPath = GenerateSassFilePath("custom-error", "base");
+
+			// Act
+			string output;
+			SassCompilationException exception = null;
+
+			try
+			{
+				using (var sassCompiler = CreateSassCompiler())
+				{
+					output = sassCompiler.CompileFile(inputPath).CompiledContent;
+				}
+			}
+			catch (SassCompilationException e)
+			{
+				exception = e;
+			}
+
+			// Assert
+			Assert.NotNull(exception);
+			Assert.AreEqual(
+				"Error: \"Property top must be either left or right.\"" + Environment.NewLine +
+				"   at root stylesheet (Files/modules/errors/custom-error/sass/base.sass:4:3) -> " +
+				"  @include m.reflexive-position(top, 12px)",
+				exception.Message
+			);
+			Assert.AreEqual("\"Property top must be either left or right.\"", exception.Description);
+			Assert.AreEqual(1, exception.Status);
+			Assert.AreEqual(inputPath, exception.File);
+			Assert.AreEqual(4, exception.LineNumber);
+			Assert.AreEqual(3, exception.ColumnNumber);
+			Assert.AreEqual(
+				"Line 3: .sidebar" + Environment.NewLine +
+				"Line 4:   @include m.reflexive-position(top, 12px)" + Environment.NewLine +
+				"----------^",
+				exception.SourceFragment
+			);
+			Assert.AreEqual(
+				"   at root stylesheet (Files/modules/errors/custom-error/sass/base.sass:4:3)",
 				exception.CallStack
 			);
 		}

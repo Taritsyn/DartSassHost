@@ -1,0 +1,16 @@
+@mixin reflexive-position($property, $value)
+  @if $property != left and $property != right
+    @error "Property #{$property} must be either left or right."
+
+
+  $left-value: if($property == right, initial, $value)
+  $right-value: if($property == right, $value, initial)
+
+  left: $left-value
+  right: $right-value
+  [dir=rtl] &
+    left: $right-value
+    right: $left-value
+
+.sidebar
+  @include reflexive-position(top, 12px)
