@@ -425,7 +425,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			logger = new DshLogger();
 
 			sass.dsh.fileManagerProxy = fileManagerProxy;
-			sass.dsh.logger = logger;
+			compilationOptions.logger = logger;
 
 			try
 			{
@@ -466,7 +466,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				sass.dsh.fileManagerProxy = null;
 
 				logger.dispose();
-				sass.dsh.logger = null;
+				compilationOptions.logger = null;
 			}
 
 			result = {
