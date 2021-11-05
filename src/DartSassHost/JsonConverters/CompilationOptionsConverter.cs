@@ -50,12 +50,24 @@ namespace DartSassHost.JsonConverters
 			writer.WriteString("indentType", GetIndentTypeCode(value.IndentType));
 			writer.WriteNumber("indentWidth", value.IndentWidth);
 			writer.WriteString("linefeed", GetLineFeedString(value.LineFeedType));
+			writer.WriteBoolean("quietDeps", value.QuietDependencies);
 			writer.WriteBoolean("omitSourceMapUrl", value.OmitSourceMapUrl);
 			writer.WriteString("outputStyle", GetOutputStyleCode(value.OutputStyle));
 			writer.WriteBoolean("sourceMapContents", value.SourceMapIncludeContents);
 			writer.WriteBoolean("sourceMapEmbed", value.InlineSourceMap);
 			writer.WriteString("sourceMapRoot", value.SourceMapRootPath);
 			writer.WriteBoolean("sourceMap", value.SourceMap);
+
+			switch (value.WarningLevel)
+			{
+				case WarningLevel.Quiet:
+					writer.WriteBoolean("quiet", true);
+					break;
+
+				case WarningLevel.Verbose:
+					writer.WriteBoolean("verbose", true);
+					break;
+			}
 
 			writer.WriteEndObject();
 		}

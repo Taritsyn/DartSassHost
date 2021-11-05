@@ -4926,9 +4926,9 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 					J.set$TRUE$x(self.exports, C.SassBoolean_true0);
 					J.set$FALSE$x(self.exports, C.SassBoolean_false0);
 
-					self.exports.FileLocation = Y.FileLocation; // DSH+
-					self.exports.FileSpan = Y._FileSpan; // DSH+
-					self.exports.dsh = dsh; // DSH+
+					self.exports.FileLocation = Y.FileLocation; //DSH+
+					self.exports.FileSpan = Y._FileSpan; //DSH+
+					self.exports.dsh = dsh; //DSH+
 				}
 			},
 			C = {},
@@ -18555,7 +18555,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 						t1 = Date.now(),
 						t2 = result._compile_result$_serialize,
 						css = t2.css,
-						sourceMap = _null // DSH+
+						sourceMap = _null //DSH+
 						;
 					if (Q._enableSourceMaps(options)) {
 						t3 = J.getInterceptor$x(options);
@@ -18585,7 +18585,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 						/*DSH-
 						sourceMapDirUrl = t4.toUri$1(sourceMapDir).toString$0(0);
 						*/
-						sourceMapDirUrl = t4.toUri$1(sourceMapDir === "." ? D.absolute(".") : dsh.fileManagerProxy.convertPathToAbsolute(sourceMapDir)).toString$0(0); // DSH+
+						sourceMapDirUrl = t4.toUri$1(sourceMapDir === "." ? D.absolute(".") : dsh.fileManagerProxy.convertPathToAbsolute(sourceMapDir)).toString$0(0); //DSH+
 						for (t4 = t2.urls, i = 0; i < t4.length; ++i) {
 							source = t4[i];
 							if (source === "stdin")
@@ -18600,7 +18600,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 						/*DSH-
 						sourceMapBytes = self.Buffer.from(C.C_JsonCodec.encode$2$toEncodable(t2.toJson$1$includeSourceContents(!J.$eq$(t4, false) && t4 != null), _null), "utf8");
 						*/
-						sourceMap = C.C_JsonCodec.encode$2$toEncodable(t2.toJson$1$includeSourceContents(!J.$eq$(t4, false) && t4 != null), _null); // DSH+
+						sourceMap = C.C_JsonCodec.encode$2$toEncodable(t2.toJson$1$includeSourceContents(!J.$eq$(t4, false) && t4 != null), _null); //DSH+
 						t2 = t3.get$omitSourceMapUrl(options);
 						if (!(!J.$eq$(t2, false) && t2 != null)) {
 							t2 = t3.get$sourceMapEmbed(options);
@@ -18612,7 +18612,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 								t2 = buffer._contents += ";base64,";
 								indices.push(t2.length - 1);
 								t2 = C.C_Base64Encoder.startChunkedConversion$1(new P._StringSinkConversionSink(buffer));
-								sourceMapBytes = self.Buffer.from(sourceMap, "utf8"); // DSH+
+								sourceMapBytes = self.Buffer.from(sourceMap, "utf8"); //DSH+
 								t3 = sourceMapBytes.length;
 								P.RangeError_checkValidRange(0, t3, t3);
 								t2._convert$_add$4(sourceMapBytes, 0, t3, true);
@@ -64575,7 +64575,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 				},
 				_writeImportUrl$1(url) {
 					var urlContents, maybeQuote, _this = this;
-					url = dsh.fileManagerProxy.convertPathToAbsoluteInQuotedValue(url); // DSH+
+					url = dsh.fileManagerProxy.convertPathToAbsoluteInQuotedValue(url); //DSH+
 					if (_this._style !== C.OutputStyle_compressed || C.JSString_methods._codeUnitAt$1(url, 0) !== 117) {
 						_this._serialize$_buffer.write$1(0, url);
 						return;
@@ -89961,7 +89961,7 @@ var Sass = (function(currentOsPlatformName /*DSH+*/){
 				},
 				_serialize0$_writeImportUrl$1(url) {
 					var urlContents, maybeQuote, _this = this;
-					url = dsh.fileManagerProxy.convertPathToAbsoluteInQuotedValue(url); // DSH+
+					url = dsh.fileManagerProxy.convertPathToAbsoluteInQuotedValue(url); //DSH+
 					if (_this._serialize0$_style !== C.OutputStyle_compressed0 || C.JSString_methods._codeUnitAt$1(url, 0) !== 117) {
 						_this._serialize0$_buffer.write$1(0, url);
 						return;

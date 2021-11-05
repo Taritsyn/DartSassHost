@@ -1,0 +1,20 @@
+@use "sass:color";
+
+@use "variables" as *;
+@use "mixins" as *;
+@use "grid";
+@use "colors";
+
+.theme-light {
+  background-color: $body-bg;
+  color: $text-color;
+}
+
+.theme-dark {
+  background-color: color.invert($body-bg);
+  color: color.invert($text-color);
+}
+
+.tilt {
+  @include prefix(transform, rotate(15deg), wekbit ms);
+}

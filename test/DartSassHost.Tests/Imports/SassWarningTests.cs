@@ -175,7 +175,7 @@ namespace DartSassHost.Tests.Imports
 			// Assert
 			Assert.AreEqual(1, warnings.Count);
 
-			const string description = "Unknown prefix wekbit.";
+			string description = string.Format(WarningConstants.UnknownVendorPrefix, "wekbit");
 
 			Assert.AreEqual(
 				"Warning: " + description + Environment.NewLine +
@@ -363,7 +363,7 @@ namespace DartSassHost.Tests.Imports
 			// Assert
 			Assert.AreEqual(1, warnings.Count);
 
-			const string description = "Unknown prefix wekbit.";
+			string description = string.Format(WarningConstants.UnknownVendorPrefix, "wekbit");
 
 			Assert.AreEqual(
 				"Warning: " + description + Environment.NewLine +

@@ -4,7 +4,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 	var dshUtils,
 		DshFileManagerProxy,
-		DshLogger
+		DshCustomLogger,
+		DshNullLogger
 		;
 
 	//#region dshUtils module
@@ -280,15 +281,45 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 	})(dshUtils);
 	//#endregion
 
-	//#region DshLogger class
-	DshLogger = (function (sass, currentOsPlatformName, dshUtils, undefined) {
-		function DshLogger() {
+	//#region DshCustomLogger class
+	DshCustomLogger = (function (sass, currentOsPlatformName, dshUtils, undefined) {
+		var MAX_WARNING_COUNT = 5;
+
+		function isWarningCountExceeded(warningCounts, message, deprecation) {
+			var result,
+				paragraphs,
+				firstParagraph,
+				count
+				;
+
+			if (!deprecation) {
+				return false;
+			}
+
+			paragraphs = message.split('\n\n');
+			firstParagraph = paragraphs.length > 0 ? paragraphs[0] : '';
+			if (firstParagraph.length === 0) {
+				return false;
+			}
+
+			count = (warningCounts[firstParagraph] || 0) + 1;
+			warningCounts[firstParagraph] = count;
+
+			result = count > MAX_WARNING_COUNT;
+
+			return result;
+		}
+
+
+		function DshCustomLogger(verbose) {
+			this._verbose = verbose;
 			this._warnings = [];
+			this._warningCounts = {};
 			this._sources = {};
 		}
 
 
-		DshLogger.prototype.warn$4$deprecation$span$trace = function (_, message, deprecation, span, trace) {
+		DshCustomLogger.prototype.warn$4$deprecation$span$trace = function (_, message, deprecation, span, trace) {
 			var warning,
 				file,
 				fileLocation,
@@ -297,6 +328,10 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				stackFrames = [],
 				firstStackFrame
 				;
+
+			if (!this._verbose && isWarningCountExceeded(this._warningCounts, message, deprecation)) {
+				return;
+			}
 
 			warning = {
 				'message': message,
@@ -337,49 +372,88 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			this._warnings.push(warning);
 		};
 
-		DshLogger.prototype.warn$1 = function ($receiver, message) {
+		DshCustomLogger.prototype.warn$1 = function ($receiver, message) {
 			return this.warn$4$deprecation$span$trace($receiver, message, false, null, null);
 		};
 
-		DshLogger.prototype.warn$2$span = function ($receiver, message, span) {
+		DshCustomLogger.prototype.warn$2$span = function ($receiver, message, span) {
 			return this.warn$4$deprecation$span$trace($receiver, message, false, span, null);
 		};
 
-		DshLogger.prototype.warn$2$deprecation = function ($receiver, message, deprecation) {
+		DshCustomLogger.prototype.warn$2$deprecation = function ($receiver, message, deprecation) {
 			return this.warn$4$deprecation$span$trace($receiver, message, deprecation, null, null);
 		};
 
-		DshLogger.prototype.warn$3$deprecation$span = function ($receiver, message, deprecation, span) {
+		DshCustomLogger.prototype.warn$3$deprecation$span = function ($receiver, message, deprecation, span) {
 			return this.warn$4$deprecation$span$trace($receiver, message, deprecation, span, null);
 		};
 
-		DshLogger.prototype.warn$2$trace = function ($receiver, message, trace) {
+		DshCustomLogger.prototype.warn$2$trace = function ($receiver, message, trace) {
 			return this.warn$4$deprecation$span$trace($receiver, message, false, null, trace);
 		};
 
-		DshLogger.prototype.debug$2 = function (_, message, span) {
+		DshCustomLogger.prototype.debug$2 = function (_, message, span) {
 			// Do nothing
 		};
 
-		DshLogger.prototype.getWarnings = function () {
+		DshCustomLogger.prototype.getWarnings = function () {
 			return this._warnings;
 		};
 
-		DshLogger.prototype.getSources = function () {
+		DshCustomLogger.prototype.getSources = function () {
 			return this._sources;
 		};
 
-		DshLogger.prototype.dispose = function () {
+		DshCustomLogger.prototype.dispose = function () {
 			this._warnings = null;
+			this._warningCounts = null;
 			this._sources = null;
 		};
 
-		return DshLogger;
+		return DshCustomLogger;
 	})(sass, currentOsPlatformName, dshUtils);
 	//#endregion
 
+	//#region DshNullLogger class
+	DshNullLogger = (function () {
+		function noop() { }
+
+
+		function DshNullLogger() {
+			this._warnings = [];
+		}
+
+
+		DshNullLogger.prototype.warn$4$deprecation$span$trace = noop;
+
+		DshNullLogger.prototype.warn$1 = noop;
+
+		DshNullLogger.prototype.warn$2$span = noop;
+
+		DshNullLogger.prototype.warn$2$deprecation = noop;
+
+		DshNullLogger.prototype.warn$3$deprecation$span = noop;
+
+		DshNullLogger.prototype.warn$2$trace = noop;
+
+		DshNullLogger.prototype.debug$2 = noop;
+
+		DshNullLogger.prototype.getWarnings = function () {
+			return this._warnings;
+		};
+
+		DshNullLogger.prototype.getSources = noop;
+
+		DshNullLogger.prototype.dispose = function () {
+			this._warnings = null;
+		};
+
+		return DshNullLogger;
+	})();
+	//#endregion
+
 	//#region SassHelper class
-	SassHelper = (function (sass, fileManager, DshFileManagerProxy, DshLogger, dshUtils, undefined) {
+	SassHelper = (function (sass, fileManager, DshFileManagerProxy, DshCustomLogger, DshNullLogger, dshUtils, undefined) {
 		var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/;
 
 		function fixIncludedPaths(paths, currentDirectory) {
@@ -422,7 +496,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				;
 
 			fileManagerProxy = new DshFileManagerProxy(fileManager);
-			logger = new DshLogger();
+			logger = !compilationOptions.quiet ? new DshCustomLogger(compilationOptions.verbose) : new DshNullLogger();
 
 			sass.dsh.fileManagerProxy = fileManagerProxy;
 			compilationOptions.logger = logger;
@@ -545,7 +619,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		};
 
 		return SassHelper;
-	})(sass, fileManager, DshFileManagerProxy, DshLogger, dshUtils);
+	})(sass, fileManager, DshFileManagerProxy, DshCustomLogger, DshNullLogger, dshUtils);
 	//#endregion
 
 	return SassHelper;

@@ -1,0 +1,90 @@
+@use "sass:color"
+@use "sass:math"
+
+$body-bg: #f8f2f1 !default
+$text-color: 221716 !default
+$grid-columns: 12 !default
+$grid-gutter-width: 3% !default
+$known-prefixes: webkit, moz, ms, o
+
+@mixin prefix($property, $value, $prefixes)
+  @each $prefix in $prefixes
+    @if not index($known-prefixes, $prefix)
+      @warn "Unknown prefix #{$prefix}."
+
+
+    -#{$prefix}-#{$property}: $value
+
+  #{$property}: $value
+
+%clearfix:after
+  display: block
+  clear: both
+  content: ""
+
+.row
+  @extend %clearfix
+
+  & + &
+    margin-top: $grid-gutter-width
+
+[class^="col-"]
+  float: left
+  margin-right: math.div("#{$grid-gutter-width}", 2)
+  margin-left: $grid-gutter-width / 2
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+
+  &:first-child
+    margin-left: 0
+
+  &:last-child
+    margin-right: 0
+
+.col-1
+  width: math.div(100% * 1 - $grid-gutter-width * ($grid-columns - 1), "#{$grid-gutter-width}")
+
+.col-2
+  width: math.div(100% * 2 - $grid-gutter-width * ($grid-columns - 2), '#{$grid-gutter-width}')
+
+.col-3
+  width: math.div(100% * 3 - $grid-gutter-width * ($grid-columns - 3), "" + $grid-columns)
+
+.col-4
+  width: math.div(100% * 4 - $grid-gutter-width * ($grid-columns - 4), '' + $grid-columns)
+
+.col-5
+  width: math.div(100% * 5 - $grid-gutter-width * ($grid-columns - 5), $grid-columns + "")
+
+.col-6
+  width: math.div(100% * 6 - $grid-gutter-width * ($grid-columns - 6), $grid-columns + '')
+
+.col-7
+  width: (100% * 7 - $grid-gutter-width * ($grid-columns - 7)) / $grid-columns
+
+.col-8
+  width: (100% * 8 - $grid-gutter-width * ($grid-columns - 8)) / $grid-columns
+
+.col-9
+  width: (100% * 9 - $grid-gutter-width * ($grid-columns - 9)) / $grid-columns
+
+.col-10
+  width: (100% * 10 - $grid-gutter-width * ($grid-columns - 10)) / $grid-columns
+
+.col-11
+  width: (100% * 11 - $grid-gutter-width * ($grid-columns - 11)) / $grid-columns
+
+.col-12
+  width: (100% * 12 - $grid-gutter-width * ($grid-columns - 12)) / $grid-columns
+
+.theme-light
+  background-color: $body-bg
+  color: $text-color
+
+.theme-dark
+  background-color: color.invert($body-bg)
+  color: color.invert($text-color)
+
+.tilt
+  @include prefix(transform, rotate(15deg), wekbit ms)

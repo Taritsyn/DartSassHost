@@ -84,6 +84,16 @@ namespace DartSassHost
 		}
 
 		/// <summary>
+		/// Gets or sets a flag for whether to silence compiler warnings from stylesheets loaded by using the
+		/// <see cref="IncludePaths"/> property
+		/// </summary>
+		public bool QuietDependencies
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to enable source map generation
 		/// </summary>
 		public bool SourceMap
@@ -110,6 +120,15 @@ namespace DartSassHost
 			set;
 		}
 
+		/// <summary>
+		/// Gets or sets a warning level
+		/// </summary>
+		public WarningLevel WarningLevel
+		{
+			get;
+			set;
+		}
+
 
 		/// <summary>
 		/// Constructs a instance of the Sass compilation options
@@ -124,9 +143,11 @@ namespace DartSassHost
 			LineFeedType = LineFeedType.Lf;
 			OmitSourceMapUrl = false;
 			OutputStyle = OutputStyle.Expanded;
+			QuietDependencies = false;
 			SourceMap = false;
 			SourceMapIncludeContents = false;
 			SourceMapRootPath = string.Empty;
+			WarningLevel = WarningLevel.Default;
 		}
 	}
 }
