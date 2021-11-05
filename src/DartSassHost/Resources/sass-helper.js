@@ -283,38 +283,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 	//#region DshCustomLogger class
 	DshCustomLogger = (function (sass, currentOsPlatformName, dshUtils, undefined) {
-		var MAX_WARNING_COUNT = 5;
-
-		function isWarningCountExceeded(warningCounts, message, deprecation) {
-			var result,
-				paragraphs,
-				firstParagraph,
-				count
-				;
-
-			if (!deprecation) {
-				return false;
-			}
-
-			paragraphs = message.split('\n\n');
-			firstParagraph = paragraphs.length > 0 ? paragraphs[0] : '';
-			if (firstParagraph.length === 0) {
-				return false;
-			}
-
-			count = (warningCounts[firstParagraph] || 0) + 1;
-			warningCounts[firstParagraph] = count;
-
-			result = count > MAX_WARNING_COUNT;
-
-			return result;
-		}
-
-
-		function DshCustomLogger(verbose) {
-			this._verbose = verbose;
+		function DshCustomLogger() {
 			this._warnings = [];
-			this._warningCounts = {};
 			this._sources = {};
 		}
 
@@ -328,10 +298,6 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				stackFrames = [],
 				firstStackFrame
 				;
-
-			if (!this._verbose && isWarningCountExceeded(this._warningCounts, message, deprecation)) {
-				return;
-			}
 
 			warning = {
 				'message': message,
@@ -406,7 +372,6 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 		DshCustomLogger.prototype.dispose = function () {
 			this._warnings = null;
-			this._warningCounts = null;
 			this._sources = null;
 		};
 
@@ -496,7 +461,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				;
 
 			fileManagerProxy = new DshFileManagerProxy(fileManager);
-			logger = !compilationOptions.quiet ? new DshCustomLogger(compilationOptions.verbose) : new DshNullLogger();
+			logger = !compilationOptions.quiet ? new DshCustomLogger() : new DshNullLogger();
 
 			sass.dsh.fileManagerProxy = fileManagerProxy;
 			compilationOptions.logger = logger;
