@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v1.0.0 Preview 7 - November 5, 2021
+ * Added support of the Dart Sass version 1.43.4
+ * In compilation options was added three new properties: `Charset` (default `true`), `WarningLevel` (default `Default`) and `QuietDependencies` (default `false`)
+ * Fragments of source code is now added to warning messages
+ * Call stack is now added to compilation exceptions and error messages
+
 ## v1.0.0 Preview 6 - September 8, 2021
  * Reduced a number of accesses to the file system due to caching
 

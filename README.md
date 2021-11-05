@@ -161,6 +161,12 @@ Let's consider in detail properties of the <code title="DartSassHost.Compilation
     </thead>
     <tbody>
         <tr valign="top">
+            <td><code>Charset</code></td>
+            <td><code title="System.Boolean">Boolean</code></td>
+            <td><code>true</code></td>
+            <td>Flag for whether to emit a <code>@charset</code> or BOM for CSS with non-ASCII characters.</td>
+        </tr>
+        <tr valign="top">
             <td><code>IncludePaths</code></td>
             <td><code title="System.Collections.Generic.IList&lt;string&gt;">IList&lt;string&gt;</code></td>
             <td>Empty list</td>
@@ -220,6 +226,12 @@ Let's consider in detail properties of the <code title="DartSassHost.Compilation
             </td>
         </tr>
         <tr valign="top">
+            <td><code>QuietDependencies</code></td>
+            <td><code title="System.Boolean">Boolean</code></td>
+            <td><code>false</code></td>
+            <td>Flag for whether to silence compiler warnings from stylesheets loaded by using the <code>IncludePaths</code> property.</td>
+        </tr>
+        <tr valign="top">
             <td><code>SourceMap</code></td>
             <td><code title="System.Boolean">Boolean</code></td>
             <td><code>false</code></td>
@@ -236,6 +248,18 @@ Let's consider in detail properties of the <code title="DartSassHost.Compilation
             <td><code title="System.String">String</code></td>
             <td>Empty string</td>
             <td>Value will be emitted as <code>sourceRoot</code> in the source map information.</td>
+        </tr>
+        <tr valign="top">
+            <td><code>WarningLevel</code></td>
+            <td><code title="DartSassHost.WarningLevel">WarningLevel</code> enumeration</td>
+            <td><code>Default</code></td>
+            <td>Warning level. Can take the following values:
+                <ul>
+                    <li><code>Quiet</code> - warnings are not displayed</li>
+                    <li><code>Default</code> - displayed only 5 instances of the same deprecation warning per compilation</li>
+                    <li><code>Verbose</code> - displayed all deprecation warnings</li>
+                </ul>
+            </td>
         </tr>
     </tbody>
 </table>
