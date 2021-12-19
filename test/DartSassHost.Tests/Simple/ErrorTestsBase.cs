@@ -1,5 +1,7 @@
 ﻿using JavaScriptEngineSwitcher.Core;
+#if NET471 || NETCOREAPP2_1_OR_GREATER
 using JavaScriptEngineSwitcher.NiL;
+#endif
 using NUnit.Framework;
 
 namespace DartSassHost.Tests.Simple
@@ -16,6 +18,7 @@ namespace DartSassHost.Tests.Simple
 
 		#region Code
 
+#if NET471 || NETCOREAPP2_1_OR_GREATER
 		[Test]
 		public void MappingSassCompilerLoadErrorDuringCompilationOfCode()
 		{
@@ -49,11 +52,13 @@ namespace DartSassHost.Tests.Simple
 			);
 			Assert.AreEqual("TypeError: Can't set property \"keys\" of \"undefined\"", exception.Description);
 		}
+#endif
 
 		#endregion
 
 		#region Files
 
+#if NET471 || NETCOREAPP2_1_OR_GREATER
 		[Test]
 		public void MappingSassCompilerLoadErrorDuringCompilationOfFile()
 		{
@@ -86,6 +91,7 @@ namespace DartSassHost.Tests.Simple
 			);
 			Assert.AreEqual("TypeError: Can't set property \"keys\" of \"undefined\"", exception.Description);
 		}
+#endif
 
 		[Test]
 		public void MappingFileNotFoundErrorDuringCompilationOfFile()
