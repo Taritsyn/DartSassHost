@@ -29,12 +29,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of the Dart Sass version 1.43.4;
-   2. In compilation options was added three new properties: `Charset`(default
-      `true`), `WarningLevel` (default `Default`) and `QuietDependencies` (default
-      `false`);
-   3. Fragments of source code is now added to warning messages;
-   4. Call stack is now added to compilation exceptions and error messages.
+   .NET 5.0 target was replaced by a .NET 6 target.
 
    ============
    PROJECT SITE
