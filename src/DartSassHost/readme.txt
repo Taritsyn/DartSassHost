@@ -29,7 +29,8 @@
    =============
    RELEASE NOTES
    =============
-   .NET 5.0 target was replaced by a .NET 6 target.
+   1. .NET 5.0 target was replaced by a .NET 6 target;
+   2. `FileManagerWrapper` class is no longer used.
 
    ============
    PROJECT SITE

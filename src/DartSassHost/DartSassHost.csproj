@@ -34,7 +34,8 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>.NET 5.0 target was replaced by a .NET 6 target.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. .NET 5.0 target was replaced by a .NET 6 target;
+2. `FileManagerWrapper` class is no longer used.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>

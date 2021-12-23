@@ -307,7 +307,7 @@ namespace DartSassHost
 				try
 				{
 					_jsEngine = _createJsEngineInstance();
-					_jsEngine.EmbedHostObject(FILE_MANAGER_VARIABLE_NAME, new FileManagerWrapper(_fileManager));
+					_jsEngine.EmbedHostObject(FILE_MANAGER_VARIABLE_NAME, _fileManager);
 					_jsEngine.SetVariableValue(CURRENT_OS_PLATFORM_NAME, GetCurrentOSPlatformName());
 
 					Assembly assembly = this.GetType()
