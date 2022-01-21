@@ -15,7 +15,7 @@
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
     <Title>$(Product)</Title>
     <Authors>Andrey Taritsyn</Authors>
-    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.43.4 with the ability to support a virtual file system.
+    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.46.0 with the ability to support a virtual file system.
 
 Since the original library is written in JavaScript, you will need a JS engine to run it. As a JS engine is used the JavaScript Engine Switcher library (https://github.com/Taritsyn/JavaScriptEngineSwitcher). For correct working, you need to install one of the following NuGet packages:
 
@@ -34,8 +34,9 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>1. .NET 5.0 target was replaced by a .NET 6 target;
-2. `FileManagerWrapper` class is no longer used.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support of the Dart Sass version 1.46.0;
+2. .NET 5.0 target was replaced by a .NET 6 target;
+3. `FileManagerWrapper` class is no longer used.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -123,6 +124,11 @@ After installing the packages, you will need to register the default JS engine (
     </None>
     <None Include="../../licenses/ieee754-license.txt">
       <PackagePath>ieee754-license.txt</PackagePath>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </None>
+    <None Include="../../licenses/immutable-license.txt">
+      <PackagePath>immutable-license.txt</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
     </None>

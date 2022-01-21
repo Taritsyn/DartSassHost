@@ -5,6 +5,11 @@
 	/// </summary>
 	internal static class WarningConstants
 	{
+		private const string DeprecatedDivisionDescription = "Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.";
+		private const string DeprecatedDivisionRecommendation = "Recommendation: ";
+		private const string DeprecatedDivisionMoreInfo = "More info and automated migrator: https://sass-lang.com/d/slash-div";
+
+
 		public const string MathDivOnlySupportNumberArguments = "math.div() will only support number arguments in a future release.\n" +
 			"Use list.slash() instead for a slash separator."
 			;
@@ -13,9 +18,13 @@
 			"Always quote color names when using them as strings or map keys (for example, \"{0}\").\n" +
 			"If you really want to use the color value here, use '\"\" + {1}'."
 			;
-		public const string DeprecatedDivision = "Using / for division is deprecated and will be removed in Dart Sass 2.0.0.\n\n" +
-			"Recommendation: {0}\n\n" +
-			"More info and automated migrator: https://sass-lang.com/d/slash-div"
+		public const string DeprecatedDivisionWithSimpleRecommendation = DeprecatedDivisionDescription + "\n\n" +
+			DeprecatedDivisionRecommendation + "math.div({0}, {1}) or calc({0} / {1})" + "\n\n" +
+			DeprecatedDivisionMoreInfo
+			;
+		public const string DeprecatedDivisionWithComplexRecommendation = DeprecatedDivisionDescription + "\n\n" +
+			DeprecatedDivisionRecommendation + "math.div({0}, {1}) or calc(({0}) / {1})" + "\n\n" +
+			DeprecatedDivisionMoreInfo
 			;
 		public const string ColorInversionWithNumberArgumentsDeprecated = "Passing a number ({0}) to color.invert() is deprecated.\n\n" +
 			"Recommendation: invert({0})"

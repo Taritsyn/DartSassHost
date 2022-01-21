@@ -106,7 +106,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings3[1].Description);
 			Assert.IsFalse(warnings3[1].IsDeprecation);
 			Assert.AreEqual(
-				string.Format(WarningConstants.DeprecatedDivision, "math.div($grid-gutter-width, 2)"),
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
 				warnings3[2].Description
 			);
 			Assert.IsTrue(warnings3[2].IsDeprecation);
@@ -124,32 +124,32 @@ namespace DartSassHost.Tests.Modules
 			Assert.IsFalse(warnings3[8].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 7 - $grid-gutter-width * $grid-columns - 7, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
 				),
 				warnings3[9].Description
 			);
 			Assert.IsTrue(warnings3[9].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 8 - $grid-gutter-width * $grid-columns - 8, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
 				),
 				warnings3[10].Description
 			);
 			Assert.IsTrue(warnings3[10].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 9 - $grid-gutter-width * $grid-columns - 9, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
 				),
 				warnings3[11].Description
 			);
 			Assert.IsTrue(warnings3[11].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 10 - $grid-gutter-width * $grid-columns - 10, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
 				),
 				warnings3[12].Description
 			);
@@ -206,7 +206,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings4[1].Description);
 			Assert.IsFalse(warnings4[1].IsDeprecation);
 			Assert.AreEqual(
-				string.Format(WarningConstants.DeprecatedDivision, "math.div($grid-gutter-width, 2)"),
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
 				warnings4[2].Description
 			);
 			Assert.IsTrue(warnings4[2].IsDeprecation);
@@ -224,32 +224,32 @@ namespace DartSassHost.Tests.Modules
 			Assert.IsFalse(warnings4[8].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 7 - $grid-gutter-width * $grid-columns - 7, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
 				),
 				warnings4[9].Description
 			);
 			Assert.IsTrue(warnings4[9].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 8 - $grid-gutter-width * $grid-columns - 8, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
 				),
 				warnings4[10].Description
 			);
 			Assert.IsTrue(warnings4[10].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 9 - $grid-gutter-width * $grid-columns - 9, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
 				),
 				warnings4[11].Description
 			);
 			Assert.IsTrue(warnings4[11].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 10 - $grid-gutter-width * $grid-columns - 10, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
 				),
 				warnings4[12].Description
 			);
@@ -276,7 +276,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings5[1].Description);
 			Assert.IsFalse(warnings5[1].IsDeprecation);
 			Assert.AreEqual(
-				string.Format(WarningConstants.DeprecatedDivision, "math.div($grid-gutter-width, 2)"),
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
 				warnings5[2].Description
 			);
 			Assert.IsTrue(warnings5[2].IsDeprecation);
@@ -294,48 +294,48 @@ namespace DartSassHost.Tests.Modules
 			Assert.IsFalse(warnings5[8].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 7 - $grid-gutter-width * $grid-columns - 7, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
 				),
 				warnings5[9].Description
 			);
 			Assert.IsTrue(warnings5[9].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 8 - $grid-gutter-width * $grid-columns - 8, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
 				),
 				warnings5[10].Description
 			);
 			Assert.IsTrue(warnings5[10].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 9 - $grid-gutter-width * $grid-columns - 9, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
 				),
 				warnings5[11].Description
 			);
 			Assert.IsTrue(warnings5[11].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 10 - $grid-gutter-width * $grid-columns - 10, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
 				),
 				warnings5[12].Description
 			);
 			Assert.IsTrue(warnings5[12].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 11 - $grid-gutter-width * $grid-columns - 11, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 11 - $grid-gutter-width * ($grid-columns - 11)", "$grid-columns"
 				),
 				warnings5[13].Description
 			);
 			Assert.IsTrue(warnings5[13].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 12 - $grid-gutter-width * $grid-columns - 12, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 12 - $grid-gutter-width * ($grid-columns - 12)", "$grid-columns"
 				),
 				warnings5[14].Description
 			);
@@ -387,7 +387,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings6[1].Description);
 			Assert.IsFalse(warnings6[1].IsDeprecation);
 			Assert.AreEqual(
-				string.Format(WarningConstants.DeprecatedDivision, "math.div($grid-gutter-width, 2)"),
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
 				warnings6[2].Description
 			);
 			Assert.IsTrue(warnings6[2].IsDeprecation);
@@ -405,48 +405,48 @@ namespace DartSassHost.Tests.Modules
 			Assert.IsFalse(warnings6[8].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 7 - $grid-gutter-width * $grid-columns - 7, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
 				),
 				warnings6[9].Description
 			);
 			Assert.IsTrue(warnings6[9].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 8 - $grid-gutter-width * $grid-columns - 8, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
 				),
 				warnings6[10].Description
 			);
 			Assert.IsTrue(warnings6[10].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 9 - $grid-gutter-width * $grid-columns - 9, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
 				),
 				warnings6[11].Description
 			);
 			Assert.IsTrue(warnings6[11].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 10 - $grid-gutter-width * $grid-columns - 10, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
 				),
 				warnings6[12].Description
 			);
 			Assert.IsTrue(warnings6[12].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 11 - $grid-gutter-width * $grid-columns - 11, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 11 - $grid-gutter-width * ($grid-columns - 11)", "$grid-columns"
 				),
 				warnings6[13].Description
 			);
 			Assert.IsTrue(warnings6[13].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 12 - $grid-gutter-width * $grid-columns - 12, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 12 - $grid-gutter-width * ($grid-columns - 12)", "$grid-columns"
 				),
 				warnings6[14].Description
 			);
@@ -553,7 +553,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings3[1].Description);
 			Assert.IsFalse(warnings3[1].IsDeprecation);
 			Assert.AreEqual(
-				string.Format(WarningConstants.DeprecatedDivision, "math.div($grid-gutter-width, 2)"),
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
 				warnings3[2].Description
 			);
 			Assert.IsTrue(warnings3[2].IsDeprecation);
@@ -571,32 +571,32 @@ namespace DartSassHost.Tests.Modules
 			Assert.IsFalse(warnings3[8].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 7 - $grid-gutter-width * $grid-columns - 7, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
 				),
 				warnings3[9].Description
 			);
 			Assert.IsTrue(warnings3[9].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 8 - $grid-gutter-width * $grid-columns - 8, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
 				),
 				warnings3[10].Description
 			);
 			Assert.IsTrue(warnings3[10].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 9 - $grid-gutter-width * $grid-columns - 9, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
 				),
 				warnings3[11].Description
 			);
 			Assert.IsTrue(warnings3[11].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 10 - $grid-gutter-width * $grid-columns - 10, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
 				),
 				warnings3[12].Description
 			);
@@ -653,7 +653,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings4[1].Description);
 			Assert.IsFalse(warnings4[1].IsDeprecation);
 			Assert.AreEqual(
-				string.Format(WarningConstants.DeprecatedDivision, "math.div($grid-gutter-width, 2)"),
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
 				warnings4[2].Description
 			);
 			Assert.IsTrue(warnings4[2].IsDeprecation);
@@ -671,32 +671,32 @@ namespace DartSassHost.Tests.Modules
 			Assert.IsFalse(warnings4[8].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 7 - $grid-gutter-width * $grid-columns - 7, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
 				),
 				warnings4[9].Description
 			);
 			Assert.IsTrue(warnings4[9].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 8 - $grid-gutter-width * $grid-columns - 8, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
 				),
 				warnings4[10].Description
 			);
 			Assert.IsTrue(warnings4[10].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 9 - $grid-gutter-width * $grid-columns - 9, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
 				),
 				warnings4[11].Description
 			);
 			Assert.IsTrue(warnings4[11].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 10 - $grid-gutter-width * $grid-columns - 10, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
 				),
 				warnings4[12].Description
 			);
@@ -723,7 +723,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings5[1].Description);
 			Assert.IsFalse(warnings5[1].IsDeprecation);
 			Assert.AreEqual(
-				string.Format(WarningConstants.DeprecatedDivision, "math.div($grid-gutter-width, 2)"),
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
 				warnings5[2].Description
 			);
 			Assert.IsTrue(warnings5[2].IsDeprecation);
@@ -741,48 +741,48 @@ namespace DartSassHost.Tests.Modules
 			Assert.IsFalse(warnings5[8].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 7 - $grid-gutter-width * $grid-columns - 7, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
 				),
 				warnings5[9].Description
 			);
 			Assert.IsTrue(warnings5[9].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 8 - $grid-gutter-width * $grid-columns - 8, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
 				),
 				warnings5[10].Description
 			);
 			Assert.IsTrue(warnings5[10].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 9 - $grid-gutter-width * $grid-columns - 9, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
 				),
 				warnings5[11].Description
 			);
 			Assert.IsTrue(warnings5[11].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 10 - $grid-gutter-width * $grid-columns - 10, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
 				),
 				warnings5[12].Description
 			);
 			Assert.IsTrue(warnings5[12].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 11 - $grid-gutter-width * $grid-columns - 11, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 11 - $grid-gutter-width * ($grid-columns - 11)", "$grid-columns"
 				),
 				warnings5[13].Description
 			);
 			Assert.IsTrue(warnings5[13].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 12 - $grid-gutter-width * $grid-columns - 12, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 12 - $grid-gutter-width * ($grid-columns - 12)", "$grid-columns"
 				),
 				warnings5[14].Description
 			);
@@ -834,7 +834,7 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings6[1].Description);
 			Assert.IsFalse(warnings6[1].IsDeprecation);
 			Assert.AreEqual(
-				string.Format(WarningConstants.DeprecatedDivision, "math.div($grid-gutter-width, 2)"),
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
 				warnings6[2].Description
 			);
 			Assert.IsTrue(warnings6[2].IsDeprecation);
@@ -852,48 +852,48 @@ namespace DartSassHost.Tests.Modules
 			Assert.IsFalse(warnings6[8].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 7 - $grid-gutter-width * $grid-columns - 7, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
 				),
 				warnings6[9].Description
 			);
 			Assert.IsTrue(warnings6[9].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 8 - $grid-gutter-width * $grid-columns - 8, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
 				),
 				warnings6[10].Description
 			);
 			Assert.IsTrue(warnings6[10].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 9 - $grid-gutter-width * $grid-columns - 9, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
 				),
 				warnings6[11].Description
 			);
 			Assert.IsTrue(warnings6[11].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 10 - $grid-gutter-width * $grid-columns - 10, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
 				),
 				warnings6[12].Description
 			);
 			Assert.IsTrue(warnings6[12].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 11 - $grid-gutter-width * $grid-columns - 11, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 11 - $grid-gutter-width * ($grid-columns - 11)", "$grid-columns"
 				),
 				warnings6[13].Description
 			);
 			Assert.IsTrue(warnings6[13].IsDeprecation);
 			Assert.AreEqual(
 				string.Format(
-					WarningConstants.DeprecatedDivision,
-					"math.div(100% * 12 - $grid-gutter-width * $grid-columns - 12, $grid-columns)"
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 12 - $grid-gutter-width * ($grid-columns - 12)", "$grid-columns"
 				),
 				warnings6[14].Description
 			);

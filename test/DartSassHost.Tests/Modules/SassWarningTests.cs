@@ -128,7 +128,8 @@ namespace DartSassHost.Tests.Modules
 			// Assert
 			Assert.AreEqual(1, warnings.Count);
 
-			string description = string.Format(WarningConstants.DeprecatedDivision, "math.div($y, $x)");
+			string description = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+				"$y", "$x");
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description + Environment.NewLine +
@@ -317,7 +318,8 @@ namespace DartSassHost.Tests.Modules
 			// Assert
 			Assert.AreEqual(1, warnings.Count);
 
-			string description = string.Format(WarningConstants.DeprecatedDivision, "math.div($y, $x)");
+			string description = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+				"$y", "$x");
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description + Environment.NewLine +

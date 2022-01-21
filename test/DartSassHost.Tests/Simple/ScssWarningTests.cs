@@ -121,8 +121,8 @@ namespace DartSassHost.Tests.Simple
 			// Assert
 			Assert.AreEqual(2, warnings.Count);
 
-			string description1 = string.Format(WarningConstants.DeprecatedDivision,
-				"math.div(map-get($grid-gutter-widths, xs), 2)");
+			string description1 = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+				"map-get($grid-gutter-widths, xs)", 2);
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description1 + Environment.NewLine +
@@ -145,7 +145,8 @@ namespace DartSassHost.Tests.Simple
 				warnings[0].CallStack
 			);
 
-			string description2 = string.Format(WarningConstants.DeprecatedDivision, "math.div($col-padding-xs, 2)");
+			string description2 = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+				"$col-padding-xs", 2);
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description2 + Environment.NewLine +
@@ -325,7 +326,8 @@ namespace DartSassHost.Tests.Simple
 			// Assert
 			Assert.AreEqual(2, warnings.Count);
 
-			string description1 = string.Format(WarningConstants.DeprecatedDivision, "math.div(map-get($grid-gutter-widths, xs), 2)");
+			string description1 = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+				"map-get($grid-gutter-widths, xs)", 2);
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description1 + Environment.NewLine +
@@ -348,7 +350,8 @@ namespace DartSassHost.Tests.Simple
 				warnings[0].CallStack
 			);
 
-			string description2 = string.Format(WarningConstants.DeprecatedDivision, "math.div($col-padding-xs, 2)");
+			string description2 = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+				"$col-padding-xs", 2);
 
 			Assert.AreEqual(
 				"Deprecation Warning: " + description2 + Environment.NewLine +

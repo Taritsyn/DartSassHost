@@ -5,14 +5,14 @@
 
    --------------------------------------------------------------------------------
 
-              Copyright (c) 2021 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2020-2022 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
    DESCRIPTION
    ===========
    .NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version
-   1.43.4 with the ability to support a virtual file system.
+   1.46.0 with the ability to support a virtual file system.
 
    Since the original library is written in JavaScript, you will need a JS engine
    to run it. As a JS engine is used the JavaScript Engine Switcher library
@@ -29,8 +29,9 @@
    =============
    RELEASE NOTES
    =============
-   1. .NET 5.0 target was replaced by a .NET 6 target;
-   2. `FileManagerWrapper` class is no longer used.
+   1. Added support of the Dart Sass version 1.46.0;
+   2. .NET 5.0 target was replaced by a .NET 6 target;
+   3. `FileManagerWrapper` class is no longer used.
 
    ============
    PROJECT SITE
