@@ -12,17 +12,15 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
-		#region Code
-
 		[Test]
-		public void UsageOfSourceMapPropertyDuringCompilationOfCode()
+		public void UsageOfSourceMapPropertyDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
 			var sourceMapDisabledOptions = new CompilationOptions { SourceMap = false };
 			var sourceMapEnabledOptions = new CompilationOptions { SourceMap = true };
 
 			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-			string input = GetFileContent(inputPath);
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -39,8 +37,16 @@ namespace DartSassHost.Tests.Simple
 
 			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.Compile(input, inputPath, options: sourceMapDisabledOptions);
-				result2 = compiler.Compile(input, inputPath, options: sourceMapEnabledOptions);
+				if (fromFile)
+				{
+					result1 = compiler.CompileFile(inputPath, options: sourceMapDisabledOptions);
+					result2 = compiler.CompileFile(inputPath, options: sourceMapEnabledOptions);
+				}
+				else
+				{
+					result1 = compiler.Compile(input, inputPath, options: sourceMapDisabledOptions);
+					result2 = compiler.Compile(input, inputPath, options: sourceMapEnabledOptions);
+				}
 			}
 
 			// Assert
@@ -52,7 +58,7 @@ namespace DartSassHost.Tests.Simple
 		}
 
 		[Test]
-		public void UsageOfSourceMapIncludeContentsPropertyDuringCompilationOfCode()
+		public void UsageOfSourceMapIncludeContentsPropertyDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
 			var sourceMapWithoutContentsOptions = new CompilationOptions
@@ -67,7 +73,7 @@ namespace DartSassHost.Tests.Simple
 			};
 
 			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-			string input = GetFileContent(inputPath);
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -87,8 +93,16 @@ namespace DartSassHost.Tests.Simple
 
 			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.Compile(input, inputPath, options: sourceMapWithoutContentsOptions);
-				result2 = compiler.Compile(input, inputPath, options: sourceMapWithContentsOptions);
+				if (fromFile)
+				{
+					result1 = compiler.CompileFile(inputPath, options: sourceMapWithoutContentsOptions);
+					result2 = compiler.CompileFile(inputPath, options: sourceMapWithContentsOptions);
+				}
+				else
+				{
+					result1 = compiler.Compile(input, inputPath, options: sourceMapWithoutContentsOptions);
+					result2 = compiler.Compile(input, inputPath, options: sourceMapWithContentsOptions);
+				}
 			}
 
 			// Assert
@@ -100,7 +114,7 @@ namespace DartSassHost.Tests.Simple
 		}
 
 		[Test]
-		public void UsageOfOmitSourceMapUrlPropertyDuringCompilationOfCode()
+		public void UsageOfOmitSourceMapUrlPropertyDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
 			var sourceMapUrlIncludedOptions = new CompilationOptions
@@ -115,7 +129,7 @@ namespace DartSassHost.Tests.Simple
 			};
 
 			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-			string input = GetFileContent(inputPath);
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -135,8 +149,16 @@ namespace DartSassHost.Tests.Simple
 
 			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.Compile(input, inputPath, options: sourceMapUrlIncludedOptions);
-				result2 = compiler.Compile(input, inputPath, options: sourceMapUrlOmittedOptions);
+				if (fromFile)
+				{
+					result1 = compiler.CompileFile(inputPath, options: sourceMapUrlIncludedOptions);
+					result2 = compiler.CompileFile(inputPath, options: sourceMapUrlOmittedOptions);
+				}
+				else
+				{
+					result1 = compiler.Compile(input, inputPath, options: sourceMapUrlIncludedOptions);
+					result2 = compiler.Compile(input, inputPath, options: sourceMapUrlOmittedOptions);
+				}
 			}
 
 			// Assert
@@ -148,7 +170,7 @@ namespace DartSassHost.Tests.Simple
 		}
 
 		[Test]
-		public void UsageOfSourceMapRootPathPropertyDuringCompilationOfCode()
+		public void UsageOfSourceMapRootPathPropertyDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
 			var sourceMapOptions = new CompilationOptions
@@ -158,7 +180,7 @@ namespace DartSassHost.Tests.Simple
 			};
 
 			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-			string input = GetFileContent(inputPath);
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 
 			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
 			string targetOutput = GetFileContent(targetOutputPath);
@@ -171,7 +193,14 @@ namespace DartSassHost.Tests.Simple
 
 			using (var compiler = CreateSassCompiler())
 			{
-				result = compiler.Compile(input, inputPath, options: sourceMapOptions);
+				if (fromFile)
+				{
+					result = compiler.CompileFile(inputPath, options: sourceMapOptions);
+				}
+				else
+				{
+					result = compiler.Compile(input, inputPath, options: sourceMapOptions);
+				}
 			}
 
 			// Assert
@@ -180,7 +209,7 @@ namespace DartSassHost.Tests.Simple
 		}
 
 		[Test]
-		public void UsageOfInlineSourceMapPropertyDuringCompilationOfCode()
+		public void UsageOfInlineSourceMapPropertyDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
 			var inlineSourceMapDisabledOptions = new CompilationOptions
@@ -195,7 +224,7 @@ namespace DartSassHost.Tests.Simple
 			};
 
 			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-			string input = GetFileContent(inputPath);
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 
 			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
 			string targetOutput1 = GetFileContent(targetOutputPath1);
@@ -216,8 +245,16 @@ namespace DartSassHost.Tests.Simple
 
 			using (var compiler = CreateSassCompiler())
 			{
-				result1 = compiler.Compile(input, inputPath, options: inlineSourceMapDisabledOptions);
-				result2 = compiler.Compile(input, inputPath, options: inlineSourceMapEnabledOptions);
+				if (fromFile)
+				{
+					result1 = compiler.CompileFile(inputPath, options: inlineSourceMapDisabledOptions);
+					result2 = compiler.CompileFile(inputPath, options: inlineSourceMapEnabledOptions);
+				}
+				else
+				{
+					result1 = compiler.Compile(input, inputPath, options: inlineSourceMapDisabledOptions);
+					result2 = compiler.Compile(input, inputPath, options: inlineSourceMapEnabledOptions);
+				}
 			}
 
 			// Assert
@@ -229,13 +266,13 @@ namespace DartSassHost.Tests.Simple
 		}
 
 		[Test]
-		public void UsageOfSourceMapPathParameterDuringCompilationOfCode()
+		public void UsageOfSourceMapPathParameterDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
 			var sourceMapOptions = new CompilationOptions { SourceMap = true };
 
 			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-			string input = GetFileContent(inputPath);
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 
 			string sourceMapPath = GenerateSourceMapFilePath("ordinary", "maps/nested-rules-custom");
 
@@ -249,254 +286,19 @@ namespace DartSassHost.Tests.Simple
 
 			using (var compiler = CreateSassCompiler())
 			{
-				result = compiler.Compile(input, inputPath,	sourceMapPath: sourceMapPath, options: sourceMapOptions);
+				if (fromFile)
+				{
+					result = compiler.CompileFile(inputPath, sourceMapPath: sourceMapPath, options: sourceMapOptions);
+				}
+				else
+				{
+					result = compiler.Compile(input, inputPath, sourceMapPath: sourceMapPath, options: sourceMapOptions);
+				}
 			}
 
 			// Assert
 			Assert.AreEqual(targetOutput, result.CompiledContent);
 			Assert.AreEqual(targetSourceMap, result.SourceMap);
 		}
-
-		#endregion
-
-		#region Files
-
-		[Test]
-		public void UsageOfSourceMapPropertyDuringCompilationOfFile()
-		{
-			// Arrange
-			var sourceMapDisabledOptions = new CompilationOptions { SourceMap = false };
-			var sourceMapEnabledOptions = new CompilationOptions { SourceMap = true };
-
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules");
-			string targetOutput1 = GetFileContent(targetOutputPath1);
-
-			string targetOutputPath2 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
-			string targetOutput2 = GetFileContent(targetOutputPath2);
-
-			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "nested-rules");
-			string targetSourceMap2 = GetFileContent(targetSourceMapPath2);
-
-			// Act
-			CompilationResult result1;
-			CompilationResult result2;
-
-			using (var compiler = CreateSassCompiler())
-			{
-				result1 = compiler.CompileFile(inputPath, options: sourceMapDisabledOptions);
-				result2 = compiler.CompileFile(inputPath, options: sourceMapEnabledOptions);
-			}
-
-			// Assert
-			Assert.AreEqual(targetOutput1, result1.CompiledContent);
-			Assert.IsEmpty(result1.SourceMap);
-
-			Assert.AreEqual(targetOutput2, result2.CompiledContent);
-			Assert.AreEqual(targetSourceMap2, result2.SourceMap);
-		}
-
-		[Test]
-		public void UsageOfSourceMapIncludeContentsPropertyDuringCompilationOfFile()
-		{
-			// Arrange
-			var sourceMapWithoutContentsOptions = new CompilationOptions
-			{
-				SourceMap = true,
-				SourceMapIncludeContents = false
-			};
-			var sourceMapWithContentsOptions = new CompilationOptions
-			{
-				SourceMap = true,
-				SourceMapIncludeContents = true
-			};
-
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
-			string targetOutput1 = GetFileContent(targetOutputPath1);
-
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
-			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
-
-			string targetOutputPath2 = targetOutputPath1;
-			string targetOutput2 = targetOutput1;
-
-			string targetSourceMapPath2 = GenerateSourceMapFilePath("ordinary", "nested-rules-with-contents");
-			string targetSourceMap2 = GetFileContent(targetSourceMapPath2);
-
-			// Act
-			CompilationResult result1;
-			CompilationResult result2;
-
-			using (var compiler = CreateSassCompiler())
-			{
-				result1 = compiler.CompileFile(inputPath, options: sourceMapWithoutContentsOptions);
-				result2 = compiler.CompileFile(inputPath, options: sourceMapWithContentsOptions);
-			}
-
-			// Assert
-			Assert.AreEqual(targetOutput1, result1.CompiledContent);
-			Assert.AreEqual(targetSourceMap1, result1.SourceMap);
-
-			Assert.AreEqual(targetOutput2, result2.CompiledContent);
-			Assert.AreEqual(targetSourceMap2, result2.SourceMap);
-		}
-
-		[Test]
-		public void UsageOfOmitSourceMapUrlPropertyDuringCompilationOfFile()
-		{
-			// Arrange
-			var sourceMapUrlIncludedOptions = new CompilationOptions
-			{
-				SourceMap = true,
-				OmitSourceMapUrl = false
-			};
-			var sourceMapUrlOmittedOptions = new CompilationOptions
-			{
-				SourceMap = true,
-				OmitSourceMapUrl = true
-			};
-
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
-			string targetOutput1 = GetFileContent(targetOutputPath1);
-
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
-			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
-
-			string targetOutputPath2 = GenerateCssFilePath("ordinary", "nested-rules");
-			string targetOutput2 = GetFileContent(targetOutputPath2);
-
-			string targetSourceMapPath2 = targetSourceMapPath1;
-			string targetSourceMap2 = targetSourceMap1;
-
-			// Act
-			CompilationResult result1;
-			CompilationResult result2;
-
-			using (var compiler = CreateSassCompiler())
-			{
-				result1 = compiler.CompileFile(inputPath, options: sourceMapUrlIncludedOptions);
-				result2 = compiler.CompileFile(inputPath, options: sourceMapUrlOmittedOptions);
-			}
-
-			// Assert
-			Assert.AreEqual(targetOutput1, result1.CompiledContent);
-			Assert.AreEqual(targetSourceMap1, result1.SourceMap);
-
-			Assert.AreEqual(targetOutput2, result2.CompiledContent);
-			Assert.AreEqual(targetSourceMap2, result2.SourceMap);
-		}
-
-		[Test]
-		public void UsageOfSourceMapRootPathPropertyDuringCompilationOfFile()
-		{
-			// Arrange
-			var sourceMapOptions = new CompilationOptions
-			{
-				SourceMap = true,
-				SourceMapRootPath = "/"
-			};
-
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-
-			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
-			string targetOutput = GetFileContent(targetOutputPath);
-
-			string targetSourceMapPath = GenerateSourceMapFilePath("ordinary", "nested-rules-with-source-root");
-			string targetSourceMap = GetFileContent(targetSourceMapPath);
-
-			// Act
-			CompilationResult result;
-
-			using (var compiler = CreateSassCompiler())
-			{
-				result = compiler.CompileFile(inputPath, options: sourceMapOptions);
-			}
-
-			// Assert
-			Assert.AreEqual(targetOutput, result.CompiledContent);
-			Assert.AreEqual(targetSourceMap, result.SourceMap);
-		}
-
-		[Test]
-		public void UsageOfInlineSourceMapPropertyDuringCompilationOfFile()
-		{
-			// Arrange
-			var inlineSourceMapDisabledOptions = new CompilationOptions
-			{
-				SourceMap = true,
-				InlineSourceMap = false
-			};
-			var inlineSourceMapEnabledOptions = new CompilationOptions
-			{
-				SourceMap = true,
-				InlineSourceMap = true
-			};
-
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-
-			string targetOutputPath1 = GenerateCssFilePath("ordinary", "nested-rules-with-source-map-url");
-			string targetOutput1 = GetFileContent(targetOutputPath1);
-
-			string targetSourceMapPath1 = GenerateSourceMapFilePath("ordinary", "nested-rules");
-			string targetSourceMap1 = GetFileContent(targetSourceMapPath1);
-
-			string targetOutputPath2 = GenerateCssFileWithInlineSourceMapFilePath("ordinary",
-				"nested-rules-with-inline-source-map");
-			string targetOutput2 = GetFileContent(targetOutputPath2);
-
-			string targetSourceMapPath2 = targetSourceMapPath1;
-			string targetSourceMap2 = targetSourceMap1;
-
-			// Act
-			CompilationResult result1;
-			CompilationResult result2;
-
-			using (var compiler = CreateSassCompiler())
-			{
-				result1 = compiler.CompileFile(inputPath, options: inlineSourceMapDisabledOptions);
-				result2 = compiler.CompileFile(inputPath, options: inlineSourceMapEnabledOptions);
-			}
-
-			// Assert
-			Assert.AreEqual(targetOutput1, result1.CompiledContent);
-			Assert.AreEqual(targetSourceMap1, result1.SourceMap);
-
-			Assert.AreEqual(targetOutput2, result2.CompiledContent);
-			Assert.AreEqual(targetSourceMap2, result2.SourceMap);
-		}
-
-		[Test]
-		public void UsageOfSourceMapPathParameterDuringCompilationOfFile()
-		{
-			// Arrange
-			var sourceMapOptions = new CompilationOptions { SourceMap = true };
-
-			string inputPath = GenerateSassFilePath("ordinary", "nested-rules");
-			string sourceMapPath = GenerateSourceMapFilePath("ordinary", "maps/nested-rules-custom");
-
-			string targetOutputPath = GenerateCssFilePath("ordinary", "nested-rules-with-custom-source-map-url");
-			string targetOutput = GetFileContent(targetOutputPath);
-
-			string targetSourceMap = GetFileContent(sourceMapPath);
-
-			// Act
-			CompilationResult result;
-
-			using (var compiler = CreateSassCompiler())
-			{
-				result = compiler.CompileFile(inputPath, sourceMapPath: sourceMapPath, options: sourceMapOptions);
-			}
-
-			// Assert
-			Assert.AreEqual(targetOutput, result.CompiledContent);
-			Assert.AreEqual(targetSourceMap, result.SourceMap);
-		}
-
-		#endregion
 	}
 }

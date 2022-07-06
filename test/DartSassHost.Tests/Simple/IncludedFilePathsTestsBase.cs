@@ -14,38 +14,35 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
-		#region Code
-
 		[Test]
-		public void CompilationOfCode()
+		public void Compilation([Values]bool fromFile)
 		{
 			// Arrange
 			string inputPath = GenerateSassFilePath("ordinary", "interpolation");
-			string input = GetFileContent(inputPath);
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 
 			// Act
-			IList<string> includedFilePaths1;
-			IList<string> includedFilePaths2;
+			IList<string> includedFilePaths;
 
 			using (var compiler = CreateSassCompiler())
 			{
-				includedFilePaths1 = compiler.Compile(input, this.IndentedSyntax).IncludedFilePaths;
-				includedFilePaths2 = compiler.Compile(input, inputPath).IncludedFilePaths;
+				if (fromFile)
+				{
+					includedFilePaths = compiler.CompileFile(inputPath).IncludedFilePaths;
+				}
+				else
+				{
+					includedFilePaths = compiler.Compile(input, inputPath).IncludedFilePaths;
+				}
 			}
 
 			// Assert
-			Assert.AreEqual(0, includedFilePaths1.Count);
-
-			Assert.AreEqual(1, includedFilePaths2.Count);
-			Assert.AreEqual(inputPath, includedFilePaths2[0]);
+			Assert.AreEqual(1, includedFilePaths.Count);
+			Assert.AreEqual(inputPath, includedFilePaths[0]);
 		}
 
-		#endregion
-
-		#region Files
-
 		[Test]
-		public void CompilationOfFile()
+		public void CompilationOfCodeWithoutInputPathParameter()
 		{
 			// Arrange
 			string inputPath = GenerateSassFilePath("ordinary", "interpolation");
@@ -56,14 +53,11 @@ namespace DartSassHost.Tests.Simple
 
 			using (var compiler = CreateSassCompiler())
 			{
-				includedFilePaths = compiler.CompileFile(inputPath).IncludedFilePaths;
+				includedFilePaths = compiler.Compile(input, this.IndentedSyntax).IncludedFilePaths;
 			}
 
 			// Assert
-			Assert.AreEqual(1, includedFilePaths.Count);
-			Assert.AreEqual(inputPath, includedFilePaths[0]);
+			Assert.AreEqual(0, includedFilePaths.Count);
 		}
-
-		#endregion
 	}
 }

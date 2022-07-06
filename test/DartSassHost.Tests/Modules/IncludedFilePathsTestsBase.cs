@@ -14,14 +14,12 @@ namespace DartSassHost.Tests.Modules
 		{ }
 
 
-		#region Code
-
 		[Test]
-		public void CompilationOfCode()
+		public void Compilation([Values]bool fromFile)
 		{
 			// Arrange
 			string inputPath = GenerateSassFilePath("ordinary", "style");
-			string input = GetFileContent(inputPath);
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 			string firstImportedFilePath = GenerateSassFilePath("ordinary", "bootstrap");
 			string secondImportedFilePath = GenerateSassFilePath("ordinary", @"src\_code");
 			string thirdImportedFilePath = GenerateSassFilePath("ordinary", @"src\_lists");
@@ -31,7 +29,14 @@ namespace DartSassHost.Tests.Modules
 
 			using (var compiler = CreateSassCompiler())
 			{
-				includedFilePaths = compiler.Compile(input, inputPath).IncludedFilePaths;
+				if (fromFile)
+				{
+					includedFilePaths = compiler.CompileFile(inputPath).IncludedFilePaths;
+				}
+				else
+				{
+					includedFilePaths = compiler.Compile(input, inputPath).IncludedFilePaths;
+				}
 			}
 
 			// Assert
@@ -41,36 +46,5 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(secondImportedFilePath, includedFilePaths[2]);
 			Assert.AreEqual(thirdImportedFilePath, includedFilePaths[3]);
 		}
-
-		#endregion
-
-		#region Files
-
-		[Test]
-		public void CompilationOfFile()
-		{
-			// Arrange
-			string inputPath = GenerateSassFilePath("ordinary", "style");
-			string firstImportedFilePath = GenerateSassFilePath("ordinary", "bootstrap");
-			string secondImportedFilePath = GenerateSassFilePath("ordinary", @"src\_code");
-			string thirdImportedFilePath = GenerateSassFilePath("ordinary", @"src\_lists");
-
-			// Act
-			IList<string> includedFilePaths;
-
-			using (var compiler = CreateSassCompiler())
-			{
-				includedFilePaths = compiler.CompileFile(inputPath).IncludedFilePaths;
-			}
-
-			// Assert
-			Assert.AreEqual(4, includedFilePaths.Count);
-			Assert.AreEqual(inputPath, includedFilePaths[0]);
-			Assert.AreEqual(firstImportedFilePath, includedFilePaths[1]);
-			Assert.AreEqual(secondImportedFilePath, includedFilePaths[2]);
-			Assert.AreEqual(thirdImportedFilePath, includedFilePaths[3]);
-		}
-
-		#endregion
 	}
 }

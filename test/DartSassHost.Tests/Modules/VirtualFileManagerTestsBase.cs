@@ -189,10 +189,8 @@ namespace DartSassHost.Tests.Modules
 		}
 
 
-		#region Code
-
 		[Test]
-		public void CompilationOfCodeWithAppAbsolutePaths()
+		public void CompilationWithAppAbsolutePaths([Values]bool fromFile)
 		{
 			// Arrange
 			var virtualFileManagerMock = new Mock<IFileManager>();
@@ -207,96 +205,7 @@ namespace DartSassHost.Tests.Modules
 			virtualFileManagerMock
 				.Setup(fm => fm.FileExists(It.IsAny<string>()))
 				.Returns((string p) => {
-					return _siteImportedFiles.ContainsKey(p);
-				})
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.ReadFile(It.IsAny<string>()))
-				.Returns((string p) => {
-					return _siteImportedFiles[p];
-				})
-				;
-
-			IFileManager virtualFileManager = new VirtualFileManager(virtualFileManagerMock);
-			var options = new CompilationOptions { SourceMap = true };
-
-			// Act
-			CompilationResult result;
-
-			using (var compiler = new SassCompiler(virtualFileManager))
-			{
-				result = compiler.Compile(_siteInputFileContent, _siteInputFileAbsolutePath, options: options);
-			}
-
-			// Assert
-			Assert.AreEqual(_siteOutputFileContent, result.CompiledContent);
-			Assert.AreEqual(_siteIncludedFilePaths, result.IncludedFilePaths);
-			Assert.AreEqual(_siteSourceMapFileContent, result.SourceMap);
-		}
-
-		[Test]
-		public void CompilationOfCodeWithAppRelativePaths()
-		{
-			var virtualFileManagerMock = new Mock<IFileManager>();
-			virtualFileManagerMock
-				.SetupGet(fm => fm.SupportsVirtualPaths)
-				.Returns(true)
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.GetCurrentDirectory())
-				.Returns(_appAbsolutePath)
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.FileExists(It.IsAny<string>()))
-				.Returns((string p) => {
-					return _appImportedFiles.ContainsKey(p);
-				})
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.ReadFile(It.IsAny<string>()))
-				.Returns((string p) => {
-					return _appImportedFiles[p];
-				})
-				;
-
-			IFileManager virtualFileManager = new VirtualFileManager(virtualFileManagerMock, _appAbsolutePath);
-			var options = new CompilationOptions { SourceMap = true };
-
-			// Act
-			CompilationResult result;
-
-			using (var compiler = new SassCompiler(virtualFileManager))
-			{
-				result = compiler.Compile(_appInputFileContent, _appInputFileRelativePath, options: options);
-			}
-
-			// Assert
-			Assert.AreEqual(_appOutputFileContent, result.CompiledContent);
-			Assert.AreEqual(_appIncludedFilePaths, result.IncludedFilePaths);
-			Assert.AreEqual(_appSourceMapFileContent, result.SourceMap);
-		}
-
-		#endregion
-
-		#region Files
-
-		[Test]
-		public void CompilationOfFileWithAppAbsolutePaths()
-		{
-			// Arrange
-			var virtualFileManagerMock = new Mock<IFileManager>();
-			virtualFileManagerMock
-				.SetupGet(fm => fm.SupportsVirtualPaths)
-				.Returns(true)
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.GetCurrentDirectory())
-				.Returns("/")
-				;
-			virtualFileManagerMock
-				.Setup(fm => fm.FileExists(It.IsAny<string>()))
-				.Returns((string p) => {
-					if (p == _siteInputFileAbsolutePath)
+					if (fromFile && p == _siteInputFileAbsolutePath)
 					{
 						return true;
 					}
@@ -307,7 +216,7 @@ namespace DartSassHost.Tests.Modules
 			virtualFileManagerMock
 				.Setup(fm => fm.ReadFile(It.IsAny<string>()))
 				.Returns((string p) => {
-					if (p == _siteInputFileAbsolutePath)
+					if (fromFile && p == _siteInputFileAbsolutePath)
 					{
 						return _siteInputFileContent;
 					}
@@ -324,7 +233,14 @@ namespace DartSassHost.Tests.Modules
 
 			using (var compiler = new SassCompiler(virtualFileManager))
 			{
-				result = compiler.CompileFile(_siteInputFileAbsolutePath, options: options);
+				if (fromFile)
+				{
+					result = compiler.CompileFile(_siteInputFileAbsolutePath, options: options);
+				}
+				else
+				{
+					result = compiler.Compile(_siteInputFileContent, _siteInputFileAbsolutePath, options: options);
+				}
 			}
 
 			// Assert
@@ -334,7 +250,7 @@ namespace DartSassHost.Tests.Modules
 		}
 
 		[Test]
-		public void CompilationOfFileWithAppRelativePaths()
+		public void CompilationWithAppRelativePaths([Values]bool fromFile)
 		{
 			var virtualFileManagerMock = new Mock<IFileManager>();
 			virtualFileManagerMock
@@ -348,7 +264,7 @@ namespace DartSassHost.Tests.Modules
 			virtualFileManagerMock
 				.Setup(fm => fm.FileExists(It.IsAny<string>()))
 				.Returns((string p) => {
-					if (p == _appInputFileRelativePath || p == _appInputFileAbsolutePath)
+					if (fromFile && p == _appInputFileRelativePath || p == _appInputFileAbsolutePath)
 					{
 						return true;
 					}
@@ -359,7 +275,7 @@ namespace DartSassHost.Tests.Modules
 			virtualFileManagerMock
 				.Setup(fm => fm.ReadFile(It.IsAny<string>()))
 				.Returns((string p) => {
-					if (p == _appInputFileAbsolutePath)
+					if (fromFile && p == _appInputFileAbsolutePath)
 					{
 						return _appInputFileContent;
 					}
@@ -376,7 +292,14 @@ namespace DartSassHost.Tests.Modules
 
 			using (var compiler = new SassCompiler(virtualFileManager))
 			{
-				result = compiler.CompileFile(_appInputFileRelativePath, options: options);
+				if (fromFile)
+				{
+					result = compiler.CompileFile(_appInputFileRelativePath, options: options);
+				}
+				else
+				{
+					result = compiler.Compile(_appInputFileContent, _appInputFileRelativePath, options: options);
+				}
 			}
 
 			// Assert
@@ -384,7 +307,5 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(_appIncludedFilePaths, result.IncludedFilePaths);
 			Assert.AreEqual(_appSourceMapFileContent, result.SourceMap);
 		}
-
-		#endregion
 	}
 }
