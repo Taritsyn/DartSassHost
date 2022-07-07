@@ -5,7 +5,7 @@
     "@babel/cli": "7.12.17",
     "@babel/core": "7.12.17",
     "@babel/preset-env": "7.12.17",
-    "uglify-js": "3.14.3"
+    "uglify-js": "3.16.2"
   },
   "scripts": {
     "transpile-sass-combined-es6": "babel --out-dir ./Resources --config-file ./.babelrc ./Resources/sass-combined.es6",
