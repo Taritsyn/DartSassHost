@@ -36,7 +36,8 @@ After installing the packages, you will need to register the default JS engine (
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReleaseNotes>1. Added support of the Dart Sass version 1.53.0;
 2. .NET 5.0 target was replaced by a .NET 6 target;
-3. `FileManagerWrapper` class is no longer used.</PackageReleaseNotes>
+3. `FileManagerWrapper` class is no longer used;
+4. Fixed a error that occurred during generation of file paths in the stack trace for errors and warnings on Unix-like operating systems.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>

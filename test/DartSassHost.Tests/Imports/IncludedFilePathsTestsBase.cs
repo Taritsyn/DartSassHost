@@ -20,8 +20,8 @@ namespace DartSassHost.Tests.Imports
 			// Arrange
 			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
-			string firstImportedFilePath = GenerateSassFilePath("ordinary", @"foundation\_code");
-			string secondImportedFilePath = GenerateSassFilePath("ordinary", @"foundation\_lists");
+			string firstImportedFilePath = GenerateSassFilePath("ordinary", @"foundation/_code");
+			string secondImportedFilePath = GenerateSassFilePath("ordinary", @"foundation/_lists");
 
 			// Act
 			IList<string> includedFilePaths;

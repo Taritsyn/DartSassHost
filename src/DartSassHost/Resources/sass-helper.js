@@ -90,7 +90,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		function mapStackFrames(frames) {
 			var stackFrames = [],
 				frameIndex,
-				frame
+				frame,
+				filePath
 				;
 
 			if (!frames) {
@@ -99,8 +100,10 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 			for (frameIndex = 0; frameIndex < frames.length; frameIndex++) {
 				frame = frames[frameIndex];
+				filePath = frame.uri.path || frame.uri.toString();
+
 				stackFrames.push({
-					'file': fixAbsolutePath(frame.uri.path),
+					'file': fixAbsolutePath(filePath),
 					'lineNumber': frame.line,
 					'columnNumber': frame.column,
 					'memberName': removeEndingParenthesesFromMemberName(frame.member)

@@ -21,8 +21,8 @@ namespace DartSassHost.Tests.Modules
 			string inputPath = GenerateSassFilePath("ordinary", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 			string firstImportedFilePath = GenerateSassFilePath("ordinary", "bootstrap");
-			string secondImportedFilePath = GenerateSassFilePath("ordinary", @"src\_code");
-			string thirdImportedFilePath = GenerateSassFilePath("ordinary", @"src\_lists");
+			string secondImportedFilePath = GenerateSassFilePath("ordinary", @"src/_code");
+			string thirdImportedFilePath = GenerateSassFilePath("ordinary", @"src/_lists");
 
 			// Act
 			IList<string> includedFilePaths;
