@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v1.0.0 Preview 8 - July 13, 2022
+ * Added support of the Dart Sass version 1.53.0
+ * .NET 5.0 target was replaced by a .NET 6 target
+ * `FileManagerWrapper` class is no longer used
+ * Fixed a error that occurred during generation of file paths in the stack trace for errors and warnings on Unix-like operating systems
+
 ## v1.0.0 Preview 7 - November 5, 2021
  * Added support of the Dart Sass version 1.43.4
  * In compilation options was added three new properties: `Charset` (default `true`), `WarningLevel` (default `Default`) and `QuietDependencies` (default `false`)
