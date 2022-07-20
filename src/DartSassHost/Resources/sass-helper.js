@@ -54,13 +54,16 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			return canonicalPath;
 		}
 
-		function fixAbsolutePath(path) {
-			var processedPath;
+		function getAbsolutePathFromUri(uri) {
+			var path,
+				processedPath
+				;
 
-			if (!path) {
-				return path;
+			if (!uri) {
+				return '';
 			}
 
+			path = uri.path || uri.toString();
 			processedPath = removeFileSchemeFromPath(path);
 
 			if (pathWithDriveLetterRegEx.test(processedPath)
@@ -100,10 +103,10 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 			for (frameIndex = 0; frameIndex < frames.length; frameIndex++) {
 				frame = frames[frameIndex];
-				filePath = frame.uri.path || frame.uri.toString();
+				filePath = getAbsolutePathFromUri(frame.uri);
 
 				stackFrames.push({
-					'file': fixAbsolutePath(filePath),
+					'file': filePath,
 					'lineNumber': frame.line,
 					'columnNumber': frame.column,
 					'memberName': removeEndingParenthesesFromMemberName(frame.member)
@@ -116,7 +119,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		exports.mix = mix;
 		exports.removeFileSchemeFromPath = removeFileSchemeFromPath;
 		exports.getCanonicalFilePath = getCanonicalFilePath;
-		exports.fixAbsolutePath = fixAbsolutePath;
+		exports.getAbsolutePathFromUri = getAbsolutePathFromUri;
 		exports.mapStackFrames = mapStackFrames;
 
 		return exports;
@@ -311,7 +314,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				file = span.file;
 				fileLocation = new sass.FileLocation(file, span._file$_start);
 				fileSpan = new sass.FileSpan(file, 0, file._decodedChars.length);
-				filePath = dshUtils.fixAbsolutePath(fileLocation.get$sourceUrl().path);
+				filePath = dshUtils.getAbsolutePathFromUri(fileLocation.get$sourceUrl());
 
 				warning.file = filePath;
 				warning.lineNumber = fileLocation.get$line() + 1;

@@ -29,11 +29,8 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support of the Dart Sass version 1.53.0;
-   2. .NET 5.0 target was replaced by a .NET 6 target;
-   3. `FileManagerWrapper` class is no longer used;
-   4. Fixed a error that occurred during generation of file paths in the stack
-      trace for errors and warnings on Unix-like operating systems.
+   Fixed a error that occurred during generation of source fragment for warnings on
+   Unix-like operating systems.
 
    ============
    PROJECT SITE
