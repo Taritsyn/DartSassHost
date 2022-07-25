@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.0.1" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.18.2" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.19.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.18.2" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.18.2" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.18.2" />
