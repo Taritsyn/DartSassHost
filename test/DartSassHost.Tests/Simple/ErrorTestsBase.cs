@@ -1,5 +1,5 @@
 ﻿using JavaScriptEngineSwitcher.Core;
-#if NET471 || NETCOREAPP2_1_OR_GREATER
+#if NET471 || NETCOREAPP3_1_OR_GREATER
 using JavaScriptEngineSwitcher.NiL;
 #endif
 using NUnit.Framework;
@@ -16,7 +16,7 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
-#if NET471 || NETCOREAPP2_1_OR_GREATER
+#if NET471 || NETCOREAPP3_1_OR_GREATER
 		[Test]
 		public void MappingSassCompilerLoadErrorDuringCompilation([Values]bool fromFile)
 		{

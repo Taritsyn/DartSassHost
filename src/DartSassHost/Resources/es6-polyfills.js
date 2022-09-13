@@ -604,6 +604,66 @@
     }
   });
 
+  // 21.2.5.3 get RegExp.prototype.flags
+  var anObject$9 = _anObject;
+  var _flags = function () {
+    var that = anObject$9(this);
+    var result = '';
+    if (that.global) result += 'g';
+    if (that.ignoreCase) result += 'i';
+    if (that.multiline) result += 'm';
+    if (that.unicode) result += 'u';
+    if (that.sticky) result += 'y';
+    return result;
+  };
+
+  // 21.2.5.3 get RegExp.prototype.flags()
+  if (_descriptors && /./g.flags != 'g') _objectDp.f(RegExp.prototype, 'flags', {
+    configurable: true,
+    get: _flags
+  });
+
+  var _stringWs = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
+    '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
+
+  var $export$j = _export;
+  var defined$3 = _defined;
+  var fails$7 = _fails;
+  var spaces = _stringWs;
+  var space = '[' + spaces + ']';
+  var non = '\u200b\u0085';
+  var ltrim = RegExp('^' + space + space + '*');
+  var rtrim = RegExp(space + space + '*$');
+
+  var exporter = function (KEY, exec, ALIAS) {
+    var exp = {};
+    var FORCE = fails$7(function () {
+      return !!spaces[KEY]() || non[KEY]() != non;
+    });
+    var fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
+    if (ALIAS) exp[ALIAS] = fn;
+    $export$j($export$j.P + $export$j.F * FORCE, 'String', exp);
+  };
+
+  // 1 -> String#trimLeft
+  // 2 -> String#trimRight
+  // 3 -> String#trim
+  var trim = exporter.trim = function (string, TYPE) {
+    string = String(defined$3(string));
+    if (TYPE & 1) string = string.replace(ltrim, '');
+    if (TYPE & 2) string = string.replace(rtrim, '');
+    return string;
+  };
+
+  var _stringTrim = exporter;
+
+  // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
+  _stringTrim('trimRight', function ($trim) {
+    return function trimRight() {
+      return $trim(this, 2);
+    };
+  }, 'trimEnd');
+
   var _typedArray = {exports: {}};
 
   var _typed;
@@ -687,9 +747,9 @@
   };
 
   // 7.1.13 ToObject(argument)
-  var defined$3 = _defined;
+  var defined$2 = _defined;
   var _toObject = function (it) {
-    return Object(defined$3(it));
+    return Object(defined$2(it));
   };
 
   var _arrayFill;
@@ -1157,13 +1217,13 @@
   };
 
   // 7.3.20 SpeciesConstructor(O, defaultConstructor)
-  var anObject$9 = _anObject;
+  var anObject$8 = _anObject;
   var aFunction$2 = _aFunction;
   var SPECIES$1 = _wks.exports('species');
   var _speciesConstructor = function (O, D) {
-    var C = anObject$9(O).constructor;
+    var C = anObject$8(O).constructor;
     var S;
-    return C === undefined || (S = anObject$9(C)[SPECIES$1]) == undefined ? D : aFunction$2(S);
+    return C === undefined || (S = anObject$8(C)[SPECIES$1]) == undefined ? D : aFunction$2(S);
   };
 
   // 22.1.3.31 Array.prototype[@@unscopables]
@@ -1192,7 +1252,7 @@
   };
 
   var LIBRARY$2 = require_library();
-  var $export$j = _export;
+  var $export$i = _export;
   var redefine$5 = _redefine.exports;
   var hide$3 = _hide;
   var Iterators$3 = _iterators;
@@ -1255,7 +1315,7 @@
       };
       if (FORCED) for (key in methods) {
         if (!(key in proto)) redefine$5(proto, key, methods[key]);
-      } else $export$j($export$j.P + $export$j.F * (BUGGY || VALUES_BUG), NAME, methods);
+      } else $export$i($export$i.P + $export$i.F * (BUGGY || VALUES_BUG), NAME, methods);
     }
     return methods;
   };
@@ -1404,8 +1464,8 @@
   if (_descriptors) {
     var LIBRARY$1 = require_library();
     var global$7 = _global.exports;
-    var fails$7 = _fails;
-    var $export$i = _export;
+    var fails$6 = _fails;
+    var $export$h = _export;
     var $typed = require_typed();
     var $buffer = require_typedBuffer();
     var ctx$3 = _ctx;
@@ -1484,12 +1544,12 @@
       return allocate(speciesConstructor$1(O, O[DEF_CONSTRUCTOR]), length);
     });
 
-    var LITTLE_ENDIAN = fails$7(function () {
+    var LITTLE_ENDIAN = fails$6(function () {
       // eslint-disable-next-line no-undef
       return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
     });
 
-    var FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE$1].set && fails$7(function () {
+    var FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE$1].set && fails$6(function () {
       new Uint8Array(1).set({});
     });
 
@@ -1554,7 +1614,7 @@
     };
 
     // iOS Safari 6.x fails here
-    var TO_LOCALE_BUG = !!Uint8Array && fails$7(function () { arrayToLocaleString.call(new Uint8Array(1)); });
+    var TO_LOCALE_BUG = !!Uint8Array && fails$6(function () { arrayToLocaleString.call(new Uint8Array(1)); });
 
     var $toLocaleString = function toLocaleString() {
       return arrayToLocaleString.apply(TO_LOCALE_BUG ? arraySlice$1.call(validate$4(this)) : validate$4(this), arguments);
@@ -1694,12 +1754,12 @@
       $DP$1.f = $setDesc;
     }
 
-    $export$i($export$i.S + $export$i.F * !ALL_CONSTRUCTORS, 'Object', {
+    $export$h($export$h.S + $export$h.F * !ALL_CONSTRUCTORS, 'Object', {
       getOwnPropertyDescriptor: $getDesc,
       defineProperty: $setDesc
     });
 
-    if (fails$7(function () { arrayToString.call({}); })) {
+    if (fails$6(function () { arrayToString.call({}); })) {
       arrayToString = arrayToLocaleString = function toString() {
         return arrayJoin.call(this);
       };
@@ -1794,9 +1854,9 @@
         });
         TypedArrayPrototype = TypedArray[PROTOTYPE$1] = create$1($TypedArrayPrototype$);
         hide$2(TypedArrayPrototype, 'constructor', TypedArray);
-      } else if (!fails$7(function () {
+      } else if (!fails$6(function () {
         TypedArray(1);
-      }) || !fails$7(function () {
+      }) || !fails$6(function () {
         new TypedArray(-1); // eslint-disable-line no-new
       }) || !$iterDetect$1(function (iter) {
         new TypedArray(); // eslint-disable-line no-new
@@ -1843,36 +1903,36 @@
 
       O[NAME] = TypedArray;
 
-      $export$i($export$i.G + $export$i.W + $export$i.F * (TypedArray != Base), O);
+      $export$h($export$h.G + $export$h.W + $export$h.F * (TypedArray != Base), O);
 
-      $export$i($export$i.S, NAME, {
+      $export$h($export$h.S, NAME, {
         BYTES_PER_ELEMENT: BYTES
       });
 
-      $export$i($export$i.S + $export$i.F * fails$7(function () { Base.of.call(TypedArray, 1); }), NAME, {
+      $export$h($export$h.S + $export$h.F * fails$6(function () { Base.of.call(TypedArray, 1); }), NAME, {
         from: $from,
         of: $of
       });
 
       if (!(BYTES_PER_ELEMENT in TypedArrayPrototype)) hide$2(TypedArrayPrototype, BYTES_PER_ELEMENT, BYTES);
 
-      $export$i($export$i.P, NAME, proto$3);
+      $export$h($export$h.P, NAME, proto$3);
 
       setSpecies$1(NAME);
 
-      $export$i($export$i.P + $export$i.F * FORCED_SET, NAME, { set: $set });
+      $export$h($export$h.P + $export$h.F * FORCED_SET, NAME, { set: $set });
 
-      $export$i($export$i.P + $export$i.F * !CORRECT_ITER_NAME, NAME, $iterators$1);
+      $export$h($export$h.P + $export$h.F * !CORRECT_ITER_NAME, NAME, $iterators$1);
 
       if (!LIBRARY$1 && TypedArrayPrototype.toString != arrayToString) TypedArrayPrototype.toString = arrayToString;
 
-      $export$i($export$i.P + $export$i.F * fails$7(function () {
+      $export$h($export$h.P + $export$h.F * fails$6(function () {
         new TypedArray(1).slice();
       }), NAME, { slice: $slice });
 
-      $export$i($export$i.P + $export$i.F * (fails$7(function () {
+      $export$h($export$h.P + $export$h.F * (fails$6(function () {
         return [1, 2].toLocaleString() != new TypedArray([1, 2]).toLocaleString();
-      }) || !fails$7(function () {
+      }) || !fails$6(function () {
         TypedArrayPrototype.toLocaleString.call([1, 2]);
       })), NAME, { toLocaleString: $toLocaleString });
 
@@ -1880,102 +1940,6 @@
       if (!LIBRARY$1 && !CORRECT_ITER_NAME) hide$2(TypedArrayPrototype, ITERATOR$1, $iterator);
     };
   } else _typedArray.exports = function () { /* empty */ };
-
-  _typedArray.exports('Uint8', 1, function (init) {
-    return function Uint8ClampedArray(data, byteOffset, length) {
-      return init(this, data, byteOffset, length);
-    };
-  }, true);
-
-  _typedArray.exports('Uint16', 2, function (init) {
-    return function Uint16Array(data, byteOffset, length) {
-      return init(this, data, byteOffset, length);
-    };
-  });
-
-  _typedArray.exports('Int32', 4, function (init) {
-    return function Int32Array(data, byteOffset, length) {
-      return init(this, data, byteOffset, length);
-    };
-  });
-
-  _typedArray.exports('Int16', 2, function (init) {
-    return function Int16Array(data, byteOffset, length) {
-      return init(this, data, byteOffset, length);
-    };
-  });
-
-  _typedArray.exports('Float64', 8, function (init) {
-    return function Float64Array(data, byteOffset, length) {
-      return init(this, data, byteOffset, length);
-    };
-  });
-
-  _typedArray.exports('Float32', 4, function (init) {
-    return function Float32Array(data, byteOffset, length) {
-      return init(this, data, byteOffset, length);
-    };
-  });
-
-  // 21.2.5.3 get RegExp.prototype.flags
-  var anObject$8 = _anObject;
-  var _flags = function () {
-    var that = anObject$8(this);
-    var result = '';
-    if (that.global) result += 'g';
-    if (that.ignoreCase) result += 'i';
-    if (that.multiline) result += 'm';
-    if (that.unicode) result += 'u';
-    if (that.sticky) result += 'y';
-    return result;
-  };
-
-  // 21.2.5.3 get RegExp.prototype.flags()
-  if (_descriptors && /./g.flags != 'g') _objectDp.f(RegExp.prototype, 'flags', {
-    configurable: true,
-    get: _flags
-  });
-
-  var _stringWs = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
-    '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
-
-  var $export$h = _export;
-  var defined$2 = _defined;
-  var fails$6 = _fails;
-  var spaces = _stringWs;
-  var space = '[' + spaces + ']';
-  var non = '\u200b\u0085';
-  var ltrim = RegExp('^' + space + space + '*');
-  var rtrim = RegExp(space + space + '*$');
-
-  var exporter = function (KEY, exec, ALIAS) {
-    var exp = {};
-    var FORCE = fails$6(function () {
-      return !!spaces[KEY]() || non[KEY]() != non;
-    });
-    var fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
-    if (ALIAS) exp[ALIAS] = fn;
-    $export$h($export$h.P + $export$h.F * FORCE, 'String', exp);
-  };
-
-  // 1 -> String#trimLeft
-  // 2 -> String#trimRight
-  // 3 -> String#trim
-  var trim = exporter.trim = function (string, TYPE) {
-    string = String(defined$2(string));
-    if (TYPE & 1) string = string.replace(ltrim, '');
-    if (TYPE & 2) string = string.replace(rtrim, '');
-    return string;
-  };
-
-  var _stringTrim = exporter;
-
-  // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
-  _stringTrim('trimRight', function ($trim) {
-    return function trimRight() {
-      return $trim(this, 2);
-    };
-  }, 'trimEnd');
 
   _typedArray.exports('Uint32', 4, function (init) {
     return function Uint32Array(data, byteOffset, length) {
