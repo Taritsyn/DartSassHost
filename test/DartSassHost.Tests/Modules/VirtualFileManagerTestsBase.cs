@@ -53,20 +53,47 @@ namespace DartSassHost.Tests.Modules
 				"  line-height: 0;\n" +
 				"  vertical-align: bottom;\n" +
 				"}\n\n" +
+				".icon-computer {\n" +
+				"  background-image: url(../images/computer.gif);\n" +
+				"}\n\n" +
+				".icon-database {\n" +
+				"  background-image: url(\"../images/database.png\");\n" +
+				"}\n\n" +
 				".icon-google-plus {\n" +
-				"  background-image: url(../images/google-plus.svg);\n" +
+				"  background-image: url(\"../images/google-plus.svg\");\n" +
 				"}\n\n" +
 				".icon-headphone {\n" +
-				"  background-image: URL(\"/images/icons/headphone.gif\");\n" +
+				"  background-image: url(/images/icons/headphone[1].gif);\n" +
+				"}\n\n" +
+				".icon-joystick {\n" +
+				"  background-image: Url(\"/images/icons/joystick(2).png\");\n" +
+				"}\n\n" +
+				".icon-keyboard {\n" +
+				"  background-image: URL(\"/images/icons/keyboard{3}.png\");\n" +
+				"}\n\n" +
+				".icon-license {\n" +
+				"  background-image: url(/images/icons/license.png);\n" +
 				"}\n\n" +
 				".icon-monitor {\n" +
-				"  background-image: url(\"/images/icons/monitor.png\");\n" +
+				"  background-image: url(\"/images/icons/@monitor.png\");\n" +
 				"}\n\n" +
-				".icon-robot {\n" +
-				"  background-image: url(\"/images/icons/robot.png\");\n" +
+				".icon-network {\n" +
+				"  background-image: url(\"/images/icons/$network.png\");\n" +
 				"}\n\n" +
-				".icon-usb-flash-drive {\n" +
-				"  background-image: url(/images/icons/usb-flash-drive.png);\n" +
+				".icon-open-source {\n" +
+				"  background-image: url(\"/images/icons/open_source.png\");\n" +
+				"}\n\n" +
+				".icon-printer {\n" +
+				"  background-image: url(\"/images/icons/printer.png\");\n" +
+				"}\n\n" +
+				".icon-qr-code {\n" +
+				"  background-image: url(/images/icons/qr-code.png);\n" +
+				"}\n\n" +
+				".icon-radio {\n" +
+				"  background-image: url(\"/images/icons/radio.png\");\n" +
+				"}\n\n" +
+				".icon-server {\n" +
+				"  background-image: url(\"/images/icons/server.png\");\n" +
 				"}\n\n" +
 				"@font-face {\n" +
 				"  font-family: \"Bebas Neue\";\n" +
@@ -134,20 +161,47 @@ namespace DartSassHost.Tests.Modules
 				"  line-height: 0;\n" +
 				"  vertical-align: bottom;\n" +
 				"}\n\n" +
+				".icon-computer {\n" +
+				"  background-image: url(../images/computer.gif);\n" +
+				"}\n\n" +
+				".icon-database {\n" +
+				"  background-image: url(\"../images/database.png\");\n" +
+				"}\n\n" +
 				".icon-google-plus {\n" +
-				"  background-image: url(../images/google-plus.svg);\n" +
+				"  background-image: url(\"../images/google-plus.svg\");\n" +
 				"}\n\n" +
 				".icon-headphone {\n" +
-				"  background-image: URL(\"/app01/images/icons/headphone.gif\");\n" +
+				"  background-image: url(/app01/images/icons/headphone[1].gif);\n" +
+				"}\n\n" +
+				".icon-joystick {\n" +
+				"  background-image: Url(\"/app01/images/icons/joystick(2).png\");\n" +
+				"}\n\n" +
+				".icon-keyboard {\n" +
+				"  background-image: URL(\"/app01/images/icons/keyboard{3}.png\");\n" +
+				"}\n\n" +
+				".icon-license {\n" +
+				"  background-image: url(~/images/icons/license.png);\n" +
 				"}\n\n" +
 				".icon-monitor {\n" +
-				"  background-image: url(\"/app01/images/icons/monitor.png\");\n" +
+				"  background-image: url(\"/app01/images/icons/@monitor.png\");\n" +
 				"}\n\n" +
-				".icon-robot {\n" +
-				"  background-image: url(\"/app01/images/icons/robot.png\");\n" +
+				".icon-network {\n" +
+				"  background-image: url(\"/app01/images/icons/$network.png\");\n" +
 				"}\n\n" +
-				".icon-usb-flash-drive {\n" +
-				"  background-image: url(/app01/images/icons/usb-flash-drive.png);\n" +
+				".icon-open-source {\n" +
+				"  background-image: url(\"/app01/images/icons/open_source.png\");\n" +
+				"}\n\n" +
+				".icon-printer {\n" +
+				"  background-image: url(\"/app01/images/icons/printer.png\");\n" +
+				"}\n\n" +
+				".icon-qr-code {\n" +
+				"  background-image: url(/app01/images/icons/qr-code.png);\n" +
+				"}\n\n" +
+				".icon-radio {\n" +
+				"  background-image: url(\"/app01/images/icons/radio.png\");\n" +
+				"}\n\n" +
+				".icon-server {\n" +
+				"  background-image: url(\"/app01/images/icons/server.png\");\n" +
 				"}\n\n" +
 				"@font-face {\n" +
 				"  font-family: \"Bebas Neue\";\n" +

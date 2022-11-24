@@ -47,11 +47,18 @@ namespace DartSassHost.Tests.Imports
 				"  line-height: 0\n" +
 				"  vertical-align: bottom\n" +
 				"\n" +
-				"@import url(./icons/google-plus.css)\n" +
-				"@import URL(  '/styles/icons/headphone.css'  )\n" +
-				"@import url(\"#{$icons-path}/monitor.css\")\n" +
-				"@import url($icons-path + \"/robot.css\")\n" +
-				"@import Url(  /styles/icons/usb-flash-drive.css  )"
+				"@import url(./icons/computer.css)\n" +
+				"@import url('./icons/database.css')\n" +
+				"@import url(\"./icons/google-plus.css\")\n" +
+				"@import url( /styles/icons/headphone[1].css )\n" +
+				"@import Url(  '/styles/icons/joystick(2).css'  )\n" +
+				"@import URL(	\"/styles/icons/keyboard{3}.css\"	)\n" +
+				"@import url(#{$icons-path}/license.css)\n" +
+				"@import url('#{$icons-path}/@monitor.css')\n" +
+				"@import url(\"#{$icons-path}/$network.css\")\n" +
+				"@import url($icons-path + '/open_source.css')\n" +
+				"@import url($icons-path + \"/printer.css\")\n" +
+				"@import url(/styles/icons/qr-code.css), url('/styles/icons/radio.css'), url(\"/styles/icons/server.css\")"
 				;
 			_siteImportedFiles["/styles/layout.sass"] = "body\n" +
 				"  background-color: $bg-color\n" +
@@ -81,9 +88,10 @@ namespace DartSassHost.Tests.Imports
 			_siteSourceMapFileContent = "{\"version\":3,\"sourceRoot\":\"\"," +
 				"\"sources\":[\"_icons.sass\",\"_fonts.sass\",\"site.sass\",\"foundation/_reset.sass\"," +
 				"\"fonts/bebas-neue.css\",\"layout.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
-				"\"names\":[],\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;ACXA;AACA;AAA8C;ACE9C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
-				"AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;" +
-				"AAEF;EACE;EACA;EACA;EACA;EETA,eFUuB;EETvB,uBFSuB;EERvB,oBFQuB\"," +
+				"\"names\":[],\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAgC;AAAgC;" +
+				"AClBhE;AACA;AAA8C;ACE9C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;" +
+				"EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;AAEF;EACE;EACA;EACA;EACA;EETA,eFUuB;" +
+				"EETvB,uBFSuB;EERvB,oBFQuB\"," +
 				"\"file\":\"site.css\"}"
 				;
 
@@ -126,11 +134,19 @@ namespace DartSassHost.Tests.Imports
 				"  line-height: 0\n" +
 				"  vertical-align: bottom\n" +
 				"\n" +
-				"@import url(./icons/google-plus.css)\n" +
-				"@import URL(  '~/styles/icons/headphone.css'  )\n" +
-				"@import url(\"#{$icons-path}/monitor.css\")\n" +
-				"@import url($icons-path + \"/robot.css\")\n" +
-				"@import Url(  ~/styles/icons/usb-flash-drive.css  )"
+				"@import url(./icons/computer.css)\n" +
+				"@import url('./icons/database.css')\n" +
+				"@import url(\"./icons/google-plus.css\")\n" +
+				"@import url( ~/styles/icons/headphone[1].css )\n" +
+				"@import Url(  '~/styles/icons/joystick(2).css'  )\n" +
+				"@import URL(	\"~/styles/icons/keyboard{3}.css\"	)\n" +
+				"@import url(#{$icons-path}/license.css)\n" +
+				"@import url('#{$icons-path}/@monitor.css')\n" +
+				"@import url(\"#{$icons-path}/$network.css\")\n" +
+				"@import url($icons-path + '/open_source.css')\n" +
+				"@import url($icons-path + \"/printer.css\")\n" +
+				"@import url(/app01/styles/icons/qr-code.css), url('/app01/styles/icons/radio.css'), " +
+				"url(\"/app01/styles/icons/server.css\")"
 				;
 			_appImportedFiles["/app01/styles/layout.sass"] = "body\n" +
 				"  background-color: $bg-color\n" +
@@ -161,9 +177,10 @@ namespace DartSassHost.Tests.Imports
 				"\"sources\":[\"_icons.sass\",\"_fonts.sass\",\"app.sass\",\"foundation/_reset.sass\"," +
 				"\"fonts/bebas-neue.css\",\"layout.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
 				"\"names\":[]," +
-				"\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;ACXA;AACA;AAA+C;ACE/C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;" +
-				"AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;" +
-				"AAEF;EACE;EACA;EACA;EACA;EETA,eFUuB;EETvB,uBFSuB;EERvB,oBFQuB\"," +
+				"\"mappings\":\"AAQQ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAsC;AAAsC;AClB5E;AACA;" +
+				"AAA+C;ACE/C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;" +
+				"EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;AAEF;EACE;EACA;EACA;EACA;EETA,eFUuB;EETvB,uBFSuB;" +
+				"EERvB,oBFQuB\"," +
 				"\"file\":\"app.css\"}"
 				;
 		}

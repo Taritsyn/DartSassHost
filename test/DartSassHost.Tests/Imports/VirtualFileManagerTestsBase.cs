@@ -60,24 +60,60 @@ namespace DartSassHost.Tests.Imports
 				"  font-style: normal;\n" +
 				"}"
 				;
+			_siteImportedFiles["/styles/icons/computer.css"] = ".icon-computer {\n" +
+				"  background-image: url(/images/icons/computer.gif);\n" +
+				"}"
+				;
+			_siteImportedFiles["/styles/icons/database.css"] = ".icon-database {\n" +
+				"  background-image: url(/images/icons/database.png);\n" +
+				"}"
+				;
 			_siteImportedFiles["/styles/icons/google-plus.css"] = ".icon-google-plus {\n" +
 				"  background-image: url(/images/icons/google-plus.svg);\n" +
 				"}"
 				;
-			_siteImportedFiles["/styles/icons/headphone.css"] = ".icon-headphone {\n" +
-				"  background-image: url(/images/icons/headphone.gif);\n" +
+			_siteImportedFiles["/styles/icons/headphone[1].css"] = ".icon-headphone {\n" +
+				"  background-image: url(/images/icons/headphone[1].gif);\n" +
 				"}"
 				;
-			_siteImportedFiles["/styles/icons/monitor.css"] = ".icon-monitor {\n" +
-				"  background-image: url(/images/icons/monitor.png);\n" +
+			_siteImportedFiles["/styles/icons/joystick(2).css"] = ".icon-joystick {\n" +
+				"  background-image: url(/images/icons/joystick(2).png);\n" +
 				"}"
 				;
-			_siteImportedFiles["/styles/icons/robot.css"] = ".icon-robot {\n" +
-				"  background-image: url(/images/icons/robot.png);\n" +
+			_siteImportedFiles["/styles/icons/keyboard{3}.css"] = ".icon-keyboard {\n" +
+				"  background-image: url(/images/icons/keyboard{3}.png);\n" +
 				"}"
 				;
-			_siteImportedFiles["/styles/icons/usb-flash-drive.css"] = ".icon-usb-flash-drive {\n" +
-				"  background-image: url(/images/icons/usb-flash-drive.png);\n" +
+			_siteImportedFiles["/styles/icons/license.css"] = ".icon-license {\n" +
+				"  background-image: url(/images/icons/license.png);\n" +
+				"}"
+				;
+			_siteImportedFiles["/styles/icons/@monitor.css"] = ".icon-monitor {\n" +
+				"  background-image: url(/images/icons/@monitor.png);\n" +
+				"}"
+				;
+			_siteImportedFiles["/styles/icons/$network.css"] = ".icon-network {\n" +
+				"  background-image: url(/images/icons/$network.png);\n" +
+				"}"
+				;
+			_siteImportedFiles["/styles/icons/open_source.css"] = ".icon-open-source {\n" +
+				"  background-image: url(/images/icons/open_source.png);\n" +
+				"}"
+				;
+			_siteImportedFiles["/styles/icons/printer.css"] = ".icon-printer {\n" +
+				"  background-image: url(/images/icons/printer.png);\n" +
+				"}"
+				;
+			_siteImportedFiles["/styles/icons/qr-code.css"] = ".icon-qr-code {\n" +
+				"  background-image: url(/images/icons/qr-code.png);\n" +
+				"}"
+				;
+			_siteImportedFiles["/styles/icons/radio.css"] = ".icon-radio {\n" +
+				"  background-image: url(/images/icons/radio.png);\n" +
+				"}"
+				;
+			_siteImportedFiles["/styles/icons/server.css"] = ".icon-server {\n" +
+				"  background-image: url(/images/icons/server.png);\n" +
 				"}"
 				;
 			_siteImportedFiles["/styles/print.css"] = "@page {\n" +
@@ -93,11 +129,20 @@ namespace DartSassHost.Tests.Imports
 				"  content: \" (\" attr(title) \")\";\n" +
 				"}"
 				;
-			_siteOutputFileContent = "@import url(./icons/google-plus.css);\n" +
-				"@import url(\"/styles/icons/headphone.css\");\n" +
-				"@import url(\"/styles/icons/monitor.css\");\n" +
-				"@import url(\"/styles/icons/robot.css\");\n" +
-				"@import url(/styles/icons/usb-flash-drive.css);\n" +
+			_siteOutputFileContent = "@import url(./icons/computer.css);\n" +
+				"@import url(\"./icons/database.css\");\n" +
+				"@import url(\"./icons/google-plus.css\");\n" +
+				"@import url(/styles/icons/headphone[1].css);\n" +
+				"@import url(\"/styles/icons/joystick(2).css\");\n" +
+				"@import url(\"/styles/icons/keyboard{3}.css\");\n" +
+				"@import url(/styles/icons/license.css);\n" +
+				"@import url(\"/styles/icons/@monitor.css\");\n" +
+				"@import url(\"/styles/icons/$network.css\");\n" +
+				"@import url(\"/styles/icons/open_source.css\");\n" +
+				"@import url(\"/styles/icons/printer.css\");\n" +
+				"@import url(/styles/icons/qr-code.css);\n" +
+				"@import url(\"/styles/icons/radio.css\");\n" +
+				"@import url(\"/styles/icons/server.css\");\n" +
 				"@import \"http://fonts.googleapis.com/css?family=Droid+Sans\";\n" +
 				"@import '/styles/fonts/bitstream-vera-sans-bold.css';\n" +
 				"@import \"/styles/fonts/league-gothic.css\";\n" +
@@ -180,24 +225,59 @@ namespace DartSassHost.Tests.Imports
 				"  font-style: normal;\n" +
 				"}"
 				;
+			_appImportedFiles["/app01/styles/icons/computer.css"] = ".icon-computer {\n" +
+				"  background-image: url(/app01/images/icons/computer.gif);\n" +
+				"}"
+				;
+			_appImportedFiles["/app01/styles/icons/database.css"] = ".icon-database {\n" +
+				"  background-image: url(/app01/images/icons/database.png);\n" +
+				"}"
+				;
 			_appImportedFiles["/app01/styles/icons/google-plus.css"] = ".icon-google-plus {\n" +
-				"  background-image: url(/images/icons/google-plus.svg);\n" +
+				"  background-image: url(/app01/images/icons/google-plus.svg);\n" +
 				"}"
 				;
-			_appImportedFiles["/app01/styles/icons/headphone.css"] = ".icon-headphone {\n" +
-				"  background-image: url(/images/icons/headphone.gif);\n" +
+			_appImportedFiles["/app01/styles/icons/headphone[1].css"] = ".icon-headphone {\n" +
+				"  background-image: url(/app01/images/icons/headphone[1].gif);\n" +
 				"}"
 				;
-			_appImportedFiles["/app01/styles/icons/monitor.css"] = ".icon-monitor {\n" +
-				"  background-image: url(/images/icons/monitor.png);\n" +
+			_appImportedFiles["/app01/styles/icons/joystick(2).css"] = ".icon-joystick {\n" +
+				"  background-image: url(/app01/images/icons/joystick(2).png);\n" +
 				"}"
 				;
-			_appImportedFiles["/app01/styles/icons/robot.css"] = ".icon-robot {\n" +
-				"  background-image: url(/images/icons/robot.png);\n" +
+			_appImportedFiles["/app01/styles/icons/keyboard{3}.css"] = ".icon-keyboard {\n" +
+				"  background-image: url(/app01/images/icons/keyboard{3}.png);\n" +
 				"}"
 				;
-			_appImportedFiles["/app01/styles/icons/usb-flash-drive.css"] = ".icon-usb-flash-drive {\n" +
-				"  background-image: url(/images/icons/usb-flash-drive.png);\n" +
+			_appImportedFiles["/app01/styles/icons/license.css"] = ".icon-license {\n" +
+				"  background-image: url(/app01/images/icons/license.png);\n" +
+				"}"
+				;
+			_appImportedFiles["/app01/styles/icons/@monitor.css"] = ".icon-monitor {\n" +
+				"  background-image: url(/app01/images/icons/@monitor.png);\n" +
+				"}"
+				;
+			_appImportedFiles["/app01/styles/icons/$network.css"] = ".icon-network {\n" +
+				"  background-image: url(/app01/images/icons/$network.png);\n" +
+				"}"
+				;
+			_appImportedFiles["/app01/styles/icons/open_source.css"] = ".icon-open-source {\n" +
+				"  background-image: url(/app01/images/icons/open_source.png);\n" +
+				"}"
+				;
+			_appImportedFiles["/app01/styles/icons/printer.css"] = ".icon-printer {\n" +
+				"  background-image: url(/app01/images/icons/printer.png);\n" +
+				"}"
+				;
+			_appImportedFiles["/app01/styles/icons/qr-code.css"] = ".icon-qr-code {\n" +
+				"  background-image: url(/app01/images/icons/qr-code.png);\n" +
+				"}";
+			_appImportedFiles["/app01/styles/icons/radio.css"] = ".icon-radio {\n" +
+				"  background-image: url(/app01/images/icons/radio.png);\n" +
+				"}"
+				;
+			_appImportedFiles["/app01/styles/icons/server.css"] = ".icon-server {\n" +
+				"  background-image: url(/app01/images/icons/server.png);\n" +
 				"}"
 				;
 			_appImportedFiles["/app01/styles/print.css"] = "@page {\n" +
@@ -213,11 +293,20 @@ namespace DartSassHost.Tests.Imports
 				"  content: \" (\" attr(title) \")\";\n" +
 				"}"
 				;
-			_appOutputFileContent = "@import url(./icons/google-plus.css);\n" +
-				"@import url(\"/app01/styles/icons/headphone.css\");\n" +
-				"@import url(\"/app01/styles/icons/monitor.css\");\n" +
-				"@import url(\"/app01/styles/icons/robot.css\");\n" +
-				"@import url(/app01/styles/icons/usb-flash-drive.css);\n" +
+			_appOutputFileContent = "@import url(./icons/computer.css);\n" +
+				"@import url(\"./icons/database.css\");\n" +
+				"@import url(\"./icons/google-plus.css\");\n" +
+				"@import url(/app01/styles/icons/headphone[1].css);\n" +
+				"@import url(\"/app01/styles/icons/joystick(2).css\");\n" +
+				"@import url(\"/app01/styles/icons/keyboard{3}.css\");\n" +
+				"@import url(~/styles/icons/license.css);\n" +
+				"@import url(\"/app01/styles/icons/@monitor.css\");\n" +
+				"@import url(\"/app01/styles/icons/$network.css\");\n" +
+				"@import url(\"/app01/styles/icons/open_source.css\");\n" +
+				"@import url(\"/app01/styles/icons/printer.css\");\n" +
+				"@import url(/app01/styles/icons/qr-code.css);\n" +
+				"@import url(\"/app01/styles/icons/radio.css\");\n" +
+				"@import url(\"/app01/styles/icons/server.css\");\n" +
 				"@import \"http://fonts.googleapis.com/css?family=Droid+Sans\";\n" +
 				"@import '/app01/styles/fonts/bitstream-vera-sans-bold.css';\n" +
 				"@import \"/app01/styles/fonts/league-gothic.css\";\n" +
