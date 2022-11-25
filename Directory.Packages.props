@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.20.6" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.20.6" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.20.6" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.20.6" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.20.6" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.Msie" Version="3.19.0" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.NiL" Version="3.20.1" />
+  </ItemGroup>
+</Project>

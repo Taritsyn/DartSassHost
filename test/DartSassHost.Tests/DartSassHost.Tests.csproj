@@ -6,50 +6,51 @@
     <TargetFrameworks>net40;net45;net471;netcoreapp2.1;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.19.0" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.18.2" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.18.2" />
-    <PackageReference Include="JavaScriptEngineSwitcher.Msie" Version="3.19.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
-    <PackageReference Include="NUnit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.3.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" />
+    <PackageReference Include="JavaScriptEngineSwitcher.Msie" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="17.3.2" />
+    <PackageReference Include="NUnit" VersionOverride="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" VersionOverride="4.3.0" />
 
     <ProjectReference Include="../../src/DartSassHost/DartSassHost.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-    <PackageReference Include="PolyfillsForOldDotNet.System.Runtime.InteropServices.RuntimeInformation" Version="0.1.1" />
+    <PackageReference Include="PolyfillsForOldDotNet.System.Runtime.InteropServices.RuntimeInformation" VersionOverride="0.1.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.0.0" />
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" VersionOverride="4.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-    <PackageReference Include="Moq" Version="4.2.1510.2205" />
+    <PackageReference Include="Moq" VersionOverride="4.2.1510.2205" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <PackageReference Include="Moq" Version="4.17.2" />
+    <PackageReference Include="Moq" VersionOverride="4.17.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net40' And '$(TargetFramework)' != 'net45' ">
-    <PackageReference Include="Moq" Version="4.18.2" />
+    <PackageReference Include="Moq" VersionOverride="4.18.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net40' And '$(TargetFramework)' != 'net45' And '$(TargetFramework)' != 'net471' ">
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.18.2" />
-    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.18.2" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" />
+    <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net40' And '$(TargetFramework)' != 'net45' And '$(TargetFramework)' != 'netcoreapp2.1' ">
-    <PackageReference Include="JavaScriptEngineSwitcher.NiL" Version="3.20.1" />
+    <PackageReference Include="JavaScriptEngineSwitcher.NiL" />
   </ItemGroup>
 
   <ItemGroup>
