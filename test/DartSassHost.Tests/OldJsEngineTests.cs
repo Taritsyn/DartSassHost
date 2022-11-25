@@ -1,7 +1,7 @@
 ﻿#if !NET40
 using System.Runtime.InteropServices;
-#endif
 
+#endif
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Msie;
 using NUnit.Framework;
