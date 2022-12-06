@@ -32,7 +32,8 @@
 		public const string UnknownVendorPrefix = "Unknown prefix {0}.";
 		public const string RepetitiveDeprecationWarningsOmitted = "{0} repetitive deprecation warnings omitted.";
 		public const string NumberValueWithoutPercentagesDeprecated = "${0}: Passing a number without unit % ({1}) is deprecated.\n\n" +
-			"To preserve current behavior: ${0} * 1%"
+			"To preserve current behavior: ${0} * 1%\n\n" +
+			"More info: https://sass-lang.com/d/function-units"
 			;
 	}
 }

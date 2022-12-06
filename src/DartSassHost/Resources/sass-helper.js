@@ -217,13 +217,13 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			return processedQuotedValue;
 		};
 
-		DshFileManagerProxy.prototype.convertPathToAbsoluteInUrlFunction = function (urlfunction) {
+		DshFileManagerProxy.prototype.convertPathToAbsoluteInUrlFunction = function (urlFunction) {
 			var path,
-				processedUrlFunction = urlfunction
+				processedUrlFunction = urlFunction
 				;
 
-			if (isUrlFunction(urlfunction) && this.supportsVirtualPaths) {
-				path = extractPathFromUrlFunction(urlfunction);
+			if (isUrlFunction(urlFunction) && this.supportsVirtualPaths) {
+				path = extractPathFromUrlFunction(urlFunction);
 				if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
 					path = this._fileManager.ToAbsoluteVirtualPath(path);
 					processedUrlFunction = wrapPathInUrlFunction(path);
