@@ -1,4 +1,6 @@
-﻿namespace DartSassHost.Benchmarks
+﻿using System.Collections.Generic;
+
+namespace DartSassHost.Benchmarks
 {
 	public sealed class Document
 	{
@@ -15,6 +17,12 @@
 		}
 
 		public string Content
+		{
+			get;
+			set;
+		}
+
+		public IList<string> IncludePaths
 		{
 			get;
 			set;

@@ -5,9 +5,9 @@
       "@babel/preset-env",
       {
         "targets": {
-          "chrome": "10",
-          "firefox": "4",
-          "ie": "9",
+          "chrome": "26",
+          "firefox": "20",
+          "ie": "11"
         },
         "useBuiltIns": false
       }

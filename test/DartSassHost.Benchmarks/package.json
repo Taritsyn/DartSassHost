@@ -3,9 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "dependencies": {
-    "@angular/cdk": "13.3.9",
-    "@angular/material": "13.3.9",
-    "bootstrap": "5.2.0",
+    "@angular/cdk": "15.0.1",
+    "@angular/material": "15.0.1",
+    "bootstrap": "5.2.3",
     "foundation-sites": "6.7.5"
   }
 }

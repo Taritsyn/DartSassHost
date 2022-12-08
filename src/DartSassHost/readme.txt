@@ -31,7 +31,8 @@
    =============
    1. Added support of the Dart Sass version 1.56.1;
    2. Fixed a error that occurred during generation of source fragment for warnings
-      on Unix-like operating systems.
+      on Unix-like operating systems;
+   3. Slightly improved performance of Sass compilation.
 
    ============
    PROJECT SITE

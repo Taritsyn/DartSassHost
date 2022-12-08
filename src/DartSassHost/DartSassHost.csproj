@@ -35,7 +35,8 @@ After installing the packages, you will need to register the default JS engine (
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReleaseNotes>1. Added support of the Dart Sass version 1.56.1;
-2. Fixed a error that occurred during generation of source fragment for warnings on Unix-like operating systems.</PackageReleaseNotes>
+2. Fixed a error that occurred during generation of source fragment for warnings on Unix-like operating systems;
+3. Slightly improved performance of Sass compilation.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -62,7 +63,7 @@ After installing the packages, you will need to register the default JS engine (
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netstandard2.1' ">

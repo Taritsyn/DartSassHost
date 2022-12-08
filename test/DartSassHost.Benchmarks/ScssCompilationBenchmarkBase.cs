@@ -8,7 +8,7 @@ namespace DartSassHost.Benchmarks
 	{
 		private static readonly Dictionary<string, Document> s_documents = new Dictionary<string, Document>
 		{
-			{ "angular-material", new Document("angular/material/_theming.scss") },
+			{ "angular-material", new Document("angular-material/@angular/material/_theming.scss") },
 			{ "bootstrap", new Document("bootstrap/bootstrap.scss") },
 			{ "foundation", new Document("foundation/scss/foundation.scss") }
 		};

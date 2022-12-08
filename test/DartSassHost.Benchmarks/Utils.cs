@@ -19,6 +19,11 @@ namespace DartSassHost.Benchmarks
 
 				document.AbsolutePath = absolutePath;
 				document.Content = content;
+				document.IncludePaths = new List<string>();
+				if (documentName == "angular-material")
+				{
+					document.IncludePaths.Add(Path.Combine(absoluteDirectoryPath, "angular-material"));
+				}
 			}
 		}
 	}

@@ -29,12 +29,17 @@
 
   <ItemGroup>
     <None Include="node_modules/@angular/cdk/**/*.scss">
-      <Link>Files/angular/cdk/%(RecursiveDir)/%(Filename)%(Extension)</Link>
+      <Link>Files/angular-material/@angular/cdk/%(RecursiveDir)/%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
     <None Include="node_modules/@angular/material/**/*.scss">
-      <Link>Files/angular/material/%(RecursiveDir)/%(Filename)%(Extension)</Link>
+      <Link>Files/angular-material/@angular/material/%(RecursiveDir)/%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Include="node_modules/@material/**/*.scss">
+      <Link>Files/angular-material/@material/%(RecursiveDir)/%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>

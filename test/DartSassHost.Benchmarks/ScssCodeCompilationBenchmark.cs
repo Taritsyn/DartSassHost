@@ -10,7 +10,11 @@ namespace DartSassHost.Benchmarks
 		public void Compile()
 		{
 			Document document = Documents[DocumentName];
-			var options = new CompilationOptions { SourceMap = true };
+			var options = new CompilationOptions
+			{
+				IncludePaths = document.IncludePaths,
+				SourceMap = true
+			};
 
 			using (var compiler = new SassCompiler(options))
 			{
