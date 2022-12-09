@@ -1,6 +1,11 @@
 Change log
 ==========
 
+## v1.0.0 Preview 9 - December 9, 2022
+ * Added support of the Dart Sass version 1.56.1
+ * Fixed a error that occurred during generation of source fragment for warnings on Unix-like operating systems
+ * Slightly improved performance of Sass compilation
+
 ## v1.0.0 Preview 8 - July 13, 2022
  * Added support of the Dart Sass version 1.53.0
  * .NET 5.0 target was replaced by a .NET 6 target

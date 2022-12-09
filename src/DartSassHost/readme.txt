@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-               README file for Dart Sass Host for .NET v1.0.0 Preview 8
+               README file for Dart Sass Host for .NET v1.0.0 Preview 9
 
    --------------------------------------------------------------------------------
 
@@ -21,7 +21,7 @@
 
     * JavaScriptEngineSwitcher.ChakraCore
     * JavaScriptEngineSwitcher.V8
-    * JavaScriptEngineSwitcher.Msie (only in the Chakra JsRT modes)
+    * JavaScriptEngineSwitcher.Msie (only in the Chakra “Edge” JsRT mode)
 
    After installing the packages, you will need to register the default JS engine
    (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).

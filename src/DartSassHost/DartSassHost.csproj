@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Dart Sass Host for .NET</Product>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>preview8</VersionSuffix>
+    <VersionSuffix>preview9</VersionSuffix>
     <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netstandard2.1;netcoreapp3.1;net6.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -21,7 +21,7 @@ Since the original library is written in JavaScript, you will need a JS engine t
 
  * JavaScriptEngineSwitcher.ChakraCore
  * JavaScriptEngineSwitcher.V8
- * JavaScriptEngineSwitcher.Msie (only in the Chakra JsRT modes)
+ * JavaScriptEngineSwitcher.Msie (only in the Chakra “Edge” JsRT mode)
 
 After installing the packages, you will need to register the default JS engine (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).</Description>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
