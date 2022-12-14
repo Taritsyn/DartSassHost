@@ -34,7 +34,8 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>Slightly improved performance of Sass compilation.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Slightly improved performance of Sass compilation;
+2. JS files are no longer transpiled to ES5 to improve performance.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -73,14 +74,12 @@ After installing the packages, you will need to register the default JS engine (
   </ItemGroup>
 
   <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
-    <EmbeddedResource Include="Resources/es6-polyfills.min.js" />
     <EmbeddedResource Include="Resources/sass-combined.min.js" />
     <EmbeddedResource Include="Resources/sass-helper.min.js" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <EmbeddedResource Include="Resources/es6-polyfills.js" />
-    <EmbeddedResource Include="Resources/sass-combined.es6" />
+    <EmbeddedResource Include="Resources/sass-combined.js" />
     <EmbeddedResource Include="Resources/sass-helper.js" />
   </ItemGroup>
 
@@ -156,7 +155,7 @@ After installing the packages, you will need to register the default JS engine (
 
   <Target Name="EnsureJsFilesBuilded" BeforeTargets="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
     <Error
-      Condition=" !Exists('./Resources/es6-polyfills.min.js') Or !Exists('./Resources/sass-combined.min.js') Or !Exists('./Resources/sass-helper.min.js') "
+      Condition=" !Exists('./Resources/sass-combined.min.js') Or !Exists('./Resources/sass-helper.min.js') "
       Text="In release mode, you need to build JS files. To do this, run a `build-js.cmd` or `build-js.sh` script." />
   </Target>
 </Project>

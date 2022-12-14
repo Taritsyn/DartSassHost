@@ -19,12 +19,6 @@ npm install
 handle_error
 echo ""
 
-echo "Transpiling ES6 files ..."
-echo ""
-npm run -s transpile-es6
-handle_error
-echo ""
-
 echo "Minifying JS files ..."
 echo ""
 npm run -s minify-js

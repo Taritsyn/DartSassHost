@@ -29,7 +29,8 @@
    =============
    RELEASE NOTES
    =============
-   Slightly improved performance of Sass compilation.
+   1. Slightly improved performance of Sass compilation;
+   2. JS files are no longer transpiled to ES5 to improve performance.
 
    ============
    PROJECT SITE

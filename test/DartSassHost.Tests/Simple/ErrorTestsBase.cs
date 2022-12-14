@@ -1,5 +1,5 @@
 ﻿using JavaScriptEngineSwitcher.Core;
-#if NET471 || NETCOREAPP3_1_OR_GREATER
+#if !DEBUG && (NET471 || NETCOREAPP3_1_OR_GREATER)
 using JavaScriptEngineSwitcher.NiL;
 #endif
 using NUnit.Framework;
@@ -16,7 +16,7 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
-#if NET471 || NETCOREAPP3_1_OR_GREATER
+#if !DEBUG && (NET471 || NETCOREAPP3_1_OR_GREATER)
 		[Test]
 		public void MappingSassCompilerLoadErrorDuringCompilation([Values]bool fromFile)
 		{
@@ -24,6 +24,9 @@ namespace DartSassHost.Tests.Simple
 			IJsEngineFactory jsEngineFactory = new NiLJsEngineFactory();
 			string inputPath = GenerateSassFilePath("simplest-working", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
+			const string targetErrorDescription = "SyntaxError: Expected \";\" at +\r\n" +
+				"   at 2:1"
+				;
 
 			// Act
 			string output;
@@ -52,10 +55,10 @@ namespace DartSassHost.Tests.Simple
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"During loading of Sass compiler error has occurred. See the original error message: " +
-				"“TypeError: Can't set property \"keys\" of \"undefined\"”.",
+				"“" + targetErrorDescription + "”.",
 				exception.Message
 			);
-			Assert.AreEqual("TypeError: Can't set property \"keys\" of \"undefined\"", exception.Description);
+			Assert.AreEqual(targetErrorDescription, exception.Description);
 		}
 
 #endif

@@ -31,21 +31,12 @@ namespace DartSassHost
 	public sealed class SassCompiler : IDisposable
 	{
 		/// <summary>
-		/// Name of file, which contains a ECMAScript 6+ polyfills
-		/// </summary>
-#if !DEBUG
-		private const string ES6_POLYFILLS_FILE_NAME = "es6-polyfills.min.js";
-#else
-		private const string ES6_POLYFILLS_FILE_NAME = "es6-polyfills.js";
-#endif
-
-		/// <summary>
 		/// Name of file, which contains a Sass library
 		/// </summary>
 #if !DEBUG
 		private const string SASS_LIBRARY_FILE_NAME = "sass-combined.min.js";
 #else
-		private const string SASS_LIBRARY_FILE_NAME = "sass-combined.es6";
+		private const string SASS_LIBRARY_FILE_NAME = "sass-combined.js";
 #endif
 
 		/// <summary>
@@ -317,7 +308,6 @@ namespace DartSassHost
 						.Assembly
 						;
 
-					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(ES6_POLYFILLS_FILE_NAME), assembly, true);
 					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_LIBRARY_FILE_NAME), assembly, true);
 					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_HELPER_FILE_NAME), assembly, true);
 					_jsEngine.Execute($"var sassHelper = new SassHelper({serializedOptions});");
