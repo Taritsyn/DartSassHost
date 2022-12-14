@@ -34,9 +34,7 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>1. Added support of the Dart Sass version 1.56.1;
-2. Fixed a error that occurred during generation of source fragment for warnings on Unix-like operating systems;
-3. Slightly improved performance of Sass compilation.</PackageReleaseNotes>
+    <PackageReleaseNotes>Slightly improved performance of Sass compilation.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
