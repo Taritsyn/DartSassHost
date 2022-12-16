@@ -35,7 +35,8 @@ After installing the packages, you will need to register the default JS engine (
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReleaseNotes>1. Slightly improved performance of Sass compilation;
-2. JS files are no longer transpiled to ES5 to improve performance.</PackageReleaseNotes>
+2. JS files are no longer transpiled to ES5 to improve performance;
+3. Fixed a script error that occurred during handling non-Sass exceptions.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>

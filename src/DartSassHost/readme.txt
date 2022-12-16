@@ -30,7 +30,8 @@
    RELEASE NOTES
    =============
    1. Slightly improved performance of Sass compilation;
-   2. JS files are no longer transpiled to ES5 to improve performance.
+   2. JS files are no longer transpiled to ES5 to improve performance;
+   3. Fixed a script error that occurred during handling non-Sass exceptions.
 
    ============
    PROJECT SITE
