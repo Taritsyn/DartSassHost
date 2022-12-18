@@ -17,6 +17,8 @@ For correct working, you need to install one of the following NuGet packages:
 
 After installing the packages, you will need to [register the default JS engine](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).
 
+In addition, if your project uses a relatively small amount of Sass or SCSS code, then you can use prerelease versions of the [JavaScriptEngineSwitcher.Jint](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Jint) package as a JS engine.
+
 ## Usage
 When we create an instance of the <code title="DartSassHost.SassCompiler">SassCompiler</code> class by using the constructor without parameters:
 
