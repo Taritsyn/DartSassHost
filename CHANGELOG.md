@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v1.0.0 - December 18, 2022
+ * Slightly improved performance of Sass compilation
+ * JS files are no longer transpiled to ES5 to improve performance
+ * Fixed a script error that occurred during handling non-Sass exceptions
+ * Fixed a error that occurred during generation of the “pretty” file paths for errors and warnings
+
 ## v1.0.0 Preview 9 - December 9, 2022
  * Added support of the Dart Sass version 1.56.1
  * Fixed a error that occurred during generation of source fragment for warnings on Unix-like operating systems
