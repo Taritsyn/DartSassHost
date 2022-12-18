@@ -31,7 +31,9 @@
    =============
    1. Slightly improved performance of Sass compilation;
    2. JS files are no longer transpiled to ES5 to improve performance;
-   3. Fixed a script error that occurred during handling non-Sass exceptions.
+   3. Fixed a script error that occurred during handling non-Sass exceptions;
+   4. Fixed a error that occurred during generation of the “pretty” file paths for
+      errors and warnings.
 
    ============
    PROJECT SITE

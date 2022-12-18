@@ -1,5 +1,15 @@
 ﻿using System;
+#if NETSTANDARD2_1 || NETCOREAPP3_1_OR_GREATER
 using System.IO;
+#else
+using System.Collections.Generic;
+#if !NET40
+using System.Runtime.InteropServices;
+#else
+
+using PolyfillsForOldDotNet.System.Runtime.InteropServices;
+#endif
+#endif
 
 using DartSassHost.Resources;
 
@@ -108,18 +118,104 @@ namespace DartSassHost.Helpers
 				processedRelativeTo += "/";
 			}
 
-			Uri baseUri = new Uri(processedRelativeTo);
-			Uri uri = new Uri(processedPath);
+			string relativePath;
 
-			if (baseUri.Scheme != uri.Scheme)
+			try
 			{
-				return processedPath;
+				Uri baseUri = new Uri(processedRelativeTo);
+				Uri uri = new Uri(processedPath);
+
+				if (baseUri.Scheme != uri.Scheme)
+				{
+					return processedPath;
+				}
+
+				Uri relativeUri = baseUri.MakeRelativeUri(uri);
+				relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+			}
+			catch (UriFormatException)
+			{
+				// Primitive fallback
+				processedRelativeTo = NormalizePath(processedRelativeTo);
+				processedPath = NormalizePath(processedPath);
+				StringComparison comparisonType = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+					StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+
+				relativePath = processedPath;
+				if (processedPath.StartsWith(processedRelativeTo, comparisonType))
+				{
+					relativePath = processedPath.Substring(processedRelativeTo.Length);
+				}
 			}
 
-			Uri relativeUri = baseUri.MakeRelativeUri(uri);
-			string relativePath = Uri.UnescapeDataString(relativeUri.ToString());
-
 			return relativePath;
+		}
+
+		/// <summary>
+		/// Normalizes a path
+		/// </summary>
+		/// <param name="path">Path</param>
+		/// <returns>Normalized path</returns>
+		private static string NormalizePath(string path)
+		{
+			if (path == null)
+			{
+				throw new ArgumentNullException(
+				nameof(path),
+					string.Format(Strings.Common_ArgumentIsNull, nameof(path))
+				);
+			}
+
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				return path;
+			}
+
+			string resultPath = path;
+
+			if (path.IndexOf("./", StringComparison.Ordinal) != -1)
+			{
+				string[] pathParts = path.Split('/');
+				int pathPartCount = pathParts.Length;
+				if (pathPartCount == 0)
+				{
+					return path;
+				}
+
+				var resultPathParts = new List<string>();
+
+				for (int pathPartIndex = 0; pathPartIndex < pathPartCount; pathPartIndex++)
+				{
+					string pathPart = pathParts[pathPartIndex];
+
+					switch (pathPart)
+					{
+						case "..":
+							int resultPathPartCount = resultPathParts.Count;
+							int resultPathPartLastIndex = resultPathPartCount - 1;
+
+							if (resultPathPartCount == 0 || resultPathParts[resultPathPartLastIndex] == "..")
+							{
+								resultPathParts.Add(pathPart);
+							}
+							else
+							{
+								resultPathParts.RemoveAt(resultPathPartLastIndex);
+							}
+							break;
+						case ".":
+							break;
+						default:
+							resultPathParts.Add(pathPart);
+							break;
+					}
+				}
+
+				resultPath = string.Join("/", resultPathParts);
+				resultPathParts.Clear();
+			}
+
+			return resultPath;
 		}
 #endif
 	}
