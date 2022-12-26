@@ -14,7 +14,7 @@
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
     <Title>$(Product)</Title>
     <Authors>Andrey Taritsyn</Authors>
-    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.56.1 with the ability to support a virtual file system.
+    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.57.1 with the ability to support a virtual file system.
 
 Since the original library is written in JavaScript, you will need a JS engine to run it. As a JS engine is used the JavaScript Engine Switcher library (https://github.com/Taritsyn/JavaScriptEngineSwitcher). For correct working, you need to install one of the following NuGet packages:
 
@@ -33,10 +33,7 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>1. Slightly improved performance of Sass compilation;
-2. JS files are no longer transpiled to ES5 to improve performance;
-3. Fixed a script error that occurred during handling non-Sass exceptions;
-4. Fixed a error that occurred during generation of the “pretty” file paths for errors and warnings.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support of the Dart Sass version 1.57.1.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
