@@ -342,3 +342,12 @@ namespace DartSassHost.Example.ConsoleApplication
 ```
 
 In this case, the `inputPath` parameter is used instead of the `content` parameter. Moreover, value of the `inputPath` parameter now should contain the path to real file.
+
+## Who's Using Dart Sass Host for .NET
+If you use the Dart Sass Host for .NET in some project, please send me a message so I can include it in this list:
+
+ * [Bundle Transformer](https://github.com/Taritsyn/BundleTransformer) by Andrey Taritsyn
+ * [DartSassBuilder](https://github.com/deanwiseman/DartSassBuilder) by Dean Wiseman
+ * [Excubo.WebCompiler](https://github.com/excubo-ag/WebCompiler) by Stefan Lörwald
+ * [LigerShark.WebOptimizer.Sass](https://github.com/ligershark/WebOptimizer.Sass) by Mads Kristensen
+ * [WatchSass.Tool](https://github.com/mangeg/sass-watcher-tool) by Magnus Gideryd
