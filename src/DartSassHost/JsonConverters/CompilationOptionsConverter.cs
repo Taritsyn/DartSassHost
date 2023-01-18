@@ -3,8 +3,7 @@ using System.Collections.Generic;
 #if MODERN_JSON_CONVERTER
 using System.Text.Json;
 using System.Text.Json.Serialization;
-#endif
-#if !MODERN_JSON_CONVERTER
+#else
 
 using Newtonsoft.Json;
 #endif

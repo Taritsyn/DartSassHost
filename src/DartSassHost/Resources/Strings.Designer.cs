@@ -162,7 +162,7 @@ namespace DartSassHost.Resources
 		}
 
 		/// <summary>
-		/// Looks up a localized string similar to "The`{0}` type is not primitive."
+		/// Looks up a localized string similar to "The `{0}` type is not primitive."
 		/// </summary>
 		internal static string JsonSerializer_TypeIsNotPrimitive
 		{

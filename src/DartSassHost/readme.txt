@@ -29,7 +29,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of the Dart Sass version 1.57.1.
+   Fixed a minor flaws.
 
    ============
    PROJECT SITE

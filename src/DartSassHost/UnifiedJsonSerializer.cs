@@ -2,8 +2,7 @@
 using System.Linq;
 #if MODERN_JSON_CONVERTER
 using System.Text.Json;
-#endif
-#if !MODERN_JSON_CONVERTER
+#else
 
 using Newtonsoft.Json;
 #endif

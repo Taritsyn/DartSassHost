@@ -159,7 +159,7 @@
     <value>Unexpected character encountered, excepted a JSON {0} token.</value>
   </data>
   <data name="JsonSerializer_TypeIsNotPrimitive" xml:space="preserve">
-    <value>The`{0}` type is not primitive.</value>
+    <value>The `{0}` type is not primitive.</value>
   </data>
   <data name="JsonTokenTypeName_Boolean" xml:space="preserve">
     <value>true or false literal</value>
