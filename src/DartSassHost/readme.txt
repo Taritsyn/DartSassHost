@@ -5,14 +5,14 @@
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2020-2022 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2020-2023 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
    DESCRIPTION
    ===========
    .NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version
-   1.57.1 with the ability to support a virtual file system.
+   1.58.3 with the ability to support a virtual file system.
 
    Since the original library is written in JavaScript, you will need a JS engine
    to run it. As a JS engine is used the JavaScript Engine Switcher library
@@ -29,7 +29,7 @@
    =============
    RELEASE NOTES
    =============
-   Fixed a minor flaws.
+   Added support of the Dart Sass version 1.58.3.
 
    ============
    PROJECT SITE

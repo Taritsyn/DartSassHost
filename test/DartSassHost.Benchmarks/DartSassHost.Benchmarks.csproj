@@ -14,12 +14,19 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.2" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" />
 
     <ProjectReference Include="../../src/DartSassHost/DartSassHost.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.5" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' != 'net461' And '$(TargetFramework)' != 'net471' ">
