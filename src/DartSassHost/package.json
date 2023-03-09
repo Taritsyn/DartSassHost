@@ -1,6 +1,6 @@
 {
   "name": "DartSassHost",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "devDependencies": {
     "terser": "5.16.5"
   },
