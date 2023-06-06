@@ -4,6 +4,7 @@ Dart Sass Host for .NET [![NuGet version](http://img.shields.io/nuget/v/DartSass
 ![Dart Sass Host logo](https://raw.githubusercontent.com/Taritsyn/DartSassHost/main/images/DartSassHost_Logo.png)
 
 .NET wrapper around the [Dart Sass](https://github.com/sass/dart-sass) with the ability to support a virtual file system.
+Unlike other .NET wrappers around the Dart Sass (e.g. [Citizen17.DartSass](https://github.com/Vampire2008/Citizen17.DartSass) and [AspNetCore.SassCompiler](https://github.com/koenvzeijl/AspNetCore.SassCompiler)), this library is not based on the Dart runtime, but on the [version for JavaScript](https://www.npmjs.com/package/sass).
 
 ## Installation
 This library can be installed through NuGet - [https://nuget.org/packages/DartSassHost](https://nuget.org/packages/DartSassHost).
@@ -17,7 +18,7 @@ For correct working, you need to install one of the following NuGet packages:
 
 After installing the packages, you will need to [register the default JS engine](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).
 
-In addition, if your project uses a relatively small amount of Sass or SCSS code, then you can use prerelease versions of the [JavaScriptEngineSwitcher.Jint](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Jint) package as a JS engine.
+In addition, if your project uses a relatively small amount of Sass or SCSS code, then you can use the [JavaScriptEngineSwitcher.Jint](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Jint) package as a JS engine.
 
 ## Usage
 When we create an instance of the <code title="DartSassHost.SassCompiler">SassCompiler</code> class by using the constructor without parameters:
