@@ -1,4 +1,6 @@
-﻿using JavaScriptEngineSwitcher.Core;
+﻿using System;
+
+using JavaScriptEngineSwitcher.Core;
 #if !DEBUG && (NET471 || NETCOREAPP3_1_OR_GREATER)
 using JavaScriptEngineSwitcher.NiL;
 #endif
@@ -24,7 +26,7 @@ namespace DartSassHost.Tests.Simple
 			IJsEngineFactory jsEngineFactory = new NiLJsEngineFactory();
 			string inputPath = GenerateSassFilePath("simplest-working", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
-			const string targetErrorDescription = "SyntaxError: Expected \";\" at +\r\n" +
+			string targetErrorDescription = "SyntaxError: Expected \";\" at +" + Environment.NewLine +
 				"   at 2:1"
 				;
 
