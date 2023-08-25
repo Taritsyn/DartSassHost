@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v1.0.6 - August 25, 2023
+ * Added support of the Dart Sass version 1.66.1
+
 ## v1.0.5 - July 27, 2023
  * Added support of the Dart Sass version 1.64.1
 
