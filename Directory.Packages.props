@@ -6,6 +6,6 @@
     <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.21.0" />
     <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.21.0" />
     <PackageVersion Include="JavaScriptEngineSwitcher.Msie" Version="3.21.1" />
-    <PackageVersion Include="JavaScriptEngineSwitcher.NiL" Version="3.21.0" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.NiL" Version="3.21.4" />
   </ItemGroup>
 </Project>
