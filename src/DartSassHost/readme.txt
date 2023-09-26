@@ -1,7 +1,7 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for Dart Sass Host for .NET v1.0.6
+                    README file for Dart Sass Host for .NET v1.0.7
 
    --------------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support of the Dart Sass version 1.68.0.
+   Added support for the Dart Sass version 1.68.0.
 
    ============
    PROJECT SITE
