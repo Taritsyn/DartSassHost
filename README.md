@@ -349,6 +349,7 @@ If you use the Dart Sass Host for .NET in some project, please send me a message
 
  * [Bundle Transformer](https://github.com/Taritsyn/BundleTransformer) by Andrey Taritsyn
  * [DartSassBuilder](https://github.com/deanwiseman/DartSassBuilder) by Dean Wiseman
+ * [DartSassBuildWatcherTool](https://github.com/MONQDL/DartSassBuildWatcherTool) by Sergey Pismennyi
  * [Excubo.WebCompiler](https://github.com/excubo-ag/WebCompiler) by Stefan Lörwald
  * [LigerShark.WebOptimizer.Sass](https://github.com/ligershark/WebOptimizer.Sass) by Mads Kristensen
  * [WatchSass.Tool](https://github.com/mangeg/sass-watcher-tool) by Magnus Gideryd
