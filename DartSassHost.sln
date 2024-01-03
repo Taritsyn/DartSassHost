@@ -48,8 +48,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{EC47
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedFiles", "SharedFiles", "{3BA35AAF-2D78-44D8-AFD1-A114E402115E}"
 	ProjectSection(SolutionItems) = preProject
-		samples\SharedFiles\_reset.scss = samples\SharedFiles\_reset.scss
 		samples\SharedFiles\style.scss = samples\SharedFiles\style.scss
+		samples\SharedFiles\_reset.scss = samples\SharedFiles\_reset.scss
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DartSassHost.Sample.Logic", "samples\DartSassHost.Sample.Logic\DartSassHost.Sample.Logic.csproj", "{B9C29A80-9C09-41BC-A46E-15899144EDAF}"
@@ -69,6 +69,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DartSassHost.Sample.Net60.ConsoleApp", "samples\DartSassHost.Sample.Net60.ConsoleApp\DartSassHost.Sample.Net60.ConsoleApp.csproj", "{67A59C45-59A1-47CF-8816-06EEC048EC50}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DartSassHost.Sample.Net70.ConsoleApp", "samples\DartSassHost.Sample.Net70.ConsoleApp\DartSassHost.Sample.Net70.ConsoleApp.csproj", "{EB3ADD35-4E9C-481A-9AAB-2DC822A3C5A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartSassHost.Sample.Net80.ConsoleApp", "samples\DartSassHost.Sample.Net80.ConsoleApp\DartSassHost.Sample.Net80.ConsoleApp.csproj", "{51A7DB56-6B8F-46E8-A49C-C28624A544A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -124,6 +126,10 @@ Global
 		{EB3ADD35-4E9C-481A-9AAB-2DC822A3C5A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB3ADD35-4E9C-481A-9AAB-2DC822A3C5A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB3ADD35-4E9C-481A-9AAB-2DC822A3C5A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A7DB56-6B8F-46E8-A49C-C28624A544A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A7DB56-6B8F-46E8-A49C-C28624A544A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A7DB56-6B8F-46E8-A49C-C28624A544A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A7DB56-6B8F-46E8-A49C-C28624A544A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +148,7 @@ Global
 		{A8790B5F-2FCB-4627-9443-9CD5655B54CB} = {EC47D9CC-2B3A-4D1F-8572-56653563EDD0}
 		{67A59C45-59A1-47CF-8816-06EEC048EC50} = {EC47D9CC-2B3A-4D1F-8572-56653563EDD0}
 		{EB3ADD35-4E9C-481A-9AAB-2DC822A3C5A0} = {EC47D9CC-2B3A-4D1F-8572-56653563EDD0}
+		{51A7DB56-6B8F-46E8-A49C-C28624A544A0} = {EC47D9CC-2B3A-4D1F-8572-56653563EDD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9271882C-544A-475A-9185-438FDAD52E0E}

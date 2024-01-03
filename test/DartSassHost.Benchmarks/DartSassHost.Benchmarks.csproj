@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Dart Sass Host: Benchmarks</Product>
     <VersionPrefix>1.0.8</VersionPrefix>
-    <TargetFrameworks>net461;net471;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net462;net471;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
@@ -14,6 +14,7 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.11" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" />
@@ -21,15 +22,7 @@
     <ProjectReference Include="../../src/DartSassHost/DartSassHost.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.2" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
-    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.9" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' != 'net461' And '$(TargetFramework)' != 'net471' ">
+  <ItemGroup Condition=" '$(TargetFramework)' != 'net462' And '$(TargetFramework)' != 'net471' ">
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" />
   </ItemGroup>
@@ -69,7 +62,7 @@
 
   <Target Name="EnsureNodePackagesInstalled" BeforeTargets="BeforeBuild">
     <Error
-      Condition=" !Exists('./node_modules/@angular/material/_theming.scss') Or !Exists('./node_modules/bootstrap/scss/bootstrap.scss') Or !Exists('./node_modules/foundation-sites/scss/foundation.scss') "
+      Condition=" !Exists('./node_modules/@angular/material/_index.scss') Or !Exists('./node_modules/bootstrap/scss/bootstrap.scss') Or !Exists('./node_modules/foundation-sites/scss/foundation.scss') "
       Text="You need to install a Node.js packages. To do this, in the directory of $(MSBuildProjectName) project, run the following command: `npm install`." />
   </Target>
 
