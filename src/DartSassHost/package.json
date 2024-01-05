@@ -2,7 +2,7 @@
   "name": "DartSassHost",
   "version": "1.0.8",
   "devDependencies": {
-    "terser": "5.22.0"
+    "terser": "5.26.0"
   },
   "scripts": {
     "minify-sass-combined-js": "terser ./Resources/sass-combined.js --output ./Resources/sass-combined.min.js --config-file ./.tersersrc --compress ecma=2015",
