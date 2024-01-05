@@ -13,12 +13,10 @@ As a JS engine is used the [JavaScript Engine Switcher](https://github.com/Tarit
 For correct working, you need to install one of the following NuGet packages:
 
  * [JavaScriptEngineSwitcher.ChakraCore](https://nuget.org/packages/JavaScriptEngineSwitcher.ChakraCore/)
+ * [JavaScriptEngineSwitcher.Jint](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Jint)
  * [JavaScriptEngineSwitcher.V8](https://nuget.org/packages/JavaScriptEngineSwitcher.V8)
- * [JavaScriptEngineSwitcher.Msie](https://nuget.org/packages/JavaScriptEngineSwitcher.Msie) (only in the Chakra “Edge” JsRT mode)
 
 After installing the packages, you will need to [register the default JS engine](https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).
-
-In addition, if your project uses a relatively small amount of Sass or SCSS code, then you can use the [JavaScriptEngineSwitcher.Jint](https://www.nuget.org/packages/JavaScriptEngineSwitcher.Jint) package as a JS engine.
 
 ## Usage
 When we create an instance of the <code title="DartSassHost.SassCompiler">SassCompiler</code> class by using the constructor without parameters:

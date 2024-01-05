@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for Dart Sass Host for .NET v1.0.8
+                    README file for Dart Sass Host for .NET v1.0.9
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2020-2023 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2020-2024 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
@@ -20,8 +20,8 @@
    need to install one of the following NuGet packages:
 
     * JavaScriptEngineSwitcher.ChakraCore
+    * JavaScriptEngineSwitcher.Jint
     * JavaScriptEngineSwitcher.V8
-    * JavaScriptEngineSwitcher.Msie (only in the Chakra “Edge” JsRT mode)
 
    After installing the packages, you will need to register the default JS engine
    (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).
@@ -29,7 +29,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support for the Dart Sass version 1.69.7.
+   1. Added support for the Dart Sass version 1.69.7;
+   2. JavaScriptEngineSwitcher.Msie module is no longer supported as an JS engine.
 
    ============
    PROJECT SITE
