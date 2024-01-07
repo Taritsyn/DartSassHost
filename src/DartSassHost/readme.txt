@@ -21,6 +21,7 @@
 
     * JavaScriptEngineSwitcher.ChakraCore
     * JavaScriptEngineSwitcher.Jint
+    * JavaScriptEngineSwitcher.Msie (only in the Chakra “Edge” JsRT mode)
     * JavaScriptEngineSwitcher.V8
 
    After installing the packages, you will need to register the default JS engine
@@ -29,8 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Added support for the Dart Sass version 1.69.7;
-   2. JavaScriptEngineSwitcher.Msie module is no longer supported as an JS engine.
+   JavaScriptEngineSwitcher.Msie module is again supported as a JS engine.
 
    ============
    PROJECT SITE

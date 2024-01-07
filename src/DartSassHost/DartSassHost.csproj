@@ -20,6 +20,7 @@ Since the original library is written in JavaScript, you will need a JS engine t
 
  * JavaScriptEngineSwitcher.ChakraCore
  * JavaScriptEngineSwitcher.Jint
+ * JavaScriptEngineSwitcher.Msie (only in the Chakra “Edge” JsRT mode)
  * JavaScriptEngineSwitcher.V8
 
 After installing the packages, you will need to register the default JS engine (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).</Description>
@@ -33,8 +34,7 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>1. Added support for the Dart Sass version 1.69.7;
-2. JavaScriptEngineSwitcher.Msie module is no longer supported as an JS engine.</PackageReleaseNotes>
+    <PackageReleaseNotes>JavaScriptEngineSwitcher.Msie module is again supported as a JS engine.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -73,11 +73,13 @@ After installing the packages, you will need to register the default JS engine (
   </ItemGroup>
 
   <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+    <EmbeddedResource Include="Resources/es7-polyfills.min.js" />
     <EmbeddedResource Include="Resources/sass-combined.min.js" />
     <EmbeddedResource Include="Resources/sass-helper.min.js" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <EmbeddedResource Include="Resources/es7-polyfills.js" />
     <EmbeddedResource Include="Resources/sass-combined.js" />
     <EmbeddedResource Include="Resources/sass-helper.js" />
   </ItemGroup>
@@ -154,7 +156,7 @@ After installing the packages, you will need to register the default JS engine (
 
   <Target Name="EnsureJsFilesBuilded" BeforeTargets="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
     <Error
-      Condition=" !Exists('./Resources/sass-combined.min.js') Or !Exists('./Resources/sass-helper.min.js') "
+      Condition=" !Exists('./Resources/es7-polyfills.min.js') Or !Exists('./Resources/sass-combined.min.js') Or !Exists('./Resources/sass-helper.min.js') "
       Text="In release mode, you need to build JS files. To do this, run a `build-js.cmd` or `build-js.sh` script." />
   </Target>
 </Project>

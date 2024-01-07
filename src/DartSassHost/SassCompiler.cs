@@ -31,6 +31,15 @@ namespace DartSassHost
 	public sealed class SassCompiler : IDisposable
 	{
 		/// <summary>
+		/// Name of file, which contains a ECMAScript 7+ polyfills
+		/// </summary>
+#if !DEBUG
+		private const string ES7_POLYFILLS_FILE_NAME = "es7-polyfills.min.js";
+#else
+		private const string ES7_POLYFILLS_FILE_NAME = "es7-polyfills.js";
+#endif
+
+		/// <summary>
 		/// Name of file, which contains a Sass library
 		/// </summary>
 #if !DEBUG
@@ -308,6 +317,7 @@ namespace DartSassHost
 						.Assembly
 						;
 
+					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(ES7_POLYFILLS_FILE_NAME), assembly, true);
 					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_LIBRARY_FILE_NAME), assembly, true);
 					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_HELPER_FILE_NAME), assembly, true);
 					_jsEngine.Execute($"var sassHelper = new SassHelper({serializedOptions});");
