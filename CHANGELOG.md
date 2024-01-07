@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v1.0.10 - January 7, 2024
+ * JavaScriptEngineSwitcher.Msie module is again supported as a JS engine
+
 ## v1.0.9 - January 5, 2024
  * Added support for the Dart Sass version 1.69.7
  * JavaScriptEngineSwitcher.Msie module is no longer supported as an JS engine
