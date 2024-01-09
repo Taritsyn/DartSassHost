@@ -1,7 +1,7 @@
 ﻿using System;
 
 using JavaScriptEngineSwitcher.Core;
-#if !DEBUG && (NET471 || NETCOREAPP3_1_OR_GREATER)
+#if !DEBUG
 using JavaScriptEngineSwitcher.NiL;
 #endif
 using NUnit.Framework;
@@ -18,7 +18,7 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
-#if !DEBUG && (NET471 || NETCOREAPP3_1_OR_GREATER)
+#if !DEBUG
 		[Test]
 		public void MappingSassCompilerLoadErrorDuringCompilation([Values]bool fromFile)
 		{

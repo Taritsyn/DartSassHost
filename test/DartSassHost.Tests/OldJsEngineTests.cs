@@ -1,13 +1,8 @@
-﻿#if !NET40
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
-#endif
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.Msie;
 using NUnit.Framework;
-#if NET40
-using PolyfillsForOldDotNet.System.Runtime.InteropServices;
-#endif
 
 namespace DartSassHost.Tests
 {
