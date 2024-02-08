@@ -25,7 +25,6 @@ Since the original library is written in JavaScript, you will need a JS engine t
 
 After installing the packages, you will need to register the default JS engine (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/Taritsyn/DartSassHost</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/DartSassHost/main/images/DartSassHost_Logo_128x128.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
@@ -91,7 +90,7 @@ After installing the packages, you will need to register the default JS engine (
       <Visible>false</Visible>
     </None>
     <None Include="../../LICENSE.txt">
-      <PackagePath>$(PackageLicenseFile)</PackagePath>
+      <PackagePath>/</PackagePath>
       <Pack>true</Pack>
       <Visible>false</Visible>
     </None>
