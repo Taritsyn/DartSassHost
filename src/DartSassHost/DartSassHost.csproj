@@ -14,7 +14,7 @@
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
     <Title>$(Product)</Title>
     <Authors>Andrey Taritsyn</Authors>
-    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.69.7 with the ability to support a virtual file system.
+    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.70.0 with the ability to support a virtual file system.
 
 Since the original library is written in JavaScript, you will need a JS engine to run it. As a JS engine is used the JavaScript Engine Switcher library (https://github.com/Taritsyn/JavaScriptEngineSwitcher). For correct working, you need to install one of the following NuGet packages:
 
@@ -33,7 +33,7 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>JavaScriptEngineSwitcher.Msie module is again supported as a JS engine.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for the Dart Sass version 1.70.0.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -72,9 +72,7 @@ After installing the packages, you will need to register the default JS engine (
   </ItemGroup>
 
   <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
-    <EmbeddedResource Include="Resources/es7-polyfills.min.js" />
-    <EmbeddedResource Include="Resources/sass-combined.min.js" />
-    <EmbeddedResource Include="Resources/sass-helper.min.js" />
+    <EmbeddedResource Include="Resources/sass-bundled.min.js" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -155,7 +153,7 @@ After installing the packages, you will need to register the default JS engine (
 
   <Target Name="EnsureJsFilesBuilded" BeforeTargets="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
     <Error
-      Condition=" !Exists('./Resources/es7-polyfills.min.js') Or !Exists('./Resources/sass-combined.min.js') Or !Exists('./Resources/sass-helper.min.js') "
+      Condition=" !Exists('./Resources/sass-bundled.min.js') "
       Text="In release mode, you need to build JS files. To do this, run a `build-js.cmd` or `build-js.sh` script." />
   </Target>
 </Project>

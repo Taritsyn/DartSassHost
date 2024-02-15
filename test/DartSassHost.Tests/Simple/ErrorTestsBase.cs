@@ -27,7 +27,7 @@ namespace DartSassHost.Tests.Simple
 			string inputPath = GenerateSassFilePath("simplest-working", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 			string targetErrorDescription = "SyntaxError: Expected \";\" at +" + Environment.NewLine +
-				"   at 2:1"
+				"   at 3:1"
 				;
 
 			// Act

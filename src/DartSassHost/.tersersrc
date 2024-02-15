@@ -5,8 +5,9 @@
     "passes": 2
   },
   "mangle": {},
-  "output": {
+  "format": {
     "ascii_only": true,
-    "comments": "/^!/"
+    "comments": "/^!/",
+    "max_line_len": 500
   }
 }

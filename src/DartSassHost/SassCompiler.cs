@@ -30,31 +30,26 @@ namespace DartSassHost
 	/// </summary>
 	public sealed class SassCompiler : IDisposable
 	{
+#if DEBUG
 		/// <summary>
 		/// Name of file, which contains a ECMAScript 7+ polyfills
 		/// </summary>
-#if !DEBUG
-		private const string ES7_POLYFILLS_FILE_NAME = "es7-polyfills.min.js";
-#else
 		private const string ES7_POLYFILLS_FILE_NAME = "es7-polyfills.js";
-#endif
 
 		/// <summary>
 		/// Name of file, which contains a Sass library
 		/// </summary>
-#if !DEBUG
-		private const string SASS_LIBRARY_FILE_NAME = "sass-combined.min.js";
-#else
 		private const string SASS_LIBRARY_FILE_NAME = "sass-combined.js";
-#endif
 
 		/// <summary>
 		/// Name of file, which contains a Sass helper
 		/// </summary>
-#if !DEBUG
-		private const string SASS_HELPER_FILE_NAME = "sass-helper.min.js";
-#else
 		private const string SASS_HELPER_FILE_NAME = "sass-helper.js";
+#else
+		/// <summary>
+		/// Name of file, which contains a Sass bundle
+		/// </summary>
+		private const string SASS_BUNDLE_FILE_NAME = "sass-bundled.min.js";
 #endif
 
 		/// <summary>
@@ -317,9 +312,13 @@ namespace DartSassHost
 						.Assembly
 						;
 
+#if !DEBUG
+					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_BUNDLE_FILE_NAME), assembly, true);
+#else
 					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(ES7_POLYFILLS_FILE_NAME), assembly, true);
 					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_LIBRARY_FILE_NAME), assembly, true);
 					_jsEngine.ExecuteResource(ResourceHelpers.GetResourceName(SASS_HELPER_FILE_NAME), assembly, true);
+#endif
 					_jsEngine.Execute($"var sassHelper = new SassHelper({serializedOptions});");
 
 					_version = _jsEngine.Evaluate<string>("SassHelper.getVersion();");
