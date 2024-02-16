@@ -2,9 +2,9 @@
   "name": "DartSassHost",
   "version": "1.0.10",
   "devDependencies": {
-    "terser": "5.27.0"
+    "google-closure-compiler": "20231112.0.0"
   },
   "scripts": {
-    "minify-js": "terser ./Resources/es7-polyfills.js ./Resources/sass-combined.js ./Resources/sass-helper.js --output ./Resources/sass-bundled.min.js --config-file ./.tersersrc --compress ecma=2015"
+    "minify-js": "google-closure-compiler --js ./Resources/sass-combined.js ./Resources/sass-helper.js --js_output_file ./Resources/sass-bundled.min.js --language_out ECMASCRIPT_2015 --compilation_level SIMPLE  --rewrite_polyfills true --isolate_polyfills --warning_level QUIET"
   }
 }

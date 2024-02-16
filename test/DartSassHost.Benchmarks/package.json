@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.10",
   "dependencies": {
-    "@angular/cdk": "17.0.4",
-    "@angular/material": "17.0.4",
+    "@angular/cdk": "17.2.0",
+    "@angular/material": "17.2.0",
     "bootstrap": "5.3.2",
     "foundation-sites": "6.8.1"
   }

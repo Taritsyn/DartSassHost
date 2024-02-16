@@ -30,7 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   Added support for the Dart Sass version 1.70.0.
+   1. Added support for the Dart Sass version 1.70.0;
+   2. JS files are now bundled and minified by using the Google Closure Compiler to
+      improve performance.
 
    ============
    PROJECT SITE

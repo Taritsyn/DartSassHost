@@ -33,7 +33,8 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>Added support for the Dart Sass version 1.70.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support for the Dart Sass version 1.70.0;
+2. JS files are now bundled and minified by using the Google Closure Compiler to improve performance.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -50,7 +51,7 @@ After installing the packages, you will need to register the default JS engine (
 
   <ItemGroup>
     <PackageReference Include="AdvancedStringBuilder" Version="0.1.0" />
-    <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.1.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.24.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha7" PrivateAssets="All" />
   </ItemGroup>
