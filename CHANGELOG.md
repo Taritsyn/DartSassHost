@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v1.0.11 - February 16, 2024
+ * Added support for the Dart Sass version 1.70.0
+ * JS files are now bundled and minified by using the Google Closure Compiler to improve performance
+
 ## v1.0.10 - January 7, 2024
  * JavaScriptEngineSwitcher.Msie module is again supported as a JS engine
 
