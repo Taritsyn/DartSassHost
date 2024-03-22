@@ -49,7 +49,6 @@ After installing the packages, you will need to register the default JS engine (
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AdvancedStringBuilder" Version="0.1.1" />
     <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.24.1" />
     <PackageReference Include="ResxToCs.MSBuild" Version="1.0.0-alpha7" PrivateAssets="All" />
   </ItemGroup>
