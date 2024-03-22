@@ -6,24 +6,13 @@
     <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netstandard2.1;netcoreapp3.1;net6.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <AssemblyOriginatorKeyFile>../../build/Key.snk</AssemblyOriginatorKeyFile>
-    <SignAssembly>true</SignAssembly>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
     <NoWarn>$(NoWarn);CS1591;NU1605</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
     <Title>$(Product)</Title>
     <Authors>Andrey Taritsyn</Authors>
-    <Description>.NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version 1.72.0 with the ability to support a virtual file system.
-
-Since the original library is written in JavaScript, you will need a JS engine to run it. As a JS engine is used the JavaScript Engine Switcher library (https://github.com/Taritsyn/JavaScriptEngineSwitcher). For correct working, you need to install one of the following NuGet packages:
-
- * JavaScriptEngineSwitcher.ChakraCore
- * JavaScriptEngineSwitcher.Jint
- * JavaScriptEngineSwitcher.Msie (only in the Chakra “Edge” JsRT mode)
- * JavaScriptEngineSwitcher.V8
-
-After installing the packages, you will need to register the default JS engine (https://github.com/Taritsyn/JavaScriptEngineSwitcher/wiki/Registration-of-JS-engines).</Description>
+    <Description>.NET wrapper around the Dart Sass with the ability to support a virtual file system.</Description>
+    <PackageReadmeFile>PACKAGE-DESCRIPTION.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Taritsyn/DartSassHost</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Taritsyn/DartSassHost/main/images/DartSassHost_Logo_128x128.png</PackageIconUrl>
@@ -33,15 +22,14 @@ After installing the packages, you will need to register the default JS engine (
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>Added support for the Dart Sass version 1.72.0.</PackageReleaseNotes>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
+    <PackageReleaseNotes>Added support for the Dart Sass version 1.72.0.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />
   <Import Project="../../build/net40-client-target.props" />
+  <Import Project="../../build/strong-name-signing.props" />
   <Import Project="../../build/nuget-common.props" />
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'net6.0' ">
@@ -80,66 +68,12 @@ After installing the packages, you will need to register the default JS engine (
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../images/DartSassHost_Logo_128x128.png">
-      <PackagePath>$(PackageIcon)</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../LICENSE.txt">
-      <PackagePath>/</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/advanced-string-builder-license.txt">
-      <PackagePath>advanced-string-builder-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/base64-js-license.txt">
-      <PackagePath>base64-js-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/buffer-license.txt">
-      <PackagePath>buffer-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/core-js-license.txt">
-      <PackagePath>core-js-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/dart-sass-license.txt">
-      <PackagePath>dart-sass-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/ieee754-license.txt">
-      <PackagePath>ieee754-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/immutable-license.txt">
-      <PackagePath>immutable-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/js-engine-switcher-license.txt">
-      <PackagePath>js-engine-switcher-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
-    <None Include="../../licenses/newtonsoft-json-license.txt">
-      <PackagePath>newtonsoft-json-license.txt</PackagePath>
-      <Pack>true</Pack>
-      <Visible>false</Visible>
-    </None>
+    <None Include="../../images/DartSassHost_Logo_128x128.png" PackagePath="$(PackageIcon)" Pack="true" Visible="false" />
+    <None Include="../../LICENSE.txt" PackagePath="/" Pack="true" Visible="false" />
+    <None Include="../../licenses/*.txt" PackagePath="/" Pack="true" Visible="false" />
 
-    <Content Include="readme.txt">
-      <PackagePath>readme.txt</PackagePath>
-      <Pack>true</Pack>
-    </Content>
+    <Content Include="PACKAGE-DESCRIPTION.md" PackagePath="$(PackageReadmeFile)" Pack="true" />
+    <Content Include="readme.txt" PackagePath="/" Pack="true" />
   </ItemGroup>
 
   <Target Name="СonvertResxToCs" BeforeTargets="BeforeCompile">
@@ -154,4 +88,5 @@ After installing the packages, you will need to register the default JS engine (
       Condition=" !Exists('./Resources/sass-bundled.min.js') "
       Text="In release mode, you need to build JS files. To do this, run a `build-js.cmd` or `build-js.sh` script." />
   </Target>
+
 </Project>

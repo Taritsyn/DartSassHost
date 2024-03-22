@@ -1,5 +1,7 @@
 <Project>
-	<PropertyGroup>
-		<Copyright>Copyright © 2020-2024 Andrey Taritsyn</Copyright>
-	</PropertyGroup>
+  <PropertyGroup>
+    <Copyright>Copyright © 2020-2024 Andrey Taritsyn</Copyright>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+  </PropertyGroup>
 </Project>
