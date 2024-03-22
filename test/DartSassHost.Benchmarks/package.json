@@ -1,7 +1,7 @@
 {
   "name": "dartsasshost.benchmarks",
   "private": true,
-  "version": "1.0.11",
+  "version": "1.0.12",
   "dependencies": {
     "@angular/cdk": "17.3.1",
     "@angular/material": "17.3.1",

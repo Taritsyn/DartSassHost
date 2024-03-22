@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v1.0.12 - March 22, 2024
+ * Added support for the Dart Sass version 1.72.0
+
 ## v1.0.11 - February 16, 2024
  * Added support for the Dart Sass version 1.70.0
  * JS files are now bundled and minified by using the Google Closure Compiler to improve performance
