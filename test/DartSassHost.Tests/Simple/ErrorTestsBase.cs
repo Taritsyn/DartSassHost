@@ -26,7 +26,7 @@ namespace DartSassHost.Tests.Simple
 			IJsEngineFactory jsEngineFactory = new NiLJsEngineFactory();
 			string inputPath = GenerateSassFilePath("simplest-working", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
-			string targetErrorDescription = "SyntaxError: Trying to redefinition member \"et\" at (64:50*2)";
+			string targetErrorDescription = "SyntaxError: Trying to redefinition member \"et\" at (64:180*2)";
 
 			// Act
 			string output;
