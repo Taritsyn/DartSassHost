@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>Dart Sass Host: Sample .NET Core 2.1 Console Application</Product>
-    <VersionPrefix>1.0.12</VersionPrefix>
+    <VersionPrefix>1.0.13</VersionPrefix>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
