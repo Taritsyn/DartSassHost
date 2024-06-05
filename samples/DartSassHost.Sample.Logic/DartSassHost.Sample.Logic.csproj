@@ -6,6 +6,7 @@
     <TargetFrameworks>net40-client;net45;netstandard1.3;netstandard2.0;netstandard2.1;netcoreapp3.1;net6.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

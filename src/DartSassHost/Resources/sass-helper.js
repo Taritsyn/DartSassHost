@@ -348,6 +348,10 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			return this.warn$4$deprecation$span$trace($receiver, message, false, null, null);
 		};
 
+		DshCustomLogger.prototype.warn$3$span$trace = function ($receiver, message, span, trace) {
+			return this.warn$4$deprecation$span$trace($receiver, message, false, span, trace);
+		};
+
 		DshCustomLogger.prototype.warn$2$span = function ($receiver, message, span) {
 			return this.warn$4$deprecation$span$trace($receiver, message, false, span, null);
 		};
@@ -398,6 +402,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		DshNullLogger.prototype.warn$4$deprecation$span$trace = noop;
 
 		DshNullLogger.prototype.warn$1 = noop;
+
+		DshNullLogger.prototype.warn$3$span$trace = noop;
 
 		DshNullLogger.prototype.warn$2$span = noop;
 
