@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v1.0.14 - August 27, 2024
+ * Fixed a [error #14](https://github.com/Taritsyn/DartSassHost/issues/14) “Exception while reading compilation error”. Special thanks to [Peter Wurzinger](https://github.com/peterwurzinger)
+
 ## v1.0.13 - June 5, 2024
  * Added support for the Dart Sass version 1.77.4
 
