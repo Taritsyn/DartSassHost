@@ -24,7 +24,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
-    <PackageReleaseNotes>Added support for the Dart Sass version 1.77.4.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed a error #14 “Exception while reading compilation error”. Special thanks to Peter Wurzinger.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 

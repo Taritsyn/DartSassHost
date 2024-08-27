@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support for the Dart Sass version 1.77.4.
+   Fixed a error #14 “Exception while reading compilation error”. Special thanks to
+   Peter Wurzinger.
 
    ============
    PROJECT SITE

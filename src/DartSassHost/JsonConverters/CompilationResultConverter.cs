@@ -273,7 +273,7 @@ namespace DartSassHost.JsonConverters
 			else
 			{
 				string relativeFilePath = absoluteFilePath;
-				if (!string.IsNullOrWhiteSpace(absoluteFilePath))
+				if (!string.IsNullOrWhiteSpace(absoluteFilePath) && !string.IsNullOrWhiteSpace(currentDirectory))
 				{
 					relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
 				}
