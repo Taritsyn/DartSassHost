@@ -1,16 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Product>Dart Sass Host: Sample .NET 7.0 Console Application</Product>
+    <Product>Dart Sass Host: Sample .NET 9.0 Console Application</Product>
     <VersionPrefix>1.0.14</VersionPrefix>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <IsPackable>false</IsPackable>
-    <CheckEolTargetFramework>false</CheckEolTargetFramework>
   </PropertyGroup>
 
   <Import Project="../../build/common.props" />

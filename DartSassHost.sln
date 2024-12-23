@@ -72,6 +72,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DartSassHost.Sample.Net70.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartSassHost.Sample.Net80.ConsoleApp", "samples\DartSassHost.Sample.Net80.ConsoleApp\DartSassHost.Sample.Net80.ConsoleApp.csproj", "{51A7DB56-6B8F-46E8-A49C-C28624A544A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartSassHost.Sample.Net90.ConsoleApp", "samples\DartSassHost.Sample.Net90.ConsoleApp\DartSassHost.Sample.Net90.ConsoleApp.csproj", "{705C8FAB-6840-4F86-A65A-D8D486BB55A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,10 @@ Global
 		{51A7DB56-6B8F-46E8-A49C-C28624A544A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51A7DB56-6B8F-46E8-A49C-C28624A544A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51A7DB56-6B8F-46E8-A49C-C28624A544A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{705C8FAB-6840-4F86-A65A-D8D486BB55A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{705C8FAB-6840-4F86-A65A-D8D486BB55A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{705C8FAB-6840-4F86-A65A-D8D486BB55A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{705C8FAB-6840-4F86-A65A-D8D486BB55A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,6 +155,7 @@ Global
 		{67A59C45-59A1-47CF-8816-06EEC048EC50} = {EC47D9CC-2B3A-4D1F-8572-56653563EDD0}
 		{EB3ADD35-4E9C-481A-9AAB-2DC822A3C5A0} = {EC47D9CC-2B3A-4D1F-8572-56653563EDD0}
 		{51A7DB56-6B8F-46E8-A49C-C28624A544A0} = {EC47D9CC-2B3A-4D1F-8572-56653563EDD0}
+		{705C8FAB-6840-4F86-A65A-D8D486BB55A0} = {EC47D9CC-2B3A-4D1F-8572-56653563EDD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9271882C-544A-475A-9185-438FDAD52E0E}

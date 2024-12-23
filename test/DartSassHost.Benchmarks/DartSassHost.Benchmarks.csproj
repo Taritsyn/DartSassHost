@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Dart Sass Host: Benchmarks</Product>
     <VersionPrefix>1.0.14</VersionPrefix>
-    <TargetFrameworks>net462;net471;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net462;net471;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
@@ -14,7 +14,7 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.13.12" />
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.14.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" />

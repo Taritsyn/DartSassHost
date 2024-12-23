@@ -5,6 +5,7 @@
     <VersionPrefix>1.0.14</VersionPrefix>
     <TargetFramework>net451</TargetFramework>
     <OutputType>Exe</OutputType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <IsPackable>false</IsPackable>
