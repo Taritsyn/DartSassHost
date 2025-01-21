@@ -237,11 +237,11 @@ namespace DartSassHost.Helpers
 		/// <summary>
 		/// Gets a type of the compilation warning
 		/// </summary>
-		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
+		/// <param name="deprecationId">ID of deprecation</param>
 		/// <returns>Type of the compilation warning</returns>
-		private static string GetCompilationWarningType(bool isDeprecation)
+		private static string GetCompilationWarningType(string deprecationId)
 		{
-			string type = isDeprecation ? "Deprecation Warning" : "Warning";
+			string type = deprecationId != null ? string.Format("Deprecation Warning [{0}]", deprecationId) : "Warning";
 
 			return type;
 		}
@@ -249,15 +249,15 @@ namespace DartSassHost.Helpers
 		/// <summary>
 		/// Generates a compilation warning message
 		/// </summary>
-		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
+		/// <param name="deprecationId">ID of deprecation</param>
 		/// <param name="description">Description of problem</param>
 		/// <param name="sourceFragment">Source fragment</param>
 		/// <param name="callStackLines">Call stack lines</param>
 		/// <returns>Compilation warning message</returns>
-		internal static string GenerateCompilationWarningMessage(bool isDeprecation, string description,
+		internal static string GenerateCompilationWarningMessage(string deprecationId, string description,
 			string sourceFragment, string[] callStackLines)
 		{
-			string type = GetCompilationWarningType(isDeprecation);
+			string type = GetCompilationWarningType(deprecationId);
 
 			return GenerateCompilationProblemMessage(type, description, string.Empty, 0, 0, sourceFragment,
 				callStackLines);
@@ -266,17 +266,17 @@ namespace DartSassHost.Helpers
 		/// <summary>
 		/// Generates a compilation warning message
 		/// </summary>
-		/// <param name="isDeprecation">Value that indicates if the warning is a deprecation</param>
+		/// <param name="deprecationId">ID of deprecation</param>
 		/// <param name="description">Description of problem</param>
 		/// <param name="documentName">Document name</param>
 		/// <param name="lineNumber">Line number</param>
 		/// <param name="columnNumber">Column number</param>
 		/// <param name="sourceFragment">Source fragment</param>
 		/// <returns>Compilation warning message</returns>
-		internal static string GenerateCompilationWarningMessage(bool isDeprecation, string description, string documentName,
+		internal static string GenerateCompilationWarningMessage(string deprecationId, string description, string documentName,
 			int lineNumber, int columnNumber, string sourceFragment)
 		{
-			string type = GetCompilationWarningType(isDeprecation);
+			string type = GetCompilationWarningType(deprecationId);
 
 			return GenerateCompilationProblemMessage(type, description, documentName, lineNumber, columnNumber,
 				sourceFragment, null);

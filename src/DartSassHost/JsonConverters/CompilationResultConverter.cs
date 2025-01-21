@@ -374,7 +374,7 @@ namespace DartSassHost.JsonConverters
 			reader.CheckStartObject();
 
 			string description = string.Empty;
-			bool isDeprecation = false;
+			string deprecationId = null;
 			string absoluteFilePath = string.Empty;
 			int lineNumber = 0;
 			int columnNumber = 0;
@@ -390,8 +390,8 @@ namespace DartSassHost.JsonConverters
 					case "message":
 						description = reader.ReadAsString();
 						break;
-					case "deprecation":
-						isDeprecation = reader.ReadAsBoolean(false);
+					case "deprecationId":
+						deprecationId = reader.ReadAsString();
 						break;
 					case "file":
 						absoluteFilePath = reader.ReadAsString();
@@ -447,7 +447,7 @@ namespace DartSassHost.JsonConverters
 			if (callStackLines?.Length > 0)
 			{
 				callStack = string.Join(Environment.NewLine, callStackLines);
-				message = SassErrorHelpers.GenerateCompilationWarningMessage(isDeprecation, description,
+				message = SassErrorHelpers.GenerateCompilationWarningMessage(deprecationId, description,
 					sourceLineFragment, callStackLines);
 			}
 			else
@@ -458,7 +458,7 @@ namespace DartSassHost.JsonConverters
 					relativeFilePath = PathHelpers.PrettifyPath(currentDirectory, absoluteFilePath);
 				}
 
-				message = SassErrorHelpers.GenerateCompilationWarningMessage(isDeprecation, description,
+				message = SassErrorHelpers.GenerateCompilationWarningMessage(deprecationId, description,
 					relativeFilePath, lineNumber, columnNumber, sourceLineFragment);
 			}
 
@@ -466,7 +466,7 @@ namespace DartSassHost.JsonConverters
 			{
 				Message = message,
 				Description = description,
-				IsDeprecation = isDeprecation,
+				DeprecationId = deprecationId,
 				File = absoluteFilePath,
 				LineNumber = lineNumber,
 				ColumnNumber = columnNumber,

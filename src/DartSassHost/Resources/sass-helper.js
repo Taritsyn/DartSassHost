@@ -295,7 +295,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		}
 
 
-		DshCustomLogger.prototype.warn$4$deprecation$span$trace = function (_, message, deprecation, span, trace) {
+		DshCustomLogger.prototype.internalWarn$4$deprecation$span$trace = function (message, deprecation, span, trace) {
 			var warning,
 				file,
 				fileLocation,
@@ -307,7 +307,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 			warning = {
 				'message': message,
-				'deprecation': deprecation
+				'deprecationId': deprecation ? deprecation.id : null
 			};
 
 			if (span && span.file) {
@@ -342,6 +342,10 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			}
 
 			this._warnings.push(warning);
+		};
+
+		DshCustomLogger.prototype.warn$4$deprecation$span$trace = function (_, message, deprecation, span, trace) {
+			return this.internalWarn$4$deprecation$span$trace(message, deprecation, span, trace);
 		};
 
 		DshCustomLogger.prototype.warn$1 = function ($receiver, message) {
@@ -398,6 +402,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			this._warnings = [];
 		}
 
+		DshNullLogger.prototype.internalWarn$4$deprecation$span$trace = noop;
 
 		DshNullLogger.prototype.warn$4$deprecation$span$trace = noop;
 
@@ -477,6 +482,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 			sass.dsh.fileManagerProxy = fileManagerProxy;
 			compilationOptions.logger = logger;
+			compilationOptions.silenceDeprecations = ['legacy-js-api', 'import', 'global-builtin'];
 
 			try
 			{

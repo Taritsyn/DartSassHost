@@ -24,12 +24,20 @@
 		}
 
 		/// <summary>
+		/// Gets or sets a ID of deprecation
+		/// </summary>
+		public string DeprecationId
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a value that indicates if the problem is a deprecation
 		/// </summary>
 		public bool IsDeprecation
 		{
-			get;
-			set;
+			get { return DeprecationId != null; }
 		}
 
 		/// <summary>
@@ -86,7 +94,7 @@
 		{
 			Message = string.Empty;
 			Description = string.Empty;
-			IsDeprecation = false;
+			DeprecationId = null;
 			File = string.Empty;
 			LineNumber = 0;
 			ColumnNumber = 0;

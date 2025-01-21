@@ -46,6 +46,7 @@ namespace DartSassHost.Tests.Simple
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[0].Description);
 			Assert.AreEqual(false, warnings[0].IsDeprecation);
+			Assert.Null(warnings[0].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[0].File);
 			Assert.AreEqual(22, warnings[0].LineNumber);
 			Assert.AreEqual(17, warnings[0].ColumnNumber);
@@ -69,6 +70,7 @@ namespace DartSassHost.Tests.Simple
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[1].Description);
 			Assert.AreEqual(false, warnings[1].IsDeprecation);
+			Assert.Null(warnings[1].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[1].File);
 			Assert.AreEqual(23, warnings[1].LineNumber);
 			Assert.AreEqual(16, warnings[1].ColumnNumber);
@@ -92,6 +94,7 @@ namespace DartSassHost.Tests.Simple
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[2].Description);
 			Assert.AreEqual(false, warnings[2].IsDeprecation);
+			Assert.Null(warnings[2].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[2].File);
 			Assert.AreEqual(39, warnings[2].LineNumber);
 			Assert.AreEqual(12, warnings[2].ColumnNumber);
@@ -137,13 +140,14 @@ namespace DartSassHost.Tests.Simple
 				"map-get($grid-gutter-widths, xs)", 2);
 
 			Assert.AreEqual(
-				"Deprecation Warning: " + description1 + Environment.NewLine +
+				"Deprecation Warning [slash-div]: " + description1 + Environment.NewLine +
 				"   at root stylesheet (Files/simple/warnings/deprecated-division/scss/style.scss:3:19) -> " +
 				"$col-padding-xs:  map-get($grid-gutter-widths, xs) / 2;",
 				warnings[0].Message
 			);
 			Assert.AreEqual(description1, warnings[0].Description);
 			Assert.AreEqual(true, warnings[0].IsDeprecation);
+			Assert.AreEqual("slash-div", warnings[0].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[0].File);
 			Assert.AreEqual(3, warnings[0].LineNumber);
 			Assert.AreEqual(19, warnings[0].ColumnNumber);
@@ -161,13 +165,14 @@ namespace DartSassHost.Tests.Simple
 				"$col-padding-xs", 2);
 
 			Assert.AreEqual(
-				"Deprecation Warning: " + description2 + Environment.NewLine +
+				"Deprecation Warning [slash-div]: " + description2 + Environment.NewLine +
 				"   at root stylesheet (Files/simple/warnings/deprecated-division/scss/style.scss:6:18) -> " +
 				"  padding-right: $col-padding-xs / 2;",
 				warnings[1].Message
 			);
 			Assert.AreEqual(description2, warnings[1].Description);
 			Assert.AreEqual(true, warnings[1].IsDeprecation);
+			Assert.AreEqual("slash-div", warnings[1].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[1].File);
 			Assert.AreEqual(6, warnings[1].LineNumber);
 			Assert.AreEqual(18, warnings[1].ColumnNumber);
@@ -220,6 +225,7 @@ namespace DartSassHost.Tests.Simple
 			);
 			Assert.AreEqual(description, warnings[0].Description);
 			Assert.AreEqual(false, warnings[0].IsDeprecation);
+			Assert.Null(warnings[0].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[0].File);
 			Assert.AreEqual(6, warnings[0].LineNumber);
 			Assert.AreEqual(7, warnings[0].ColumnNumber);

@@ -48,6 +48,7 @@ namespace DartSassHost.Tests.Modules
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[0].Description);
 			Assert.AreEqual(false, warnings[0].IsDeprecation);
+			Assert.Null(warnings[0].DeprecationId);
 			Assert.AreEqual(gridMixinFilePath, warnings[0].File);
 			Assert.AreEqual(15, warnings[0].LineNumber);
 			Assert.AreEqual(10, warnings[0].ColumnNumber);
@@ -73,6 +74,7 @@ namespace DartSassHost.Tests.Modules
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[1].Description);
 			Assert.AreEqual(false, warnings[1].IsDeprecation);
+			Assert.Null(warnings[1].DeprecationId);
 			Assert.AreEqual(gridMixinFilePath, warnings[1].File);
 			Assert.AreEqual(16, warnings[1].LineNumber);
 			Assert.AreEqual(17, warnings[1].ColumnNumber);
@@ -98,6 +100,7 @@ namespace DartSassHost.Tests.Modules
 			);
 			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings[2].Description);
 			Assert.AreEqual(false, warnings[2].IsDeprecation);
+			Assert.Null(warnings[2].DeprecationId);
 			Assert.AreEqual(gridMixinFilePath, warnings[2].File);
 			Assert.AreEqual(17, warnings[2].LineNumber);
 			Assert.AreEqual(16, warnings[2].ColumnNumber);
@@ -144,7 +147,7 @@ namespace DartSassHost.Tests.Modules
 				"$y", "$x");
 
 			Assert.AreEqual(
-				"Deprecation Warning: " + description + Environment.NewLine +
+				"Deprecation Warning [slash-div]: " + description + Environment.NewLine +
 				"   at responsive-ratio (Files/modules/warnings/deprecated-division/sass/_mixins.sass:7:22) -> " +
 				"  $padding: unquote(($y / $x) * 100 + \"%\")" + Environment.NewLine +
 				"   at root stylesheet (Files/modules/warnings/deprecated-division/sass/base.sass:11:3)",
@@ -152,6 +155,7 @@ namespace DartSassHost.Tests.Modules
 			);
 			Assert.AreEqual(description, warnings[0].Description);
 			Assert.AreEqual(true, warnings[0].IsDeprecation);
+			Assert.AreEqual("slash-div", warnings[0].DeprecationId);
 			Assert.AreEqual(importedFilePath, warnings[0].File);
 			Assert.AreEqual(7, warnings[0].LineNumber);
 			Assert.AreEqual(22, warnings[0].ColumnNumber);
@@ -206,6 +210,7 @@ namespace DartSassHost.Tests.Modules
 			);
 			Assert.AreEqual(description, warnings[0].Description);
 			Assert.AreEqual(false, warnings[0].IsDeprecation);
+			Assert.Null(warnings[0].DeprecationId);
 			Assert.AreEqual(importedFilePath, warnings[0].File);
 			Assert.AreEqual(6, warnings[0].LineNumber);
 			Assert.AreEqual(7, warnings[0].ColumnNumber);
