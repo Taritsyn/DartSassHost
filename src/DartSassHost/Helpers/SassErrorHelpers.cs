@@ -234,6 +234,10 @@ namespace DartSassHost.Helpers
 
 		#region Generation of warning messages
 
+		private const string UsualWarningType = "Warning";
+		private const string UserAuthoredDeprecationId = "user-authored";
+
+
 		/// <summary>
 		/// Gets a type of the compilation warning
 		/// </summary>
@@ -241,7 +245,24 @@ namespace DartSassHost.Helpers
 		/// <returns>Type of the compilation warning</returns>
 		private static string GetCompilationWarningType(string deprecationId)
 		{
-			string type = deprecationId != null ? string.Format("Deprecation Warning [{0}]", deprecationId) : "Warning";
+			if (string.IsNullOrWhiteSpace(deprecationId))
+			{
+				return UsualWarningType;
+			}
+
+			var stringBuilderPool = StringBuilderPool.Shared;
+			StringBuilder deprecationTypeBuilder = stringBuilderPool.Rent();
+			deprecationTypeBuilder.Append("Deprecation ");
+			deprecationTypeBuilder.Append(UsualWarningType);
+			if (deprecationId != UserAuthoredDeprecationId)
+			{
+				deprecationTypeBuilder.Append(" [");
+				deprecationTypeBuilder.Append(deprecationId);
+				deprecationTypeBuilder.Append("]");
+			}
+
+			string type = deprecationTypeBuilder.ToString();
+			stringBuilderPool.Return(deprecationTypeBuilder);
 
 			return type;
 		}
