@@ -35,5 +35,12 @@
 			"To preserve current behavior: ${0} * 1%\n\n" +
 			"More info: https://sass-lang.com/d/function-units"
 			;
+		public const string GlobalBuiltinFunctionDeprecated = "Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.\n" +
+			"Use {0} instead.\n\n" +
+			"More info and automated migrator: https://sass-lang.com/d/import"
+			;
+		public const string SassImportRulesDeprecated = "Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.\n\n" +
+			"More info and automated migrator: https://sass-lang.com/d/import"
+			;
 	}
 }

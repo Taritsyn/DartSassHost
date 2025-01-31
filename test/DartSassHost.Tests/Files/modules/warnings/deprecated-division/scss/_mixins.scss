@@ -1,3 +1,5 @@
+@use "sass:string";
+
 @mixin pseudo($display: block, $pos: absolute, $content: "") {
   content: $content;
   display: $display;
@@ -5,7 +7,7 @@
 }
 
 @mixin responsive-ratio($x, $y, $pseudo: false) {
-  $padding: unquote(($y / $x) * 100 + "%");
+  $padding: string.unquote(($y / $x) * 100 + "%");
   @if $pseudo {
     &:before {
       @include pseudo($pos: relative);

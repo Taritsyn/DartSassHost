@@ -481,5 +481,203 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(string.Format(WarningConstants.UnknownVendorPrefix, "wekbit"), warnings6[16].Description);
 			Assert.IsFalse(warnings6[16].IsDeprecation);
 		}
+
+		[Test]
+		public void UsageOfSilenceDeprecationsDuringCompilation([Values] bool fromFile)
+		{
+			// Arrange
+			var alternativePaths = new List<string> { GenerateSassDirectoryPath("all", "alternative") };
+
+			var withoutSilenceDeprecationsOptions = new CompilationOptions
+			{
+				SilenceDeprecations = new List<string>(),
+				IncludePaths = alternativePaths
+			};
+			var withSilenceDeprecationsOptions = new CompilationOptions
+			{
+				SilenceDeprecations = new List<string> { "global-builtin", "import", "slash-div" },
+				IncludePaths = alternativePaths
+			};
+
+			string inputPath = GenerateSassFilePath("all", "base");
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
+
+			// Act
+			IList<ProblemInfo> warnings1;
+			IList<ProblemInfo> warnings2;
+
+			using (var sassCompiler = CreateSassCompiler())
+			{
+				if (fromFile)
+				{
+					warnings1 = sassCompiler.CompileFile(inputPath, options: withoutSilenceDeprecationsOptions).Warnings;
+					warnings2 = sassCompiler.CompileFile(inputPath, options: withSilenceDeprecationsOptions).Warnings;
+				}
+				else
+				{
+					warnings1 = sassCompiler.Compile(input, inputPath, options: withoutSilenceDeprecationsOptions).Warnings;
+					warnings2 = sassCompiler.Compile(input, inputPath, options: withSilenceDeprecationsOptions).Warnings;
+				}
+			}
+
+			// Assert
+			Assert.AreEqual(22, warnings1.Count);
+			Assert.AreEqual(
+				string.Format(WarningConstants.NumberValueWithoutPercentagesDeprecated, "saturation", 98),
+				warnings1[0].Description
+			);
+			Assert.IsTrue(warnings1[0].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings1[1].Description);
+			Assert.IsFalse(warnings1[1].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation, "$grid-gutter-width", 2),
+				warnings1[2].Description
+			);
+			Assert.IsTrue(warnings1[2].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings1[3].Description);
+			Assert.IsFalse(warnings1[3].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings1[4].Description);
+			Assert.IsFalse(warnings1[4].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings1[5].Description);
+			Assert.IsFalse(warnings1[5].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings1[6].Description);
+			Assert.IsFalse(warnings1[6].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings1[7].Description);
+			Assert.IsFalse(warnings1[7].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings1[8].Description);
+			Assert.IsFalse(warnings1[8].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 7 - $grid-gutter-width * ($grid-columns - 7)", "$grid-columns"
+				),
+				warnings1[9].Description
+			);
+			Assert.IsTrue(warnings1[9].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 8 - $grid-gutter-width * ($grid-columns - 8)", "$grid-columns"
+				),
+				warnings1[10].Description
+			);
+			Assert.IsTrue(warnings1[10].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 9 - $grid-gutter-width * ($grid-columns - 9)", "$grid-columns"
+				),
+				warnings1[11].Description
+			);
+			Assert.IsTrue(warnings1[11].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(
+					WarningConstants.DeprecatedDivisionWithComplexRecommendation,
+					"100% * 10 - $grid-gutter-width * ($grid-columns - 10)", "$grid-columns"
+				),
+				warnings1[12].Description
+			);
+			Assert.IsTrue(warnings1[12].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "red", "$color-name"),
+				warnings1[13].Description
+			);
+			Assert.IsFalse(warnings1[13].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "red", "$color-name"),
+				warnings1[14].Description
+			);
+			Assert.IsFalse(warnings1[14].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "blue", "$color-name"),
+				warnings1[15].Description
+			);
+			Assert.IsFalse(warnings1[15].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "blue", "$color-name"),
+				warnings1[16].Description
+			);
+			Assert.IsFalse(warnings1[16].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "green", "$color-name"),
+				warnings1[17].Description
+			);
+			Assert.IsFalse(warnings1[17].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "green", "$color-name"),
+				warnings1[18].Description
+			);
+			Assert.IsFalse(warnings1[18].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.ColorInversionWithNumberArgumentsDeprecated, 221716),
+				warnings1[19].Description
+			);
+			Assert.IsTrue(warnings1[19].IsDeprecation);
+			Assert.AreEqual(string.Format(WarningConstants.UnknownVendorPrefix, "wekbit"), warnings1[20].Description);
+			Assert.IsFalse(warnings1[20].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.RepetitiveDeprecationWarningsOmitted, 2),
+				warnings1[21].Description
+			);
+			Assert.IsFalse(warnings1[21].IsDeprecation);
+
+			Assert.AreEqual(16, warnings2.Count);
+			Assert.AreEqual(
+				string.Format(WarningConstants.NumberValueWithoutPercentagesDeprecated, "saturation", 98),
+				warnings2[0].Description
+			);
+			Assert.IsTrue(warnings2[0].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings2[1].Description);
+			Assert.IsFalse(warnings2[1].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings2[2].Description);
+			Assert.IsFalse(warnings2[2].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings2[3].Description);
+			Assert.IsFalse(warnings2[3].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings2[4].Description);
+			Assert.IsFalse(warnings2[4].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings2[5].Description);
+			Assert.IsFalse(warnings2[5].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings2[6].Description);
+			Assert.IsFalse(warnings2[6].IsDeprecation);
+			Assert.AreEqual(WarningConstants.MathDivOnlySupportNumberArguments, warnings2[7].Description);
+			Assert.IsFalse(warnings2[7].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "red", "$color-name"),
+				warnings2[8].Description
+			);
+			Assert.IsFalse(warnings2[8].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "red", "$color-name"),
+				warnings2[9].Description
+			);
+			Assert.IsFalse(warnings2[9].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "blue", "$color-name"),
+				warnings2[10].Description
+			);
+			Assert.IsFalse(warnings2[10].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "blue", "$color-name"),
+				warnings2[11].Description
+			);
+			Assert.IsFalse(warnings2[11].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "green", "$color-name"),
+				warnings2[12].Description
+			);
+			Assert.IsFalse(warnings2[12].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.AlwaysQuoteColorNamesInInterpolation, "green", "$color-name"),
+				warnings2[13].Description
+			);
+			Assert.IsFalse(warnings2[13].IsDeprecation);
+			Assert.AreEqual(
+				string.Format(WarningConstants.ColorInversionWithNumberArgumentsDeprecated, 221716),
+				warnings2[14].Description
+			);
+			Assert.IsTrue(warnings2[14].IsDeprecation);
+			Assert.AreEqual(string.Format(WarningConstants.UnknownVendorPrefix, "wekbit"), warnings2[15].Description);
+			Assert.IsFalse(warnings2[15].IsDeprecation);
+		}
 	}
 }

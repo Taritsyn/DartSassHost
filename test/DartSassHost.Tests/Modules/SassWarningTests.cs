@@ -148,8 +148,8 @@ namespace DartSassHost.Tests.Modules
 
 			Assert.AreEqual(
 				"Deprecation Warning [slash-div]: " + description + Environment.NewLine +
-				"   at responsive-ratio (Files/modules/warnings/deprecated-division/sass/_mixins.sass:7:22) -> " +
-				"  $padding: unquote(($y / $x) * 100 + \"%\")" + Environment.NewLine +
+				"   at responsive-ratio (Files/modules/warnings/deprecated-division/sass/_mixins.sass:9:29) -> " +
+				"  $padding: string.unquote(($y / $x) * 100 + \"%\")" + Environment.NewLine +
 				"   at root stylesheet (Files/modules/warnings/deprecated-division/sass/base.sass:11:3)",
 				warnings[0].Message
 			);
@@ -157,17 +157,17 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(true, warnings[0].IsDeprecation);
 			Assert.AreEqual("slash-div", warnings[0].DeprecationId);
 			Assert.AreEqual(importedFilePath, warnings[0].File);
-			Assert.AreEqual(7, warnings[0].LineNumber);
-			Assert.AreEqual(22, warnings[0].ColumnNumber);
+			Assert.AreEqual(9, warnings[0].LineNumber);
+			Assert.AreEqual(29, warnings[0].ColumnNumber);
 			Assert.AreEqual(
-				"Line 6: @mixin responsive-ratio($x, $y, $pseudo: false)" + Environment.NewLine +
-				"Line 7:   $padding: unquote(($y / $x) * 100 + \"%\")" + Environment.NewLine +
-				"-----------------------------^" + Environment.NewLine +
-				"Line 8:   @if $pseudo",
+				"Line  8: @mixin responsive-ratio($x, $y, $pseudo: false)" + Environment.NewLine +
+				"Line  9:   $padding: string.unquote(($y / $x) * 100 + \"%\")" + Environment.NewLine +
+				"-------------------------------------^" + Environment.NewLine +
+				"Line 10:   @if $pseudo",
 				warnings[0].SourceFragment
 			);
 			Assert.AreEqual(
-				"   at responsive-ratio (Files/modules/warnings/deprecated-division/sass/_mixins.sass:7:22)" + Environment.NewLine +
+				"   at responsive-ratio (Files/modules/warnings/deprecated-division/sass/_mixins.sass:9:29)" + Environment.NewLine +
 				"   at root stylesheet (Files/modules/warnings/deprecated-division/sass/base.sass:11:3)",
 				warnings[0].CallStack
 			);
@@ -203,7 +203,7 @@ namespace DartSassHost.Tests.Modules
 
 			Assert.AreEqual(
 				"Warning: " + description + Environment.NewLine +
-				"   at prefix (Files/modules/warnings/custom-warning/sass/_mixins.sass:6:7) -> " +
+				"   at prefix (Files/modules/warnings/custom-warning/sass/_mixins.sass:8:7) -> " +
 				"      @warn 'Unknown prefix #{$prefix}.'" + Environment.NewLine +
 				"   at root stylesheet (Files/modules/warnings/custom-warning/sass/base.sass:4:3)",
 				warnings[0].Message
@@ -212,16 +212,16 @@ namespace DartSassHost.Tests.Modules
 			Assert.AreEqual(false, warnings[0].IsDeprecation);
 			Assert.Null(warnings[0].DeprecationId);
 			Assert.AreEqual(importedFilePath, warnings[0].File);
-			Assert.AreEqual(6, warnings[0].LineNumber);
+			Assert.AreEqual(8, warnings[0].LineNumber);
 			Assert.AreEqual(7, warnings[0].ColumnNumber);
 			Assert.AreEqual(
-				"Line 5:     @if not index($known-prefixes, $prefix)" + Environment.NewLine +
-				"Line 6:       @warn 'Unknown prefix #{$prefix}.'" + Environment.NewLine +
+				"Line 7:     @if not list.index($known-prefixes, $prefix)" + Environment.NewLine +
+				"Line 8:       @warn 'Unknown prefix #{$prefix}.'" + Environment.NewLine +
 				"--------------^",
 				warnings[0].SourceFragment
 			);
 			Assert.AreEqual(
-				"   at prefix (Files/modules/warnings/custom-warning/sass/_mixins.sass:6:7)" + Environment.NewLine +
+				"   at prefix (Files/modules/warnings/custom-warning/sass/_mixins.sass:8:7)" + Environment.NewLine +
 				"   at root stylesheet (Files/modules/warnings/custom-warning/sass/base.sass:4:3)",
 				warnings[0].CallStack
 			);

@@ -1,8 +1,10 @@
+@use "sass:list";
+
 @use "../variables" as *;
 
 @mixin prefix($property, $value, $prefixes) {
   @each $prefix in $prefixes {
-    @if not index($known-prefixes, $prefix) {
+    @if not list.index($known-prefixes, $prefix) {
       @warn "Unknown prefix #{$prefix}.";
     }
 

@@ -5,7 +5,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 	var dshUtils,
 		DshFileManagerProxy,
 		DshCustomLogger,
-		DshNullLogger
+		DshNullLogger,
+		LEGACY_JS_API_DEPRECATION_ID = 'legacy-js-api'
 		;
 
 	//#region dshUtils module
@@ -462,6 +463,15 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			return fixedPaths;
 		}
 
+		function fixSilenceDeprecations(deprecationIDs) {
+			var processedDeprecationIDs = deprecationIDs || [];
+			if (processedDeprecationIDs.indexOf(LEGACY_JS_API_DEPRECATION_ID) === -1) {
+				processedDeprecationIDs.push(LEGACY_JS_API_DEPRECATION_ID);
+			}
+
+			return processedDeprecationIDs;
+		}
+
 		function innerCompile(compilationOptions) {
 			var result,
 				compilationResult,
@@ -481,8 +491,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			logger = !compilationOptions.quiet ? new DshCustomLogger() : new DshNullLogger();
 
 			sass.dsh.fileManagerProxy = fileManagerProxy;
+			compilationOptions.silenceDeprecations = fixSilenceDeprecations(compilationOptions.silenceDeprecations);
 			compilationOptions.logger = logger;
-			compilationOptions.silenceDeprecations = ['legacy-js-api', 'import', 'global-builtin'];
 
 			try
 			{

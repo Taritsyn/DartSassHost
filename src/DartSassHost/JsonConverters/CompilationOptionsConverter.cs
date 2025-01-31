@@ -33,25 +33,15 @@ namespace DartSassHost.JsonConverters
 
 			writer.WriteStartObject();
 
-			writer.WriteStartArray("includePaths");
-
-			IList<string> paths = value.IncludePaths;
-			int pathCount = paths.Count;
-
-			for (int pathIndex = 0; pathIndex < pathCount; pathIndex++)
-			{
-				writer.WriteStringValue(paths[pathIndex]);
-			}
-
-			writer.WriteEndArray();
-
 			writer.WriteBoolean("charset", value.Charset);
+			WriteStringList(writer, "includePaths", value.IncludePaths);
 			writer.WriteString("indentType", GetIndentTypeCode(value.IndentType));
 			writer.WriteNumber("indentWidth", value.IndentWidth);
 			writer.WriteString("linefeed", GetLineFeedString(value.LineFeedType));
 			writer.WriteBoolean("quietDeps", value.QuietDependencies);
 			writer.WriteBoolean("omitSourceMapUrl", value.OmitSourceMapUrl);
 			writer.WriteString("outputStyle", GetOutputStyleCode(value.OutputStyle));
+			WriteStringList(writer, "silenceDeprecations", value.SilenceDeprecations);
 			writer.WriteBoolean("sourceMapContents", value.SourceMapIncludeContents);
 			writer.WriteBoolean("sourceMapEmbed", value.InlineSourceMap);
 			writer.WriteString("sourceMapRoot", value.SourceMapRootPath);
@@ -108,6 +98,28 @@ namespace DartSassHost.JsonConverters
 			string styleCode = style == OutputStyle.Expanded ? "expanded" : "compressed";
 
 			return styleCode;
+		}
+
+		private static void WriteStringList(
+#if MODERN_JSON_CONVERTER
+			Utf8JsonWriter writer,
+#else
+			JsonTextWriter writer,
+#endif
+			string propertyName,
+			IList<string> values
+		)
+		{
+			writer.WriteStartArray(propertyName);
+
+			int valueCount = values.Count;
+
+			for (int valueIndex = 0; valueIndex < valueCount; valueIndex++)
+			{
+				writer.WriteStringValue(values[valueIndex]);
+			}
+
+			writer.WriteEndArray();
 		}
 
 		#region JsonConverter<T> overrides

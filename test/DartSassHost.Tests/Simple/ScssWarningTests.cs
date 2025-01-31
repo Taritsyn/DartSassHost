@@ -134,20 +134,19 @@ namespace DartSassHost.Tests.Simple
 			}
 
 			// Assert
-			Assert.AreEqual(2, warnings.Count);
+			Assert.AreEqual(3, warnings.Count);
 
-			string description1 = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
-				"map-get($grid-gutter-widths, xs)", 2);
+			string description1 = string.Format(WarningConstants.GlobalBuiltinFunctionDeprecated, "map.get");
 
 			Assert.AreEqual(
-				"Deprecation Warning [slash-div]: " + description1 + Environment.NewLine +
+				"Deprecation Warning [global-builtin]: " + description1 + Environment.NewLine +
 				"   at root stylesheet (Files/simple/warnings/deprecated-division/scss/style.scss:3:19) -> " +
 				"$col-padding-xs:  map-get($grid-gutter-widths, xs) / 2;",
 				warnings[0].Message
 			);
 			Assert.AreEqual(description1, warnings[0].Description);
 			Assert.AreEqual(true, warnings[0].IsDeprecation);
-			Assert.AreEqual("slash-div", warnings[0].DeprecationId);
+			Assert.AreEqual("global-builtin", warnings[0].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[0].File);
 			Assert.AreEqual(3, warnings[0].LineNumber);
 			Assert.AreEqual(19, warnings[0].ColumnNumber);
@@ -162,30 +161,55 @@ namespace DartSassHost.Tests.Simple
 			);
 
 			string description2 = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
-				"$col-padding-xs", 2);
+				"map-get($grid-gutter-widths, xs)", 2);
 
 			Assert.AreEqual(
 				"Deprecation Warning [slash-div]: " + description2 + Environment.NewLine +
-				"   at root stylesheet (Files/simple/warnings/deprecated-division/scss/style.scss:6:18) -> " +
-				"  padding-right: $col-padding-xs / 2;",
+				"   at root stylesheet (Files/simple/warnings/deprecated-division/scss/style.scss:3:19) -> " +
+				"$col-padding-xs:  map-get($grid-gutter-widths, xs) / 2;",
 				warnings[1].Message
 			);
 			Assert.AreEqual(description2, warnings[1].Description);
 			Assert.AreEqual(true, warnings[1].IsDeprecation);
 			Assert.AreEqual("slash-div", warnings[1].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[1].File);
-			Assert.AreEqual(6, warnings[1].LineNumber);
-			Assert.AreEqual(18, warnings[1].ColumnNumber);
+			Assert.AreEqual(3, warnings[1].LineNumber);
+			Assert.AreEqual(19, warnings[1].ColumnNumber);
+			Assert.AreEqual(
+				"Line 3: $col-padding-xs:  map-get($grid-gutter-widths, xs) / 2;" + Environment.NewLine +
+				"--------------------------^",
+				warnings[1].SourceFragment
+			);
+			Assert.AreEqual(
+				"   at root stylesheet (Files/simple/warnings/deprecated-division/scss/style.scss:3:19)",
+				warnings[1].CallStack
+			);
+
+			string description3 = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+				"$col-padding-xs", 2);
+
+			Assert.AreEqual(
+				"Deprecation Warning [slash-div]: " + description3 + Environment.NewLine +
+				"   at root stylesheet (Files/simple/warnings/deprecated-division/scss/style.scss:6:18) -> " +
+				"  padding-right: $col-padding-xs / 2;",
+				warnings[2].Message
+			);
+			Assert.AreEqual(description3, warnings[2].Description);
+			Assert.AreEqual(true, warnings[2].IsDeprecation);
+			Assert.AreEqual("slash-div", warnings[2].DeprecationId);
+			Assert.AreEqual(inputPath, warnings[2].File);
+			Assert.AreEqual(6, warnings[2].LineNumber);
+			Assert.AreEqual(18, warnings[2].ColumnNumber);
 			Assert.AreEqual(
 				"Line 5: div {" + Environment.NewLine +
 				"Line 6:   padding-right: $col-padding-xs / 2;" + Environment.NewLine +
 				"-------------------------^" + Environment.NewLine +
 				"Line 7: }",
-				warnings[1].SourceFragment
+				warnings[2].SourceFragment
 			);
 			Assert.AreEqual(
 				"   at root stylesheet (Files/simple/warnings/deprecated-division/scss/style.scss:6:18)",
-				warnings[1].CallStack
+				warnings[2].CallStack
 			);
 		}
 
@@ -193,13 +217,14 @@ namespace DartSassHost.Tests.Simple
 		public void MappingSassCustomWarningDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
+			var options = new CompilationOptions { SilenceDeprecations = new List<string> { "global-builtin" } };
 			string inputPath = GenerateSassFilePath("custom-warning", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 
 			// Act
 			IList<ProblemInfo> warnings;
 
-			using (var sassCompiler = CreateSassCompiler())
+			using (var sassCompiler = CreateSassCompiler(options))
 			{
 				if (fromFile)
 				{

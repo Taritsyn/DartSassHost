@@ -44,12 +44,12 @@ namespace DartSassHost.Tests
 		}
 
 
-		public SassCompiler CreateSassCompiler()
+		public SassCompiler CreateSassCompiler(CompilationOptions options = null)
 		{
-			return new SassCompiler(PhysicalFileManager.Instance);
+			return new SassCompiler(PhysicalFileManager.Instance, options);
 		}
 
-		public SassCompiler CreateSassCompiler(IJsEngineFactory jsEngineFactory)
+		public SassCompiler CreateSassCompiler(IJsEngineFactory jsEngineFactory, CompilationOptions options = null)
 		{
 			return new SassCompiler(jsEngineFactory, PhysicalFileManager.Instance);
 		}

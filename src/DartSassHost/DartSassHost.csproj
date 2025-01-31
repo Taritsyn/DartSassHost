@@ -24,7 +24,8 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
-    <PackageReleaseNotes>Added support for the Dart Sass version 1.83.4.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support for the Dart Sass version 1.83.4;
+2. In compilation options was added one new property - `SilenceDeprecations` (default empty list).</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 

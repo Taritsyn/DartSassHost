@@ -17,6 +17,8 @@ namespace DartSassHost.Tests.Imports
 		public void MappingSassWarningDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
+			var options = new CompilationOptions { SilenceDeprecations = new List<string> { "import" } };
+
 			string inputPath = GenerateSassFilePath("division-with-non-numeric-args", "base");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 			string gridMixinFilePath = GenerateSassFilePath("division-with-non-numeric-args", "mixins/_grid");
@@ -24,7 +26,7 @@ namespace DartSassHost.Tests.Imports
 			// Act
 			IList<ProblemInfo> warnings;
 
-			using (var sassCompiler = CreateSassCompiler())
+			using (var sassCompiler = CreateSassCompiler(options))
 			{
 				if (fromFile)
 				{
@@ -141,35 +143,85 @@ namespace DartSassHost.Tests.Imports
 			}
 
 			// Assert
-			Assert.AreEqual(1, warnings.Count);
+			Assert.AreEqual(3, warnings.Count);
 
-			string description = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+			Assert.AreEqual(
+				"Deprecation Warning [import]: " + WarningConstants.SassImportRulesDeprecated + Environment.NewLine +
+				"   at root stylesheet (Files/imports/warnings/deprecated-division/sass/base.sass:1:9) -> " +
+				"@import 'mixins'",
+				warnings[0].Message
+			);
+			Assert.AreEqual(WarningConstants.SassImportRulesDeprecated, warnings[0].Description);
+			Assert.AreEqual(true, warnings[0].IsDeprecation);
+			Assert.AreEqual("import", warnings[0].DeprecationId);
+			Assert.AreEqual(inputPath, warnings[0].File);
+			Assert.AreEqual(1, warnings[0].LineNumber);
+			Assert.AreEqual(9, warnings[0].ColumnNumber);
+			Assert.AreEqual(
+				"Line 1: @import 'mixins'" + Environment.NewLine +
+				"----------------^",
+				warnings[0].SourceFragment
+			);
+			Assert.AreEqual(
+				"   at root stylesheet (Files/imports/warnings/deprecated-division/sass/base.sass:1:9)",
+				warnings[0].CallStack
+			);
+
+			string description2 = string.Format(WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
 				"$y", "$x");
 
 			Assert.AreEqual(
-				"Deprecation Warning [slash-div]: " + description + Environment.NewLine +
+				"Deprecation Warning [slash-div]: " + description2 + Environment.NewLine +
 				"   at responsive-ratio (Files/imports/warnings/deprecated-division/sass/_mixins.sass:7:22) -> " +
 				"  $padding: unquote(($y / $x) * 100 + '%')" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/deprecated-division/sass/base.sass:11:3)",
-				warnings[0].Message
+				warnings[1].Message
 			);
-			Assert.AreEqual(description, warnings[0].Description);
-			Assert.AreEqual(true, warnings[0].IsDeprecation);
-			Assert.AreEqual("slash-div", warnings[0].DeprecationId);
-			Assert.AreEqual(importedFilePath, warnings[0].File);
-			Assert.AreEqual(7, warnings[0].LineNumber);
-			Assert.AreEqual(22, warnings[0].ColumnNumber);
+			Assert.AreEqual(description2, warnings[1].Description);
+			Assert.AreEqual(true, warnings[1].IsDeprecation);
+			Assert.AreEqual("slash-div", warnings[1].DeprecationId);
+			Assert.AreEqual(importedFilePath, warnings[1].File);
+			Assert.AreEqual(7, warnings[1].LineNumber);
+			Assert.AreEqual(22, warnings[1].ColumnNumber);
 			Assert.AreEqual(
 				"Line 6: @mixin responsive-ratio($x, $y, $pseudo: false)" + Environment.NewLine +
 				"Line 7:   $padding: unquote(($y / $x) * 100 + '%')" + Environment.NewLine +
 				"-----------------------------^" + Environment.NewLine +
 				"Line 8:   @if $pseudo",
-				warnings[0].SourceFragment
+				warnings[1].SourceFragment
 			);
 			Assert.AreEqual(
 				"   at responsive-ratio (Files/imports/warnings/deprecated-division/sass/_mixins.sass:7:22)" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/deprecated-division/sass/base.sass:11:3)",
-				warnings[0].CallStack
+				warnings[1].CallStack
+			);
+
+			string description3 = string.Format(WarningConstants.GlobalBuiltinFunctionDeprecated, "string.unquote");
+
+			Assert.AreEqual(
+				"Deprecation Warning [global-builtin]: " + description3 + Environment.NewLine +
+				"   at responsive-ratio (Files/imports/warnings/deprecated-division/sass/_mixins.sass:7:13) -> " +
+				"  $padding: unquote(($y / $x) * 100 + '%')" + Environment.NewLine +
+				"   at root stylesheet (Files/imports/warnings/deprecated-division/sass/base.sass:11:3)",
+				warnings[2].Message
+			);
+			Assert.AreEqual(description3, warnings[2].Description);
+			Assert.AreEqual(true, warnings[2].IsDeprecation);
+			Assert.AreEqual("global-builtin", warnings[2].DeprecationId);
+			Assert.AreEqual(importedFilePath, warnings[2].File);
+			Assert.AreEqual(7, warnings[2].LineNumber);
+			Assert.AreEqual(13, warnings[2].ColumnNumber);
+			Assert.AreEqual(
+				"Line 6: @mixin responsive-ratio($x, $y, $pseudo: false)" + Environment.NewLine +
+				"Line 7:   $padding: unquote(($y / $x) * 100 + '%')" + Environment.NewLine +
+				"--------------------^" + Environment.NewLine +
+				"Line 8:   @if $pseudo",
+				warnings[2].SourceFragment
+			);
+			Assert.AreEqual(
+				"   at responsive-ratio (Files/imports/warnings/deprecated-division/sass/_mixins.sass:7:13)" + Environment.NewLine +
+				"   at root stylesheet (Files/imports/warnings/deprecated-division/sass/base.sass:11:3)",
+				warnings[2].CallStack
 			);
 		}
 
@@ -177,6 +229,8 @@ namespace DartSassHost.Tests.Imports
 		public void MappingSassCustomWarningDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
+			var options = new CompilationOptions { SilenceDeprecations = new List<string> { "global-builtin", "import" } };
+
 			string inputPath = GenerateSassFilePath("custom-warning", "base");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 			string importedFilePath = GenerateSassFilePath("custom-warning", "_mixins");
@@ -184,7 +238,7 @@ namespace DartSassHost.Tests.Imports
 			// Act
 			IList<ProblemInfo> warnings;
 
-			using (var sassCompiler = CreateSassCompiler())
+			using (var sassCompiler = CreateSassCompiler(options))
 			{
 				if (fromFile)
 				{

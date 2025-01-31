@@ -30,7 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   Added support for the Dart Sass version 1.83.4.
+   1. Added support for the Dart Sass version 1.83.4;
+   2. In compilation options was added one new property - `SilenceDeprecations`
+      (default empty list).
 
    ============
    PROJECT SITE

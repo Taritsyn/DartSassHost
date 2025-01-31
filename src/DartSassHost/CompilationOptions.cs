@@ -94,6 +94,19 @@ namespace DartSassHost
 		}
 
 		/// <summary>
+		/// Gets or sets a list of active deprecations to ignore
+		/// </summary>
+		/// <remarks>
+		/// <para>If a deprecation warning of any provided ID is encountered during compilation, the compiler will
+		/// ignore it instead.</para>
+		/// </remarks>
+		public IList<string> SilenceDeprecations
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a flag for whether to enable source map generation
 		/// </summary>
 		public bool SourceMap
@@ -144,6 +157,7 @@ namespace DartSassHost
 			OmitSourceMapUrl = false;
 			OutputStyle = OutputStyle.Expanded;
 			QuietDependencies = false;
+			SilenceDeprecations = new List<string>();
 			SourceMap = false;
 			SourceMapIncludeContents = false;
 			SourceMapRootPath = string.Empty;
