@@ -14,6 +14,170 @@ namespace DartSassHost.Tests.Simple
 
 
 		[Test]
+		public void UsageOfFatalDeprecationsPropertyDuringCompilation([Values] bool fromFile)
+		{
+			// Arrange
+			var withoutFatalDeprecationsOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string>()
+			};
+			var withFatalDeprecationIdOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string> { "global-builtin" }
+			};
+			var withFatalDeprecationVersionOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string> { "1.23.0" }
+			};
+			var withFatalDeprecationIdAndVersionOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string> { "slash-div", "1.80.0" }
+			};
+			var withFatalDeprecationVersionAndIdOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string> { "1.17.2", "color-module-compat" }
+			};
+
+			string inputPath = GenerateSassFilePath("all", "style");
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
+
+			// Act and Assert
+			using (var sassCompiler = CreateSassCompiler())
+			{
+				Assert.DoesNotThrow(() => sassCompiler.AdvancedCompile(fromFile, input, inputPath,
+					options: withoutFatalDeprecationsOptions));
+
+				var exception1 = Assert.Throws<SassCompilationException>(() => sassCompiler.AdvancedCompile(fromFile,
+					input, inputPath, options: withFatalDeprecationIdOptions));
+				string description1 = string.Format(
+						WarningConstants.GlobalBuiltinFunctionDeprecated,
+						"list.index"
+					) +
+					"\n\n" +
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "global-builtin")
+					;
+				Assert.AreEqual(
+					"Error: " + description1 + Environment.NewLine +
+					"   at prefix (Files/simple/warnings/all/sass/style.sass:12:13) -> " +
+					"    @if not index($known-prefixes, $prefix)" + Environment.NewLine +
+					"   at root stylesheet (Files/simple/warnings/all/sass/style.sass:90:3)",
+					exception1.Message
+				);
+				Assert.AreEqual(description1, exception1.Description);
+				Assert.AreEqual(1, exception1.Status);
+				Assert.AreEqual(inputPath, exception1.File);
+				Assert.AreEqual(12, exception1.LineNumber);
+				Assert.AreEqual(13, exception1.ColumnNumber);
+				Assert.AreEqual(
+					"Line 11:   @each $prefix in $prefixes" + Environment.NewLine +
+					"Line 12:     @if not index($known-prefixes, $prefix)" + Environment.NewLine +
+					"---------------------^" + Environment.NewLine +
+					"Line 13:       @warn \"Unknown prefix #{$prefix}.\"",
+					exception1.SourceFragment
+				);
+				Assert.AreEqual(
+					"   at prefix (Files/simple/warnings/all/sass/style.sass:12:13)" + Environment.NewLine +
+					"   at root stylesheet (Files/simple/warnings/all/sass/style.sass:90:3)",
+					exception1.CallStack
+				);
+
+				var exception2 = Assert.Throws<SassCompilationException>(() => sassCompiler.AdvancedCompile(fromFile,
+					input, inputPath, options: withFatalDeprecationVersionOptions));
+				string description2 = string.Format(
+						WarningConstants.ColorInversionWithNumberArgumentsDeprecated,
+						221716
+					) +
+					"\n\n" +
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "color-module-compat")
+					;
+				Assert.AreEqual(
+					"Error: " + description2 + Environment.NewLine +
+					"   at root stylesheet (Files/simple/warnings/all/sass/style.sass:87:10) -> " +
+					"  color: color.invert($text-color)",
+					exception2.Message
+				);
+				Assert.AreEqual(description2, exception2.Description);
+				Assert.AreEqual(1, exception2.Status);
+				Assert.AreEqual(inputPath, exception2.File);
+				Assert.AreEqual(87, exception2.LineNumber);
+				Assert.AreEqual(10, exception2.ColumnNumber);
+				Assert.AreEqual(
+					"Line 86:   background-color: color.invert($body-bg)" + Environment.NewLine +
+					"Line 87:   color: color.invert($text-color)" + Environment.NewLine +
+					"------------------^",
+					exception2.SourceFragment
+				);
+				Assert.AreEqual(
+					"   at root stylesheet (Files/simple/warnings/all/sass/style.sass:87:10)",
+					exception2.CallStack
+				);
+
+				var exception3 = Assert.Throws<SassCompilationException>(() => sassCompiler.AdvancedCompile(fromFile,
+					input, inputPath, options: withFatalDeprecationIdAndVersionOptions));
+				string description3 = string.Format(
+						WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+						"$grid-gutter-width", 2
+					) +
+					"\n\n" +
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "slash-div")
+					;
+				Assert.AreEqual(
+					"Error: " + description3 + Environment.NewLine +
+					"   at root stylesheet (Files/simple/warnings/all/sass/style.sass:34:16) -> " +
+					"  margin-left: $grid-gutter-width / 2",
+					exception3.Message
+				);
+				Assert.AreEqual(description3, exception3.Description);
+				Assert.AreEqual(1, exception3.Status);
+				Assert.AreEqual(inputPath, exception3.File);
+				Assert.AreEqual(34, exception3.LineNumber);
+				Assert.AreEqual(16, exception3.ColumnNumber);
+				Assert.AreEqual(
+					"Line 33:   margin-right: math.div(\"#{$grid-gutter-width}\", 2)" + Environment.NewLine +
+					"Line 34:   margin-left: $grid-gutter-width / 2" + Environment.NewLine +
+					"------------------------^" + Environment.NewLine +
+					"Line 35:   -webkit-box-sizing: border-box",
+					exception3.SourceFragment
+				);
+				Assert.AreEqual(
+					"   at root stylesheet (Files/simple/warnings/all/sass/style.sass:34:16)",
+					exception3.CallStack
+				);
+
+				var exception4 = Assert.Throws<SassCompilationException>(() => sassCompiler.AdvancedCompile(fromFile,
+					input, inputPath, options: withFatalDeprecationVersionAndIdOptions));
+				string description4 = string.Format(
+						WarningConstants.ColorInversionWithNumberArgumentsDeprecated,
+						221716
+					) +
+					"\n\n" +
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "color-module-compat")
+					;
+				Assert.AreEqual(
+					"Error: " + description4 + Environment.NewLine +
+					"   at root stylesheet (Files/simple/warnings/all/sass/style.sass:87:10) -> " +
+					"  color: color.invert($text-color)",
+					exception4.Message
+				);
+				Assert.AreEqual(description4, exception4.Description);
+				Assert.AreEqual(1, exception4.Status);
+				Assert.AreEqual(inputPath, exception4.File);
+				Assert.AreEqual(87, exception4.LineNumber);
+				Assert.AreEqual(10, exception4.ColumnNumber);
+				Assert.AreEqual(
+					"Line 86:   background-color: color.invert($body-bg)" + Environment.NewLine +
+					"Line 87:   color: color.invert($text-color)" + Environment.NewLine +
+					"------------------^",
+					exception4.SourceFragment
+				);
+				Assert.AreEqual(
+					"   at root stylesheet (Files/simple/warnings/all/sass/style.sass:87:10)",
+					exception4.CallStack
+				);
+			}
+		}
+
+		[Test]
 		public void MappingSassWarningDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange

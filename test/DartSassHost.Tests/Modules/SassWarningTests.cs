@@ -14,6 +14,179 @@ namespace DartSassHost.Tests.Modules
 
 
 		[Test]
+		public void UsageOfFatalDeprecationsPropertyDuringCompilation([Values] bool fromFile)
+		{
+			// Arrange
+			var alternativePaths = new List<string> { GenerateSassDirectoryPath("all", "alternative") };
+
+			var withoutFatalDeprecationsOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string>(),
+				IncludePaths = alternativePaths
+			};
+			var withFatalDeprecationIdOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string> { "function-units" },
+				IncludePaths = alternativePaths
+			};
+			var withFatalDeprecationVersionOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string> { "1.23.0" },
+				IncludePaths = alternativePaths
+			};
+			var withFatalDeprecationIdAndVersionOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string> { "slash-div", "1.79.0" },
+				IncludePaths = alternativePaths
+			};
+			var withFatalDeprecationVersionAndIdOptions = new CompilationOptions
+			{
+				FatalDeprecations = new List<string> { "1.55.0", "color-module-compat" },
+				IncludePaths = alternativePaths
+			};
+
+			string inputPath = GenerateSassFilePath("all", "base");
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
+
+			// Act and Assert
+			using (var sassCompiler = CreateSassCompiler())
+			{
+				Assert.DoesNotThrow(() => sassCompiler.AdvancedCompile(fromFile, input, inputPath,
+					options: withoutFatalDeprecationsOptions));
+
+				var exception1 = Assert.Throws<SassCompilationException>(() => sassCompiler.AdvancedCompile(fromFile,
+					input, inputPath, options: withFatalDeprecationIdOptions));
+				string description1 = string.Format(
+						WarningConstants.NumberValueWithoutPercentagesDeprecated,
+						"saturation", 98
+					) +
+					"\n\n" +
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "function-units")
+					;
+				Assert.AreEqual(
+					"Error: " + description1 + Environment.NewLine +
+					"   at @use (Files/modules/warnings/all/sass/_variables.sass:7:17) -> "+
+					"$colors: ( red: hsl(9, 98, 52%), blue: #0099cc, green: #2ebc78)" + Environment.NewLine +
+					"   at root stylesheet (Files/modules/warnings/all/sass/base.sass:3:1)",
+					exception1.Message
+				);
+				Assert.AreEqual(description1, exception1.Description);
+				Assert.AreEqual(1, exception1.Status);
+				Assert.AreEqual(GenerateSassFilePath("all", "_variables"), exception1.File);
+				Assert.AreEqual(7, exception1.LineNumber);
+				Assert.AreEqual(17, exception1.ColumnNumber);
+				Assert.AreEqual(
+					"Line 7: $colors: ( red: hsl(9, 98, 52%), blue: #0099cc, green: #2ebc78)" + Environment.NewLine +
+					"------------------------^" + Environment.NewLine +
+					"Line 8: $known-prefixes: webkit, moz, ms, o",
+					exception1.SourceFragment
+				);
+				Assert.AreEqual(
+					"   at @use (Files/modules/warnings/all/sass/_variables.sass:7:17)" + Environment.NewLine +
+					"   at root stylesheet (Files/modules/warnings/all/sass/base.sass:3:1)",
+					exception1.CallStack
+				);
+
+				var exception2 = Assert.Throws<SassCompilationException>(() => sassCompiler.AdvancedCompile(fromFile,
+					input, inputPath, options: withFatalDeprecationVersionOptions));
+				string description2 = string.Format(
+						WarningConstants.ColorInversionWithNumberArgumentsDeprecated,
+						221716
+					) +
+					"\n\n" +
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "color-module-compat")
+					;
+				Assert.AreEqual(
+					"Error: " + description2 + Environment.NewLine +
+					"   at root stylesheet (Files/modules/warnings/all/sass/base.sass:14:10) -> " +
+					"  color: color.invert($text-color)",
+					exception2.Message
+				);
+				Assert.AreEqual(description2, exception2.Description);
+				Assert.AreEqual(1, exception2.Status);
+				Assert.AreEqual(inputPath, exception2.File);
+				Assert.AreEqual(14, exception2.LineNumber);
+				Assert.AreEqual(10, exception2.ColumnNumber);
+				Assert.AreEqual(
+					"Line 13:   background-color: color.invert($body-bg)" + Environment.NewLine +
+					"Line 14:   color: color.invert($text-color)" + Environment.NewLine +
+					"------------------^",
+					exception2.SourceFragment
+				);
+				Assert.AreEqual(
+					"   at root stylesheet (Files/modules/warnings/all/sass/base.sass:14:10)",
+					exception2.CallStack
+				);
+
+				var exception3 = Assert.Throws<SassCompilationException>(() => sassCompiler.AdvancedCompile(fromFile,
+					input, inputPath, options: withFatalDeprecationIdAndVersionOptions));
+				string description3 = string.Format(
+						WarningConstants.NumberValueWithoutPercentagesDeprecated,
+						"saturation", 98
+					) +
+					"\n\n" +
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "function-units")
+					;
+				Assert.AreEqual(
+					"Error: " + description3 + Environment.NewLine +
+					"   at @use (Files/modules/warnings/all/sass/_variables.sass:7:17) -> " +
+					"$colors: ( red: hsl(9, 98, 52%), blue: #0099cc, green: #2ebc78)" + Environment.NewLine +
+					"   at root stylesheet (Files/modules/warnings/all/sass/base.sass:3:1)",
+					exception3.Message
+				);
+				Assert.AreEqual(description3, exception3.Description);
+				Assert.AreEqual(1, exception3.Status);
+				Assert.AreEqual(GenerateSassFilePath("all", "_variables"), exception3.File);
+				Assert.AreEqual(7, exception3.LineNumber);
+				Assert.AreEqual(17, exception3.ColumnNumber);
+				Assert.AreEqual(
+					"Line 7: $colors: ( red: hsl(9, 98, 52%), blue: #0099cc, green: #2ebc78)" + Environment.NewLine +
+					"------------------------^" + Environment.NewLine +
+					"Line 8: $known-prefixes: webkit, moz, ms, o",
+					exception3.SourceFragment
+				);
+				Assert.AreEqual(
+					"   at @use (Files/modules/warnings/all/sass/_variables.sass:7:17)" + Environment.NewLine +
+					"   at root stylesheet (Files/modules/warnings/all/sass/base.sass:3:1)",
+					exception3.CallStack
+				);
+
+				var exception4 = Assert.Throws<SassCompilationException>(() => sassCompiler.AdvancedCompile(fromFile,
+					input, inputPath, options: withFatalDeprecationVersionAndIdOptions));
+				string description4 = string.Format(
+						WarningConstants.DeprecatedDivisionWithSimpleRecommendation,
+						"$grid-gutter-width", 2
+					) +
+					"\n\n" +
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "slash-div")
+					;
+				Assert.AreEqual(
+					"Error: " + description4 + Environment.NewLine +
+					"   at @use (Files/modules/warnings/all/sass/_grid.sass:15:16) -> " +
+					"  margin-left: $grid-gutter-width / 2" + Environment.NewLine +
+					"   at root stylesheet (Files/modules/warnings/all/sass/base.sass:5:1)",
+					exception4.Message
+				);
+				Assert.AreEqual(description4, exception4.Description);
+				Assert.AreEqual(1, exception4.Status);
+				Assert.AreEqual(GenerateSassFilePath("all", "_grid"), exception4.File);
+				Assert.AreEqual(15, exception4.LineNumber);
+				Assert.AreEqual(16, exception4.ColumnNumber);
+				Assert.AreEqual(
+					"Line 14:   margin-right: math.div(\"#{$grid-gutter-width}\", 2)" + Environment.NewLine +
+					"Line 15:   margin-left: $grid-gutter-width / 2" + Environment.NewLine +
+					"------------------------^",
+					exception4.SourceFragment
+				);
+				Assert.AreEqual(
+					"   at @use (Files/modules/warnings/all/sass/_grid.sass:15:16)" + Environment.NewLine +
+					"   at root stylesheet (Files/modules/warnings/all/sass/base.sass:5:1)",
+					exception4.CallStack
+				);
+			}
+		}
+
+		[Test]
 		public void MappingSassWarningDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange

@@ -10,6 +10,9 @@
 		private const string DeprecatedDivisionMoreInfo = "More info and automated migrator: https://sass-lang.com/d/slash-div";
 
 
+		public const string DeprecationWarningAsErrorExplanation = "This is only an error because you've set the {0} deprecation to be fatal.\n" +
+			"Remove this setting if you need to keep using this feature."
+			;
 		public const string MathDivOnlySupportNumberArguments = "math.div() will only support number arguments in a future release.\n" +
 			"Use list.slash() instead for a slash separator."
 			;

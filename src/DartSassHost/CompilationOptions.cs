@@ -17,6 +17,21 @@ namespace DartSassHost
 		}
 
 		/// <summary>
+		/// Gets or sets a list of deprecations to treat as fatal
+		/// </summary>
+		/// <remarks>
+		/// <para>If a deprecation warning of any provided ID is encountered during compilation, the compiler will
+		/// error instead.</para>
+		/// <para>If a version is provided, then all deprecations that were active in that compiler version will be
+		/// treated as fatal.</para>
+		/// </remarks>
+		public IList<string> FatalDeprecations
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a list of paths that library can look in to attempt to resolve <с>@import</с> declarations
 		/// </summary>
 		/// <remarks>
@@ -149,6 +164,7 @@ namespace DartSassHost
 		public CompilationOptions()
 		{
 			Charset = true;
+			FatalDeprecations = new List<string>();
 			IncludePaths = new List<string>();
 			IndentType = IndentType.Space;
 			IndentWidth = 2;

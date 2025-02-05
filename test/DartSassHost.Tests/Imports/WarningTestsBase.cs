@@ -548,7 +548,7 @@ namespace DartSassHost.Tests.Imports
 		}
 
 		[Test]
-		public void UsageOfSilenceDeprecationsDuringCompilation([Values] bool fromFile)
+		public void UsageOfSilenceDeprecationsPropertyDuringCompilation([Values] bool fromFile)
 		{
 			// Arrange
 			var alternativePaths = new List<string> { GenerateSassDirectoryPath("all", "alternative") };

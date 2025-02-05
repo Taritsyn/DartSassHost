@@ -5,8 +5,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 	var dshUtils,
 		DshFileManagerProxy,
 		DshCustomLogger,
-		DshNullLogger,
-		LEGACY_JS_API_DEPRECATION_ID = 'legacy-js-api'
+		DshNullLogger
 		;
 
 	//#region dshUtils module
@@ -437,7 +436,9 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 	//#region SassHelper class
 	SassHelper = (function (sass, fileManager, DshFileManagerProxy, DshCustomLogger, DshNullLogger, dshUtils, undefined) {
-		var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/;
+		var versionRegEx = /^dart-sass\t(\d+(?:\.\d+){2,3})\t/,
+			firstDigitRegEx = /^\d/
+			;
 
 		function fixIncludedPaths(paths, currentDirectory) {
 			var fixedPaths,
@@ -463,13 +464,23 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			return fixedPaths;
 		}
 
-		function fixSilenceDeprecations(deprecationIDs) {
-			var processedDeprecationIDs = deprecationIDs || [];
-			if (processedDeprecationIDs.indexOf(LEGACY_JS_API_DEPRECATION_ID) === -1) {
-				processedDeprecationIDs.push(LEGACY_JS_API_DEPRECATION_ID);
+		function fixFatalDeprecations(deprecations) {
+			if (!deprecations) {
+				return [];
 			}
 
-			return processedDeprecationIDs;
+			var newDeprecations = deprecations.map(function(deprecation) {
+				if (deprecation && firstDigitRegEx.test(deprecation)) {
+					try {
+						deprecation = sass.Version.parse(deprecation);
+					}
+					catch (e) {}
+				}
+
+				return deprecation;
+			});
+
+			return newDeprecations;
 		}
 
 		function innerCompile(compilationOptions) {
@@ -491,7 +502,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			logger = !compilationOptions.quiet ? new DshCustomLogger() : new DshNullLogger();
 
 			sass.dsh.fileManagerProxy = fileManagerProxy;
-			compilationOptions.silenceDeprecations = fixSilenceDeprecations(compilationOptions.silenceDeprecations);
+			compilationOptions.fatalDeprecations = fixFatalDeprecations(compilationOptions.fatalDeprecations);
 			compilationOptions.logger = logger;
 
 			try

@@ -202,7 +202,7 @@ namespace DartSassHost.Tests.Simple
 		}
 
 		[Test]
-		public void UsageOfSilenceDeprecationsDuringCompilation([Values] bool fromFile)
+		public void UsageOfSilenceDeprecationsPropertyDuringCompilation([Values] bool fromFile)
 		{
 			// Arrange
 			var withoutSilenceDeprecationsOptions = new CompilationOptions
