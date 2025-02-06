@@ -329,5 +329,47 @@ namespace DartSassHost.Tests.Simple
 			Assert.AreEqual(string.Format(WarningConstants.UnknownVendorPrefix, "wekbit"), warnings2[8].Description);
 			Assert.IsFalse(warnings2[8].IsDeprecation);
 		}
+
+		[Test]
+		public void UsageOfFutureDeprecationsPropertyDuringCompilation([Values] bool fromFile)
+		{
+			// Arrange
+			var withoutFutureDeprecationsOptions = new CompilationOptions
+			{
+				FutureDeprecations = new List<string>()
+			};
+			var withFutureDeprecationsOptions = new CompilationOptions
+			{
+				FutureDeprecations = new List<string> { "calc-interp" }
+			};
+
+			string inputPath = GenerateSassFilePath("calc-interpolation", "style");
+			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
+
+			// Act
+			IList<ProblemInfo> warnings1;
+			IList<ProblemInfo> warnings2;
+
+			using (var sassCompiler = CreateSassCompiler())
+			{
+				if (fromFile)
+				{
+					warnings1 = sassCompiler.CompileFile(inputPath, options: withoutFutureDeprecationsOptions).Warnings;
+					warnings2 = sassCompiler.CompileFile(inputPath, options: withFutureDeprecationsOptions).Warnings;
+				}
+				else
+				{
+					warnings1 = sassCompiler.Compile(input, inputPath, options: withoutFutureDeprecationsOptions).Warnings;
+					warnings2 = sassCompiler.Compile(input, inputPath, options: withFutureDeprecationsOptions).Warnings;
+				}
+			}
+
+			// Assert
+			Assert.AreEqual(0, warnings1.Count);
+
+			Assert.AreEqual(1, warnings2.Count);
+			Assert.AreEqual(string.Format(WarningConstants.DeprecationIsNotFuture, "calc-interp"), warnings2[0].Description);
+			Assert.IsFalse(warnings2[0].IsDeprecation);
+		}
 	}
 }

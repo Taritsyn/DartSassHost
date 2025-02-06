@@ -31,8 +31,9 @@
    RELEASE NOTES
    =============
    1. Added support for the Dart Sass version 1.83.4;
-   2. In compilation options was added two new properties: `SilenceDeprecations`
-      (default empty list) and `FatalDeprecations` (default empty list).
+   2. In compilation options was added three new properties: `SilenceDeprecations`
+      (default empty list), `FatalDeprecations` (default empty list) and
+      `FutureDeprecations` (default empty list).
 
    ============
    PROJECT SITE

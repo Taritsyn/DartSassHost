@@ -13,6 +13,7 @@
 		public const string DeprecationWarningAsErrorExplanation = "This is only an error because you've set the {0} deprecation to be fatal.\n" +
 			"Remove this setting if you need to keep using this feature."
 			;
+		public const string DeprecationIsNotFuture = "{0} is not a future deprecation, so it does not need to be explicitly enabled.";
 		public const string MathDivOnlySupportNumberArguments = "math.div() will only support number arguments in a future release.\n" +
 			"Use list.slash() instead for a slash separator."
 			;

@@ -35,6 +35,7 @@ namespace DartSassHost.JsonConverters
 
 			writer.WriteBoolean("charset", value.Charset);
 			WriteStringList(writer, "fatalDeprecations", value.FatalDeprecations);
+			WriteStringList(writer, "futureDeprecations", value.FutureDeprecations);
 			WriteStringList(writer, "includePaths", value.IncludePaths);
 			writer.WriteString("indentType", GetIndentTypeCode(value.IndentType));
 			writer.WriteNumber("indentWidth", value.IndentWidth);
@@ -111,6 +112,11 @@ namespace DartSassHost.JsonConverters
 			IList<string> values
 		)
 		{
+			if (values == null)
+			{
+				return;
+			}
+
 			writer.WriteStartArray(propertyName);
 
 			int valueCount = values.Count;

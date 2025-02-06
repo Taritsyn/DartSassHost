@@ -32,6 +32,19 @@ namespace DartSassHost
 		}
 
 		/// <summary>
+		/// Gets or sets a list of future deprecations to opt into early
+		/// </summary>
+		/// <remarks>
+		/// <para>Future deprecations, whose IDs have been passed here, will be treated as active by the compiler,
+		/// emitting warnings as necessary.</para>
+		/// </remarks>
+		public IList<string> FutureDeprecations
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets a list of paths that library can look in to attempt to resolve <с>@import</с> declarations
 		/// </summary>
 		/// <remarks>
@@ -165,6 +178,7 @@ namespace DartSassHost
 		{
 			Charset = true;
 			FatalDeprecations = new List<string>();
+			FutureDeprecations = new List<string>();
 			IncludePaths = new List<string>();
 			IndentType = IndentType.Space;
 			IndentWidth = 2;
