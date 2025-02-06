@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v1.1.0 - February 6, 2025
+ * Added support for the Dart Sass version 1.83.4
+ * In compilation options was added three new properties: `SilenceDeprecations` (default empty list), `FatalDeprecations` (default empty list) and `FutureDeprecations` (default empty list)
+ * No longer supports a .NET Core App 3.1 and .NET 6
+ * Added support for .NET 8
+
 ## v1.0.14 - August 27, 2024
  * Fixed a [error #14](https://github.com/Taritsyn/DartSassHost/issues/14) “Exception while reading compilation error”. Special thanks to [Peter Wurzinger](https://github.com/peterwurzinger)
 

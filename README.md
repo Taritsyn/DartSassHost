@@ -169,6 +169,25 @@ Let's consider in detail properties of the <code title="DartSassHost.Compilation
             <td>Flag for whether to emit a <code>@charset</code> or BOM for CSS with non-ASCII characters.</td>
         </tr>
         <tr valign="top">
+            <td><code>FatalDeprecations</code></td>
+            <td><code title="System.Collections.Generic.IList&lt;string&gt;">IList&lt;string&gt;</code></td>
+            <td>Empty list</td>
+            <td>
+                <p>List of deprecations to treat as fatal.</p>
+                <p>If a deprecation warning of any provided ID is encountered during compilation, the compiler will error instead.</p>
+                <p>If a version is provided, then all deprecations that were active in that compiler version will be treated as fatal.</p>
+            </td>
+        </tr>
+        <tr valign="top">
+            <td><code>FutureDeprecations</code></td>
+            <td><code title="System.Collections.Generic.IList&lt;string&gt;">IList&lt;string&gt;</code></td>
+            <td>Empty list</td>
+            <td>
+                <p>List of future deprecations to opt into early.</p>
+                <p>Future deprecations, whose IDs have been passed here, will be treated as active by the compiler, emitting warnings as necessary.</p>
+            </td>
+        </tr>
+        <tr valign="top">
             <td><code>IncludePaths</code></td>
             <td><code title="System.Collections.Generic.IList&lt;string&gt;">IList&lt;string&gt;</code></td>
             <td>Empty list</td>
@@ -232,6 +251,15 @@ Let's consider in detail properties of the <code title="DartSassHost.Compilation
             <td><code title="System.Boolean">Boolean</code></td>
             <td><code>false</code></td>
             <td>Flag for whether to silence compiler warnings from stylesheets loaded by using the <code>IncludePaths</code> property.</td>
+        </tr>
+        <tr valign="top">
+            <td><code>SilenceDeprecations</code></td>
+            <td><code title="System.Collections.Generic.IList&lt;string&gt;">IList&lt;string&gt;</code></td>
+            <td>Empty list</td>
+            <td>
+                <p>List of active deprecations to ignore.</p>
+                <p>If a deprecation warning of any provided ID is encountered during compilation, the compiler will ignore it instead.</p>
+            </td>
         </tr>
         <tr valign="top">
             <td><code>SourceMap</code></td>

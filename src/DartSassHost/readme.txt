@@ -1,11 +1,11 @@
 ﻿
 
    --------------------------------------------------------------------------------
-                    README file for Dart Sass Host for .NET v1.0.14
+                    README file for Dart Sass Host for .NET v1.1.0
 
    --------------------------------------------------------------------------------
 
-           Copyright (c) 2020-2024 Andrey Taritsyn - http://www.taritsyn.ru
+           Copyright (c) 2020-2025 Andrey Taritsyn - http://www.taritsyn.ru
 
 
    ===========
