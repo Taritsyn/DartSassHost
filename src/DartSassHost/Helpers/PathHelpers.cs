@@ -1,5 +1,5 @@
 ﻿using System;
-#if NETSTANDARD2_1 || NETCOREAPP3_1_OR_GREATER
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
 using System.IO;
 #else
 using System.Collections.Generic;
@@ -38,7 +38,7 @@ namespace DartSassHost.Helpers
 				);
 			}
 
-#if NETSTANDARD2_1 || NETCOREAPP3_1_OR_GREATER
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
 			string processedPath = Path.GetRelativePath(currentDirectory, path);
 #else
 			string processedPath = MakeRelativePath(currentDirectory, path);
@@ -72,7 +72,7 @@ namespace DartSassHost.Helpers
 
 			return result;
 		}
-#if !NETSTANDARD2_1 && !NETCOREAPP3_1_OR_GREATER
+#if !NETSTANDARD2_1 && !NET8_0_OR_GREATER
 
 		private static string MakeRelativePath(string relativeTo, string path)
 		{

@@ -33,7 +33,9 @@
    1. Added support for the Dart Sass version 1.83.4;
    2. In compilation options was added three new properties: `SilenceDeprecations`
       (default empty list), `FatalDeprecations` (default empty list) and
-      `FutureDeprecations` (default empty list).
+      `FutureDeprecations` (default empty list);
+   3. No longer supports a .NET Core App 3.1 and .NET 6;
+   4. Added support for .NET 8.
 
    ============
    PROJECT SITE

@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Product>Dart Sass Host for .NET</Product>
     <VersionPrefix>1.0.14</VersionPrefix>
-    <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netstandard2.1;netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netstandard2.1;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <NoWarn>$(NoWarn);CS1591;NETSDK1215;NU1605</NoWarn>
+    <NoWarn>$(NoWarn);CS0672;CS1591;NETSDK1215;NU1605;SYSLIB0051</NoWarn>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DisableDefaultResxToCsConversionTarget>true</DisableDefaultResxToCsConversionTarget>
@@ -25,7 +25,9 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <PackageReleaseNotes>1. Added support for the Dart Sass version 1.83.4;
-2. In compilation options was added three new properties: `SilenceDeprecations` (default empty list), `FatalDeprecations` (default empty list) and `FutureDeprecations` (default empty list).</PackageReleaseNotes>
+2. In compilation options was added three new properties: `SilenceDeprecations` (default empty list), `FatalDeprecations` (default empty list) and `FutureDeprecations` (default empty list);
+3. No longer supports a .NET Core App 3.1 and .NET 6;
+4. Added support for .NET 8.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
@@ -34,7 +36,7 @@
   <Import Project="../../build/strong-name-signing.props" />
   <Import Project="../../build/nuget-common.props" />
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'net6.0' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'net8.0' ">
     <DefineConstants>$(DefineConstants);MODERN_JSON_CONVERTER</DefineConstants>
   </PropertyGroup>
 

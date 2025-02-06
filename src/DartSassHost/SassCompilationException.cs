@@ -2,7 +2,7 @@
 #if !NETSTANDARD1_3
 using System.Runtime.Serialization;
 #endif
-#if !NETSTANDARD1_3 && !NET6_0
+#if !NETSTANDARD1_3 && !NET8_0_OR_GREATER
 using System.Security.Permissions;
 #endif
 
@@ -151,7 +151,7 @@ namespace DartSassHost
 		/// </summary>
 		/// <param name="info">The <see cref="SerializationInfo"/> to populate with data</param>
 		/// <param name="context">The destination (see <see cref="StreamingContext"/>) for this serialization</param>
-#if !NET6_0
+#if !NET8_0_OR_GREATER
 		[SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
 #endif
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
