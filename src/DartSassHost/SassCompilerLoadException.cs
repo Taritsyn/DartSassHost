@@ -39,6 +39,9 @@ namespace DartSassHost
 		/// </summary>
 		/// <param name="info">The object that holds the serialized data</param>
 		/// <param name="context">The contextual information about the source or destination</param>
+#if NET8_0_OR_GREATER
+		[Obsolete(DiagnosticId = "SYSLIB0051")]
+#endif
 		private SassCompilerLoadException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{ }
