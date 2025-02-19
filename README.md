@@ -374,6 +374,8 @@ In this case, the `inputPath` parameter is used instead of the `content` paramet
 ## Who's Using Dart Sass Host for .NET
 If you use the Dart Sass Host for .NET in some project, please send me a message so I can include it in this list:
 
+ * [Abstractions Sass Compiler CI Build](https://www.nuget.org/packages/Abstractions.Sass.CIBuild) by Abstractions AS
+ * [Abstractions Sass Compiler Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=AbstractionsAS.AbstractionsSassVisualStudioExtension) by Abstractions AS
  * [Bundle Transformer](https://github.com/Taritsyn/BundleTransformer) by Andrey Taritsyn
  * [DartSassBuilder](https://github.com/deanwiseman/DartSassBuilder) by Dean Wiseman
  * [DartSassBuildWatcherTool](https://github.com/MONQDL/DartSassBuildWatcherTool) by Sergey Pismennyi
