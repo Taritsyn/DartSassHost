@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v1.1.1 - June 25, 2025
+ * Added support for the Dart Sass version 1.89.2
+
 ## v1.1.0 - February 6, 2025
  * Added support for the Dart Sass version 1.83.4
  * In compilation options was added three new properties: `SilenceDeprecations` (default empty list), `FatalDeprecations` (default empty list) and `FutureDeprecations` (default empty list)
