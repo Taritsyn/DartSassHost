@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v2.0.0 Preview 1 - October 10, 2025
+ * Migration to the modern JS API of the Dart Sass library has been completed
+ * In compilation options three properties have been deprecated: `IndentType`, `IndentWidth` and `LineFeedType`
+
 ## v1.1.1 - June 25, 2025
  * Added support for the Dart Sass version 1.89.2
 
