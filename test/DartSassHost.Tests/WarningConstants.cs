@@ -34,7 +34,9 @@
 			"Recommendation: invert({0})"
 			;
 		public const string UnknownVendorPrefix = "Unknown prefix {0}.";
-		public const string RepetitiveDeprecationWarningsOmitted = "{0} repetitive deprecation warnings omitted.";
+		public const string RepetitiveDeprecationWarningsOmitted = "{0} repetitive deprecation warnings omitted.\n" +
+			"Run in verbose mode to see all warnings."
+			;
 		public const string NumberValueWithoutPercentagesDeprecated = "${0}: Passing a number without unit % ({1}) is deprecated.\n\n" +
 			"To preserve current behavior: ${0} * 1%\n\n" +
 			"More info: https://sass-lang.com/d/function-units"

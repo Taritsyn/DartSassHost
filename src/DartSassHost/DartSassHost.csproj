@@ -24,7 +24,8 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
-    <PackageReleaseNotes>Added support for the Dart Sass version 1.89.2.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Migration to the modern JS API of the Dart Sass library has been completed;
+2. In compilation options three properties have been deprecated: `IndentType`, `IndentWidth` and `LineFeedType`.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
@@ -47,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' Or '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net471' Or '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netstandard2.1' ">

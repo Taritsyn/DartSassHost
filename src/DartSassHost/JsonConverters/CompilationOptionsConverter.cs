@@ -37,9 +37,6 @@ namespace DartSassHost.JsonConverters
 			WriteStringList(writer, "fatalDeprecations", value.FatalDeprecations);
 			WriteStringList(writer, "futureDeprecations", value.FutureDeprecations);
 			WriteStringList(writer, "includePaths", value.IncludePaths);
-			writer.WriteString("indentType", GetIndentTypeCode(value.IndentType));
-			writer.WriteNumber("indentWidth", value.IndentWidth);
-			writer.WriteString("linefeed", GetLineFeedString(value.LineFeedType));
 			writer.WriteBoolean("quietDeps", value.QuietDependencies);
 			writer.WriteBoolean("omitSourceMapUrl", value.OmitSourceMapUrl);
 			writer.WriteString("outputStyle", GetOutputStyleCode(value.OutputStyle));
@@ -61,38 +58,6 @@ namespace DartSassHost.JsonConverters
 			}
 
 			writer.WriteEndObject();
-		}
-
-		private static string GetIndentTypeCode(IndentType type)
-		{
-			string typeCode = type == IndentType.Tab ? "tab" : "space";
-
-			return typeCode;
-		}
-
-		private static string GetLineFeedString(LineFeedType type)
-		{
-			string lineFeed;
-
-			switch (type)
-			{
-				case LineFeedType.Cr:
-					lineFeed = "cr";
-					break;
-				case LineFeedType.CrLf:
-					lineFeed = "crlf";
-					break;
-				case LineFeedType.Lf:
-					lineFeed = "lf";
-					break;
-				case LineFeedType.LfCr:
-					lineFeed = "lfcr";
-					break;
-				default:
-					throw new NotSupportedException();
-			}
-
-			return lineFeed;
 		}
 
 		private static string GetOutputStyleCode(OutputStyle style)

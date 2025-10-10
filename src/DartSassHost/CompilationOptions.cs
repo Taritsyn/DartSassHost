@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DartSassHost
 {
@@ -60,6 +61,7 @@ namespace DartSassHost
 		/// <summary>
 		/// Gets or sets a indent type
 		/// </summary>
+		[Obsolete]
 		public IndentType IndentType
 		{
 			get;
@@ -69,6 +71,7 @@ namespace DartSassHost
 		/// <summary>
 		/// Gets or sets a number of spaces or tabs to be used for indentation
 		/// </summary>
+		[Obsolete]
 		public int IndentWidth
 		{
 			get;
@@ -87,6 +90,7 @@ namespace DartSassHost
 		/// <summary>
 		/// Gets or sets a line feed type
 		/// </summary>
+		[Obsolete]
 		public LineFeedType LineFeedType
 		{
 			get;
@@ -180,10 +184,14 @@ namespace DartSassHost
 			FatalDeprecations = new List<string>();
 			FutureDeprecations = new List<string>();
 			IncludePaths = new List<string>();
+			#pragma warning disable CS0612
 			IndentType = IndentType.Space;
 			IndentWidth = 2;
+			#pragma warning restore CS0612
 			InlineSourceMap = false;
+			#pragma warning disable CS0612
 			LineFeedType = LineFeedType.Lf;
+			#pragma warning restore CS0612
 			OmitSourceMapUrl = false;
 			OutputStyle = OutputStyle.Expanded;
 			QuietDependencies = false;

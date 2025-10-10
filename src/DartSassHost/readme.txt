@@ -30,7 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   Added support for the Dart Sass version 1.89.2.
+   1. Migration to the modern JS API of the Dart Sass library has been completed;
+   2. In compilation options three properties have been deprecated: `IndentType`,
+      `IndentWidth` and `LineFeedType`.
 
    ============
    PROJECT SITE

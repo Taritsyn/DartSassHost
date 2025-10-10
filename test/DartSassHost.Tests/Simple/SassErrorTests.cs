@@ -46,7 +46,8 @@ namespace DartSassHost.Tests.Simple
 			Assert.NotNull(exception);
 			Assert.AreEqual(
 				"Error: Expected \"." + Environment.NewLine +
-				"   at Files/simple/errors/invalid-syntax/sass/style.sass:3:35 ->     family: \"Open Sans, sans-serif",
+				"   at root stylesheet (Files/simple/errors/invalid-syntax/sass/style.sass:3:35) -> " +
+				"    family: \"Open Sans, sans-serif",
 				exception.Message
 			);
 			Assert.AreEqual("Expected \".", exception.Description);
@@ -60,7 +61,10 @@ namespace DartSassHost.Tests.Simple
 				"------------------------------------------^",
 				exception.SourceFragment
 			);
-			Assert.IsEmpty(exception.CallStack);
+			Assert.AreEqual(
+				"   at root stylesheet (Files/simple/errors/invalid-syntax/sass/style.sass:3:35)",
+				exception.CallStack
+			);
 		}
 
 		[Test]

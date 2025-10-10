@@ -112,37 +112,5 @@ namespace DartSassHost.Tests
 
 			return content;
 		}
-
-		public string GetFileContent(string filePath, LineFeedType lineFeedType)
-		{
-			string lineFeed;
-
-			switch (lineFeedType)
-			{
-				case LineFeedType.Cr:
-					lineFeed = "\r";
-					break;
-
-				case LineFeedType.CrLf:
-					lineFeed = "\r\n";
-					break;
-
-				case LineFeedType.Lf:
-					lineFeed = "\n";
-					break;
-
-				case LineFeedType.LfCr:
-					lineFeed = "\n\r";
-					break;
-
-				default:
-					throw new NotSupportedException();
-			}
-
-			string[] lines = File.ReadAllLines(filePath);
-			string content = string.Join(lineFeed, lines);
-
-			return content;
-		}
 	}
 }

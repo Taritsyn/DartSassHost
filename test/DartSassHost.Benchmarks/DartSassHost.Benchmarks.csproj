@@ -14,7 +14,7 @@
   <Import Project="../../build/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.14.0" />
+    <PackageReference Include="BenchmarkDotNet" VersionOverride="0.15.4" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" />
