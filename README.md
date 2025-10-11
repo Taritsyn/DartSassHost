@@ -194,40 +194,10 @@ Let's consider in detail properties of the <code title="DartSassHost.Compilation
             <td>List of paths that library can look in to attempt to resolve <code>@import</code> declarations.</td>
         </tr>
         <tr valign="top">
-            <td><code>IndentType</code></td>
-            <td><code title="DartSassHost.IndentType">IndentType</code> enumeration</td>
-            <td><code>Space</code></td>
-            <td>Indent type. Can take the following values:
-                <ul>
-                    <li><code>Space</code> - space character</li>
-                    <li><code>Tab</code> - tab character</li>
-                </ul>
-            </td>
-        </tr>
-        <tr valign="top">
-            <td><code>IndentWidth</code></td>
-            <td><code title="System.Int32">Int32</code></td>
-            <td><code>2</code></td>
-            <td>Number of spaces or tabs to be used for indentation.</td>
-        </tr>
-        <tr valign="top">
             <td><code>InlineSourceMap</code></td>
             <td><code title="System.Boolean">Boolean</code></td>
             <td><code>false</code></td>
             <td>Flag for whether to embed <code>sourceMappingUrl</code> as data uri.</td>
-        </tr>
-        <tr valign="top">
-            <td><code>LineFeedType</code></td>
-            <td><code title="DartSassHost.LineFeedType">LineFeedType</code> enumeration</td>
-            <td><code>Lf</code></td>
-            <td>Line feed type. Can take the following values:
-                <ul>
-                    <li><code>Cr</code> - Macintosh (CR)</li>
-                    <li><code>CrLf</code> - Windows (CR LF)</li>
-                    <li><code>Lf</code> - Unix (LF)</li>
-                    <li><code>LfCr</code></li>
-                </ul>
-            </td>
         </tr>
         <tr valign="top">
             <td><code>OmitSourceMapUrl</code></td>
