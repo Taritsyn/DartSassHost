@@ -1,4 +1,4 @@
-.NET wrapper around the [Dart Sass](https://github.com/sass/dart-sass) version 1.89.2 with the ability to support a virtual file system.
+.NET wrapper around the [Dart Sass](https://github.com/sass/dart-sass) version 1.93.2 with the ability to support a virtual file system.
 
 Since the original library is written in JavaScript, you will need a JS engine to run it. As a JS engine is used the [JavaScript Engine Switcher](https://github.com/Taritsyn/JavaScriptEngineSwitcher) library.
 For correct working, you need to install one of the following NuGet packages:

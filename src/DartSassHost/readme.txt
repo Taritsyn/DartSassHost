@@ -12,7 +12,7 @@
    DESCRIPTION
    ===========
    .NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version
-   1.89.2 with the ability to support a virtual file system.
+   1.93.2 with the ability to support a virtual file system.
 
    Since the original library is written in JavaScript, you will need a JS engine
    to run it. As a JS engine is used the JavaScript Engine Switcher library
@@ -30,9 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Migration to the modern JS API of the Dart Sass library has been completed;
-   2. In compilation options three properties have been deprecated: `IndentType`,
-      `IndentWidth` and `LineFeedType`.
+   Added support for the Dart Sass version 1.93.2.
 
    ============
    PROJECT SITE
