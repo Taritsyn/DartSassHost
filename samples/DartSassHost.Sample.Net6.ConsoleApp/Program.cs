@@ -3,7 +3,7 @@ using JavaScriptEngineSwitcher.Core;
 
 using DartSassHost.Sample.Logic;
 
-namespace DartSassHost.Sample.Net60.ConsoleApp
+namespace DartSassHost.Sample.Net6.ConsoleApp
 {
 	class Program : CompilationExampleBase
 	{

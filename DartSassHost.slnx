@@ -42,10 +42,11 @@
     <Project Path="samples/DartSassHost.Sample.NetCore1Full.ConsoleApp/DartSassHost.Sample.NetCore1Full.ConsoleApp.csproj" />
     <Project Path="samples/DartSassHost.Sample.NetCore21.ConsoleApp/DartSassHost.Sample.NetCore21.ConsoleApp.csproj" />
     <Project Path="samples/DartSassHost.Sample.NetCore31.ConsoleApp/DartSassHost.Sample.NetCore31.ConsoleApp.csproj" />
-    <Project Path="samples/DartSassHost.Sample.Net50.ConsoleApp/DartSassHost.Sample.Net50.ConsoleApp.csproj" />
-    <Project Path="samples/DartSassHost.Sample.Net60.ConsoleApp/DartSassHost.Sample.Net60.ConsoleApp.csproj" />
-    <Project Path="samples/DartSassHost.Sample.Net70.ConsoleApp/DartSassHost.Sample.Net70.ConsoleApp.csproj" />
-    <Project Path="samples/DartSassHost.Sample.Net80.ConsoleApp/DartSassHost.Sample.Net80.ConsoleApp.csproj" />
-    <Project Path="samples/DartSassHost.Sample.Net90.ConsoleApp/DartSassHost.Sample.Net90.ConsoleApp.csproj" />
+    <Project Path="samples/DartSassHost.Sample.Net5.ConsoleApp/DartSassHost.Sample.Net5.ConsoleApp.csproj" />
+    <Project Path="samples/DartSassHost.Sample.Net6.ConsoleApp/DartSassHost.Sample.Net6.ConsoleApp.csproj" />
+    <Project Path="samples/DartSassHost.Sample.Net7.ConsoleApp/DartSassHost.Sample.Net7.ConsoleApp.csproj" />
+    <Project Path="samples/DartSassHost.Sample.Net8.ConsoleApp/DartSassHost.Sample.Net8.ConsoleApp.csproj" />
+    <Project Path="samples/DartSassHost.Sample.Net9.ConsoleApp/DartSassHost.Sample.Net9.ConsoleApp.csproj" />
+    <Project Path="samples/DartSassHost.Sample.Net10.ConsoleApp/DartSassHost.Sample.Net10.ConsoleApp.csproj" />
   </Folder>
 </Solution>
