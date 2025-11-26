@@ -135,7 +135,7 @@ namespace DartSassHost
 		private SassCompilationException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
-			if (info != null)
+			if (info is not null)
 			{
 				_status = info.GetInt32("Status");
 				_file = info.GetString("File");
@@ -161,7 +161,7 @@ namespace DartSassHost
 #endif
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			if (info == null)
+			if (info is null)
 			{
 				throw new ArgumentNullException(nameof(info));
 			}

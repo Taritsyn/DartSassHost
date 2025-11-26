@@ -26,7 +26,7 @@ namespace DartSassHost.JsonConverters
 			CompilationOptions value
 		)
 		{
-			if (value == null)
+			if (value is null)
 			{
 				throw new ArgumentNullException(nameof(value));
 			}
@@ -77,7 +77,7 @@ namespace DartSassHost.JsonConverters
 			IList<string> values
 		)
 		{
-			if (values == null)
+			if (values is null)
 			{
 				return;
 			}

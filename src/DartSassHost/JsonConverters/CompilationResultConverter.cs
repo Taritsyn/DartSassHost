@@ -160,7 +160,7 @@ namespace DartSassHost.JsonConverters
 
 			while (reader.Read() && reader.IsTokenTypeStartObject())
 			{
-				if (firstException != null)
+				if (firstException is not null)
 				{
 					continue;
 				}
@@ -332,7 +332,7 @@ namespace DartSassHost.JsonConverters
 			Dictionary<string, string> sourcesCache
 		)
 		{
-			if (sourcesCache == null)
+			if (sourcesCache is null)
 			{
 				throw new ArgumentNullException(nameof(sourcesCache));
 			}

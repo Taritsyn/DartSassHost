@@ -30,7 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Added support for the Dart Sass version 1.93.3.
+   Performed a migration to the modern C# null/not-null checks.
 
    ============
    PROJECT SITE

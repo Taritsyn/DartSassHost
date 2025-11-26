@@ -37,7 +37,7 @@
 		/// </summary>
 		public bool IsDeprecation
 		{
-			get { return DeprecationId != null; }
+			get { return DeprecationId is not null; }
 		}
 
 		/// <summary>

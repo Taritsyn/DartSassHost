@@ -52,7 +52,7 @@ namespace DartSassHost.Extensions
 		{
 			if (useCache)
 			{
-				if (resourceName == null)
+				if (resourceName is null)
 				{
 					throw new ArgumentNullException(
 						nameof(resourceName),
@@ -60,7 +60,7 @@ namespace DartSassHost.Extensions
 					);
 				}
 
-				if (assembly == null)
+				if (assembly is null)
 				{
 					throw new ArgumentNullException(
 						nameof(assembly),
@@ -115,7 +115,7 @@ namespace DartSassHost.Extensions
 		{
 			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
 			{
-				if (stream == null)
+				if (stream is null)
 				{
 					throw new NullReferenceException(
 						string.Format(CoreStrings.Common_ResourceIsNull, resourceName)

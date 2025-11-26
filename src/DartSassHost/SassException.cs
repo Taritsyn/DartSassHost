@@ -68,7 +68,7 @@ namespace DartSassHost
 		protected SassException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
-			if (info != null)
+			if (info is not null)
 			{
 				_description = info.GetString("Description");
 			}
@@ -89,7 +89,7 @@ namespace DartSassHost
 #endif
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			if (info == null)
+			if (info is null)
 			{
 				throw new ArgumentNullException(nameof(info));
 			}
@@ -124,13 +124,13 @@ namespace DartSassHost
 				resultBuilder.Append(errorDetails);
 			}
 
-			if (this.InnerException != null)
+			if (this.InnerException is not null)
 			{
 				resultBuilder.Append(" ---> ");
 				resultBuilder.Append(this.InnerException.ToString());
 			}
 
-			if (this.StackTrace != null)
+			if (this.StackTrace is not null)
 			{
 				resultBuilder.AppendLine();
 				resultBuilder.AppendLine(this.StackTrace);

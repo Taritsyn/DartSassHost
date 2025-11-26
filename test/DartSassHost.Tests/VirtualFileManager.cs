@@ -51,7 +51,7 @@ namespace DartSassHost.Tests
 
 		public string ToAbsoluteVirtualPath(string path)
 		{
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(nameof(path));
 			}

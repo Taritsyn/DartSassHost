@@ -108,7 +108,7 @@ namespace DartSassHost.Helpers
 		private static string GenerateCompilationProblemMessage(string type, string description, string documentName,
 			int lineNumber, int columnNumber, string sourceFragment, string[] callStackLines)
 		{
-			if (description == null)
+			if (description is null)
 			{
 				throw new ArgumentNullException(nameof(description));
 			}
@@ -315,7 +315,7 @@ namespace DartSassHost.Helpers
 		/// <returns>Detailed error message</returns>
 		public static string GenerateErrorDetails(SassException sassException, bool omitMessage = false)
 		{
-			if (sassException == null)
+			if (sassException is null)
 			{
 				throw new ArgumentNullException(nameof(sassException));
 			}
@@ -325,7 +325,7 @@ namespace DartSassHost.Helpers
 			WriteCommonErrorDetails(detailsBuilder, sassException, omitMessage);
 
 			var sassСompilationException = sassException as SassCompilationException;
-			if (sassСompilationException != null)
+			if (sassСompilationException is not null)
 			{
 				WriteCompilationErrorDetails(detailsBuilder, sassСompilationException);
 			}
@@ -347,7 +347,7 @@ namespace DartSassHost.Helpers
 		public static string GenerateErrorDetails(SassCompilationException sassСompilationException,
 			bool omitMessage = false)
 		{
-			if (sassСompilationException == null)
+			if (sassСompilationException is null)
 			{
 				throw new ArgumentNullException(nameof(sassСompilationException));
 			}

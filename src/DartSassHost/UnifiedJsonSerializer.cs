@@ -49,7 +49,7 @@ namespace DartSassHost
 		public UnifiedJsonSerializer(JsonSerializerSettings options)
 #endif
 		{
-			if (options == null)
+			if (options is null)
 			{
 				throw new ArgumentNullException(nameof(options));
 			}

@@ -53,7 +53,7 @@ namespace DartSassHost
 
 		public bool FileExists(string path)
 		{
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),
@@ -78,7 +78,7 @@ namespace DartSassHost
 
 		public string ReadFile(string path)
 		{
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),

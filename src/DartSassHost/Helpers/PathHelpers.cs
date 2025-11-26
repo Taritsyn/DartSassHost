@@ -22,7 +22,7 @@ namespace DartSassHost.Helpers
 	{
 		internal static string PrettifyPath(string currentDirectory, string path)
 		{
-			if (currentDirectory == null)
+			if (currentDirectory is null)
 			{
 				throw new ArgumentNullException(
 					nameof(currentDirectory),
@@ -30,7 +30,7 @@ namespace DartSassHost.Helpers
 				);
 			}
 
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),
@@ -55,7 +55,7 @@ namespace DartSassHost.Helpers
 		/// <returns>Path with forward slashes</returns>
 		private static string ProcessBackSlashes(string path)
 		{
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),
@@ -76,7 +76,7 @@ namespace DartSassHost.Helpers
 
 		private static string MakeRelativePath(string relativeTo, string path)
 		{
-			if (relativeTo == null)
+			if (relativeTo is null)
 			{
 				throw new ArgumentNullException(
 					nameof(relativeTo),
@@ -84,7 +84,7 @@ namespace DartSassHost.Helpers
 				);
 			}
 
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 					nameof(path),
@@ -158,7 +158,7 @@ namespace DartSassHost.Helpers
 		/// <returns>Normalized path</returns>
 		private static string NormalizePath(string path)
 		{
-			if (path == null)
+			if (path is null)
 			{
 				throw new ArgumentNullException(
 				nameof(path),

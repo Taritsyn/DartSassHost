@@ -194,12 +194,12 @@ namespace DartSassHost
 		/// <param name="options">Compilation options</param>
 		public SassCompiler(Func<IJsEngine> createJsEngineInstance, IFileManager fileManager, CompilationOptions options)
 		{
-			if (createJsEngineInstance == null)
+			if (createJsEngineInstance is null)
 			{
 				throw new ArgumentNullException(nameof(createJsEngineInstance));
 			}
 
-			if (fileManager == null)
+			if (fileManager is null)
 			{
 				throw new ArgumentNullException(nameof(fileManager));
 			}
@@ -241,12 +241,12 @@ namespace DartSassHost
 		/// <param name="options">Compilation options</param>
 		public SassCompiler(IJsEngineFactory jsEngineFactory, IFileManager fileManager, CompilationOptions options)
 		{
-			if (jsEngineFactory == null)
+			if (jsEngineFactory is null)
 			{
 				throw new ArgumentNullException(nameof(jsEngineFactory));
 			}
 
-			if (fileManager == null)
+			if (fileManager is null)
 			{
 				throw new ArgumentNullException(nameof(fileManager));
 			}
@@ -351,7 +351,7 @@ namespace DartSassHost
 		/// <exception cref="SassException" />
 		public CompilationResult Compile(string content, bool indentedSyntax, CompilationOptions options = null)
 		{
-			if (content == null)
+			if (content is null)
 			{
 				throw new ArgumentNullException(
 					nameof(content),
@@ -387,7 +387,7 @@ namespace DartSassHost
 		public CompilationResult Compile(string content, string inputPath, string outputPath = null,
 			string sourceMapPath = null, CompilationOptions options = null)
 		{
-			if (content == null)
+			if (content is null)
 			{
 				throw new ArgumentNullException(
 					nameof(content),
@@ -395,7 +395,7 @@ namespace DartSassHost
 				);
 			}
 
-			if (inputPath == null)
+			if (inputPath is null)
 			{
 				throw new ArgumentNullException(
 					nameof(inputPath),
@@ -440,7 +440,7 @@ namespace DartSassHost
 			string serializedInputPath = _jsonSerializer.SerializePrimitiveType(inputFilePath);
 			string serializedOutputPath = _jsonSerializer.SerializePrimitiveType(outputFilePath);
 			string serializedSourceMapPath = _jsonSerializer.SerializePrimitiveType(sourceMapFilePath);
-			string serializedOptions = options != null ? _jsonSerializer.SerializeObject(options) : "null";
+			string serializedOptions = options is not null ? _jsonSerializer.SerializeObject(options) : "null";
 
 			CompilationResult compilationResult = null;
 
@@ -485,7 +485,7 @@ namespace DartSassHost
 		public CompilationResult CompileFile(string inputPath, string outputPath = null,
 			string sourceMapPath = null, CompilationOptions options = null)
 		{
-			if (inputPath == null)
+			if (inputPath is null)
 			{
 				throw new ArgumentNullException(
 					nameof(inputPath),
@@ -510,7 +510,7 @@ namespace DartSassHost
 			ProcessFilePaths(ref inputFilePath, ref outputFilePath, ref sourceMapFilePath);
 
 			IFileManager fileManager = _fileManager;
-			if (fileManager != null && !fileManager.FileExists(inputPath))
+			if (fileManager is not null && !fileManager.FileExists(inputPath))
 			{
 				string description = string.Format("No such file or directory: {0}", inputPath);
 				string message = string.Format("Error: {0}", description);
@@ -529,7 +529,7 @@ namespace DartSassHost
 			string serializedInputPath = _jsonSerializer.SerializePrimitiveType(inputFilePath);
 			string serializedOutputPath = _jsonSerializer.SerializePrimitiveType(outputFilePath);
 			string serializedSourceMapPath = _jsonSerializer.SerializePrimitiveType(sourceMapFilePath);
-			string serializedOptions = options != null ? _jsonSerializer.SerializeObject(options) : "null";
+			string serializedOptions = options is not null ? _jsonSerializer.SerializeObject(options) : "null";
 
 			CompilationResult compilationResult = null;
 
@@ -617,7 +617,7 @@ namespace DartSassHost
 		{
 			if (_disposedFlag.Set())
 			{
-				if (_jsEngine != null)
+				if (_jsEngine is not null)
 				{
 					_jsEngine.RemoveVariable(FILE_MANAGER_VARIABLE_NAME);
 

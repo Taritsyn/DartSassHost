@@ -15,7 +15,7 @@ namespace DartSassHost.Extensions
 		/// <returns>Processed string value</returns>
 		public static string TabsToSpaces(this string source, int tabSize)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}
@@ -37,7 +37,7 @@ namespace DartSassHost.Extensions
 		/// <returns>true if the character was received successfully; otherwise, false</returns>
 		public static bool TryGetChar(this string source, int index, out char result)
 		{
-			if (source == null)
+			if (source is null)
 			{
 				throw new ArgumentNullException(nameof(source));
 			}

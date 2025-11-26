@@ -18,7 +18,7 @@
 			bool result = false;
 			content = null;
 
-			if (!string.IsNullOrWhiteSpace(path) && source != null && source.FileExists(path))
+			if (!string.IsNullOrWhiteSpace(path) && source is not null && source.FileExists(path))
 			{
 				try
 				{
