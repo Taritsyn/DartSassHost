@@ -8,6 +8,11 @@ using System.Runtime.InteropServices;
 #if MODERN_JSON_CONVERTER
 using System.Text.Json;
 #endif
+#if NET10_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
 
 using JavaScriptEngineSwitcher.Core;
 #if !MODERN_JSON_CONVERTER
@@ -95,7 +100,7 @@ namespace DartSassHost
 		/// <summary>
 		/// Synchronizer of Sass compiler initialization
 		/// </summary>
-		private readonly object _initializationSynchronizer = new object();
+		private readonly Lock _initializationSynchronizer = new Lock();
 
 		/// <summary>
 		/// Flag indicating whether the Sass compiler is initialized

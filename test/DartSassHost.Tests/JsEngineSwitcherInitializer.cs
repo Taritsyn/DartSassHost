@@ -1,31 +1,41 @@
-﻿using JavaScriptEngineSwitcher.ChakraCore;
+﻿#if NET10_0_OR_GREATER
+using Lock = System.Threading.Lock;
+#else
+using Lock = System.Object;
+#endif
+
+using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Core;
 
 namespace DartSassHost.Tests
 {
 	internal static class JsEngineSwitcherInitializer
 	{
-		private static readonly object _synchronizer = new object();
+		private static readonly Lock _synchronizer = new Lock();
 		private static bool _initialized;
 
 
 		public static void Initialize()
 		{
-			if (!_initialized)
+			if (_initialized)
 			{
-				lock (_synchronizer)
-				{
-					if (!_initialized)
-					{
-						IJsEngineSwitcher engineSwitcher = JsEngineSwitcher.Current;
-						engineSwitcher.EngineFactories
-							.AddChakraCore()
-							;
-						engineSwitcher.DefaultEngineName = ChakraCoreJsEngine.EngineName;
+				return;
+			}
 
-						_initialized = true;
-					}
+			lock (_synchronizer)
+			{
+				if (_initialized)
+				{
+					return;
 				}
+
+				IJsEngineSwitcher engineSwitcher = JsEngineSwitcher.Current;
+				engineSwitcher.EngineFactories
+					.AddChakraCore()
+					;
+				engineSwitcher.DefaultEngineName = ChakraCoreJsEngine.EngineName;
+
+				_initialized = true;
 			}
 		}
 	}

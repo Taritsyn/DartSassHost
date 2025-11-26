@@ -18,17 +18,7 @@ namespace DartSassHost.Extensions
 		/// <summary>
 		/// Script code cache
 		/// </summary>
-		private static ConcurrentDictionary<string, string> _scriptCodeCache;
-
-		/// <summary>
-		/// Synchronizer of script code cache initialization
-		/// </summary>
-		private static readonly object _scriptCodeCacheInitializationSynchronizer = new object();
-
-		/// <summary>
-		/// Flag indicating whether the script code cache is initialized
-		/// </summary>
-		private static bool _scriptCodeCacheInitialized;
+		private static readonly ConcurrentDictionary<string, string> _scriptCodeCache = new ConcurrentDictionary<string, string>();
 
 		/// <summary>
 		/// Executes a code from embedded JS resource
@@ -82,18 +72,6 @@ namespace DartSassHost.Extensions
 						string.Format(CoreStrings.Usage_InvalidResourceNameFormat, resourceName),
 						nameof(resourceName)
 					);
-				}
-
-				if (!_scriptCodeCacheInitialized)
-				{
-					lock (_scriptCodeCacheInitializationSynchronizer)
-					{
-						if (!_scriptCodeCacheInitialized)
-						{
-							_scriptCodeCache = new ConcurrentDictionary<string, string>();
-							_scriptCodeCacheInitialized = true;
-						}
-					}
 				}
 
 				string scriptCode = _scriptCodeCache.GetOrAdd(resourceName, key => ReadResourceAsString(key, assembly));
