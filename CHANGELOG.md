@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## v2.0.0 Preview 4 - December 22, 2025
+ * Size of minified JS bundle containing the original library has been reduced by 25.32%
+ * Performed a migration to the modern C# null/not-null checks
+ * Added support for .NET 10
+ * In the `lock` statements for .NET 10 target now uses a instances of the `System.Threading.Lock` class
+
 ## v2.0.0 Preview 3 - November 3, 2025
  * Added support for the Dart Sass version 1.93.3
 
