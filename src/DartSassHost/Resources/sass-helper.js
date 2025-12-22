@@ -3003,7 +3003,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				}
 				catch (e)
 				{
-					if (e.$isSassException0) {
+					if (e instanceof sass.Exception) {
 						error = mapError(e);
 						errors.push(error);
 					}
@@ -3363,7 +3363,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					line = location.line + 1,
 					column = location.column + 1,
 					source = error.get$source ? error.get$source() : null,
-					status = error.$isFormatException || error.$isSassRuntimeException0 ? 1 : 3,
+					status = error instanceof sass.forDsh.FormatException
+						|| error instanceof sass.forDsh.RuntimeException ? 1 : 3,
 					stackFrames = dshUtils.mapStackFrames(error.get$trace().frames)
 					;
 
