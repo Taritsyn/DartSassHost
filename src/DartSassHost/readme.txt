@@ -30,12 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   1. Size of minified JS bundle containing the original library has been reduced
-      by 25.32%;
-   2. Performed a migration to the modern C# null/not-null checks;
-   3. Added support for .NET 10;
-   4. In the `lock` statements for .NET 10 target now uses a instances of the
-      `System.Threading.Lock` class.
+   Added a `DeprecationId` class containing constants for deprecation IDs.
 
    ============
    PROJECT SITE

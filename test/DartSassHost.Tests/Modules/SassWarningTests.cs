@@ -26,7 +26,7 @@ namespace DartSassHost.Tests.Modules
 			};
 			var withFatalDeprecationIdOptions = new CompilationOptions
 			{
-				FatalDeprecations = new List<string> { "function-units" },
+				FatalDeprecations = new List<string> { DeprecationId.FunctionUnits },
 				IncludePaths = alternativePaths
 			};
 			var withFatalDeprecationVersionOptions = new CompilationOptions
@@ -36,12 +36,12 @@ namespace DartSassHost.Tests.Modules
 			};
 			var withFatalDeprecationIdAndVersionOptions = new CompilationOptions
 			{
-				FatalDeprecations = new List<string> { "slash-div", "1.79.0" },
+				FatalDeprecations = new List<string> { DeprecationId.SlashDiv, "1.79.0" },
 				IncludePaths = alternativePaths
 			};
 			var withFatalDeprecationVersionAndIdOptions = new CompilationOptions
 			{
-				FatalDeprecations = new List<string> { "1.55.0", "color-module-compat" },
+				FatalDeprecations = new List<string> { "1.55.0", DeprecationId.ColorModuleCompat },
 				IncludePaths = alternativePaths
 			};
 
@@ -61,7 +61,7 @@ namespace DartSassHost.Tests.Modules
 						"saturation", 98
 					) +
 					"\n\n" +
-					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "function-units")
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, DeprecationId.FunctionUnits)
 					;
 				Assert.AreEqual(
 					"Error: " + description1 + Environment.NewLine +
@@ -94,7 +94,7 @@ namespace DartSassHost.Tests.Modules
 						221716
 					) +
 					"\n\n" +
-					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "color-module-compat")
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, DeprecationId.ColorModuleCompat)
 					;
 				Assert.AreEqual(
 					"Error: " + description2 + Environment.NewLine +
@@ -125,7 +125,7 @@ namespace DartSassHost.Tests.Modules
 						"saturation", 98
 					) +
 					"\n\n" +
-					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "function-units")
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, DeprecationId.FunctionUnits)
 					;
 				Assert.AreEqual(
 					"Error: " + description3 + Environment.NewLine +
@@ -158,7 +158,7 @@ namespace DartSassHost.Tests.Modules
 						"$grid-gutter-width", 2
 					) +
 					"\n\n" +
-					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "slash-div")
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, DeprecationId.SlashDiv)
 					;
 				Assert.AreEqual(
 					"Error: " + description4 + Environment.NewLine +
@@ -320,7 +320,7 @@ namespace DartSassHost.Tests.Modules
 				"$y", "$x");
 
 			Assert.AreEqual(
-				"Deprecation Warning [slash-div]: " + description + Environment.NewLine +
+				"Deprecation Warning [" + DeprecationId.SlashDiv + "]: " + description + Environment.NewLine +
 				"   at responsive-ratio (Files/modules/warnings/deprecated-division/sass/_mixins.sass:9:29) -> " +
 				"  $padding: string.unquote(($y / $x) * 100 + \"%\")" + Environment.NewLine +
 				"   at root stylesheet (Files/modules/warnings/deprecated-division/sass/base.sass:11:3)",
@@ -328,7 +328,7 @@ namespace DartSassHost.Tests.Modules
 			);
 			Assert.AreEqual(description, warnings[0].Description);
 			Assert.AreEqual(true, warnings[0].IsDeprecation);
-			Assert.AreEqual("slash-div", warnings[0].DeprecationId);
+			Assert.AreEqual(DeprecationId.SlashDiv, warnings[0].DeprecationId);
 			Assert.AreEqual(importedFilePath, warnings[0].File);
 			Assert.AreEqual(9, warnings[0].LineNumber);
 			Assert.AreEqual(29, warnings[0].ColumnNumber);

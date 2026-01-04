@@ -26,7 +26,7 @@ namespace DartSassHost.Tests.Imports
 			};
 			var withFatalDeprecationIdOptions = new CompilationOptions
 			{
-				FatalDeprecations = new List<string> { "global-builtin" },
+				FatalDeprecations = new List<string> { DeprecationId.GlobalBuiltin },
 				IncludePaths = alternativePaths
 			};
 			var withFatalDeprecationVersionOptions = new CompilationOptions
@@ -36,12 +36,12 @@ namespace DartSassHost.Tests.Imports
 			};
 			var withFatalDeprecationIdAndVersionOptions = new CompilationOptions
 			{
-				FatalDeprecations = new List<string> { "slash-div", "1.80.0" },
+				FatalDeprecations = new List<string> { DeprecationId.SlashDiv, "1.80.0" },
 				IncludePaths = alternativePaths
 			};
 			var withFatalDeprecationVersionAndIdOptions = new CompilationOptions
 			{
-				FatalDeprecations = new List<string> { "1.3.2", "color-module-compat" },
+				FatalDeprecations = new List<string> { "1.3.2", DeprecationId.ColorModuleCompat },
 				IncludePaths = alternativePaths
 			};
 
@@ -58,7 +58,7 @@ namespace DartSassHost.Tests.Imports
 					input, inputPath, options: withFatalDeprecationIdOptions));
 				string description1 = string.Format(WarningConstants.GlobalBuiltinFunctionDeprecated, "list.index") +
 					"\n\n" +
-					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "global-builtin")
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, DeprecationId.GlobalBuiltin)
 					;
 				Assert.AreEqual(
 					"Error: " + description1 + Environment.NewLine +
@@ -92,7 +92,7 @@ namespace DartSassHost.Tests.Imports
 						"saturation", 98
 					) +
 					"\n\n" +
-					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "function-units")
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, DeprecationId.FunctionUnits)
 					;
 				Assert.AreEqual(
 					"Error: " + description2 + Environment.NewLine +
@@ -123,7 +123,7 @@ namespace DartSassHost.Tests.Imports
 					input, inputPath, options: withFatalDeprecationIdAndVersionOptions));
 				string description3 = WarningConstants.SassImportRulesDeprecated +
 					"\n\n" +
-					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "import")
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, DeprecationId.Import)
 					;
 				Assert.AreEqual(
 					"Error: " + description3 + Environment.NewLine +
@@ -154,7 +154,7 @@ namespace DartSassHost.Tests.Imports
 						221716
 					) +
 					"\n\n" +
-					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, "color-module-compat")
+					string.Format(WarningConstants.DeprecationWarningAsErrorExplanation, DeprecationId.ColorModuleCompat)
 					;
 				Assert.AreEqual(
 					"Error: " + description4 + Environment.NewLine +
@@ -185,7 +185,7 @@ namespace DartSassHost.Tests.Imports
 		public void MappingSassWarningDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
-			var options = new CompilationOptions { SilenceDeprecations = new List<string> { "import" } };
+			var options = new CompilationOptions { SilenceDeprecations = new List<string> { DeprecationId.Import } };
 
 			string inputPath = GenerateSassFilePath("division-with-non-numeric-args", "base");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
@@ -314,14 +314,14 @@ namespace DartSassHost.Tests.Imports
 			Assert.AreEqual(3, warnings.Count);
 
 			Assert.AreEqual(
-				"Deprecation Warning [import]: " + WarningConstants.SassImportRulesDeprecated + Environment.NewLine +
+				"Deprecation Warning [" + DeprecationId.Import + "]: " + WarningConstants.SassImportRulesDeprecated + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/deprecated-division/scss/base.scss:1:9) -> " +
 				"@import 'mixins';",
 				warnings[0].Message
 			);
 			Assert.AreEqual(WarningConstants.SassImportRulesDeprecated, warnings[0].Description);
 			Assert.AreEqual(true, warnings[0].IsDeprecation);
-			Assert.AreEqual("import", warnings[0].DeprecationId);
+			Assert.AreEqual(DeprecationId.Import, warnings[0].DeprecationId);
 			Assert.AreEqual(inputPath, warnings[0].File);
 			Assert.AreEqual(1, warnings[0].LineNumber);
 			Assert.AreEqual(9, warnings[0].ColumnNumber);
@@ -339,7 +339,7 @@ namespace DartSassHost.Tests.Imports
 				"$y", "$x");
 
 			Assert.AreEqual(
-				"Deprecation Warning [slash-div]: " + description2 + Environment.NewLine +
+				"Deprecation Warning [" + DeprecationId.SlashDiv + "]: " + description2 + Environment.NewLine +
 				"   at responsive-ratio (Files/imports/warnings/deprecated-division/scss/_mixins.scss:8:22) -> " +
 				"  $padding: unquote(($y / $x) * 100 + '%');" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/deprecated-division/scss/base.scss:12:3)",
@@ -347,7 +347,7 @@ namespace DartSassHost.Tests.Imports
 			);
 			Assert.AreEqual(description2, warnings[1].Description);
 			Assert.AreEqual(true, warnings[1].IsDeprecation);
-			Assert.AreEqual("slash-div", warnings[1].DeprecationId);
+			Assert.AreEqual(DeprecationId.SlashDiv, warnings[1].DeprecationId);
 			Assert.AreEqual(importedFilePath, warnings[1].File);
 			Assert.AreEqual(8, warnings[1].LineNumber);
 			Assert.AreEqual(22, warnings[1].ColumnNumber);
@@ -367,7 +367,7 @@ namespace DartSassHost.Tests.Imports
 			string description3 = string.Format(WarningConstants.GlobalBuiltinFunctionDeprecated, "string.unquote");
 
 			Assert.AreEqual(
-				"Deprecation Warning [global-builtin]: " + description3 + Environment.NewLine +
+				"Deprecation Warning [" + DeprecationId.GlobalBuiltin + "]: " + description3 + Environment.NewLine +
 				"   at responsive-ratio (Files/imports/warnings/deprecated-division/scss/_mixins.scss:8:13) -> " +
 				"  $padding: unquote(($y / $x) * 100 + '%');" + Environment.NewLine +
 				"   at root stylesheet (Files/imports/warnings/deprecated-division/scss/base.scss:12:3)",
@@ -375,7 +375,7 @@ namespace DartSassHost.Tests.Imports
 			);
 			Assert.AreEqual(description3, warnings[2].Description);
 			Assert.AreEqual(true, warnings[2].IsDeprecation);
-			Assert.AreEqual("global-builtin", warnings[2].DeprecationId);
+			Assert.AreEqual(DeprecationId.GlobalBuiltin, warnings[2].DeprecationId);
 			Assert.AreEqual(importedFilePath, warnings[2].File);
 			Assert.AreEqual(8, warnings[2].LineNumber);
 			Assert.AreEqual(13, warnings[2].ColumnNumber);
@@ -397,7 +397,10 @@ namespace DartSassHost.Tests.Imports
 		public void MappingSassCustomWarningDuringCompilation([Values]bool fromFile)
 		{
 			// Arrange
-			var options = new CompilationOptions { SilenceDeprecations = new List<string> { "global-builtin", "import" } };
+			var options = new CompilationOptions
+			{
+				SilenceDeprecations = new List<string> { DeprecationId.GlobalBuiltin, DeprecationId.Import }
+			};
 
 			string inputPath = GenerateSassFilePath("custom-warning", "base");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;

@@ -560,7 +560,10 @@ namespace DartSassHost.Tests.Imports
 			};
 			var withSilenceDeprecationsOptions = new CompilationOptions
 			{
-				SilenceDeprecations = new List<string> { "global-builtin", "import", "slash-div" },
+				SilenceDeprecations = new List<string>
+				{
+					DeprecationId.GlobalBuiltin, DeprecationId.Import, DeprecationId.SlashDiv
+				},
 				IncludePaths = alternativePaths
 			};
 
