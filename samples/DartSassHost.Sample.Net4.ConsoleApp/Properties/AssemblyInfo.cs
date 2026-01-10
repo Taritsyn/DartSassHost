@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Dart Sass Host: Sample .NET 4.0 Console Application")]
-[assembly: AssemblyCopyright("Copyright © 2020-2025 Andrey Taritsyn")]
+[assembly: AssemblyCopyright("Copyright © 2020-2026 Andrey Taritsyn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

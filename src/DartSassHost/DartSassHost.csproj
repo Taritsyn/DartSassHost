@@ -25,7 +25,8 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
-    <PackageReleaseNotes>Added a `DeprecationId` class containing constants for deprecation IDs.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Added support for the Dart Sass version 1.97.2;
+2. Added a `DeprecationId` class containing constants for deprecation IDs.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 

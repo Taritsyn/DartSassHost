@@ -122,6 +122,7 @@
 		/// </summary>
 		/// <remarks>
 		/// This deprecation became active in Dart Sass 1.76.0.
+		/// It became obsolete in Dart Sass 1.94.0.
 		/// </remarks>
 		public const string CssFunctionMixin = "css-function-mixin";
 
@@ -214,6 +215,14 @@
 		/// This deprecation became active in Dart Sass 1.92.0.
 		/// </remarks>
 		public const string WithPrivate = "with-private";
+
+		/// <summary>
+		/// Deprecation for the Sass <c>if($condition, $if-true, $if-false)</c> function
+		/// </summary>
+		/// <remarks>
+		/// This deprecation became active in Dart Sass 1.95.0.
+		/// </remarks>
+		public const string IfFunction = "if-function";
 
 		/// <summary>
 		/// Used for any user-emitted deprecation warnings
