@@ -1,6 +1,10 @@
 Change log
 ==========
 
+## v2.0.0 Preview 5 - January 10, 2026
+ * Added support for the Dart Sass version 1.97.2
+ * Added a `DeprecationId` class containing constants for deprecation IDs
+
 ## v2.0.0 Preview 4 - December 22, 2025
  * Size of minified JS bundle containing the original library has been reduced by 25.32%
  * Performed a migration to the modern C# null/not-null checks
