@@ -2642,7 +2642,6 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				this._fileManager = fileManager;
 				this._currentDirectory = fileManager.GetCurrentDirectory();
 				this._fileExistenceCache = new Map();
-				this._fileContentCache = new Map();
 
 				this.supportsVirtualPaths = fileManager.SupportsVirtualPaths;
 			}
@@ -2655,7 +2654,11 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			DshFileManagerProxy.prototype.convertPathToAbsolute = function (path) {
 				var processedPath = path;
 
-				if (path && this.supportsVirtualPaths && this._fileManager.IsAppRelativeVirtualPath(path)) {
+				if (!this.supportsVirtualPaths) {
+					return path;
+				}
+
+				if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
 					processedPath = this._fileManager.ToAbsoluteVirtualPath(path);
 				}
 
@@ -2669,15 +2672,17 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					quoteChar
 					;
 
-				if (this.supportsVirtualPaths) {
-					quotedResult = unquote(quotedValue);
-					path = quotedResult.value;
-					quoteChar = quotedResult.quoteChar;
+				if (!this.supportsVirtualPaths) {
+					return quotedValue;
+				}
 
-					if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
-						path = this._fileManager.ToAbsoluteVirtualPath(path);
-						processedQuotedValue = quote(path, quoteChar);
-					}
+				quotedResult = unquote(quotedValue);
+				path = quotedResult.value;
+				quoteChar = quotedResult.quoteChar;
+
+				if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
+					path = this._fileManager.ToAbsoluteVirtualPath(path);
+					processedQuotedValue = quote(path, quoteChar);
 				}
 
 				return processedQuotedValue;
@@ -2688,7 +2693,11 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					processedUrlFunction = urlFunction
 					;
 
-				if (isUrlFunction(urlFunction) && this.supportsVirtualPaths) {
+				if (!this.supportsVirtualPaths) {
+					return urlFunction;
+				}
+
+				if (isUrlFunction(urlFunction)) {
 					path = extractPathFromUrlFunction(urlFunction);
 					if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
 						path = this._fileManager.ToAbsoluteVirtualPath(path);
@@ -2704,6 +2713,10 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					path,
 					absolutePath
 					;
+
+				if (!this.supportsVirtualPaths) {
+					return uri;
+				}
 
 				path = uri.toString();
 				absolutePath = this.convertPathToAbsolute(path);
@@ -2736,20 +2749,11 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 			DshFileManagerProxy.prototype.readFile = function (path) {
 				var processedPath,
-					cacheItemName,
 					content
 					;
 
 				processedPath = dshUtils.removeFileSchemeFromPath(path);
-				cacheItemName = dshUtils.getCanonicalFilePath(processedPath);
-
-				if (this._fileContentCache.has(cacheItemName)) {
-					content = this._fileContentCache.get(cacheItemName);
-				}
-				else {
-					content = this._fileManager.ReadFile(processedPath);
-					this._fileContentCache.set(cacheItemName, content);
-				}
+				content = this._fileManager.ReadFile(processedPath);
 
 				return content;
 			};
@@ -2759,9 +2763,6 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 				this._fileExistenceCache.clear();
 				this._fileExistenceCache = null;
-
-				this._fileContentCache.clear();
-				this._fileContentCache = null;
 			};
 
 			return DshFileManagerProxy;
