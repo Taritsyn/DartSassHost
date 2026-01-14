@@ -2652,7 +2652,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			function DshFileManagerProxy(fileManager) {
 				this._fileManager = fileManager;
 				this._currentDirectory = fileManager.GetCurrentDirectory();
-				this._fileExistenceCache = new Map();
+				this._convertedPathsCache = null;
+				this._fileExistenceCache = null;
 
 				this.supportsVirtualPaths = fileManager.SupportsVirtualPaths;
 			}
@@ -2669,9 +2670,19 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					return path;
 				}
 
-				absolutePath = path;
-				if (this._fileManager.IsAppRelativeVirtualPath(path)) {
-					absolutePath = this._fileManager.ToAbsoluteVirtualPath(path);
+				if (this._convertedPathsCache !== null && this._convertedPathsCache.has(path)) {
+					absolutePath = this._convertedPathsCache.get(path);
+				}
+				else {
+					absolutePath = path;
+					if (this._fileManager.IsAppRelativeVirtualPath(path)) {
+						absolutePath = this._fileManager.ToAbsoluteVirtualPath(path);
+					}
+
+					if (this._convertedPathsCache === null) {
+						this._convertedPathsCache = new Map();
+					}
+					this._convertedPathsCache.set(path, absolutePath);
 				}
 
 				return absolutePath;
@@ -2767,11 +2778,15 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				processedPath = dshUtils.removeFileSchemeFromPath(path);
 				cacheItemName = dshUtils.getCanonicalFilePath(processedPath);
 
-				if (this._fileExistenceCache.has(cacheItemName)) {
+				if (this._fileExistenceCache !== null && this._fileExistenceCache.has(cacheItemName)) {
 					result = this._fileExistenceCache.get(cacheItemName);
 				}
 				else {
 					result = this._fileManager.FileExists(processedPath);
+
+					if (this._fileExistenceCache === null) {
+						this._fileExistenceCache = new Map();
+					}
 					this._fileExistenceCache.set(cacheItemName, result);
 				}
 
@@ -2792,8 +2807,15 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			DshFileManagerProxy.prototype.dispose = function () {
 				this._fileManager = null;
 
-				this._fileExistenceCache.clear();
-				this._fileExistenceCache = null;
+				if (this._convertedPathsCache !== null) {
+					this._convertedPathsCache.clear();
+					this._convertedPathsCache = null;
+				}
+
+				if (this._fileExistenceCache !== null) {
+					this._fileExistenceCache.clear();
+					this._fileExistenceCache = null;
+				}
 			};
 
 			return DshFileManagerProxy;
