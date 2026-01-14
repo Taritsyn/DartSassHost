@@ -1,6 +1,19 @@
 Change log
 ==========
 
+## v2.0.0 - January 14, 2026
+ * Added support for the Dart Sass version 1.97.2
+ * Migration to the modern JS API of the Dart Sass library has been completed
+ * In compilation options three properties have been deprecated: `IndentType`, `IndentWidth` and `LineFeedType`
+ * Added a `DeprecationId` class containing constants for deprecation IDs
+ * Size of minified JS bundle containing the original library has been reduced by 27.74%
+ * Performed a migration to the modern C# null/not-null checks
+ * Added support for .NET 10
+ * In the `lock` statements for .NET 10 target now uses a instances of the `System.Threading.Lock` class
+ * An unnecessary cache that responsible for storing file contents has been removed from the `DshFileManagerProxy` class;
+ * Data URIs are excluded from processing by the `IsAppRelativeVirtualPath` method of the `IFileManager` interface
+ * A new cache that responsible for storing converted paths has been added to the `DshFileManagerProxy` class
+
 ## v2.0.0 Preview 5 - January 10, 2026
  * Added support for the Dart Sass version 1.97.2
  * Added a `DeprecationId` class containing constants for deprecation IDs

@@ -1,6 +1,6 @@
 <Project>
   <ItemGroup>
-    <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.27.3" />
+    <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.30.4" />
     <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.27.3" />
     <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x86" Version="3.27.3" />
     <PackageVersion Include="JavaScriptEngineSwitcher.ChakraCore.Native.linux-x64" Version="3.27.3" />

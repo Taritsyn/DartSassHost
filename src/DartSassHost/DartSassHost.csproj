@@ -3,7 +3,6 @@
   <PropertyGroup>
     <Product>Dart Sass Host for .NET</Product>
     <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix>preview5</VersionSuffix>
     <TargetFrameworks>net40-client;net45;net471;netstandard1.3;netstandard2.0;netstandard2.1;net8.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -26,7 +25,16 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageTags>DartSass;Sass;SCSS;CSS</PackageTags>
     <PackageReleaseNotes>1. Added support for the Dart Sass version 1.97.2;
-2. Added a `DeprecationId` class containing constants for deprecation IDs.</PackageReleaseNotes>
+2. Migration to the modern JS API of the Dart Sass library has been completed;
+3. In compilation options three properties have been deprecated: `IndentType`, `IndentWidth` and `LineFeedType`;
+4. Added a `DeprecationId` class containing constants for deprecation IDs;
+5. Size of minified JS bundle containing the original library has been reduced by 27.74%;
+6. Performed a migration to the modern C# null/not-null checks;
+7. Added support for .NET 10;
+8. In the `lock` statements for .NET 10 target now uses a instances of the `System.Threading.Lock` class;
+9. An unnecessary cache that responsible for storing file contents has been removed from the `DshFileManagerProxy` class;
+10. Data URIs are excluded from processing by the `IsAppRelativeVirtualPath` method of the `IFileManager` interface;
+11. A new cache that responsible for storing converted paths has been added to the `DshFileManagerProxy` class.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
