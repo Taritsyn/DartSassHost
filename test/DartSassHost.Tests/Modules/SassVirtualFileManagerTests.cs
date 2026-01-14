@@ -16,6 +16,7 @@ namespace DartSassHost.Tests.Modules
 				"@use '/styles/fonts'\n\n" +
 				"body\n" +
 				"  background-color: $bg-color\n" +
+				"  background-image: $bg-image\n" +
 				"  color: #699\n" +
 				"  font-size: .85em\n" +
 				"  font-family: \"League Gothic\", Helvetica, Sans-Serif\n" +
@@ -28,6 +29,13 @@ namespace DartSassHost.Tests.Modules
 				"  @include f.border-radius(5px)"
 				;
 			_siteImportedFiles["/styles/_variables.sass"] = "$bg-color: #fef\n" +
+				"$bg-image: uRl('dAtA:image/svg+xml," +
+				"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\">" +
+				"<g stroke-width=\"1\" fill=\"none\" stroke=\"gray\" stroke-miterlimit=\"8\">" +
+				"<polygon points=\"15.5,13.5 8,1.5 0.5,13.5\"/>" +
+				"</g>" +
+				"</svg>" +
+				"')\n" +
 				"$icons-path: \"/images/icons\""
 				;
 			_siteImportedFiles["/styles/foundation/_index.sass"] = "@forward 'mixins'\n" +
@@ -97,6 +105,17 @@ namespace DartSassHost.Tests.Modules
 				"  background-image: url(/images/icons/qr-code.png)\n" +
 				".icon-radio\n" +
 				"  background-image: url('/images/icons/radio.png')\n" +
+				".icon-scanner\n" +
+				"  background-image: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACGUlEQ" +
+				"VR42qWRA4wYURCG/31n27Zt2zai2rZthW1jNDxHtW2FtW1zb6fTVxv3Jd8zZ/Ar6urqytiBbCx+g1JZWYlfMLizs3NVTU3NYABHp" +
+				"D9B4Be8efNGvH37FitWrFitqmo8t+PxL+Tk5Ix48uQxnThxnE6fPkWFhYXDCgoKEvC3pKSkjLlz5zYdOLBfevLkCcrOzh6ZlZWVi" +
+				"L8hMTExJSYmZvy1a1do164d0kOHDlBqauoYPjwZn8jNzfVle7Ejvjc9PX10SEjI5AsXLtCWLVuke/fuobi4uPGxsbEpYJTMzMzeK" +
+				"1YsH29nZxfEgcPXvn2r4v79+zh58iSamprABwGMkZERhg4dOomI9uL9k27cuCEDFTuxjaKmb6SwyWspcGwX+Y5qJ7/RHZQ6tZ2ah" +
+				"0+j8+cv0ubNW6V79uyjwMDAqYJTpBARwJChJaKiohAaGorAgAD4+vjAw9MTpq4BeB1UjFkr18DbOwCAHl6+VPH69Wuh8F/GR7dEL" +
+				"xmrjsGQ9ivQMbOFEAJCUWSto6sLfQMD6POzdZ/fgXq8HXNGDJXf6dWrbrYSGRk5ce3atYuePHnCJ77ik1/J+kMM3qK7W4OmaSAir" +
+				"gkPHjzAkSOHMWHCfM5U0DwlKChoCg/M19PTA3/n+yDKzYDCClbno7qyjo72XghHR8fZN2/epK6uLmptbf0njY2NF8HMzKy/iYnJw" +
+				"v/RwMBgIHrKOw2CR46YSAM+AAAAAElFTkSuQmCC\")\n" +
+				"\n" +
 				".icon-server\n" +
 				"  background-image: url(\"/images/icons/server.png\")"
 				;
@@ -117,9 +136,9 @@ namespace DartSassHost.Tests.Modules
 				"\"fonts/league-gothic.sass\",\"site.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
 				"\"names\":[],\"mappings\":\"AAAA;AAAA;AAAA;AAAA;EAIE;EACA;;;ACHF;EACE;EACA;EACA;EACA;EACA;EACA;;;" +
 				"AAEF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;" +
-				"AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;ACrCF;EACE;EACA;EACA;EAIA;" +
-				"EACA;;ACNF;EACE;EACA;EACA;EACA;EACA;;ACFF;EACE,kBCNS;EDOT;EACA;EACA;;;AAEF;EACE;EACA;EACA;EACA;" +
-				"EEdA,eFeyB;EEdzB,uBFcyB;EEbzB,oBFayB\"," +
+				"AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AAEF;EACE;;;ACxCF;EACE;" +
+				"EACA;EACA;EAIA;EACA;;ACNF;EACE;EACA;EACA;EACA;EACA;;ACFF;EACE,kBCNS;EDOT,kBCNS;EDOT;EACA;EACA;;;" +
+				"AAEF;EACE;EACA;EACA;EACA;EEfA,eFgByB;EEfzB,uBFeyB;EEdzB,oBFcyB\"," +
 				"\"file\":\"site.css\"}"
 				;
 
@@ -131,6 +150,7 @@ namespace DartSassHost.Tests.Modules
 				"@use '~/styles/fonts'\n\n" +
 				"body\n" +
 				"  background-color: $bg-color\n" +
+				"  background-image: $bg-image\n" +
 				"  color: #699\n" +
 				"  font-size: .85em\n" +
 				"  font-family: \"League Gothic\", Helvetica, Sans-Serif\n" +
@@ -143,6 +163,13 @@ namespace DartSassHost.Tests.Modules
 				"  @include f.border-radius(5px)"
 				;
 			_appImportedFiles["/app01/styles/_variables.sass"] = "$bg-color: #fef\n" +
+				"$bg-image: uRl('dAtA:image/svg+xml," +
+				"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\">" +
+				"<g stroke-width=\"1\" fill=\"none\" stroke=\"gray\" stroke-miterlimit=\"8\">" +
+				"<polygon points=\"15.5,13.5 8,1.5 0.5,13.5\"/>" +
+				"</g>" +
+				"</svg>" +
+				"')\n" +
 				"$icons-path: \"~/images/icons\""
 				;
 			_appImportedFiles["/app01/styles/foundation/_index.sass"] = "@forward 'mixins'\n" +
@@ -212,6 +239,17 @@ namespace DartSassHost.Tests.Modules
 				"  background-image: url(/app01/images/icons/qr-code.png)\n" +
 				".icon-radio\n" +
 				"  background-image: url('/app01/images/icons/radio.png')\n" +
+				".icon-scanner\n" +
+				"  background-image: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACGUlEQ" +
+				"VR42qWRA4wYURCG/31n27Zt2zai2rZthW1jNDxHtW2FtW1zb6fTVxv3Jd8zZ/Ar6urqytiBbCx+g1JZWYlfMLizs3NVTU3NYABHp" +
+				"D9B4Be8efNGvH37FitWrFitqmo8t+PxL+Tk5Ix48uQxnThxnE6fPkWFhYXDCgoKEvC3pKSkjLlz5zYdOLBfevLkCcrOzh6ZlZWVi" +
+				"L8hMTExJSYmZvy1a1do164d0kOHDlBqauoYPjwZn8jNzfVle7Ejvjc9PX10SEjI5AsXLtCWLVuke/fuobi4uPGxsbEpYJTMzMzeK" +
+				"1YsH29nZxfEgcPXvn2r4v79+zh58iSamprABwGMkZERhg4dOomI9uL9k27cuCEDFTuxjaKmb6SwyWspcGwX+Y5qJ7/RHZQ6tZ2ah" +
+				"0+j8+cv0ubNW6V79uyjwMDAqYJTpBARwJChJaKiohAaGorAgAD4+vjAw9MTpq4BeB1UjFkr18DbOwCAHl6+VPH69Wuh8F/GR7dEL" +
+				"xmrjsGQ9ivQMbOFEAJCUWSto6sLfQMD6POzdZ/fgXq8HXNGDJXf6dWrbrYSGRk5ce3atYuePHnCJ77ik1/J+kMM3qK7W4OmaSAir" +
+				"gkPHjzAkSOHMWHCfM5U0DwlKChoCg/M19PTA3/n+yDKzYDCClbno7qyjo72XghHR8fZN2/epK6uLmptbf0njY2NF8HMzKy/iYnJw" +
+				"v/RwMBgIHrKOw2CR46YSAM+AAAAAElFTkSuQmCC\")\n" +
+				"\n" +
 				".icon-server\n" +
 				"  background-image: url(\"/app01/images/icons/server.png\")"
 				;
@@ -232,9 +270,9 @@ namespace DartSassHost.Tests.Modules
 				"\"fonts/league-gothic.sass\",\"app.sass\",\"_variables.sass\",\"foundation/_mixins.sass\"]," +
 				"\"names\":[],\"mappings\":\"AAAA;AAAA;AAAA;AAAA;EAIE;EACA;;;ACHF;EACE;EACA;EACA;EACA;EACA;EACA;;;" +
 				"AAEF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;" +
-				"AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;ACrCF;EACE;EACA;EACA;EAIA;" +
-				"EACA;;ACNF;EACE;EACA;EACA;EACA;EACA;;ACFF;EACE,kBCNS;EDOT;EACA;EACA;;;AAEF;EACE;EACA;EACA;EACA;" +
-				"EEdA,eFeyB;EEdzB,uBFcyB;EEbzB,oBFayB\"," +
+				"AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AACF;EACE;;;AAEF;EACE;;;ACxCF;EACE;" +
+				"EACA;EACA;EAIA;EACA;;ACNF;EACE;EACA;EACA;EACA;EACA;;ACFF;EACE,kBCNS;EDOT,kBCNS;EDOT;EACA;EACA;;;" +
+				"AAEF;EACE;EACA;EACA;EACA;EEfA,eFgByB;EEfzB,uBFeyB;EEdzB,oBFcyB\"," +
 				"\"file\":\"app.css\"}"
 				;
 		}

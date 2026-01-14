@@ -17,6 +17,12 @@ namespace DartSassHost.Tests.Imports
 				"@import 'print' print and (min-resolution: 300dpi);"
 				;
 			_siteImportedFiles["/styles/_variables.scss"] = "$bg-color: #fef;\n" +
+				"$bg-image: URL(DATA:image/svg+xml," +
+				"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20" +
+				"viewBox%3D%220%200%2020%2020%22%3E%3Cg%20stroke-width%3D%221%22%20fill%3D%22none%22%20" +
+				"stroke%3D%22gray%22%20stroke-miterlimit%3D%228%22%3E%3Cpolygon%20" +
+				"points%3D%2215.5%2C13.5%208%2C1.5%200.5%2C13.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" +
+				");\n" +
 				"$icons-path: \"/styles/icons\";"
 				;
 			_siteImportedFiles["/styles/foundation/_index.scss"] = "@import 'mixins', 'reset';";
@@ -60,10 +66,23 @@ namespace DartSassHost.Tests.Imports
 				"@import url(\"#{$icons-path}/$network.css\");\n" +
 				"@import url($icons-path + '/open_source.css');\n" +
 				"@import url($icons-path + \"/printer.css\");\n" +
-				"@import url(/styles/icons/qr-code.css), url('/styles/icons/radio.css'), url(\"/styles/icons/server.css\");"
+				"@import url(/styles/icons/qr-code.css), url('/styles/icons/radio.css'), " +
+				"url(\"/styles/icons/server.css\");\n\n" +
+				".icon-scanner {\n" +
+				"  background-image: UrL(DaTa:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACGUlEQ" +
+				"VR42qWRA4wYURCG/31n27Zt2zai2rZthW1jNDxHtW2FtW1zb6fTVxv3Jd8zZ/Ar6urqytiBbCx+g1JZWYlfMLizs3NVTU3NYABHp" +
+				"D9B4Be8efNGvH37FitWrFitqmo8t+PxL+Tk5Ix48uQxnThxnE6fPkWFhYXDCgoKEvC3pKSkjLlz5zYdOLBfevLkCcrOzh6ZlZWVi" +
+				"L8hMTExJSYmZvy1a1do164d0kOHDlBqauoYPjwZn8jNzfVle7Ejvjc9PX10SEjI5AsXLtCWLVuke/fuobi4uPGxsbEpYJTMzMzeK" +
+				"1YsH29nZxfEgcPXvn2r4v79+zh58iSamprABwGMkZERhg4dOomI9uL9k27cuCEDFTuxjaKmb6SwyWspcGwX+Y5qJ7/RHZQ6tZ2ah" +
+				"0+j8+cv0ubNW6V79uyjwMDAqYJTpBARwJChJaKiohAaGorAgAD4+vjAw9MTpq4BeB1UjFkr18DbOwCAHl6+VPH69Wuh8F/GR7dEL" +
+				"xmrjsGQ9ivQMbOFEAJCUWSto6sLfQMD6POzdZ/fgXq8HXNGDJXf6dWrbrYSGRk5ce3atYuePHnCJ77ik1/J+kMM3qK7W4OmaSAir" +
+				"gkPHjzAkSOHMWHCfM5U0DwlKChoCg/M19PTA3/n+yDKzYDCClbno7qyjo72XghHR8fZN2/epK6uLmptbf0njY2NF8HMzKy/iYnJw" +
+				"v/RwMBgIHrKOw2CR46YSAM+AAAAAElFTkSuQmCC);\n" +
+				"}"
 				;
 			_siteImportedFiles["/styles/layout.scss"] = "body {\n" +
 				"  background-color: $bg-color;\n" +
+				"  background-image: $bg-image;\n" +
 				"  color: #699;\n" +
 				"  font-size: .85em;\n" +
 				"  font-family: \"League Gothic\", Helvetica, Sans-Serif;\n" +
@@ -93,8 +112,8 @@ namespace DartSassHost.Tests.Imports
 				"\"fonts/bebas-neue.css\",\"layout.scss\",\"_variables.scss\",\"foundation/_mixins.scss\"]," +
 				"\"names\":[]," +
 				"\"mappings\":\"AASQ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAgC;AAAgC;ACnBhE;AACA;AAA8C;ACE9C;" +
-				"ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;EACA;EAIA;EACA;;ACRF;" +
-				"EACE,kBCDS;EDET;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EEVA,eFWuB;EEVvB,uBFUuB;EETvB,oBFSuB\"," +
+				"ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AAgBF;EACE;;;AIvBF;EACE;EACA;EACA;EAIA;EACA;;" +
+				"ACRF;EACE,kBCDS;EDET,kBCDS;EDET;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EEXA,eFYuB;EEXvB,uBFWuB;EEVvB,oBFUuB\"," +
 				"\"file\":\"site.css\"}"
 				;
 
@@ -107,6 +126,12 @@ namespace DartSassHost.Tests.Imports
 				"@import 'print' print and (min-resolution: 300dpi);"
 				;
 			_appImportedFiles["/app01/styles/_variables.scss"] = "$bg-color: #fef;\n" +
+				"$bg-image: URL(DATA:image/svg+xml," +
+				"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20" +
+				"viewBox%3D%220%200%2020%2020%22%3E%3Cg%20stroke-width%3D%221%22%20fill%3D%22none%22%20" +
+				"stroke%3D%22gray%22%20stroke-miterlimit%3D%228%22%3E%3Cpolygon%20" +
+				"points%3D%2215.5%2C13.5%208%2C1.5%200.5%2C13.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" +
+				");\n" +
 				"$icons-path: \"~/styles/icons\";"
 				;
 			_appImportedFiles["/app01/styles/foundation/_index.scss"] = "@import 'mixins', 'reset';";
@@ -151,10 +176,22 @@ namespace DartSassHost.Tests.Imports
 				"@import url($icons-path + '/open_source.css');\n" +
 				"@import url($icons-path + \"/printer.css\");\n" +
 				"@import url(/app01/styles/icons/qr-code.css), url('/app01/styles/icons/radio.css'), " +
-				"url(\"/app01/styles/icons/server.css\");"
+				"url(\"/app01/styles/icons/server.css\");\n\n" +
+				".icon-scanner {\n" +
+				"  background-image: UrL(DaTa:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACGUlEQ" +
+				"VR42qWRA4wYURCG/31n27Zt2zai2rZthW1jNDxHtW2FtW1zb6fTVxv3Jd8zZ/Ar6urqytiBbCx+g1JZWYlfMLizs3NVTU3NYABHp" +
+				"D9B4Be8efNGvH37FitWrFitqmo8t+PxL+Tk5Ix48uQxnThxnE6fPkWFhYXDCgoKEvC3pKSkjLlz5zYdOLBfevLkCcrOzh6ZlZWVi" +
+				"L8hMTExJSYmZvy1a1do164d0kOHDlBqauoYPjwZn8jNzfVle7Ejvjc9PX10SEjI5AsXLtCWLVuke/fuobi4uPGxsbEpYJTMzMzeK" +
+				"1YsH29nZxfEgcPXvn2r4v79+zh58iSamprABwGMkZERhg4dOomI9uL9k27cuCEDFTuxjaKmb6SwyWspcGwX+Y5qJ7/RHZQ6tZ2ah" +
+				"0+j8+cv0ubNW6V79uyjwMDAqYJTpBARwJChJaKiohAaGorAgAD4+vjAw9MTpq4BeB1UjFkr18DbOwCAHl6+VPH69Wuh8F/GR7dEL" +
+				"xmrjsGQ9ivQMbOFEAJCUWSto6sLfQMD6POzdZ/fgXq8HXNGDJXf6dWrbrYSGRk5ce3atYuePHnCJ77ik1/J+kMM3qK7W4OmaSAir" +
+				"gkPHjzAkSOHMWHCfM5U0DwlKChoCg/M19PTA3/n+yDKzYDCClbno7qyjo72XghHR8fZN2/epK6uLmptbf0njY2NF8HMzKy/iYnJw" +
+				"v/RwMBgIHrKOw2CR46YSAM+AAAAAElFTkSuQmCC);\n" +
+				"}"
 				;
 			_appImportedFiles["/app01/styles/layout.scss"] = "body {\n" +
 				"  background-color: $bg-color;\n" +
+				"  background-image: $bg-image;\n" +
 				"  color: #699;\n" +
 				"  font-size: .85em;\n" +
 				"  font-family: \"League Gothic\", Helvetica, Sans-Serif;\n" +
@@ -184,9 +221,9 @@ namespace DartSassHost.Tests.Imports
 				"\"fonts/bebas-neue.css\",\"layout.scss\",\"_variables.scss\",\"foundation/_mixins.scss\"]," +
 				"\"names\":[]," +
 				"\"mappings\":\"AASQ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAsC;AAAsC;ACnB5E;AACA;" +
-				"AAA+C;ACE/C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AINF;EACE;EACA;" +
-				"EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;EEVA,eFWuB;EEVvB,uBFUuB;" +
-				"EETvB,oBFSuB\"," +
+				"AAA+C;ACE/C;ACJR;AAAA;AAAA;AAAA;EAIE;EACA;;;AHLF;EACE;EACA;EACA;EACA;EACA;EACA;;;AAgBF;EACE;;;" +
+				"AIvBF;EACE;EACA;EACA;EAIA;EACA;;ACRF;EACE,kBCDS;EDET,kBCDS;EDET;EACA;EACA;;;" +
+				"AAGF;EACE;EACA;EACA;EACA;EEXA,eFYuB;EEXvB,uBFWuB;EEVvB,oBFUuB\"," +
 				"\"file\":\"app.css\"}"
 				;
 		}

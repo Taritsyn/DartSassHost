@@ -2595,7 +2595,8 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		//#region DshFileManagerProxy class
 		DshFileManagerProxy = (function () {
 			var urlFunctionBeginPart = 'url(',
-				urlFunctionEndPart = ')'
+				urlFunctionEndPart = ')',
+				dataUriSchemeRegEx = /^data:/i
 				;
 
 			function unquote(quotedValue) {
@@ -2609,7 +2610,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					firstChar = quotedValue.charAt(0);
 					lastChar = quotedValue.charAt(quotedValue.length - 1);
 
-					if (firstChar === lastChar) {
+					if ((firstChar === '"' || firstChar === "'") && firstChar === lastChar) {
 						value = quotedValue.substring(1, value.length - 1);
 						quoteChar = firstChar;
 					}
@@ -2619,7 +2620,13 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			}
 
 			function quote(value, quoteChar) {
-				var quotedValue = quoteChar + value + quoteChar;
+				var quotedValue;
+
+				if (!quoteChar) {
+					return value;
+				}
+
+				quotedValue = quoteChar + value + quoteChar;
 
 				return quotedValue;
 			}
@@ -2637,6 +2644,10 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				return urlFunctionBeginPart + value + urlFunctionEndPart;
 			}
 
+			function startsWithDataUriScheme(value) {
+				return value && dataUriSchemeRegEx.test(value);
+			}
+
 
 			function DshFileManagerProxy(fileManager) {
 				this._fileManager = fileManager;
@@ -2651,57 +2662,75 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				return this._currentDirectory;
 			};
 
-			DshFileManagerProxy.prototype.convertPathToAbsolute = function (path) {
-				var processedPath = path;
+			DshFileManagerProxy.prototype._innerConvertPathToAbsolute = function (path) {
+				var absolutePath;
 
-				if (!this.supportsVirtualPaths) {
+				if (!path || startsWithDataUriScheme(path)) {
 					return path;
 				}
 
-				if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
-					processedPath = this._fileManager.ToAbsoluteVirtualPath(path);
+				absolutePath = path;
+				if (this._fileManager.IsAppRelativeVirtualPath(path)) {
+					absolutePath = this._fileManager.ToAbsoluteVirtualPath(path);
 				}
 
-				return processedPath;
+				return absolutePath;
+			};
+
+			DshFileManagerProxy.prototype.convertPathToAbsolute = function (path) {
+				var absolutePath;
+
+				if (!this.supportsVirtualPaths || !path) {
+					return path;
+				}
+
+				absolutePath = this._innerConvertPathToAbsolute(path);
+
+				return absolutePath;
 			};
 
 			DshFileManagerProxy.prototype.convertPathToAbsoluteInQuotedValue = function (quotedValue) {
-				var processedQuotedValue = quotedValue,
+				var processedQuotedValue,
 					quotedResult,
 					path,
-					quoteChar
+					quoteChar,
+					absolutePath
 					;
 
-				if (!this.supportsVirtualPaths) {
+				if (!this.supportsVirtualPaths || !quotedValue) {
 					return quotedValue;
 				}
 
 				quotedResult = unquote(quotedValue);
 				path = quotedResult.value;
 				quoteChar = quotedResult.quoteChar;
+				absolutePath = this._innerConvertPathToAbsolute(path);
 
-				if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
-					path = this._fileManager.ToAbsoluteVirtualPath(path);
-					processedQuotedValue = quote(path, quoteChar);
+				processedQuotedValue = quotedValue;
+				if (absolutePath !== path) {
+					processedQuotedValue = quote(absolutePath, quoteChar);
 				}
 
 				return processedQuotedValue;
 			};
 
 			DshFileManagerProxy.prototype.convertPathToAbsoluteInUrlFunction = function (urlFunction) {
-				var path,
-					processedUrlFunction = urlFunction
+				var processedUrlFunction,
+					path,
+					absolutePath
 					;
 
-				if (!this.supportsVirtualPaths) {
+				if (!this.supportsVirtualPaths || !urlFunction) {
 					return urlFunction;
 				}
 
+				processedUrlFunction = urlFunction;
 				if (isUrlFunction(urlFunction)) {
 					path = extractPathFromUrlFunction(urlFunction);
-					if (path && this._fileManager.IsAppRelativeVirtualPath(path)) {
-						path = this._fileManager.ToAbsoluteVirtualPath(path);
-						processedUrlFunction = wrapPathInUrlFunction(path);
+					absolutePath = this._innerConvertPathToAbsolute(path);
+
+					if (absolutePath !== path) {
+						processedUrlFunction = wrapPathInUrlFunction(absolutePath);
 					}
 				}
 
@@ -2709,17 +2738,19 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			};
 
 			DshFileManagerProxy.prototype.convertUriToAbsolute = function (uri) {
-				var processedUri = uri,
+				var processedUri,
 					path,
 					absolutePath
 					;
 
-				if (!this.supportsVirtualPaths) {
+				if (!this.supportsVirtualPaths || !uri) {
 					return uri;
 				}
 
 				path = uri.toString();
-				absolutePath = this.convertPathToAbsolute(path);
+				absolutePath = this._innerConvertPathToAbsolute(path);
+
+				processedUri = uri;
 				if (absolutePath !== path) {
 					processedUri = sass.forDsh.Uri_parse(absolutePath);
 				}
