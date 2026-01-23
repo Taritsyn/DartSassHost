@@ -2425,7 +2425,9 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 		dshUtils = (function () {
 			var exports = {},
 				fileScheme = 'file://',
-				pathWithDriveLetterRegEx = /^[/\\]?[a-zA-z]:[/\\]/
+				pathWithDriveLetterRegEx = /^[/\\]?[a-zA-z]:[/\\]/,
+				isWindows = currentOsPlatformName === 'win32',
+				isMacOS = currentOsPlatformName === 'darwin'
 				;
 
 
@@ -2440,8 +2442,12 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			}
 
 			function getCanonicalFilePath(path) {
-				var canonicalPath = processBackSlashes(path);
-				if (currentOsPlatformName === 'win32') {
+				var canonicalPath,
+					caseInsensitive = isWindows || isMacOS
+					;
+
+				canonicalPath = processBackSlashes(path);
+				if (caseInsensitive) {
 					canonicalPath = canonicalPath.toLowerCase();
 				}
 
@@ -2454,7 +2460,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				}
 
 				var processedPath = path;
-				if (currentOsPlatformName === 'win32') {
+				if (isWindows) {
 					processedPath = processedPath.replace(/\\/g, '/');
 				}
 
@@ -2467,7 +2473,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				}
 
 				var processedPath = path;
-				if (currentOsPlatformName === 'win32') {
+				if (isWindows) {
 					processedPath = processedPath.replace(/\//g, '\\');
 				}
 
@@ -2521,7 +2527,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 				if (hasDriveLetter) {
 					processedPath = removeFirstSlash(processedPath);
 
-					if (currentOsPlatformName === 'win32') {
+					if (isWindows) {
 						driveLetter = processedPath.substring(0, 1);
 						driveLetterInUpperCase = driveLetter.toUpperCase();
 						if (driveLetter !== driveLetterInUpperCase) {
@@ -2847,7 +2853,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 
 				if (span && span.file) {
 					file = span.file;
-					fileLocation = new sass.forDsh.FileLocation(file, span._file$_start);
+					fileLocation = new sass.forDsh.FileLocation(file, span.start.offset);
 					fileSpan = new sass.forDsh.FileSpan(file, 0, file._decodedChars.length);
 					filePath = dshUtils.getAbsolutePathFromUri(fileLocation.get$sourceUrl());
 
@@ -3317,7 +3323,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					;
 
 				context = sass.forDsh.getContext();
-				fullPath = context.absolute$1(pathOrUrl);
+				fullPath = context.absolute$1(0, pathOrUrl);
 
 				return fullPath;
 			}
