@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Product>Dart Sass Host: Sample .NET 7.0 Console Application</Product>
-    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionPrefix>2.0.1</VersionPrefix>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
