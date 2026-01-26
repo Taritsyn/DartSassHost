@@ -6300,7 +6300,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 	//#region URL: /sass.dart.js
 	modules['/sass.dart.js'] = function () {
 		/*!
-		 * Dart Sass v1.97.2
+		 * Dart Sass v1.97.3
 		 * https://sass-lang.com/dart-sass
 		 * https://github.com/sass/dart-sass
 		 *
@@ -15449,7 +15449,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					J.set$deprecations$x(self.exports, A.jsify($.$get$deprecations()));
 					J.set$Version$x(self.exports, $.$get$versionClass());
 					J.set$loadParserExports_$x(self.exports, A.allowInterop(A.parser__loadParserExports$closure()));
-					J.set$info$x(self.exports, "dart-sass\t1.97.2\t(Sass Compiler)\t[Dart]\ndart2js\t3.10.7\t(Dart Compiler)\t[Dart]");
+					J.set$info$x(self.exports, "dart-sass\t1.97.3\t(Sass Compiler)\t[Dart]\ndart2js\t3.10.7\t(Dart Compiler)\t[Dart]");
 					A.updateCanonicalizeContextPrototype();
 					A.updateSourceSpanPrototype();
 
@@ -18897,7 +18897,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t3 = ascii;
 					if (t3 == null)
 						t3 = $._glyphs === B.C_AsciiGlyphSet;
-					logger = /*DSH- new A.JSToDartLogger(*/t2/*DSH- , new A.StderrLogger(color), t3)*/;
+					logger = /*DSH- new A.JSToDartLogger(*/t2/*DSH-, new A.StderrLogger(color), t3)*/;
 					try {
 						t2 = t1 ? _null : J.get$loadPaths$x(options);
 						t3 = t1 ? _null : J.get$quietDeps$x(options);
@@ -18994,7 +18994,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t3 = ascii;
 					if (t3 == null)
 						t3 = $._glyphs === B.C_AsciiGlyphSet;
-					logger = /*DSH- new A.JSToDartLogger(*/t2/*DSH- , new A.StderrLogger(color), t3)*/;
+					logger = /*DSH- new A.JSToDartLogger(*/t2/*DSH-, new A.StderrLogger(color), t3)*/;
 					try {
 						t2 = A.parseSyntax(t1 ? _null : J.get$syntax$x(options));
 						t3 = t1 ? _null : A.NullableExtension_andThen(J.get$url$x(options), A.utils__jsToDartUrl$closure());
@@ -19682,7 +19682,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return A.Uri_parse(J.toString$0$(url));
 				},
 				dartToJSUrl(url) {
-					return /*DSH- new self.URL(*/url.toString$0(0)/*DSH- )*/;
+					return /*DSH- new self.URL(*/url.toString$0(0)/*DSH-)*/;
 				},
 				toJSArray(iterable) {
 					var t1, t2,
@@ -23530,7 +23530,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_EvaluateVisitor_visitAtRule_closure: function _EvaluateVisitor_visitAtRule_closure(t0) {
 					this.$this = t0;
 				},
-				_EvaluateVisitor_visitAtRule_closure0: function _EvaluateVisitor_visitAtRule_closure0(t0, t1, t2) {
+				_EvaluateVisitor_visitAtRule_closure0: function _EvaluateVisitor_visitAtRule_closure0(t0, t1) {
+					this.$this = t0;
+					this.children = t1;
+				},
+				_EvaluateVisitor_visitAtRule_closure1: function _EvaluateVisitor_visitAtRule_closure1(t0, t1, t2) {
 					this.$this = t0;
 					this.name = t1;
 					this.children = t2;
@@ -23539,7 +23543,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 					this.children = t1;
 				},
-				_EvaluateVisitor_visitAtRule_closure1: function _EvaluateVisitor_visitAtRule_closure1() {
+				_EvaluateVisitor_visitAtRule_closure2: function _EvaluateVisitor_visitAtRule_closure2() {
 				},
 				_EvaluateVisitor_visitForRule_closure: function _EvaluateVisitor_visitForRule_closure(t0, t1) {
 					this.$this = t0;
@@ -23654,9 +23658,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				_EvaluateVisitor_visitMediaRule_closure: function _EvaluateVisitor_visitMediaRule_closure(t0, t1) {
 					this.$this = t0;
+					this.node = t1;
+				},
+				_EvaluateVisitor_visitMediaRule_closure0: function _EvaluateVisitor_visitMediaRule_closure0(t0, t1) {
+					this.$this = t0;
 					this.queries = t1;
 				},
-				_EvaluateVisitor_visitMediaRule_closure0: function _EvaluateVisitor_visitMediaRule_closure0(t0, t1, t2, t3, t4) {
+				_EvaluateVisitor_visitMediaRule_closure1: function _EvaluateVisitor_visitMediaRule_closure1(t0, t1, t2, t3, t4) {
 					var _ = this;
 					_.$this = t0;
 					_.mergedQueries = t1;
@@ -23672,7 +23680,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 					this.node = t1;
 				},
-				_EvaluateVisitor_visitMediaRule_closure1: function _EvaluateVisitor_visitMediaRule_closure1(t0) {
+				_EvaluateVisitor_visitMediaRule_closure2: function _EvaluateVisitor_visitMediaRule_closure2(t0) {
 					this.mergedSources = t0;
 				},
 				_EvaluateVisitor_visitStyleRule_closure: function _EvaluateVisitor_visitStyleRule_closure(t0, t1) {
@@ -23698,11 +23706,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 					this.node = t1;
 				},
+				_EvaluateVisitor_visitSupportsRule_closure0: function _EvaluateVisitor_visitSupportsRule_closure0(t0, t1) {
+					this.$this = t0;
+					this.node = t1;
+				},
 				_EvaluateVisitor_visitSupportsRule__closure: function _EvaluateVisitor_visitSupportsRule__closure(t0, t1) {
 					this.$this = t0;
 					this.node = t1;
 				},
-				_EvaluateVisitor_visitSupportsRule_closure0: function _EvaluateVisitor_visitSupportsRule_closure0() {
+				_EvaluateVisitor_visitSupportsRule_closure1: function _EvaluateVisitor_visitSupportsRule_closure1() {
 				},
 				_EvaluateVisitor__visitSupportsCondition_closure: function _EvaluateVisitor__visitSupportsCondition_closure(t0, t1) {
 					this._box_0 = t0;
@@ -23890,7 +23902,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 					this.node = t1;
 				},
-				_EvaluateVisitor_visitCssAtRule_closure0: function _EvaluateVisitor_visitCssAtRule_closure0() {
+				_EvaluateVisitor_visitCssAtRule_closure0: function _EvaluateVisitor_visitCssAtRule_closure0(t0, t1) {
+					this.$this = t0;
+					this.node = t1;
+				},
+				_EvaluateVisitor_visitCssAtRule_closure1: function _EvaluateVisitor_visitCssAtRule_closure1() {
 				},
 				_EvaluateVisitor_visitCssKeyframeBlock_closure: function _EvaluateVisitor_visitCssKeyframeBlock_closure(t0, t1) {
 					this.$this = t0;
@@ -23902,7 +23918,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 					this.node = t1;
 				},
-				_EvaluateVisitor_visitCssMediaRule_closure0: function _EvaluateVisitor_visitCssMediaRule_closure0(t0, t1, t2, t3) {
+				_EvaluateVisitor_visitCssMediaRule_closure0: function _EvaluateVisitor_visitCssMediaRule_closure0(t0, t1) {
+					this.$this = t0;
+					this.node = t1;
+				},
+				_EvaluateVisitor_visitCssMediaRule_closure1: function _EvaluateVisitor_visitCssMediaRule_closure1(t0, t1, t2, t3) {
 					var _ = this;
 					_.$this = t0;
 					_.mergedQueries = t1;
@@ -23917,7 +23937,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 					this.node = t1;
 				},
-				_EvaluateVisitor_visitCssMediaRule_closure1: function _EvaluateVisitor_visitCssMediaRule_closure1(t0) {
+				_EvaluateVisitor_visitCssMediaRule_closure2: function _EvaluateVisitor_visitCssMediaRule_closure2(t0) {
 					this.mergedSources = t0;
 				},
 				_EvaluateVisitor_visitCssStyleRule_closure0: function _EvaluateVisitor_visitCssStyleRule_closure0(t0, t1, t2) {
@@ -23935,11 +23955,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 					this.node = t1;
 				},
+				_EvaluateVisitor_visitCssSupportsRule_closure0: function _EvaluateVisitor_visitCssSupportsRule_closure0(t0, t1) {
+					this.$this = t0;
+					this.node = t1;
+				},
 				_EvaluateVisitor_visitCssSupportsRule__closure: function _EvaluateVisitor_visitCssSupportsRule__closure(t0, t1) {
 					this.$this = t0;
 					this.node = t1;
 				},
-				_EvaluateVisitor_visitCssSupportsRule_closure0: function _EvaluateVisitor_visitCssSupportsRule_closure0() {
+				_EvaluateVisitor_visitCssSupportsRule_closure1: function _EvaluateVisitor_visitCssSupportsRule_closure1() {
 				},
 				_EvaluateVisitor__performInterpolationHelper_closure: function _EvaluateVisitor__performInterpolationHelper_closure(t0) {
 					this.interpolation = t0;
@@ -29172,13 +29196,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					this.callback.call$0();
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback.prototype = {
 				call$0() {
 					this.callback.call$0();
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._TimerImpl.prototype = {
 				_TimerImpl$2(milliseconds, callback) {
@@ -29215,7 +29239,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._tick = tick;
 					_this.callback.call$1(t1);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._SyncStarIterator.prototype = {
 				get$current(_) {
@@ -35047,7 +35071,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return null;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A.PathException.prototype = {
 				toString$0(_) {
@@ -39106,7 +39130,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.callback.call$1($arguments);
 					return B.C__SassNull;
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.BuiltInCallable_withDeprecationWarning_closure.prototype = {
 				call$1(args) {
@@ -39117,7 +39141,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					A.warnForDeprecation("Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.\nUse " + _this.module + "." + t1 + " instead.\n\nMore info and automated migrator: https://sass-lang.com/d/import", B.Deprecation_SGB);
 					return _this._box_0.$function.call$1(args);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.PlainCssCallable.prototype = {
 				$eq(_, other) {
@@ -40210,12 +40234,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				extensionsWhereTarget$1(callback) {
 					return B.List_empty12;
-				},
-				addSelector$2(selector, mediaContext) {
-					throw A.wrapException(A.UnsupportedError$("addSelector() can't be called for a const ExtensionStore."));
-				},
-				addExtension$4(extender, target, extend, mediaContext) {
-					throw A.wrapException(A.UnsupportedError$("addExtension() can't be called for a const ExtensionStore."));
 				},
 				addExtensions$1(extenders) {
 					throw A.wrapException(A.UnsupportedError$("addExtensions() can't be called for a const ExtensionStore."));
@@ -41555,7 +41573,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = J.getInterceptor$asx($arguments);
 					return t1.$index($arguments, 0).get$isTruthy() ? t1.$index($arguments, 1) : t1.$index($arguments, 2);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure0.prototype = {
 				call$1(color) {
@@ -41579,49 +41597,49 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($arguments) {
 					return A._rgb("rgb", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure4.prototype = {
 				call$1($arguments) {
 					return A._rgb("rgb", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure5.prototype = {
 				call$1($arguments) {
 					return A._rgbTwoArg("rgb", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure6.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("rgb", J.$index$asx($arguments, 0), "channels", B.RgbColorSpace_i0P);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure7.prototype = {
 				call$1($arguments) {
 					return A._rgb("rgba", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure8.prototype = {
 				call$1($arguments) {
 					return A._rgb("rgba", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure9.prototype = {
 				call$1($arguments) {
 					return A._rgbTwoArg("rgba", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure10.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("rgba", J.$index$asx($arguments, 0), "channels", B.RgbColorSpace_i0P);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure11.prototype = {
 				call$1($arguments) {
@@ -41630,7 +41648,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						A.warnForDeprecation("Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.\nUse color.invert instead.\n\nMore info and automated migrator: https://sass-lang.com/d/import", B.Deprecation_SGB);
 					return A._invert($arguments, true);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure12.prototype = {
 				call$1(color) {
@@ -41654,13 +41672,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($arguments) {
 					return A._hsl("hsl", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure16.prototype = {
 				call$1($arguments) {
 					return A._hsl("hsl", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure17.prototype = {
 				call$1($arguments) {
@@ -41676,19 +41694,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($arguments) {
 					return A._parseChannels("hsl", J.$index$asx($arguments, 0), "channels", B.HslColorSpace_JQ2);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure19.prototype = {
 				call$1($arguments) {
 					return A._hsl("hsla", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure20.prototype = {
 				call$1($arguments) {
 					return A._hsl("hsla", $arguments);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure21.prototype = {
 				call$1($arguments) {
@@ -41704,7 +41722,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($arguments) {
 					return A._parseChannels("hsla", J.$index$asx($arguments, 0), "channels", B.HslColorSpace_JQ2);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure23.prototype = {
 				call$1($arguments) {
@@ -41716,7 +41734,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return A._grayscale(t1.$index($arguments, 0));
 					}
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure24.prototype = {
 				call$1($arguments) {
@@ -41843,7 +41861,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = _0_0.assertColor$1("color").alphaOrNull;
 					return A.SassNumber_SassNumber(t1 == null ? 0 : t1, null);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure35.prototype = {
 				call$1($arguments) {
@@ -41874,43 +41892,43 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t1.$index($arguments, 0).assertColor$1("color").alphaOrNull;
 					return A.SassNumber_SassNumber(t1 == null ? 0 : t1, null);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure37.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("color", J.$index$asx($arguments, 0), "description", null);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure38.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("hwb", J.$index$asx($arguments, 0), "channels", B.HwbColorSpace_guQ);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure39.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("lab", J.$index$asx($arguments, 0), "channels", B.LabColorSpace_2nT);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure40.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("lch", J.$index$asx($arguments, 0), "channels", B.LchColorSpace_Bpv);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure41.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("oklab", J.$index$asx($arguments, 0), "channels", B.OklabColorSpace_540);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.global_closure42.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("oklch", J.$index$asx($arguments, 0), "channels", B.OklchColorSpace_9Gj);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.module_closure1.prototype = {
 				call$1(color) {
@@ -41937,7 +41955,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						A.warnForDeprecation("Passing a number (" + J.$index$asx($arguments, 0).toString$0(0) + ") to color.invert() is deprecated.\n\nRecommendation: " + result.toString$0(0), B.Deprecation_mqF);
 					return result;
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.module_closure5.prototype = {
 				call$1(color) {
@@ -41968,7 +41986,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return A._grayscale(t1.$index($arguments, 0));
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.module_closure9.prototype = {
 				call$1($arguments) {
@@ -41976,13 +41994,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = type$.JSArray_Value;
 					return A._parseChannels("hwb", A.SassList$(A._setArrayType([A.SassList$(A._setArrayType([t1.$index($arguments, 0), t1.$index($arguments, 1), t1.$index($arguments, 2)], t2), B.ListSeparator_SrV, false), t1.$index($arguments, 3)], t2), B.ListSeparator_Lul, false), null, B.HwbColorSpace_guQ);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.module_closure10.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("hwb", J.$index$asx($arguments, 0), "channels", B.HwbColorSpace_guQ);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.module_closure11.prototype = {
 				call$1(color) {
@@ -42014,7 +42032,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = _0_0.assertColor$1("color").alphaOrNull;
 					return A.SassNumber_SassNumber(t1 == null ? 0 : t1, null);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.module_closure14.prototype = {
 				call$1($arguments) {
@@ -42047,7 +42065,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t1.$index($arguments, 0).assertColor$1("color").alphaOrNull;
 					return A.SassNumber_SassNumber(t1 == null ? 0 : t1, null);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.module_closure16.prototype = {
 				call$1($arguments) {
@@ -42482,7 +42500,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						index = t1.$index($arguments, 1);
 					return list.get$asList()[list.sassIndexToListIndex$2(index, "n")];
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._setNth_closure.prototype = {
 				call$1($arguments) {
@@ -42631,7 +42649,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(list) {
 					return J.$index$asx(list, this._box_0.i);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._index_closure0.prototype = {
 				call$1($arguments) {
@@ -42639,7 +42657,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						index = B.JSArray_methods.indexOf$1(t1.$index($arguments, 0).get$asList(), t1.$index($arguments, 1));
 					return index === -1 ? B.C__SassNull : A.SassNumber_SassNumber(index + 1, null);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._separator_closure.prototype = {
 				call$1($arguments) {
@@ -42691,14 +42709,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = map._map$_contents.$index(0, B.JSArray_methods.get$last(t2));
 					return t1 == null ? B.C__SassNull : t1;
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._set_closure.prototype = {
 				call$1($arguments) {
 					var t1 = J.getInterceptor$asx($arguments);
 					return A._modify(t1.$index($arguments, 0).assertMap$1("map"), A._setArrayType([t1.$index($arguments, 1)], type$.JSArray_Value), new A._set__closure0($arguments), true);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._set__closure0.prototype = {
 				call$1(_) {
@@ -42729,7 +42747,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return A._modify(map, keys, new A._set__closure(t1), true);
 					throw A.wrapException("[BUG] Unreachable code");
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._set__closure.prototype = {
 				call$1(_) {
@@ -42773,7 +42791,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return A._modify(map1, keys, new A._merge__closure(last.assertMap$1("map2")), true);
 					throw A.wrapException("[BUG] Unreachable code");
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._merge__closure.prototype = {
 				call$1(oldValue) {
@@ -42803,7 +42821,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					B.JSArray_methods.addAll$1(t2, t1.$index($arguments, 2).get$asList());
 					return A._modify(map, A.IterableExtension_get_exceptLast(t2), new A._deepRemove__closure(t2), false);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._deepRemove__closure.prototype = {
 				call$1(value) {
@@ -43096,7 +43114,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						A.warn("math.div() will only support number arguments in a future release.\nUse list.slash() instead for a slash separator.");
 					return number1.dividedBy$1(number2);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._singleArgumentMathFunc_closure.prototype = {
 				call$1($arguments) {
@@ -43390,7 +43408,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t1 == null ? null : t1.get$asSassList();
 					return t1 == null ? B.C__SassNull : t1;
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._isSuperselector_closure.prototype = {
 				call$1($arguments) {
@@ -43518,7 +43536,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return B.C__SassNull;
 					return A.SassNumber_SassNumber(A.codeUnitIndexToCodepointIndex(t2, codeUnitIndex) + 1, null);
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._slice_closure.prototype = {
 				call$1($arguments) {
@@ -44539,7 +44557,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						throw A.wrapException(_s42_ + t1.get$name(t1) + '": ' + A.S(result) + " is not a sass.Value.");
 					}
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._parseFunctions___closure.prototype = {
 				call$0() {
@@ -45102,7 +45120,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = t1.toUri$1(A.absolute(t1.style.pathFromUri$1(A._parseUri(url))));
 					} else
 						t1 = url;
-					return /*DSH- new self.URL(*/t1.toString$0(0)/*DSH- )*/;
+					return /*DSH- new self.URL(*/t1.toString$0(0)/*DSH-)*/;
 				},
 				$signature: 64
 			};
@@ -46178,7 +46196,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(_) {
 					return B.C__SassNull;
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.listClass_closure.prototype = {
 				call$0() {
@@ -46323,7 +46341,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(_) {
 					return B.C__SassNull;
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A.numberClass_closure.prototype = {
 				call$0() {
@@ -47050,7 +47068,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						break $label0$0;
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A.JSToDartLogger_debug_closure.prototype = {
 				call$0() {
@@ -52237,9 +52255,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_tryUrlContents$2$name(start, $name) {
 					var t3, t4, t5, buffer, t6, _1_0, _1_6, _0_0, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
-						bufferText //DSH+
-						;
+						t2 = t1._string_scanner$_position;
 					if (!t1.scanChar$1(40))
 						return null;
 					_this.whitespaceWithoutComments$1$consumeNewlines(true);
@@ -53787,7 +53803,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						this.identifiers.add$1(0, t1.identifier$1$normalize(0, true));
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A.StylesheetParser__includeRule_closure.prototype = {
 				call$2(children, span) {
@@ -57929,6 +57945,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A._EvaluateVisitor.prototype = {
+				get$_hasCssNesting() {
+					var _0_0, t1, grandparent,
+						$parent = this._atRootExcludingStyleRule ? null : this._styleRuleIgnoringAtRoot;
+					for (;; $parent = grandparent) {
+						_0_0 = $parent == null ? null : $parent._parent;
+						if (_0_0 instanceof A.ModifiableCssStyleRule)
+							return true;
+						t1 = _0_0 != null;
+						grandparent = t1 ? _0_0 : null;
+						if (t1)
+							continue;
+						return false;
+					}
+				},
 				_EvaluateVisitor$6$functions$importCache$logger$nodeImporter$quietDeps$sourceMap(functions, importCache, logger, nodeImporter, quietDeps, sourceMap) {
 					var t2, metaModule, t3, _i, module, $function, t4, _this = this,
 						_s20_ = "$name, $module: null",
@@ -58362,7 +58392,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return _null;
 				},
 				visitAtRule$1(_, node) {
-					var $name, value, children, wasInKeyframes, wasInUnknownAtRule, _this = this;
+					var $name, value, children, wasInKeyframes, wasInUnknownAtRule, rule, _this = this;
 					if (_this._declarationName != null)
 						throw A.wrapException(_this._evaluate$_exception$2(string$.At_rul, node.span));
 					$name = _this._interpolationToValue$1(node.name);
@@ -58379,7 +58409,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this._inKeyframes = true;
 					else
 						_this._evaluate$_inUnknownAtRule = true;
-					_this._withParent$4$scopeWhen$through(A.ModifiableCssAtRule$($name, node.span, false, value), new A._EvaluateVisitor_visitAtRule_closure0(_this, $name, children), node.hasDeclarations, new A._EvaluateVisitor_visitAtRule_closure1());
+					rule = A.ModifiableCssAtRule$($name, node.span, false, value);
+					if (_this.get$_hasCssNesting()) {
+						_this._withParent$3$scopeWhen(rule, new A._EvaluateVisitor_visitAtRule_closure0(_this, children), node.hasDeclarations);
+						_this._evaluate$_inUnknownAtRule = wasInUnknownAtRule;
+						_this._inKeyframes = wasInKeyframes;
+						return null;
+					}
+					_this._withParent$4$scopeWhen$through(rule, new A._EvaluateVisitor_visitAtRule_closure1(_this, $name, children), node.hasDeclarations, new A._EvaluateVisitor_visitAtRule_closure2());
 					_this._evaluate$_inUnknownAtRule = wasInUnknownAtRule;
 					_this._inKeyframes = wasInKeyframes;
 					return null;
@@ -58711,15 +58748,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return null;
 				},
 				visitMediaRule$1(_, node) {
-					var _0_0, queries, mergedQueries, t1, mergedSources, t2, t3, _this = this;
+					var _0_0, queries, mergedQueries, t1, mergedSources, t2, t3, _this = this, _null = null;
 					if (_this._declarationName != null)
 						throw A.wrapException(_this._evaluate$_exception$2(string$.Media_, node.span));
 					_0_0 = _this._performInterpolationWithMap$2$warnForColor(node.query, true);
-					queries = new A.MediaQueryParser(A.SpanScanner$(_0_0._0, null), _0_0._1).parse$0(0);
-					mergedQueries = A.NullableExtension_andThen(_this._mediaQueries, new A._EvaluateVisitor_visitMediaRule_closure(_this, queries));
+					queries = new A.MediaQueryParser(A.SpanScanner$(_0_0._0, _null), _0_0._1).parse$0(0);
+					if (_this.get$_hasCssNesting()) {
+						_this._withParent$3$scopeWhen(A.ModifiableCssMediaRule$(queries, node.span), new A._EvaluateVisitor_visitMediaRule_closure(_this, node), false);
+						return _null;
+					}
+					mergedQueries = A.NullableExtension_andThen(_this._mediaQueries, new A._EvaluateVisitor_visitMediaRule_closure0(_this, queries));
 					t1 = mergedQueries == null;
 					if (!t1 && J.get$isEmpty$asx(mergedQueries))
-						return null;
+						return _null;
 					if (t1)
 						mergedSources = B.Set_empty2;
 					else {
@@ -58733,8 +58774,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						mergedSources = t2;
 					}
 					t1 = t1 ? queries : mergedQueries;
-					_this._withParent$4$scopeWhen$through(A.ModifiableCssMediaRule$(t1, node.span), new A._EvaluateVisitor_visitMediaRule_closure0(_this, mergedQueries, queries, mergedSources, node), node.hasDeclarations, new A._EvaluateVisitor_visitMediaRule_closure1(mergedSources));
-					return null;
+					_this._withParent$4$scopeWhen$through(A.ModifiableCssMediaRule$(t1, node.span), new A._EvaluateVisitor_visitMediaRule_closure1(_this, mergedQueries, queries, mergedSources, node), node.hasDeclarations, new A._EvaluateVisitor_visitMediaRule_closure2(mergedSources));
+					return _null;
 				},
 				_mergeMediaQueries$2(queries1, queries2) {
 					var t1, t2, t3, t4, _0_0, t5, result,
@@ -58860,11 +58901,16 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 				},
 				visitSupportsRule$1(_, node) {
-					var t1, _this = this;
+					var t1, rule, _this = this;
 					if (_this._declarationName != null)
 						throw A.wrapException(_this._evaluate$_exception$2(string$.Suppor, node.span));
 					t1 = node.condition;
-					_this._withParent$4$scopeWhen$through(A.ModifiableCssSupportsRule$(new A.CssValue(_this._visitSupportsCondition$1(t1), t1.get$span(t1), type$.CssValue_String), node.span), new A._EvaluateVisitor_visitSupportsRule_closure(_this, node), node.hasDeclarations, new A._EvaluateVisitor_visitSupportsRule_closure0());
+					rule = A.ModifiableCssSupportsRule$(new A.CssValue(_this._visitSupportsCondition$1(t1), t1.get$span(t1), type$.CssValue_String), node.span);
+					if (_this.get$_hasCssNesting()) {
+						_this._withParent$3$scopeWhen(rule, new A._EvaluateVisitor_visitSupportsRule_closure(_this, node), node.hasDeclarations);
+						return null;
+					}
+					_this._withParent$4$scopeWhen$through(rule, new A._EvaluateVisitor_visitSupportsRule_closure0(_this, node), node.hasDeclarations, new A._EvaluateVisitor_visitSupportsRule_closure1());
 					return null;
 				},
 				_visitSupportsCondition$1(condition) {
@@ -59940,7 +59986,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A.SassString(this._visitSupportsCondition$1(expression.condition), false);
 				},
 				visitCssAtRule$1(node) {
-					var wasInKeyframes, wasInUnknownAtRule, t1, _this = this;
+					var wasInKeyframes, wasInUnknownAtRule, t1, rule, _this = this;
 					if (_this._declarationName != null)
 						throw A.wrapException(_this._evaluate$_exception$2(string$.At_rul, node.span));
 					if (node.isChildless) {
@@ -59955,7 +60001,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this._inKeyframes = true;
 					else
 						_this._evaluate$_inUnknownAtRule = true;
-					_this._withParent$4$scopeWhen$through(A.ModifiableCssAtRule$(t1, node.span, false, node.value), new A._EvaluateVisitor_visitCssAtRule_closure(_this, node), false, new A._EvaluateVisitor_visitCssAtRule_closure0());
+					rule = A.ModifiableCssAtRule$(t1, node.span, false, node.value);
+					if (_this.get$_hasCssNesting()) {
+						_this._withParent$3$scopeWhen(rule, new A._EvaluateVisitor_visitCssAtRule_closure(_this, node), false);
+						_this._evaluate$_inUnknownAtRule = wasInUnknownAtRule;
+						_this._inKeyframes = wasInKeyframes;
+						return;
+					}
+					_this._withParent$4$scopeWhen$through(rule, new A._EvaluateVisitor_visitCssAtRule_closure0(_this, node), false, new A._EvaluateVisitor_visitCssAtRule_closure1());
 					_this._evaluate$_inUnknownAtRule = wasInUnknownAtRule;
 					_this._inKeyframes = wasInKeyframes;
 				},
@@ -59996,7 +60049,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var mergedQueries, t1, mergedSources, t2, t3, _this = this;
 					if (_this._declarationName != null)
 						throw A.wrapException(_this._evaluate$_exception$2(string$.Media_, node.span));
-					mergedQueries = A.NullableExtension_andThen(_this._mediaQueries, new A._EvaluateVisitor_visitCssMediaRule_closure(_this, node));
+					if (_this.get$_hasCssNesting()) {
+						_this._withParent$3$scopeWhen(A.ModifiableCssMediaRule$(node.queries, node.span), new A._EvaluateVisitor_visitCssMediaRule_closure(_this, node), false);
+						return;
+					}
+					mergedQueries = A.NullableExtension_andThen(_this._mediaQueries, new A._EvaluateVisitor_visitCssMediaRule_closure0(_this, node));
 					t1 = mergedQueries == null;
 					if (!t1 && J.get$isEmpty$asx(mergedQueries))
 						return;
@@ -60013,7 +60070,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						mergedSources = t2;
 					}
 					t1 = t1 ? node.queries : mergedQueries;
-					_this._withParent$4$scopeWhen$through(A.ModifiableCssMediaRule$(t1, node.span), new A._EvaluateVisitor_visitCssMediaRule_closure0(_this, mergedQueries, node, mergedSources), false, new A._EvaluateVisitor_visitCssMediaRule_closure1(mergedSources));
+					_this._withParent$4$scopeWhen$through(A.ModifiableCssMediaRule$(t1, node.span), new A._EvaluateVisitor_visitCssMediaRule_closure1(_this, mergedQueries, node, mergedSources), false, new A._EvaluateVisitor_visitCssMediaRule_closure2(mergedSources));
 				},
 				visitCssStyleRule$1(node) {
 					var t1, styleRule, _0_0, t2, t3, originalSelector, rule, oldAtRootExcludingStyleRule, _1_1, lastChild, _this = this, _null = null,
@@ -60069,10 +60126,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1.get$current(t1).accept$1(0, this);
 				},
 				visitCssSupportsRule$1(node) {
-					var _this = this;
+					var rule, _this = this;
 					if (_this._declarationName != null)
 						throw A.wrapException(_this._evaluate$_exception$2(string$.Suppor, node.span));
-					_this._withParent$4$scopeWhen$through(A.ModifiableCssSupportsRule$(node.condition, node.span), new A._EvaluateVisitor_visitCssSupportsRule_closure(_this, node), false, new A._EvaluateVisitor_visitCssSupportsRule_closure0());
+					rule = A.ModifiableCssSupportsRule$(node.condition, node.span);
+					if (_this.get$_hasCssNesting()) {
+						_this._withParent$3$scopeWhen(rule, new A._EvaluateVisitor_visitCssSupportsRule_closure(_this, node), false);
+						return;
+					}
+					_this._withParent$4$scopeWhen$through(rule, new A._EvaluateVisitor_visitCssSupportsRule_closure0(_this, node), false, new A._EvaluateVisitor_visitCssSupportsRule_closure1());
 				},
 				_handleReturn$1$2(list, callback) {
 					var t1, _i, _0_0;
@@ -60170,14 +60232,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.__parent = oldParent;
 					return result;
 				},
+				_withParent$3$scopeWhen(node, callback, scopeWhen) {
+					return this._withParent$2$4$scopeWhen$through(node, callback, scopeWhen, null, type$.ModifiableCssParentNode, type$.dynamic);
+				},
 				_withParent$4$scopeWhen$through(node, callback, scopeWhen, through) {
 					return this._withParent$2$4$scopeWhen$through(node, callback, scopeWhen, through, type$.ModifiableCssParentNode, type$.dynamic);
 				},
 				_withParent$2(node, callback) {
 					return this._withParent$2$4$scopeWhen$through(node, callback, true, null, type$.ModifiableCssParentNode, type$.dynamic);
-				},
-				_withParent$3$scopeWhen(node, callback, scopeWhen) {
-					return this._withParent$2$4$scopeWhen$through(node, callback, scopeWhen, null, type$.ModifiableCssParentNode, type$.dynamic);
 				},
 				_copyParentAfterSibling$0() {
 					var t1, grandparent, newParent, _this = this,
@@ -60624,7 +60686,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t3 = t1._runFunctionCallable$3(invocation, t2.callable, t3);
 					return t3;
 				},
-				$signature: 0
+				$signature: 1
 			};
 			A._EvaluateVisitor_closure10.prototype = {
 				call$1($arguments) {
@@ -60757,7 +60819,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					t2._addExceptionSpan$3$addStackFrame(t3, new A._EvaluateVisitor__loadModule__closure0(t1, _this.callback, !t4), false);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor__loadModule__closure.prototype = {
 				call$1(previousLoad) {
@@ -60822,7 +60884,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._inKeyframes = oldInKeyframes;
 					t1._evaluate$_configuration = oldConfiguration;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor__combineCss_closure.prototype = {
 				call$1(module) {
@@ -60880,7 +60942,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
 						t1[_i].accept$1(0, t3);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitAtRootRule_closure0.prototype = {
 				call$0() {
@@ -60920,7 +60982,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.innerScope.call$1(this.callback);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor__scopeForAtRoot_closure2.prototype = {
 				call$1(callback) {
@@ -60955,7 +61017,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1[_i].accept$1(0, t3);
 					return null;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitDeclaration_closure.prototype = {
 				call$0() {
@@ -60963,7 +61025,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this._box_0.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
 						t1[_i].accept$1(0, t3);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitEachRule_closure.prototype = {
 				call$1(value) {
@@ -61010,6 +61072,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._EvaluateVisitor_visitAtRule_closure0.prototype = {
 				call$0() {
+					var t1, t2, t3, _i;
+					for (t1 = this.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
+						t1[_i].accept$1(0, t3);
+				},
+				$signature: 0
+			};
+			A._EvaluateVisitor_visitAtRule_closure1.prototype = {
+				call$0() {
 					var t2, t3, _i, _this = this,
 						t1 = _this.$this,
 						styleRule = t1._atRootExcludingStyleRule ? null : t1._styleRuleIgnoringAtRoot;
@@ -61019,7 +61089,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						t1._withParent$3$scopeWhen(A.ModifiableCssStyleRule$(styleRule._style_rule$_selector, styleRule.span, false, styleRule.originalSelector), new A._EvaluateVisitor_visitAtRule__closure(t1, _this.children), false);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitAtRule__closure.prototype = {
 				call$0() {
@@ -61027,9 +61097,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
 						t1[_i].accept$1(0, t3);
 				},
-				$signature: 1
+				$signature: 0
 			};
-			A._EvaluateVisitor_visitAtRule_closure1.prototype = {
+			A._EvaluateVisitor_visitAtRule_closure2.prototype = {
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
@@ -61260,7 +61330,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._evaluate$_configuration = oldConfiguration;
 					t1._inDependency = oldInDependency;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor__applyMixin_closure.prototype = {
 				call$0() {
@@ -61283,7 +61353,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = _this.$this;
 					t1._environment.withContent$2(_this.contentCallable, new A._EvaluateVisitor__applyMixin__closure(t1, _this.mixin, _this.nodeWithSpanWithoutContent));
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor__applyMixin__closure.prototype = {
 				call$0() {
@@ -61335,12 +61405,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$signature: 18
 			};
 			A._EvaluateVisitor_visitMediaRule_closure.prototype = {
+				call$0() {
+					var t1, t2, t3, _i;
+					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
+						t1[_i].accept$1(0, t3);
+				},
+				$signature: 0
+			};
+			A._EvaluateVisitor_visitMediaRule_closure0.prototype = {
 				call$1(mediaQueries) {
 					return this.$this._mergeMediaQueries$2(mediaQueries, this.queries);
 				},
 				$signature: 101
 			};
-			A._EvaluateVisitor_visitMediaRule_closure0.prototype = {
+			A._EvaluateVisitor_visitMediaRule_closure1.prototype = {
 				call$0() {
 					var _this = this,
 						t1 = _this.$this,
@@ -61349,7 +61427,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = _this.queries;
 					t1._withMediaQueries$3(t2, _this.mergedSources, new A._EvaluateVisitor_visitMediaRule__closure(t1, _this.node));
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitMediaRule__closure.prototype = {
 				call$0() {
@@ -61362,7 +61440,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						for (t2 = this.node.children, t3 = t2.length, _i = 0; _i < t3; ++_i)
 							t2[_i].accept$1(0, t1);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitMediaRule___closure.prototype = {
 				call$0() {
@@ -61370,9 +61448,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
 						t1[_i].accept$1(0, t3);
 				},
-				$signature: 1
+				$signature: 0
 			};
-			A._EvaluateVisitor_visitMediaRule_closure1.prototype = {
+			A._EvaluateVisitor_visitMediaRule_closure2.prototype = {
 				call$1(node) {
 					var t1;
 					if (!(node instanceof A.ModifiableCssStyleRule)) {
@@ -61390,7 +61468,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
 						t1[_i].accept$1(0, t3);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitStyleRule_closure0.prototype = {
 				call$1(node) {
@@ -61403,7 +61481,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.$this;
 					t1._withStyleRule$2(this.rule, new A._EvaluateVisitor_visitStyleRule__closure(t1, this.node));
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitStyleRule__closure.prototype = {
 				call$0() {
@@ -61411,7 +61489,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
 						t1[_i].accept$1(0, t3);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitStyleRule_closure1.prototype = {
 				call$1(node) {
@@ -61427,6 +61505,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._EvaluateVisitor_visitSupportsRule_closure.prototype = {
 				call$0() {
+					var t1, t2, t3, _i;
+					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
+						t1[_i].accept$1(0, t3);
+				},
+				$signature: 0
+			};
+			A._EvaluateVisitor_visitSupportsRule_closure0.prototype = {
+				call$0() {
 					var t2, t3, _i,
 						t1 = this.$this,
 						_0_0 = t1._atRootExcludingStyleRule ? null : t1._styleRuleIgnoringAtRoot;
@@ -61436,7 +61522,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						for (t2 = this.node.children, t3 = t2.length, _i = 0; _i < t3; ++_i)
 							t2[_i].accept$1(0, t1);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitSupportsRule__closure.prototype = {
 				call$0() {
@@ -61444,9 +61530,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
 						t1[_i].accept$1(0, t3);
 				},
-				$signature: 1
+				$signature: 0
 			};
-			A._EvaluateVisitor_visitSupportsRule_closure0.prototype = {
+			A._EvaluateVisitor_visitSupportsRule_closure1.prototype = {
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
@@ -61471,7 +61557,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = this._box_0.override;
 					t1.setVariable$4$global(this.node.name, t2.value, t2.assignmentNode, true);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitVariableDeclaration_closure0.prototype = {
 				call$0() {
@@ -61486,7 +61572,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = this.node;
 					t1._environment.setVariable$5$global$namespace(t2.name, this.value, t1._expressionNode$1(t2.expression), t2.isGlobal, t2.namespace);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitUseRule_closure.prototype = {
 				call$2(module, firstLoad) {
@@ -61935,9 +62021,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitCssAtRule_closure0.prototype = {
+				call$0() {
+					var t1, t2, t3, t4;
+					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
+						t4 = t1.__internal$_current;
+						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+					}
+				},
+				$signature: 0
+			};
+			A._EvaluateVisitor_visitCssAtRule_closure1.prototype = {
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
@@ -61951,7 +62047,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitCssKeyframeBlock_closure0.prototype = {
 				call$1(node) {
@@ -61960,12 +62056,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$signature: 4
 			};
 			A._EvaluateVisitor_visitCssMediaRule_closure.prototype = {
+				call$0() {
+					var t1, t2, t3, t4;
+					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
+						t4 = t1.__internal$_current;
+						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+					}
+				},
+				$signature: 0
+			};
+			A._EvaluateVisitor_visitCssMediaRule_closure0.prototype = {
 				call$1(mediaQueries) {
 					return this.$this._mergeMediaQueries$2(mediaQueries, this.node.queries);
 				},
 				$signature: 101
 			};
-			A._EvaluateVisitor_visitCssMediaRule_closure0.prototype = {
+			A._EvaluateVisitor_visitCssMediaRule_closure1.prototype = {
 				call$0() {
 					var _this = this,
 						t1 = _this.$this,
@@ -61974,7 +62080,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = _this.node.queries;
 					t1._withMediaQueries$3(t2, _this.mergedSources, new A._EvaluateVisitor_visitCssMediaRule__closure(t1, _this.node));
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitCssMediaRule__closure.prototype = {
 				call$0() {
@@ -61989,7 +62095,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							(t4 == null ? t3._as(t4) : t4).accept$1(0, t1);
 						}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitCssMediaRule___closure.prototype = {
 				call$0() {
@@ -61999,9 +62105,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
-			A._EvaluateVisitor_visitCssMediaRule_closure1.prototype = {
+			A._EvaluateVisitor_visitCssMediaRule_closure2.prototype = {
 				call$1(node) {
 					var t1;
 					if (!(node instanceof A.ModifiableCssStyleRule)) {
@@ -62018,7 +62124,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.$this;
 					t1._withStyleRule$2(this.rule, new A._EvaluateVisitor_visitCssStyleRule__closure(t1, this.node));
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitCssStyleRule__closure.prototype = {
 				call$0() {
@@ -62028,7 +62134,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitCssStyleRule_closure.prototype = {
 				call$1(node) {
@@ -62037,6 +62143,16 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$signature: 4
 			};
 			A._EvaluateVisitor_visitCssSupportsRule_closure.prototype = {
+				call$0() {
+					var t1, t2, t3, t4;
+					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
+						t4 = t1.__internal$_current;
+						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+					}
+				},
+				$signature: 0
+			};
+			A._EvaluateVisitor_visitCssSupportsRule_closure0.prototype = {
 				call$0() {
 					var t2, t3, t4,
 						t1 = this.$this,
@@ -62049,7 +62165,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							(t4 == null ? t3._as(t4) : t4).accept$1(0, t1);
 						}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._EvaluateVisitor_visitCssSupportsRule__closure.prototype = {
 				call$0() {
@@ -62059,9 +62175,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
-			A._EvaluateVisitor_visitCssSupportsRule_closure0.prototype = {
+			A._EvaluateVisitor_visitCssSupportsRule_closure1.prototype = {
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
@@ -64162,7 +64278,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1._buffer.write$1(0, t3);
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._SerializeVisitor_visitCssAtRule_closure.prototype = {
 				call$0() {
@@ -64178,7 +64294,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1._write$1(_0_0);
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._SerializeVisitor_visitCssMediaRule_closure.prototype = {
 				call$0() {
@@ -64201,7 +64317,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = t4 ? "," : ", ";
 					t1._writeBetween$3(t3, t2, t1.get$_visitMediaQuery());
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._SerializeVisitor_visitCssImport_closure.prototype = {
 				call$0() {
@@ -64221,7 +64337,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2.write$1(0, _0_0);
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._SerializeVisitor_visitCssImport__closure.prototype = {
 				call$0() {
@@ -64253,7 +64369,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2.writeCharCode$1(32);
 					t1._write$1(this.node.condition);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._SerializeVisitor_visitCssDeclaration_closure.prototype = {
 				call$0() {
@@ -64264,7 +64380,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						t1._writeReindentedValue$1(t2);
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._SerializeVisitor_visitCssDeclaration_closure0.prototype = {
 				call$0() {
@@ -65566,7 +65682,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = this.startLine === this.line.number ? t2.get$topLeftCorner() : t2.get$bottomLeftCorner();
 					t1._contents += t2;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A.Highlighter__writeMultilineHighlights_closure0.prototype = {
 				call$0() {
@@ -65575,7 +65691,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = this.highlight == null ? t2.get$horizontalLine() : t2.get$cross();
 					t1._contents += t2;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A.Highlighter__writeMultilineHighlights_closure1.prototype = {
 				call$0() {
@@ -65620,7 +65736,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 					}
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A.Highlighter__writeMultilineHighlights__closure.prototype = {
 				call$0() {
@@ -65629,13 +65745,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = $._glyphs.glyphOrAscii$2(t2, "/");
 					t1._contents += t2;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A.Highlighter__writeMultilineHighlights__closure0.prototype = {
 				call$0() {
 					this.$this._highlighter$_buffer._contents += this.vertical;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A.Highlighter__writeHighlightedText_closure.prototype = {
 				call$0() {
@@ -65719,7 +65835,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = $._glyphs.get$verticalLine();
 					t2._contents += t1;
 				},
-				$signature: 1
+				$signature: 0
 			};
 			A._Highlight.prototype = {
 				toString$0(_) {
@@ -66539,7 +66655,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_inheritMany(A._CastIterableBase, [A.CastIterable, A.__CastListBase__CastIterableBase_ListMixin]);
 				_inherit(A._EfficientLengthCastIterable, A.CastIterable);
 				_inherit(A._CastListBase, A.__CastListBase__CastIterableBase_ListMixin);
-				_inheritMany(A.Closure, [A.Closure2Args, A.CastMap_entries_closure, A.Instantiation, A.Closure0Args, A.TearOffClosure, A.initHooks_closure, A.initHooks_closure1, A._AsyncRun__initializeScheduleImmediate_internalCallback, A._AsyncRun__initializeScheduleImmediate_closure, A._CustomZone_bindUnaryCallback_closure, A._RootZone_bindUnaryCallback_closure, A._HashMap_values_closure, A.MapBase_entries_closure, A._Uri__makePath_closure, A.jsify__convert, A.MapKeySet_difference_closure, A.Context_joinAll_closure, A.Context_split_closure, A._validateArgList_closure, A.ParsedPath__splitExtension_closure, A.WindowsStyle_absolutePathToUri_closure, A.Version__splitParts_closure, A.ModifiableCssNode_hasFollowingSibling_closure, A.ListExpression_toString_closure, A.Interpolation_toString_closure, A.ParameterList_verify_closure, A.ParameterList_verify_closure0, A.EachRule_toString_closure, A.IfRuleClause$__closure, A.IfRuleClause$___closure, A.ParentStatement_closure, A.ParentStatement__closure, A._IsBogusVisitor_visitComplexSelector_closure, A._IsUselessVisitor_visitComplexSelector_closure, A.ComplexSelectorComponent_toString_closure, A.CompoundSelector_hasComplicatedSuperselectorSemantics_closure, A.IDSelector_unify_closure, A.SelectorList_asSassList_closure, A.SelectorList_nestWithin_closure, A.SelectorList_nestWithin__closure, A.SelectorList_nestWithin__closure0, A.SelectorList__nestWithinCompound_closure, A.SelectorList__nestWithinCompound_closure0, A.SelectorList__nestWithinCompound_closure1, A.SelectorList_withAdditionalCombinators_closure, A.PseudoSelector_specificity__closure, A.PseudoSelector_specificity__closure0, A.PseudoSelector_unify_closure, A.SimpleSelector_isSuperselector_closure, A.SimpleSelector_isSuperselector__closure, A.BuiltInCallable$mixin_closure, A.BuiltInCallable_withDeprecationWarning_closure, A._compileStylesheet_closure, A.Deprecation_fromId_closure, A.Environment__getVariableFromGlobalModule_closure, A.Environment_setVariable_closure0, A.Environment__getFunctionFromGlobalModule_closure, A.Environment__getMixinFromGlobalModule_closure, A.Environment_toModule_closure, A.Environment_toDummyModule_closure, A._EnvironmentModule__EnvironmentModule_closure, A._EnvironmentModule__EnvironmentModule_closure0, A._EnvironmentModule__EnvironmentModule_closure1, A._EnvironmentModule__EnvironmentModule_closure2, A._EnvironmentModule__EnvironmentModule_closure3, A._EnvironmentModule__EnvironmentModule_closure4, A._EnvironmentModule_couldHaveBeenConfigured_closure, A.ExtensionStore_extensionsWhereTarget_closure, A.ExtensionStore__extendComplex_closure, A.ExtensionStore__extendComplex__closure, A.ExtensionStore__extendCompound_closure, A.ExtensionStore__extendCompound_closure0, A.ExtensionStore__extendCompound_closure1, A.ExtensionStore__extendSimple_withoutPseudo, A.ExtensionStore__extendSimple_closure, A.ExtensionStore__extendSimple_closure0, A.ExtensionStore__extendPseudo_closure, A.ExtensionStore__extendPseudo_closure0, A.ExtensionStore__extendPseudo_closure1, A.ExtensionStore__extendPseudo_closure2, A.ExtensionStore__extendPseudo_closure3, A.ExtensionStore__trim_closure, A.ExtensionStore__trim_closure0, A.unifyComplex_closure, A._weaveParents_closure0, A._weaveParents_closure1, A._weaveParents_closure2, A._mustUnify_closure, A._mustUnify__closure, A.paths__closure, A.paths___closure, A.listIsSuperselector_closure, A.listIsSuperselector__closure, A.complexIsSuperselector_closure, A.complexIsSuperselector_closure0, A._compatibleWithPreviousCombinator_closure, A.compoundIsSuperselector_closure, A._selectorPseudoIsSuperselector_closure, A._selectorPseudoIsSuperselector_closure0, A._selectorPseudoIsSuperselector_closure1, A._selectorPseudoIsSuperselector_closure2, A._selectorPseudoIsSuperselector_closure3, A._selectorPseudoIsSuperselector__closure, A._selectorPseudoIsSuperselector___closure, A._selectorPseudoIsSuperselector___closure0, A._selectorPseudoIsSuperselector_closure4, A._selectorPseudoIsSuperselector_closure5, A._selectorPseudoArgs_closure, A._selectorPseudoArgs_closure0, A.globalFunctions_closure, A.global_closure0, A.global_closure1, A.global_closure2, A.global_closure3, A.global_closure4, A.global_closure5, A.global_closure6, A.global_closure7, A.global_closure8, A.global_closure9, A.global_closure10, A.global_closure11, A.global_closure12, A.global_closure13, A.global_closure14, A.global_closure15, A.global_closure16, A.global_closure17, A.global_closure18, A.global_closure19, A.global_closure20, A.global_closure21, A.global_closure22, A.global_closure23, A.global_closure24, A.global_closure25, A.global_closure26, A.global_closure27, A.global_closure28, A.global_closure29, A.global_closure30, A.global_closure31, A.global_closure32, A.global_closure33, A.global_closure34, A.global_closure35, A.global__closure, A.global_closure36, A.global_closure37, A.global_closure38, A.global_closure39, A.global_closure40, A.global_closure41, A.global_closure42, A.module_closure1, A.module_closure2, A.module_closure3, A.module_closure4, A.module_closure5, A.module_closure6, A.module_closure7, A.module_closure8, A.module_closure9, A.module_closure10, A.module_closure11, A.module_closure12, A.module_closure13, A.module_closure14, A.module__closure2, A.module_closure15, A.module_closure16, A.module_closure17, A.module_closure18, A.module_closure19, A.module_closure20, A.module_closure21, A.module_closure22, A.module__closure1, A.module_closure23, A.module_closure_toXyzNoMissing, A.module_closure24, A._mix_closure, A._complement_closure, A._adjust_closure, A._scale_closure, A._change_closure, A._ieHexStr_closure, A._ieHexStr_closure_hexString, A._updateComponents_closure, A._updateComponents_closure0, A._adjustColor_closure, A._functionString_closure, A._removedColorFunction_closure, A._rgb_closure, A._hsl_closure, A._parseChannels_closure, A._parseChannels_closure0, A._colorFromChannels_closure, A._colorFromChannels_closure0, A._channelFromValue_closure, A._channelFunction_closure, A._suggestScaleAndAdjust_closure, A._length_closure0, A._nth_closure, A._setNth_closure, A._join_closure, A._append_closure0, A._zip_closure, A._zip__closure, A._zip__closure0, A._zip__closure1, A._index_closure0, A._separator_closure, A._isBracketed_closure, A._slash_closure, A._get_closure, A._set_closure, A._set__closure0, A._set_closure0, A._set__closure, A._merge_closure, A._merge_closure0, A._merge__closure, A._deepMerge_closure, A._deepRemove_closure, A._deepRemove__closure, A._remove_closure, A._remove_closure0, A._keys_closure, A._values_closure, A._hasKey_closure, A._modify_modifyNestedMap, A.global_closure, A.module_closure0, A._ceil_closure, A._clamp_closure, A._floor_closure, A._max_closure, A._min_closure, A._round_closure, A._hypot_closure, A._hypot__closure, A._log_closure, A._pow_closure, A._atan2_closure, A._compatible_closure, A._isUnitless_closure, A._unit_closure, A._percentage_closure, A._randomFunction_closure, A._div_closure, A._singleArgumentMathFunc_closure, A._numberFunction_closure, A._shared_closure, A._shared_closure0, A._shared_closure1, A._shared_closure2, A.moduleFunctions_closure, A.moduleFunctions_closure0, A.moduleFunctions__closure, A.moduleFunctions_closure1, A._nest_closure, A._nest__closure, A._append_closure, A._append__closure, A._append___closure, A._extend_closure, A._replace_closure, A._unify_closure, A._isSuperselector_closure, A._simpleSelectors_closure, A._simpleSelectors__closure, A._parse_closure, A.module_closure, A.module__closure, A.module__closure0, A._unquote_closure, A._quote_closure, A._length_closure, A._insert_closure, A._index_closure, A._slice_closure, A._toUpperCase_closure, A._toLowerCase_closure, A._uniqueId_closure, A.ImportCache_humanize_closure, A.ImportCache_humanize_closure0, A.ImportCache_humanize_closure1, A.ImportCache_humanize_closure2, A.FilesystemImporter_canonicalize_closure, A._exactlyOne_closure, A.InterpolationMap_mapException_closure, A._realCasePath_helper, A._realCasePath_helper__closure, A.listDir__closure, A.listDir__closure0, A.listDir_closure_list, A.listDir__list_closure, A._parseFunctions__closure, A.compilerClass__closure, A.compilerClass__closure0, A.compilerClass__closure1, A.compilerClass__closure2, A.versionClass__closure, A.versionClass__closure0/*DSH-, A.exceptionClass__closure, A.exceptionClass__closure0, A.exceptionClass__closure1*/, A.immutableMapToDartMap_closure, A.updateCanonicalizeContextPrototype_closure, A.updateCanonicalizeContextPrototype_closure0, A.loadParserExports_closure, A.loadParserExports_closure0, A.loadParserExports_closure1, A.loadParserExports_closure2, A.loadParserExports_closure3, A.loadParserExports_closure4, A._updateLazyFileSpanPrototype_closure0, A._updateLazyFileSpanPrototype_closure1, A._updateLazyFileSpanPrototype_closure2, A._updateAstPrototypes_closure, A._updateAstPrototypes_closure0, A._updateAstPrototypes_closure1, A._updateAstPrototypes_closure2, A._updateAstPrototypes_closure7, A._updateAstPrototypes_closure8, A._updateAstPrototypes_closure9, A._updateAstPrototypes_closure10, A._updateAstPrototypes_closure11, A._updateAstPrototypes_closure12, A._updateAstPrototypes_closure13, A._addSupportsConditionToInterpolation_closure, A.JSClassExtension_setCustomInspect_closure, A.updateSourceSpanPrototype_closure0, A.updateSourceSpanPrototype_closure1, A.updateSourceSpanPrototype_closure2, A.updateSourceSpanPrototype__closure, A.updateSourceSpanPrototype_closure3, A.updateSourceSpanPrototype_closure4, A.updateSourceSpanPrototype_closure5, A.updateSourceSpanPrototype_closure6, A.valueClass__closure, A.valueClass__closure0, A.valueClass__closure1, A.valueClass__closure2, A.valueClass__closure3, A.valueClass__closure4, A.valueClass__closure5, A.valueClass__closure7, A.valueClass__closure8, A.valueClass__closure9, A.valueClass__closure10, A.valueClass__closure11, A.valueClass__closure12, A.valueClass__closure13, A.valueClass__closure14, A.valueClass__closure15, A.valueClass__closure17, A.valueClass__closure18, A.argumentListClass__closure, A.argumentListClass__closure0, A.booleanClass__closure, A.calculationClass__closure, A.calculationClass__closure0, A.calculationClass__closure1, A.calculationClass__closure2, A.calculationClass__closure3, A.calculationClass__closure4, A.calculationClass__closure5, A.calculationOperationClass__closure, A.calculationOperationClass___closure, A.calculationOperationClass__closure1, A.calculationOperationClass__closure2, A.calculationOperationClass__closure3, A.calculationOperationClass__closure4, A.calculationInterpolationClass__closure1, A.calculationInterpolationClass__closure2, A.colorClass__closure1, A.colorClass__closure3, A.colorClass__closure5, A.colorClass__closure7, A.colorClass___closure, A.colorClass__closure_changedValue, A.colorClass__closure9, A.colorClass__closure10, A.colorClass__closure11, A.colorClass__closure12, A.colorClass__closure13, A.colorClass__closure14, A.colorClass__closure15, A.colorClass__closure16, A.colorClass__closure17, A.colorClass__closure18, A.colorClass__closure19, A.colorClass__closure20, A.colorClass__closure21, A.colorClass__closure22, A.functionClass__closure, A.functionClass__closure0, A.listClass__closure, A.mapClass__closure, A.mapClass__closure0, A.mixinClass__closure, A.mixinClass__closure0, A.numberClass__closure, A.numberClass__closure0, A.numberClass__closure1, A.numberClass__closure2, A.numberClass__closure3, A.numberClass__closure4, A.numberClass__closure5, A.numberClass__closure6, A.numberClass__closure7, A.numberClass__closure8, A.numberClass__closure9, A.numberClass__closure12, A.numberClass__closure13, A.numberClass__closure14, A.numberClass__closure15, A.numberClass__closure16, A.numberClass__closure17, A.numberClass__closure18, A.numberClass__closure19, A.stringClass__closure, A.stringClass__closure0, A.stringClass__closure1, A.stringClass__closure2, A.stringClass__closure3, A.DeprecationProcessingLogger_summarize_closure, A.DeprecationProcessingLogger_summarize_closure0, A._disallowedFunctionNames_closure, A.Parser_escape_closure, A.Parser_scanIdentChar_matches, A.SassParser_styleRuleSelector_closure, A.SassParser__peekIndentation_closure, A.SassParser__peekIndentation_closure0, A.SassParser__tryTrailingSemicolon_closure, A.StylesheetParser__declarationOrBuffer_closure1, A.StylesheetParser__expression_addSingleExpression, A.StylesheetParser__expression_addOperator, A.StylesheetParser__isHexColor_closure, A.StylesheetParser__unicodeRange_closure, A.StylesheetParser__unicodeRange_closure0, A.StylesheetParser_trySpecialFunction_closure, A.MapExtensions_get_pairs_closure, A._PrefixedKeys_iterator_closure, A.SourceMapBuffer_buildSourceMap_closure, A.StringExtension_toCssIdentifier_writeEscape, A.StringExtension_toCssIdentifier_consumeSurrogatePair, A._UnprefixedKeys_iterator_closure, A._UnprefixedKeys_iterator_closure0, A.indent_closure, A.flattenVertically_closure, A.flattenVertically_closure0, A.SassCalculation__verifyLength_closure, A.SassColor$_forSpace_closure, A.HwbColorSpace_convert_toRgb, A.SassList_isBlank_closure, A.SassNumber__coerceOrConvertValue_closure, A.SassNumber__coerceOrConvertValue_closure1, A.SassNumber_multiplyUnits_closure, A.SassNumber_multiplyUnits_closure1, A.SassNumber__areAnyConvertible_closure, A.SassNumber__canonicalizeUnitList_closure, A.SassNumber_unitSuggestion_closure, A.SassNumber_unitSuggestion_closure0, A.SingleUnitSassNumber__coerceToUnit_closure, A.SingleUnitSassNumber__coerceValueToUnit_closure, A.SingleUnitSassNumber_multiplyUnits_closure, A.AnySelectorVisitor_visitComplexSelector_closure, A.AnySelectorVisitor_visitCompoundSelector_closure, A._EvaluateVisitor_closure, A._EvaluateVisitor_closure0, A._EvaluateVisitor_closure1, A._EvaluateVisitor_closure2, A._EvaluateVisitor_closure3, A._EvaluateVisitor_closure4, A._EvaluateVisitor_closure5, A._EvaluateVisitor_closure6, A._EvaluateVisitor_closure7, A._EvaluateVisitor_closure8, A._EvaluateVisitor_closure9, A._EvaluateVisitor_closure10, A._EvaluateVisitor_closure11, A._EvaluateVisitor__loadModule__closure, A._EvaluateVisitor__combineCss_closure, A._EvaluateVisitor__combineCss_closure0, A._EvaluateVisitor__combineCss_visitModule, A._EvaluateVisitor__extendModules_closure, A._EvaluateVisitor__scopeForAtRoot_closure, A._EvaluateVisitor__scopeForAtRoot_closure0, A._EvaluateVisitor__scopeForAtRoot_closure1, A._EvaluateVisitor__scopeForAtRoot_closure2, A._EvaluateVisitor__scopeForAtRoot_closure3, A._EvaluateVisitor__scopeForAtRoot_closure4, A._EvaluateVisitor_visitEachRule_closure, A._EvaluateVisitor_visitEachRule_closure0, A._EvaluateVisitor_visitEachRule__closure, A._EvaluateVisitor_visitEachRule___closure, A._EvaluateVisitor_visitAtRule_closure, A._EvaluateVisitor_visitAtRule_closure1, A._EvaluateVisitor_visitForRule__closure, A._EvaluateVisitor_visitIfRule_closure, A._EvaluateVisitor_visitIfRule___closure, A._EvaluateVisitor__visitDynamicImport__closure, A._EvaluateVisitor__visitDynamicImport__closure0, A._EvaluateVisitor__visitDynamicImport__closure1, A._EvaluateVisitor_visitIncludeRule_closure0, A._EvaluateVisitor_visitMediaRule_closure, A._EvaluateVisitor_visitMediaRule_closure1, A._EvaluateVisitor_visitStyleRule_closure0, A._EvaluateVisitor_visitStyleRule_closure1, A._EvaluateVisitor__warnForBogusCombinators_closure, A._EvaluateVisitor_visitSupportsRule_closure0, A._EvaluateVisitor_visitWhileRule__closure, A._EvaluateVisitor__slash_recommendation, A._EvaluateVisitor_visitIfExpression_closure, A._EvaluateVisitor_visitIfConditionOperation_closure, A._EvaluateVisitor_visitListExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure0, A._EvaluateVisitor__visitCalculation_closure, A._EvaluateVisitor__checkCalculationArguments_check, A._EvaluateVisitor__visitCalculationExpression__closure, A._EvaluateVisitor__runUserDefinedCallable____closure, A._EvaluateVisitor__runBuiltInCallable_closure1, A._EvaluateVisitor__evaluateArguments_closure, A._EvaluateVisitor__evaluateArguments_closure0, A._EvaluateVisitor__evaluateArguments_closure2, A._EvaluateVisitor__evaluateMacroArguments_closure, A._EvaluateVisitor__evaluateMacroArguments_closure0, A._EvaluateVisitor__evaluateMacroArguments_closure2, A._EvaluateVisitor_visitCssAtRule_closure0, A._EvaluateVisitor_visitCssKeyframeBlock_closure0, A._EvaluateVisitor_visitCssMediaRule_closure, A._EvaluateVisitor_visitCssMediaRule_closure1, A._EvaluateVisitor_visitCssStyleRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure0, A._EvaluateVisitor__performInterpolationHelper_closure, A._EvaluateVisitor__withoutSlash_recommendation, A._EvaluateVisitor__stackFrame_closure, A._ImportedCssVisitor_visitCssAtRule_closure, A._ImportedCssVisitor_visitCssMediaRule_closure, A._ImportedCssVisitor_visitCssStyleRule_closure, A._ImportedCssVisitor_visitCssSupportsRule_closure, A.EveryCssVisitor_visitCssAtRule_closure, A.EveryCssVisitor_visitCssKeyframeBlock_closure, A.EveryCssVisitor_visitCssMediaRule_closure, A.EveryCssVisitor_visitCssStyleRule_closure, A.EveryCssVisitor_visitCssStylesheet_closure, A.EveryCssVisitor_visitCssSupportsRule_closure, A.IsCalculationSafeVisitor_visitListExpression_closure, A.ReplaceExpressionVisitor_visitListExpression_closure, A.ReplaceExpressionVisitor_visitIfConditionOperation_closure, A.ReplaceExpressionVisitor_visitArgumentList_closure, A.ReplaceExpressionVisitor_visitInterpolation_closure, A.SelectorSearchVisitor_visitComplexSelector_closure, A.SelectorSearchVisitor_visitCompoundSelector_closure, A.serialize_closure, A._SerializeVisitor_visitList_closure, A._SerializeVisitor_visitList_closure0, A._SerializeVisitor_visitList_closure1, A._SerializeVisitor_visitMap_closure, A._SerializeVisitor_visitSelectorList_closure, A.SourceInterpolationVisitor__visitArguments_closure, A.SourceInterpolationVisitor_visitIfConditionOperation_closure, A.SourceInterpolationVisitor_visitListExpression_closure, A.StatementSearchVisitor_visitIfRule_closure, A.StatementSearchVisitor_visitIfRule__closure0, A.StatementSearchVisitor_visitIfRule_closure0, A.StatementSearchVisitor_visitIfRule__closure, A.StatementSearchVisitor_visitChildren_closure, A.SingleMapping_SingleMapping$fromEntries_closure1, A.SingleMapping_toJson_closure, A.Highlighter$__closure, A.Highlighter$___closure, A.Highlighter$__closure0, A.Highlighter__collateLines_closure, A.Highlighter__collateLines_closure1, A.Highlighter__collateLines__closure, A.Highlighter_highlight_closure, A.Trace_toString_closure0, A.Trace_toString_closure]);
+				_inheritMany(A.Closure, [A.Closure2Args, A.CastMap_entries_closure, A.Instantiation, A.Closure0Args, A.TearOffClosure, A.initHooks_closure, A.initHooks_closure1, A._AsyncRun__initializeScheduleImmediate_internalCallback, A._AsyncRun__initializeScheduleImmediate_closure, A._CustomZone_bindUnaryCallback_closure, A._RootZone_bindUnaryCallback_closure, A._HashMap_values_closure, A.MapBase_entries_closure, A._Uri__makePath_closure, A.jsify__convert, A.MapKeySet_difference_closure, A.Context_joinAll_closure, A.Context_split_closure, A._validateArgList_closure, A.ParsedPath__splitExtension_closure, A.WindowsStyle_absolutePathToUri_closure, A.Version__splitParts_closure, A.ModifiableCssNode_hasFollowingSibling_closure, A.ListExpression_toString_closure, A.Interpolation_toString_closure, A.ParameterList_verify_closure, A.ParameterList_verify_closure0, A.EachRule_toString_closure, A.IfRuleClause$__closure, A.IfRuleClause$___closure, A.ParentStatement_closure, A.ParentStatement__closure, A._IsBogusVisitor_visitComplexSelector_closure, A._IsUselessVisitor_visitComplexSelector_closure, A.ComplexSelectorComponent_toString_closure, A.CompoundSelector_hasComplicatedSuperselectorSemantics_closure, A.IDSelector_unify_closure, A.SelectorList_asSassList_closure, A.SelectorList_nestWithin_closure, A.SelectorList_nestWithin__closure, A.SelectorList_nestWithin__closure0, A.SelectorList__nestWithinCompound_closure, A.SelectorList__nestWithinCompound_closure0, A.SelectorList__nestWithinCompound_closure1, A.SelectorList_withAdditionalCombinators_closure, A.PseudoSelector_specificity__closure, A.PseudoSelector_specificity__closure0, A.PseudoSelector_unify_closure, A.SimpleSelector_isSuperselector_closure, A.SimpleSelector_isSuperselector__closure, A.BuiltInCallable$mixin_closure, A.BuiltInCallable_withDeprecationWarning_closure, A._compileStylesheet_closure, A.Deprecation_fromId_closure, A.Environment__getVariableFromGlobalModule_closure, A.Environment_setVariable_closure0, A.Environment__getFunctionFromGlobalModule_closure, A.Environment__getMixinFromGlobalModule_closure, A.Environment_toModule_closure, A.Environment_toDummyModule_closure, A._EnvironmentModule__EnvironmentModule_closure, A._EnvironmentModule__EnvironmentModule_closure0, A._EnvironmentModule__EnvironmentModule_closure1, A._EnvironmentModule__EnvironmentModule_closure2, A._EnvironmentModule__EnvironmentModule_closure3, A._EnvironmentModule__EnvironmentModule_closure4, A._EnvironmentModule_couldHaveBeenConfigured_closure, A.ExtensionStore_extensionsWhereTarget_closure, A.ExtensionStore__extendComplex_closure, A.ExtensionStore__extendComplex__closure, A.ExtensionStore__extendCompound_closure, A.ExtensionStore__extendCompound_closure0, A.ExtensionStore__extendCompound_closure1, A.ExtensionStore__extendSimple_withoutPseudo, A.ExtensionStore__extendSimple_closure, A.ExtensionStore__extendSimple_closure0, A.ExtensionStore__extendPseudo_closure, A.ExtensionStore__extendPseudo_closure0, A.ExtensionStore__extendPseudo_closure1, A.ExtensionStore__extendPseudo_closure2, A.ExtensionStore__extendPseudo_closure3, A.ExtensionStore__trim_closure, A.ExtensionStore__trim_closure0, A.unifyComplex_closure, A._weaveParents_closure0, A._weaveParents_closure1, A._weaveParents_closure2, A._mustUnify_closure, A._mustUnify__closure, A.paths__closure, A.paths___closure, A.listIsSuperselector_closure, A.listIsSuperselector__closure, A.complexIsSuperselector_closure, A.complexIsSuperselector_closure0, A._compatibleWithPreviousCombinator_closure, A.compoundIsSuperselector_closure, A._selectorPseudoIsSuperselector_closure, A._selectorPseudoIsSuperselector_closure0, A._selectorPseudoIsSuperselector_closure1, A._selectorPseudoIsSuperselector_closure2, A._selectorPseudoIsSuperselector_closure3, A._selectorPseudoIsSuperselector__closure, A._selectorPseudoIsSuperselector___closure, A._selectorPseudoIsSuperselector___closure0, A._selectorPseudoIsSuperselector_closure4, A._selectorPseudoIsSuperselector_closure5, A._selectorPseudoArgs_closure, A._selectorPseudoArgs_closure0, A.globalFunctions_closure, A.global_closure0, A.global_closure1, A.global_closure2, A.global_closure3, A.global_closure4, A.global_closure5, A.global_closure6, A.global_closure7, A.global_closure8, A.global_closure9, A.global_closure10, A.global_closure11, A.global_closure12, A.global_closure13, A.global_closure14, A.global_closure15, A.global_closure16, A.global_closure17, A.global_closure18, A.global_closure19, A.global_closure20, A.global_closure21, A.global_closure22, A.global_closure23, A.global_closure24, A.global_closure25, A.global_closure26, A.global_closure27, A.global_closure28, A.global_closure29, A.global_closure30, A.global_closure31, A.global_closure32, A.global_closure33, A.global_closure34, A.global_closure35, A.global__closure, A.global_closure36, A.global_closure37, A.global_closure38, A.global_closure39, A.global_closure40, A.global_closure41, A.global_closure42, A.module_closure1, A.module_closure2, A.module_closure3, A.module_closure4, A.module_closure5, A.module_closure6, A.module_closure7, A.module_closure8, A.module_closure9, A.module_closure10, A.module_closure11, A.module_closure12, A.module_closure13, A.module_closure14, A.module__closure2, A.module_closure15, A.module_closure16, A.module_closure17, A.module_closure18, A.module_closure19, A.module_closure20, A.module_closure21, A.module_closure22, A.module__closure1, A.module_closure23, A.module_closure_toXyzNoMissing, A.module_closure24, A._mix_closure, A._complement_closure, A._adjust_closure, A._scale_closure, A._change_closure, A._ieHexStr_closure, A._ieHexStr_closure_hexString, A._updateComponents_closure, A._updateComponents_closure0, A._adjustColor_closure, A._functionString_closure, A._removedColorFunction_closure, A._rgb_closure, A._hsl_closure, A._parseChannels_closure, A._parseChannels_closure0, A._colorFromChannels_closure, A._colorFromChannels_closure0, A._channelFromValue_closure, A._channelFunction_closure, A._suggestScaleAndAdjust_closure, A._length_closure0, A._nth_closure, A._setNth_closure, A._join_closure, A._append_closure0, A._zip_closure, A._zip__closure, A._zip__closure0, A._zip__closure1, A._index_closure0, A._separator_closure, A._isBracketed_closure, A._slash_closure, A._get_closure, A._set_closure, A._set__closure0, A._set_closure0, A._set__closure, A._merge_closure, A._merge_closure0, A._merge__closure, A._deepMerge_closure, A._deepRemove_closure, A._deepRemove__closure, A._remove_closure, A._remove_closure0, A._keys_closure, A._values_closure, A._hasKey_closure, A._modify_modifyNestedMap, A.global_closure, A.module_closure0, A._ceil_closure, A._clamp_closure, A._floor_closure, A._max_closure, A._min_closure, A._round_closure, A._hypot_closure, A._hypot__closure, A._log_closure, A._pow_closure, A._atan2_closure, A._compatible_closure, A._isUnitless_closure, A._unit_closure, A._percentage_closure, A._randomFunction_closure, A._div_closure, A._singleArgumentMathFunc_closure, A._numberFunction_closure, A._shared_closure, A._shared_closure0, A._shared_closure1, A._shared_closure2, A.moduleFunctions_closure, A.moduleFunctions_closure0, A.moduleFunctions__closure, A.moduleFunctions_closure1, A._nest_closure, A._nest__closure, A._append_closure, A._append__closure, A._append___closure, A._extend_closure, A._replace_closure, A._unify_closure, A._isSuperselector_closure, A._simpleSelectors_closure, A._simpleSelectors__closure, A._parse_closure, A.module_closure, A.module__closure, A.module__closure0, A._unquote_closure, A._quote_closure, A._length_closure, A._insert_closure, A._index_closure, A._slice_closure, A._toUpperCase_closure, A._toLowerCase_closure, A._uniqueId_closure, A.ImportCache_humanize_closure, A.ImportCache_humanize_closure0, A.ImportCache_humanize_closure1, A.ImportCache_humanize_closure2, A.FilesystemImporter_canonicalize_closure, A._exactlyOne_closure, A.InterpolationMap_mapException_closure, A._realCasePath_helper, A._realCasePath_helper__closure, A.listDir__closure, A.listDir__closure0, A.listDir_closure_list, A.listDir__list_closure, A._parseFunctions__closure, A.compilerClass__closure, A.compilerClass__closure0, A.compilerClass__closure1, A.compilerClass__closure2, A.versionClass__closure, A.versionClass__closure0/*DSH-, A.exceptionClass__closure, A.exceptionClass__closure0, A.exceptionClass__closure1*/, A.immutableMapToDartMap_closure, A.updateCanonicalizeContextPrototype_closure, A.updateCanonicalizeContextPrototype_closure0, A.loadParserExports_closure, A.loadParserExports_closure0, A.loadParserExports_closure1, A.loadParserExports_closure2, A.loadParserExports_closure3, A.loadParserExports_closure4, A._updateLazyFileSpanPrototype_closure0, A._updateLazyFileSpanPrototype_closure1, A._updateLazyFileSpanPrototype_closure2, A._updateAstPrototypes_closure, A._updateAstPrototypes_closure0, A._updateAstPrototypes_closure1, A._updateAstPrototypes_closure2, A._updateAstPrototypes_closure7, A._updateAstPrototypes_closure8, A._updateAstPrototypes_closure9, A._updateAstPrototypes_closure10, A._updateAstPrototypes_closure11, A._updateAstPrototypes_closure12, A._updateAstPrototypes_closure13, A._addSupportsConditionToInterpolation_closure, A.JSClassExtension_setCustomInspect_closure, A.updateSourceSpanPrototype_closure0, A.updateSourceSpanPrototype_closure1, A.updateSourceSpanPrototype_closure2, A.updateSourceSpanPrototype__closure, A.updateSourceSpanPrototype_closure3, A.updateSourceSpanPrototype_closure4, A.updateSourceSpanPrototype_closure5, A.updateSourceSpanPrototype_closure6, A.valueClass__closure, A.valueClass__closure0, A.valueClass__closure1, A.valueClass__closure2, A.valueClass__closure3, A.valueClass__closure4, A.valueClass__closure5, A.valueClass__closure7, A.valueClass__closure8, A.valueClass__closure9, A.valueClass__closure10, A.valueClass__closure11, A.valueClass__closure12, A.valueClass__closure13, A.valueClass__closure14, A.valueClass__closure15, A.valueClass__closure17, A.valueClass__closure18, A.argumentListClass__closure, A.argumentListClass__closure0, A.booleanClass__closure, A.calculationClass__closure, A.calculationClass__closure0, A.calculationClass__closure1, A.calculationClass__closure2, A.calculationClass__closure3, A.calculationClass__closure4, A.calculationClass__closure5, A.calculationOperationClass__closure, A.calculationOperationClass___closure, A.calculationOperationClass__closure1, A.calculationOperationClass__closure2, A.calculationOperationClass__closure3, A.calculationOperationClass__closure4, A.calculationInterpolationClass__closure1, A.calculationInterpolationClass__closure2, A.colorClass__closure1, A.colorClass__closure3, A.colorClass__closure5, A.colorClass__closure7, A.colorClass___closure, A.colorClass__closure_changedValue, A.colorClass__closure9, A.colorClass__closure10, A.colorClass__closure11, A.colorClass__closure12, A.colorClass__closure13, A.colorClass__closure14, A.colorClass__closure15, A.colorClass__closure16, A.colorClass__closure17, A.colorClass__closure18, A.colorClass__closure19, A.colorClass__closure20, A.colorClass__closure21, A.colorClass__closure22, A.functionClass__closure, A.functionClass__closure0, A.listClass__closure, A.mapClass__closure, A.mapClass__closure0, A.mixinClass__closure, A.mixinClass__closure0, A.numberClass__closure, A.numberClass__closure0, A.numberClass__closure1, A.numberClass__closure2, A.numberClass__closure3, A.numberClass__closure4, A.numberClass__closure5, A.numberClass__closure6, A.numberClass__closure7, A.numberClass__closure8, A.numberClass__closure9, A.numberClass__closure12, A.numberClass__closure13, A.numberClass__closure14, A.numberClass__closure15, A.numberClass__closure16, A.numberClass__closure17, A.numberClass__closure18, A.numberClass__closure19, A.stringClass__closure, A.stringClass__closure0, A.stringClass__closure1, A.stringClass__closure2, A.stringClass__closure3, A.DeprecationProcessingLogger_summarize_closure, A.DeprecationProcessingLogger_summarize_closure0, A._disallowedFunctionNames_closure, A.Parser_escape_closure, A.Parser_scanIdentChar_matches, A.SassParser_styleRuleSelector_closure, A.SassParser__peekIndentation_closure, A.SassParser__peekIndentation_closure0, A.SassParser__tryTrailingSemicolon_closure, A.StylesheetParser__declarationOrBuffer_closure1, A.StylesheetParser__expression_addSingleExpression, A.StylesheetParser__expression_addOperator, A.StylesheetParser__isHexColor_closure, A.StylesheetParser__unicodeRange_closure, A.StylesheetParser__unicodeRange_closure0, A.StylesheetParser_trySpecialFunction_closure, A.MapExtensions_get_pairs_closure, A._PrefixedKeys_iterator_closure, A.SourceMapBuffer_buildSourceMap_closure, A.StringExtension_toCssIdentifier_writeEscape, A.StringExtension_toCssIdentifier_consumeSurrogatePair, A._UnprefixedKeys_iterator_closure, A._UnprefixedKeys_iterator_closure0, A.indent_closure, A.flattenVertically_closure, A.flattenVertically_closure0, A.SassCalculation__verifyLength_closure, A.SassColor$_forSpace_closure, A.HwbColorSpace_convert_toRgb, A.SassList_isBlank_closure, A.SassNumber__coerceOrConvertValue_closure, A.SassNumber__coerceOrConvertValue_closure1, A.SassNumber_multiplyUnits_closure, A.SassNumber_multiplyUnits_closure1, A.SassNumber__areAnyConvertible_closure, A.SassNumber__canonicalizeUnitList_closure, A.SassNumber_unitSuggestion_closure, A.SassNumber_unitSuggestion_closure0, A.SingleUnitSassNumber__coerceToUnit_closure, A.SingleUnitSassNumber__coerceValueToUnit_closure, A.SingleUnitSassNumber_multiplyUnits_closure, A.AnySelectorVisitor_visitComplexSelector_closure, A.AnySelectorVisitor_visitCompoundSelector_closure, A._EvaluateVisitor_closure, A._EvaluateVisitor_closure0, A._EvaluateVisitor_closure1, A._EvaluateVisitor_closure2, A._EvaluateVisitor_closure3, A._EvaluateVisitor_closure4, A._EvaluateVisitor_closure5, A._EvaluateVisitor_closure6, A._EvaluateVisitor_closure7, A._EvaluateVisitor_closure8, A._EvaluateVisitor_closure9, A._EvaluateVisitor_closure10, A._EvaluateVisitor_closure11, A._EvaluateVisitor__loadModule__closure, A._EvaluateVisitor__combineCss_closure, A._EvaluateVisitor__combineCss_closure0, A._EvaluateVisitor__combineCss_visitModule, A._EvaluateVisitor__extendModules_closure, A._EvaluateVisitor__scopeForAtRoot_closure, A._EvaluateVisitor__scopeForAtRoot_closure0, A._EvaluateVisitor__scopeForAtRoot_closure1, A._EvaluateVisitor__scopeForAtRoot_closure2, A._EvaluateVisitor__scopeForAtRoot_closure3, A._EvaluateVisitor__scopeForAtRoot_closure4, A._EvaluateVisitor_visitEachRule_closure, A._EvaluateVisitor_visitEachRule_closure0, A._EvaluateVisitor_visitEachRule__closure, A._EvaluateVisitor_visitEachRule___closure, A._EvaluateVisitor_visitAtRule_closure, A._EvaluateVisitor_visitAtRule_closure2, A._EvaluateVisitor_visitForRule__closure, A._EvaluateVisitor_visitIfRule_closure, A._EvaluateVisitor_visitIfRule___closure, A._EvaluateVisitor__visitDynamicImport__closure, A._EvaluateVisitor__visitDynamicImport__closure0, A._EvaluateVisitor__visitDynamicImport__closure1, A._EvaluateVisitor_visitIncludeRule_closure0, A._EvaluateVisitor_visitMediaRule_closure0, A._EvaluateVisitor_visitMediaRule_closure2, A._EvaluateVisitor_visitStyleRule_closure0, A._EvaluateVisitor_visitStyleRule_closure1, A._EvaluateVisitor__warnForBogusCombinators_closure, A._EvaluateVisitor_visitSupportsRule_closure1, A._EvaluateVisitor_visitWhileRule__closure, A._EvaluateVisitor__slash_recommendation, A._EvaluateVisitor_visitIfExpression_closure, A._EvaluateVisitor_visitIfConditionOperation_closure, A._EvaluateVisitor_visitListExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure0, A._EvaluateVisitor__visitCalculation_closure, A._EvaluateVisitor__checkCalculationArguments_check, A._EvaluateVisitor__visitCalculationExpression__closure, A._EvaluateVisitor__runUserDefinedCallable____closure, A._EvaluateVisitor__runBuiltInCallable_closure1, A._EvaluateVisitor__evaluateArguments_closure, A._EvaluateVisitor__evaluateArguments_closure0, A._EvaluateVisitor__evaluateArguments_closure2, A._EvaluateVisitor__evaluateMacroArguments_closure, A._EvaluateVisitor__evaluateMacroArguments_closure0, A._EvaluateVisitor__evaluateMacroArguments_closure2, A._EvaluateVisitor_visitCssAtRule_closure1, A._EvaluateVisitor_visitCssKeyframeBlock_closure0, A._EvaluateVisitor_visitCssMediaRule_closure0, A._EvaluateVisitor_visitCssMediaRule_closure2, A._EvaluateVisitor_visitCssStyleRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure1, A._EvaluateVisitor__performInterpolationHelper_closure, A._EvaluateVisitor__withoutSlash_recommendation, A._EvaluateVisitor__stackFrame_closure, A._ImportedCssVisitor_visitCssAtRule_closure, A._ImportedCssVisitor_visitCssMediaRule_closure, A._ImportedCssVisitor_visitCssStyleRule_closure, A._ImportedCssVisitor_visitCssSupportsRule_closure, A.EveryCssVisitor_visitCssAtRule_closure, A.EveryCssVisitor_visitCssKeyframeBlock_closure, A.EveryCssVisitor_visitCssMediaRule_closure, A.EveryCssVisitor_visitCssStyleRule_closure, A.EveryCssVisitor_visitCssStylesheet_closure, A.EveryCssVisitor_visitCssSupportsRule_closure, A.IsCalculationSafeVisitor_visitListExpression_closure, A.ReplaceExpressionVisitor_visitListExpression_closure, A.ReplaceExpressionVisitor_visitIfConditionOperation_closure, A.ReplaceExpressionVisitor_visitArgumentList_closure, A.ReplaceExpressionVisitor_visitInterpolation_closure, A.SelectorSearchVisitor_visitComplexSelector_closure, A.SelectorSearchVisitor_visitCompoundSelector_closure, A.serialize_closure, A._SerializeVisitor_visitList_closure, A._SerializeVisitor_visitList_closure0, A._SerializeVisitor_visitList_closure1, A._SerializeVisitor_visitMap_closure, A._SerializeVisitor_visitSelectorList_closure, A.SourceInterpolationVisitor__visitArguments_closure, A.SourceInterpolationVisitor_visitIfConditionOperation_closure, A.SourceInterpolationVisitor_visitListExpression_closure, A.StatementSearchVisitor_visitIfRule_closure, A.StatementSearchVisitor_visitIfRule__closure0, A.StatementSearchVisitor_visitIfRule_closure0, A.StatementSearchVisitor_visitIfRule__closure, A.StatementSearchVisitor_visitChildren_closure, A.SingleMapping_SingleMapping$fromEntries_closure1, A.SingleMapping_toJson_closure, A.Highlighter$__closure, A.Highlighter$___closure, A.Highlighter$__closure0, A.Highlighter__collateLines_closure, A.Highlighter__collateLines_closure1, A.Highlighter__collateLines__closure, A.Highlighter_highlight_closure, A.Trace_toString_closure0, A.Trace_toString_closure]);
 				_inheritMany(A.Closure2Args, [A._CastListBase_sort_closure, A.CastMap_forEach_closure, A.Primitives_functionNoSuchMethod_closure, A.JsLinkedHashMap_addAll_closure, A.initHooks_closure0, A._HashMap_addAll_closure, A.HashMap_HashMap$from_closure, A.LinkedHashMap_LinkedHashMap$from_closure, A.MapBase_addAll_closure, A.MapBase_mapToString_closure, A.NoSuchMethodError_toString_closure, A.Uri_parseIPv6Address_error, A.MidiInputMap_keys_closure, A.MidiInputMap_values_closure, A.MidiOutputMap_keys_closure, A.MidiOutputMap_values_closure, A.RtcStatsReport_keys_closure, A.RtcStatsReport_values_closure, A.Storage_addAll_closure, A.Storage_keys_closure, A.Storage_values_closure, A.AudioParamMap_keys_closure, A.AudioParamMap_values_closure, A.IfRule_toString_closure, A.ComplexSelector_specificity_closure, A.CompoundSelector_specificity_closure, A.main_closure, A.main_closure0, A.ExtensionStore_clone_closure, A._weaveParents_closure, A.paths_closure, A._nest__closure0, A._append__closure0, A._parseFunctions_closure, A._updateAstPrototypes_closure3, A._updateAstPrototypes_closure4, A._updateAstPrototypes_closure5, A._updateAstPrototypes_closure6, A.JSClassExtension_get_defineStaticMethod_closure, A.JSClassExtension_get_defineMethod_closure, A.JSClassExtension_get_defineGetter_closure, A.objectToMap_closure, A.valueClass__closure6, A.valueClass__closure16, A.calculationOperationClass__closure0, A.calculationInterpolationClass__closure, A.calculationInterpolationClass__closure0, A.colorClass__closure, A.colorClass__closure0, A.colorClass__closure2, A.colorClass__closure4, A.colorClass__closure6, A.colorClass__closure8, A.listClass__closure0, A.mapClass__closure1, A.numberClass__closure10, A.numberClass__closure11, A.StylesheetParser__styleRule_closure, A.StylesheetParser__styleRule_closure0, A.StylesheetParser__withStyleRuleChildren_closure, A.StylesheetParser__tryDeclarationChildren_closure, A.StylesheetParser__atRootRule_closure, A.StylesheetParser__atRootRule_closure0, A.StylesheetParser__eachRule_closure, A.StylesheetParser__functionRule_closure, A.StylesheetParser__forRule_closure0, A.StylesheetParser__includeRule_closure, A.StylesheetParser_mediaRule_closure, A.StylesheetParser__mixinRule_closure, A.StylesheetParser_mozDocumentRule_closure0, A.StylesheetParser_supportsRule_closure, A.StylesheetParser__whileRule_closure, A.StylesheetParser_unknownAtRule_closure, A.longestCommonSubsequence_backtrack, A.mapAddAll2_closure, A.SassNumber_plus_closure, A.SassNumber_minus_closure, A.SassNumber__canonicalMultiplier_closure, A._EvaluateVisitor__closure, A._EvaluateVisitor__closure0, A._EvaluateVisitor_visitForwardRule_closure, A._EvaluateVisitor_visitForwardRule_closure0, A._EvaluateVisitor_visitUseRule_closure, A._EvaluateVisitor__evaluateArguments_closure1, A._EvaluateVisitor__evaluateMacroArguments_closure1, A._EvaluateVisitor__addRestMap_closure, A.SingleMapping_toJson_closure0, A.Highlighter__collateLines_closure0]);
 				_inherit(A.CastList, A._CastListBase);
 				_inheritMany(A.MapBase, [A.CastMap, A.JsLinkedHashMap, A._HashMap, A.UnmodifiableMapBase, A.MergedMapView]);
@@ -66576,7 +66692,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_inheritMany(A.NativeTypedArrayOfDouble, [A.NativeFloat32List, A.NativeFloat64List]);
 				_inheritMany(A.NativeTypedArrayOfInt, [A.NativeInt16List, A.NativeInt32List, A.NativeInt8List, A.NativeUint16List, A.NativeUint32List, A.NativeUint8ClampedList, A.NativeUint8List]);
 				_inherit(A._TypeError, A._Error);
-				_inheritMany(A.Closure0Args, [A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A._TimerImpl$periodic_closure, A._CustomZone_bindCallback_closure, A._CustomZone_bindCallbackGuarded_closure, A._rootHandleError_closure, A._RootZone_bindCallback_closure, A._RootZone_bindCallbackGuarded_closure, A._Utf8Decoder__decoder_closure, A._Utf8Decoder__decoderNonfatal_closure, A._isStrictMode_closure, A.ParsedPath__splitExtension_closure0, A.IfConditionOperation_toInterpolation_closure, A.PseudoSelector_specificity_closure, A.Environment_setVariable_closure, A.Environment_setVariable_closure1, A.ExtensionStore__registerSelector_closure, A.ExtensionStore_addExtension_closure, A.ExtensionStore_addExtension_closure0, A.ExtensionStore_addExtension_closure1, A.ExtensionStore__extendExistingExtensions_closure, A.ExtensionStore__extendExistingExtensions_closure0, A.ExtensionStore_addExtensions_closure, A.ExtensionStore_clone__closure, A._changeColor_closure, A.ImportCache_canonicalize_closure, A.ImportCache__canonicalize_closure, A.ImportCache_importCanonical_closure, A.JSToDartFileImporter_canonicalize_closure, A.JSToDartImporter_canonicalize_closure, A.JSToDartImporter_load_closure, A.resolveImportPath_closure, A.resolveImportPath_closure0, A._tryPathAsDirectory_closure, A._realCasePath_helper_closure, A._readFile_closure, A.fileExists_closure, A.dirExists_closure, A.linkExists_closure, A.listDir_closure, A.realpath_closure, A._parseFunctions___closure, A.compilerClass_closure, A.deprecations_closure, A.parseDeprecations_closure, A.versionClass_closure, A.exceptionClass_closure, A._updateLazyFileSpanPrototype_closure, A.updateSourceSpanPrototype_closure, A.valueClass_closure, A.argumentListClass_closure, A.booleanClass_closure, A.calculationClass_closure, A.calculationOperationClass_closure, A.calculationInterpolationClass_closure, A.colorClass_closure, A.functionClass_closure, A.listClass_closure, A.mapClass_closure, A.mixinClass_closure, A.numberClass_closure, A.stringClass_closure/*DSH-, A.JSToDartLogger_internalWarn_closure, A.JSToDartLogger_debug_closure*/, A.AtRootQueryParser_parse_closure, A.KeyframeSelectorParser_parse_closure, A.MediaQueryParser_parse_closure, A.Parser__parseIdentifier_closure, A.Parser_spanFrom_closure, A.Parser_spanFromPosition_closure, A.SassParser_children_closure, A.SelectorParser_parse_closure, A.SelectorParser_parseCompoundSelector_closure, A.StylesheetParser_parse_closure, A.StylesheetParser_parse__closure, A.StylesheetParser_parseParameterList_closure, A.StylesheetParser__parseSingleProduction_closure, A.StylesheetParser_parseSignature_closure, A.StylesheetParser__statement_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure0, A.StylesheetParser__declarationOrBuffer_closure, A.StylesheetParser__declarationOrBuffer_closure0, A.StylesheetParser__declarationOrBuffer_closure2, A.StylesheetParser__propertyOrVariableDeclaration_closure, A.StylesheetParser__forRule_closure, A.StylesheetParser__memberList_closure, A.StylesheetParser_mozDocumentRule_closure, A.StylesheetParser__expression_resetState, A.StylesheetParser__expression_resolveOneOperation, A.StylesheetParser__expression_resolveOperations, A.StylesheetParser__expression_resolveSpaceExpressions, A.StylesheetParser_expressionUntilComma_closure, A.StylesheetParser_interpolatedStringToken_closure, A.StylesheetParser_namespacedExpression_closure, A.StylesheetParser__interpolatedDeclarationValue_closure, A.StylesheetParser__expressionUntilComparison_closure, A.StylesheetParser__publicIdentifier_closure, A.SassNumber__coerceOrConvertValue_compatibilityException, A.SassNumber__coerceOrConvertValue_closure0, A.SassNumber__coerceOrConvertValue_closure2, A.SassNumber_multiplyUnits_closure0, A.SassNumber_multiplyUnits_closure2, A.SingleUnitSassNumber_multiplyUnits_closure0, A._EvaluateVisitor__closure2, A._EvaluateVisitor__closure1, A._EvaluateVisitor_run_closure, A._EvaluateVisitor_run__closure, A._EvaluateVisitor__loadModule_closure, A._EvaluateVisitor__loadModule_closure0, A._EvaluateVisitor__loadModule__closure0, A._EvaluateVisitor__execute_closure, A._EvaluateVisitor__extendModules_closure0, A._EvaluateVisitor_visitAtRootRule_closure, A._EvaluateVisitor_visitAtRootRule_closure0, A._EvaluateVisitor__scopeForAtRoot__closure, A._EvaluateVisitor_visitContentRule_closure, A._EvaluateVisitor_visitDeclaration_closure, A._EvaluateVisitor_visitEachRule_closure1, A._EvaluateVisitor_visitAtRule_closure0, A._EvaluateVisitor_visitAtRule__closure, A._EvaluateVisitor_visitForRule_closure, A._EvaluateVisitor_visitForRule_closure0, A._EvaluateVisitor_visitForRule_closure1, A._EvaluateVisitor_visitForRule_closure2, A._EvaluateVisitor_visitForRule_closure3, A._EvaluateVisitor__registerCommentsForModule_closure, A._EvaluateVisitor_visitIfRule__closure, A._EvaluateVisitor__visitDynamicImport_closure, A._EvaluateVisitor__visitDynamicImport__closure2, A._EvaluateVisitor__applyMixin_closure, A._EvaluateVisitor__applyMixin__closure0, A._EvaluateVisitor__applyMixin_closure0, A._EvaluateVisitor__applyMixin__closure, A._EvaluateVisitor__applyMixin___closure, A._EvaluateVisitor__applyMixin____closure, A._EvaluateVisitor_visitIncludeRule_closure, A._EvaluateVisitor_visitIncludeRule_closure1, A._EvaluateVisitor_visitMediaRule_closure0, A._EvaluateVisitor_visitMediaRule__closure, A._EvaluateVisitor_visitMediaRule___closure, A._EvaluateVisitor_visitStyleRule_closure, A._EvaluateVisitor_visitStyleRule_closure2, A._EvaluateVisitor_visitStyleRule__closure, A._EvaluateVisitor_visitSupportsRule_closure, A._EvaluateVisitor_visitSupportsRule__closure, A._EvaluateVisitor__visitSupportsCondition_closure, A._EvaluateVisitor_visitVariableDeclaration_closure, A._EvaluateVisitor_visitVariableDeclaration_closure0, A._EvaluateVisitor_visitVariableDeclaration_closure1, A._EvaluateVisitor_visitWarnRule_closure, A._EvaluateVisitor_visitWhileRule_closure, A._EvaluateVisitor_visitBinaryOperationExpression_closure, A._EvaluateVisitor_visitVariableExpression_closure, A._EvaluateVisitor_visitUnaryOperationExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure1, A._EvaluateVisitor__visitCalculationExpression_closure, A._EvaluateVisitor_visitInterpolatedFunctionExpression_closure, A._EvaluateVisitor__runUserDefinedCallable_closure, A._EvaluateVisitor__runUserDefinedCallable__closure, A._EvaluateVisitor__runUserDefinedCallable___closure, A._EvaluateVisitor__runFunctionCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure0, A._EvaluateVisitor__verifyArguments_closure, A._EvaluateVisitor_visitCssAtRule_closure, A._EvaluateVisitor_visitCssKeyframeBlock_closure, A._EvaluateVisitor_visitCssMediaRule_closure0, A._EvaluateVisitor_visitCssMediaRule__closure, A._EvaluateVisitor_visitCssMediaRule___closure, A._EvaluateVisitor_visitCssStyleRule_closure0, A._EvaluateVisitor_visitCssStyleRule__closure, A._EvaluateVisitor_visitCssSupportsRule_closure, A._EvaluateVisitor_visitCssSupportsRule__closure, A._EvaluateVisitor__serialize_closure, A._EvaluateVisitor__expressionNode_closure, A._SerializeVisitor_visitCssComment_closure, A._SerializeVisitor_visitCssAtRule_closure, A._SerializeVisitor_visitCssMediaRule_closure, A._SerializeVisitor_visitCssImport_closure, A._SerializeVisitor_visitCssImport__closure, A._SerializeVisitor_visitCssKeyframeBlock_closure, A._SerializeVisitor_visitCssStyleRule_closure, A._SerializeVisitor_visitCssSupportsRule_closure, A._SerializeVisitor_visitCssDeclaration_closure, A._SerializeVisitor_visitCssDeclaration_closure0, A._SerializeVisitor__write_closure, A._SerializeVisitor__visitChildren_closure, A._SerializeVisitor__visitChildren_closure0, A.SingleMapping_SingleMapping$fromEntries_closure, A.SingleMapping_SingleMapping$fromEntries_closure0, A.Highlighter_closure, A.Highlighter__writeFileStart_closure, A.Highlighter__writeMultilineHighlights_closure, A.Highlighter__writeMultilineHighlights_closure0, A.Highlighter__writeMultilineHighlights_closure1, A.Highlighter__writeMultilineHighlights_closure2, A.Highlighter__writeMultilineHighlights__closure, A.Highlighter__writeMultilineHighlights__closure0, A.Highlighter__writeHighlightedText_closure, A.Highlighter__writeIndicator_closure, A.Highlighter__writeIndicator_closure0, A.Highlighter__writeIndicator_closure1, A.Highlighter__writeLabel_closure, A.Highlighter__writeLabel_closure0, A.Highlighter__writeSidebar_closure, A._Highlight_closure]);
+				_inheritMany(A.Closure0Args, [A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A._TimerImpl$periodic_closure, A._CustomZone_bindCallback_closure, A._CustomZone_bindCallbackGuarded_closure, A._rootHandleError_closure, A._RootZone_bindCallback_closure, A._RootZone_bindCallbackGuarded_closure, A._Utf8Decoder__decoder_closure, A._Utf8Decoder__decoderNonfatal_closure, A._isStrictMode_closure, A.ParsedPath__splitExtension_closure0, A.IfConditionOperation_toInterpolation_closure, A.PseudoSelector_specificity_closure, A.Environment_setVariable_closure, A.Environment_setVariable_closure1, A.ExtensionStore__registerSelector_closure, A.ExtensionStore_addExtension_closure, A.ExtensionStore_addExtension_closure0, A.ExtensionStore_addExtension_closure1, A.ExtensionStore__extendExistingExtensions_closure, A.ExtensionStore__extendExistingExtensions_closure0, A.ExtensionStore_addExtensions_closure, A.ExtensionStore_clone__closure, A._changeColor_closure, A.ImportCache_canonicalize_closure, A.ImportCache__canonicalize_closure, A.ImportCache_importCanonical_closure, A.JSToDartFileImporter_canonicalize_closure, A.JSToDartImporter_canonicalize_closure, A.JSToDartImporter_load_closure, A.resolveImportPath_closure, A.resolveImportPath_closure0, A._tryPathAsDirectory_closure, A._realCasePath_helper_closure, A._readFile_closure, A.fileExists_closure, A.dirExists_closure, A.linkExists_closure, A.listDir_closure, A.realpath_closure, A._parseFunctions___closure, A.compilerClass_closure, A.deprecations_closure, A.parseDeprecations_closure, A.versionClass_closure, A.exceptionClass_closure, A._updateLazyFileSpanPrototype_closure, A.updateSourceSpanPrototype_closure, A.valueClass_closure, A.argumentListClass_closure, A.booleanClass_closure, A.calculationClass_closure, A.calculationOperationClass_closure, A.calculationInterpolationClass_closure, A.colorClass_closure, A.functionClass_closure, A.listClass_closure, A.mapClass_closure, A.mixinClass_closure, A.numberClass_closure, A.stringClass_closure/*DSH-, A.JSToDartLogger_internalWarn_closure, A.JSToDartLogger_debug_closure*/, A.AtRootQueryParser_parse_closure, A.KeyframeSelectorParser_parse_closure, A.MediaQueryParser_parse_closure, A.Parser__parseIdentifier_closure, A.Parser_spanFrom_closure, A.Parser_spanFromPosition_closure, A.SassParser_children_closure, A.SelectorParser_parse_closure, A.SelectorParser_parseCompoundSelector_closure, A.StylesheetParser_parse_closure, A.StylesheetParser_parse__closure, A.StylesheetParser_parseParameterList_closure, A.StylesheetParser__parseSingleProduction_closure, A.StylesheetParser_parseSignature_closure, A.StylesheetParser__statement_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure0, A.StylesheetParser__declarationOrBuffer_closure, A.StylesheetParser__declarationOrBuffer_closure0, A.StylesheetParser__declarationOrBuffer_closure2, A.StylesheetParser__propertyOrVariableDeclaration_closure, A.StylesheetParser__forRule_closure, A.StylesheetParser__memberList_closure, A.StylesheetParser_mozDocumentRule_closure, A.StylesheetParser__expression_resetState, A.StylesheetParser__expression_resolveOneOperation, A.StylesheetParser__expression_resolveOperations, A.StylesheetParser__expression_resolveSpaceExpressions, A.StylesheetParser_expressionUntilComma_closure, A.StylesheetParser_interpolatedStringToken_closure, A.StylesheetParser_namespacedExpression_closure, A.StylesheetParser__interpolatedDeclarationValue_closure, A.StylesheetParser__expressionUntilComparison_closure, A.StylesheetParser__publicIdentifier_closure, A.SassNumber__coerceOrConvertValue_compatibilityException, A.SassNumber__coerceOrConvertValue_closure0, A.SassNumber__coerceOrConvertValue_closure2, A.SassNumber_multiplyUnits_closure0, A.SassNumber_multiplyUnits_closure2, A.SingleUnitSassNumber_multiplyUnits_closure0, A._EvaluateVisitor__closure2, A._EvaluateVisitor__closure1, A._EvaluateVisitor_run_closure, A._EvaluateVisitor_run__closure, A._EvaluateVisitor__loadModule_closure, A._EvaluateVisitor__loadModule_closure0, A._EvaluateVisitor__loadModule__closure0, A._EvaluateVisitor__execute_closure, A._EvaluateVisitor__extendModules_closure0, A._EvaluateVisitor_visitAtRootRule_closure, A._EvaluateVisitor_visitAtRootRule_closure0, A._EvaluateVisitor__scopeForAtRoot__closure, A._EvaluateVisitor_visitContentRule_closure, A._EvaluateVisitor_visitDeclaration_closure, A._EvaluateVisitor_visitEachRule_closure1, A._EvaluateVisitor_visitAtRule_closure0, A._EvaluateVisitor_visitAtRule_closure1, A._EvaluateVisitor_visitAtRule__closure, A._EvaluateVisitor_visitForRule_closure, A._EvaluateVisitor_visitForRule_closure0, A._EvaluateVisitor_visitForRule_closure1, A._EvaluateVisitor_visitForRule_closure2, A._EvaluateVisitor_visitForRule_closure3, A._EvaluateVisitor__registerCommentsForModule_closure, A._EvaluateVisitor_visitIfRule__closure, A._EvaluateVisitor__visitDynamicImport_closure, A._EvaluateVisitor__visitDynamicImport__closure2, A._EvaluateVisitor__applyMixin_closure, A._EvaluateVisitor__applyMixin__closure0, A._EvaluateVisitor__applyMixin_closure0, A._EvaluateVisitor__applyMixin__closure, A._EvaluateVisitor__applyMixin___closure, A._EvaluateVisitor__applyMixin____closure, A._EvaluateVisitor_visitIncludeRule_closure, A._EvaluateVisitor_visitIncludeRule_closure1, A._EvaluateVisitor_visitMediaRule_closure, A._EvaluateVisitor_visitMediaRule_closure1, A._EvaluateVisitor_visitMediaRule__closure, A._EvaluateVisitor_visitMediaRule___closure, A._EvaluateVisitor_visitStyleRule_closure, A._EvaluateVisitor_visitStyleRule_closure2, A._EvaluateVisitor_visitStyleRule__closure, A._EvaluateVisitor_visitSupportsRule_closure, A._EvaluateVisitor_visitSupportsRule_closure0, A._EvaluateVisitor_visitSupportsRule__closure, A._EvaluateVisitor__visitSupportsCondition_closure, A._EvaluateVisitor_visitVariableDeclaration_closure, A._EvaluateVisitor_visitVariableDeclaration_closure0, A._EvaluateVisitor_visitVariableDeclaration_closure1, A._EvaluateVisitor_visitWarnRule_closure, A._EvaluateVisitor_visitWhileRule_closure, A._EvaluateVisitor_visitBinaryOperationExpression_closure, A._EvaluateVisitor_visitVariableExpression_closure, A._EvaluateVisitor_visitUnaryOperationExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure1, A._EvaluateVisitor__visitCalculationExpression_closure, A._EvaluateVisitor_visitInterpolatedFunctionExpression_closure, A._EvaluateVisitor__runUserDefinedCallable_closure, A._EvaluateVisitor__runUserDefinedCallable__closure, A._EvaluateVisitor__runUserDefinedCallable___closure, A._EvaluateVisitor__runFunctionCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure0, A._EvaluateVisitor__verifyArguments_closure, A._EvaluateVisitor_visitCssAtRule_closure, A._EvaluateVisitor_visitCssAtRule_closure0, A._EvaluateVisitor_visitCssKeyframeBlock_closure, A._EvaluateVisitor_visitCssMediaRule_closure, A._EvaluateVisitor_visitCssMediaRule_closure1, A._EvaluateVisitor_visitCssMediaRule__closure, A._EvaluateVisitor_visitCssMediaRule___closure, A._EvaluateVisitor_visitCssStyleRule_closure0, A._EvaluateVisitor_visitCssStyleRule__closure, A._EvaluateVisitor_visitCssSupportsRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure0, A._EvaluateVisitor_visitCssSupportsRule__closure, A._EvaluateVisitor__serialize_closure, A._EvaluateVisitor__expressionNode_closure, A._SerializeVisitor_visitCssComment_closure, A._SerializeVisitor_visitCssAtRule_closure, A._SerializeVisitor_visitCssMediaRule_closure, A._SerializeVisitor_visitCssImport_closure, A._SerializeVisitor_visitCssImport__closure, A._SerializeVisitor_visitCssKeyframeBlock_closure, A._SerializeVisitor_visitCssStyleRule_closure, A._SerializeVisitor_visitCssSupportsRule_closure, A._SerializeVisitor_visitCssDeclaration_closure, A._SerializeVisitor_visitCssDeclaration_closure0, A._SerializeVisitor__write_closure, A._SerializeVisitor__visitChildren_closure, A._SerializeVisitor__visitChildren_closure0, A.SingleMapping_SingleMapping$fromEntries_closure, A.SingleMapping_SingleMapping$fromEntries_closure0, A.Highlighter_closure, A.Highlighter__writeFileStart_closure, A.Highlighter__writeMultilineHighlights_closure, A.Highlighter__writeMultilineHighlights_closure0, A.Highlighter__writeMultilineHighlights_closure1, A.Highlighter__writeMultilineHighlights_closure2, A.Highlighter__writeMultilineHighlights__closure, A.Highlighter__writeMultilineHighlights__closure0, A.Highlighter__writeHighlightedText_closure, A.Highlighter__writeIndicator_closure, A.Highlighter__writeIndicator_closure0, A.Highlighter__writeIndicator_closure1, A.Highlighter__writeLabel_closure, A.Highlighter__writeLabel_closure0, A.Highlighter__writeSidebar_closure, A._Highlight_closure]);
 				_inheritMany(A._Zone, [A._CustomZone, A._RootZone]);
 				_inherit(A._IdentityHashMap, A._HashMap);
 				_inherit(A._LinkedHashSet, A._SetBase);
@@ -66788,7 +66904,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				typeUniverse: {eC: new Map(), tR: {}, eT: {}, tPV: {}, sEA: []},
 				mangledGlobalNames: {int: "int", double: "double", num: "num", String: "String", bool: "bool", Null: "Null", List: "List", Object: "Object", Map: "Map", JSObject: "JSObject"},
 				mangledNames: {},
-				types: ["Value(List<Value>)", "Null()", "~()", "bool(Object?)", "bool(CssNode)", "bool(SimpleSelector)", "SassString(List<Value>)", "bool(ComplexSelector)", "String(String)", "SassBoolean(List<Value>)", "JSClass()", "SassColor(List<Value>)", "SassNumber(List<Value>)", "SassList(List<Value>)", "bool(String)", "double(SassColor)", "double(double)", "~(String,@)", "FileSpan()", "int(SassColor)", "bool()", "int()", "SassMap(List<Value>)", "bool(Value)", "SassNumber(SassNumber)", "Value()", "Value?()", "String()", "bool(int?)", "bool(ComplexSelectorComponent)", "Null(~())", "Value(Value)", "ComplexSelector(ComplexSelector)", "bool(SelectorList)", "bool(ColorChannel)", "bool(int)", "bool(Module0<Callable>)", "String?()", "~(Value)", "Callable?()", "bool(@)", "bool(num,num)", "Value?(Statement)", "@()", "double(SassNumber)", "~(Module0<Callable>,bool)", "bool(_Highlight)", "Object?()", "Map<ComplexSelector,Extension>()", "double(double,double)", "~(String,Function)", "SassCalculation(Object)", "~(~())", "Statement()", "~(Expression)", "~(String,String)", "~(Object?)", "ValueExpression(Value)", "Object(Object)", "Value?(Value,num)", "Version(String)"/*DSH-, "String(_NodeException)"*/, "SelectorList(SelectorList,SelectorList)", "FileLocation(FileSpan)", "JSUrl(Uri)", "String(FileSpan)", "int(SourceLocation)", "Value?(Value)", "String(Value)", "0&(Object[Object?])", "Uri(Uri)", "Object(CalculationOperation)", "ImmutableList(SassColor)", "bool(SassNumber)", "Uri(String)", "bool(SassNumber,String)", "SassNumber(SassNumber,Object,Object[String?])", "SassNumber(SassNumber,SassNumber[String?,String?])", "double(SassNumber,Object,Object[String?])", "double(SassNumber,SassNumber[String?,String?])", "Callable?(Module0<Callable>)", "int(ComplexSelector)", "bool(Import)", "bool(Queue<List<ComplexSelectorComponent>>)", "StyleRule(List<Statement>,FileSpan)", "AtRootRule(List<Statement>,FileSpan)", "AtRule(List<Statement>,FileSpan)", "List<Extension>()", "String(String{color:Object?})", "~(int)", "double(Value)", "bool(Statement)", "~(List<Value>)", "~(Value,Value)", "ImmutableList(SassNumber)", "SassRuntimeException(AstNode)", "String(Object)", "String(Expression)", "bool(Object)", "~(Iterable<ExtensionStore>)", "SassNumber()", "List<CssMediaQuery>?(List<CssMediaQuery>)", "~(@,@)", "bool(Expression)", "~(String[Deprecation?])", "~(String,Value)", "SelectorList(Value)", "Expression(Expression)", "~(String,Object?)", "~(Object)", "MapKeySet<Module0<Callable>>(Map<Module0<Callable>,AstNode>)", "int(@,@)", "Map<String,Callable>(Module0<Callable>)", "Iterable<String>(@)", "Module0<Callable>?(Module0<Callable>)", "@(@,String)", "0&(String,int?)", "Map<String,Value>(Module0<Callable>)", "Map<String,AstNode>(Module0<Callable>)", "String(String[String?])", "@(String)", "Iterable<String>()", "String(@)", "Iterable<String>(String)", "String(Parameter)", "String(int,IfClause)", "bool(Extension)", "Set<0&>(Object)"/*DSH-, "NodeCompileResult(Compiler,String[CompileOptions?])", "NodeCompileResult(Compiler,String[CompileStringOptions?])"*/, "Null(Compiler)", "Iterable<Deprecation>()", "Version(Object,int,int,int)", "Set<ModifiableBox<SelectorList>>()", "Null(@)"/*DSH-, "FileSpan(_NodeException)"*/, "~(Object?,Object,Object?)", "bool(CanonicalizeContext)", "JSUrl?(CanonicalizeContext)", "JSExpressionVisitor(JSExpressionVisitorObject)", "JSIfConditionExpressionVisitor(JSIfConditionExpressionVisitorObject)", "JSStatementVisitor(JSStatementVisitorObject)", "JSSimpleSelectorVisitor(JSSimpleSelectorVisitorObject)", "SourceFile(String)", "JSSet(Set<Object?>)", "SourceFile(LazyFileSpan)", "int(LazyFileSpan)", "Uri?(LazyFileSpan)", "String(SourceFile,int[int?])", "FileSpan(SourceFile,int[int?])", "List<int>(SourceFile)", "String?(Interpolation)", "Object?(Statement,StatementVisitor<Object?>)", "Object?(Expression,ExpressionVisitor<Object?>)", "Object?(InterpolatedSelector,InterpolatedSelectorVisitor<Object?>)", "Object?(IfConditionExpression,IfConditionExpressionVisitor<Object?>)", "ArgumentList(IncludeRule)", "ArgumentList(ContentRule)", "ArgumentList(FunctionExpression)", "ArgumentList(LegacyIfExpression)", "ArgumentList(InterpolatedFunctionExpression)", "Interpolation(IfConditionFunction)", "FileSpan(AstNode)", "Interpolation(SupportsCondition)", "String(Object,@,@[@])", "~(Object?,Object?)", "Iterable<ComplexSelector>(List<ComplexSelector>)", "JSUrl?(FileSpan)", "List<SimpleSelector>(Extender)", "List<Extender>?(SimpleSelector)", "List<Extender>(PseudoSelector)", "ImmutableList(Value)", "List<List<Extender>>(List<Extender>)", "String?(Value)", "int(Value,Value[String?])", "List<ComplexSelector>(ComplexSelector)", "SassBoolean(Value[String?])", "SassCalculation(Value[String?])", "SassColor(Value[String?])", "SassFunction(Value[String?])", "SassMap(Value[String?])", "SassMixin(Value[String?])", "SassNumber(Value[String?])", "SassString(Value[String?])", "SassMap?(Value)", "bool(Value,Object?)", "int(Value[Object?])", "SassArgumentList(Object,Object,Object[String?])", "ImmutableMap(SassArgumentList)", "PseudoSelector(ComplexSelector)", "~(SimpleSelector,Set<ModifiableBox<SelectorList>>)", "SassCalculation(Object[Object?,Object?])", "SassCalculation(SassCalculation[String?])", "ImmutableList(SassCalculation)", "Object(Object,String,Object,Object)", "bool(CalculationOperator)", "bool(CalculationOperation,Object)", "int(CalculationOperation)", "String(CalculationOperation)", "ModifiableBox<SelectorList>()", "CalculationInterpolation(Object,String)", "bool(CalculationInterpolation,Object)", "int(CalculationInterpolation)", "String(CalculationInterpolation)", "SassColor(Object,_ConstructionOptions)", "bool(SassColor,Object)", "SassColor(SassColor,String)", "bool(SassColor[String?])", "SassColor(SassColor,_ToGamutOptions)", "double(SassColor,String[_ChannelOptions?])", "bool(SassColor,String)", "bool(SassColor,String[_ChannelOptions?])", "SassColor(SassColor,_ConstructionOptions)", "double?(String)", "SassColor(SassColor,SassColor[_InterpolationOptions?])", "String(SassColor)", "bool(SassColor)", "List<ComplexSelectorComponent>?(List<ComplexSelectorComponent>,List<ComplexSelectorComponent>)", "SassFunction(Object,String,Value(List<Value>))", "SassList(Object[Object?,_ConstructorOptions?])", "SassMap(Object[ImmutableMap?])", "ImmutableMap(SassMap)", "Value?(SassMap,Object)", "0&(Object)", "SassNumber(Object,num[Object?])", "Object?(Object?)", "int?(SassNumber)", "bool(List<Iterable<ComplexSelectorComponent>>)", "int(SassNumber[String?])", "double(SassNumber,num,num[String?])", "SassNumber(SassNumber[String?])", "SassNumber(SassNumber,String[String?])", "bool(PseudoSelector)", "SelectorList?(PseudoSelector)", "@(@)", "int(int,ComplexSelectorComponent)", "String(CssValue<Combinator>)", "SassString(Object[Object?,_ConstructorOptions1?])", "String(SassString)", "bool(SassString)", "int(SassString)", "int(SassString,Value[String?])", "int(int,SimpleSelector)", "int(int)", "AtRootQuery()", "String(BuiltInCallable)", "~(Symbol0,@)", "List<CssMediaQuery>()", "0&(String,FileSpan[StackTrace?])", "String(String?)", "SelectorList()", "CompoundSelector()", "Statement({root:bool})", "SassList(ComplexSelector)", "NumberExpression()", "Stylesheet()", "Statement?()", "ParameterList()", "+(String,ParameterList)()", "Iterable<ComplexSelector>(ComplexSelector)", "Declaration(List<Statement>,FileSpan)", "SassColor(SassColor)", "EachRule(List<Statement>,FileSpan)", "FunctionRule(List<Statement>,FileSpan)", "ForRule(List<Statement>,FileSpan)", "ContentBlock(List<Statement>,FileSpan)", "MediaRule(List<Statement>,FileSpan)", "MixinRule(List<Statement>,FileSpan)", "String(double)", "SupportsRule(List<Statement>,FileSpan)", "WhileRule(List<Statement>,FileSpan)", "SassColor(ColorSpace)", "~(BinaryOperator)", "StringExpression(Interpolation)", "double()", "String(String{color:@})", "Entry(Entry)", "bool(String?)", "SassScriptException()", "SimpleSelector(SimpleSelector)", "double(double,String)", "SingleUnitSassNumber(double)", "CssValue<String>(Interpolation{trim:bool,warnForColor:bool})", "AstNode(AstNode)", "SassFunction(List<Value>)", "0&(List<Value>)", "SassMixin(List<Value>)", "Object(String)", "bool(Version)", "bool(ModifiableCssNode)", "+loadedUrls,stylesheet(Set<Uri>,CssStylesheet)()", "Module0<Callable>()", "List<Value>(Value)", "~(Module0<Callable>)", "List<ExtensionStore>()", "bool(ModifiableCssParentNode)", "bool(List<Value>)"/*DSH-, "~(String,WarnOptions)", "~(String,DebugOptions)"*/, "CssValue<String>(Interpolation)", "SassMap(Value)", "SassMap(SassMap)", "List<CssComment>()", "Value?(IfRuleClause)", "bool(UseRule)", "bool(ForwardRule)", "UserDefinedCallable<Environment>(ContentBlock)", "SassNumber(Value)", "Value(Object)", "String(+(String,Value))", "String(+(IfConditionExpression,String))", "Value(Expression)", "bool(Deprecation)", "Value?(Module0<Callable>)", "~([int?])", "Object()", "SassString(SimpleSelector)", "SassString(int)", "InterpolationMap(List<int>)", "AstNode?()", "String(SassNumber)", "SassString(String)", "IfConditionExpression(IfConditionExpression)", "+originalUrl(Importer,Uri,Uri)?()", "~(CssMediaQuery)", "Uri?()", "~(double?[String?])", "~(SelectorList)", "~(MapEntry<Value,Value>)", "~(IfConditionExpression)", "SourceFile()", "SourceFile?(int)", "String?(SourceFile?)", "int(_Line)", "Stylesheet?()", "Object(_Line)", "Object(_Highlight)", "int(_Highlight,_Highlight)", "List<_Line>(MapEntry<Object,List<_Highlight>>)", "SourceSpanWithContext()", "int(Frame)", "String(Frame)", "bool(+originalUrl(Importer,Uri,Uri))", "Uri(+originalUrl(Importer,Uri,Uri))", "~(Zone?,ZoneDelegate?,Zone,Object,StackTrace)", "0^(Zone?,ZoneDelegate?,Zone,0^())<Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^),1^)<Object?,Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^,2^),1^,2^)<Object?,Object?,Object?>", "0^()(Zone,ZoneDelegate,Zone,0^())<Object?>", "0^(1^)(Zone,ZoneDelegate,Zone,0^(1^))<Object?,Object?>", "0^(1^,2^)(Zone,ZoneDelegate,Zone,0^(1^,2^))<Object?,Object?,Object?>", "AsyncError?(Zone,ZoneDelegate,Zone,Object,StackTrace?)", "~(Zone?,ZoneDelegate?,Zone,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~(Timer))", "~(Zone,ZoneDelegate,Zone,String)", "Zone(Zone?,ZoneDelegate?,Zone,ZoneSpecification?,Map<Object?,Object?>?)", "0^(0^,0^)<num>"/*DSH-, "NodeCompileResult(String[CompileOptions?])", "NodeCompileResult(String[CompileStringOptions?])"*/, "Importer(Object?)", "Compiler()", "List<Object?>(Object?)", "ParserExports()", "Stylesheet(String,String,String?)", "String?(String)", "Uri(JSUrl)", "Object(Map<String,Object?>)", "~(String)", "int(Uri)", "List<String>()"],
+				types: ["Null()", "Value(List<Value>)", "~()", "bool(Object?)", "bool(CssNode)", "bool(SimpleSelector)", "SassString(List<Value>)", "bool(ComplexSelector)", "String(String)", "SassBoolean(List<Value>)", "JSClass()", "SassColor(List<Value>)", "SassNumber(List<Value>)", "SassList(List<Value>)", "bool(String)", "double(SassColor)", "double(double)", "~(String,@)", "FileSpan()", "int(SassColor)", "bool()", "int()", "SassMap(List<Value>)", "bool(Value)", "SassNumber(SassNumber)", "Value()", "Value?()", "String()", "bool(int?)", "bool(ComplexSelectorComponent)", "Null(~())", "Value(Value)", "ComplexSelector(ComplexSelector)", "bool(SelectorList)", "bool(ColorChannel)", "bool(int)", "bool(Module0<Callable>)", "String?()", "~(Value)", "Callable?()", "bool(@)", "bool(num,num)", "Value?(Statement)", "@()", "double(SassNumber)", "~(Module0<Callable>,bool)", "bool(_Highlight)", "Object?()", "Map<ComplexSelector,Extension>()", "double(double,double)", "~(String,Function)", "SassCalculation(Object)", "~(~())", "Statement()", "~(Expression)", "~(String,String)", "~(Object?)", "ValueExpression(Value)", "Object(Object)", "Value?(Value,num)", "Version(String)"/*DSH-, "String(_NodeException)"*/, "SelectorList(SelectorList,SelectorList)", "FileLocation(FileSpan)", "JSUrl(Uri)", "String(FileSpan)", "int(SourceLocation)", "Value?(Value)", "String(Value)", "0&(Object[Object?])", "Uri(Uri)", "Object(CalculationOperation)", "ImmutableList(SassColor)", "bool(SassNumber)", "Uri(String)", "bool(SassNumber,String)", "SassNumber(SassNumber,Object,Object[String?])", "SassNumber(SassNumber,SassNumber[String?,String?])", "double(SassNumber,Object,Object[String?])", "double(SassNumber,SassNumber[String?,String?])", "Callable?(Module0<Callable>)", "int(ComplexSelector)", "bool(Import)", "bool(Queue<List<ComplexSelectorComponent>>)", "StyleRule(List<Statement>,FileSpan)", "AtRootRule(List<Statement>,FileSpan)", "AtRule(List<Statement>,FileSpan)", "List<Extension>()", "String(String{color:Object?})", "~(int)", "double(Value)", "bool(Statement)", "~(List<Value>)", "~(Value,Value)", "ImmutableList(SassNumber)", "SassRuntimeException(AstNode)", "String(Object)", "String(Expression)", "bool(Object)", "~(Iterable<ExtensionStore>)", "SassNumber()", "List<CssMediaQuery>?(List<CssMediaQuery>)", "~(@,@)", "bool(Expression)", "~(String[Deprecation?])", "~(String,Value)", "SelectorList(Value)", "Expression(Expression)", "~(String,Object?)", "~(Object)", "MapKeySet<Module0<Callable>>(Map<Module0<Callable>,AstNode>)", "int(@,@)", "Map<String,Callable>(Module0<Callable>)", "Iterable<String>(@)", "Module0<Callable>?(Module0<Callable>)", "@(@,String)", "0&(String,int?)", "Map<String,Value>(Module0<Callable>)", "Map<String,AstNode>(Module0<Callable>)", "String(String[String?])", "@(String)", "Iterable<String>()", "String(@)", "Iterable<String>(String)", "String(Parameter)", "String(int,IfClause)", "bool(Extension)", "Set<0&>(Object)"/*DSH-, "NodeCompileResult(Compiler,String[CompileOptions?])", "NodeCompileResult(Compiler,String[CompileStringOptions?])"*/, "Null(Compiler)", "Iterable<Deprecation>()", "Version(Object,int,int,int)", "Set<ModifiableBox<SelectorList>>()", "Null(@)"/*DSH-, "FileSpan(_NodeException)"*/, "~(Object?,Object,Object?)", "bool(CanonicalizeContext)", "JSUrl?(CanonicalizeContext)", "JSExpressionVisitor(JSExpressionVisitorObject)", "JSIfConditionExpressionVisitor(JSIfConditionExpressionVisitorObject)", "JSStatementVisitor(JSStatementVisitorObject)", "JSSimpleSelectorVisitor(JSSimpleSelectorVisitorObject)", "SourceFile(String)", "JSSet(Set<Object?>)", "SourceFile(LazyFileSpan)", "int(LazyFileSpan)", "Uri?(LazyFileSpan)", "String(SourceFile,int[int?])", "FileSpan(SourceFile,int[int?])", "List<int>(SourceFile)", "String?(Interpolation)", "Object?(Statement,StatementVisitor<Object?>)", "Object?(Expression,ExpressionVisitor<Object?>)", "Object?(InterpolatedSelector,InterpolatedSelectorVisitor<Object?>)", "Object?(IfConditionExpression,IfConditionExpressionVisitor<Object?>)", "ArgumentList(IncludeRule)", "ArgumentList(ContentRule)", "ArgumentList(FunctionExpression)", "ArgumentList(LegacyIfExpression)", "ArgumentList(InterpolatedFunctionExpression)", "Interpolation(IfConditionFunction)", "FileSpan(AstNode)", "Interpolation(SupportsCondition)", "String(Object,@,@[@])", "~(Object?,Object?)", "Iterable<ComplexSelector>(List<ComplexSelector>)", "JSUrl?(FileSpan)", "List<SimpleSelector>(Extender)", "List<Extender>?(SimpleSelector)", "List<Extender>(PseudoSelector)", "ImmutableList(Value)", "List<List<Extender>>(List<Extender>)", "String?(Value)", "int(Value,Value[String?])", "List<ComplexSelector>(ComplexSelector)", "SassBoolean(Value[String?])", "SassCalculation(Value[String?])", "SassColor(Value[String?])", "SassFunction(Value[String?])", "SassMap(Value[String?])", "SassMixin(Value[String?])", "SassNumber(Value[String?])", "SassString(Value[String?])", "SassMap?(Value)", "bool(Value,Object?)", "int(Value[Object?])", "SassArgumentList(Object,Object,Object[String?])", "ImmutableMap(SassArgumentList)", "PseudoSelector(ComplexSelector)", "~(SimpleSelector,Set<ModifiableBox<SelectorList>>)", "SassCalculation(Object[Object?,Object?])", "SassCalculation(SassCalculation[String?])", "ImmutableList(SassCalculation)", "Object(Object,String,Object,Object)", "bool(CalculationOperator)", "bool(CalculationOperation,Object)", "int(CalculationOperation)", "String(CalculationOperation)", "ModifiableBox<SelectorList>()", "CalculationInterpolation(Object,String)", "bool(CalculationInterpolation,Object)", "int(CalculationInterpolation)", "String(CalculationInterpolation)", "SassColor(Object,_ConstructionOptions)", "bool(SassColor,Object)", "SassColor(SassColor,String)", "bool(SassColor[String?])", "SassColor(SassColor,_ToGamutOptions)", "double(SassColor,String[_ChannelOptions?])", "bool(SassColor,String)", "bool(SassColor,String[_ChannelOptions?])", "SassColor(SassColor,_ConstructionOptions)", "double?(String)", "SassColor(SassColor,SassColor[_InterpolationOptions?])", "String(SassColor)", "bool(SassColor)", "List<ComplexSelectorComponent>?(List<ComplexSelectorComponent>,List<ComplexSelectorComponent>)", "SassFunction(Object,String,Value(List<Value>))", "SassList(Object[Object?,_ConstructorOptions?])", "SassMap(Object[ImmutableMap?])", "ImmutableMap(SassMap)", "Value?(SassMap,Object)", "0&(Object)", "SassNumber(Object,num[Object?])", "Object?(Object?)", "int?(SassNumber)", "bool(List<Iterable<ComplexSelectorComponent>>)", "int(SassNumber[String?])", "double(SassNumber,num,num[String?])", "SassNumber(SassNumber[String?])", "SassNumber(SassNumber,String[String?])", "bool(PseudoSelector)", "SelectorList?(PseudoSelector)", "@(@)", "int(int,ComplexSelectorComponent)", "String(CssValue<Combinator>)", "SassString(Object[Object?,_ConstructorOptions1?])", "String(SassString)", "bool(SassString)", "int(SassString)", "int(SassString,Value[String?])", "int(int,SimpleSelector)", "int(int)", "AtRootQuery()", "String(BuiltInCallable)", "~(Symbol0,@)", "List<CssMediaQuery>()", "0&(String,FileSpan[StackTrace?])", "String(String?)", "SelectorList()", "CompoundSelector()", "Statement({root:bool})", "SassList(ComplexSelector)", "NumberExpression()", "Stylesheet()", "Statement?()", "ParameterList()", "+(String,ParameterList)()", "Iterable<ComplexSelector>(ComplexSelector)", "Declaration(List<Statement>,FileSpan)", "SassColor(SassColor)", "EachRule(List<Statement>,FileSpan)", "FunctionRule(List<Statement>,FileSpan)", "ForRule(List<Statement>,FileSpan)", "ContentBlock(List<Statement>,FileSpan)", "MediaRule(List<Statement>,FileSpan)", "MixinRule(List<Statement>,FileSpan)", "String(double)", "SupportsRule(List<Statement>,FileSpan)", "WhileRule(List<Statement>,FileSpan)", "SassColor(ColorSpace)", "~(BinaryOperator)", "StringExpression(Interpolation)", "double()", "String(String{color:@})", "Entry(Entry)", "bool(String?)", "SassScriptException()", "SimpleSelector(SimpleSelector)", "double(double,String)", "SingleUnitSassNumber(double)", "CssValue<String>(Interpolation{trim:bool,warnForColor:bool})", "AstNode(AstNode)", "SassFunction(List<Value>)", "0&(List<Value>)", "SassMixin(List<Value>)", "Object(String)", "bool(Version)", "bool(ModifiableCssNode)", "+loadedUrls,stylesheet(Set<Uri>,CssStylesheet)()", "Module0<Callable>()", "List<Value>(Value)", "~(Module0<Callable>)", "List<ExtensionStore>()", "bool(ModifiableCssParentNode)", "bool(List<Value>)"/*DSH-, "~(String,WarnOptions)", "~(String,DebugOptions)"*/, "CssValue<String>(Interpolation)", "SassMap(Value)", "SassMap(SassMap)", "List<CssComment>()", "Value?(IfRuleClause)", "bool(UseRule)", "bool(ForwardRule)", "UserDefinedCallable<Environment>(ContentBlock)", "SassNumber(Value)", "Value(Object)", "String(+(String,Value))", "String(+(IfConditionExpression,String))", "Value(Expression)", "bool(Deprecation)", "Value?(Module0<Callable>)", "~([int?])", "Object()", "SassString(SimpleSelector)", "SassString(int)", "InterpolationMap(List<int>)", "AstNode?()", "String(SassNumber)", "SassString(String)", "IfConditionExpression(IfConditionExpression)", "+originalUrl(Importer,Uri,Uri)?()", "~(CssMediaQuery)", "Uri?()", "~(double?[String?])", "~(SelectorList)", "~(MapEntry<Value,Value>)", "~(IfConditionExpression)", "SourceFile()", "SourceFile?(int)", "String?(SourceFile?)", "int(_Line)", "Stylesheet?()", "Object(_Line)", "Object(_Highlight)", "int(_Highlight,_Highlight)", "List<_Line>(MapEntry<Object,List<_Highlight>>)", "SourceSpanWithContext()", "int(Frame)", "String(Frame)", "bool(+originalUrl(Importer,Uri,Uri))", "Uri(+originalUrl(Importer,Uri,Uri))", "~(Zone?,ZoneDelegate?,Zone,Object,StackTrace)", "0^(Zone?,ZoneDelegate?,Zone,0^())<Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^),1^)<Object?,Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^,2^),1^,2^)<Object?,Object?,Object?>", "0^()(Zone,ZoneDelegate,Zone,0^())<Object?>", "0^(1^)(Zone,ZoneDelegate,Zone,0^(1^))<Object?,Object?>", "0^(1^,2^)(Zone,ZoneDelegate,Zone,0^(1^,2^))<Object?,Object?,Object?>", "AsyncError?(Zone,ZoneDelegate,Zone,Object,StackTrace?)", "~(Zone?,ZoneDelegate?,Zone,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~(Timer))", "~(Zone,ZoneDelegate,Zone,String)", "Zone(Zone?,ZoneDelegate?,Zone,ZoneSpecification?,Map<Object?,Object?>?)", "0^(0^,0^)<num>"/*DSH-, "NodeCompileResult(String[CompileOptions?])", "NodeCompileResult(String[CompileStringOptions?])"*/, "Importer(Object?)", "Compiler()", "List<Object?>(Object?)", "ParserExports()", "Stylesheet(String,String,String?)", "String?(String)", "Uri(JSUrl)", "Object(Map<String,Object?>)", "~(String)", "int(Uri)", "List<String>()"],
 				interceptorsByTag: null,
 				leafTags: null,
 				arrayRti: Symbol("$ti"),
@@ -66805,7 +66921,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					"5;named,namedNodes,positional,positionalNodes,separator": types => o => o instanceof A._Record_5_named_namedNodes_positional_positionalNodes_separator && A.pairwiseIsTest(types, o._values)
 				}
 			};
-			A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject"' + /*DSH- ',"BufferModule":"LegacyJavaScriptObject","BufferConstants":"LegacyJavaScriptObject","Buffer0":"LegacyJavaScriptObject","ConsoleModule":"LegacyJavaScriptObject","Console":"LegacyJavaScriptObject","EventEmitter":"LegacyJavaScriptObject","FS":"LegacyJavaScriptObject","FSConstants":"LegacyJavaScriptObject","Realpath":"LegacyJavaScriptObject","RealpathSync":"LegacyJavaScriptObject","FSWatcher":"LegacyJavaScriptObject","ReadStream":"LegacyJavaScriptObject","ReadStreamOptions":"LegacyJavaScriptObject","WriteStream":"LegacyJavaScriptObject","WriteStreamOptions":"LegacyJavaScriptObject","FileOptions":"LegacyJavaScriptObject","StatOptions":"LegacyJavaScriptObject","MkdirOptions":"LegacyJavaScriptObject","RmdirOptions":"LegacyJavaScriptObject","WatchOptions":"LegacyJavaScriptObject","WatchFileOptions":"LegacyJavaScriptObject","Stats":"LegacyJavaScriptObject","Promise":"LegacyJavaScriptObject","Date":"LegacyJavaScriptObject","JsError":"LegacyJavaScriptObject","Atomics":"LegacyJavaScriptObject","Modules":"LegacyJavaScriptObject","Module":"LegacyJavaScriptObject","Net":"LegacyJavaScriptObject","Socket":"LegacyJavaScriptObject","NetAddress":"LegacyJavaScriptObject","NetServer":"LegacyJavaScriptObject","NodeJsError":"LegacyJavaScriptObject","JsAssertionError":"LegacyJavaScriptObject","JsRangeError":"LegacyJavaScriptObject","JsReferenceError":"LegacyJavaScriptObject","JsSyntaxError":"LegacyJavaScriptObject","JsTypeError":"LegacyJavaScriptObject","JsSystemError":"LegacyJavaScriptObject","Process":"LegacyJavaScriptObject","CPUUsage":"LegacyJavaScriptObject","Release":"LegacyJavaScriptObject","StreamModule":"LegacyJavaScriptObject","Readable":"LegacyJavaScriptObject","Writable":"LegacyJavaScriptObject","Duplex":"LegacyJavaScriptObject","Transform0":"LegacyJavaScriptObject","WritableOptions":"LegacyJavaScriptObject","ReadableOptions":"LegacyJavaScriptObject","Immediate":"LegacyJavaScriptObject","Timeout":"LegacyJavaScriptObject","TTY":"LegacyJavaScriptObject","TTYReadStream":"LegacyJavaScriptObject","TTYWriteStream":"LegacyJavaScriptObject","Util":"LegacyJavaScriptObject","JSArray0":"LegacyJavaScriptObject","Chokidar":"LegacyJavaScriptObject","ChokidarOptions":"LegacyJavaScriptObject","ChokidarWatcher":"LegacyJavaScriptObject","CompileOptions":"LegacyJavaScriptObject","CompileStringOptions":"LegacyJavaScriptObject","NodeCompileResult":"LegacyJavaScriptObject"' + */',"Deprecation0":"LegacyJavaScriptObject"' + /*DSH- ',"_NodeException":"LegacyJavaScriptObject","Exports":"LegacyJavaScriptObject","LoggerNamespace":"LegacyJavaScriptObject","JSFunction":"LegacyJavaScriptObject"' + */',"ImmutableList":"LegacyJavaScriptObject","ImmutableMap":"LegacyJavaScriptObject","JSImporter":"LegacyJavaScriptObject","JSImporterResult":"LegacyJavaScriptObject"' + /*DSH- ',"NodeImporterResult":"LegacyJavaScriptObject","RenderContext":"LegacyJavaScriptObject","RenderContextOptions":"LegacyJavaScriptObject","RenderContextResult":"LegacyJavaScriptObject","RenderContextResultStats":"LegacyJavaScriptObject","Types":"LegacyJavaScriptObject","WarnOptions":"LegacyJavaScriptObject","DebugOptions":"LegacyJavaScriptObject","JSLogger":"LegacyJavaScriptObject","JSModule":"LegacyJavaScriptObject","JSModuleRequire":"LegacyJavaScriptObject","ParserExports":"LegacyJavaScriptObject"' + */',"JSClass":"LegacyJavaScriptObject","JSSet":"LegacyJavaScriptObject","JSUrl":"LegacyJavaScriptObject"' + /*DSH- ',"_PropertyDescriptor":"LegacyJavaScriptObject","_RequireMain":"LegacyJavaScriptObject"' + */',"_ConstructionOptions":"LegacyJavaScriptObject","_ChannelOptions":"LegacyJavaScriptObject","_ToGamutOptions":"LegacyJavaScriptObject","_InterpolationOptions":"LegacyJavaScriptObject","_Channels":"LegacyJavaScriptObject","_ConstructorOptions":"LegacyJavaScriptObject","_ConstructorOptions0":"LegacyJavaScriptObject","_ConstructorOptions1":"LegacyJavaScriptObject","JSExpressionVisitorObject":"LegacyJavaScriptObject","JSIfConditionExpressionVisitorObject":"LegacyJavaScriptObject","JSSimpleSelectorVisitorObject":"LegacyJavaScriptObject","JSStatementVisitorObject":"LegacyJavaScriptObject","KeyframeEffect":"JavaScriptObject","KeyframeEffectReadOnly":"JavaScriptObject","AnimationEffectReadOnly":"JavaScriptObject","AbortPaymentEvent":"Event","ExtendableEvent":"Event","AudioContext":"BaseAudioContext","AbsoluteOrientationSensor":"EventTarget","OrientationSensor":"EventTarget","Sensor":"EventTarget","MathMLElement":"Element","AudioElement":"HtmlElement","MediaElement":"HtmlElement","HtmlDocument":"Node","Document":"Node","VttCue":"TextTrackCue","CDataSection":"CharacterData","Text":"CharacterData","HtmlFormControlsCollection":"HtmlCollection","CssCharsetRule":"CssRule","CssMatrixComponent":"CssTransformComponent","CssStyleSheet":"StyleSheet","CssurlImageValue":"CssStyleValue","CssImageValue":"CssStyleValue","CssResourceValue":"CssStyleValue","NativeArrayBuffer":"NativeByteBuffer","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"TrustedGetRuntimeType":[]},"JavaScriptObject":{"JSObject":[]},"LegacyJavaScriptObject":{"JSObject":[],"JsSystemError":[]' + /*DSH- ',"CompileOptions":[],"CompileStringOptions":[],"NodeCompileResult":[]' + */',"Deprecation0":[]' + /*DSH- ',"_NodeException":[]' + */',"ImmutableList":[],"ImmutableMap":[],"JSImporter":[],"JSImporterResult":[]' + /*DSH- ',"WarnOptions":[],"DebugOptions":[],"ParserExports":[]' + */',"JSClass":[],"JSSet":[],"JSUrl":[],"_ConstructionOptions":[],"_ChannelOptions":[],"_ToGamutOptions":[],"_InterpolationOptions":[],"_ConstructorOptions":[],"_ConstructorOptions0":[],"_ConstructorOptions1":[],"JSExpressionVisitorObject":[],"JSIfConditionExpressionVisitorObject":[],"JSSimpleSelectorVisitorObject":[],"JSStatementVisitorObject":[]},"JSArray":{"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSArraySafeToStringHook":{"SafeToStringHook":[]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSNumber":{"double":[],"num":[],"Comparable":["num"]},"JSInt":{"double":[],"int":[],"num":[],"Comparable":["num"],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"double":[],"num":[],"Comparable":["num"],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"Comparable":["String"],"TrustedGetRuntimeType":[]},"_CastIterableBase":{"Iterable":["2"]},"CastIterable":{"_CastIterableBase":["1","2"],"Iterable":["2"],"Iterable.E":"2"},"_EfficientLengthCastIterable":{"CastIterable":["1","2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"_CastListBase":{"ListBase":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"]},"CastList":{"_CastListBase":["1","2"],"ListBase":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListBase.E":"2","Iterable.E":"2"},"CastMap":{"MapBase":["3","4"],"Map":["3","4"],"MapBase.V":"4","MapBase.K":"3"},"LateError":{"Error":[]},"CodeUnits":{"ListBase":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListBase.E":"int"},"EfficientLengthIterable":{"Iterable":["1"]},"ListIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"SubListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"MappedIterable":{"Iterable":["2"],"Iterable.E":"2"},"EfficientLengthMappedIterable":{"MappedIterable":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MappedListIterable":{"ListIterable":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListIterable.E":"2"},"WhereIterable":{"Iterable":["1"],"Iterable.E":"1"},"ExpandIterable":{"Iterable":["2"],"Iterable.E":"2"},"TakeIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthTakeIterable":{"TakeIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"SkipIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthSkipIterable":{"SkipIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"EmptyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"FollowedByIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthFollowedByIterable":{"FollowedByIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"WhereTypeIterable":{"Iterable":["1"],"Iterable.E":"1"},"NonNullsIterable":{"Iterable":["1"],"Iterable.E":"1"},"UnmodifiableListBase":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ReversedListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"Symbol":{"Symbol0":[]},"ConstantMapView":{"UnmodifiableMapView":["1","2"],"Map":["1","2"]},"ConstantMap":{"Map":["1","2"]},"ConstantStringMap":{"ConstantMap":["1","2"],"Map":["1","2"]},"_KeysOrValues":{"Iterable":["1"],"Iterable.E":"1"},"ConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ConstantStringSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"GeneralConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"Instantiation":{"Function":[]},"Instantiation1":{"Function":[]},"NullError":{"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"NullThrownFromJavaScriptException":{"Exception":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"Closure0Args":{"Function":[]},"Closure2Args":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"LinkedHashMapKeysIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapValuesIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapEntriesIterable":{"EfficientLengthIterable":["MapEntry<1,2>"],"Iterable":["MapEntry<1,2>"],"Iterable.E":"MapEntry<1,2>"},"JsIdentityLinkedHashMap":{"JsLinkedHashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"JsConstantLinkedHashMap":{"JsLinkedHashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_MatchImplementation":{"RegExpMatch":[],"Match":[]},"_AllMatchesIterable":{"Iterable":["RegExpMatch"],"Iterable.E":"RegExpMatch"},"StringMatch":{"Match":[]},"_StringAllMatchesIterable":{"Iterable":["Match"],"Iterable.E":"Match"},"NativeByteBuffer":{"JSObject":[],"ByteBuffer":[],"TrustedGetRuntimeType":[]},"NativeTypedData":{"JSObject":[]},"NativeByteData":{"ByteData":[],"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"],"JSObject":[]},"NativeTypedArrayOfDouble":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"]},"NativeTypedArrayOfInt":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"]},"NativeFloat32List":{"NativeTypedArrayOfDouble":[],"Float32List":[],"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeFloat64List":{"NativeTypedArrayOfDouble":[],"Float64List":[],"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeInt16List":{"NativeTypedArrayOfInt":[],"Int16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt32List":{"NativeTypedArrayOfInt":[],"Int32List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt8List":{"NativeTypedArrayOfInt":[],"Int8List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint16List":{"NativeTypedArrayOfInt":[],"Uint16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint32List":{"NativeTypedArrayOfInt":[],"Uint32List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8ClampedList":{"NativeTypedArrayOfInt":[],"Uint8ClampedList":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8List":{"NativeTypedArrayOfInt":[],"Uint8List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"_Error":{"Error":[]},"_TypeError":{"Error":[]},"AsyncError":{"Error":[]},"_SyncStarIterable":{"Iterable":["1"],"Iterable.E":"1"},"_ZoneSpecification":{"ZoneSpecification":[]},"_ZoneDelegate":{"ZoneDelegate":[]},"_Zone":{"Zone":[]},"_CustomZone":{"Zone":[]},"_RootZone":{"Zone":[]},"Queue":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_IdentityHashMap":{"_HashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_HashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_LinkedHashSet":{"_SetBase":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_LinkedIdentityHashSet":{"_LinkedHashSet":["1"],"_SetBase":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableListView":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1"},"ListBase":{"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapBase":{"Map":["1","2"]},"UnmodifiableMapBase":{"MapBase":["1","2"],"Map":["1","2"]},"_MapBaseValueIterable":{"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MapView":{"Map":["1","2"]},"UnmodifiableMapView":{"Map":["1","2"]},"ListQueue":{"Queue":["1"],"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"SetBase":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_SetBase":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableSetView":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"DateTime":{"Comparable":["DateTime"]},"double":{"num":[],"Comparable":["num"]},"Duration":{"Comparable":["Duration"]},"int":{"num":[],"Comparable":["num"]},"List":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"num":{"Comparable":["num"]},"RegExpMatch":{"Match":[]},"Set":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"String":{"Comparable":["String"]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"RangeError":[],"Error":[]},"NoSuchMethodError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"StateError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"_Exception":{"Exception":[]},"FormatException":{"Exception":[]},"Runes":{"Iterable":["int"],"Iterable.E":"int"},"_Uri":{"_PlatformUri":[],"Uri":[]},"_SimpleUri":{"_PlatformUri":[],"Uri":[]},"_DataUri":{"_PlatformUri":[],"Uri":[]},"CssRule":{"JSObject":[]},"File":{"JSObject":[]},"Gamepad":{"JSObject":[]},"MimeType":{"JSObject":[]},"Node":{"JSObject":[]},"Plugin":{"JSObject":[]},"SourceBuffer":{"JSObject":[]},"SpeechGrammar":{"JSObject":[]},"SpeechRecognitionResult":{"JSObject":[]},"StyleSheet":{"JSObject":[]},"TextTrack":{"JSObject":[]},"TextTrackCue":{"JSObject":[]},"Touch":{"JSObject":[]},"HtmlElement":{"Node":[],"JSObject":[]},"AccessibleNodeList":{"JSObject":[]},"AnchorElement":{"Node":[],"JSObject":[]},"ApplicationCacheErrorEvent":{"JSObject":[]},"AreaElement":{"Node":[],"JSObject":[]},"Blob":{"JSObject":[]},"CharacterData":{"Node":[],"JSObject":[]},"CssPerspective":{"JSObject":[]},"CssStyleDeclaration":{"JSObject":[]},"CssStyleValue":{"JSObject":[]},"CssTransformComponent":{"JSObject":[]},"CssTransformValue":{"JSObject":[]},"CssUnparsedValue":{"JSObject":[]},"DataTransferItemList":{"JSObject":[]},"DeprecationReport":{"JSObject":[]},"DomError":{"JSObject":[]},"DomException":{"JSObject":[]},"DomRectList":{"ListBase":["Rectangle<num>"],"ImmutableListMixin":["Rectangle<num>"],"List":["Rectangle<num>"],"JavaScriptIndexingBehavior":["Rectangle<num>"],"EfficientLengthIterable":["Rectangle<num>"],"JSObject":[],"Iterable":["Rectangle<num>"],"ImmutableListMixin.E":"Rectangle<num>","ListBase.E":"Rectangle<num>"},"DomRectReadOnly":{"Rectangle":["num"],"JSObject":[]},"DomStringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"JavaScriptIndexingBehavior":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ImmutableListMixin.E":"String","ListBase.E":"String"},"DomTokenList":{"JSObject":[]},"Element":{"Node":[],"JSObject":[]},"ErrorEvent":{"JSObject":[]},"Event":{"JSObject":[]},"EventTarget":{"JSObject":[]},"FileList":{"ListBase":["File"],"ImmutableListMixin":["File"],"List":["File"],"JavaScriptIndexingBehavior":["File"],"EfficientLengthIterable":["File"],"JSObject":[],"Iterable":["File"],"ImmutableListMixin.E":"File","ListBase.E":"File"},"FileWriter":{"JSObject":[]},"FormElement":{"Node":[],"JSObject":[]},"History":{"JSObject":[]},"HtmlCollection":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"InterventionReport":{"JSObject":[]},"Location":{"JSObject":[]},"MediaError":{"JSObject":[]},"MediaKeyMessageEvent":{"JSObject":[]},"MediaList":{"JSObject":[]},"MidiInputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"MidiOutputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"MimeTypeArray":{"ListBase":["MimeType"],"ImmutableListMixin":["MimeType"],"List":["MimeType"],"JavaScriptIndexingBehavior":["MimeType"],"EfficientLengthIterable":["MimeType"],"JSObject":[],"Iterable":["MimeType"],"ImmutableListMixin.E":"MimeType","ListBase.E":"MimeType"},"NavigatorUserMediaError":{"JSObject":[]},"NodeList":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"OverconstrainedError":{"JSObject":[]},"PluginArray":{"ListBase":["Plugin"],"ImmutableListMixin":["Plugin"],"List":["Plugin"],"JavaScriptIndexingBehavior":["Plugin"],"EfficientLengthIterable":["Plugin"],"JSObject":[],"Iterable":["Plugin"],"ImmutableListMixin.E":"Plugin","ListBase.E":"Plugin"},"PositionError":{"JSObject":[]},"PresentationConnectionCloseEvent":{"JSObject":[]},"ReportBody":{"JSObject":[]},"RtcStatsReport":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"SelectElement":{"Node":[],"JSObject":[]},"SourceBufferList":{"ListBase":["SourceBuffer"],"ImmutableListMixin":["SourceBuffer"],"List":["SourceBuffer"],"JavaScriptIndexingBehavior":["SourceBuffer"],"EfficientLengthIterable":["SourceBuffer"],"JSObject":[],"Iterable":["SourceBuffer"],"ImmutableListMixin.E":"SourceBuffer","ListBase.E":"SourceBuffer"},"SpeechGrammarList":{"ListBase":["SpeechGrammar"],"ImmutableListMixin":["SpeechGrammar"],"List":["SpeechGrammar"],"JavaScriptIndexingBehavior":["SpeechGrammar"],"EfficientLengthIterable":["SpeechGrammar"],"JSObject":[],"Iterable":["SpeechGrammar"],"ImmutableListMixin.E":"SpeechGrammar","ListBase.E":"SpeechGrammar"},"SpeechRecognitionError":{"JSObject":[]},"Storage":{"MapBase":["String","String"],"JSObject":[],"Map":["String","String"],"MapBase.V":"String","MapBase.K":"String"},"TextTrackCueList":{"ListBase":["TextTrackCue"],"ImmutableListMixin":["TextTrackCue"],"List":["TextTrackCue"],"JavaScriptIndexingBehavior":["TextTrackCue"],"EfficientLengthIterable":["TextTrackCue"],"JSObject":[],"Iterable":["TextTrackCue"],"ImmutableListMixin.E":"TextTrackCue","ListBase.E":"TextTrackCue"},"TextTrackList":{"ListBase":["TextTrack"],"ImmutableListMixin":["TextTrack"],"List":["TextTrack"],"JavaScriptIndexingBehavior":["TextTrack"],"EfficientLengthIterable":["TextTrack"],"JSObject":[],"Iterable":["TextTrack"],"ImmutableListMixin.E":"TextTrack","ListBase.E":"TextTrack"},"TimeRanges":{"JSObject":[]},"TouchList":{"ListBase":["Touch"],"ImmutableListMixin":["Touch"],"List":["Touch"],"JavaScriptIndexingBehavior":["Touch"],"EfficientLengthIterable":["Touch"],"JSObject":[],"Iterable":["Touch"],"ImmutableListMixin.E":"Touch","ListBase.E":"Touch"},"TrackDefaultList":{"JSObject":[]},"Url":{"JSObject":[]},"VideoTrackList":{"JSObject":[]},"_CssRuleList":{"ListBase":["CssRule"],"ImmutableListMixin":["CssRule"],"List":["CssRule"],"JavaScriptIndexingBehavior":["CssRule"],"EfficientLengthIterable":["CssRule"],"JSObject":[],"Iterable":["CssRule"],"ImmutableListMixin.E":"CssRule","ListBase.E":"CssRule"},"_DomRect":{"Rectangle":["num"],"JSObject":[]},"_GamepadList":{"ListBase":["Gamepad?"],"ImmutableListMixin":["Gamepad?"],"List":["Gamepad?"],"JavaScriptIndexingBehavior":["Gamepad?"],"EfficientLengthIterable":["Gamepad?"],"JSObject":[],"Iterable":["Gamepad?"],"ImmutableListMixin.E":"Gamepad?","ListBase.E":"Gamepad?"},"_NamedNodeMap":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"_SpeechRecognitionResultList":{"ListBase":["SpeechRecognitionResult"],"ImmutableListMixin":["SpeechRecognitionResult"],"List":["SpeechRecognitionResult"],"JavaScriptIndexingBehavior":["SpeechRecognitionResult"],"EfficientLengthIterable":["SpeechRecognitionResult"],"JSObject":[],"Iterable":["SpeechRecognitionResult"],"ImmutableListMixin.E":"SpeechRecognitionResult","ListBase.E":"SpeechRecognitionResult"},"_StyleSheetList":{"ListBase":["StyleSheet"],"ImmutableListMixin":["StyleSheet"],"List":["StyleSheet"],"JavaScriptIndexingBehavior":["StyleSheet"],"EfficientLengthIterable":["StyleSheet"],"JSObject":[],"Iterable":["StyleSheet"],"ImmutableListMixin.E":"StyleSheet","ListBase.E":"StyleSheet"},"Length":{"JSObject":[]},"Number":{"JSObject":[]},"Transform":{"JSObject":[]},"LengthList":{"ListBase":["Length"],"ImmutableListMixin":["Length"],"List":["Length"],"EfficientLengthIterable":["Length"],"JSObject":[],"Iterable":["Length"],"ImmutableListMixin.E":"Length","ListBase.E":"Length"},"NumberList":{"ListBase":["Number"],"ImmutableListMixin":["Number"],"List":["Number"],"EfficientLengthIterable":["Number"],"JSObject":[],"Iterable":["Number"],"ImmutableListMixin.E":"Number","ListBase.E":"Number"},"PointList":{"JSObject":[]},"StringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ImmutableListMixin.E":"String","ListBase.E":"String"},"TransformList":{"ListBase":["Transform"],"ImmutableListMixin":["Transform"],"List":["Transform"],"EfficientLengthIterable":["Transform"],"JSObject":[],"Iterable":["Transform"],"ImmutableListMixin.E":"Transform","ListBase.E":"Transform"},"AudioBuffer":{"JSObject":[]},"AudioParamMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"AudioTrackList":{"JSObject":[]},"BaseAudioContext":{"JSObject":[]},"OfflineAudioContext":{"JSObject":[]},"EmptyUnmodifiableSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"QueueList":{"ListBase":["1"],"List":["1"],"Queue":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1","QueueList.E":"1"},"_CastQueueList":{"QueueList":["2"],"ListBase":["2"],"List":["2"],"Queue":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListBase.E":"2","QueueList.E":"2"},"UnmodifiableSetView0":{"DelegatingSet":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapKeySet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_DelegatingIterableBase":{"Iterable":["1"]},"DelegatingSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"PathException":{"Exception":[]},"Version":{"VersionRange":[],"Comparable":["VersionRange"]},"VersionRange":{"Comparable":["VersionRange"]},"ModifiableCssAtRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssComment":{"ModifiableCssNode":[],"CssComment":[],"CssNode":[],"AstNode":[]},"ModifiableCssDeclaration":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssImport":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssKeyframeBlock":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssMediaRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssNode":{"CssNode":[],"AstNode":[]},"ModifiableCssParentNode":{"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStyleRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStylesheet":{"ModifiableCssParentNode":[],"CssStylesheet":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssSupportsRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssNode":{"AstNode":[]},"CssParentNode":{"CssNode":[],"AstNode":[]},"CssStylesheet":{"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssValue":{"AstNode":[]},"_FakeAstNode":{"AstNode":[]},"ArgumentList":{"SassNode":[],"AstNode":[]},"ConfiguredVariable":{"SassNode":[],"AstNode":[]},"Expression":{"SassNode":[],"AstNode":[]},"BinaryOperationExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"BooleanExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ColorExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"FunctionExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"IfConditionExpression":{"SassNode":[],"AstNode":[]},"IfConditionFunction":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"IfConditionParenthesized":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionNegation":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionOperation":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionSass":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionRaw":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"InterpolatedFunctionExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"LegacyIfExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ListExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"MapExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"NullExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"NumberExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ParenthesizedExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"SelectorExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"StringExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"SupportsExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"UnaryOperationExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ValueExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"VariableExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"DynamicImport":{"Import":[],"SassNode":[],"AstNode":[]},"StaticImport":{"Import":[],"SassNode":[],"AstNode":[]},"InterpolatedSelector":{"SassNode":[],"AstNode":[]},"InterpolatedAttributeSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedClassSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedComplexSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedComplexSelectorComponent":{"SassNode":[],"AstNode":[]},"InterpolatedCompoundSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedIDSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedSelectorList":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedParentSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedPlaceholderSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedPseudoSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedQualifiedName":{"SassNode":[],"AstNode":[]},"InterpolatedSimpleSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedTypeSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedUniversalSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"Interpolation":{"SassNode":[],"AstNode":[]},"Parameter":{"SassNode":[],"AstNode":[]},"ParameterList":{"SassNode":[],"AstNode":[]},"Statement":{"SassNode":[],"AstNode":[]},"AtRootRule":{"Statement":[],"SassNode":[],"AstNode":[]},"AtRule":{"Statement":[],"SassNode":[],"AstNode":[]},"CallableDeclaration":{"Statement":[],"SassNode":[],"AstNode":[]},"ContentBlock":{"Statement":[],"SassNode":[],"AstNode":[]},"ContentRule":{"Statement":[],"SassNode":[],"AstNode":[]},"DebugRule":{"Statement":[],"SassNode":[],"AstNode":[]},"Declaration":{"Statement":[],"SassNode":[],"AstNode":[]},"EachRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ErrorRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ExtendRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ForRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ForwardRule":{"Statement":[],"SassNode":[],"AstNode":[]},"FunctionRule":{"Statement":[],"SassNode":[],"AstNode":[]},"IfClause":{"IfRuleClause":[]},"ElseClause":{"IfRuleClause":[]},"IfRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ImportRule":{"Statement":[],"SassNode":[],"AstNode":[]},"IncludeRule":{"Statement":[],"SassNode":[],"AstNode":[]},"LoudComment":{"Statement":[],"SassNode":[],"AstNode":[]},"MediaRule":{"Statement":[],"SassNode":[],"AstNode":[]},"MixinRule":{"Statement":[],"SassNode":[],"AstNode":[]},"_HasContentVisitor":{"StatementSearchVisitor":["bool"],"StatementVisitor":["bool?"],"StatementSearchVisitor.T":"bool"},"ParentStatement":{"Statement":[],"SassNode":[],"AstNode":[]},"ReturnRule":{"Statement":[],"SassNode":[],"AstNode":[]},"SilentComment":{"Statement":[],"SassNode":[],"AstNode":[]},"StyleRule":{"Statement":[],"SassNode":[],"AstNode":[]},"Stylesheet":{"Statement":[],"SassNode":[],"AstNode":[]},"SupportsRule":{"Statement":[],"SassNode":[],"AstNode":[]},"UseRule":{"Statement":[],"SassNode":[],"AstNode":[]},"VariableDeclaration":{"Statement":[],"SassNode":[],"AstNode":[]},"WarnRule":{"Statement":[],"SassNode":[],"AstNode":[]},"WhileRule":{"Statement":[],"SassNode":[],"AstNode":[]},"SupportsAnything":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsDeclaration":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsFunction":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsInterpolation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsNegation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsOperation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"Selector":{"AstNode":[]},"AttributeSelector":{"SimpleSelector":[],"AstNode":[]},"ClassSelector":{"SimpleSelector":[],"AstNode":[]},"ComplexSelector":{"AstNode":[]},"CompoundSelector":{"AstNode":[]},"IDSelector":{"SimpleSelector":[],"AstNode":[]},"SelectorList":{"AstNode":[]},"_ParentSelectorVisitor":{"SelectorSearchVisitor":["ParentSelector"],"SelectorSearchVisitor.T":"ParentSelector"},"ParentSelector":{"SimpleSelector":[],"AstNode":[]},"PlaceholderSelector":{"SimpleSelector":[],"AstNode":[]},"PseudoSelector":{"SimpleSelector":[],"AstNode":[]},"SimpleSelector":{"AstNode":[]},"TypeSelector":{"SimpleSelector":[],"AstNode":[]},"UniversalSelector":{"SimpleSelector":[],"AstNode":[]},"AsyncBuiltInCallable":{"AsyncCallable":[]},"BuiltInCallable":{"Callable":[],"AsyncBuiltInCallable":[],"AsyncCallable":[]},"PlainCssCallable":{"Callable":[],"AsyncCallable":[]},"UserDefinedCallable":{"Callable":[],"AsyncCallable":[]},"ExplicitConfiguration":{"Configuration":[]},"_EnvironmentModule":{"Module0":["Callable"]},"SassRuntimeException":{"Exception":[]},"SassException":{"Exception":[]},"MultiSpanSassException":{"Exception":[]},"MultiSpanSassRuntimeException":{"SassRuntimeException":[],"Exception":[]},"SassFormatException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"MultiSpanSassFormatException":{"MultiSourceSpanFormatException":[],"SassFormatException":[],"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"EmptyExtensionStore":{"ExtensionStore":[]},"MergedExtension":{"Extension":[]},"FilesystemImporter":{"Importer":[]},"JSToDartFileImporter":{"Importer":[]},"JSToDartImporter":{"Importer":[]},"NoOpImporter":{"Importer":[]},"JSExpressionVisitor":{"ExpressionVisitor":["Object?"]},"JSIfConditionExpressionVisitor":{"IfConditionExpressionVisitor":["Object?"]},"JSSimpleSelectorVisitor":{"InterpolatedSelectorVisitor":["Object?"]},"JSStatementVisitor":{"StatementVisitor":["Object?"]},"BuiltInModule":{"Module0":["1"]},"ForwardedModuleView":{"Module0":["1"]},"ShadowedModuleView":{"Module0":["1"]},"LazyFileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"LimitedMapView":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"MergedMapView":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"MultiSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"PrefixedMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"_PrefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"PublicMemberMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"UnprefixedMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"_UnprefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"SassArgumentList":{"SassList":[],"Value":[]},"SassBoolean":{"Value":[]},"SassCalculation":{"Value":[]},"SassColor":{"Value":[]},"LinearChannel":{"ColorChannel":[]},"A98RgbColorSpace":{"ColorSpace":[]},"DisplayP3ColorSpace":{"ColorSpace":[]},"DisplayP3LinearColorSpace":{"ColorSpace":[]},"HslColorSpace":{"ColorSpace":[]},"HwbColorSpace":{"ColorSpace":[]},"LabColorSpace":{"ColorSpace":[]},"LchColorSpace":{"ColorSpace":[]},"LmsColorSpace":{"ColorSpace":[]},"OklabColorSpace":{"ColorSpace":[]},"OklchColorSpace":{"ColorSpace":[]},"ProphotoRgbColorSpace":{"ColorSpace":[]},"Rec2020ColorSpace":{"ColorSpace":[]},"RgbColorSpace":{"ColorSpace":[]},"SrgbColorSpace":{"ColorSpace":[]},"SrgbLinearColorSpace":{"ColorSpace":[]},"XyzD50ColorSpace":{"ColorSpace":[]},"XyzD65ColorSpace":{"ColorSpace":[]},"SassFunction":{"Value":[]},"SassList":{"Value":[]},"SassMap":{"Value":[]},"SassMixin":{"Value":[]},"_SassNull":{"Value":[]},"SassNumber":{"Value":[]},"ComplexSassNumber":{"SassNumber":[],"Value":[]},"SingleUnitSassNumber":{"SassNumber":[],"Value":[]},"UnitlessSassNumber":{"SassNumber":[],"Value":[]},"SassString":{"Value":[]},"_EvaluateVisitor":{"StatementVisitor":["Value?"],"ExpressionVisitor":["Value"],"IfConditionExpressionVisitor":["Object"]},"_MakeExpressionCalculationSafe":{"ExpressionVisitor":["Expression"],"IfConditionExpressionVisitor":["IfConditionExpression"]},"IsCalculationSafeVisitor":{"ExpressionVisitor":["bool"]},"SourceInterpolationVisitor":{"ExpressionVisitor":["~"],"IfConditionExpressionVisitor":["~"]},"Entry":{"Comparable":["Entry"]},"FileLocation":{"SourceLocation":[],"Comparable":["SourceLocation"]},"FileSpan":{"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"_FileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceLocation":{"Comparable":["SourceLocation"]},"SourceLocationMixin":{"SourceLocation":[],"Comparable":["SourceLocation"]},"SourceSpan":{"Comparable":["SourceSpan"]},"SourceSpanBase":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanException":{"Exception":[]},"SourceSpanFormatException":{"FormatException":[],"Exception":[]},"MultiSourceSpanException":{"Exception":[]},"MultiSourceSpanFormatException":{"FormatException":[],"Exception":[]},"SourceSpanMixin":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanWithContext":{"SourceSpan":[],"Comparable":["SourceSpan"]},"Trace":{"StackTrace":[]},"StringScannerException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"Int8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint8ClampedList":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Int16List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint16List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Int32List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint32List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Float32List":{"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"Float64List":{"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"CssComment":{"CssNode":[],"AstNode":[]},"Import":{"SassNode":[],"AstNode":[]},"SassNode":{"AstNode":[]},"SupportsCondition":{"SassNode":[],"AstNode":[]},"Callable":{"AsyncCallable":[]}}'));
+			A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject"' + /*DSH- ',"BufferModule":"LegacyJavaScriptObject","BufferConstants":"LegacyJavaScriptObject","Buffer0":"LegacyJavaScriptObject","ConsoleModule":"LegacyJavaScriptObject","Console":"LegacyJavaScriptObject","EventEmitter":"LegacyJavaScriptObject","FS":"LegacyJavaScriptObject","FSConstants":"LegacyJavaScriptObject","Realpath":"LegacyJavaScriptObject","RealpathSync":"LegacyJavaScriptObject","FSWatcher":"LegacyJavaScriptObject","ReadStream":"LegacyJavaScriptObject","ReadStreamOptions":"LegacyJavaScriptObject","WriteStream":"LegacyJavaScriptObject","WriteStreamOptions":"LegacyJavaScriptObject","FileOptions":"LegacyJavaScriptObject","StatOptions":"LegacyJavaScriptObject","MkdirOptions":"LegacyJavaScriptObject","RmdirOptions":"LegacyJavaScriptObject","WatchOptions":"LegacyJavaScriptObject","WatchFileOptions":"LegacyJavaScriptObject","Stats":"LegacyJavaScriptObject","Promise":"LegacyJavaScriptObject","Date":"LegacyJavaScriptObject","JsError":"LegacyJavaScriptObject","Atomics":"LegacyJavaScriptObject","Modules":"LegacyJavaScriptObject","Module":"LegacyJavaScriptObject","Net":"LegacyJavaScriptObject","Socket":"LegacyJavaScriptObject","NetAddress":"LegacyJavaScriptObject","NetServer":"LegacyJavaScriptObject","NodeJsError":"LegacyJavaScriptObject","JsAssertionError":"LegacyJavaScriptObject","JsRangeError":"LegacyJavaScriptObject","JsReferenceError":"LegacyJavaScriptObject","JsSyntaxError":"LegacyJavaScriptObject","JsTypeError":"LegacyJavaScriptObject","JsSystemError":"LegacyJavaScriptObject","Process":"LegacyJavaScriptObject","CPUUsage":"LegacyJavaScriptObject","Release":"LegacyJavaScriptObject","StreamModule":"LegacyJavaScriptObject","Readable":"LegacyJavaScriptObject","Writable":"LegacyJavaScriptObject","Duplex":"LegacyJavaScriptObject","Transform0":"LegacyJavaScriptObject","WritableOptions":"LegacyJavaScriptObject","ReadableOptions":"LegacyJavaScriptObject","Immediate":"LegacyJavaScriptObject","Timeout":"LegacyJavaScriptObject","TTY":"LegacyJavaScriptObject","TTYReadStream":"LegacyJavaScriptObject","TTYWriteStream":"LegacyJavaScriptObject","Util":"LegacyJavaScriptObject","JSArray0":"LegacyJavaScriptObject","Chokidar":"LegacyJavaScriptObject","ChokidarOptions":"LegacyJavaScriptObject","ChokidarWatcher":"LegacyJavaScriptObject","CompileOptions":"LegacyJavaScriptObject","CompileStringOptions":"LegacyJavaScriptObject","NodeCompileResult":"LegacyJavaScriptObject"' + */',"Deprecation0":"LegacyJavaScriptObject"' + /*DSH- ',"_NodeException":"LegacyJavaScriptObject","Exports":"LegacyJavaScriptObject","LoggerNamespace":"LegacyJavaScriptObject","JSFunction":"LegacyJavaScriptObject"' + */',"ImmutableList":"LegacyJavaScriptObject","ImmutableMap":"LegacyJavaScriptObject","JSImporter":"LegacyJavaScriptObject","JSImporterResult":"LegacyJavaScriptObject"' + /*DSH- ',"NodeImporterResult":"LegacyJavaScriptObject","RenderContext":"LegacyJavaScriptObject","RenderContextOptions":"LegacyJavaScriptObject","RenderContextResult":"LegacyJavaScriptObject","RenderContextResultStats":"LegacyJavaScriptObject","Types":"LegacyJavaScriptObject","WarnOptions":"LegacyJavaScriptObject","DebugOptions":"LegacyJavaScriptObject","JSLogger":"LegacyJavaScriptObject","JSModule":"LegacyJavaScriptObject","JSModuleRequire":"LegacyJavaScriptObject","ParserExports":"LegacyJavaScriptObject"' + */',"JSClass":"LegacyJavaScriptObject","JSSet":"LegacyJavaScriptObject","JSUrl":"LegacyJavaScriptObject"' + /*DSH- ',"_PropertyDescriptor":"LegacyJavaScriptObject","_RequireMain":"LegacyJavaScriptObject"' + */',"_ConstructionOptions":"LegacyJavaScriptObject","_ChannelOptions":"LegacyJavaScriptObject","_ToGamutOptions":"LegacyJavaScriptObject","_InterpolationOptions":"LegacyJavaScriptObject","_Channels":"LegacyJavaScriptObject","_ConstructorOptions":"LegacyJavaScriptObject","_ConstructorOptions0":"LegacyJavaScriptObject","_ConstructorOptions1":"LegacyJavaScriptObject","JSExpressionVisitorObject":"LegacyJavaScriptObject","JSIfConditionExpressionVisitorObject":"LegacyJavaScriptObject","JSSimpleSelectorVisitorObject":"LegacyJavaScriptObject","JSStatementVisitorObject":"LegacyJavaScriptObject","KeyframeEffect":"JavaScriptObject","KeyframeEffectReadOnly":"JavaScriptObject","AnimationEffectReadOnly":"JavaScriptObject","AbortPaymentEvent":"Event","ExtendableEvent":"Event","AudioContext":"BaseAudioContext","AbsoluteOrientationSensor":"EventTarget","OrientationSensor":"EventTarget","Sensor":"EventTarget","MathMLElement":"Element","AudioElement":"HtmlElement","MediaElement":"HtmlElement","HtmlDocument":"Node","Document":"Node","VttCue":"TextTrackCue","CDataSection":"CharacterData","Text":"CharacterData","HtmlFormControlsCollection":"HtmlCollection","CssCharsetRule":"CssRule","CssMatrixComponent":"CssTransformComponent","CssStyleSheet":"StyleSheet","CssurlImageValue":"CssStyleValue","CssImageValue":"CssStyleValue","CssResourceValue":"CssStyleValue","NativeArrayBuffer":"NativeByteBuffer","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"TrustedGetRuntimeType":[]},"JavaScriptObject":{"JSObject":[]},"LegacyJavaScriptObject":{"JSObject":[]' + /*DSH- ',"JsSystemError":[],"CompileOptions":[],"CompileStringOptions":[],"NodeCompileResult":[]' + */',"Deprecation0":[]' + /*DSH- ',"_NodeException":[]' + */',"ImmutableList":[],"ImmutableMap":[],"JSImporter":[],"JSImporterResult":[]' + /*DSH- ',"WarnOptions":[],"DebugOptions":[],"ParserExports":[]' + */',"JSClass":[],"JSSet":[],"JSUrl":[],"_ConstructionOptions":[],"_ChannelOptions":[],"_ToGamutOptions":[],"_InterpolationOptions":[],"_ConstructorOptions":[],"_ConstructorOptions0":[],"_ConstructorOptions1":[],"JSExpressionVisitorObject":[],"JSIfConditionExpressionVisitorObject":[],"JSSimpleSelectorVisitorObject":[],"JSStatementVisitorObject":[]},"JSArray":{"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSArraySafeToStringHook":{"SafeToStringHook":[]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSNumber":{"double":[],"num":[],"Comparable":["num"]},"JSInt":{"double":[],"int":[],"num":[],"Comparable":["num"],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"double":[],"num":[],"Comparable":["num"],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"Comparable":["String"],"TrustedGetRuntimeType":[]},"_CastIterableBase":{"Iterable":["2"]},"CastIterable":{"_CastIterableBase":["1","2"],"Iterable":["2"],"Iterable.E":"2"},"_EfficientLengthCastIterable":{"CastIterable":["1","2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"_CastListBase":{"ListBase":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"]},"CastList":{"_CastListBase":["1","2"],"ListBase":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListBase.E":"2","Iterable.E":"2"},"CastMap":{"MapBase":["3","4"],"Map":["3","4"],"MapBase.V":"4","MapBase.K":"3"},"LateError":{"Error":[]},"CodeUnits":{"ListBase":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListBase.E":"int"},"EfficientLengthIterable":{"Iterable":["1"]},"ListIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"SubListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"MappedIterable":{"Iterable":["2"],"Iterable.E":"2"},"EfficientLengthMappedIterable":{"MappedIterable":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MappedListIterable":{"ListIterable":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListIterable.E":"2"},"WhereIterable":{"Iterable":["1"],"Iterable.E":"1"},"ExpandIterable":{"Iterable":["2"],"Iterable.E":"2"},"TakeIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthTakeIterable":{"TakeIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"SkipIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthSkipIterable":{"SkipIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"EmptyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"FollowedByIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthFollowedByIterable":{"FollowedByIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"WhereTypeIterable":{"Iterable":["1"],"Iterable.E":"1"},"NonNullsIterable":{"Iterable":["1"],"Iterable.E":"1"},"UnmodifiableListBase":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ReversedListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"Symbol":{"Symbol0":[]},"ConstantMapView":{"UnmodifiableMapView":["1","2"],"Map":["1","2"]},"ConstantMap":{"Map":["1","2"]},"ConstantStringMap":{"ConstantMap":["1","2"],"Map":["1","2"]},"_KeysOrValues":{"Iterable":["1"],"Iterable.E":"1"},"ConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ConstantStringSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"GeneralConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"Instantiation":{"Function":[]},"Instantiation1":{"Function":[]},"NullError":{"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"NullThrownFromJavaScriptException":{"Exception":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"Closure0Args":{"Function":[]},"Closure2Args":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"LinkedHashMapKeysIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapValuesIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapEntriesIterable":{"EfficientLengthIterable":["MapEntry<1,2>"],"Iterable":["MapEntry<1,2>"],"Iterable.E":"MapEntry<1,2>"},"JsIdentityLinkedHashMap":{"JsLinkedHashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"JsConstantLinkedHashMap":{"JsLinkedHashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_MatchImplementation":{"RegExpMatch":[],"Match":[]},"_AllMatchesIterable":{"Iterable":["RegExpMatch"],"Iterable.E":"RegExpMatch"},"StringMatch":{"Match":[]},"_StringAllMatchesIterable":{"Iterable":["Match"],"Iterable.E":"Match"},"NativeByteBuffer":{"JSObject":[],"ByteBuffer":[],"TrustedGetRuntimeType":[]},"NativeTypedData":{"JSObject":[]},"NativeByteData":{"ByteData":[],"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"],"JSObject":[]},"NativeTypedArrayOfDouble":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"]},"NativeTypedArrayOfInt":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"]},"NativeFloat32List":{"NativeTypedArrayOfDouble":[],"Float32List":[],"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeFloat64List":{"NativeTypedArrayOfDouble":[],"Float64List":[],"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeInt16List":{"NativeTypedArrayOfInt":[],"Int16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt32List":{"NativeTypedArrayOfInt":[],"Int32List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt8List":{"NativeTypedArrayOfInt":[],"Int8List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint16List":{"NativeTypedArrayOfInt":[],"Uint16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint32List":{"NativeTypedArrayOfInt":[],"Uint32List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8ClampedList":{"NativeTypedArrayOfInt":[],"Uint8ClampedList":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8List":{"NativeTypedArrayOfInt":[],"Uint8List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"_Error":{"Error":[]},"_TypeError":{"Error":[]},"AsyncError":{"Error":[]},"_SyncStarIterable":{"Iterable":["1"],"Iterable.E":"1"},"_ZoneSpecification":{"ZoneSpecification":[]},"_ZoneDelegate":{"ZoneDelegate":[]},"_Zone":{"Zone":[]},"_CustomZone":{"Zone":[]},"_RootZone":{"Zone":[]},"Queue":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_IdentityHashMap":{"_HashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_HashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_LinkedHashSet":{"_SetBase":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_LinkedIdentityHashSet":{"_LinkedHashSet":["1"],"_SetBase":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableListView":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1"},"ListBase":{"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapBase":{"Map":["1","2"]},"UnmodifiableMapBase":{"MapBase":["1","2"],"Map":["1","2"]},"_MapBaseValueIterable":{"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MapView":{"Map":["1","2"]},"UnmodifiableMapView":{"Map":["1","2"]},"ListQueue":{"Queue":["1"],"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"SetBase":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_SetBase":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableSetView":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"DateTime":{"Comparable":["DateTime"]},"double":{"num":[],"Comparable":["num"]},"Duration":{"Comparable":["Duration"]},"int":{"num":[],"Comparable":["num"]},"List":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"num":{"Comparable":["num"]},"RegExpMatch":{"Match":[]},"Set":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"String":{"Comparable":["String"]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"RangeError":[],"Error":[]},"NoSuchMethodError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"StateError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"_Exception":{"Exception":[]},"FormatException":{"Exception":[]},"Runes":{"Iterable":["int"],"Iterable.E":"int"},"_Uri":{"_PlatformUri":[],"Uri":[]},"_SimpleUri":{"_PlatformUri":[],"Uri":[]},"_DataUri":{"_PlatformUri":[],"Uri":[]},"CssRule":{"JSObject":[]},"File":{"JSObject":[]},"Gamepad":{"JSObject":[]},"MimeType":{"JSObject":[]},"Node":{"JSObject":[]},"Plugin":{"JSObject":[]},"SourceBuffer":{"JSObject":[]},"SpeechGrammar":{"JSObject":[]},"SpeechRecognitionResult":{"JSObject":[]},"StyleSheet":{"JSObject":[]},"TextTrack":{"JSObject":[]},"TextTrackCue":{"JSObject":[]},"Touch":{"JSObject":[]},"HtmlElement":{"Node":[],"JSObject":[]},"AccessibleNodeList":{"JSObject":[]},"AnchorElement":{"Node":[],"JSObject":[]},"ApplicationCacheErrorEvent":{"JSObject":[]},"AreaElement":{"Node":[],"JSObject":[]},"Blob":{"JSObject":[]},"CharacterData":{"Node":[],"JSObject":[]},"CssPerspective":{"JSObject":[]},"CssStyleDeclaration":{"JSObject":[]},"CssStyleValue":{"JSObject":[]},"CssTransformComponent":{"JSObject":[]},"CssTransformValue":{"JSObject":[]},"CssUnparsedValue":{"JSObject":[]},"DataTransferItemList":{"JSObject":[]},"DeprecationReport":{"JSObject":[]},"DomError":{"JSObject":[]},"DomException":{"JSObject":[]},"DomRectList":{"ListBase":["Rectangle<num>"],"ImmutableListMixin":["Rectangle<num>"],"List":["Rectangle<num>"],"JavaScriptIndexingBehavior":["Rectangle<num>"],"EfficientLengthIterable":["Rectangle<num>"],"JSObject":[],"Iterable":["Rectangle<num>"],"ImmutableListMixin.E":"Rectangle<num>","ListBase.E":"Rectangle<num>"},"DomRectReadOnly":{"Rectangle":["num"],"JSObject":[]},"DomStringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"JavaScriptIndexingBehavior":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ImmutableListMixin.E":"String","ListBase.E":"String"},"DomTokenList":{"JSObject":[]},"Element":{"Node":[],"JSObject":[]},"ErrorEvent":{"JSObject":[]},"Event":{"JSObject":[]},"EventTarget":{"JSObject":[]},"FileList":{"ListBase":["File"],"ImmutableListMixin":["File"],"List":["File"],"JavaScriptIndexingBehavior":["File"],"EfficientLengthIterable":["File"],"JSObject":[],"Iterable":["File"],"ImmutableListMixin.E":"File","ListBase.E":"File"},"FileWriter":{"JSObject":[]},"FormElement":{"Node":[],"JSObject":[]},"History":{"JSObject":[]},"HtmlCollection":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"InterventionReport":{"JSObject":[]},"Location":{"JSObject":[]},"MediaError":{"JSObject":[]},"MediaKeyMessageEvent":{"JSObject":[]},"MediaList":{"JSObject":[]},"MidiInputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"MidiOutputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"MimeTypeArray":{"ListBase":["MimeType"],"ImmutableListMixin":["MimeType"],"List":["MimeType"],"JavaScriptIndexingBehavior":["MimeType"],"EfficientLengthIterable":["MimeType"],"JSObject":[],"Iterable":["MimeType"],"ImmutableListMixin.E":"MimeType","ListBase.E":"MimeType"},"NavigatorUserMediaError":{"JSObject":[]},"NodeList":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"OverconstrainedError":{"JSObject":[]},"PluginArray":{"ListBase":["Plugin"],"ImmutableListMixin":["Plugin"],"List":["Plugin"],"JavaScriptIndexingBehavior":["Plugin"],"EfficientLengthIterable":["Plugin"],"JSObject":[],"Iterable":["Plugin"],"ImmutableListMixin.E":"Plugin","ListBase.E":"Plugin"},"PositionError":{"JSObject":[]},"PresentationConnectionCloseEvent":{"JSObject":[]},"ReportBody":{"JSObject":[]},"RtcStatsReport":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"SelectElement":{"Node":[],"JSObject":[]},"SourceBufferList":{"ListBase":["SourceBuffer"],"ImmutableListMixin":["SourceBuffer"],"List":["SourceBuffer"],"JavaScriptIndexingBehavior":["SourceBuffer"],"EfficientLengthIterable":["SourceBuffer"],"JSObject":[],"Iterable":["SourceBuffer"],"ImmutableListMixin.E":"SourceBuffer","ListBase.E":"SourceBuffer"},"SpeechGrammarList":{"ListBase":["SpeechGrammar"],"ImmutableListMixin":["SpeechGrammar"],"List":["SpeechGrammar"],"JavaScriptIndexingBehavior":["SpeechGrammar"],"EfficientLengthIterable":["SpeechGrammar"],"JSObject":[],"Iterable":["SpeechGrammar"],"ImmutableListMixin.E":"SpeechGrammar","ListBase.E":"SpeechGrammar"},"SpeechRecognitionError":{"JSObject":[]},"Storage":{"MapBase":["String","String"],"JSObject":[],"Map":["String","String"],"MapBase.V":"String","MapBase.K":"String"},"TextTrackCueList":{"ListBase":["TextTrackCue"],"ImmutableListMixin":["TextTrackCue"],"List":["TextTrackCue"],"JavaScriptIndexingBehavior":["TextTrackCue"],"EfficientLengthIterable":["TextTrackCue"],"JSObject":[],"Iterable":["TextTrackCue"],"ImmutableListMixin.E":"TextTrackCue","ListBase.E":"TextTrackCue"},"TextTrackList":{"ListBase":["TextTrack"],"ImmutableListMixin":["TextTrack"],"List":["TextTrack"],"JavaScriptIndexingBehavior":["TextTrack"],"EfficientLengthIterable":["TextTrack"],"JSObject":[],"Iterable":["TextTrack"],"ImmutableListMixin.E":"TextTrack","ListBase.E":"TextTrack"},"TimeRanges":{"JSObject":[]},"TouchList":{"ListBase":["Touch"],"ImmutableListMixin":["Touch"],"List":["Touch"],"JavaScriptIndexingBehavior":["Touch"],"EfficientLengthIterable":["Touch"],"JSObject":[],"Iterable":["Touch"],"ImmutableListMixin.E":"Touch","ListBase.E":"Touch"},"TrackDefaultList":{"JSObject":[]},"Url":{"JSObject":[]},"VideoTrackList":{"JSObject":[]},"_CssRuleList":{"ListBase":["CssRule"],"ImmutableListMixin":["CssRule"],"List":["CssRule"],"JavaScriptIndexingBehavior":["CssRule"],"EfficientLengthIterable":["CssRule"],"JSObject":[],"Iterable":["CssRule"],"ImmutableListMixin.E":"CssRule","ListBase.E":"CssRule"},"_DomRect":{"Rectangle":["num"],"JSObject":[]},"_GamepadList":{"ListBase":["Gamepad?"],"ImmutableListMixin":["Gamepad?"],"List":["Gamepad?"],"JavaScriptIndexingBehavior":["Gamepad?"],"EfficientLengthIterable":["Gamepad?"],"JSObject":[],"Iterable":["Gamepad?"],"ImmutableListMixin.E":"Gamepad?","ListBase.E":"Gamepad?"},"_NamedNodeMap":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"_SpeechRecognitionResultList":{"ListBase":["SpeechRecognitionResult"],"ImmutableListMixin":["SpeechRecognitionResult"],"List":["SpeechRecognitionResult"],"JavaScriptIndexingBehavior":["SpeechRecognitionResult"],"EfficientLengthIterable":["SpeechRecognitionResult"],"JSObject":[],"Iterable":["SpeechRecognitionResult"],"ImmutableListMixin.E":"SpeechRecognitionResult","ListBase.E":"SpeechRecognitionResult"},"_StyleSheetList":{"ListBase":["StyleSheet"],"ImmutableListMixin":["StyleSheet"],"List":["StyleSheet"],"JavaScriptIndexingBehavior":["StyleSheet"],"EfficientLengthIterable":["StyleSheet"],"JSObject":[],"Iterable":["StyleSheet"],"ImmutableListMixin.E":"StyleSheet","ListBase.E":"StyleSheet"},"Length":{"JSObject":[]},"Number":{"JSObject":[]},"Transform":{"JSObject":[]},"LengthList":{"ListBase":["Length"],"ImmutableListMixin":["Length"],"List":["Length"],"EfficientLengthIterable":["Length"],"JSObject":[],"Iterable":["Length"],"ImmutableListMixin.E":"Length","ListBase.E":"Length"},"NumberList":{"ListBase":["Number"],"ImmutableListMixin":["Number"],"List":["Number"],"EfficientLengthIterable":["Number"],"JSObject":[],"Iterable":["Number"],"ImmutableListMixin.E":"Number","ListBase.E":"Number"},"PointList":{"JSObject":[]},"StringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ImmutableListMixin.E":"String","ListBase.E":"String"},"TransformList":{"ListBase":["Transform"],"ImmutableListMixin":["Transform"],"List":["Transform"],"EfficientLengthIterable":["Transform"],"JSObject":[],"Iterable":["Transform"],"ImmutableListMixin.E":"Transform","ListBase.E":"Transform"},"AudioBuffer":{"JSObject":[]},"AudioParamMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"AudioTrackList":{"JSObject":[]},"BaseAudioContext":{"JSObject":[]},"OfflineAudioContext":{"JSObject":[]},"EmptyUnmodifiableSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"QueueList":{"ListBase":["1"],"List":["1"],"Queue":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1","QueueList.E":"1"},"_CastQueueList":{"QueueList":["2"],"ListBase":["2"],"List":["2"],"Queue":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListBase.E":"2","QueueList.E":"2"},"UnmodifiableSetView0":{"DelegatingSet":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapKeySet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_DelegatingIterableBase":{"Iterable":["1"]},"DelegatingSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"PathException":{"Exception":[]},"Version":{"VersionRange":[],"Comparable":["VersionRange"]},"VersionRange":{"Comparable":["VersionRange"]},"ModifiableCssAtRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssComment":{"ModifiableCssNode":[],"CssComment":[],"CssNode":[],"AstNode":[]},"ModifiableCssDeclaration":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssImport":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssKeyframeBlock":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssMediaRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssNode":{"CssNode":[],"AstNode":[]},"ModifiableCssParentNode":{"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStyleRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStylesheet":{"ModifiableCssParentNode":[],"CssStylesheet":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssSupportsRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssNode":{"AstNode":[]},"CssParentNode":{"CssNode":[],"AstNode":[]},"CssStylesheet":{"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssValue":{"AstNode":[]},"_FakeAstNode":{"AstNode":[]},"ArgumentList":{"SassNode":[],"AstNode":[]},"ConfiguredVariable":{"SassNode":[],"AstNode":[]},"Expression":{"SassNode":[],"AstNode":[]},"BinaryOperationExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"BooleanExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ColorExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"FunctionExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"IfConditionExpression":{"SassNode":[],"AstNode":[]},"IfConditionFunction":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"IfConditionParenthesized":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionNegation":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionOperation":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionSass":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionRaw":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"InterpolatedFunctionExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"LegacyIfExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ListExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"MapExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"NullExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"NumberExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ParenthesizedExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"SelectorExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"StringExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"SupportsExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"UnaryOperationExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ValueExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"VariableExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"DynamicImport":{"Import":[],"SassNode":[],"AstNode":[]},"StaticImport":{"Import":[],"SassNode":[],"AstNode":[]},"InterpolatedSelector":{"SassNode":[],"AstNode":[]},"InterpolatedAttributeSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedClassSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedComplexSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedComplexSelectorComponent":{"SassNode":[],"AstNode":[]},"InterpolatedCompoundSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedIDSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedSelectorList":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedParentSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedPlaceholderSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedPseudoSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedQualifiedName":{"SassNode":[],"AstNode":[]},"InterpolatedSimpleSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedTypeSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedUniversalSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"Interpolation":{"SassNode":[],"AstNode":[]},"Parameter":{"SassNode":[],"AstNode":[]},"ParameterList":{"SassNode":[],"AstNode":[]},"Statement":{"SassNode":[],"AstNode":[]},"AtRootRule":{"Statement":[],"SassNode":[],"AstNode":[]},"AtRule":{"Statement":[],"SassNode":[],"AstNode":[]},"CallableDeclaration":{"Statement":[],"SassNode":[],"AstNode":[]},"ContentBlock":{"Statement":[],"SassNode":[],"AstNode":[]},"ContentRule":{"Statement":[],"SassNode":[],"AstNode":[]},"DebugRule":{"Statement":[],"SassNode":[],"AstNode":[]},"Declaration":{"Statement":[],"SassNode":[],"AstNode":[]},"EachRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ErrorRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ExtendRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ForRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ForwardRule":{"Statement":[],"SassNode":[],"AstNode":[]},"FunctionRule":{"Statement":[],"SassNode":[],"AstNode":[]},"IfClause":{"IfRuleClause":[]},"ElseClause":{"IfRuleClause":[]},"IfRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ImportRule":{"Statement":[],"SassNode":[],"AstNode":[]},"IncludeRule":{"Statement":[],"SassNode":[],"AstNode":[]},"LoudComment":{"Statement":[],"SassNode":[],"AstNode":[]},"MediaRule":{"Statement":[],"SassNode":[],"AstNode":[]},"MixinRule":{"Statement":[],"SassNode":[],"AstNode":[]},"_HasContentVisitor":{"StatementSearchVisitor":["bool"],"StatementVisitor":["bool?"],"StatementSearchVisitor.T":"bool"},"ParentStatement":{"Statement":[],"SassNode":[],"AstNode":[]},"ReturnRule":{"Statement":[],"SassNode":[],"AstNode":[]},"SilentComment":{"Statement":[],"SassNode":[],"AstNode":[]},"StyleRule":{"Statement":[],"SassNode":[],"AstNode":[]},"Stylesheet":{"Statement":[],"SassNode":[],"AstNode":[]},"SupportsRule":{"Statement":[],"SassNode":[],"AstNode":[]},"UseRule":{"Statement":[],"SassNode":[],"AstNode":[]},"VariableDeclaration":{"Statement":[],"SassNode":[],"AstNode":[]},"WarnRule":{"Statement":[],"SassNode":[],"AstNode":[]},"WhileRule":{"Statement":[],"SassNode":[],"AstNode":[]},"SupportsAnything":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsDeclaration":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsFunction":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsInterpolation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsNegation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsOperation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"Selector":{"AstNode":[]},"AttributeSelector":{"SimpleSelector":[],"AstNode":[]},"ClassSelector":{"SimpleSelector":[],"AstNode":[]},"ComplexSelector":{"AstNode":[]},"CompoundSelector":{"AstNode":[]},"IDSelector":{"SimpleSelector":[],"AstNode":[]},"SelectorList":{"AstNode":[]},"_ParentSelectorVisitor":{"SelectorSearchVisitor":["ParentSelector"],"SelectorSearchVisitor.T":"ParentSelector"},"ParentSelector":{"SimpleSelector":[],"AstNode":[]},"PlaceholderSelector":{"SimpleSelector":[],"AstNode":[]},"PseudoSelector":{"SimpleSelector":[],"AstNode":[]},"SimpleSelector":{"AstNode":[]},"TypeSelector":{"SimpleSelector":[],"AstNode":[]},"UniversalSelector":{"SimpleSelector":[],"AstNode":[]},"AsyncBuiltInCallable":{"AsyncCallable":[]},"BuiltInCallable":{"Callable":[],"AsyncBuiltInCallable":[],"AsyncCallable":[]},"PlainCssCallable":{"Callable":[],"AsyncCallable":[]},"UserDefinedCallable":{"Callable":[],"AsyncCallable":[]},"ExplicitConfiguration":{"Configuration":[]},"_EnvironmentModule":{"Module0":["Callable"]},"SassRuntimeException":{"Exception":[]},"SassException":{"Exception":[]},"MultiSpanSassException":{"Exception":[]},"MultiSpanSassRuntimeException":{"SassRuntimeException":[],"Exception":[]},"SassFormatException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"MultiSpanSassFormatException":{"MultiSourceSpanFormatException":[],"SassFormatException":[],"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"EmptyExtensionStore":{"ExtensionStore":[]},"MergedExtension":{"Extension":[]},"FilesystemImporter":{"Importer":[]},"JSToDartFileImporter":{"Importer":[]},"JSToDartImporter":{"Importer":[]},"NoOpImporter":{"Importer":[]},"JSExpressionVisitor":{"ExpressionVisitor":["Object?"]},"JSIfConditionExpressionVisitor":{"IfConditionExpressionVisitor":["Object?"]},"JSSimpleSelectorVisitor":{"InterpolatedSelectorVisitor":["Object?"]},"JSStatementVisitor":{"StatementVisitor":["Object?"]},"BuiltInModule":{"Module0":["1"]},"ForwardedModuleView":{"Module0":["1"]},"ShadowedModuleView":{"Module0":["1"]},"LazyFileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"LimitedMapView":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"MergedMapView":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"MultiSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"PrefixedMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"_PrefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"PublicMemberMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"UnprefixedMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"_UnprefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"SassArgumentList":{"SassList":[],"Value":[]},"SassBoolean":{"Value":[]},"SassCalculation":{"Value":[]},"SassColor":{"Value":[]},"LinearChannel":{"ColorChannel":[]},"A98RgbColorSpace":{"ColorSpace":[]},"DisplayP3ColorSpace":{"ColorSpace":[]},"DisplayP3LinearColorSpace":{"ColorSpace":[]},"HslColorSpace":{"ColorSpace":[]},"HwbColorSpace":{"ColorSpace":[]},"LabColorSpace":{"ColorSpace":[]},"LchColorSpace":{"ColorSpace":[]},"LmsColorSpace":{"ColorSpace":[]},"OklabColorSpace":{"ColorSpace":[]},"OklchColorSpace":{"ColorSpace":[]},"ProphotoRgbColorSpace":{"ColorSpace":[]},"Rec2020ColorSpace":{"ColorSpace":[]},"RgbColorSpace":{"ColorSpace":[]},"SrgbColorSpace":{"ColorSpace":[]},"SrgbLinearColorSpace":{"ColorSpace":[]},"XyzD50ColorSpace":{"ColorSpace":[]},"XyzD65ColorSpace":{"ColorSpace":[]},"SassFunction":{"Value":[]},"SassList":{"Value":[]},"SassMap":{"Value":[]},"SassMixin":{"Value":[]},"_SassNull":{"Value":[]},"SassNumber":{"Value":[]},"ComplexSassNumber":{"SassNumber":[],"Value":[]},"SingleUnitSassNumber":{"SassNumber":[],"Value":[]},"UnitlessSassNumber":{"SassNumber":[],"Value":[]},"SassString":{"Value":[]},"_EvaluateVisitor":{"StatementVisitor":["Value?"],"ExpressionVisitor":["Value"],"IfConditionExpressionVisitor":["Object"]},"_MakeExpressionCalculationSafe":{"ExpressionVisitor":["Expression"],"IfConditionExpressionVisitor":["IfConditionExpression"]},"IsCalculationSafeVisitor":{"ExpressionVisitor":["bool"]},"SourceInterpolationVisitor":{"ExpressionVisitor":["~"],"IfConditionExpressionVisitor":["~"]},"Entry":{"Comparable":["Entry"]},"FileLocation":{"SourceLocation":[],"Comparable":["SourceLocation"]},"FileSpan":{"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"_FileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceLocation":{"Comparable":["SourceLocation"]},"SourceLocationMixin":{"SourceLocation":[],"Comparable":["SourceLocation"]},"SourceSpan":{"Comparable":["SourceSpan"]},"SourceSpanBase":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanException":{"Exception":[]},"SourceSpanFormatException":{"FormatException":[],"Exception":[]},"MultiSourceSpanException":{"Exception":[]},"MultiSourceSpanFormatException":{"FormatException":[],"Exception":[]},"SourceSpanMixin":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanWithContext":{"SourceSpan":[],"Comparable":["SourceSpan"]},"Trace":{"StackTrace":[]},"StringScannerException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"Int8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint8ClampedList":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Int16List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint16List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Int32List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint32List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Float32List":{"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"Float64List":{"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"CssComment":{"CssNode":[],"AstNode":[]},"Import":{"SassNode":[],"AstNode":[]},"SassNode":{"AstNode":[]},"SupportsCondition":{"SassNode":[],"AstNode":[]},"Callable":{"AsyncCallable":[]}}'));
 			A._Universe_addErasedTypes(init.typeUniverse, JSON.parse('{"WhereIterator":1,"SkipIterator":1,"EmptyIterator":1,"FollowedByIterator":1,"NonNullsIterator":1,"FixedLengthListMixin":1,"UnmodifiableListMixin":1,"UnmodifiableListBase":1,"__CastListBase__CastIterableBase_ListMixin":2,"ConstantSet":1,"LinkedHashMapKeyIterator":1,"LinkedHashMapValueIterator":1,"NativeTypedArray":1,"_SyncStarIterator":1,"_ZoneFunction":1,"Queue":1,"UnmodifiableMapBase":2,"_UnmodifiableMapMixin":2,"MapView":2,"_UnmodifiableSetMixin":1,"_UnmodifiableMapView_MapView__UnmodifiableMapMixin":2,"_UnmodifiableSetView_SetBase__UnmodifiableSetMixin":1,"Codec":2,"Converter":2,"Expando":1,"_EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin":1,"DefaultEquality":1,"IterableEquality":1,"ListEquality":1,"_QueueList_Object_ListMixin":1,"UnmodifiableSetMixin":1,"_UnmodifiableSetView_DelegatingSet_UnmodifiableSetMixin":1,"_DelegatingIterableBase":1,"_MapKeySet__DelegatingIterableBase_UnmodifiableSetMixin":1,"ParentStatement":1,"ExpressionVisitor":1,"IfConditionExpressionVisitor":1}'));
 			var string$ = {
 				x00_____: "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\u03f6\x00\u0404\u03f4 \u03f4\u03f6\u01f6\u01f6\u03f6\u03fc\u01f4\u03ff\u03ff\u0584\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u05d4\u01f4\x00\u01f4\x00\u0504\u05c4\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u0400\x00\u0400\u0200\u03f7\u0200\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u0200\u0200\u0200\u03f7\x00",
