@@ -6338,6 +6338,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 		var dartNodePreambleSelf = typeof globalThis !== "undefined" ? globalThis : Function('return this')(); //DSH+
 		var self = Object.create(dartNodePreambleSelf); //DSH+
 
+		/*DSH-
 		self.scheduleImmediate = typeof setImmediate !== "undefined"
 			? function (cb) {
 				setImmediate(cb);
@@ -6347,7 +6348,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 
 		// CommonJS globals.
-		/*DSH-
 		if (typeof require !== "undefined") {
 			self.require = require;
 		}
@@ -6539,8 +6539,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				if (!(Object.getPrototypeOf(object) && Object.getPrototypeOf(object).p === cls.prototype.p))
 					return false;
 				try {
+					/*DSH-
 					if (typeof navigator != "undefined" && typeof navigator.userAgent == "string" && navigator.userAgent.indexOf("Chrome/") >= 0)
 						return true;
+					*/
 					if (typeof version == "function" && version.length == 0) {
 						var v = version();
 						if (/^\d+\.\d+\.\d+\.\d+$/.test(v))
@@ -7076,9 +7078,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$denominatorUnits$x(receiver) {
 					return J.getInterceptor$x(receiver).get$denominatorUnits(receiver);
 				},
-				get$entries$x(receiver) {
-					return J.getInterceptor$x(receiver).get$entries(receiver);
-				},
 				get$env$x(receiver) {
 					return J.getInterceptor$x(receiver).get$env(receiver);
 				},
@@ -7119,9 +7118,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				*/
 				get$iterator$ax(receiver) {
 					return J.getInterceptor$ax(receiver).get$iterator(receiver);
-				},
-				get$keys$x(receiver) {
-					return J.getInterceptor$x(receiver).get$keys(receiver);
 				},
 				get$last$ax(receiver) {
 					return J.getInterceptor$ax(receiver).get$last(receiver);
@@ -7187,9 +7183,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$silenceDeprecations$x(receiver) {
 					return J.getInterceptor$x(receiver).get$silenceDeprecations(receiver);
 				},
-				get$source$z(receiver) {
-					return J.getInterceptor$z(receiver).get$source(receiver);
-				},
 				get$sourceMap$x(receiver) {
 					return J.getInterceptor$x(receiver).get$sourceMap(receiver);
 				},
@@ -7216,17 +7209,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$syntax$x(receiver) {
 					return J.getInterceptor$x(receiver).get$syntax(receiver);
 				},
-				get$text$z(receiver) {
-					return J.getInterceptor$z(receiver).get$text(receiver);
-				},
 				get$trace$z(receiver) {
 					return J.getInterceptor$z(receiver).get$trace(receiver);
 				},
 				get$url$x(receiver) {
 					return J.getInterceptor$x(receiver).get$url(receiver);
-				},
-				get$values$x(receiver) {
-					return J.getInterceptor$x(receiver).get$values(receiver);
 				},
 				get$verbose$x(receiver) {
 					return J.getInterceptor$x(receiver).get$verbose(receiver);
@@ -7260,9 +7247,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$set$2$x(receiver, a0, a1) {
 					return J.getInterceptor$x(receiver).$set$2(receiver, a0, a1);
 				},
-				accept$1$z(receiver, a0) {
-					return J.getInterceptor$z(receiver).accept$1(receiver, a0);
-				},
 				add$1$ax(receiver, a0) {
 					return J.getInterceptor$ax(receiver).add$1(receiver, a0);
 				},
@@ -7292,9 +7276,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				contains$1$asx(receiver, a0) {
 					return J.getInterceptor$asx(receiver).contains$1(receiver, a0);
-				},
-				containsKey$1$x(receiver, a0) {
-					return J.getInterceptor$x(receiver).containsKey$1(receiver, a0);
 				},
 				elementAt$1$ax(receiver, a0) {
 					return J.getInterceptor$ax(receiver).elementAt$1(receiver, a0);
@@ -7359,9 +7340,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return J.getInterceptor$x(receiver).readdirSync$1(receiver, a0);
 				},
 				*/
-				remove$1$x(receiver, a0) {
-					return J.getInterceptor$x(receiver).remove$1(receiver, a0);
-				},
 				resolve$1$z(receiver, a0) {
 					return J.getInterceptor$z(receiver).resolve$1(receiver, a0);
 				},
@@ -7390,12 +7368,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				toList$0$ax(receiver) {
 					return J.getInterceptor$ax(receiver).toList$0(receiver);
-				},
-				toList$1$growable$ax(receiver, a0) {
-					return J.getInterceptor$ax(receiver).toList$1$growable(receiver, a0);
-				},
-				toSet$0$ax(receiver) {
-					return J.getInterceptor$ax(receiver).toSet$0(receiver);
 				},
 				toString$0$(receiver) {
 					return J.getInterceptor$(receiver).toString$0(receiver);
@@ -7616,9 +7588,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				ArrayIterator: function ArrayIterator(t0, t1, t2) {
 					var _ = this;
 					_._iterable = t0;
-					_.__interceptors$_length = t1;
+					_._length = t1;
 					_._index = 0;
-					_.__interceptors$_current = null;
+					_._current = null;
 					_.$ti = t2;
 				},
 				JSNumber: function JSNumber() {
@@ -8451,7 +8423,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						else {
 							for (t1 = keys.length, used = 0, _i = 0; _i < keys.length; keys.length === t1 || (0, A.throwConcurrentModificationError)(keys), ++_i) {
 								t2 = keys[_i];
-								if (namedArguments.containsKey$1(0, t2)) {
+								if (namedArguments.containsKey$1(t2)) {
 									++used;
 									B.JSArray_methods.add$1($arguments, namedArguments.$index(0, t2));
 								} else {
@@ -9065,6 +9037,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					A.initHooks();
 					map = init.interceptorsByTag;
 					tags = Object.getOwnPropertyNames(map);
+					/*DSH-
 					if (typeof window != "undefined") {
 						window;
 						fun = function() {
@@ -9081,6 +9054,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							}
 						}
 					}
+					*/
 					for (i = 0; i < tags.length; ++i) {
 						tag = tags[i];
 						if (/^[A-Za-z_]/.test(tag)) {
@@ -9096,7 +9070,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				initHooks() {
 					var transformers, i, transformer, getTag, getUnknownTag, prototypeForTag,
 						hooks = B.C_JS_CONST0();
+					/*DSH-
 					hooks = A.applyHooksTransformer(B.C_JS_CONST1, A.applyHooksTransformer(B.C_JS_CONST2, A.applyHooksTransformer(B.C_JS_CONST3, A.applyHooksTransformer(B.C_JS_CONST3, A.applyHooksTransformer(B.C_JS_CONST4, A.applyHooksTransformer(B.C_JS_CONST5, A.applyHooksTransformer(B.C_JS_CONST6(B.C_JS_CONST), hooks)))))));
+					*/
+					hooks = A.applyHooksTransformer(B.C_JS_CONST2, hooks); //DSH+
 					if (typeof dartNativeDispatchHooksTransformer != "undefined") {
 						transformers = dartNativeDispatchHooksTransformer;
 						if (typeof transformers == "function")
@@ -11025,11 +11002,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_TypeError: function _TypeError(t0) {
 					this.__rti$_message = t0;
 				},
+				/*DSH-
 				_AsyncRun__initializeScheduleImmediate() {
 					var t1, div, span;
 					if (self.scheduleImmediate != null)
 						return A.async__AsyncRun__scheduleImmediateJsOverride$closure();
-					/*DSH-
 					if (self.MutationObserver != null && self.document != null) {
 						t1 = {};
 						div = self.document.createElement("div");
@@ -11037,7 +11014,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1.storedCallback = null;
 						new self.MutationObserver(A.convertDartClosureToJS(new A._AsyncRun__initializeScheduleImmediate_internalCallback(t1), 1)).observe(div, {childList: true});
 						return new A._AsyncRun__initializeScheduleImmediate_closure(t1, div, span);
-					} else */if (self.setImmediate != null)
+					} else if (self.setImmediate != null)
 						return A.async__AsyncRun__scheduleImmediateWithSetImmediate$closure();
 					return A.async__AsyncRun__scheduleImmediateWithTimer$closure();
 				},
@@ -11063,9 +11040,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._TimerImpl$periodic$2(milliseconds, callback);
 					return t1;
 				},
+				*/
 				_SyncStarIterator__terminatedBody(_1, _2, _3) {
 					return 0;
 				},
+				/*DSH-
 				_microtaskLoop() {
 					var entry, next;
 					for (entry = $._nextCallback; entry != null; entry = $._nextCallback) {
@@ -11125,6 +11104,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_rootHandleError(error, stackTrace) {
 					A._schedulePriorityAsyncCallback(new A._rootHandleError_closure(error, stackTrace));
 				},
+				*/
 				_rootRun($self, $parent, zone, f) {
 					var old,
 						t1 = $.Zone__current;
@@ -11139,6 +11119,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						$.Zone__current = old;
 					}
 				},
+				/*DSH-
 				_rootRunUnary($self, $parent, zone, f, arg) {
 					var old,
 						t1 = $.Zone__current;
@@ -11199,8 +11180,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_rootPrint($self, $parent, zone, line) {
 					A.printString(A.S(line));
 				},
+				*/
 				_rootFork($self, $parent, zone, specification, zoneValues) {
-					var valueMap, t1, handleUncaughtError;
+					var valueMap, t1/*DSH-, handleUncaughtError*/;
 					if (specification == null)
 						specification = B._ZoneSpecification_Ipa;
 					if (zoneValues == null)
@@ -11209,10 +11191,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = type$.nullable_Object;
 						valueMap = A.HashMap_HashMap$from(zoneValues, t1, t1);
 					}
-					t1 = new A._CustomZone(zone.get$_run(), zone.get$_runUnary(), zone.get$_runBinary(), zone.get$_registerCallback(), zone.get$_registerUnaryCallback(), zone.get$_registerBinaryCallback(), zone.get$_errorCallback(), zone.get$_scheduleMicrotask(), zone.get$_createTimer(), zone.get$_createPeriodicTimer(), zone.get$_print(), zone.get$_fork(), zone.get$_handleUncaughtError(), zone, valueMap);
+					t1 = new A._CustomZone(zone.get$_run()/*DSH-, zone.get$_runUnary(), zone.get$_runBinary(), zone.get$_registerCallback(), zone.get$_registerUnaryCallback(), zone.get$_registerBinaryCallback(), zone.get$_errorCallback(), zone.get$_scheduleMicrotask(), zone.get$_createTimer(), zone.get$_createPeriodicTimer(), zone.get$_print()*/, zone.get$_fork()/*DSH-, zone.get$_handleUncaughtError()*/, zone, valueMap);
+					/*DSH-
 					handleUncaughtError = specification.handleUncaughtError;
 					if (handleUncaughtError != null)
 						t1._handleUncaughtError = new A._ZoneFunction(t1, handleUncaughtError);
+					*/
 					return t1;
 				},
 				runZoned(body, zoneValues, $R) {
@@ -11221,6 +11205,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_runZoned(body, zoneValues, specification, $R) {
 					return $.Zone__current.fork$2$specification$zoneValues(specification, zoneValues).run$1$1(body, $R);
 				},
+				/*DSH-
 				_AsyncRun__initializeScheduleImmediate_internalCallback: function _AsyncRun__initializeScheduleImmediate_internalCallback(t0) {
 					this._box_0 = t0;
 				},
@@ -11249,6 +11234,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_.start = t2;
 					_.callback = t3;
 				},
+				*/
 				_SyncStarIterator: function _SyncStarIterator(t0) {
 					var _ = this;
 					_._body = t0;
@@ -11266,10 +11252,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.zone = t0;
 					this.$function = t1;
 				},
-				_ZoneSpecification: function _ZoneSpecification(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12) {
+				_ZoneSpecification: function _ZoneSpecification(/*DSH- t0, */t1/*DSH-, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11*/, t12) {
 					var _ = this;
+					/*DSH-
 					_.handleUncaughtError = t0;
+					*/
 					_.run = t1;
+					/*DSH-
 					_.runUnary = t2;
 					_.runBinary = t3;
 					_.registerCallback = t4;
@@ -11280,6 +11269,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_.createTimer = t9;
 					_.createPeriodicTimer = t10;
 					_.print = t11;
+					*/
 					_.fork = t12;
 				},
 				_ZoneDelegate: function _ZoneDelegate(t0) {
@@ -11287,9 +11277,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				_Zone: function _Zone() {
 				},
-				_CustomZone: function _CustomZone(t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14) {
+				_CustomZone: function _CustomZone(t0/*DSH-, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10*/, t11/*DSH-, t12*/, t13, t14) {
 					var _ = this;
 					_._run = t0;
+					/*DSH-
 					_._runUnary = t1;
 					_._runBinary = t2;
 					_._registerCallback = t3;
@@ -11300,12 +11291,16 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_._createTimer = t8;
 					_._createPeriodicTimer = t9;
 					_._print = t10;
+					*/
 					_._fork = t11;
+					/*DSH-
 					_._handleUncaughtError = t12;
+					*/
 					_._delegateCache = null;
 					_.parent = t13;
 					_._async$_map = t14;
 				},
+				/*DSH-
 				_CustomZone_bindCallback_closure: function _CustomZone_bindCallback_closure(t0, t1, t2) {
 					this.$this = t0;
 					this.registered = t1;
@@ -11326,8 +11321,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.error = t0;
 					this.stackTrace = t1;
 				},
+				*/
 				_RootZone: function _RootZone() {
 				},
+				/*DSH-
 				_RootZone_bindCallback_closure: function _RootZone_bindCallback_closure(t0, t1, t2) {
 					this.$this = t0;
 					this.f = t1;
@@ -11344,6 +11341,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 					this.f = t1;
 				},
+				*/
 				HashMap_HashMap($K, $V) {
 					return new A._HashMap($K._eval$1("@<0>")._bind$1($V)._eval$1("_HashMap<1,2>"));
 				},
@@ -11405,7 +11403,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = A._arrayInstanceType(_this),
 						iterator = new J.ArrayIterator(_this, _this.length, t1._eval$1("ArrayIterator<1>"));
 					if (iterator.moveNext$0()) {
-						t2 = iterator.__interceptors$_current;
+						t2 = iterator._current;
 						return t2 == null ? t1._precomputed1._as(t2) : t2;
 					}
 					return null;
@@ -11446,7 +11444,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						$.toStringVisiting.push(m);
 						result._contents += "{";
 						t1.first = true;
-						J.forEach$1$ax(m, new A.MapBase_mapToString_closure(t1, result));
+						m.forEach$1(0, new A.MapBase_mapToString_closure(t1, result));
 						result._contents += "}";
 					} finally {
 						$.toStringVisiting.pop();
@@ -11727,7 +11725,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1,
 						list = A._setArrayType([], $E._eval$1("JSArray<0>"));
 					for (t1 = J.get$iterator$ax(elements); t1.moveNext$0();)
-						list.push(t1.get$current(t1));
+						list.push(t1.get$current());
 					if (growable)
 						return list;
 					list.$flags = 1;
@@ -11750,7 +11748,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return A._setArrayType(elements.slice(0), $E._eval$1("JSArray<0>"));
 					list = A._setArrayType([], $E._eval$1("JSArray<0>"));
 					for (t1 = J.get$iterator$ax(elements); t1.moveNext$0();)
-						list.push(t1.get$current(t1));
+						list.push(t1.get$current());
 					return list;
 				},
 				List_List$unmodifiable(elements, $E) {
@@ -11804,12 +11802,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return string;
 					if (separator.length === 0) {
 						do
-							string += A.S(iterator.get$current(iterator));
+							string += A.S(iterator.get$current());
 						while (iterator.moveNext$0());
 					} else {
-						string += A.S(iterator.get$current(iterator));
+						string += A.S(iterator.get$current());
 						while (iterator.moveNext$0())
-							string = string + separator + A.S(iterator.get$current(iterator));
+							string = string + separator + A.S(iterator.get$current());
 					}
 					return string;
 				},
@@ -11829,9 +11827,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					$.Uri__cachedBaseString = current;
 					return uri;
 				},
-				_Uri__isWindows() { //DSH+
-					return process.platform === "win32"; //DSH+
-				}, //DSH+
 				_Uri__uriEncode(canonicalMask, text, encoding, spaceToPlus) {
 					var t1, bytes, i, t2, byte,
 						_s16_ = "0123456789ABCDEF";
@@ -11998,7 +11993,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break;
 						if (!it.moveNext$0())
 							return;
-						next = A.S(it.get$current(it));
+						next = A.S(it.get$current());
 						parts.push(next);
 						$length += next.length + 2;
 						++count;
@@ -12009,7 +12004,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						ultimateString = parts.pop();
 						penultimateString = parts.pop();
 					} else {
-						penultimate = it.get$current(it);
+						penultimate = it.get$current();
 						++count;
 						if (!it.moveNext$0()) {
 							if (count <= 4) {
@@ -12020,10 +12015,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							penultimateString = parts.pop();
 							$length += ultimateString.length + 2;
 						} else {
-							ultimate = it.get$current(it);
+							ultimate = it.get$current();
 							++count;
 							for (; it.moveNext$0(); penultimate = ultimate, ultimate = ultimate0) {
-								ultimate0 = it.get$current(it);
+								ultimate0 = it.get$current();
 								++count;
 								if (count > 100) {
 									for (;;) {
@@ -12494,40 +12489,35 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, _i, segment;
 					for (t1 = segments.length, _i = 0; _i < t1; ++_i) {
 						segment = segments[_i];
-						if (A.stringContainsUnchecked(segment, "/", 0)) {
+						if (B.JSString_methods.contains$1(segment, "/")) {
 							t1 = A.UnsupportedError$("Illegal path character " + segment);
 							throw A.wrapException(t1);
 						}
 					}
 				},
-				_Uri__checkWindowsPathReservedCharacters(segments, argumentError, firstSegment) { //DSH+
-					var t1, t2, t3, t4; //DSH+
-					for (t1 = A.SubListIterable$(segments, firstSegment, null, A._arrayInstanceType(segments)._precomputed1), t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListIterable.E>")), t2 = t2._eval$1("ListIterable.E"); t1.moveNext$0();) { //DSH+
-						t3 = t1.__internal$_current; //DSH+
-						if (t3 == null) //DSH+
-							t3 = t2._as(t3); //DSH+
-						t4 = A.RegExp_RegExp('["*/:<>?\\\\|]', false); //DSH+
-						if (A.stringContainsUnchecked(t3, t4, 0)) //DSH+
-							if (argumentError) //DSH+
-								throw A.wrapException(A.ArgumentError$("Illegal character in path", null)); //DSH+
-							else //DSH+
-								throw A.wrapException(A.UnsupportedError$("Illegal character in path: " + t3)); //DSH+
-					} //DSH+
-				}, //DSH+
-				_Uri__checkWindowsDriveLetter(charCode, argumentError) { //DSH+
-					var t1, //DSH+
-						_s21_ = "Illegal drive letter "; //DSH+
-					if (!(65 <= charCode && charCode <= 90)) //DSH+
-						t1 = 97 <= charCode && charCode <= 122; //DSH+
-					else //DSH+
-						t1 = true; //DSH+
-					if (t1) //DSH+
-						return; //DSH+
-					if (argumentError) //DSH+
-						throw A.wrapException(A.ArgumentError$(_s21_ + A.String_String$fromCharCode(charCode), null)); //DSH+
-					else //DSH+
-						throw A.wrapException(A.UnsupportedError$(_s21_ + A.String_String$fromCharCode(charCode))); //DSH+
-				}, //DSH+
+				_Uri__checkWindowsPathReservedCharacters(segments, argumentError, firstSegment) {
+					var t1, t2, t3;
+					for (t1 = A.SubListIterable$(segments, firstSegment, null, A._arrayInstanceType(segments)._precomputed1), t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListIterable.E>")), t2 = t2._eval$1("ListIterable.E"); t1.moveNext$0();) {
+						t3 = t1.__internal$_current;
+						if (t3 == null)
+							t3 = t2._as(t3);
+						if (B.JSString_methods.contains$1(t3, A.RegExp_RegExp('["*/:<>?\\\\|]'))) {
+							t1 = A.UnsupportedError$("Illegal character in path: " + t3);
+							throw A.wrapException(t1);
+						}
+					}
+				},
+				_Uri__checkWindowsDriveLetter(charCode, argumentError) {
+					var t1;
+					if (!(65 <= charCode && charCode <= 90))
+						t1 = 97 <= charCode && charCode <= 122;
+					else
+						t1 = true;
+					if (t1)
+						return;
+					t1 = A.UnsupportedError$("Illegal drive letter " + A.String_String$fromCharCode(charCode));
+					throw A.wrapException(t1);
+				},
 				_Uri__makePort(port, scheme) {
 					if (port != null && port === A._Uri__defaultPort(scheme))
 						return null;
@@ -12969,30 +12959,30 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return A._skipPackageNameChars(path, 0, path.length);
 					return -1;
 				},
-				_Uri__toWindowsFilePath(uri) { //DSH+
-					var t2, hasDriveLetter, host, //DSH+
-						segments = uri.get$pathSegments(), //DSH+
-						t1 = segments.length; //DSH+
-					if (t1 > 0) { //DSH+
-						t2 = segments[0]; //DSH+
-						hasDriveLetter = t2.length === 2 && t2.charCodeAt(1) === 58; //DSH+
-					} else //DSH+
-						hasDriveLetter = false; //DSH+
-					if (hasDriveLetter) { //DSH+
-						A._Uri__checkWindowsDriveLetter(segments[0].charCodeAt(0), false); //DSH+
-						A._Uri__checkWindowsPathReservedCharacters(segments, false, 1); //DSH+
-					} else //DSH+
-						A._Uri__checkWindowsPathReservedCharacters(segments, false, 0); //DSH+
-					t2 = uri.get$hasAbsolutePath() && !hasDriveLetter ? "\\" : ""; //DSH+
-					if (uri.get$hasAuthority()) { //DSH+
-						host = uri.get$host(); //DSH+
-						if (host.length !== 0) //DSH+
-							t2 = t2 + "\\" + host + "\\"; //DSH+
-					} //DSH+
-					t2 = A.StringBuffer__writeAll(t2, segments, "\\"); //DSH+
-					t1 = hasDriveLetter && t1 === 1 ? t2 + "\\" : t2; //DSH+
-					return t1.charCodeAt(0) == 0 ? t1 : t1; //DSH+
-				}, //DSH+
+				_Uri__toWindowsFilePath(uri) {
+					var t2, hasDriveLetter, host,
+						segments = uri.get$pathSegments(),
+						t1 = segments.length;
+					if (t1 > 0) {
+						t2 = segments[0];
+						hasDriveLetter = t2.length === 2 && t2.charCodeAt(1) === 58;
+					} else
+						hasDriveLetter = false;
+					if (hasDriveLetter) {
+						A._Uri__checkWindowsDriveLetter(segments[0].charCodeAt(0), false);
+						A._Uri__checkWindowsPathReservedCharacters(segments, false, 1);
+					} else
+						A._Uri__checkWindowsPathReservedCharacters(segments, false, 0);
+					t2 = uri.get$hasAbsolutePath() && !hasDriveLetter ? "\\" : "";
+					if (uri.get$hasAuthority()) {
+						host = uri.get$host();
+						if (host.length !== 0)
+							t2 = t2 + "\\" + host + "\\";
+					}
+					t2 = A.StringBuffer__writeAll(t2, segments, "\\");
+					t1 = hasDriveLetter && t1 === 1 ? t2 + "\\" : t2;
+					return t1.charCodeAt(0) == 0 ? t1 : t1;
+				},
 				_Uri__hexCharPairToByte(s, pos) {
 					var byte, i, charCode;
 					for (byte = 0, i = 0; i < 2; ++i) {
@@ -13105,7 +13095,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					indices.push(i);
 					t2 = i + 1;
 					if ((indices.length & 1) === 1)
-						text = B.C_Base64Codec.normalize$3(0, text, t2, t1);
+						text = B.C_Base64Codec.normalize$3(text, t2, t1);
 					else {
 						data = A._Uri__normalize(text, t2, t1, 256, true, false);
 						if (data != null)
@@ -13330,277 +13320,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				Expando: function Expando(t0) {
 					this._jsWeakMap = t0;
 				},
-				HtmlElement: function HtmlElement() {
-				},
-				AccessibleNodeList: function AccessibleNodeList() {
-				},
-				AnchorElement: function AnchorElement() {
-				},
-				ApplicationCacheErrorEvent: function ApplicationCacheErrorEvent() {
-				},
-				AreaElement: function AreaElement() {
-				},
-				Blob: function Blob() {
-				},
-				CharacterData: function CharacterData() {
-				},
-				CssPerspective: function CssPerspective() {
-				},
-				CssRule: function CssRule() {
-				},
-				CssStyleDeclaration: function CssStyleDeclaration() {
-				},
-				CssStyleDeclarationBase: function CssStyleDeclarationBase() {
-				},
-				CssStyleValue: function CssStyleValue() {
-				},
-				CssTransformComponent: function CssTransformComponent() {
-				},
-				CssTransformValue: function CssTransformValue() {
-				},
-				CssUnparsedValue: function CssUnparsedValue() {
-				},
-				DataTransferItemList: function DataTransferItemList() {
-				},
-				DeprecationReport: function DeprecationReport() {
-				},
-				DomError: function DomError() {
-				},
-				DomException: function DomException() {
-				},
-				DomRectList: function DomRectList() {
-				},
-				DomRectReadOnly: function DomRectReadOnly() {
-				},
-				DomStringList: function DomStringList() {
-				},
-				DomTokenList: function DomTokenList() {
-				},
-				Element: function Element() {
-				},
-				ErrorEvent: function ErrorEvent() {
-				},
-				Event: function Event() {
-				},
-				EventTarget: function EventTarget() {
-				},
-				File: function File() {
-				},
-				FileList: function FileList() {
-				},
-				FileWriter: function FileWriter() {
-				},
-				FormElement: function FormElement() {
-				},
-				Gamepad: function Gamepad() {
-				},
-				History: function History() {
-				},
-				HtmlCollection: function HtmlCollection() {
-				},
-				InterventionReport: function InterventionReport() {
-				},
-				Location: function Location() {
-				},
-				MediaError: function MediaError() {
-				},
-				MediaKeyMessageEvent: function MediaKeyMessageEvent() {
-				},
-				MediaList: function MediaList() {
-				},
-				MidiInputMap: function MidiInputMap() {
-				},
-				MidiInputMap_keys_closure: function MidiInputMap_keys_closure(t0) {
-					this.keys = t0;
-				},
-				MidiInputMap_values_closure: function MidiInputMap_values_closure(t0) {
-					this.values = t0;
-				},
-				MidiOutputMap: function MidiOutputMap() {
-				},
-				MidiOutputMap_keys_closure: function MidiOutputMap_keys_closure(t0) {
-					this.keys = t0;
-				},
-				MidiOutputMap_values_closure: function MidiOutputMap_values_closure(t0) {
-					this.values = t0;
-				},
-				MimeType: function MimeType() {
-				},
-				MimeTypeArray: function MimeTypeArray() {
-				},
-				NavigatorUserMediaError: function NavigatorUserMediaError() {
-				},
-				Node: function Node() {
-				},
-				NodeList: function NodeList() {
-				},
-				OverconstrainedError: function OverconstrainedError() {
-				},
-				Plugin: function Plugin() {
-				},
-				PluginArray: function PluginArray() {
-				},
-				PositionError: function PositionError() {
-				},
-				PresentationConnectionCloseEvent: function PresentationConnectionCloseEvent() {
-				},
-				ReportBody: function ReportBody() {
-				},
-				RtcStatsReport: function RtcStatsReport() {
-				},
-				RtcStatsReport_keys_closure: function RtcStatsReport_keys_closure(t0) {
-					this.keys = t0;
-				},
-				RtcStatsReport_values_closure: function RtcStatsReport_values_closure(t0) {
-					this.values = t0;
-				},
-				SelectElement: function SelectElement() {
-				},
-				SourceBuffer: function SourceBuffer() {
-				},
-				SourceBufferList: function SourceBufferList() {
-				},
-				SpeechGrammar: function SpeechGrammar() {
-				},
-				SpeechGrammarList: function SpeechGrammarList() {
-				},
-				SpeechRecognitionError: function SpeechRecognitionError() {
-				},
-				SpeechRecognitionResult: function SpeechRecognitionResult() {
-				},
-				Storage: function Storage() {
-				},
-				Storage_addAll_closure: function Storage_addAll_closure(t0) {
-					this.$this = t0;
-				},
-				Storage_keys_closure: function Storage_keys_closure(t0) {
-					this.keys = t0;
-				},
-				Storage_values_closure: function Storage_values_closure(t0) {
-					this.values = t0;
-				},
-				StyleSheet: function StyleSheet() {
-				},
-				TextTrack: function TextTrack() {
-				},
-				TextTrackCue: function TextTrackCue() {
-				},
-				TextTrackCueList: function TextTrackCueList() {
-				},
-				TextTrackList: function TextTrackList() {
-				},
-				TimeRanges: function TimeRanges() {
-				},
-				Touch: function Touch() {
-				},
-				TouchList: function TouchList() {
-				},
-				TrackDefaultList: function TrackDefaultList() {
-				},
-				Url: function Url() {
-				},
-				VideoTrackList: function VideoTrackList() {
-				},
-				_CssRuleList: function _CssRuleList() {
-				},
-				_DomRect: function _DomRect() {
-				},
-				_GamepadList: function _GamepadList() {
-				},
-				_NamedNodeMap: function _NamedNodeMap() {
-				},
-				_SpeechRecognitionResultList: function _SpeechRecognitionResultList() {
-				},
-				_StyleSheetList: function _StyleSheetList() {
-				},
-				ImmutableListMixin: function ImmutableListMixin() {
-				},
-				FixedSizeListIterator: function FixedSizeListIterator(t0, t1, t2) {
-					var _ = this;
-					_._array = t0;
-					_._length = t1;
-					_._position = -1;
-					_._current = null;
-					_.$ti = t2;
-				},
-				_CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase: function _CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase() {
-				},
-				_DomRectList_JavaScriptObject_ListMixin: function _DomRectList_JavaScriptObject_ListMixin() {
-				},
-				_DomRectList_JavaScriptObject_ListMixin_ImmutableListMixin: function _DomRectList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_DomStringList_JavaScriptObject_ListMixin: function _DomStringList_JavaScriptObject_ListMixin() {
-				},
-				_DomStringList_JavaScriptObject_ListMixin_ImmutableListMixin: function _DomStringList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_FileList_JavaScriptObject_ListMixin: function _FileList_JavaScriptObject_ListMixin() {
-				},
-				_FileList_JavaScriptObject_ListMixin_ImmutableListMixin: function _FileList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_HtmlCollection_JavaScriptObject_ListMixin: function _HtmlCollection_JavaScriptObject_ListMixin() {
-				},
-				_HtmlCollection_JavaScriptObject_ListMixin_ImmutableListMixin: function _HtmlCollection_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_MidiInputMap_JavaScriptObject_MapMixin: function _MidiInputMap_JavaScriptObject_MapMixin() {
-				},
-				_MidiOutputMap_JavaScriptObject_MapMixin: function _MidiOutputMap_JavaScriptObject_MapMixin() {
-				},
-				_MimeTypeArray_JavaScriptObject_ListMixin: function _MimeTypeArray_JavaScriptObject_ListMixin() {
-				},
-				_MimeTypeArray_JavaScriptObject_ListMixin_ImmutableListMixin: function _MimeTypeArray_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_NodeList_JavaScriptObject_ListMixin: function _NodeList_JavaScriptObject_ListMixin() {
-				},
-				_NodeList_JavaScriptObject_ListMixin_ImmutableListMixin: function _NodeList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_PluginArray_JavaScriptObject_ListMixin: function _PluginArray_JavaScriptObject_ListMixin() {
-				},
-				_PluginArray_JavaScriptObject_ListMixin_ImmutableListMixin: function _PluginArray_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_RtcStatsReport_JavaScriptObject_MapMixin: function _RtcStatsReport_JavaScriptObject_MapMixin() {
-				},
-				_SourceBufferList_EventTarget_ListMixin: function _SourceBufferList_EventTarget_ListMixin() {
-				},
-				_SourceBufferList_EventTarget_ListMixin_ImmutableListMixin: function _SourceBufferList_EventTarget_ListMixin_ImmutableListMixin() {
-				},
-				_SpeechGrammarList_JavaScriptObject_ListMixin: function _SpeechGrammarList_JavaScriptObject_ListMixin() {
-				},
-				_SpeechGrammarList_JavaScriptObject_ListMixin_ImmutableListMixin: function _SpeechGrammarList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_Storage_JavaScriptObject_MapMixin: function _Storage_JavaScriptObject_MapMixin() {
-				},
-				_TextTrackCueList_JavaScriptObject_ListMixin: function _TextTrackCueList_JavaScriptObject_ListMixin() {
-				},
-				_TextTrackCueList_JavaScriptObject_ListMixin_ImmutableListMixin: function _TextTrackCueList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_TextTrackList_EventTarget_ListMixin: function _TextTrackList_EventTarget_ListMixin() {
-				},
-				_TextTrackList_EventTarget_ListMixin_ImmutableListMixin: function _TextTrackList_EventTarget_ListMixin_ImmutableListMixin() {
-				},
-				_TouchList_JavaScriptObject_ListMixin: function _TouchList_JavaScriptObject_ListMixin() {
-				},
-				_TouchList_JavaScriptObject_ListMixin_ImmutableListMixin: function _TouchList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				__CssRuleList_JavaScriptObject_ListMixin: function __CssRuleList_JavaScriptObject_ListMixin() {
-				},
-				__CssRuleList_JavaScriptObject_ListMixin_ImmutableListMixin: function __CssRuleList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				__GamepadList_JavaScriptObject_ListMixin: function __GamepadList_JavaScriptObject_ListMixin() {
-				},
-				__GamepadList_JavaScriptObject_ListMixin_ImmutableListMixin: function __GamepadList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				__NamedNodeMap_JavaScriptObject_ListMixin: function __NamedNodeMap_JavaScriptObject_ListMixin() {
-				},
-				__NamedNodeMap_JavaScriptObject_ListMixin_ImmutableListMixin: function __NamedNodeMap_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				__SpeechRecognitionResultList_JavaScriptObject_ListMixin: function __SpeechRecognitionResultList_JavaScriptObject_ListMixin() {
-				},
-				__SpeechRecognitionResultList_JavaScriptObject_ListMixin_ImmutableListMixin: function __SpeechRecognitionResultList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				__StyleSheetList_JavaScriptObject_ListMixin: function __StyleSheetList_JavaScriptObject_ListMixin() {
-				},
-				__StyleSheetList_JavaScriptObject_ListMixin_ImmutableListMixin: function __StyleSheetList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
 				_convertDartFunctionFast(f) {
 					var ret,
 						existing = f.$dart_jsFunction;
@@ -13691,56 +13410,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return B.C__JSRandom;
 				},
 				_JSRandom: function _JSRandom() {
-				},
-				Length: function Length() {
-				},
-				LengthList: function LengthList() {
-				},
-				Number: function Number() {
-				},
-				NumberList: function NumberList() {
-				},
-				PointList: function PointList() {
-				},
-				StringList: function StringList() {
-				},
-				Transform: function Transform() {
-				},
-				TransformList: function TransformList() {
-				},
-				_LengthList_JavaScriptObject_ListMixin: function _LengthList_JavaScriptObject_ListMixin() {
-				},
-				_LengthList_JavaScriptObject_ListMixin_ImmutableListMixin: function _LengthList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_NumberList_JavaScriptObject_ListMixin: function _NumberList_JavaScriptObject_ListMixin() {
-				},
-				_NumberList_JavaScriptObject_ListMixin_ImmutableListMixin: function _NumberList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_StringList_JavaScriptObject_ListMixin: function _StringList_JavaScriptObject_ListMixin() {
-				},
-				_StringList_JavaScriptObject_ListMixin_ImmutableListMixin: function _StringList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				_TransformList_JavaScriptObject_ListMixin: function _TransformList_JavaScriptObject_ListMixin() {
-				},
-				_TransformList_JavaScriptObject_ListMixin_ImmutableListMixin: function _TransformList_JavaScriptObject_ListMixin_ImmutableListMixin() {
-				},
-				AudioBuffer: function AudioBuffer() {
-				},
-				AudioParamMap: function AudioParamMap() {
-				},
-				AudioParamMap_keys_closure: function AudioParamMap_keys_closure(t0) {
-					this.keys = t0;
-				},
-				AudioParamMap_values_closure: function AudioParamMap_values_closure(t0) {
-					this.values = t0;
-				},
-				AudioTrackList: function AudioTrackList() {
-				},
-				BaseAudioContext: function BaseAudioContext() {
-				},
-				OfflineAudioContext: function OfflineAudioContext() {
-				},
-				_AudioParamMap_JavaScriptObject_MapMixin: function _AudioParamMap_JavaScriptObject_MapMixin() {
 				},
 				isNodeJs() {
 					/*DSH-
@@ -13890,7 +13559,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				BufferConstants: function BufferConstants() {
 				},
-				Buffer0: function Buffer0() {
+				Buffer: function Buffer() {
 				},
 				ConsoleModule: function ConsoleModule() {
 				},
@@ -13982,7 +13651,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				Duplex: function Duplex() {
 				},
-				Transform0: function Transform0() {
+				Transform: function Transform() {
 				},
 				WritableOptions: function WritableOptions() {
 				},
@@ -14605,7 +14274,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				StringExpression__bestQuote(strings) {
 					var t1, t2, t3, containsDoubleQuote, t4, t5;
 					for (t1 = J.get$iterator$ax(strings), t2 = type$.CodeUnits, t3 = t2._eval$1("ListIterator<ListBase.E>"), t2 = t2._eval$1("ListBase.E"), containsDoubleQuote = false; t1.moveNext$0();)
-						for (t4 = new A.CodeUnits(t1.get$current(t1)), t4 = new A.ListIterator(t4, t4.get$length(0), t3); t4.moveNext$0();) {
+						for (t4 = new A.CodeUnits(t1.get$current()), t4 = new A.ListIterator(t4, t4.get$length(0), t3); t4.moveNext$0();) {
 							t5 = t4.__internal$_current;
 							if (t5 == null)
 								t5 = t2._as(t5);
@@ -15361,7 +15030,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2, t3, t4, t5, t6, t7, args, callback,
 						t1 = A._setArrayType([], type$.JSArray_Record_2_ParameterList_and_Value_Function_List_Value);
 					for (t2 = type$.String, t3 = A.MapExtensions_get_pairs(overloads, t2, type$.Value_Function_List_Value), t3 = t3.get$iterator(t3), t4 = "@function " + $name + "(", t5 = type$.FileSpan, t6 = type$.JSArray_Record_3_nullable_Deprecation_deprecation_and_String_message_and_FileSpan_span; t3.moveNext$0();) {
-						t7 = t3.get$current(t3);
+						t7 = t3.get$current();
 						args = t7._0;
 						callback = t7._1;
 						t1.push(new A._Record_2(new A.ScssParser(false, A.LinkedHashMap_LinkedHashMap$_empty(t2, t5), A._setArrayType([], t6), A.SpanScanner$(t4 + args + ") {", null), null).parseParameterList$0(), callback));
@@ -15526,7 +15195,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = type$.dynamic;
 					t1 = A.LinkedHashMap_LinkedHashMap$_empty(t1, t1);
 					for (t2 = type$.Module_Callable, t3 = type$.List_CssComment, t4 = A.MapExtensions_get_pairs(preModuleComments, t2, t3), t4 = t4.get$iterator(t4), t5 = type$.CssComment; t4.moveNext$0();) {
-						t6 = t4.get$current(t4);
+						t6 = t4.get$current();
 						module = t6._0;
 						result = A.List_List$from(t6._1, false, t5);
 						result.$flags = 3;
@@ -15540,7 +15209,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t6 = type$.Callable;
 					t7 = A._EnvironmentModule__memberMap(B.JSArray_methods.get$first(environment._functions), forwarded.map$1$1(0, new A._EnvironmentModule__EnvironmentModule_closure1(), t5), t6);
 					t6 = A._EnvironmentModule__memberMap(B.JSArray_methods.get$first(environment._mixins), forwarded.map$1$1(0, new A._EnvironmentModule__EnvironmentModule_closure2(), t5), t6);
-					t5 = J.get$isNotEmpty$asx(css.get$children(css)) || J.get$isNotEmpty$asx(preModuleComments) || B.JSArray_methods.any$1(environment._allModules, new A._EnvironmentModule__EnvironmentModule_closure3());
+					t5 = J.get$isNotEmpty$asx(css.get$children(css)) || preModuleComments.get$isNotEmpty(preModuleComments) || B.JSArray_methods.any$1(environment._allModules, new A._EnvironmentModule__EnvironmentModule_closure3());
 					return A._EnvironmentModule$_(environment, css, t1, extensionStore, t2, t3, t4, t7, t6, t5, !extensionStore.get$isEmpty(extensionStore) || B.JSArray_methods.any$1(environment._allModules, new A._EnvironmentModule__EnvironmentModule_closure4()));
 				},
 				_EnvironmentModule__makeModulesByVariable(forwarded) {
@@ -15549,14 +15218,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return B.Map_empty3;
 					modulesByVariable = A.LinkedHashMap_LinkedHashMap$_empty(type$.String, type$.Module_Callable);
 					for (t1 = forwarded.get$iterator(forwarded); t1.moveNext$0();) {
-						t2 = t1.get$current(t1);
+						t2 = t1.get$current();
 						if (t2 instanceof A._EnvironmentModule) {
-							for (t3 = t2._modulesByVariable, t3 = J.get$iterator$ax(t3.get$values(t3)); t3.moveNext$0();) {
-								t4 = t3.get$current(t3);
+							for (t3 = t2._modulesByVariable, t3 = t3.get$values(t3), t3 = t3.get$iterator(t3); t3.moveNext$0();) {
+								t4 = t3.get$current();
 								t5 = t4.get$variables();
 								A.setAll(modulesByVariable, t5.get$keys(t5), t4);
 							}
-							A.setAll(modulesByVariable, J.get$keys$x(B.JSArray_methods.get$first(t2._environment$_environment._variables)), t2);
+							t3 = B.JSArray_methods.get$first(t2._environment$_environment._variables);
+							A.setAll(modulesByVariable, t3.get$keys(t3), t2);
 						} else {
 							t3 = t2.get$variables();
 							A.setAll(modulesByVariable, t3.get$keys(t3), t2);
@@ -15571,8 +15241,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return localMap;
 					t1 = A._setArrayType([], $V._eval$1("JSArray<Map<String,0>>"));
 					for (t2 = otherMaps.get$iterator(otherMaps); t2.moveNext$0();) {
-						t3 = t2.get$current(t2);
-						if (J.get$isNotEmpty$asx(t3))
+						t3 = t2.get$current();
+						if (t3.get$isNotEmpty(t3))
 							t1.push(t3);
 					}
 					t1.push(localMap);
@@ -15759,7 +15429,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				ExtensionStore__extendOrReplace(selector, source, targets, mode, span) {
 					var t1, t2, t3, t4, t5, t6, t7, t8, _i, complex, compound, t9, t10, t11, _i0, simple, t12, _i1, t13, t14,
 						extender = A.ExtensionStore$_mode(mode);
-					if (!selector.accept$1(0, B._IsInvisibleVisitor_true))
+					if (!selector.accept$1(B._IsInvisibleVisitor_true))
 						extender._originals.addAll$1(0, selector.components);
 					for (t1 = targets.components, t2 = t1.length, t3 = source.components, t4 = t3.length, t5 = type$.ComplexSelector, t6 = type$.Extension, t7 = type$.SimpleSelector, t8 = type$.Map_ComplexSelector_Extension, _i = 0; _i < t2; ++_i) {
 						complex = t1[_i];
@@ -15881,8 +15551,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t1.get$length(complexes) === 1)
 						return complexes;
 					for (t2 = t1.get$iterator(complexes), trailingCombinator = _null, leadingCombinator = trailingCombinator, unifiedBase = leadingCombinator; t2.moveNext$0();) {
-						t3 = t2.get$current(t2);
-						if (t3.accept$1(0, B.C__IsUselessVisitor))
+						t3 = t2.get$current();
+						if (t3.accept$1(B.C__IsUselessVisitor))
 							return _null;
 						t4 = t3.components;
 						_0_6_isSet = t4.length === 1;
@@ -15924,7 +15594,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = type$.JSArray_ComplexSelector;
 					t3 = A._setArrayType([], t2);
 					for (t4 = t1.get$iterator(complexes); t4.moveNext$0();) {
-						t5 = t4.get$current(t4);
+						t5 = t4.get$current();
 						t6 = t5.components;
 						t7 = t6.length;
 						if (t7 > 1) {
@@ -16146,7 +15816,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							chunk = t6[_i0];
 							t8 = A._setArrayType([], t4);
 							for (t9 = B.JSArray_methods.get$iterator(chunk); t9.moveNext$0();)
-								B.JSArray_methods.addAll$1(t8, t9.get$current(0));
+								B.JSArray_methods.addAll$1(t8, t9.get$current());
 							t5.push(t8);
 						}
 						choices.push(t5);
@@ -16159,17 +15829,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						chunk = t1[_i];
 						t5 = A._setArrayType([], t4);
 						for (t6 = B.JSArray_methods.get$iterator(chunk); t6.moveNext$0();)
-							B.JSArray_methods.addAll$1(t5, t6.get$current(0));
+							B.JSArray_methods.addAll$1(t5, t6.get$current());
 						t2.push(t5);
 					}
 					choices.push(t2);
 					B.JSArray_methods.addAll$1(choices, trailingCombinators);
 					t1 = A._setArrayType([], type$.JSArray_ComplexSelector);
 					for (t2 = J.get$iterator$ax(A.paths(new A.WhereIterable(choices, new A._weaveParents_closure2(), type$.WhereIterable_List_Iterable_ComplexSelectorComponent), type$.Iterable_ComplexSelectorComponent)), t3 = !prefix.lineBreak, t5 = base.lineBreak; t2.moveNext$0();) {
-						t6 = t2.get$current(t2);
+						t6 = t2.get$current();
 						t7 = A._setArrayType([], t4);
 						for (t6 = J.get$iterator$ax(t6); t6.moveNext$0();)
-							B.JSArray_methods.addAll$1(t7, t6.get$current(t6));
+							B.JSArray_methods.addAll$1(t7, t6.get$current());
 						t1.push(A.ComplexSelector$(leadingCombinators, t7, span, !t3 || t5));
 					}
 					return t1;
@@ -16609,8 +16279,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2, t3, t4,
 						t1 = A.LinkedHashSet_LinkedHashSet$_empty(type$.SimpleSelector);
 					for (t2 = J.get$iterator$ax(complex1); t2.moveNext$0();)
-						for (t3 = B.JSArray_methods.get$iterator(t2.get$current(t2).selector.components), t4 = new A.WhereIterator(t3, A.functions___isUnique$closure()); t4.moveNext$0();)
-							t1.add$1(0, t3.get$current(0));
+						for (t3 = B.JSArray_methods.get$iterator(t2.get$current().selector.components), t4 = new A.WhereIterator(t3, A.functions___isUnique$closure()); t4.moveNext$0();)
+							t1.add$1(0, t3.get$current());
 					if (t1._collection$_length === 0)
 						return false;
 					return J.any$1$ax(complex2, new A._mustUnify_closure(t1));
@@ -16702,12 +16372,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t4 = t2._as(t4);
 						group.push(t4);
 						if (t4.combinators.length === 0) {
-							groups._queue_list$_add$1(0, group);
+							groups._queue_list$_add$1(group);
 							group = A._setArrayType([], t1);
 						}
 					}
 					if (group.length !== 0)
-						groups._queue_list$_add$1(0, group);
+						groups._queue_list$_add$1(group);
 					return groups;
 				},
 				listIsSuperselector(list1, list2) {
@@ -17194,7 +16864,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					channelInfo = t1._channels;
 					for (t2 = A.MapExtensions_get_pairs(keywords, t2, t3), t2 = t2.get$iterator(t2); t2.moveNext$0();) {
 						t3 = {};
-						t4 = t2.get$current(t2);
+						t4 = t2.get$current();
 						t3.name = null;
 						t3.name = t4._0;
 						value = t4._1;
@@ -17411,7 +17081,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if ("whiteness" === t2 || "blackness" === t2)
 							return B.HwbColorSpace_guQ;
 					}
-					return keywords.containsKey$1(0, "hue") ? B.HslColorSpace_JQ2 : null;
+					return keywords.containsKey$1("hue") ? B.HslColorSpace_JQ2 : null;
 				},
 				_functionString($name, $arguments) {
 					return new A.SassString($name + "(" + J.map$1$1$ax($arguments, new A._functionString_closure(), type$.String).join$1(0, ", ") + ")", false);
@@ -18225,7 +17895,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t3 = type$.Value;
 					result = A.LinkedHashMap_LinkedHashMap$of(t1, t3, t3);
 					for (t1 = A.MapExtensions_get_pairs(t2, t3, t3), t1 = t1.get$iterator(t1), t2 = type$.SassMap; t1.moveNext$0();) {
-						t4 = t1.get$current(t1);
+						t4 = t1.get$current();
 						key = t4._0;
 						value = t4._1;
 						t4 = result.$index(0, key);
@@ -18522,7 +18192,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						B.JSArray_methods.addAll$1(t1, importers);
 					if (loadPaths != null)
 						for (t2 = J.get$iterator$ax(loadPaths); t2.moveNext$0();)
-							t1.push(new A.FilesystemImporter(A.absolute(t2.get$current(t2)), false));
+							t1.push(new A.FilesystemImporter(A.absolute(t2.get$current()), false));
 					/*DSH-
 					if (sassPath != null) {
 						t2 = A.isNodeJs() ? self.process : _null;
@@ -18951,7 +18621,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (t5) {
 							t5 = A.absolute(path);
 							t8 = $.$get$context();
-							t5 = A._realCasePath(t8.normalize$1(0, t5));
+							t5 = A._realCasePath(t8.normalize$1(t5));
 						} else {
 							t5 = $.$get$context();
 							t8 = t5.canonicalize$1(0, path);
@@ -19085,7 +18755,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = result._serialize,
 						t2 = t1._1,
 						sourceMap = t2 == null ? null : t2.toJson$1$includeSourceContents(includeSourceContents);
-					if (type$.Map_dynamic_dynamic._is(sourceMap) && !sourceMap.containsKey$1(0, "sources"))
+					if (type$.Map_dynamic_dynamic._is(sourceMap) && !sourceMap.containsKey$1("sources"))
 						sourceMap.$indexSet(0, "sources", A._setArrayType([], type$.JSArray_String));
 					loadedUrls = A.toJSArray(result._evaluate._0.map$1$1(0, A.utils__dartToJSUrl$closure(), type$.nullable_Object));
 					t1 = t1._0;
@@ -19372,7 +19042,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2,
 						immutableMap = J.asMutable$0$x(new self.immutable.OrderedMap());
 					for (t1 = A.MapExtensions_get_pairs(dartMap, type$.Object, type$.nullable_Object), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
-						t2 = t1.get$current(t1);
+						t2 = t1.get$current();
 						immutableMap = J.$set$2$x(immutableMap, t2._0, t2._1);
 					}
 					return J.asImmutable$0$x(immutableMap);
@@ -19647,7 +19317,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				jsForEach(object, callback) {
 					var t1, t2;
 					for (t1 = J.get$iterator$ax(self.Object.keys(object)); t1.moveNext$0();) {
-						t2 = t1.get$current(t1);
+						t2 = t1.get$current();
 						callback.call$2(t2, object[t2]);
 					}
 				},
@@ -19688,7 +19358,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2,
 						array = new self.Array();
 					for (t1 = J.get$iterator$ax(iterable), t2 = J.getInterceptor$x(array); t1.moveNext$0();)
-						t2.push$1(array, t1.get$current(t1));
+						t2.push$1(array, t1.get$current());
 					return array;
 				},
 				objectToMap(object) {
@@ -19700,7 +19370,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2,
 						result = new self.Object();
 					for (t1 = A.MapExtensions_get_pairs(map, type$.String, type$.nullable_Object), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
-						t2 = t1.get$current(t1);
+						t2 = t1.get$current();
 						result[t2._0] = t2._1;
 					}
 					return result;
@@ -20187,7 +19857,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!t1)
 						map = new A.PrefixedMapView(map, prefix, $V._eval$1("PrefixedMapView<0>"));
 					if (safelist != null)
-						map = new A.LimitedMapView(map, safelist._base.intersection$1(0, new A.MapKeySet(map, type$.MapKeySet_nullable_Object)), type$.$env_1_1_String._bind$1($V)._eval$1("LimitedMapView<1,2>"));
+						map = new A.LimitedMapView(map, safelist._base.intersection$1(new A.MapKeySet(map, type$.MapKeySet_nullable_Object)), type$.$env_1_1_String._bind$1($V)._eval$1("LimitedMapView<1,2>"));
 					else if (blocklist != null && blocklist._base.get$isNotEmpty(0))
 						map = A.LimitedMapView$blocklist(map, blocklist, type$.String, $V);
 					return map;
@@ -20210,7 +19880,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return !t1 ? map : A.LimitedMapView$blocklist(map, blocklist, type$.String, $V);
 				},
 				ShadowedModuleView__needsBlocklist(map, blocklist) {
-					return map.get$isNotEmpty(map) && blocklist.any$1(0, map.get$containsKey(map));
+					return map.get$isNotEmpty(map) && blocklist.any$1(0, map.get$containsKey());
 				},
 				ShadowedModuleView: function ShadowedModuleView(t0, t1, t2, t3, t4, t5) {
 					var _ = this;
@@ -20574,8 +20244,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				LimitedMapView$blocklist(_map, blocklist, $K, $V) {
 					var t2, key,
 						t1 = A.LinkedHashSet_LinkedHashSet$_empty($K);
-					for (t2 = J.get$iterator$ax(_map.get$keys(_map)); t2.moveNext$0();) {
-						key = t2.get$current(t2);
+					for (t2 = _map.get$keys(_map), t2 = t2.get$iterator(t2); t2.moveNext$0();) {
+						key = t2.get$current();
 						if (!blocklist.contains$1(0, key))
 							t1.add$1(0, key);
 					}
@@ -20587,7 +20257,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$ti = t2;
 				},
 				MapExtensions_get_pairs(_this, $K, $V) {
-					var t1 = J.get$entries$x(_this);
+					var t1 = _this.get$entries(_this);
 					return t1.map$1$1(t1, new A.MapExtensions_get_pairs_closure($K, $V), $K._eval$1("@<0>")._bind$1($V)._eval$1("+(1,2)"));
 				},
 				MapExtensions_get_pairs_closure: function MapExtensions_get_pairs_closure(t0, t1) {
@@ -20641,7 +20311,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						writeEscape = new A.StringExtension_toCssIdentifier_writeEscape(buffer, scanner),
 						consumeSurrogatePair = new A.StringExtension_toCssIdentifier_consumeSurrogatePair(scanner, writeEscape, buffer);
 					if (scanner.scanChar$1(45)) {
-						if (scanner._string_scanner$_position === scanner.string.length)
+						if (scanner._position === scanner.string.length)
 							return "\\2d";
 						t1 = A.Primitives_stringFromCharCode(45);
 						buffer._contents += t1;
@@ -20833,7 +20503,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A.Frame(t1, t2 + 1, t3.file.getColumn$1(t3.offset) + 1, member);
 				},
 				declarationName(span) {
-					var text = span.get$text(span);
+					var text = span.get$text();
 					return A.trimAsciiRight(B.JSString_methods.substring$2(text, 0, B.JSString_methods.indexOf$1(text, ":")), false);
 				},
 				unvendor($name) {
@@ -20914,8 +20584,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				setAll(map, keys, value) {
 					var t1;
-					for (t1 = J.get$iterator$ax(keys); t1.moveNext$0();)
-						map.$indexSet(0, t1.get$current(t1), value);
+					for (t1 = keys.get$iterator(keys); t1.moveNext$0();)
+						map.$indexSet(0, t1.get$current(), value);
 				},
 				rotateSlice(list, start, end) {
 					var i, next,
@@ -20930,7 +20600,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = $K2._eval$1("@<0>")._bind$1($V)._eval$1("Map<1,2>"),
 						t2 = A.LinkedHashMap_LinkedHashMap$_empty($K1, t1);
 					for (t1 = A.MapExtensions_get_pairs(map, $K1, t1), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
-						t3 = t1.get$current(t1);
+						t3 = t1.get$current();
 						key = t3._0;
 						child = t3._1;
 						t3 = A.LinkedHashMap_LinkedHashMap($K2, $V);
@@ -20944,7 +20614,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = $E._eval$1("List<0>"),
 						t2 = A.LinkedHashMap_LinkedHashMap$_empty($K, t1);
 					for (t1 = A.MapExtensions_get_pairs(map, $K, t1), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
-						t3 = t1.get$current(t1);
+						t3 = t1.get$current();
 						t2.$indexSet(0, t3._0, J.toList$0$ax(t3._1));
 					}
 					return t2;
@@ -24051,7 +23721,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				serialize(node, charset, indentWidth, inspect, lineFeed, logger, sourceMap, style, useSpaces) {
 					var t1, css, t2, prefix,
 						visitor = A._SerializeVisitor$(2, inspect, lineFeed, logger, true, sourceMap, style, true);
-					node.accept$1(0, visitor);
+					node.accept$1(visitor);
 					t1 = visitor._buffer;
 					css = t1.toString$0(0);
 					if (charset) {
@@ -24069,13 +23739,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				serializeValue(value, inspect, quote) {
 					var _null = null,
 						visitor = A._SerializeVisitor$(_null, inspect, _null, _null, quote, false, _null, true);
-					value.accept$1(0, visitor);
+					value.accept$1(visitor);
 					return visitor._buffer.toString$0(0);
 				},
 				serializeSelector(selector, inspect) {
 					var _null = null,
 						visitor = A._SerializeVisitor$(_null, true, _null, _null, true, false, _null, true);
-					selector.accept$1(0, visitor);
+					selector.accept$1(visitor);
 					return visitor._buffer.toString$0(0);
 				},
 				_SerializeVisitor$(indentWidth, inspect, lineFeed, logger, quote, sourceMap, style, useSpaces) {
@@ -24229,8 +23899,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t6 = t5.file;
 						sourceUrl = t6.url;
 						t7 = sourceUrl == null ? "" : sourceUrl.toString$0(0);
-						urlId = urls.putIfAbsent$2(0, t7, new A.SingleMapping_SingleMapping$fromEntries_closure(urls));
-						files.putIfAbsent$2(0, urlId, new A.SingleMapping_SingleMapping$fromEntries_closure0(sourceEntry));
+						urlId = urls.putIfAbsent$2(t7, new A.SingleMapping_SingleMapping$fromEntries_closure(urls));
+						files.putIfAbsent$2(urlId, new A.SingleMapping_SingleMapping$fromEntries_closure0(sourceEntry));
 						t7 = targetEntries._value;
 						if (t7 === targetEntries)
 							A.throwExpression(A.LateError$localNI(t4));
@@ -24357,7 +24027,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2, t3, t4, t5, t6,
 						t1 = A._setArrayType([A._Highlight$(primarySpan, primaryLabel, true)], type$.JSArray__Highlight);
 					for (t2 = secondarySpans.get$entries(secondarySpans), t2 = t2.get$iterator(t2); t2.moveNext$0();) {
-						t3 = t2.get$current(t2);
+						t3 = t2.get$current();
 						t1.push(A._Highlight$(t3.key, t3.value, false));
 					}
 					t1 = A.Highlighter__collateLines(t1);
@@ -24405,19 +24075,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A._Highlight(t1, primary, t2);
 				},
 				_Highlight__normalizeNewlines(span) {
-					var t1, endOffset, i, t2, t3, t4,
-						text = span.get$text(span);
+					var endOffset, t1, i, t2, t3, t4,
+						text = span.get$text();
 					if (!B.JSString_methods.contains$1(text, "\r\n"))
 						return span;
-					t1 = span.get$end(span);
-					endOffset = t1.get$offset(t1);
+					endOffset = span.get$end(span).get$offset();
 					for (t1 = text.length - 1, i = 0; i < t1; ++i)
 						if (text.charCodeAt(i) === 13 && text.charCodeAt(i + 1) === 10)
 							--endOffset;
 					t1 = span.get$start(span);
 					t2 = span.get$sourceUrl(span);
-					t3 = span.get$end(span);
-					t3 = t3.get$line(t3);
+					t3 = span.get$end(span).get$line();
 					t2 = A.SourceLocation$(endOffset, span.get$end(span).get$column(), t3, t2);
 					t3 = A.stringReplaceAllUnchecked(text, "\r\n", "\n");
 					t4 = span.get$context(span);
@@ -24427,53 +24095,43 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var context, text, start, end, t1, t2, t3;
 					if (!B.JSString_methods.endsWith$1(span.get$context(span), "\n"))
 						return span;
-					if (B.JSString_methods.endsWith$1(span.get$text(span), "\n\n"))
+					if (B.JSString_methods.endsWith$1(span.get$text(), "\n\n"))
 						return span;
 					context = B.JSString_methods.substring$2(span.get$context(span), 0, span.get$context(span).length - 1);
-					text = span.get$text(span);
+					text = span.get$text();
 					start = span.get$start(span);
 					end = span.get$end(span);
-					if (B.JSString_methods.endsWith$1(span.get$text(span), "\n")) {
-						t1 = A.findLineStart(span.get$context(span), span.get$text(span), span.get$start(span).get$column());
+					if (B.JSString_methods.endsWith$1(span.get$text(), "\n")) {
+						t1 = A.findLineStart(span.get$context(span), span.get$text(), span.get$start(span).get$column());
 						t1.toString;
 						t1 = t1 + span.get$start(span).get$column() + span.get$length(span) === span.get$context(span).length;
 					} else
 						t1 = false;
 					if (t1) {
-						text = B.JSString_methods.substring$2(span.get$text(span), 0, span.get$text(span).length - 1);
+						text = B.JSString_methods.substring$2(span.get$text(), 0, span.get$text().length - 1);
 						if (text.length === 0)
 							end = start;
 						else {
-							t1 = span.get$end(span);
-							t1 = t1.get$offset(t1);
+							t1 = span.get$end(span).get$offset();
 							t2 = span.get$sourceUrl(span);
-							t3 = span.get$end(span);
-							t3 = t3.get$line(t3);
+							t3 = span.get$end(span).get$line();
 							end = A.SourceLocation$(t1 - 1, A._Highlight__lastLineLength(context), t3 - 1, t2);
-							t1 = span.get$start(span);
-							t1 = t1.get$offset(t1);
-							t2 = span.get$end(span);
-							start = t1 === t2.get$offset(t2) ? end : span.get$start(span);
+							start = span.get$start(span).get$offset() === span.get$end(span).get$offset() ? end : span.get$start(span);
 						}
 					}
 					return A.SourceSpanWithContext$(start, end, text, context);
 				},
 				_Highlight__normalizeEndOfLine(span) {
-					var t1, t2, text, t3, t4;
+					var text, t1, t2, t3, t4;
 					if (span.get$end(span).get$column() !== 0)
 						return span;
-					t1 = span.get$end(span);
-					t1 = t1.get$line(t1);
-					t2 = span.get$start(span);
-					if (t1 === t2.get$line(t2))
+					if (span.get$end(span).get$line() === span.get$start(span).get$line())
 						return span;
-					text = B.JSString_methods.substring$2(span.get$text(span), 0, span.get$text(span).length - 1);
+					text = B.JSString_methods.substring$2(span.get$text(), 0, span.get$text().length - 1);
 					t1 = span.get$start(span);
-					t2 = span.get$end(span);
-					t2 = t2.get$offset(t2);
+					t2 = span.get$end(span).get$offset();
 					t3 = span.get$sourceUrl(span);
-					t4 = span.get$end(span);
-					t4 = t4.get$line(t4);
+					t4 = span.get$end(span).get$line();
 					t3 = A.SourceLocation$(t2 - 1, text.length - B.JSString_methods.lastIndexOf$1(text, "\n") - 1, t4 - 1, t3);
 					return A.SourceSpanWithContext$(t1, t3, text, B.JSString_methods.endsWith$1(span.get$context(span), "\n") ? B.JSString_methods.substring$2(span.get$context(span), 0, span.get$context(span).length - 1) : span.get$context(span));
 				},
@@ -24632,7 +24290,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = t2 + (" of " + t3.prettyUri$1(t1));
 					} else
 						t1 = t2;
-					t1 = t1 + (": " + message + "\n") + A.Highlighter$multiple(_this, label, secondarySpans, color, primaryColor, secondaryColor).highlight$0(0);
+					t1 = t1 + (": " + message + "\n") + A.Highlighter$multiple(_this, label, secondarySpans, color, primaryColor, secondaryColor).highlight$0();
 					return t1.charCodeAt(0) == 0 ? t1 : t1;
 				},
 				SourceSpanBase: function SourceSpanBase() {
@@ -24710,7 +24368,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_._line_scanner$_column = _._line_scanner$_line = 0;
 					_.sourceUrl = t0;
 					_.string = t1;
-					_._string_scanner$_position = 0;
+					_._position = 0;
 					_._lastMatchPosition = _._lastMatch = null;
 				},
 				SpanScanner$(string, sourceUrl) {
@@ -24727,7 +24385,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_._sourceFile = t0;
 					_.sourceUrl = t1;
 					_.string = t2;
-					_._string_scanner$_position = 0;
+					_._position = 0;
 					_._lastMatchPosition = _._lastMatch = null;
 				},
 				_SpanScannerState: function _SpanScannerState(t0, t1) {
@@ -24746,20 +24404,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var _ = this;
 					_.sourceUrl = t0;
 					_.string = t1;
-					_._string_scanner$_position = 0;
+					_._position = 0;
 					_._lastMatchPosition = _._lastMatch = null;
 				},
 				AsciiGlyphSet: function AsciiGlyphSet() {
 				},
 				UnicodeGlyphSet: function UnicodeGlyphSet() {
 				},
+				/*DSH-
 				printString(string) {
-					/*DSH-
 					if (typeof dartPrint == "function") {
 						dartPrint(string);
 						return;
 					}
-					*/
 					if (typeof console == "object" && typeof console.log != "undefined") {
 						console.log(string);
 						return;
@@ -24770,53 +24427,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					throw "Unable to print message: " + String(string);
 				},
-				_convertNativeToDart_Value(value) {
-					var proto, t1, values, i;
-					if (value == null)
-						return value;
-					if (typeof value == "string" || typeof value == "number" || A._isBool(value))
-						return value;
-					proto = Object.getPrototypeOf(value);
-					t1 = proto === Object.prototype;
-					t1.toString;
-					if (!t1) {
-						t1 = proto === null;
-						t1.toString;
-					} else
-						t1 = true;
-					if (t1)
-						return A.convertNativeToDart_Dictionary(value);
-					t1 = Array.isArray(value);
-					t1.toString;
-					if (t1) {
-						values = [];
-						i = 0;
-						for (;;) {
-							t1 = value.length;
-							t1.toString;
-							if (!(i < t1))
-								break;
-							values.push(A._convertNativeToDart_Value(value[i]));
-							++i;
-						}
-						return values;
-					}
-					return value;
-				},
-				convertNativeToDart_Dictionary(object) {
-					var dict, keys, t1, _i, key, t2;
-					if (object == null)
-						return null;
-					dict = A.LinkedHashMap_LinkedHashMap$_empty(type$.String, type$.dynamic);
-					keys = Object.getOwnPropertyNames(object);
-					for (t1 = keys.length, _i = 0; _i < keys.length; keys.length === t1 || (0, A.throwConcurrentModificationError)(keys), ++_i) {
-						key = keys[_i];
-						t2 = key;
-						t2.toString;
-						dict.$indexSet(0, t2, A._convertNativeToDart_Value(object[key]));
-					}
-					return dict;
-				},
+				*/
 				groupBy(values, key, $S, $T) {
 					var t1, t2, _i, element, t3, t4,
 						map = A.LinkedHashMap_LinkedHashMap$_empty($T, $S._eval$1("List<0>"));
@@ -24851,7 +24462,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				IterableExtension_firstWhereOrNull(_this, test) {
 					var t1, element;
 					for (t1 = J.get$iterator$ax(_this); t1.moveNext$0();) {
-						element = t1.get$current(t1);
+						element = t1.get$current();
 						if (test.call$1(element))
 							return element;
 					}
@@ -24860,7 +24471,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				IterableExtension_get_firstOrNull(_this) {
 					var iterator = J.get$iterator$ax(_this);
 					if (iterator.moveNext$0())
-						return iterator.get$current(iterator);
+						return iterator.get$current();
 					return null;
 				},
 				IterableExtension_get_lastOrNull(_this) {
@@ -24872,7 +24483,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var result,
 						iterator = J.get$iterator$ax(_this);
 					if (iterator.moveNext$0()) {
-						result = iterator.get$current(iterator);
+						result = iterator.get$current();
 						if (!iterator.moveNext$0())
 							return result;
 					}
@@ -24993,7 +24604,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				absolute(part1) {
 					var _null = null;
-					return $.$get$context().absolute$15(0, part1, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null);
+					return $.$get$context().absolute$15(part1, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null);
 				},
 				join(part1, part2) {
 					var _null = null;
@@ -25167,7 +24778,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				IterableExtension_search(_this, callback) {
 					var t1, _0_0;
 					for (t1 = J.get$iterator$ax(_this); t1.moveNext$0();) {
-						_0_0 = callback.call$1(t1.get$current(t1));
+						_0_0 = callback.call$1(t1.get$current());
 						if (_0_0 != null)
 							return _0_0;
 					}
@@ -25319,7 +24930,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				SpanExtensions_trimLeft(_this) {
 					var t1, start = 0;
 					for (;;) {
-						t1 = _this.get$text(_this).charCodeAt(start);
+						t1 = _this.get$text().charCodeAt(start);
 						if (!(t1 === 32 || t1 === 9 || t1 === 10 || t1 === 13 || t1 === 12))
 							break;
 						++start;
@@ -25328,9 +24939,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				SpanExtensions_trimRight(_this) {
 					var t1,
-						end = _this.get$text(_this).length - 1;
+						end = _this.get$text().length - 1;
 					for (;;) {
-						t1 = _this.get$text(_this).charCodeAt(end);
+						t1 = _this.get$text().charCodeAt(end);
 						if (!(t1 === 32 || t1 === 9 || t1 === 10 || t1 === 13 || t1 === 12))
 							break;
 						--end;
@@ -25339,11 +24950,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				SpanExtensions_initialIdentifier(_this) {
 					var i,
-						scanner = A.StringScanner$(_this.get$text(_this), null, null);
+						scanner = A.StringScanner$(_this.get$text(), null, null);
 					for (i = 0; false; ++i)
 						scanner.readChar$0();
 					A._scanIdentifier(scanner);
-					return A.FileSpanExtension_subspan(_this, 0, scanner._string_scanner$_position);
+					return A.FileSpanExtension_subspan(_this, 0, scanner._position);
 				},
 				SpanExtensions_between(_this, other) {
 					if (!J.$eq$(_this.get$sourceUrl(_this), other.get$sourceUrl(other)))
@@ -25368,7 +24979,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				_scanIdentifier(scanner) {
 					var t1, _0_0, t2;
-					for (t1 = scanner.string.length; scanner._string_scanner$_position !== t1;) {
+					for (t1 = scanner.string.length; scanner._position !== t1;) {
 						_0_0 = scanner.peekChar$0();
 						if (92 === _0_0) {
 							A.consumeEscapedCharacter(scanner);
@@ -25679,11 +25290,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(receiver, p0) {
 					return receiver.call(p0);
 				},
-				call$2(receiver, p0, p1) {
-					return receiver.call(p0, p1);
-				},
 				call$1$1(receiver, p0) {
 					return receiver.call(p0);
+				},
+				call$2(receiver, p0, p1) {
+					return receiver.call(p0, p1);
 				},
 				call$3(receiver, p0, p1, p2) {
 					return receiver.call(p0, p1, p2);
@@ -26291,7 +25902,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return;
 					}
 					for (t1 = J.get$iterator$ax(collection); t1.moveNext$0();)
-						receiver.push(t1.get$current(t1));
+						receiver.push(t1.get$current());
 				},
 				_addAllFromArray$1(receiver, array) {
 					var i,
@@ -26594,22 +26205,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			J.JSUnmodifiableArray.prototype = {};
 			J.ArrayIterator.prototype = {
-				get$current(_) {
-					var t1 = this.__interceptors$_current;
+				get$current() {
+					var t1 = this._current;
 					return t1 == null ? this.$ti._precomputed1._as(t1) : t1;
 				},
 				moveNext$0() {
 					var t2, _this = this,
 						t1 = _this._iterable,
 						$length = t1.length;
-					if (_this.__interceptors$_length !== $length)
+					if (_this._length !== $length)
 						throw A.wrapException(A.throwConcurrentModificationError(t1));
 					t2 = _this._index;
 					if (t2 >= $length) {
-						_this.__interceptors$_current = null;
+						_this._current = null;
 						return false;
 					}
-					_this.__interceptors$_current = t1[t2];
+					_this._current = t1[t2];
 					_this._index = t2 + 1;
 					return true;
 				}
@@ -26958,14 +26569,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				lastIndexOf$1(receiver, pattern) {
 					return this.lastIndexOf$2(receiver, pattern, null);
 				},
-				contains$2(receiver, other, startIndex) {
-					var t1 = receiver.length;
-					if (startIndex > t1)
-						throw A.wrapException(A.RangeError$range(startIndex, 0, t1, null, null));
-					return A.stringContainsUnchecked(receiver, other, startIndex);
-				},
 				contains$1(receiver, other) {
-					return this.contains$2(receiver, other, 0);
+					return A.stringContainsUnchecked(receiver, other, 0);
 				},
 				compareTo$1(receiver, other) {
 					var t1;
@@ -27040,9 +26645,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				moveNext$0() {
 					return this._source.moveNext$0();
 				},
-				get$current(_) {
-					var t1 = this._source;
-					return this.$ti._rest[1]._as(t1.get$current(t1));
+				get$current() {
+					return this.$ti._rest[1]._as(this._source.get$current());
 				}
 			};
 			A.CastIterable.prototype = {
@@ -27103,44 +26707,50 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				cast$2$0(_, $RK, $RV) {
 					return new A.CastMap(this._source, this.$ti._eval$1("@<1,2>")._bind$1($RK)._bind$1($RV)._eval$1("CastMap<1,2,3,4>"));
 				},
-				containsKey$1(_, key) {
-					return J.containsKey$1$x(this._source, key);
+				containsKey$1(key) {
+					return this._source.containsKey$1(key);
 				},
 				$index(_, key) {
-					return this.$ti._eval$1("4?")._as(J.$index$asx(this._source, key));
+					return this.$ti._eval$1("4?")._as(this._source.$index(0, key));
 				},
 				$indexSet(_, key, value) {
 					var t1 = this.$ti;
-					J.$indexSet$ax(this._source, t1._precomputed1._as(key), t1._rest[1]._as(value));
+					this._source.$indexSet(0, t1._precomputed1._as(key), t1._rest[1]._as(value));
 				},
 				addAll$1(_, other) {
-					J.addAll$1$ax(this._source, new A.CastMap(other, this.$ti._eval$1("CastMap<3,4,1,2>")));
+					this._source.addAll$1(0, new A.CastMap(other, this.$ti._eval$1("CastMap<3,4,1,2>")));
 				},
 				remove$1(_, key) {
-					return this.$ti._eval$1("4?")._as(J.remove$1$x(this._source, key));
+					return this.$ti._eval$1("4?")._as(this._source.remove$1(0, key));
 				},
 				forEach$1(_, f) {
-					J.forEach$1$ax(this._source, new A.CastMap_forEach_closure(this, f));
+					this._source.forEach$1(0, new A.CastMap_forEach_closure(this, f));
 				},
 				get$keys(_) {
-					var t1 = this.$ti;
-					return A.CastIterable_CastIterable(J.get$keys$x(this._source), t1._precomputed1, t1._rest[2]);
+					var t1 = this._source,
+						t2 = this.$ti;
+					return A.CastIterable_CastIterable(t1.get$keys(t1), t2._precomputed1, t2._rest[2]);
 				},
 				get$values(_) {
-					var t1 = this.$ti;
-					return A.CastIterable_CastIterable(J.get$values$x(this._source), t1._rest[1], t1._rest[3]);
+					var t1 = this._source,
+						t2 = this.$ti;
+					return A.CastIterable_CastIterable(t1.get$values(t1), t2._rest[1], t2._rest[3]);
 				},
 				get$length(_) {
-					return J.get$length$asx(this._source);
+					var t1 = this._source;
+					return t1.get$length(t1);
 				},
 				get$isEmpty(_) {
-					return J.get$isEmpty$asx(this._source);
+					var t1 = this._source;
+					return t1.get$isEmpty(t1);
 				},
 				get$isNotEmpty(_) {
-					return J.get$isNotEmpty$asx(this._source);
+					var t1 = this._source;
+					return t1.get$isNotEmpty(t1);
 				},
 				get$entries(_) {
-					var t1 = J.get$entries$x(this._source);
+					var t1 = this._source;
+					t1 = t1.get$entries(t1);
 					return t1.map$1$1(t1, new A.CastMap_entries_closure(this), this.$ti._eval$1("MapEntry<3,4>"));
 				}
 			};
@@ -27403,7 +27013,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ListIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					var t1 = this.__internal$_current;
 					return t1 == null ? this.$ti._precomputed1._as(t1) : t1;
 				},
@@ -27456,13 +27066,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var _this = this,
 						t1 = _this._iterator;
 					if (t1.moveNext$0()) {
-						_this.__internal$_current = _this._f.call$1(t1.get$current(t1));
+						_this.__internal$_current = _this._f.call$1(t1.get$current());
 						return true;
 					}
 					_this.__internal$_current = null;
 					return false;
 				},
-				get$current(_) {
+				get$current() {
 					var t1 = this.__internal$_current;
 					return t1 == null ? this.$ti._rest[1]._as(t1) : t1;
 				}
@@ -27487,13 +27097,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				moveNext$0() {
 					var t1, t2;
 					for (t1 = this._iterator, t2 = this._f; t1.moveNext$0();)
-						if (t2.call$1(t1.get$current(t1)))
+						if (t2.call$1(t1.get$current()))
 							return true;
 					return false;
 				},
-				get$current(_) {
-					var t1 = this._iterator;
-					return t1.get$current(t1);
+				get$current() {
+					return this._iterator.get$current();
 				}
 			};
 			A.ExpandIterable.prototype = {
@@ -27502,7 +27111,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ExpandIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					var t1 = this.__internal$_current;
 					return t1 == null ? this.$ti._rest[1]._as(t1) : t1;
 				},
@@ -27515,13 +27124,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this.__internal$_current = null;
 						if (t2.moveNext$0()) {
 							_this._currentExpansion = null;
-							t1 = J.get$iterator$ax(t3.call$1(t2.get$current(t2)));
+							t1 = J.get$iterator$ax(t3.call$1(t2.get$current()));
 							_this._currentExpansion = t1;
 						} else
 							return false;
 					}
-					t1 = _this._currentExpansion;
-					_this.__internal$_current = t1.get$current(t1);
+					_this.__internal$_current = _this._currentExpansion.get$current();
 					return true;
 				}
 			};
@@ -27549,14 +27157,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this._remaining = -1;
 					return false;
 				},
-				get$current(_) {
-					var t1;
+				get$current() {
 					if (this._remaining < 0) {
 						this.$ti._precomputed1._as(null);
 						return null;
 					}
-					t1 = this._iterator;
-					return t1.get$current(t1);
+					return this._iterator.get$current();
 				}
 			};
 			A.SkipIterable.prototype = {
@@ -27593,9 +27199,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this._skipCount = 0;
 					return t1.moveNext$0();
 				},
-				get$current(_) {
-					var t1 = this._iterator;
-					return t1.get$current(t1);
+				get$current() {
+					return this._iterator.get$current();
 				}
 			};
 			A.EmptyIterable.prototype = {
@@ -27655,7 +27260,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				moveNext$0() {
 					return false;
 				},
-				get$current(_) {
+				get$current() {
 					throw A.wrapException(A.IterableElementError_noElement());
 				}
 			};
@@ -27673,12 +27278,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return J.get$isNotEmpty$asx(this.__internal$_first) || !this._second.get$isEmpty(0);
 				},
 				contains$1(_, value) {
-					return J.contains$1$asx(this.__internal$_first, value) || this._second._map.containsKey$1(0, value);
+					return J.contains$1$asx(this.__internal$_first, value) || this._second._map.containsKey$1(value);
 				},
 				get$first(_) {
 					var iterator = J.get$iterator$ax(this.__internal$_first);
 					if (iterator.moveNext$0())
-						return iterator.get$current(iterator);
+						return iterator.get$current();
 					return this._second.get$first(0);
 				},
 				get$last(_) {
@@ -27733,9 +27338,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return false;
 				},
-				get$current(_) {
-					var t1 = this._currentIterator;
-					return t1.get$current(t1);
+				get$current() {
+					return this._currentIterator.get$current();
 				}
 			};
 			A.WhereTypeIterable.prototype = {
@@ -27747,20 +27351,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				moveNext$0() {
 					var t1, t2;
 					for (t1 = this._source, t2 = this.$ti._precomputed1; t1.moveNext$0();)
-						if (t2._is(t1.get$current(t1)))
+						if (t2._is(t1.get$current()))
 							return true;
 					return false;
 				},
-				get$current(_) {
-					var t1 = this._source;
-					return this.$ti._precomputed1._as(t1.get$current(t1));
+				get$current() {
+					return this.$ti._precomputed1._as(this._source.get$current());
 				}
 			};
 			A.NonNullsIterable.prototype = {
 				get$_firstNonNull() {
 					var t1, element;
 					for (t1 = J.get$iterator$ax(this._source); t1.moveNext$0();) {
-						element = t1.get$current(t1);
+						element = t1.get$current();
 						if (element != null)
 							return element;
 					}
@@ -27785,7 +27388,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, next;
 					this.__internal$_current = null;
 					for (t1 = this._source; t1.moveNext$0();) {
-						next = t1.get$current(t1);
+						next = t1.get$current();
 						if (next != null) {
 							this.__internal$_current = next;
 							return true;
@@ -27793,7 +27396,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return false;
 				},
-				get$current(_) {
+				get$current() {
 					var t1 = this.__internal$_current;
 					return t1 == null ? A.throwExpression(A.IterableElementError_noElement()) : t1;
 				}
@@ -27928,7 +27531,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 											$async$goto = 3;
 											break;
 										}
-										key = t1.get$current(t1);
+										key = t1.get$current();
 										$async$goto = 4;
 										return $async$iterator._async$_current = new A.MapEntry(key, $async$self.$index(0, key), t2), 1;
 									case 4:
@@ -27961,7 +27564,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return keys;
 				},
-				containsKey$1(_, key) {
+				containsKey$1(key) {
 					if (typeof key != "string")
 						return false;
 					if ("__proto__" === key)
@@ -27969,7 +27572,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._jsIndex.hasOwnProperty(key);
 				},
 				$index(_, key) {
-					if (!this.containsKey$1(0, key))
+					if (!this.containsKey$1(key))
 						return null;
 					return this._values[this._jsIndex[key]];
 				},
@@ -28003,7 +27606,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A._KeysOrValuesOrElementsIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					var t1 = this.__js_helper$_current;
 					return t1 == null ? this.$ti._precomputed1._as(t1) : t1;
 				},
@@ -28086,7 +27689,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return backingMap;
 				},
 				contains$1(_, key) {
-					return this._getMap$0().containsKey$1(0, key);
+					return this._getMap$0().containsKey$1(key);
 				},
 				toSet$0(_) {
 					return A.LinkedHashSet_LinkedHashSet$of(this, this.$ti._precomputed1);
@@ -28165,7 +27768,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$arguments.push(argument);
 					++t1.argumentCount;
 				},
-				$signature: 17
+				$signature: 100
 			};
 			A.SafeToStringHook.prototype = {};
 			A.TypeErrorDecoder.prototype = {
@@ -28306,7 +27909,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$entries(_) {
 					return new A.LinkedHashMapEntriesIterable(this, A._instanceType(this)._eval$1("LinkedHashMapEntriesIterable<1,2>"));
 				},
-				containsKey$1(_, key) {
+				containsKey$1(key) {
 					var strings, nums;
 					if (typeof key == "string") {
 						strings = this._strings;
@@ -28328,7 +27931,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this.internalFindBucketIndex$2(rest[this.internalComputeHashCode$1(key)], key) >= 0;
 				},
 				addAll$1(_, other) {
-					J.forEach$1$ax(other, new A.JsLinkedHashMap_addAll_closure(this));
+					other.forEach$1(0, new A.JsLinkedHashMap_addAll_closure(this));
 				},
 				$index(_, key) {
 					var strings, cell, t1, nums, _null = null;
@@ -28388,9 +27991,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							bucket.push(_this._newLinkedCell$2(key, value));
 					}
 				},
-				putIfAbsent$2(_, key, ifAbsent) {
+				putIfAbsent$2(key, ifAbsent) {
 					var t1, value, _this = this;
-					if (_this.containsKey$1(0, key)) {
+					if (_this.containsKey$1(key)) {
 						t1 = _this.$index(0, key);
 						return t1 == null ? A._instanceType(_this)._rest[1]._as(t1) : t1;
 					}
@@ -28529,11 +28132,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A.LinkedHashMapKeyIterator(t1, t1._modifications, t1._first);
 				},
 				contains$1(_, element) {
-					return this._map.containsKey$1(0, element);
+					return this._map.containsKey$1(element);
 				}
 			};
 			A.LinkedHashMapKeyIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					return this.__js_helper$_current;
 				},
 				moveNext$0() {
@@ -28565,7 +28168,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.LinkedHashMapValueIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					return this.__js_helper$_current;
 				},
 				moveNext$0() {
@@ -28597,7 +28200,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.LinkedHashMapEntryIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					var t1 = this.__js_helper$_current;
 					t1.toString;
 					return t1;
@@ -28654,19 +28257,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(o) {
 					return this.getTag(o);
 				},
-				$signature: 234
+				$signature: 112
 			};
 			A.initHooks_closure0.prototype = {
 				call$2(o, tag) {
 					return this.getUnknownTag(o, tag);
 				},
-				$signature: 115
+				$signature: 116
 			};
 			A.initHooks_closure1.prototype = {
 				call$1(tag) {
 					return this.prototypeForTag(tag);
 				},
-				$signature: 120
+				$signature: 163
 			};
 			A._Record.prototype = {
 				toString$0(_) {
@@ -28850,7 +28453,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A._AllMatchesIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					var t1 = this.__js_helper$_current;
 					return t1 == null ? type$.RegExpMatch._as(t1) : t1;
 				},
@@ -28931,7 +28534,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.__js_helper$_index = end === _this.__js_helper$_index ? end + 1 : end;
 					return true;
 				},
-				get$current(_) {
+				get$current() {
 					var t1 = this.__js_helper$_current;
 					t1.toString;
 					return t1;
@@ -29173,6 +28776,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this.__rti$_message;
 				}
 			};
+			/*DSH-
 			A._AsyncRun__initializeScheduleImmediate_internalCallback.prototype = {
 				call$1(__wc0_formal) {
 					var t1 = this._box_0,
@@ -29180,7 +28784,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.storedCallback = null;
 					f.call$0();
 				},
-				$signature: 134
+				$signature: 223
 			};
 			A._AsyncRun__initializeScheduleImmediate_closure.prototype = {
 				call$1(callback) {
@@ -29241,8 +28845,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				$signature: 0
 			};
+			*/
 			A._SyncStarIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					return this._async$_current;
 				},
 				_resumeBody$2(errorCode, errorValue) {
@@ -29260,14 +28865,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 				},
 				moveNext$0() {
-					var nestedIterator, t1, exception, value, suspendedBodies, _this = this, errorValue = null, errorCode = 0;
+					var nestedIterator, exception, value, suspendedBodies, _this = this, errorValue = null, errorCode = 0;
 					for (;;) {
 						nestedIterator = _this._nestedIterator;
 						if (nestedIterator != null)
 							try {
 								if (nestedIterator.moveNext$0()) {
-									t1 = nestedIterator;
-									_this._async$_current = t1.get$current(t1);
+									_this._async$_current = nestedIterator.get$current();
 									return true;
 								} else
 									_this._nestedIterator = null;
@@ -29340,6 +28944,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A._ZoneSpecification.prototype = {$isZoneSpecification: 1};
 			A._ZoneDelegate.prototype = {$isZoneDelegate: 1};
 			A._Zone.prototype = {
+				/*DSH-
 				_processUncaughtError$3(zone, error, stackTrace) {
 					var handler, parentDelegate, parentZone, currentZone, e, s, t1, exception,
 						implementation = this.get$_handleUncaughtError(),
@@ -29366,6 +28971,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						parentZone._processUncaughtError$3(implZone, e, t1);
 					}
 				},
+				*/
 				$isZone: 1
 			};
 			A._CustomZone.prototype = {
@@ -29376,6 +28982,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$_parentDelegate() {
 					return this.parent.get$_async$_delegate();
 				},
+				/*DSH-
 				get$errorZone() {
 					return this._handleUncaughtError.zone;
 				},
@@ -29398,11 +29005,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				bindCallbackGuarded$1(f) {
 					return new A._CustomZone_bindCallbackGuarded_closure(this, this.registerCallback$1$1(f, type$.void));
 				},
+				*/
 				$index(_, key) {
 					var value,
 						t1 = this._async$_map,
 						result = t1.$index(0, key);
-					if (result != null || t1.containsKey$1(0, key))
+					if (result != null || t1.containsKey$1(key))
 						return result;
 					value = this.parent.$index(0, key);
 					if (value != null)
@@ -29419,6 +29027,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = implementation.zone;
 					return implementation.$function.call$4(t1, t1.get$_parentDelegate(), this, f);
 				},
+				/*DSH-
 				runUnary$2$2(f, arg) {
 					var implementation = this._runUnary,
 						t1 = implementation.zone;
@@ -29434,9 +29043,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = implementation.zone;
 					return implementation.$function.call$4(t1, t1.get$_parentDelegate(), this, callback);
 				},
+				*/
 				get$_run() {
 					return this._run;
 				},
+				/*DSH-
 				get$_runUnary() {
 					return this._runUnary;
 				},
@@ -29467,12 +29078,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$_print() {
 					return this._print;
 				},
+				*/
 				get$_fork() {
 					return this._fork;
 				},
+				/*DSH-
 				get$_handleUncaughtError() {
 					return this._handleUncaughtError;
 				},
+				*/
 				get$parent(receiver) {
 					return this.parent;
 				},
@@ -29480,6 +29094,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._async$_map;
 				}
 			};
+			/*DSH-
 			A._CustomZone_bindCallback_closure.prototype = {
 				call$0() {
 					return this.$this.run$1$1(this.registered, this.R);
@@ -29509,10 +29124,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				$signature: 2
 			};
+			*/
 			A._RootZone.prototype = {
 				get$_run() {
 					return B._ZoneFunction__RootZone__rootRun;
 				},
+				/*DSH-
 				get$_runUnary() {
 					return B._ZoneFunction__RootZone__rootRunUnary;
 				},
@@ -29543,12 +29160,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$_print() {
 					return B._ZoneFunction__RootZone__rootPrint;
 				},
+				*/
 				get$_fork() {
 					return B._ZoneFunction__RootZone__rootFork;
 				},
+				/*DSH-
 				get$_handleUncaughtError() {
 					return B._ZoneFunction_KjJ;
 				},
+				*/
 				get$parent(_) {
 					return null;
 				},
@@ -29563,6 +29183,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = $._RootZone__rootDelegate;
 					return t1 == null ? $._RootZone__rootDelegate = new A._ZoneDelegate(this) : t1;
 				},
+				/*DSH-
 				get$errorZone() {
 					return this;
 				},
@@ -29589,6 +29210,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				bindCallbackGuarded$1(f) {
 					return new A._RootZone_bindCallbackGuarded_closure(this, f);
 				},
+				*/
 				$index(_, key) {
 					return null;
 				},
@@ -29600,12 +29222,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return f.call$0();
 					return A._rootRun(null, null, this, f);
 				},
+				/*DSH-
 				runUnary$2$2(f, arg) {
 					if ($.Zone__current === B.C__RootZone)
 						return f.call$1(arg);
 					return A._rootRunUnary(null, null, this, f, arg);
 				}
+				*/
 			};
+			/*DSH-
 			A._RootZone_bindCallback_closure.prototype = {
 				call$0() {
 					return this.$this.run$1$1(this.f, this.R);
@@ -29629,6 +29254,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				$signature: 2
 			};
+			*/
 			A._HashMap.prototype = {
 				get$length(_) {
 					return this._collection$_length;
@@ -29646,7 +29272,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = A._instanceType(this);
 					return A.MappedIterable_MappedIterable(new A._HashMapKeyIterable(this, t1._eval$1("_HashMapKeyIterable<1>")), new A._HashMap_values_closure(this), t1._precomputed1, t1._rest[1]);
 				},
-				containsKey$1(_, key) {
+				containsKey$1(key) {
 					var strings, nums;
 					if (typeof key == "string" && key !== "__proto__") {
 						strings = this._collection$_strings;
@@ -29664,7 +29290,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._findBucketIndex$2(this._getBucket$2(rest, key), key) >= 0;
 				},
 				addAll$1(_, other) {
-					J.forEach$1$ax(other, new A._HashMap_addAll_closure(this));
+					other.forEach$1(0, new A._HashMap_addAll_closure(this));
 				},
 				$index(_, key) {
 					var strings, t1, nums;
@@ -29677,9 +29303,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = nums == null ? null : A._HashMap__getTableEntry(nums, key);
 						return t1;
 					} else
-						return this._get$1(0, key);
+						return this._get$1(key);
 				},
-				_get$1(_, key) {
+				_get$1(key) {
 					var bucket, index,
 						rest = this._collection$_rest;
 					if (rest == null)
@@ -29726,11 +29352,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (key !== "__proto__")
 						return this._removeHashTableEntry$2(this._collection$_strings, key);
 					else {
-						t1 = this._remove$1(0, key);
+						t1 = this._remove$1(key);
 						return t1;
 					}
 				},
-				_remove$1(_, key) {
+				_remove$1(key) {
 					var hash, bucket, index, result, _this = this,
 						rest = _this._collection$_rest;
 					if (rest == null)
@@ -29883,11 +29509,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A._HashMapKeyIterator(t1, t1._computeKeys$0(), this.$ti._eval$1("_HashMapKeyIterator<1>"));
 				},
 				contains$1(_, element) {
-					return this._collection$_map.containsKey$1(0, element);
+					return this._collection$_map.containsKey$1(element);
 				}
 			};
 			A._HashMapKeyIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					var t1 = this._collection$_current;
 					return t1 == null ? this.$ti._precomputed1._as(t1) : t1;
 				},
@@ -29969,9 +29595,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						nums = _this._collection$_nums;
 						return _this._collection$_addHashTableEntry$2(nums == null ? _this._collection$_nums = A._LinkedHashSet__newHashTable() : nums, element);
 					} else
-						return _this._add$1(0, element);
+						return _this._add$1(element);
 				},
-				_add$1(_, element) {
+				_add$1(element) {
 					var hash, bucket, _this = this,
 						rest = _this._collection$_rest;
 					if (rest == null)
@@ -29994,9 +29620,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else if (typeof object == "number" && (object & 1073741823) === object)
 						return _this._removeHashTableEntry$2(_this._collection$_nums, object);
 					else
-						return _this._remove$1(0, object);
+						return _this._remove$1(object);
 				},
-				_remove$1(_, object) {
+				_remove$1(object) {
 					var hash, bucket, index, cell, _this = this,
 						rest = _this._collection$_rest;
 					if (rest == null)
@@ -30098,7 +29724,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._LinkedHashSetCell.prototype = {};
 			A._LinkedHashSetIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					var t1 = this._collection$_current;
 					return t1 == null ? this.$ti._precomputed1._as(t1) : t1;
 				},
@@ -30133,13 +29759,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(k, v) {
 					this.result.$indexSet(0, this.K._as(k), this.V._as(v));
 				},
-				$signature: 102
+				$signature: 97
 			};
 			A.LinkedHashMap_LinkedHashMap$from_closure.prototype = {
 				call$2(k, v) {
 					this.result.$indexSet(0, this.K._as(k), this.V._as(v));
 				},
-				$signature: 102
+				$signature: 97
 			};
 			A.ListBase.prototype = {
 				get$iterator(receiver) {
@@ -30273,7 +29899,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1,
 						i = this.get$length(receiver);
 					for (t1 = iterable.get$iterator(iterable); t1.moveNext$0();) {
-						this.add$1(receiver, t1.get$current(t1));
+						this.add$1(receiver, t1.get$current());
 						++i;
 					}
 				},
@@ -30330,62 +29956,68 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$isList: 1
 			};
 			A.MapBase.prototype = {
-				cast$2$0(receiver, $RK, $RV) {
-					var t1 = A.instanceType(receiver);
-					return A.Map_castFrom(receiver, t1._eval$1("MapBase.K"), t1._eval$1("MapBase.V"), $RK, $RV);
+				cast$2$0(_, $RK, $RV) {
+					var t1 = A._instanceType(this);
+					return A.Map_castFrom(this, t1._eval$1("MapBase.K"), t1._eval$1("MapBase.V"), $RK, $RV);
 				},
-				forEach$1(receiver, action) {
-					var t1, t2, key, t3;
-					for (t1 = J.get$iterator$ax(this.get$keys(receiver)), t2 = A.instanceType(receiver)._eval$1("MapBase.V"); t1.moveNext$0();) {
-						key = t1.get$current(t1);
-						t3 = this.$index(receiver, key);
+				forEach$1(_, action) {
+					var t1, t2, key, t3, _this = this;
+					for (t1 = _this.get$keys(_this), t1 = t1.get$iterator(t1), t2 = A._instanceType(_this)._eval$1("MapBase.V"); t1.moveNext$0();) {
+						key = t1.get$current();
+						t3 = _this.$index(0, key);
 						action.call$2(key, t3 == null ? t2._as(t3) : t3);
 					}
 				},
-				addAll$1(receiver, other) {
-					J.forEach$1$ax(other, new A.MapBase_addAll_closure(receiver));
+				addAll$1(_, other) {
+					other.forEach$1(0, new A.MapBase_addAll_closure(this));
 				},
-				get$entries(receiver) {
-					return J.map$1$1$ax(this.get$keys(receiver), new A.MapBase_entries_closure(receiver), A.instanceType(receiver)._eval$1("MapEntry<MapBase.K,MapBase.V>"));
+				get$entries(_) {
+					var _this = this,
+						t1 = _this.get$keys(_this);
+					return t1.map$1$1(t1, new A.MapBase_entries_closure(_this), A._instanceType(_this)._eval$1("MapEntry<MapBase.K,MapBase.V>"));
 				},
-				containsKey$1(receiver, key) {
-					return J.contains$1$asx(this.get$keys(receiver), key);
+				containsKey$1(key) {
+					var t1 = this.get$keys(this);
+					return t1.contains$1(t1, key);
 				},
-				get$length(receiver) {
-					return J.get$length$asx(this.get$keys(receiver));
+				get$length(_) {
+					var t1 = this.get$keys(this);
+					return t1.get$length(t1);
 				},
-				get$isEmpty(receiver) {
-					return J.get$isEmpty$asx(this.get$keys(receiver));
+				get$isEmpty(_) {
+					var t1 = this.get$keys(this);
+					return t1.get$isEmpty(t1);
 				},
-				get$isNotEmpty(receiver) {
-					return J.get$isNotEmpty$asx(this.get$keys(receiver));
+				get$isNotEmpty(_) {
+					var t1 = this.get$keys(this);
+					return t1.get$isNotEmpty(t1);
 				},
-				get$values(receiver) {
-					return new A._MapBaseValueIterable(receiver, A.instanceType(receiver)._eval$1("_MapBaseValueIterable<MapBase.K,MapBase.V>"));
+				get$values(_) {
+					return new A._MapBaseValueIterable(this, A._instanceType(this)._eval$1("_MapBaseValueIterable<MapBase.K,MapBase.V>"));
 				},
-				toString$0(receiver) {
-					return A.MapBase_mapToString(receiver);
+				toString$0(_) {
+					return A.MapBase_mapToString(this);
 				},
 				$isMap: 1
 			};
 			A.MapBase_addAll_closure.prototype = {
 				call$2(key, value) {
-					J.$indexSet$ax(this.$this, key, value);
+					this.$this.$indexSet(0, key, value);
 				},
 				$signature() {
-					return A.instanceType(this.$this)._eval$1("~(MapBase.K,MapBase.V)");
+					return A._instanceType(this.$this)._eval$1("~(MapBase.K,MapBase.V)");
 				}
 			};
 			A.MapBase_entries_closure.prototype = {
 				call$1(key) {
 					var t1 = this.$this,
-						t2 = J.$index$asx(t1, key);
+						t2 = t1.$index(0, key);
 					if (t2 == null)
-						t2 = A.instanceType(t1)._eval$1("MapBase.V")._as(t2);
-					return new A.MapEntry(key, t2, A.instanceType(t1)._eval$1("MapEntry<MapBase.K,MapBase.V>"));
+						t2 = A._instanceType(t1)._eval$1("MapBase.V")._as(t2);
+					return new A.MapEntry(key, t2, A._instanceType(t1)._eval$1("MapEntry<MapBase.K,MapBase.V>"));
 				},
 				$signature() {
-					return A.instanceType(this.$this)._eval$1("MapEntry<MapBase.K,MapBase.V>(MapBase.K)");
+					return A._instanceType(this.$this)._eval$1("MapEntry<MapBase.K,MapBase.V>(MapBase.K)");
 				}
 			};
 			A.MapBase_mapToString_closure.prototype = {
@@ -30401,34 +30033,38 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = A.S(v);
 					t1._contents += t2;
 				},
-				$signature: 165
+				$signature: 240
 			};
 			A.UnmodifiableMapBase.prototype = {};
 			A._MapBaseValueIterable.prototype = {
 				get$length(_) {
-					return J.get$length$asx(this._collection$_map);
+					var t1 = this._collection$_map;
+					return t1.get$length(t1);
 				},
 				get$isEmpty(_) {
-					return J.get$isEmpty$asx(this._collection$_map);
+					var t1 = this._collection$_map;
+					return t1.get$isEmpty(t1);
 				},
 				get$isNotEmpty(_) {
-					return J.get$isNotEmpty$asx(this._collection$_map);
+					var t1 = this._collection$_map;
+					return t1.get$isNotEmpty(t1);
 				},
 				get$first(_) {
 					var t1 = this._collection$_map,
-						t2 = J.getInterceptor$x(t1);
-					t1 = t2.$index(t1, J.get$first$ax(t2.get$keys(t1)));
-					return t1 == null ? this.$ti._rest[1]._as(t1) : t1;
+						t2 = t1.get$keys(t1);
+					t2 = t1.$index(0, t2.get$first(t2));
+					return t2 == null ? this.$ti._rest[1]._as(t2) : t2;
 				},
 				get$last(_) {
 					var t1 = this._collection$_map,
-						t2 = J.getInterceptor$x(t1);
-					t1 = t2.$index(t1, J.get$last$ax(t2.get$keys(t1)));
-					return t1 == null ? this.$ti._rest[1]._as(t1) : t1;
+						t2 = t1.get$keys(t1);
+					t2 = t1.$index(0, t2.get$last(t2));
+					return t2 == null ? this.$ti._rest[1]._as(t2) : t2;
 				},
 				get$iterator(_) {
-					var t1 = this._collection$_map;
-					return new A._MapBaseValueIterator(J.get$iterator$ax(J.get$keys$x(t1)), t1, this.$ti._eval$1("_MapBaseValueIterator<1,2>"));
+					var t1 = this._collection$_map,
+						t2 = t1.get$keys(t1);
+					return new A._MapBaseValueIterator(t2.get$iterator(t2), t1, this.$ti._eval$1("_MapBaseValueIterator<1,2>"));
 				}
 			};
 			A._MapBaseValueIterator.prototype = {
@@ -30436,13 +30072,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var _this = this,
 						t1 = _this._keys;
 					if (t1.moveNext$0()) {
-						_this._collection$_current = J.$index$asx(_this._collection$_map, t1.get$current(t1));
+						_this._collection$_current = _this._collection$_map.$index(0, t1.get$current());
 						return true;
 					}
 					_this._collection$_current = null;
 					return false;
 				},
-				get$current(_) {
+				get$current() {
 					var t1 = this._collection$_current;
 					return t1 == null ? this.$ti._rest[1]._as(t1) : t1;
 				}
@@ -30460,28 +30096,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.MapView.prototype = {
 				cast$2$0(_, $RK, $RV) {
-					var t1 = this._collection$_map;
-					return t1.cast$2$0(t1, $RK, $RV);
+					return this._collection$_map.cast$2$0(0, $RK, $RV);
 				},
 				$index(_, key) {
-					var t1 = this._collection$_map;
-					return t1.$index(t1, key);
+					return this._collection$_map.$index(0, key);
 				},
 				$indexSet(_, key, value) {
-					var t1 = this._collection$_map;
-					t1.$indexSet(t1, key, value);
+					this._collection$_map.$indexSet(0, key, value);
 				},
 				addAll$1(_, other) {
-					var t1 = this._collection$_map;
-					t1.addAll$1(t1, other);
+					this._collection$_map.addAll$1(0, other);
 				},
-				containsKey$1(_, key) {
-					var t1 = this._collection$_map;
-					return t1.containsKey$1(t1, key);
+				containsKey$1(key) {
+					return this._collection$_map.containsKey$1(key);
 				},
 				forEach$1(_, action) {
-					var t1 = this._collection$_map;
-					t1.forEach$1(t1, action);
+					this._collection$_map.forEach$1(0, action);
 				},
 				get$isEmpty(_) {
 					var t1 = this._collection$_map;
@@ -30500,12 +30130,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return t1.get$keys(t1);
 				},
 				remove$1(_, key) {
-					var t1 = this._collection$_map;
-					return t1.remove$1(t1, key);
+					return this._collection$_map.remove$1(0, key);
 				},
 				toString$0(_) {
-					var t1 = this._collection$_map;
-					return t1.toString$0(t1);
+					return this._collection$_map.toString$0(0);
 				},
 				get$values(_) {
 					var t1 = this._collection$_map;
@@ -30519,8 +30147,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.UnmodifiableMapView.prototype = {
 				cast$2$0(_, $RK, $RV) {
-					var t1 = this._collection$_map;
-					return new A.UnmodifiableMapView(t1.cast$2$0(t1, $RK, $RV), $RK._eval$1("@<0>")._bind$1($RV)._eval$1("UnmodifiableMapView<1,2>"));
+					return new A.UnmodifiableMapView(this._collection$_map.cast$2$0(0, $RK, $RV), $RK._eval$1("@<0>")._bind$1($RV)._eval$1("UnmodifiableMapView<1,2>"));
 				}
 			};
 			A.ListQueue.prototype = {
@@ -30606,7 +30233,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$isQueue: 1
 			};
 			A._ListQueueIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					var t1 = this._collection$_current;
 					return t1 == null ? this.$ti._precomputed1._as(t1) : t1;
 				},
@@ -30636,12 +30263,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				addAll$1(_, elements) {
 					var t1;
 					for (t1 = J.get$iterator$ax(elements); t1.moveNext$0();)
-						this.add$1(0, t1.get$current(t1));
+						this.add$1(0, t1.get$current());
 				},
 				removeAll$1(elements) {
 					var t1;
 					for (t1 = J.get$iterator$ax(elements); t1.moveNext$0();)
-						this.remove$1(0, t1.get$current(t1));
+						this.remove$1(0, t1.get$current());
 				},
 				toList$1$growable(_, growable) {
 					var t1 = A.List_List$_of(this, A._instanceType(this)._precomputed1);
@@ -30662,12 +30289,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				forEach$1(_, f) {
 					var t1;
 					for (t1 = this.get$iterator(this); t1.moveNext$0();)
-						f.call$1(t1.get$current(t1));
+						f.call$1(t1.get$current());
 				},
 				any$1(_, test) {
 					var t1;
 					for (t1 = this.get$iterator(this); t1.moveNext$0();)
-						if (test.call$1(t1.get$current(t1)))
+						if (test.call$1(t1.get$current()))
 							return true;
 					return false;
 				},
@@ -30681,7 +30308,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var it = this.get$iterator(this);
 					if (!it.moveNext$0())
 						throw A.wrapException(A.IterableElementError_noElement());
-					return it.get$current(it);
+					return it.get$current();
 				},
 				get$last(_) {
 					var result,
@@ -30689,7 +30316,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!it.moveNext$0())
 						throw A.wrapException(A.IterableElementError_noElement());
 					do
-						result = it.get$current(it);
+						result = it.get$current();
 					while (it.moveNext$0());
 					return result;
 				},
@@ -30699,7 +30326,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					iterator = this.get$iterator(this);
 					for (skipCount = index; iterator.moveNext$0();) {
 						if (skipCount === 0)
-							return iterator.get$current(iterator);
+							return iterator.get$current();
 						--skipCount;
 					}
 					throw A.wrapException(A.IndexError$withLength(index, index - skipCount, this, null, "index"));
@@ -30721,7 +30348,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return result;
 				},
-				intersection$1(_, other) {
+				intersection$1(other) {
 					var t1, t2, element, _this = this,
 						result = _this._newSet$0();
 					for (t1 = A._LinkedHashSetIterator$(_this, _this._collection$_modifications, A._instanceType(_this)._precomputed1), t2 = t1.$ti._precomputed1; t1.moveNext$0();) {
@@ -30774,7 +30401,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return null;
 				},
-				$signature: 43
+				$signature: 41
 			};
 			A._Utf8Decoder__decoderNonfatal_closure.prototype = {
 				call$0() {
@@ -30786,10 +30413,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return null;
 				},
-				$signature: 43
+				$signature: 41
 			};
 			A.Base64Codec.prototype = {
-				normalize$3(_, source, start, end) {
+				normalize$3(source, start, end) {
 					var inverseAlphabet, i, sliceStart, buffer, firstPadding, firstPaddingSourceIndex, paddingCount, i0, char, i1, digit1, digit2, char0, value, t1, t2, endLength, $length,
 						_s31_ = "Invalid base64 encoding length ";
 					end = A.RangeError_checkValidRange(start, end, source.length);
@@ -31147,7 +30774,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._contents += t3;
 					t2.comma = ", ";
 				},
-				$signature: 246
+				$signature: 113
 			};
 			A.DateTime.prototype = {
 				$eq(_, other) {
@@ -31452,19 +31079,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				contains$1(_, element) {
 					var t1;
 					for (t1 = this.get$iterator(this); t1.moveNext$0();)
-						if (J.$eq$(t1.get$current(t1), element))
+						if (J.$eq$(t1.get$current(), element))
 							return true;
 					return false;
 				},
 				forEach$1(_, action) {
 					var t1;
 					for (t1 = this.get$iterator(this); t1.moveNext$0();)
-						action.call$1(t1.get$current(t1));
+						action.call$1(t1.get$current());
 				},
 				fold$1$2(_, initialValue, combine) {
 					var t1, value;
 					for (t1 = this.get$iterator(this), value = initialValue; t1.moveNext$0();)
-						value = combine.call$2(value, t1.get$current(t1));
+						value = combine.call$2(value, t1.get$current());
 					return value;
 				},
 				fold$2(_, initialValue, combine) {
@@ -31475,18 +31102,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						iterator = this.get$iterator(this);
 					if (!iterator.moveNext$0())
 						return "";
-					first = J.toString$0$(iterator.get$current(iterator));
+					first = J.toString$0$(iterator.get$current());
 					if (!iterator.moveNext$0())
 						return first;
 					if (separator.length === 0) {
 						t1 = first;
 						do
-							t1 += A.S(J.toString$0$(iterator.get$current(iterator)));
+							t1 += A.S(J.toString$0$(iterator.get$current()));
 						while (iterator.moveNext$0());
 					} else {
 						t1 = first;
 						do
-							t1 = t1 + separator + A.S(J.toString$0$(iterator.get$current(iterator)));
+							t1 = t1 + separator + A.S(J.toString$0$(iterator.get$current()));
 						while (iterator.moveNext$0());
 					}
 					return t1.charCodeAt(0) == 0 ? t1 : t1;
@@ -31494,7 +31121,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				any$1(_, test) {
 					var t1;
 					for (t1 = this.get$iterator(this); t1.moveNext$0();)
-						if (test.call$1(t1.get$current(t1)))
+						if (test.call$1(t1.get$current()))
 							return true;
 					return false;
 				},
@@ -31538,7 +31165,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var it = this.get$iterator(this);
 					if (!it.moveNext$0())
 						throw A.wrapException(A.IterableElementError_noElement());
-					return it.get$current(it);
+					return it.get$current();
 				},
 				get$last(_) {
 					var result,
@@ -31546,7 +31173,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!it.moveNext$0())
 						throw A.wrapException(A.IterableElementError_noElement());
 					do
-						result = it.get$current(it);
+						result = it.get$current();
 					while (it.moveNext$0());
 					return result;
 				},
@@ -31556,7 +31183,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					iterator = this.get$iterator(this);
 					for (skipCount = index; iterator.moveNext$0();) {
 						if (skipCount === 0)
-							return iterator.get$current(iterator);
+							return iterator.get$current();
 						--skipCount;
 					}
 					throw A.wrapException(A.IndexError$withLength(index, index - skipCount, this, null, "index"));
@@ -31618,7 +31245,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.RuneIterator.prototype = {
-				get$current(_) {
+				get$current() {
 					return this._currentCodePoint;
 				},
 				moveNext$0() {
@@ -31666,7 +31293,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(msg, position) {
 					throw A.wrapException(A.FormatException$("Illegal IPv6 address, " + msg, this.host, position));
 				},
-				$signature: 116
+				$signature: 132
 			};
 			A._Uri.prototype = {
 				get$_text() {
@@ -31727,7 +31354,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$userInfo() {
 					return this._userInfo;
 				},
-				get$host(_) {
+				get$host() {
 					var host = this._host;
 					if (host == null)
 						return "";
@@ -31739,7 +31366,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this._port;
 					return t1 == null ? A._Uri__defaultPort(this.scheme) : t1;
 				},
-				get$query(_) {
+				get$query() {
 					var t1 = this._query;
 					return t1 == null ? "" : t1;
 				},
@@ -31753,7 +31380,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return false;
 					return A._caseInsensitiveCompareStart(scheme, thisScheme, 0) >= 0;
 				},
-				replace$1$scheme(_, scheme) {
+				replace$1$scheme(scheme) {
 					var isFile, userInfo, port, host, currentPath, t1, path, _this = this;
 					scheme = A._Uri__makeScheme(scheme, 0, scheme.length);
 					isFile = scheme === "file";
@@ -31815,7 +31442,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						targetScheme = reference.get$scheme();
 						if (reference.get$hasAuthority()) {
 							targetUserInfo = reference.get$userInfo();
-							targetHost = reference.get$host(reference);
+							targetHost = reference.get$host();
 							targetPort = reference.get$hasPort() ? reference.get$port(reference) : _null;
 						} else {
 							targetPort = _null;
@@ -31823,18 +31450,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							targetUserInfo = "";
 						}
 						targetPath = A._Uri__removeDotSegments(reference.get$path(reference));
-						targetQuery = reference.get$hasQuery() ? reference.get$query(reference) : _null;
+						targetQuery = reference.get$hasQuery() ? reference.get$query() : _null;
 						split = 0;
 					} else {
 						targetScheme = _this.scheme;
 						if (reference.get$hasAuthority()) {
 							if (type$._PlatformUri._is(reference))
-								return reference.replace$1$scheme(0, targetScheme);
+								return reference.replace$1$scheme(targetScheme);
 							targetUserInfo = reference.get$userInfo();
-							targetHost = reference.get$host(reference);
+							targetHost = reference.get$host();
 							targetPort = A._Uri__makePort(reference.get$hasPort() ? reference.get$port(reference) : _null, targetScheme);
 							targetPath = A._Uri__removeDotSegments(reference.get$path(reference));
-							targetQuery = reference.get$hasQuery() ? reference.get$query(reference) : _null;
+							targetQuery = reference.get$hasQuery() ? reference.get$query() : _null;
 							split = 1;
 						} else {
 							targetUserInfo = _this._userInfo;
@@ -31843,7 +31470,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							targetPath = _this.path;
 							if (reference.get$hasEmptyPath())
 								if (reference.get$hasQuery()) {
-									targetQuery = reference.get$query(reference);
+									targetQuery = reference.get$query();
 									split = 3;
 								} else {
 									targetQuery = _this._query;
@@ -31869,7 +31496,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 									else
 										targetPath = A._Uri__normalizeRelativePath(mergedPath, !t1 || targetHost != null);
 								}
-								targetQuery = reference.get$hasQuery() ? reference.get$query(reference) : _null;
+								targetQuery = reference.get$hasQuery() ? reference.get$query() : _null;
 								split = 2;
 							}
 						}
@@ -31926,15 +31553,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = _this._fragment;
 					if ((t1 == null ? "" : t1) !== "")
 						throw A.wrapException(A.UnsupportedError$(string$.Cannotff));
-					if (A._Uri__isWindows()) { //DSH+
-						return A._Uri__toWindowsFilePath(_this); //DSH+
-					} //DSH+
-					if (_this._host != null && _this.get$host(0) !== "")
-						A.throwExpression(A.UnsupportedError$(string$.Cannotn));
-					pathSegments = _this.get$pathSegments();
-					A._Uri__checkNonWindowsPathReservedCharacters(pathSegments, false);
-					t1 = A.StringBuffer__writeAll(B.JSString_methods.startsWith$1(_this.path, "/") ? "/" : "", pathSegments, "/");
-					t1 = t1.charCodeAt(0) == 0 ? t1 : t1;
+					t1 = $.$get$_Uri__isWindowsCached();
+					if (t1)
+						t1 = A._Uri__toWindowsFilePath(_this);
+					else {
+						if (_this._host != null && _this.get$host() !== "")
+							A.throwExpression(A.UnsupportedError$(string$.Cannotn));
+						pathSegments = _this.get$pathSegments();
+						A._Uri__checkNonWindowsPathReservedCharacters(pathSegments, false);
+						t1 = A.StringBuffer__writeAll(B.JSString_methods.startsWith$1(_this.path, "/") ? "/" : "", pathSegments, "/");
+						t1 = t1.charCodeAt(0) == 0 ? t1 : t1;
+					}
 					return t1;
 				},
 				toString$0(_) {
@@ -31951,7 +31580,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (_this.scheme === other.get$scheme())
 							if (_this._host != null === other.get$hasAuthority())
 								if (_this._userInfo === other.get$userInfo())
-									if (_this.get$host(0) === other.get$host(other))
+									if (_this.get$host() === other.get$host())
 										if (_this.get$port(0) === other.get$port(other))
 											if (_this.path === other.get$path(other)) {
 												t2 = _this._query;
@@ -31959,7 +31588,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 												if (!t3 === other.get$hasQuery()) {
 													if (t3)
 														t2 = "";
-													if (t2 === other.get$query(other)) {
+													if (t2 === other.get$query()) {
 														t2 = _this._fragment;
 														t3 = t2 == null;
 														if (!t3 === other.get$hasFragment()) {
@@ -32053,7 +31682,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = this._schemeEnd + 3;
 					return t1 > t2 ? B.JSString_methods.substring$2(this._uri, t2, t1 - 1) : "";
 				},
-				get$host(_) {
+				get$host() {
 					var t1 = this._hostStart;
 					return t1 > 0 ? B.JSString_methods.substring$2(this._uri, t1, this._portStart) : "";
 				},
@@ -32071,7 +31700,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$path(_) {
 					return B.JSString_methods.substring$2(this._uri, this._pathStart, this._queryStart);
 				},
-				get$query(_) {
+				get$query() {
 					var t1 = this._queryStart,
 						t2 = this._fragmentStart;
 					return t1 < t2 ? B.JSString_methods.substring$2(this._uri, t1 + 1, t2) : "";
@@ -32111,7 +31740,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return _this;
 					return new A._SimpleUri(B.JSString_methods.substring$2(t2, 0, t1), _this._schemeEnd, _this._hostStart, _this._portStart, _this._pathStart, _this._queryStart, t1, _this._schemeCache);
 				},
-				replace$1$scheme(_, scheme) {
+				replace$1$scheme(scheme) {
 					var schemeChanged, isFile, t1, userInfo, port, host, t2, path, t3, query, fragment, _this = this, _null = null;
 					scheme = A._Uri__makeScheme(scheme, 0, scheme.length);
 					schemeChanged = !(_this._schemeEnd === scheme.length && B.JSString_methods.startsWith$1(_this._uri, scheme));
@@ -32238,7 +31867,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A._SimpleUri(B.JSString_methods.substring$2(baseUri, 0, baseEnd) + insert + B.JSString_methods.substring$1(t2, refStart), base._schemeEnd, base._hostStart, base._portStart, baseStart, t1 + delta, ref._fragmentStart + delta, base._schemeCache);
 				},
 				toFilePath$0() {
-					var t2, _this = this,
+					var t2, t3, _this = this,
 						t1 = _this._schemeEnd;
 					if (t1 >= 0) {
 						t2 = !(t1 === 4 && B.JSString_methods.startsWith$1(_this._uri, "file"));
@@ -32254,9 +31883,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							throw A.wrapException(A.UnsupportedError$(string$.Cannotfq));
 						throw A.wrapException(A.UnsupportedError$(string$.Cannotff));
 					}
-					if (_this._hostStart < _this._portStart)
-						A.throwExpression(A.UnsupportedError$(string$.Cannotn));
-					t1 = B.JSString_methods.substring$2(t2, _this._pathStart, t1);
+					t3 = $.$get$_Uri__isWindowsCached();
+					if (t3)
+						t1 = A._Uri__toWindowsFilePath(_this);
+					else {
+						if (_this._hostStart < _this._portStart)
+							A.throwExpression(A.UnsupportedError$(string$.Cannotn));
+						t1 = B.JSString_methods.substring$2(t2, _this._pathStart, t1);
+					}
 					return t1;
 				},
 				get$hashCode(_) {
@@ -32274,13 +31908,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var _this = this, _null = null,
 						t1 = _this.get$scheme(),
 						t2 = _this.get$userInfo(),
-						t3 = _this._hostStart > 0 ? _this.get$host(0) : _null,
+						t3 = _this._hostStart > 0 ? _this.get$host() : _null,
 						t4 = _this.get$hasPort() ? _this.get$port(0) : _null,
 						t5 = _this._uri,
 						t6 = _this._queryStart,
 						t7 = B.JSString_methods.substring$2(t5, _this._pathStart, t6),
 						t8 = _this._fragmentStart;
-					t6 = t6 < t8 ? _this.get$query(0) : _null;
+					t6 = t6 < t8 ? _this.get$query() : _null;
 					return A._Uri$_internal(t1, t2, t3, t4, t7, t6, t8 < t5.length ? _this.get$fragment() : _null);
 				},
 				toString$0(_) {
@@ -32295,1558 +31929,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return "Expando:null";
 				}
 			};
-			A.HtmlElement.prototype = {};
-			A.AccessibleNodeList.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.AnchorElement.prototype = {
-				toString$0(receiver) {
-					var t1 = String(receiver);
-					t1.toString;
-					return t1;
-				}
-			};
-			A.ApplicationCacheErrorEvent.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.AreaElement.prototype = {
-				toString$0(receiver) {
-					var t1 = String(receiver);
-					t1.toString;
-					return t1;
-				}
-			};
-			A.Blob.prototype = {};
-			A.CharacterData.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.CssPerspective.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.CssRule.prototype = {$isCssRule: 1};
-			A.CssStyleDeclaration.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				}
-			};
-			A.CssStyleDeclarationBase.prototype = {};
-			A.CssStyleValue.prototype = {};
-			A.CssTransformComponent.prototype = {};
-			A.CssTransformValue.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.CssUnparsedValue.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.DataTransferItemList.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.DeprecationReport.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.DomError.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.DomException.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				},
-				toString$0(receiver) {
-					var t1 = String(receiver);
-					t1.toString;
-					return t1;
-				}
-			};
-			A.DomRectList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.DomRectReadOnly.prototype = {
-				toString$0(receiver) {
-					var t2,
-						t1 = receiver.left;
-					t1.toString;
-					t2 = receiver.top;
-					t2.toString;
-					return "Rectangle (" + A.S(t1) + ", " + A.S(t2) + ") " + A.S(this.get$width(receiver)) + " x " + A.S(this.get$height(receiver));
-				},
-				$eq(receiver, other) {
-					var t1, t2, t3;
-					if (other == null)
-						return false;
-					t1 = false;
-					if (type$.Rectangle_dynamic._is(other)) {
-						t2 = receiver.left;
-						t2.toString;
-						t3 = other.left;
-						t3.toString;
-						if (t2 === t3) {
-							t2 = receiver.top;
-							t2.toString;
-							t3 = other.top;
-							t3.toString;
-							if (t2 === t3) {
-								t1 = J.getInterceptor$x(other);
-								t1 = this.get$width(receiver) === t1.get$width(other) && this.get$height(receiver) === t1.get$height(other);
-							}
-						}
-					}
-					return t1;
-				},
-				get$hashCode(receiver) {
-					var t2,
-						t1 = receiver.left;
-					t1.toString;
-					t2 = receiver.top;
-					t2.toString;
-					return A.Object_hash(t1, t2, this.get$width(receiver), this.get$height(receiver));
-				},
-				get$_height(receiver) {
-					return receiver.height;
-				},
-				get$height(receiver) {
-					var t1 = this.get$_height(receiver);
-					t1.toString;
-					return t1;
-				},
-				get$_width(receiver) {
-					return receiver.width;
-				},
-				get$width(receiver) {
-					var t1 = this.get$_width(receiver);
-					t1.toString;
-					return t1;
-				},
-				$isRectangle: 1
-			};
-			A.DomStringList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.DomTokenList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				}
-			};
-			A.Element.prototype = {
-				toString$0(receiver) {
-					var t1 = receiver.localName;
-					t1.toString;
-					return t1;
-				}
-			};
-			A.ErrorEvent.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.Event.prototype = {};
-			A.EventTarget.prototype = {};
-			A.File.prototype = {$isFile: 1};
-			A.FileList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.FileWriter.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.FormElement.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.Gamepad.prototype = {$isGamepad: 1};
-			A.History.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				}
-			};
-			A.HtmlCollection.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.InterventionReport.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.Location.prototype = {
-				toString$0(receiver) {
-					var t1 = String(receiver);
-					t1.toString;
-					return t1;
-				}
-			};
-			A.MediaError.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.MediaKeyMessageEvent.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.MediaList.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.MidiInputMap.prototype = {
-				addAll$1(receiver, other) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				containsKey$1(receiver, key) {
-					return A.convertNativeToDart_Dictionary(receiver.get(key)) != null;
-				},
-				$index(receiver, key) {
-					return A.convertNativeToDart_Dictionary(receiver.get(key));
-				},
-				forEach$1(receiver, f) {
-					var entry, t1,
-						entries = receiver.entries();
-					for (;;) {
-						entry = entries.next();
-						t1 = entry.done;
-						t1.toString;
-						if (t1)
-							return;
-						t1 = entry.value[0];
-						t1.toString;
-						f.call$2(t1, A.convertNativeToDart_Dictionary(entry.value[1]));
-					}
-				},
-				get$keys(receiver) {
-					var keys = A._setArrayType([], type$.JSArray_String);
-					this.forEach$1(receiver, new A.MidiInputMap_keys_closure(keys));
-					return keys;
-				},
-				get$values(receiver) {
-					var values = A._setArrayType([], type$.JSArray_Map_dynamic_dynamic);
-					this.forEach$1(receiver, new A.MidiInputMap_values_closure(values));
-					return values;
-				},
-				get$length(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1;
-				},
-				get$isEmpty(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1 === 0;
-				},
-				get$isNotEmpty(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1 !== 0;
-				},
-				$indexSet(receiver, key, value) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				remove$1(receiver, key) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				$isMap: 1
-			};
-			A.MidiInputMap_keys_closure.prototype = {
-				call$2(k, v) {
-					return this.keys.push(k);
-				},
-				$signature: 17
-			};
-			A.MidiInputMap_values_closure.prototype = {
-				call$2(k, v) {
-					return this.values.push(v);
-				},
-				$signature: 17
-			};
-			A.MidiOutputMap.prototype = {
-				addAll$1(receiver, other) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				containsKey$1(receiver, key) {
-					return A.convertNativeToDart_Dictionary(receiver.get(key)) != null;
-				},
-				$index(receiver, key) {
-					return A.convertNativeToDart_Dictionary(receiver.get(key));
-				},
-				forEach$1(receiver, f) {
-					var entry, t1,
-						entries = receiver.entries();
-					for (;;) {
-						entry = entries.next();
-						t1 = entry.done;
-						t1.toString;
-						if (t1)
-							return;
-						t1 = entry.value[0];
-						t1.toString;
-						f.call$2(t1, A.convertNativeToDart_Dictionary(entry.value[1]));
-					}
-				},
-				get$keys(receiver) {
-					var keys = A._setArrayType([], type$.JSArray_String);
-					this.forEach$1(receiver, new A.MidiOutputMap_keys_closure(keys));
-					return keys;
-				},
-				get$values(receiver) {
-					var values = A._setArrayType([], type$.JSArray_Map_dynamic_dynamic);
-					this.forEach$1(receiver, new A.MidiOutputMap_values_closure(values));
-					return values;
-				},
-				get$length(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1;
-				},
-				get$isEmpty(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1 === 0;
-				},
-				get$isNotEmpty(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1 !== 0;
-				},
-				$indexSet(receiver, key, value) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				remove$1(receiver, key) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				$isMap: 1
-			};
-			A.MidiOutputMap_keys_closure.prototype = {
-				call$2(k, v) {
-					return this.keys.push(k);
-				},
-				$signature: 17
-			};
-			A.MidiOutputMap_values_closure.prototype = {
-				call$2(k, v) {
-					return this.values.push(v);
-				},
-				$signature: 17
-			};
-			A.MimeType.prototype = {$isMimeType: 1};
-			A.MimeTypeArray.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.NavigatorUserMediaError.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.Node.prototype = {
-				toString$0(receiver) {
-					var value = receiver.nodeValue;
-					return value == null ? this.super$Interceptor$toString(receiver) : value;
-				},
-				$isNode: 1
-			};
-			A.NodeList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.OverconstrainedError.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.Plugin.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				},
-				$isPlugin: 1
-			};
-			A.PluginArray.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.PositionError.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.PresentationConnectionCloseEvent.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.ReportBody.prototype = {};
-			A.RtcStatsReport.prototype = {
-				addAll$1(receiver, other) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				containsKey$1(receiver, key) {
-					return A.convertNativeToDart_Dictionary(receiver.get(key)) != null;
-				},
-				$index(receiver, key) {
-					return A.convertNativeToDart_Dictionary(receiver.get(key));
-				},
-				forEach$1(receiver, f) {
-					var entry, t1,
-						entries = receiver.entries();
-					for (;;) {
-						entry = entries.next();
-						t1 = entry.done;
-						t1.toString;
-						if (t1)
-							return;
-						t1 = entry.value[0];
-						t1.toString;
-						f.call$2(t1, A.convertNativeToDart_Dictionary(entry.value[1]));
-					}
-				},
-				get$keys(receiver) {
-					var keys = A._setArrayType([], type$.JSArray_String);
-					this.forEach$1(receiver, new A.RtcStatsReport_keys_closure(keys));
-					return keys;
-				},
-				get$values(receiver) {
-					var values = A._setArrayType([], type$.JSArray_Map_dynamic_dynamic);
-					this.forEach$1(receiver, new A.RtcStatsReport_values_closure(values));
-					return values;
-				},
-				get$length(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1;
-				},
-				get$isEmpty(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1 === 0;
-				},
-				get$isNotEmpty(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1 !== 0;
-				},
-				$indexSet(receiver, key, value) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				remove$1(receiver, key) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				$isMap: 1
-			};
-			A.RtcStatsReport_keys_closure.prototype = {
-				call$2(k, v) {
-					return this.keys.push(k);
-				},
-				$signature: 17
-			};
-			A.RtcStatsReport_values_closure.prototype = {
-				call$2(k, v) {
-					return this.values.push(v);
-				},
-				$signature: 17
-			};
-			A.SelectElement.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.SourceBuffer.prototype = {$isSourceBuffer: 1};
-			A.SourceBufferList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.SpeechGrammar.prototype = {$isSpeechGrammar: 1};
-			A.SpeechGrammarList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.SpeechRecognitionError.prototype = {
-				get$message(receiver) {
-					return receiver.message;
-				}
-			};
-			A.SpeechRecognitionResult.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				},
-				$isSpeechRecognitionResult: 1
-			};
-			A.Storage.prototype = {
-				addAll$1(receiver, other) {
-					J.forEach$1$ax(other, new A.Storage_addAll_closure(receiver));
-				},
-				containsKey$1(receiver, key) {
-					return receiver.getItem(A._asString(key)) != null;
-				},
-				$index(receiver, key) {
-					return receiver.getItem(A._asString(key));
-				},
-				$indexSet(receiver, key, value) {
-					receiver.setItem(key, value);
-				},
-				remove$1(receiver, key) {
-					var value = receiver.getItem(key);
-					receiver.removeItem(key);
-					return value;
-				},
-				forEach$1(receiver, f) {
-					var i, key, t1;
-					for (i = 0;; ++i) {
-						key = receiver.key(i);
-						if (key == null)
-							return;
-						t1 = receiver.getItem(key);
-						t1.toString;
-						f.call$2(key, t1);
-					}
-				},
-				get$keys(receiver) {
-					var keys = A._setArrayType([], type$.JSArray_String);
-					this.forEach$1(receiver, new A.Storage_keys_closure(keys));
-					return keys;
-				},
-				get$values(receiver) {
-					var values = A._setArrayType([], type$.JSArray_String);
-					this.forEach$1(receiver, new A.Storage_values_closure(values));
-					return values;
-				},
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				get$isEmpty(receiver) {
-					return receiver.key(0) == null;
-				},
-				get$isNotEmpty(receiver) {
-					return receiver.key(0) != null;
-				},
-				$isMap: 1
-			};
-			A.Storage_addAll_closure.prototype = {
-				call$2(k, v) {
-					this.$this.setItem(k, v);
-				},
-				$signature: 55
-			};
-			A.Storage_keys_closure.prototype = {
-				call$2(k, v) {
-					return this.keys.push(k);
-				},
-				$signature: 55
-			};
-			A.Storage_values_closure.prototype = {
-				call$2(k, v) {
-					return this.values.push(v);
-				},
-				$signature: 55
-			};
-			A.StyleSheet.prototype = {$isStyleSheet: 1};
-			A.TextTrack.prototype = {$isTextTrack: 1};
-			A.TextTrackCue.prototype = {$isTextTrackCue: 1};
-			A.TextTrackCueList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.TextTrackList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.TimeRanges.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				}
-			};
-			A.Touch.prototype = {$isTouch: 1};
-			A.TouchList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.TrackDefaultList.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.Url.prototype = {
-				toString$0(receiver) {
-					var t1 = String(receiver);
-					t1.toString;
-					return t1;
-				}
-			};
-			A.VideoTrackList.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A._CssRuleList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A._DomRect.prototype = {
-				toString$0(receiver) {
-					var t2, t3, t4,
-						t1 = receiver.left;
-					t1.toString;
-					t2 = receiver.top;
-					t2.toString;
-					t3 = receiver.width;
-					t3.toString;
-					t4 = receiver.height;
-					t4.toString;
-					return "Rectangle (" + A.S(t1) + ", " + A.S(t2) + ") " + A.S(t3) + " x " + A.S(t4);
-				},
-				$eq(receiver, other) {
-					var t1, t2, t3;
-					if (other == null)
-						return false;
-					t1 = false;
-					if (type$.Rectangle_dynamic._is(other)) {
-						t2 = receiver.left;
-						t2.toString;
-						t3 = other.left;
-						t3.toString;
-						if (t2 === t3) {
-							t2 = receiver.top;
-							t2.toString;
-							t3 = other.top;
-							t3.toString;
-							if (t2 === t3) {
-								t2 = receiver.width;
-								t2.toString;
-								t3 = J.getInterceptor$x(other);
-								if (t2 === t3.get$width(other)) {
-									t1 = receiver.height;
-									t1.toString;
-									t3 = t1 === t3.get$height(other);
-									t1 = t3;
-								}
-							}
-						}
-					}
-					return t1;
-				},
-				get$hashCode(receiver) {
-					var t2, t3, t4,
-						t1 = receiver.left;
-					t1.toString;
-					t2 = receiver.top;
-					t2.toString;
-					t3 = receiver.width;
-					t3.toString;
-					t4 = receiver.height;
-					t4.toString;
-					return A.Object_hash(t1, t2, t3, t4);
-				},
-				get$_height(receiver) {
-					return receiver.height;
-				},
-				get$height(receiver) {
-					var t1 = receiver.height;
-					t1.toString;
-					return t1;
-				},
-				get$_width(receiver) {
-					return receiver.width;
-				},
-				get$width(receiver) {
-					var t1 = receiver.width;
-					t1.toString;
-					return t1;
-				}
-			};
-			A._GamepadList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					return receiver[index];
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					if (receiver.length > 0)
-						return receiver[0];
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var len = receiver.length;
-					if (len > 0)
-						return receiver[len - 1];
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A._NamedNodeMap.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A._SpeechRecognitionResultList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A._StyleSheetList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length,
-						t2 = index >>> 0 !== index || index >= t1;
-					t2.toString;
-					if (t2)
-						throw A.wrapException(A.IndexError$withLength(index, t1, receiver, null, null));
-					t1 = receiver[index];
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1;
-					if (receiver.length > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1,
-						len = receiver.length;
-					if (len > 0) {
-						t1 = receiver[len - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return receiver[index];
-				},
-				$isEfficientLengthIterable: 1,
-				$isJavaScriptIndexingBehavior: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.ImmutableListMixin.prototype = {
-				get$iterator(receiver) {
-					return new A.FixedSizeListIterator(receiver, this.get$length(receiver), A.instanceType(receiver)._eval$1("FixedSizeListIterator<ImmutableListMixin.E>"));
-				},
-				add$1(receiver, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot add to immutable List."));
-				},
-				addAll$1(receiver, iterable) {
-					throw A.wrapException(A.UnsupportedError$("Cannot add to immutable List."));
-				},
-				sort$1(receiver, compare) {
-					throw A.wrapException(A.UnsupportedError$("Cannot sort immutable List."));
-				},
-				setRange$4(receiver, start, end, iterable, skipCount) {
-					throw A.wrapException(A.UnsupportedError$("Cannot setRange on immutable List."));
-				},
-				fillRange$3(receiver, start, end, fillValue) {
-					throw A.wrapException(A.UnsupportedError$("Cannot modify an immutable List."));
-				}
-			};
-			A.FixedSizeListIterator.prototype = {
-				moveNext$0() {
-					var _this = this,
-						nextPosition = _this._position + 1,
-						t1 = _this._length;
-					if (nextPosition < t1) {
-						_this._current = J.$index$asx(_this._array, nextPosition);
-						_this._position = nextPosition;
-						return true;
-					}
-					_this._current = null;
-					_this._position = t1;
-					return false;
-				},
-				get$current(_) {
-					var t1 = this._current;
-					return t1 == null ? this.$ti._precomputed1._as(t1) : t1;
-				}
-			};
-			A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase.prototype = {};
-			A._DomRectList_JavaScriptObject_ListMixin.prototype = {};
-			A._DomRectList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._DomStringList_JavaScriptObject_ListMixin.prototype = {};
-			A._DomStringList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._FileList_JavaScriptObject_ListMixin.prototype = {};
-			A._FileList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._HtmlCollection_JavaScriptObject_ListMixin.prototype = {};
-			A._HtmlCollection_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._MidiInputMap_JavaScriptObject_MapMixin.prototype = {};
-			A._MidiOutputMap_JavaScriptObject_MapMixin.prototype = {};
-			A._MimeTypeArray_JavaScriptObject_ListMixin.prototype = {};
-			A._MimeTypeArray_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._NodeList_JavaScriptObject_ListMixin.prototype = {};
-			A._NodeList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._PluginArray_JavaScriptObject_ListMixin.prototype = {};
-			A._PluginArray_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._RtcStatsReport_JavaScriptObject_MapMixin.prototype = {};
-			A._SourceBufferList_EventTarget_ListMixin.prototype = {};
-			A._SourceBufferList_EventTarget_ListMixin_ImmutableListMixin.prototype = {};
-			A._SpeechGrammarList_JavaScriptObject_ListMixin.prototype = {};
-			A._SpeechGrammarList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._Storage_JavaScriptObject_MapMixin.prototype = {};
-			A._TextTrackCueList_JavaScriptObject_ListMixin.prototype = {};
-			A._TextTrackCueList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._TextTrackList_EventTarget_ListMixin.prototype = {};
-			A._TextTrackList_EventTarget_ListMixin_ImmutableListMixin.prototype = {};
-			A._TouchList_JavaScriptObject_ListMixin.prototype = {};
-			A._TouchList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A.__CssRuleList_JavaScriptObject_ListMixin.prototype = {};
-			A.__CssRuleList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A.__GamepadList_JavaScriptObject_ListMixin.prototype = {};
-			A.__GamepadList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A.__NamedNodeMap_JavaScriptObject_ListMixin.prototype = {};
-			A.__NamedNodeMap_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin.prototype = {};
-			A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A.__StyleSheetList_JavaScriptObject_ListMixin.prototype = {};
-			A.__StyleSheetList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
 			A.jsify__convert.prototype = {
 				call$1(o) {
-					var t1, convertedMap, t2, key, convertedList;
+					var t1, convertedMap, key, convertedList;
 					if (A._noJsifyRequired(o))
 						return o;
 					t1 = this._convertedObjects;
-					if (t1.containsKey$1(0, o))
+					if (t1.containsKey$1(o))
 						return t1.$index(0, o);
 					if (type$.Map_dynamic_dynamic._is(o)) {
 						convertedMap = {};
 						t1.$indexSet(0, o, convertedMap);
-						for (t1 = J.getInterceptor$x(o), t2 = J.get$iterator$ax(t1.get$keys(o)); t2.moveNext$0();) {
-							key = t2.get$current(t2);
-							convertedMap[key] = this.call$1(t1.$index(o, key));
+						for (t1 = o.get$keys(o), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
+							key = t1.get$current();
+							convertedMap[key] = this.call$1(o.$index(0, key));
 						}
 						return convertedMap;
 					} else if (type$.Iterable_dynamic._is(o)) {
@@ -33857,7 +31953,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					} else
 						return o;
 				},
-				$signature: 225
+				$signature: 164
 			};
 			A._JSRandom.prototype = {
 				nextInt$1(max) {
@@ -33869,308 +31965,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return Math.random();
 				}
 			};
-			A.Length.prototype = {$isLength: 1};
-			A.LengthList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length;
-					t1.toString;
-					t1 = index >>> 0 !== index || index >= t1;
-					t1.toString;
-					if (t1)
-						throw A.wrapException(A.IndexError$withLength(index, this.get$length(receiver), receiver, null, null));
-					t1 = receiver.getItem(index);
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					if (t1 > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					if (t1 > 0) {
-						t1 = receiver[t1 - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return this.$index(receiver, index);
-				},
-				$isEfficientLengthIterable: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.Number.prototype = {$isNumber: 1};
-			A.NumberList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length;
-					t1.toString;
-					t1 = index >>> 0 !== index || index >= t1;
-					t1.toString;
-					if (t1)
-						throw A.wrapException(A.IndexError$withLength(index, this.get$length(receiver), receiver, null, null));
-					t1 = receiver.getItem(index);
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					if (t1 > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					if (t1 > 0) {
-						t1 = receiver[t1 - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return this.$index(receiver, index);
-				},
-				$isEfficientLengthIterable: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.PointList.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.StringList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length;
-					t1.toString;
-					t1 = index >>> 0 !== index || index >= t1;
-					t1.toString;
-					if (t1)
-						throw A.wrapException(A.IndexError$withLength(index, this.get$length(receiver), receiver, null, null));
-					t1 = receiver.getItem(index);
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					if (t1 > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					if (t1 > 0) {
-						t1 = receiver[t1 - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return this.$index(receiver, index);
-				},
-				$isEfficientLengthIterable: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A.Transform.prototype = {$isTransform: 1};
-			A.TransformList.prototype = {
-				get$length(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					return t1;
-				},
-				$index(receiver, index) {
-					var t1 = receiver.length;
-					t1.toString;
-					t1 = index >>> 0 !== index || index >= t1;
-					t1.toString;
-					if (t1)
-						throw A.wrapException(A.IndexError$withLength(index, this.get$length(receiver), receiver, null, null));
-					t1 = receiver.getItem(index);
-					t1.toString;
-					return t1;
-				},
-				$indexSet(receiver, index, value) {
-					throw A.wrapException(A.UnsupportedError$("Cannot assign element of immutable List."));
-				},
-				set$length(receiver, newLength) {
-					throw A.wrapException(A.UnsupportedError$("Cannot resize immutable List."));
-				},
-				get$first(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					if (t1 > 0) {
-						t1 = receiver[0];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				get$last(receiver) {
-					var t1 = receiver.length;
-					t1.toString;
-					if (t1 > 0) {
-						t1 = receiver[t1 - 1];
-						t1.toString;
-						return t1;
-					}
-					throw A.wrapException(A.StateError$("No elements"));
-				},
-				elementAt$1(receiver, index) {
-					return this.$index(receiver, index);
-				},
-				$isEfficientLengthIterable: 1,
-				$isIterable: 1,
-				$isList: 1
-			};
-			A._LengthList_JavaScriptObject_ListMixin.prototype = {};
-			A._LengthList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._NumberList_JavaScriptObject_ListMixin.prototype = {};
-			A._NumberList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._StringList_JavaScriptObject_ListMixin.prototype = {};
-			A._StringList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A._TransformList_JavaScriptObject_ListMixin.prototype = {};
-			A._TransformList_JavaScriptObject_ListMixin_ImmutableListMixin.prototype = {};
-			A.AudioBuffer.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.AudioParamMap.prototype = {
-				addAll$1(receiver, other) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				containsKey$1(receiver, key) {
-					return A.convertNativeToDart_Dictionary(receiver.get(key)) != null;
-				},
-				$index(receiver, key) {
-					return A.convertNativeToDart_Dictionary(receiver.get(key));
-				},
-				forEach$1(receiver, f) {
-					var entry, t1,
-						entries = receiver.entries();
-					for (;;) {
-						entry = entries.next();
-						t1 = entry.done;
-						t1.toString;
-						if (t1)
-							return;
-						t1 = entry.value[0];
-						t1.toString;
-						f.call$2(t1, A.convertNativeToDart_Dictionary(entry.value[1]));
-					}
-				},
-				get$keys(receiver) {
-					var keys = A._setArrayType([], type$.JSArray_String);
-					this.forEach$1(receiver, new A.AudioParamMap_keys_closure(keys));
-					return keys;
-				},
-				get$values(receiver) {
-					var values = A._setArrayType([], type$.JSArray_Map_dynamic_dynamic);
-					this.forEach$1(receiver, new A.AudioParamMap_values_closure(values));
-					return values;
-				},
-				get$length(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1;
-				},
-				get$isEmpty(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1 === 0;
-				},
-				get$isNotEmpty(receiver) {
-					var t1 = receiver.size;
-					t1.toString;
-					return t1 !== 0;
-				},
-				$indexSet(receiver, key, value) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				remove$1(receiver, key) {
-					throw A.wrapException(A.UnsupportedError$("Not supported"));
-				},
-				$isMap: 1
-			};
-			A.AudioParamMap_keys_closure.prototype = {
-				call$2(k, v) {
-					return this.keys.push(k);
-				},
-				$signature: 17
-			};
-			A.AudioParamMap_values_closure.prototype = {
-				call$2(k, v) {
-					return this.values.push(v);
-				},
-				$signature: 17
-			};
-			A.AudioTrackList.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A.BaseAudioContext.prototype = {};
-			A.OfflineAudioContext.prototype = {
-				get$length(receiver) {
-					return receiver.length;
-				}
-			};
-			A._AudioParamMap_JavaScriptObject_MapMixin.prototype = {};
 			A._isStrictMode_closure.prototype = {
 				call$0() {
 					var exception;
@@ -34181,7 +31975,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return true;
 					}
 				},
-				$signature: 20
+				$signature: 19
 			};
 			A.EmptyUnmodifiableSet.prototype = {
 				get$iterator(_) {
@@ -34214,11 +32008,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							return false;
 						if (!hasNext)
 							return true;
-						if (!J.$eq$(it1.get$current(it1), it2.get$current(it2)))
+						if (!J.$eq$(it1.get$current(), it2.get$current()))
 							return false;
 					}
 				},
-				hash$1(_, elements) {
+				hash$1(elements) {
 					var t1, hash, _i;
 					for (t1 = elements.length, hash = 0, _i = 0; _i < elements.length; elements.length === t1 || (0, A.throwConcurrentModificationError)(elements), ++_i) {
 						hash = hash + J.get$hashCode$(elements[_i]) & 2147483647;
@@ -34247,7 +32041,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							return false;
 					return true;
 				},
-				hash$1(_, list) {
+				hash$1(list) {
 					var hash, i;
 					for (hash = 0, i = 0; i < list.length; ++i) {
 						hash = hash + J.get$hashCode$(list[i]) & 2147483647;
@@ -34277,14 +32071,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (map1.get$length(map1) !== map2.get$length(map2))
 						return false;
 					equalElementCounts = A.HashMap_HashMap(type$._MapEntry, type$.int);
-					for (t1 = J.get$iterator$ax(map1.get$keys(map1)); t1.moveNext$0();) {
-						key = t1.get$current(t1);
+					for (t1 = map1.get$keys(map1), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
+						key = t1.get$current();
 						entry = new A._MapEntry(this, key, map1.$index(0, key));
 						count = equalElementCounts.$index(0, entry);
 						equalElementCounts.$indexSet(0, entry, (count == null ? 0 : count) + 1);
 					}
-					for (t1 = J.get$iterator$ax(map2.get$keys(map2)); t1.moveNext$0();) {
-						key = t1.get$current(t1);
+					for (t1 = map2.get$keys(map2), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
+						key = t1.get$current();
 						entry = new A._MapEntry(this, key, map2.$index(0, key));
 						count = equalElementCounts.$index(0, entry);
 						if (count == null || count === 0)
@@ -34293,10 +32087,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return true;
 				},
-				hash$1(_, map) {
+				hash$1(map) {
 					var t1, t2, hash, key, keyHash, t3;
-					for (t1 = J.get$iterator$ax(map.get$keys(map)), t2 = this.$ti._rest[1], hash = 0; t1.moveNext$0();) {
-						key = t1.get$current(t1);
+					for (t1 = map.get$keys(map), t1 = t1.get$iterator(t1), t2 = this.$ti._rest[1], hash = 0; t1.moveNext$0();) {
+						key = t1.get$current();
 						keyHash = J.get$hashCode$(key);
 						t3 = map.$index(0, key);
 						hash = hash + 3 * keyHash + 7 * J.get$hashCode$(t3 == null ? t2._as(t3) : t3) & 2147483647;
@@ -34308,7 +32102,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.QueueList.prototype = {
 				add$1(_, element) {
-					this._queue_list$_add$1(0, element);
+					this._queue_list$_add$1(element);
 				},
 				addAll$1(_, iterable) {
 					var addCount, $length, t1, endSpace, t2, preSpace, _this = this;
@@ -34336,7 +32130,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 					} else
 						for (t1 = J.get$iterator$ax(iterable); t1.moveNext$0();)
-							_this._queue_list$_add$1(0, t1.get$current(t1));
+							_this._queue_list$_add$1(t1.get$current());
 				},
 				cast$1$0(_, $T) {
 					return new A._CastQueueList(this, J.cast$1$0$ax(this._table, $T), -1, -1, A._instanceType(this)._eval$1("@<QueueList.E>")._bind$1($T)._eval$1("_CastQueueList<1,2>"));
@@ -34346,25 +32140,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				addFirst$1(element) {
 					var _this = this;
-					_this.set$_head(0, (_this.get$_head(_this) - 1 & J.get$length$asx(_this._table) - 1) >>> 0);
-					J.$indexSet$ax(_this._table, _this.get$_head(_this), element);
-					if (_this.get$_head(_this) === _this.get$_tail())
+					_this.set$_head((_this.get$_head() - 1 & J.get$length$asx(_this._table) - 1) >>> 0);
+					J.$indexSet$ax(_this._table, _this.get$_head(), element);
+					if (_this.get$_head() === _this.get$_tail())
 						_this._grow$0();
 				},
 				removeFirst$0() {
 					var result, _this = this;
-					if (_this.get$_head(_this) === _this.get$_tail())
+					if (_this.get$_head() === _this.get$_tail())
 						throw A.wrapException(A.StateError$("No element"));
-					result = J.$index$asx(_this._table, _this.get$_head(_this));
+					result = J.$index$asx(_this._table, _this.get$_head());
 					if (result == null)
 						result = A._instanceType(_this)._eval$1("QueueList.E")._as(result);
-					J.$indexSet$ax(_this._table, _this.get$_head(_this), null);
-					_this.set$_head(0, (_this.get$_head(_this) + 1 & J.get$length$asx(_this._table) - 1) >>> 0);
+					J.$indexSet$ax(_this._table, _this.get$_head(), null);
+					_this.set$_head((_this.get$_head() + 1 & J.get$length$asx(_this._table) - 1) >>> 0);
 					return result;
 				},
 				removeLast$0(_) {
 					var result, _this = this;
-					if (_this.get$_head(_this) === _this.get$_tail())
+					if (_this.get$_head() === _this.get$_tail())
 						throw A.wrapException(A.StateError$("No element"));
 					_this.set$_tail((_this.get$_tail() - 1 & J.get$length$asx(_this._table) - 1) >>> 0);
 					result = J.$index$asx(_this._table, _this.get$_tail());
@@ -34374,8 +32168,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return result;
 				},
 				get$length(_) {
-					var _this = this;
-					return (_this.get$_tail() - _this.get$_head(_this) & J.get$length$asx(_this._table) - 1) >>> 0;
+					return (this.get$_tail() - this.get$_head() & J.get$length$asx(this._table) - 1) >>> 0;
 				},
 				set$length(_, value) {
 					var delta, newTail, t1, t2, _this = this;
@@ -34407,41 +32200,41 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, _this = this;
 					if (index < 0 || index >= _this.get$length(0))
 						throw A.wrapException(A.RangeError$("Index " + index + " must be in the range [0.." + _this.get$length(0) + ")."));
-					t1 = J.$index$asx(_this._table, (_this.get$_head(_this) + index & J.get$length$asx(_this._table) - 1) >>> 0);
+					t1 = J.$index$asx(_this._table, (_this.get$_head() + index & J.get$length$asx(_this._table) - 1) >>> 0);
 					return t1 == null ? A._instanceType(_this)._eval$1("QueueList.E")._as(t1) : t1;
 				},
 				$indexSet(_, index, value) {
 					var _this = this;
 					if (index < 0 || index >= _this.get$length(0))
 						throw A.wrapException(A.RangeError$("Index " + index + " must be in the range [0.." + _this.get$length(0) + ")."));
-					J.$indexSet$ax(_this._table, (_this.get$_head(_this) + index & J.get$length$asx(_this._table) - 1) >>> 0, value);
+					J.$indexSet$ax(_this._table, (_this.get$_head() + index & J.get$length$asx(_this._table) - 1) >>> 0, value);
 				},
-				_queue_list$_add$1(_, element) {
+				_queue_list$_add$1(element) {
 					var _this = this;
 					J.$indexSet$ax(_this._table, _this.get$_tail(), element);
 					_this.set$_tail((_this.get$_tail() + 1 & J.get$length$asx(_this._table) - 1) >>> 0);
-					if (_this.get$_head(_this) === _this.get$_tail())
+					if (_this.get$_head() === _this.get$_tail())
 						_this._grow$0();
 				},
 				_grow$0() {
 					var _this = this,
 						newTable = A.List_List$filled(J.get$length$asx(_this._table) * 2, null, false, A._instanceType(_this)._eval$1("QueueList.E?")),
-						split = J.get$length$asx(_this._table) - _this.get$_head(_this);
-					B.JSArray_methods.setRange$4(newTable, 0, split, _this._table, _this.get$_head(_this));
-					B.JSArray_methods.setRange$4(newTable, split, split + _this.get$_head(_this), _this._table, 0);
-					_this.set$_head(0, 0);
+						split = J.get$length$asx(_this._table) - _this.get$_head();
+					B.JSArray_methods.setRange$4(newTable, 0, split, _this._table, _this.get$_head());
+					B.JSArray_methods.setRange$4(newTable, split, split + _this.get$_head(), _this._table, 0);
+					_this.set$_head(0);
 					_this.set$_tail(J.get$length$asx(_this._table));
 					_this._table = newTable;
 				},
 				_writeToList$1(target) {
 					var $length, firstPartSize, _this = this;
-					if (_this.get$_head(_this) <= _this.get$_tail()) {
-						$length = _this.get$_tail() - _this.get$_head(_this);
-						B.JSArray_methods.setRange$4(target, 0, $length, _this._table, _this.get$_head(_this));
+					if (_this.get$_head() <= _this.get$_tail()) {
+						$length = _this.get$_tail() - _this.get$_head();
+						B.JSArray_methods.setRange$4(target, 0, $length, _this._table, _this.get$_head());
 						return $length;
 					} else {
-						firstPartSize = J.get$length$asx(_this._table) - _this.get$_head(_this);
-						B.JSArray_methods.setRange$4(target, 0, firstPartSize, _this._table, _this.get$_head(_this));
+						firstPartSize = J.get$length$asx(_this._table) - _this.get$_head();
+						B.JSArray_methods.setRange$4(target, 0, firstPartSize, _this._table, _this.get$_head());
 						B.JSArray_methods.setRange$4(target, firstPartSize, firstPartSize + _this.get$_tail(), _this._table, 0);
 						return _this.get$_tail() + firstPartSize;
 					}
@@ -34451,19 +32244,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						newTable = A.List_List$filled(A.QueueList__nextPowerOf2(newElementCount + B.JSInt_methods._shrOtherPositive$1(newElementCount, 1)), null, false, A._instanceType(_this)._eval$1("QueueList.E?"));
 					_this.set$_tail(_this._writeToList$1(newTable));
 					_this._table = newTable;
-					_this.set$_head(0, 0);
+					_this.set$_head(0);
 				},
 				$isEfficientLengthIterable: 1,
 				$isQueue: 1,
 				$isIterable: 1,
 				$isList: 1,
-				get$_head(receiver) {
+				get$_head() {
 					return this._head;
 				},
 				get$_tail() {
 					return this._tail;
 				},
-				set$_head(receiver, val) {
+				set$_head(val) {
 					return this._head = val;
 				},
 				set$_tail(val) {
@@ -34471,12 +32264,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A._CastQueueList.prototype = {
-				get$_head(_) {
-					var t1 = this._delegate;
-					return t1.get$_head(t1);
+				get$_head() {
+					return this._delegate.get$_head();
 				},
-				set$_head(_, value) {
-					this._delegate.set$_head(0, value);
+				set$_head(value) {
+					this._delegate.set$_head(value);
 				},
 				get$_tail() {
 					return this._delegate.get$_tail();
@@ -34495,55 +32287,71 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A._UnmodifiableSetView_DelegatingSet_UnmodifiableSetMixin.prototype = {};
 			A._DelegatingIterableBase.prototype = {
 				any$1(_, test) {
-					return J.any$1$ax(this.get$_base(), test);
+					var t1 = this.get$_base();
+					return t1.any$1(t1, test);
 				},
 				contains$1(_, element) {
-					return J.contains$1$asx(this.get$_base(), element);
+					var t1 = this.get$_base();
+					return t1.contains$1(t1, element);
 				},
 				elementAt$1(_, index) {
-					return J.elementAt$1$ax(this.get$_base(), index);
+					var t1 = this.get$_base();
+					return t1.elementAt$1(t1, index);
 				},
 				get$first(_) {
-					return J.get$first$ax(this.get$_base());
+					var t1 = this.get$_base();
+					return t1.get$first(t1);
 				},
 				get$isEmpty(_) {
-					return J.get$isEmpty$asx(this.get$_base());
+					var t1 = this.get$_base();
+					return t1.get$isEmpty(t1);
 				},
 				get$isNotEmpty(_) {
-					return J.get$isNotEmpty$asx(this.get$_base());
+					var t1 = this.get$_base();
+					return t1.get$isNotEmpty(t1);
 				},
 				get$iterator(_) {
-					return J.get$iterator$ax(this.get$_base());
+					var t1 = this.get$_base();
+					return t1.get$iterator(t1);
 				},
 				get$last(_) {
-					return J.get$last$ax(this.get$_base());
+					var t1 = this.get$_base();
+					return t1.get$last(t1);
 				},
 				get$length(_) {
-					return J.get$length$asx(this.get$_base());
+					var t1 = this.get$_base();
+					return t1.get$length(t1);
 				},
 				map$1$1(_, f, $T) {
-					return J.map$1$1$ax(this.get$_base(), f, $T);
+					var t1 = this.get$_base();
+					return t1.map$1$1(t1, f, $T);
 				},
 				skip$1(_, n) {
-					return J.skip$1$ax(this.get$_base(), n);
+					var t1 = this.get$_base();
+					return t1.skip$1(t1, n);
 				},
 				take$1(_, n) {
-					return J.take$1$ax(this.get$_base(), n);
+					var t1 = this.get$_base();
+					return t1.take$1(t1, n);
 				},
 				toList$1$growable(_, growable) {
-					return J.toList$1$growable$ax(this.get$_base(), true);
+					var t1 = this.get$_base();
+					return t1.toList$1$growable(t1, true);
 				},
 				toList$0(_) {
 					return this.toList$1$growable(0, true);
 				},
 				toSet$0(_) {
-					return J.toSet$0$ax(this.get$_base());
+					var t1 = this.get$_base();
+					return t1.toSet$0(t1);
 				},
 				where$1(_, test) {
-					return J.where$1$ax(this.get$_base(), test);
+					var t1 = this.get$_base();
+					return t1.where$1(t1, test);
 				},
 				toString$0(_) {
-					return J.toString$0$(this.get$_base());
+					var t1 = this.get$_base();
+					return t1.toString$0(t1);
 				},
 				$isIterable: 1
 			};
@@ -34562,28 +32370,34 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.MapKeySet.prototype = {
 				get$_base() {
-					return J.get$keys$x(this._baseMap);
+					var t1 = this._baseMap;
+					return t1.get$keys(t1);
 				},
 				contains$1(_, element) {
-					return J.containsKey$1$x(this._baseMap, element);
+					return this._baseMap.containsKey$1(element);
 				},
 				get$isEmpty(_) {
-					return J.get$isEmpty$asx(this._baseMap);
+					var t1 = this._baseMap;
+					return t1.get$isEmpty(t1);
 				},
 				get$isNotEmpty(_) {
-					return J.get$isNotEmpty$asx(this._baseMap);
+					var t1 = this._baseMap;
+					return t1.get$isNotEmpty(t1);
 				},
 				get$length(_) {
-					return J.get$length$asx(this._baseMap);
+					var t1 = this._baseMap;
+					return t1.get$length(t1);
 				},
 				toString$0(_) {
 					return A.Iterable_iterableToFullString(this, "{", "}");
 				},
 				difference$1(other) {
-					return J.where$1$ax(this.get$_base(), new A.MapKeySet_difference_closure(this, other)).toSet$0(0);
+					var t1 = this.get$_base();
+					return t1.where$1(t1, new A.MapKeySet_difference_closure(this, other)).toSet$0(0);
 				},
-				intersection$1(_, other) {
-					return J.where$1$ax(this.get$_base(), other.get$contains(other)).toSet$0(0);
+				intersection$1(other) {
+					var t1 = this.get$_base();
+					return t1.where$1(t1, other.get$contains(other)).toSet$0(0);
 				},
 				$isEfficientLengthIterable: 1,
 				$isSet: 1
@@ -34600,7 +32414,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			/*DSH-
 			A.BufferModule.prototype = {};
 			A.BufferConstants.prototype = {};
-			A.Buffer0.prototype = {};
+			A.Buffer.prototype = {};
 			A.ConsoleModule.prototype = {};
 			A.Console.prototype = {};
 			A.EventEmitter.prototype = {};
@@ -34644,7 +32458,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A.Readable.prototype = {};
 			A.Writable.prototype = {};
 			A.Duplex.prototype = {};
-			A.Transform0.prototype = {};
+			A.Transform.prototype = {};
 			A.WritableOptions.prototype = {};
 			A.ReadableOptions.prototype = {};
 			A.Immediate.prototype = {};
@@ -34655,7 +32469,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A.Util.prototype = {};
 			*/
 			A.Context.prototype = {
-				absolute$15(_, part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part13, part14, part15) {
+				absolute$15(part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part13, part14, part15) {
 					var t1;
 					part1 = dsh.fileManagerProxy.convertPathToAbsolute(part1); //DSH+
 					A._validateArgList("absolute", A._setArrayType([part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part13, part14, part15], type$.JSArray_nullable_String));
@@ -34666,9 +32480,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = this._context$_current;
 					return this.join$16(0, t1 == null ? A.current() : t1, part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part13, part14, part15);
 				},
-				absolute$1(_, part1) {
+				absolute$1(part1) {
 					var _null = null;
-					return this.absolute$15(0, part1, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null);
+					return this.absolute$15(part1, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null, _null);
 				},
 				dirname$1(path) {
 					var t1, t2,
@@ -34701,7 +32515,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				joinAll$1(parts) {
 					var t1, t2, t3, needsSeparator, isAbsoluteAndNotRootRelative, t4, t5, parsed, path;
 					for (t1 = parts.get$iterator(0), t2 = new A.WhereIterator(t1, new A.Context_joinAll_closure()), t3 = this.style, needsSeparator = false, isAbsoluteAndNotRootRelative = false, t4 = ""; t2.moveNext$0();) {
-						t5 = t1.get$current(0);
+						t5 = t1.get$current();
 						if (t3.isRootRelative$1(t5) && isAbsoluteAndNotRootRelative) {
 							parsed = A.ParsedPath_ParsedPath$parse(t5, t3);
 							path = t4.charCodeAt(0) == 0 ? t4 : t4;
@@ -34736,20 +32550,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				canonicalize$1(_, path) {
 					var t1, parsed;
-					path = this.absolute$1(0, path);
+					path = this.absolute$1(path);
 					t1 = this.style;
 					if (t1 !== $.$get$Style_windows() && !this._needsNormalization$1(path))
 						return path;
 					parsed = A.ParsedPath_ParsedPath$parse(path, t1);
-					parsed.normalize$1$canonicalize(0, true);
+					parsed.normalize$1$canonicalize(true);
 					return parsed.toString$0(0);
 				},
-				normalize$1(_, path) {
+				normalize$1(path) {
 					var parsed;
 					if (!this._needsNormalization$1(path))
 						return path;
 					parsed = A.ParsedPath_ParsedPath$parse(path, this.style);
-					parsed.normalize$0(0);
+					parsed.normalize$0();
 					return parsed.toString$0(0);
 				},
 				_needsNormalization$1(path) {
@@ -34804,7 +32618,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = _this.style,
 						t2 = t1.rootLength$1(path);
 					if (t2 <= 0)
-						return _this.normalize$1(0, path);
+						return _this.normalize$1(path);
 					t2 = _this._context$_current;
 					from = t2 == null ? A.current() : t2;
 					*/
@@ -34812,23 +32626,23 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_s26_ = 'Unable to find a path to "', //DSH+
 						t1 = from == null; //DSH+
 					if (t1 && _this.style.rootLength$1(path) <= 0) //DSH+
-						return _this.normalize$1(0, path); //DSH+
+						return _this.normalize$1(path); //DSH+
 					if (t1) { //DSH+
 						t1 = _this._current; //DSH+
 						from = t1 == null ? A.current() : t1; //DSH+
 					} else //DSH+
-						from = _this.absolute$1(0, from); //DSH+
+						from = _this.absolute$1(from); //DSH+
 					t1 = _this.style; //DSH+
 					if (t1.rootLength$1(from) <= 0 && t1.rootLength$1(path) > 0)
-						return _this.normalize$1(0, path);
+						return _this.normalize$1(path);
 					if (t1.rootLength$1(path) <= 0 || t1.isRootRelative$1(path))
-						path = _this.absolute$1(0, path);
+						path = _this.absolute$1(path);
 					if (t1.rootLength$1(path) <= 0 && t1.rootLength$1(from) > 0)
 						throw A.wrapException(A.PathException$(_s26_ + path + '" from "' + from + '".'));
 					fromParsed = A.ParsedPath_ParsedPath$parse(from, t1);
-					fromParsed.normalize$0(0);
+					fromParsed.normalize$0();
 					pathParsed = A.ParsedPath_ParsedPath$parse(path, t1);
-					pathParsed.normalize$0(0);
+					pathParsed.normalize$0();
 					t2 = fromParsed.parts;
 					if (t2.length !== 0 && t2[0] === ".")
 						return pathParsed.toString$0(0);
@@ -34905,7 +32719,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return typedUri.toString$0(0);
 					else if (typedUri.get$scheme() !== "file" && typedUri.get$scheme() !== "" && _this.style !== $.$get$Style_url())
 						return typedUri.toString$0(0);
-					path = _this.normalize$1(0, _this.style.pathFromUri$1(A._parseUri(typedUri)));
+					path = _this.normalize$1(_this.style.pathFromUri$1(A._parseUri(typedUri)));
 					rel = _this.relative$1(path);
 					return _this.split$1(0, rel).length > _this.split$1(0, path).length ? path : rel;
 				}
@@ -34926,7 +32740,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(arg) {
 					return arg == null ? "null" : '"' + arg + '"';
 				},
-				$signature: 249
+				$signature: 245
 			};
 			A.InternalStyle.prototype = {
 				getRoot$1(path) {
@@ -34987,7 +32801,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t2 !== 0)
 						t1[t2 - 1] = "";
 				},
-				normalize$1$canonicalize(_, canonicalize) {
+				normalize$1$canonicalize(canonicalize) {
 					var t1, t2, t3, leadingDoubles, _i, part, _this = this,
 						newParts = A._setArrayType([], type$.JSArray_String);
 					for (t1 = _this.parts, t2 = t1.length, t3 = _this.style, leadingDoubles = 0, _i = 0; _i < t1.length; t1.length === t2 || (0, A.throwConcurrentModificationError)(t1), ++_i) {
@@ -35018,8 +32832,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					_this.removeTrailingSeparators$0();
 				},
-				normalize$0(_) {
-					return this.normalize$1$canonicalize(0, false);
+				normalize$0() {
+					return this.normalize$1$canonicalize(false);
 				},
 				toString$0(_) {
 					var t2, t3, t4, i,
@@ -35065,7 +32879,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(p) {
 					return p !== "";
 				},
-				$signature: 277
+				$signature: 257
 			};
 			A.ParsedPath__splitExtension_closure0.prototype = {
 				call$0() {
@@ -35251,11 +33065,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (uri.get$scheme() !== "" && uri.get$scheme() !== "file")
 						throw A.wrapException(A.ArgumentError$("Uri " + uri.toString$0(0) + " must have scheme 'file:'.", null));
 					path = uri.get$path(uri);
-					if (uri.get$host(uri) === "") {
+					if (uri.get$host() === "") {
 						if (path.length >= 3 && B.JSString_methods.startsWith$1(path, "/") && A.driveLetterEnd(path, 1) != null)
 							path = B.JSString_methods.replaceFirst$2(path, "/", "");
 					} else
-						path = "\\\\" + uri.get$host(uri) + path;
+						path = "\\\\" + uri.get$host() + path;
 					t1 = A.stringReplaceAllUnchecked(path, "/", "\\");
 					return A._Uri__uriDecode(t1, 0, t1.length, B.C_Utf8Codec, false);
 				},
@@ -35323,10 +33137,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$signature: 14
 			};
 			A.Version.prototype = {
-				get$min(_) {
+				get$min() {
 					return this;
 				},
-				get$max(_) {
+				get$max() {
 					return this;
 				},
 				get$includeMin() {
@@ -35343,7 +33157,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				get$hashCode(_) {
 					var _this = this;
-					return (_this.major ^ _this.minor ^ _this.patch ^ B.C_IterableEquality.hash$1(0, _this.preRelease) ^ B.C_IterableEquality.hash$1(0, _this.build)) >>> 0;
+					return (_this.major ^ _this.minor ^ _this.patch ^ B.C_IterableEquality.hash$1(_this.preRelease) ^ B.C_IterableEquality.hash$1(_this.build)) >>> 0;
 				},
 				compareTo$1(_, other) {
 					var t1, t2, t3, comparison, _this = this;
@@ -35422,7 +33236,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = A.Primitives_parseInt(part, null);
 					return t1 == null ? part : t1;
 				},
-				$signature: 287
+				$signature: 277
 			};
 			A.VersionRange.prototype = {
 				$eq(_, other) {
@@ -35432,8 +33246,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!type$.VersionRange._is(other))
 						return false;
 					t1 = false;
-					if (this.min == other.get$min(other))
-						if (J.$eq$(this.max, other.get$max(other))) {
+					if (this.min == other.get$min())
+						if (J.$eq$(this.max, other.get$max())) {
 							t1 = !other.get$includeMin();
 							if (t1)
 								other.get$includeMax();
@@ -35453,7 +33267,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return true;
 				},
 				compareTo$1(_, other) {
-					if (other.get$min(other) == null)
+					if (other.get$min() == null)
 						return this._compareMax$1(other);
 					return -1;
 				},
@@ -35461,12 +33275,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2, result,
 						t1 = this.max;
 					if (t1 == null) {
-						if (other.get$max(other) == null)
+						if (other.get$max() == null)
 							return 0;
 						return 1;
-					} else if (other.get$max(other) == null)
+					} else if (other.get$max() == null)
 						return -1;
-					t2 = other.get$max(other);
+					t2 = other.get$max();
 					t2.toString;
 					result = t1.compareTo$1(0, t2);
 					if (result !== 0)
@@ -35486,10 +33300,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return t1.charCodeAt(0) == 0 ? t1 : t1;
 				},
 				$isComparable: 1,
-				get$min(receiver) {
+				get$min() {
 					return this.min;
 				},
-				get$max(receiver) {
+				get$max() {
 					return this.max;
 				},
 				get$includeMin() {
@@ -35586,7 +33400,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return other instanceof A.CssMediaQuery && other.modifier == this.modifier && other.type == this.type && B.C_ListEquality0.equals$2(0, other.conditions, this.conditions);
 				},
 				get$hashCode(_) {
-					return J.get$hashCode$(this.modifier) ^ J.get$hashCode$(this.type) ^ B.C_ListEquality.hash$1(0, this.conditions);
+					return J.get$hashCode$(this.modifier) ^ J.get$hashCode$(this.type) ^ B.C_ListEquality.hash$1(this.conditions);
 				},
 				toString$0(_) {
 					var t2, _this = this,
@@ -35614,11 +33428,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ModifiableCssAtRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssAtRule$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				equalsIgnoringChildren$1(other) {
 					var t1, t2;
@@ -35645,11 +33459,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ModifiableCssComment.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssComment$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				$isCssComment: 1,
 				get$span(receiver) {
@@ -35657,11 +33471,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ModifiableCssDeclaration.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssDeclaration$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.name.toString$0(0) + ": " + this.value.toString$0(0) + ";";
@@ -35671,22 +33485,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ModifiableCssImport.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssImport$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				get$span(receiver) {
 					return this.span;
 				}
 			};
 			A.ModifiableCssKeyframeBlock.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssKeyframeBlock$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				equalsIgnoringChildren$1(other) {
 					return other instanceof A.ModifiableCssKeyframeBlock && B.C_ListEquality0.equals$2(0, this.selector.value, other.selector.value);
@@ -35699,11 +33513,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ModifiableCssMediaRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssMediaRule$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				equalsIgnoringChildren$1(other) {
 					return other instanceof A.ModifiableCssMediaRule && B.C_ListEquality0.equals$2(0, this.queries, other.queries);
@@ -35735,9 +33549,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.ModifiableCssNode_hasFollowingSibling_closure.prototype = {
 				call$1(sibling) {
-					return !sibling.accept$1(0, B._IsInvisibleVisitor_true_false);
+					return !sibling.accept$1(B._IsInvisibleVisitor_true_false);
 				},
-				$signature: 289
+				$signature: 286
 			};
 			A.ModifiableCssParentNode.prototype = {
 				get$isChildless() {
@@ -35764,11 +33578,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ModifiableCssStyleRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssStyleRule$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				equalsIgnoringChildren$1(other) {
 					var t1;
@@ -35786,11 +33600,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ModifiableCssStylesheet.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssStylesheet$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				equalsIgnoringChildren$1(other) {
 					return other instanceof A.ModifiableCssStylesheet;
@@ -35804,11 +33618,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ModifiableCssSupportsRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssSupportsRule$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				equalsIgnoringChildren$1(other) {
 					var t1, t2;
@@ -35844,7 +33658,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				visitCssStyleRule$1(rule) {
 					var t1 = rule._style_rule$_selector._box$_inner;
-					return (this.includeBogus ? t1.value.accept$1(0, B._IsInvisibleVisitor_true) : t1.value.accept$1(0, B._IsInvisibleVisitor_false)) || this.super$EveryCssVisitor$visitCssStyleRule(rule);
+					return (this.includeBogus ? t1.value.accept$1(B._IsInvisibleVisitor_true) : t1.value.accept$1(B._IsInvisibleVisitor_false)) || this.super$EveryCssVisitor$visitCssStyleRule(rule);
 				}
 			};
 			A.__IsInvisibleVisitor_Object_EveryCssVisitor.prototype = {};
@@ -35855,11 +33669,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$isChildless() {
 					return false;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCssStylesheet$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				get$children(receiver) {
 					return this.children;
@@ -35907,7 +33721,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t2 = _this.positional, t3 = t2.length, _i = 0; _i < t3; ++_i)
 						t1.push(_this._parenthesizeArgument$1(t2[_i]));
 					for (t2 = A.MapExtensions_get_pairs(_this.named, type$.String, type$.Expression), t2 = t2.get$iterator(t2); t2.moveNext$0();) {
-						t3 = t2.get$current(t2);
+						t3 = t2.get$current();
 						t1.push("$" + t3._0 + ": " + _this._parenthesizeArgument$1(t3._1));
 					}
 					_1_0 = _this.rest;
@@ -36027,11 +33841,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this.get$span(0);
 					return t1;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitBinaryOperationExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1, t2, t3, right, operator, _this = this,
@@ -36085,11 +33899,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.BooleanExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitBooleanExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return String(this.value);
@@ -36099,11 +33913,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ColorExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitColorExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return A.serializeValue(this.value, true, true);
@@ -36113,11 +33927,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.FunctionExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitFunctionExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = this.namespace;
@@ -36130,11 +33944,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.IfExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIfExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1, t2, first, _i, t3, t4, condition;
@@ -36172,11 +33986,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._contents += t3;
 					return t2.interpolation$1(this.span);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIfConditionParenthesized$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "(" + this.expression.toString$0(0) + ")";
@@ -36193,11 +34007,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2.addInterpolation$1(this.expression.toInterpolation$1(arbitrarySubstitution));
 					return t2.interpolation$1(this.span);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIfConditionNegation$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "not " + this.expression.toString$0(0);
@@ -36228,11 +34042,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return buffer.interpolation$1(new A.LazyFileSpan(new A.IfConditionOperation_toInterpolation_closure(this)));
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIfConditionOperation$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return B.JSArray_methods.join$1(this.expressions, " " + this.op.toString$0(0) + " ");
@@ -36242,7 +34056,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.get$span(0);
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A.IfConditionFunction.prototype = {
 				get$isArbitrarySubstitution() {
@@ -36276,11 +34090,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._contents += t3;
 					return t2.interpolation$1(this.span);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIfConditionFunction$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.name.toString$0(0) + "(" + this.$arguments.toString$0(0) + ")";
@@ -36293,11 +34107,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				toInterpolation$1(arbitrarySubstitution) {
 					return A.throwExpression(A.MultiSourceSpanFormatException$("if() conditions with arbitrary substitutions may not contain sass() expressions.", arbitrarySubstitution.get$span(arbitrarySubstitution), "arbitrary substitution", A.LinkedHashMap_LinkedHashMap$_literal([this.span, "sass() expression"], type$.SourceSpan, type$.String), null));
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIfConditionSass$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "sass(" + this.expression.toString$0(0) + ")";
@@ -36316,22 +34130,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				toInterpolation$1(_) {
 					return this.text;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIfConditionRaw$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.text.toString$0(0);
 				}
 			};
 			A.InterpolatedFunctionExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitInterpolatedFunctionExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.name.toString$0(0) + this.$arguments.toString$0(0);
@@ -36369,11 +34183,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitLegacyIfExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "if" + this.$arguments.toString$0(0);
@@ -36383,11 +34197,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ListExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitListExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t2, t3, t4, t5, _this = this,
@@ -36450,14 +34264,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(element) {
 					return this.$this._elementNeedsParens$1(element) ? "(" + element.toString$0(0) + ")" : element.toString$0(0);
 				},
-				$signature: 97
+				$signature: 95
 			};
 			A.MapExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitMapExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t2, t3, _i, t4,
@@ -36473,11 +34287,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.NullExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitNullExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "null";
@@ -36487,11 +34301,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.NumberExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitNumberExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return A.serializeValue(A.SassNumber_SassNumber(this.value, this.unit), true, true);
@@ -36501,11 +34315,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ParenthesizedExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitParenthesizedExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "(" + this.expression.toString$0(0) + ")";
@@ -36515,11 +34329,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.SelectorExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitSelectorExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "&";
@@ -36532,11 +34346,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$span(_) {
 					return this.text.span;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitStringExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				asInterpolation$1$static($static) {
 					var t1, t2, quote, t3, t4, t5, buffer, t6, t7, i, value, t8;
@@ -36578,22 +34392,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.condition;
 					return t1.get$span(t1);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitSupportsExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.condition.toString$0(0);
 				}
 			};
 			A.UnaryOperationExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitUnaryOperationExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var operand,
@@ -36628,11 +34442,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ValueExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitValueExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.value.toString$0(0);
@@ -36642,15 +34456,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.VariableExpression.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitVariableExpression$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
-					var t1 = this.span;
-					return t1.get$text(t1);
+					return this.span.get$text();
 				},
 				get$span(receiver) {
 					return this.span;
@@ -36682,11 +34495,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.InterpolatedSelector.prototype = {$isAstNode: 1, $isSassNode: 1};
 			A.InterpolatedAttributeSelector.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return J.visitAttributeSelector$1$x(visitor._simple_selector$_inner, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var _this = this,
@@ -36709,22 +34522,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.name.span;
 					return t1.get$file(t1).span$2(0, t1.get$start(t1).offset - 1, t1.get$end(t1).offset);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return J.visitClassSelector$1$x(visitor._simple_selector$_inner, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "." + this.name.toString$0(0);
 				}
 			};
 			A.InterpolatedComplexSelector.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitComplexSelector$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return B.JSArray_methods.join$1(this.components, " ");
@@ -36768,11 +34581,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCompoundSelector$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return B.JSArray_methods.join$1(this.components, "");
@@ -36783,11 +34596,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.name.span;
 					return t1.get$file(t1).span$2(0, t1.get$start(t1).offset - 1, t1.get$end(t1).offset);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return J.visitIDSelector$1$x(visitor._simple_selector$_inner, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "#" + this.name.toString$0(0);
@@ -36798,22 +34611,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.components;
 					return t1.length === 1 ? B.JSArray_methods.get$first(t1).span : B.JSArray_methods.get$first(t1).span.expand$1(0, B.JSArray_methods.get$last(t1).span);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitSelectorList$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return B.JSArray_methods.join$1(this.components, ", ");
 				}
 			};
 			A.InterpolatedParentSelector.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return J.visitParentSelector$1$x(visitor._simple_selector$_inner, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1,
@@ -36837,22 +34650,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.name.span;
 					return t1.get$file(t1).span$2(0, t1.get$start(t1).offset - 1, t1.get$end(t1).offset);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return J.visitPlaceholderSelector$1$x(visitor._simple_selector$_inner, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "%" + this.name.toString$0(0);
 				}
 			};
 			A.InterpolatedPseudoSelector.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return J.visitPseudoSelector$1$x(visitor._simple_selector$_inner, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t2, _1_0, _this = this,
@@ -36901,22 +34714,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$span(_) {
 					return this.name.span;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return J.visitTypeSelector$1$x(visitor._simple_selector$_inner, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.name.toString$0(0);
 				}
 			};
 			A.InterpolatedUniversalSelector.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return J.visitUniversalSelector$1$x(visitor._simple_selector$_inner, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1,
@@ -37047,7 +34860,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(value) {
 					return typeof value == "string" ? value : "#{" + A.S(value) + "}";
 				},
-				$signature: 96
+				$signature: 94
 			};
 			A.Parameter.prototype = {
 				toString$0(_) {
@@ -37113,20 +34926,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return A.SpanExtensions_trimRight(A.SpanExtensions_trimLeft(t1.get$file(t1).span$2(0, t2, t1.get$end(t1).offset)));
 				},
 				verify$2(positional, names) {
-					var t1, t2, t3, t4, namedUsed, i, parameter, t5, unknownNames, _this = this,
+					var t1, t2, t3, namedUsed, i, parameter, t4, unknownNames, _this = this,
 						_s10_ = "invocation";
-					for (t1 = _this.parameters, t2 = t1.length, t3 = names._baseMap, t4 = J.getInterceptor$asx(t3), namedUsed = 0, i = 0; i < t2; ++i) {
+					for (t1 = _this.parameters, t2 = t1.length, t3 = names._baseMap, namedUsed = 0, i = 0; i < t2; ++i) {
 						parameter = t1[i];
 						if (i < positional) {
-							t5 = parameter.name;
-							if (t4.containsKey$1(t3, t5))
-								throw A.wrapException(A.SassScriptException$("Argument " + _this._originalParameterName$1(t5) + " was passed both by position and by name.", null));
+							t4 = parameter.name;
+							if (t3.containsKey$1(t4))
+								throw A.wrapException(A.SassScriptException$("Argument " + _this._originalParameterName$1(t4) + " was passed both by position and by name.", null));
 						} else {
-							t5 = parameter.name;
-							if (t4.containsKey$1(t3, t5))
+							t4 = parameter.name;
+							if (t3.containsKey$1(t4))
 								++namedUsed;
 							else if (parameter.defaultValue == null)
-								throw A.wrapException(A.MultiSpanSassScriptException$("Missing argument " + _this._originalParameterName$1(t5) + ".", _s10_, A.LinkedHashMap_LinkedHashMap$_literal([_this.get$spanWithName(), "declaration"], type$.FileSpan, type$.String)));
+								throw A.wrapException(A.MultiSpanSassScriptException$("Missing argument " + _this._originalParameterName$1(t4) + ".", _s10_, A.LinkedHashMap_LinkedHashMap$_literal([_this.get$spanWithName(), "declaration"], type$.FileSpan, type$.String)));
 						}
 					}
 					if (_this.restParameter != null)
@@ -37135,7 +34948,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = names.get$isEmpty(0) ? "" : "positional ";
 						throw A.wrapException(A.MultiSpanSassScriptException$("Only " + t2 + " " + t1 + A.pluralize("argument", t2, null) + " allowed, but " + positional + " " + A.pluralize("was", positional, "were") + " passed.", _s10_, A.LinkedHashMap_LinkedHashMap$_literal([_this.get$spanWithName(), "declaration"], type$.FileSpan, type$.String)));
 					}
-					if (namedUsed < t4.get$length(t3)) {
+					if (namedUsed < t3.get$length(t3)) {
 						t2 = type$.String;
 						unknownNames = A.LinkedHashSet_LinkedHashSet$of(names, t2);
 						unknownNames.removeAll$1(new A.MappedListIterable(t1, new A.ParameterList_verify_closure(), A._arrayInstanceType(t1)._eval$1("MappedListIterable<1,Object?>")));
@@ -37143,10 +34956,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 				},
 				_originalParameterName$1($name) {
-					var t1, text, t2, _i, parameter, end;
+					var text, t1, t2, _i, parameter, end;
 					if ($name === this.restParameter) {
-						t1 = this.span;
-						text = t1.get$text(t1);
+						text = this.span.get$text();
 						return B.JSString_methods.substring$2(B.JSString_methods.substring$1(text, B.JSString_methods.lastIndexOf$1(text, "$")), 0, B.JSString_methods.indexOf$1(text, "."));
 					}
 					for (t1 = this.parameters, t2 = t1.length, _i = 0; _i < t2; ++_i) {
@@ -37154,9 +34966,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (parameter.name === $name) {
 							t1 = parameter.span;
 							if (parameter.defaultValue == null)
-								t1 = t1.get$text(t1);
+								t1 = t1.get$text();
 							else {
-								text = t1.get$text(t1);
+								text = t1.get$text();
 								t1 = B.JSString_methods.substring$2(text, 0, B.JSString_methods.indexOf$1(text, ":"));
 								end = A._lastNonWhitespace(t1, false);
 								t1 = end == null ? "" : B.JSString_methods.substring$2(t1, 0, end + 1);
@@ -37166,14 +34978,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					throw A.wrapException(A.ArgumentError$('This declaration has no parameter named "$' + $name + '".', null));
 				},
-				matches$2(_, positional, names) {
-					var t1, t2, t3, t4, namedUsed, i, parameter;
-					for (t1 = this.parameters, t2 = t1.length, t3 = names._baseMap, t4 = J.getInterceptor$asx(t3), namedUsed = 0, i = 0; i < t2; ++i) {
+				matches$2(positional, names) {
+					var t1, t2, t3, namedUsed, i, parameter;
+					for (t1 = this.parameters, t2 = t1.length, t3 = names._baseMap, namedUsed = 0, i = 0; i < t2; ++i) {
 						parameter = t1[i];
 						if (i < positional) {
-							if (t4.containsKey$1(t3, parameter.name))
+							if (t3.containsKey$1(parameter.name))
 								return false;
-						} else if (t4.containsKey$1(t3, parameter.name))
+						} else if (t3.containsKey$1(parameter.name))
 							++namedUsed;
 						else if (parameter.defaultValue == null)
 							return false;
@@ -37182,7 +34994,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return true;
 					if (positional > t2)
 						return false;
-					if (namedUsed < t4.get$length(t3))
+					if (namedUsed < t3.get$length(t3))
 						return false;
 					return true;
 				},
@@ -37206,7 +35018,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(parameter) {
 					return parameter.name;
 				},
-				$signature: 124
+				$signature: 118
 			};
 			A.ParameterList_verify_closure0.prototype = {
 				call$1($name) {
@@ -37216,11 +35028,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.Statement.prototype = {$isAstNode: 1, $isSassNode: 1};
 			A.AtRootRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitAtRootRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var buffer = new A.StringBuffer("@at-root "),
@@ -37234,11 +35046,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.AtRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitAtRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var children,
@@ -37260,11 +35072,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ContentBlock.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitContentBlock$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = this.parameters;
@@ -37273,11 +35085,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ContentRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitContentRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = this.$arguments;
@@ -37288,11 +35100,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.DebugRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitDebugRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@debug " + this.expression.toString$0(0) + ";";
@@ -37302,11 +35114,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.Declaration.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitDeclaration$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t2, _0_0, _this = this,
@@ -37331,11 +35143,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.EachRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitEachRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = this.variables;
@@ -37352,11 +35164,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$signature: 8
 			};
 			A.ErrorRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitErrorRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@error " + this.expression.toString$0(0) + ";";
@@ -37366,11 +35178,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ExtendRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitExtendRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = this.selector.toString$0(0),
@@ -37382,11 +35194,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ForRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitForRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var _this = this,
@@ -37399,11 +35211,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ForwardRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitForwardRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t2, prefix, _this = this,
@@ -37432,7 +35244,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2,
 						t1 = A.List_List$_of(mixinsAndFunctions, type$.String);
 					for (t2 = variables._base.get$iterator(0); t2.moveNext$0();)
-						t1.push("$" + t2.get$current(0));
+						t1.push("$" + t2.get$current());
 					return B.JSArray_methods.join$1(t1, ", ");
 				},
 				get$span(receiver) {
@@ -37440,22 +35252,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.FunctionRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitFunctionRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@function " + this.name + "(" + this.parameters.toString$0(0) + ") {" + B.JSArray_methods.join$1(this.children, " ") + "}";
 				}
 			};
 			A.IfRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIfRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var result = A.ListExtensions_mapIndexed(this.clauses, new A.IfRule_toString_closure(), type$.IfClause, type$.String).join$1(0, " "),
@@ -37471,7 +35283,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = index === 0 ? "if" : "else if";
 					return "@" + t1 + " " + clause.expression.toString$0(0) + " {" + B.JSArray_methods.join$1(clause.children, " ") + "}";
 				},
-				$signature: 125
+				$signature: 123
 			};
 			A.IfRuleClause.prototype = {};
 			A.IfRuleClause$__closure.prototype = {
@@ -37491,13 +35303,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 91
+				$signature: 89
 			};
 			A.IfRuleClause$___closure.prototype = {
 				call$1($import) {
 					return $import instanceof A.DynamicImport;
 				},
-				$signature: 82
+				$signature: 80
 			};
 			A.IfClause.prototype = {
 				toString$0(_) {
@@ -37510,11 +35322,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.ImportRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitImportRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@import " + B.JSArray_methods.join$1(this.imports, ", ") + ";";
@@ -37524,11 +35336,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.IncludeRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIncludeRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t2, _this = this,
@@ -37550,22 +35362,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$span(_) {
 					return this.text.span;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitLoudComment$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.text.toString$0(0);
 				}
 			};
 			A.MediaRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitMediaRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@media " + this.query.toString$0(0) + " {" + B.JSArray_methods.join$1(this.children, " ") + "}";
@@ -37586,11 +35398,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return value;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitMixinRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = "@mixin " + this.name,
@@ -37626,20 +35438,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 91
+				$signature: 89
 			};
 			A.ParentStatement__closure.prototype = {
 				call$1($import) {
 					return $import instanceof A.DynamicImport;
 				},
-				$signature: 82
+				$signature: 80
 			};
 			A.ReturnRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitReturnRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@return " + this.expression.toString$0(0) + ";";
@@ -37649,11 +35461,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.SilentComment.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitSilentComment$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return this.text;
@@ -37663,11 +35475,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.StyleRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitStyleRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = this.selector;
@@ -37695,11 +35507,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						break;
 					}
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitStylesheet$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return B.JSArray_methods.join$1(this.children, " ");
@@ -37709,11 +35521,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.SupportsRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitSupportsRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@supports " + this.condition.toString$0(0) + " {" + B.JSArray_methods.join$1(this.children, " ") + "}";
@@ -37731,11 +35543,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							throw A.wrapException(A.ArgumentError$value(variable, "configured variable", "can't be guarded in a @use rule."));
 					}
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitUseRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = this.url,
@@ -37756,11 +35568,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.VariableDeclaration.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitVariableDeclaration$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					var t1 = this.namespace;
@@ -37773,11 +35585,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.WarnRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitWarnRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@warn " + this.expression.toString$0(0) + ";";
@@ -37787,11 +35599,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.WhileRule.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitWhileRule$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				toString$0(_) {
 					return "@while " + this.condition.toString$0(0) + " {" + B.JSArray_methods.join$1(this.children, " ") + "}";
@@ -37863,7 +35675,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t5 = A.String_String$fromCharCodes(B.NativeUint32List_methods.sublist$2(t5.file._decodedChars, t5._start, t5._end), 0, _null);
 					t1._contents += t5;
 					visitor = new A.SourceInterpolationVisitor(new A.InterpolationBuffer(new A.StringBuffer(""), A._setArrayType([], t2), A._setArrayType([], t3)));
-					t6.accept$1(0, visitor);
+					t6.accept$1(visitor);
 					t3 = visitor.buffer;
 					_1_0 = t3 == null ? _null : t3.interpolation$1(t6.get$span(t6));
 					if (_1_0 != null)
@@ -38014,14 +35826,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.Selector.prototype = {
 				assertNotBogus$1$name($name) {
-					if (!this.accept$1(0, B._IsBogusVisitor_true))
+					if (!this.accept$1(B._IsBogusVisitor_true))
 						return;
 					A.warnForDeprecation("$" + $name + ": " + (this.toString$0(0) + " is not valid CSS.\nThis will be an error in Dart Sass 2.0.0.\n\nMore info: https://sass-lang.com/d/bogus-combinators"), B.Deprecation_2PR);
 				},
 				toString$0(_) {
 					var _null = null,
 						visitor = A._SerializeVisitor$(_null, true, _null, _null, true, false, _null, true);
-					this.accept$1(0, visitor);
+					this.accept$1(visitor);
 					return visitor._buffer.toString$0(0);
 				},
 				$isAstNode: 1,
@@ -38036,7 +35848,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				visitComplexSelector$1(complex) {
 					var t1;
 					if (!this.super$AnySelectorVisitor$visitComplexSelector(complex))
-						t1 = this.includeBogus && complex.accept$1(0, B._IsBogusVisitor_false);
+						t1 = this.includeBogus && complex.accept$1(B._IsBogusVisitor_false);
 					else
 						t1 = true;
 					return t1;
@@ -38049,7 +35861,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_0_0 = pseudo.selector;
 					if (_0_0 != null) {
 						if (pseudo.name === "not")
-							t1 = this.includeBogus && _0_0.accept$1(0, B._IsBogusVisitor_true);
+							t1 = this.includeBogus && _0_0.accept$1(B._IsBogusVisitor_true);
 						else
 							t1 = this.visitSelectorList$1(_0_0);
 						return t1;
@@ -38072,28 +35884,28 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var selector = pseudo.selector;
 					if (selector == null)
 						return false;
-					return pseudo.name === "has" ? selector.accept$1(0, B._IsBogusVisitor_false) : selector.accept$1(0, B._IsBogusVisitor_true);
+					return pseudo.name === "has" ? selector.accept$1(B._IsBogusVisitor_false) : selector.accept$1(B._IsBogusVisitor_true);
 				}
 			};
 			A._IsBogusVisitor_visitComplexSelector_closure.prototype = {
 				call$1(component) {
 					return component.combinators.length > 1 || this.$this.visitCompoundSelector$1(component.selector);
 				},
-				$signature: 29
+				$signature: 26
 			};
 			A._IsUselessVisitor.prototype = {
 				visitComplexSelector$1(complex) {
 					return complex.leadingCombinators.length > 1 || B.JSArray_methods.any$1(complex.components, new A._IsUselessVisitor_visitComplexSelector_closure(this));
 				},
 				visitPseudoSelector$1(_, pseudo) {
-					return pseudo.accept$1(0, B._IsBogusVisitor_true);
+					return pseudo.accept$1(B._IsBogusVisitor_true);
 				}
 			};
 			A._IsUselessVisitor_visitComplexSelector_closure.prototype = {
 				call$1(component) {
 					return component.combinators.length > 1 || this.$this.visitCompoundSelector$1(component.selector);
 				},
-				$signature: 29
+				$signature: 26
 			};
 			A._ContainsParentSelectorVisitor.prototype = {
 				visitParentSelector$1(_, _0) {
@@ -38105,11 +35917,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A.__IsInvisibleVisitor_Object_AnySelectorVisitor.prototype = {};
 			A.__IsUselessVisitor_Object_AnySelectorVisitor.prototype = {};
 			A.AttributeSelector.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitAttributeSelector$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				$eq(_, other) {
 					var _this = this;
@@ -38137,11 +35949,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return false;
 					return other instanceof A.ClassSelector && other.name === this.name;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitClassSelector$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				addSuffix$1(suffix) {
 					return new A.ClassSelector(this.name + suffix, this.span);
@@ -38192,11 +36004,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitComplexSelector$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				isSuperselector$1(other) {
 					return this.leadingCombinators.length === 0 && other.leadingCombinators.length === 0 && A.complexIsSuperselector(this.components, other.components);
@@ -38259,7 +36071,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this.concatenate$3$forceLineBreak(child, span, false);
 				},
 				get$hashCode(_) {
-					return B.C_ListEquality.hash$1(0, this.leadingCombinators) ^ B.C_ListEquality.hash$1(0, this.components);
+					return B.C_ListEquality.hash$1(this.leadingCombinators) ^ B.C_ListEquality.hash$1(this.components);
 				},
 				$eq(_, other) {
 					if (other == null)
@@ -38271,7 +36083,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(sum, component) {
 					return sum + component.selector.get$specificity();
 				},
-				$signature: 235
+				$signature: 232
 			};
 			A.ComplexSelectorComponent.prototype = {
 				withAdditionalCombinators$1(combinators) {
@@ -38287,7 +36099,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return t1;
 				},
 				get$hashCode(_) {
-					return B.C_ListEquality.hash$1(0, this.selector.components) ^ B.C_ListEquality.hash$1(0, this.combinators);
+					return B.C_ListEquality.hash$1(this.selector.components) ^ B.C_ListEquality.hash$1(this.combinators);
 				},
 				$eq(_, other) {
 					var t1;
@@ -38309,7 +36121,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(combinator) {
 					return " " + combinator.toString$0(0);
 				},
-				$signature: 236
+				$signature: 233
 			};
 			A.CompoundSelector.prototype = {
 				get$specificity() {
@@ -38334,14 +36146,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return value;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCompoundSelector$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				get$hashCode(_) {
-					return B.C_ListEquality.hash$1(0, this.components);
+					return B.C_ListEquality.hash$1(this.components);
 				},
 				$eq(_, other) {
 					if (other == null)
@@ -38353,7 +36165,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(sum, component) {
 					return sum + component.get$specificity();
 				},
-				$signature: 242
+				$signature: 234
 			};
 			A.CompoundSelector_hasComplicatedSuperselectorSemantics_closure.prototype = {
 				call$1(component) {
@@ -38365,11 +36177,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$specificity() {
 					return A._asInt(Math.pow(A.SimpleSelector.prototype.get$specificity.call(this), 2));
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitIDSelector$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				addSuffix$1(suffix) {
 					return new A.IDSelector(this.name + suffix, this.span);
@@ -38404,11 +36216,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.components;
 					return A.SassList$(new A.MappedListIterable(t1, new A.SelectorList_asSassList_closure(), A._arrayInstanceType(t1)._eval$1("MappedListIterable<1,Value>")), B.ListSeparator_z0K, false);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitSelectorList$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				unify$1(other) {
 					var t3, t4, t5, t6, _i, complex1, t7, _i0, t8,
@@ -38492,7 +36304,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return t1;
 				},
 				get$hashCode(_) {
-					return B.C_ListEquality.hash$1(0, this.components);
+					return B.C_ListEquality.hash$1(this.components);
 				},
 				$eq(_, other) {
 					if (other == null)
@@ -38510,7 +36322,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t3 = complex.components, t4 = t3.length, _i = 0; _i < t4; ++_i) {
 						component = t3[_i];
 						visitor = A._SerializeVisitor$(_null, true, _null, _null, true, false, _null, true);
-						component.selector.accept$1(0, visitor);
+						component.selector.accept$1(visitor);
 						t5 = A._setArrayType([new A.SassString(visitor._buffer.toString$0(0), false)], t1);
 						for (t6 = component.combinators, t7 = t6.length, _i0 = 0; _i0 < t7; ++_i0)
 							t5.push(new A.SassString(J.toString$0$(t6[_i0].value), false));
@@ -38518,12 +36330,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return A.SassList$(t2, B.ListSeparator_SrV, false);
 				},
-				$signature: 253
+				$signature: 247
 			};
 			A.SelectorList_nestWithin_closure.prototype = {
 				call$1(complex) {
 					var t1, newComplexes, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, _i, component, resolved, i, t12, t13, t14, _i0, newComplex, t15, t16, _this = this;
-					if (_this.preserveParentSelectors || complex.accept$1(0, B.C__ParentSelectorVisitor) == null) {
+					if (_this.preserveParentSelectors || complex.accept$1(B.C__ParentSelectorVisitor) == null) {
 						if (!_this.implicitParent)
 							return A._setArrayType([complex], type$.JSArray_ComplexSelector);
 						t1 = _this.parent.components;
@@ -38551,21 +36363,21 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							for (t13 = newComplexes.length, t14 = J.getInterceptor$ax(resolved), _i0 = 0; _i0 < newComplexes.length; newComplexes.length === t13 || (0, A.throwConcurrentModificationError)(newComplexes), ++_i0) {
 								newComplex = newComplexes[_i0];
 								for (t15 = t14.get$iterator(resolved), t16 = newComplex.span; t15.moveNext$0();)
-									t12.push(newComplex.concatenate$2(t15.get$current(t15), t16));
+									t12.push(newComplex.concatenate$2(t15.get$current(), t16));
 							}
 							newComplexes = t12;
 						}
 					}
 					return newComplexes;
 				},
-				$signature: 259
+				$signature: 251
 			};
 			A.SelectorList_nestWithin__closure.prototype = {
 				call$1(parentComplex) {
 					var t1 = this.complex;
 					return parentComplex.concatenate$2(t1, t1.span);
 				},
-				$signature: 32
+				$signature: 31
 			};
 			A.SelectorList_nestWithin__closure0.prototype = {
 				call$1(resolvedComplex) {
@@ -38581,7 +36393,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return A.ComplexSelector$(t1, resolvedComplex.components, t2.span, resolvedComplex.lineBreak);
 				},
-				$signature: 32
+				$signature: 31
 			};
 			A.SelectorList__nestWithinCompound_closure.prototype = {
 				call$1(simple) {
@@ -38589,7 +36401,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!(simple instanceof A.PseudoSelector))
 						return false;
 					selector = simple.selector;
-					return selector != null && selector.accept$1(0, B.C__ParentSelectorVisitor) != null;
+					return selector != null && selector.accept$1(B.C__ParentSelectorVisitor) != null;
 				},
 				$signature: 5
 			};
@@ -38603,7 +36415,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							_0_2 = simple.selector;
 							if (_0_2 != null) {
 								selector = _0_2 == null ? type$.SelectorList._as(_0_2) : _0_2;
-								t1 = selector.accept$1(0, B.C__ParentSelectorVisitor) != null;
+								t1 = selector.accept$1(B.C__ParentSelectorVisitor) != null;
 							}
 						}
 						if (t1) {
@@ -38615,7 +36427,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 279
+				$signature: 275
 			};
 			A.SelectorList__nestWithinCompound_closure1.prototype = {
 				call$1(complex) {
@@ -38660,13 +36472,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							throw exception;
 					}
 				},
-				$signature: 32
+				$signature: 31
 			};
 			A.SelectorList_withAdditionalCombinators_closure.prototype = {
 				call$1(complex) {
 					return complex.withAdditionalCombinators$1(this.combinators);
 				},
-				$signature: 32
+				$signature: 31
 			};
 			A._ParentSelectorVisitor.prototype = {
 				visitParentSelector$1(_, selector) {
@@ -38675,22 +36487,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.__ParentSelectorVisitor_Object_SelectorSearchVisitor.prototype = {};
 			A.ParentSelector.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitParentSelector$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				unify$1(compound) {
 					return A.throwExpression(A.UnsupportedError$("& doesn't support unification."));
 				}
 			};
 			A.PlaceholderSelector.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitPlaceholderSelector$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				addSuffix$1(suffix) {
 					return new A.PlaceholderSelector(this.name + suffix, this.span);
@@ -38784,11 +36596,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = _this.span;
 					return A.compoundIsSuperselector(A.CompoundSelector$(A._setArrayType([_this], t1), t2), A.CompoundSelector$(A._setArrayType([other], t1), t2), null);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitPseudoSelector$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				$eq(_, other) {
 					var _this = this;
@@ -38830,19 +36642,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							return A.SimpleSelector.prototype.get$specificity.call(t1);
 					}
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A.PseudoSelector_specificity__closure.prototype = {
 				call$1(component) {
 					return component.get$specificity();
 				},
-				$signature: 81
+				$signature: 79
 			};
 			A.PseudoSelector_specificity__closure0.prototype = {
 				call$1(component) {
 					return component.get$specificity();
 				},
-				$signature: 81
+				$signature: 79
 			};
 			A.PseudoSelector_unify_closure.prototype = {
 				call$1(simple) {
@@ -38938,11 +36750,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$specificity() {
 					return 1;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitTypeSelector$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				addSuffix$1(suffix) {
 					var t1 = this.name;
@@ -38994,11 +36806,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$specificity() {
 					return 0;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitUniversalSelector$1(0, this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				unify$1(compound) {
 					var _0_4, t1, rest, unified, t2, _this = this, _null = null,
@@ -39082,7 +36894,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this._overloads, t2 = t1.length, fuzzyMatch = null, minMismatchDistance = null, _i = 0; _i < t1.length; t1.length === t2 || (0, A.throwConcurrentModificationError)(t1), ++_i) {
 						overload = t1[_i];
 						t3 = overload._0;
-						if (t3.matches$2(0, positional, names))
+						if (t3.matches$2(positional, names))
 							return overload;
 						mismatchDistance = t3.parameters.length - positional;
 						if (minMismatchDistance != null) {
@@ -39189,7 +37001,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						newValues = new A.UnprefixedMapView(newValues, _0_0, type$.UnprefixedMapView_ConfiguredValue);
 					_1_0 = $forward.shownVariables;
 					if (_1_0 != null)
-						newValues = new A.LimitedMapView(newValues, _1_0._base.intersection$1(0, new A.MapKeySet(newValues, type$.MapKeySet_nullable_Object)), type$.LimitedMapView_String_ConfiguredValue);
+						newValues = new A.LimitedMapView(newValues, _1_0._base.intersection$1(new A.MapKeySet(newValues, type$.MapKeySet_nullable_Object)), type$.LimitedMapView_String_ConfiguredValue);
 					else {
 						_2_0 = $forward.hiddenVariables;
 						if (_2_0 != null) {
@@ -39212,7 +37024,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2, t3,
 						t1 = A._setArrayType([], type$.JSArray_String);
 					for (t2 = A.MapExtensions_get_pairs(new A.UnmodifiableMapView(this._configuration$_values, type$.UnmodifiableMapView_String_ConfiguredValue), type$.String, type$.ConfiguredValue), t2 = t2.get$iterator(t2); t2.moveNext$0();) {
-						t3 = t2.get$current(t2);
+						t3 = t2.get$current();
 						t1.push("$" + t3._0 + ": " + t3._1.toString$0(0));
 					}
 					return "(" + B.JSArray_methods.join$1(t1, ",") + ")";
@@ -39234,12 +37046,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A.main_closure.prototype = {
 				call$2(_, __) {
 				},
-				$signature: 297
+				$signature: 287
 			};
 			A.main_closure0.prototype = {
 				call$2(_, __) {
 				},
-				$signature: 298
+				$signature: 295
 			};
 			A.Deprecation.prototype = {
 				_enumToString$0() {
@@ -39260,7 +37072,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(deprecation) {
 					return deprecation.id === this.id;
 				},
-				$signature: 312
+				$signature: 296
 			};
 			A.Environment.prototype = {
 				closure$0() {
@@ -39302,10 +37114,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						smaller = oldMembers;
 					}
 					for (t1 = type$.String, t2 = A.MapExtensions_get_pairs(smaller, t1, type$.Object), t2 = t2.get$iterator(t2), t3 = type === "variable"; t2.moveNext$0();) {
-						t4 = t2.get$current(t2);
+						t4 = t2.get$current();
 						$name = t4._0;
 						small = t4._1;
-						large = larger.$index(larger, $name);
+						large = larger.$index(0, $name);
 						if (large == null)
 							continue;
 						if (t3 ? newModule.variableIdentity$1($name) === oldModule.variableIdentity$1($name) : J.$eq$(large, small))
@@ -39336,10 +37148,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = type$.AstNode;
 						t3 = A.LinkedHashMap_LinkedHashMap$_empty(t1, t2);
 						for (t1 = A.MapExtensions_get_pairs(forwarded, t1, t2), t1 = t1.get$iterator(t1), t2 = _this._globalModules; t1.moveNext$0();) {
-							t4 = t1.get$current(t1);
+							t4 = t1.get$current();
 							module = t4._0;
 							node = t4._1;
-							if (!forwardedModules.containsKey$1(0, module) || !t2.containsKey$1(0, module))
+							if (!forwardedModules.containsKey$1(module) || !t2.containsKey$1(module))
 								t3.$indexSet(0, module, node);
 						}
 						forwarded = t3;
@@ -39348,18 +37160,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = type$.String;
 					t2 = A.LinkedHashSet_LinkedHashSet$_empty(t1);
 					for (t3 = new A.LinkedHashMapKeyIterator(forwarded, forwarded._modifications, forwarded._first); t3.moveNext$0();)
-						for (t4 = t3.__js_helper$_current.get$variables(), t4 = J.get$iterator$ax(t4.get$keys(t4)); t4.moveNext$0();)
-							t2.add$1(0, t4.get$current(t4));
+						for (t4 = t3.__js_helper$_current.get$variables(), t4 = t4.get$keys(t4), t4 = t4.get$iterator(t4); t4.moveNext$0();)
+							t2.add$1(0, t4.get$current());
 					t3 = A.LinkedHashSet_LinkedHashSet$_empty(t1);
 					for (t4 = new A.LinkedHashMapKeyIterator(forwarded, forwarded._modifications, forwarded._first); t4.moveNext$0();) {
 						t5 = t4.__js_helper$_current;
-						for (t5 = t5.get$functions(t5), t5 = J.get$iterator$ax(t5.get$keys(t5)); t5.moveNext$0();)
-							t3.add$1(0, t5.get$current(t5));
+						for (t5 = t5.get$functions(t5), t5 = t5.get$keys(t5), t5 = t5.get$iterator(t5); t5.moveNext$0();)
+							t3.add$1(0, t5.get$current());
 					}
 					t1 = A.LinkedHashSet_LinkedHashSet$_empty(t1);
 					for (t4 = new A.LinkedHashMapKeyIterator(forwarded, forwarded._modifications, forwarded._first); t4.moveNext$0();)
-						for (t5 = t4.__js_helper$_current.get$mixins(), t5 = J.get$iterator$ax(t5.get$keys(t5)); t5.moveNext$0();)
-							t1.add$1(0, t5.get$current(t5));
+						for (t5 = t4.__js_helper$_current.get$mixins(), t5 = t5.get$keys(t5), t5 = t5.get$iterator(t5); t5.moveNext$0();)
+							t1.add$1(0, t5.get$current());
 					t4 = _this._variables;
 					t5 = t4.length;
 					if (t5 === 1) {
@@ -39435,34 +37247,32 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (t8 == null)
 							t8 = t7._as(t8);
 						t5.remove$1(0, t8);
-						J.remove$1$x(B.JSArray_methods.get$last(t4), t8);
-						J.remove$1$x(B.JSArray_methods.get$last(t6), t8);
+						B.JSArray_methods.get$last(t4).remove$1(0, t8);
+						B.JSArray_methods.get$last(t6).remove$1(0, t8);
 					}
 					for (t2 = A._LinkedHashSetIterator$(t3, t3._collection$_modifications, t3.$ti._precomputed1), t3 = _this._functionIndices, t4 = _this._functions, t5 = t2.$ti._precomputed1; t2.moveNext$0();) {
 						t6 = t2._collection$_current;
 						if (t6 == null)
 							t6 = t5._as(t6);
 						t3.remove$1(0, t6);
-						J.remove$1$x(B.JSArray_methods.get$last(t4), t6);
+						B.JSArray_methods.get$last(t4).remove$1(0, t6);
 					}
 					for (t1 = A._LinkedHashSetIterator$(t1, t1._collection$_modifications, t1.$ti._precomputed1), t2 = _this._mixinIndices, t3 = _this._mixins, t4 = t1.$ti._precomputed1; t1.moveNext$0();) {
 						t5 = t1._collection$_current;
 						if (t5 == null)
 							t5 = t4._as(t5);
 						t2.remove$1(0, t5);
-						J.remove$1$x(B.JSArray_methods.get$last(t3), t5);
+						B.JSArray_methods.get$last(t3).remove$1(0, t5);
 					}
 				},
 				getVariable$2$namespace($name, namespace) {
 					var t1, _0_0, _1_0, _this = this;
-					if (namespace != null) {
-						t1 = _this._getModule$1(namespace).get$variables();
-						return t1.$index(t1, $name);
-					}
+					if (namespace != null)
+						return _this._getModule$1(namespace).get$variables().$index(0, $name);
 					if (_this._lastVariableName === $name) {
 						t1 = _this._lastVariableIndex;
 						t1.toString;
-						t1 = J.$index$asx(_this._variables[t1], $name);
+						t1 = _this._variables[t1].$index(0, $name);
 						return t1 == null ? _this._getVariableFromGlobalModule$1($name) : t1;
 					}
 					t1 = _this._variableIndices;
@@ -39470,7 +37280,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (_0_0 != null) {
 						_this._lastVariableName = $name;
 						_this._lastVariableIndex = _0_0;
-						t1 = J.$index$asx(_this._variables[_0_0], $name);
+						t1 = _this._variables[_0_0].$index(0, $name);
 						return t1 == null ? _this._getVariableFromGlobalModule$1($name) : t1;
 					} else {
 						_1_0 = _this._variableIndex$1($name);
@@ -39478,7 +37288,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							_this._lastVariableName = $name;
 							_this._lastVariableIndex = _1_0;
 							t1.$indexSet(0, $name, _1_0);
-							t1 = J.$index$asx(_this._variables[_1_0], $name);
+							t1 = _this._variables[_1_0].$index(0, $name);
 							return t1 == null ? _this._getVariableFromGlobalModule$1($name) : t1;
 						} else
 							return _this._getVariableFromGlobalModule$1($name);
@@ -39492,14 +37302,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				getVariableNode$2$namespace($name, namespace) {
 					var t1, _0_0, _1_0, _this = this;
-					if (namespace != null) {
-						t1 = _this._getModule$1(namespace).get$variableNodes();
-						return t1.$index(t1, $name);
-					}
+					if (namespace != null)
+						return _this._getModule$1(namespace).get$variableNodes().$index(0, $name);
 					if (_this._lastVariableName === $name) {
 						t1 = _this._lastVariableIndex;
 						t1.toString;
-						t1 = J.$index$asx(_this._variableNodes[t1], $name);
+						t1 = _this._variableNodes[t1].$index(0, $name);
 						return t1 == null ? _this._getVariableNodeFromGlobalModule$1($name) : t1;
 					}
 					t1 = _this._variableIndices;
@@ -39507,7 +37315,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (_0_0 != null) {
 						_this._lastVariableName = $name;
 						_this._lastVariableIndex = _0_0;
-						t1 = J.$index$asx(_this._variableNodes[_0_0], $name);
+						t1 = _this._variableNodes[_0_0].$index(0, $name);
 						return t1 == null ? _this._getVariableNodeFromGlobalModule$1($name) : t1;
 					} else {
 						_1_0 = _this._variableIndex$1($name);
@@ -39515,7 +37323,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							_this._lastVariableName = $name;
 							_this._lastVariableIndex = _1_0;
 							t1.$indexSet(0, $name, _1_0);
-							t1 = J.$index$asx(_this._variableNodes[_1_0], $name);
+							t1 = _this._variableNodes[_1_0].$index(0, $name);
 							return t1 == null ? _this._getVariableNodeFromGlobalModule$1($name) : t1;
 						} else
 							return _this._getVariableNodeFromGlobalModule$1($name);
@@ -39524,21 +37332,16 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_getVariableNodeFromGlobalModule$1($name) {
 					var t1, t2, _0_0;
 					for (t1 = this._importedModules, t2 = this._globalModules, t2 = new A.LinkedHashMapKeysIterable(t1, A._instanceType(t1)._eval$1("LinkedHashMapKeysIterable<1>")).followedBy$1(0, new A.LinkedHashMapKeysIterable(t2, A._instanceType(t2)._eval$1("LinkedHashMapKeysIterable<1>"))), t2 = new A.FollowedByIterator(J.get$iterator$ax(t2.__internal$_first), t2._second); t2.moveNext$0();) {
-						t1 = t2._currentIterator;
-						t1 = t1.get$current(t1).get$variableNodes();
-						_0_0 = t1.$index(t1, $name);
+						_0_0 = t2._currentIterator.get$current().get$variableNodes().$index(0, $name);
 						if (_0_0 != null)
 							return _0_0;
 					}
 					return null;
 				},
 				globalVariableExists$2$namespace($name, namespace) {
-					var t1;
-					if (namespace != null) {
-						t1 = this._getModule$1(namespace).get$variables();
-						return t1.containsKey$1(t1, $name);
-					}
-					if (J.containsKey$1$x(B.JSArray_methods.get$first(this._variables), $name))
+					if (namespace != null)
+						return this._getModule$1(namespace).get$variables().containsKey$1($name);
+					if (B.JSArray_methods.get$first(this._variables).containsKey$1($name))
 						return true;
 					return this._getVariableFromGlobalModule$1($name) != null;
 				},
@@ -39548,40 +37351,39 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_variableIndex$1($name) {
 					var t1, i;
 					for (t1 = this._variables, i = t1.length - 1; i >= 0; --i)
-						if (J.containsKey$1$x(t1[i], $name))
+						if (t1[i].containsKey$1($name))
 							return i;
 					return null;
 				},
 				setVariable$5$global$namespace($name, value, nodeWithSpan, global, namespace) {
-					var t1, moduleWithName, nestedForwardedModules, t2, t3, t4, t5, t6, index, _this = this;
+					var t1, moduleWithName, nestedForwardedModules, t2, t3, t4, t5, index, _this = this;
 					if (namespace != null) {
 						_this._getModule$1(namespace).setVariable$3($name, value, nodeWithSpan);
 						return;
 					}
 					if (global || _this._variables.length === 1) {
-						_this._variableIndices.putIfAbsent$2(0, $name, new A.Environment_setVariable_closure(_this, $name));
+						_this._variableIndices.putIfAbsent$2($name, new A.Environment_setVariable_closure(_this, $name));
 						t1 = _this._variables;
-						if (!J.containsKey$1$x(B.JSArray_methods.get$first(t1), $name)) {
+						if (!B.JSArray_methods.get$first(t1).containsKey$1($name)) {
 							moduleWithName = _this._fromOneModule$3($name, "variable", new A.Environment_setVariable_closure0($name));
 							if (moduleWithName != null) {
 								moduleWithName.setVariable$3($name, value, nodeWithSpan);
 								return;
 							}
 						}
-						J.$indexSet$ax(B.JSArray_methods.get$first(t1), $name, value);
-						J.$indexSet$ax(B.JSArray_methods.get$first(_this._variableNodes), $name, nodeWithSpan);
+						B.JSArray_methods.get$first(t1).$indexSet(0, $name, value);
+						B.JSArray_methods.get$first(_this._variableNodes).$indexSet(0, $name, nodeWithSpan);
 						return;
 					}
 					nestedForwardedModules = _this._nestedForwardedModules;
-					if (nestedForwardedModules != null && !_this._variableIndices.containsKey$1(0, $name) && _this._variableIndex$1($name) == null)
+					if (nestedForwardedModules != null && !_this._variableIndices.containsKey$1($name) && _this._variableIndex$1($name) == null)
 						for (t1 = A._arrayInstanceType(nestedForwardedModules)._eval$1("ReversedListIterable<1>"), t2 = new A.ReversedListIterable(nestedForwardedModules, t1), t2 = new A.ListIterator(t2, t2.get$length(0), t1._eval$1("ListIterator<ListIterable.E>")), t1 = t1._eval$1("ListIterable.E"); t2.moveNext$0();) {
 							t3 = t2.__internal$_current;
 							for (t3 = J.get$reversed$ax(t3 == null ? t1._as(t3) : t3), t4 = t3.$ti, t3 = new A.ListIterator(t3, t3.get$length(0), t4._eval$1("ListIterator<ListIterable.E>")), t4 = t4._eval$1("ListIterable.E"); t3.moveNext$0();) {
 								t5 = t3.__internal$_current;
 								if (t5 == null)
 									t5 = t4._as(t5);
-								t6 = t5.get$variables();
-								if (t6.containsKey$1(t6, $name)) {
+								if (t5.get$variables().containsKey$1($name)) {
 									t5.setVariable$3($name, value, nodeWithSpan);
 									return;
 								}
@@ -39592,15 +37394,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1.toString;
 						index = t1;
 					} else
-						index = _this._variableIndices.putIfAbsent$2(0, $name, new A.Environment_setVariable_closure1(_this, $name));
+						index = _this._variableIndices.putIfAbsent$2($name, new A.Environment_setVariable_closure1(_this, $name));
 					if (!_this._inSemiGlobalScope && index === 0) {
 						index = _this._variables.length - 1;
 						_this._variableIndices.$indexSet(0, $name, index);
 					}
 					_this._lastVariableName = $name;
 					_this._lastVariableIndex = index;
-					J.$indexSet$ax(_this._variables[index], $name, value);
-					J.$indexSet$ax(_this._variableNodes[index], $name, nodeWithSpan);
+					_this._variables[index].$indexSet(0, $name, value);
+					_this._variableNodes[index].$indexSet(0, $name, nodeWithSpan);
 				},
 				setVariable$4$global($name, value, nodeWithSpan, global) {
 					return this.setVariable$5$global$namespace($name, value, nodeWithSpan, global, null);
@@ -39612,26 +37414,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this._lastVariableName = $name;
 					index = _this._lastVariableIndex = t2 - 1;
 					_this._variableIndices.$indexSet(0, $name, index);
-					J.$indexSet$ax(t1[index], $name, value);
-					J.$indexSet$ax(_this._variableNodes[index], $name, nodeWithSpan);
+					t1[index].$indexSet(0, $name, value);
+					_this._variableNodes[index].$indexSet(0, $name, nodeWithSpan);
 				},
 				getFunction$2$namespace($name, namespace) {
 					var t1, _0_0, _1_0, _this = this;
 					if (namespace != null) {
 						t1 = _this._getModule$1(namespace);
-						t1 = t1.get$functions(t1);
-						return t1.$index(t1, $name);
+						return t1.get$functions(t1).$index(0, $name);
 					}
 					t1 = _this._functionIndices;
 					_0_0 = t1.$index(0, $name);
 					if (_0_0 != null) {
-						t1 = J.$index$asx(_this._functions[_0_0], $name);
+						t1 = _this._functions[_0_0].$index(0, $name);
 						return t1 == null ? _this._getFunctionFromGlobalModule$1($name) : t1;
 					} else {
 						_1_0 = _this._functionIndex$1($name);
 						if (_1_0 != null) {
 							t1.$indexSet(0, $name, _1_0);
-							t1 = J.$index$asx(_this._functions[_1_0], $name);
+							t1 = _this._functions[_1_0].$index(0, $name);
 							return t1 == null ? _this._getFunctionFromGlobalModule$1($name) : t1;
 						} else
 							return _this._getFunctionFromGlobalModule$1($name);
@@ -39646,26 +37447,24 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_functionIndex$1($name) {
 					var t1, i;
 					for (t1 = this._functions, i = t1.length - 1; i >= 0; --i)
-						if (J.containsKey$1$x(t1[i], $name))
+						if (t1[i].containsKey$1($name))
 							return i;
 					return null;
 				},
 				getMixin$2$namespace($name, namespace) {
 					var t1, _0_0, _1_0, _this = this;
-					if (namespace != null) {
-						t1 = _this._getModule$1(namespace).get$mixins();
-						return t1.$index(t1, $name);
-					}
+					if (namespace != null)
+						return _this._getModule$1(namespace).get$mixins().$index(0, $name);
 					t1 = _this._mixinIndices;
 					_0_0 = t1.$index(0, $name);
 					if (_0_0 != null) {
-						t1 = J.$index$asx(_this._mixins[_0_0], $name);
+						t1 = _this._mixins[_0_0].$index(0, $name);
 						return t1 == null ? _this._getMixinFromGlobalModule$1($name) : t1;
 					} else {
 						_1_0 = _this._mixinIndex$1($name);
 						if (_1_0 != null) {
 							t1.$indexSet(0, $name, _1_0);
-							t1 = J.$index$asx(_this._mixins[_1_0], $name);
+							t1 = _this._mixins[_1_0].$index(0, $name);
 							return t1 == null ? _this._getMixinFromGlobalModule$1($name) : t1;
 						} else
 							return _this._getMixinFromGlobalModule$1($name);
@@ -39677,7 +37476,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_mixinIndex$1($name) {
 					var t1, i;
 					for (t1 = this._mixins, i = t1.length - 1; i >= 0; --i)
-						if (J.containsKey$1$x(t1[i], $name))
+						if (t1[i].containsKey$1($name))
 							return i;
 					return null;
 				},
@@ -39693,7 +37492,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					callback.call$0();
 					this._environment$_inMixin = oldInMixin;
 				},
-				scope$1$3$semiGlobal$when(_, callback, semiGlobal, when) {
+				scope$1$3$semiGlobal$when(callback, semiGlobal, when) {
 					var wasInSemiGlobalScope, $name, name0, name1, t1, t2, t3, t4, t5, t6, _this = this;
 					semiGlobal = semiGlobal && _this._inSemiGlobalScope;
 					wasInSemiGlobalScope = _this._inSemiGlobalScope;
@@ -39724,17 +37523,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					} finally {
 						_this._inSemiGlobalScope = wasInSemiGlobalScope;
 						_this._lastVariableIndex = _this._lastVariableName = null;
-						for (t1 = J.get$iterator$ax(J.get$keys$x(B.JSArray_methods.removeLast$0(t1))), t2 = _this._variableIndices; t1.moveNext$0();) {
-							$name = t1.get$current(t1);
+						for (t1 = B.JSArray_methods.removeLast$0(t1), t1 = t1.get$keys(t1), t1 = t1.get$iterator(t1), t2 = _this._variableIndices; t1.moveNext$0();) {
+							$name = t1.get$current();
 							t2.remove$1(0, $name);
 						}
 						B.JSArray_methods.removeLast$0(t3);
-						for (t1 = J.get$iterator$ax(J.get$keys$x(B.JSArray_methods.removeLast$0(t4))), t2 = _this._functionIndices; t1.moveNext$0();) {
-							name0 = t1.get$current(t1);
+						for (t1 = B.JSArray_methods.removeLast$0(t4), t1 = t1.get$keys(t1), t1 = t1.get$iterator(t1), t2 = _this._functionIndices; t1.moveNext$0();) {
+							name0 = t1.get$current();
 							t2.remove$1(0, name0);
 						}
-						for (t1 = J.get$iterator$ax(J.get$keys$x(B.JSArray_methods.removeLast$0(t6))), t2 = _this._mixinIndices; t1.moveNext$0();) {
-							name1 = t1.get$current(t1);
+						for (t1 = B.JSArray_methods.removeLast$0(t6), t1 = t1.get$keys(t1), t1 = t1.get$iterator(t1), t2 = _this._mixinIndices; t1.moveNext$0();) {
+							name1 = t1.get$current();
 							t2.remove$1(0, name1);
 						}
 						t1 = _this._nestedForwardedModules;
@@ -39742,17 +37541,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t1.pop();
 					}
 				},
-				scope$1(_, callback) {
-					return this.scope$1$3$semiGlobal$when(0, callback, false, true, type$.dynamic);
+				scope$1(callback) {
+					return this.scope$1$3$semiGlobal$when(callback, false, true, type$.dynamic);
 				},
-				scope$3$semiGlobal$when(_, callback, semiGlobal, when) {
-					return this.scope$1$3$semiGlobal$when(0, callback, semiGlobal, when, type$.dynamic);
+				scope$3$semiGlobal$when(callback, semiGlobal, when) {
+					return this.scope$1$3$semiGlobal$when(callback, semiGlobal, when, type$.dynamic);
 				},
-				scope$2$when(_, callback, when) {
-					return this.scope$1$3$semiGlobal$when(0, callback, false, when, type$.dynamic);
+				scope$2$when(callback, when) {
+					return this.scope$1$3$semiGlobal$when(callback, false, when, type$.dynamic);
 				},
-				scope$2$semiGlobal(_, callback, semiGlobal) {
-					return this.scope$1$3$semiGlobal$when(0, callback, semiGlobal, true, type$.dynamic);
+				scope$2$semiGlobal(callback, semiGlobal) {
+					return this.scope$1$3$semiGlobal$when(callback, semiGlobal, true, type$.dynamic);
 				},
 				toImplicitConfiguration$0() {
 					var t2, t3, t4, t5, t6, i, modules, t7, t8, t9, t10, $name, value, values, nodes, _this = this, _null = null,
@@ -39767,26 +37566,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 						t7 = J.get$iterator$ax(modules == null ? B.List_empty13 : modules);
 						while (t7.moveNext$0()) {
-							t8 = t7.get$current(t7);
+							t8 = t7.get$current();
 							for (t9 = A.MapExtensions_get_pairs(t8.get$variables(), t1, t3), t9 = t9.get$iterator(t9); t9.moveNext$0();) {
-								t10 = t9.get$current(t9);
+								t10 = t9.get$current();
 								$name = t10._0;
 								value = t10._1;
-								t10 = t8.get$variableNodes();
-								t10 = t10.$index(t10, $name);
+								t10 = t8.get$variableNodes().$index(0, $name);
 								t10.toString;
 								configuration.$indexSet(0, $name, new A.ConfiguredValue(value, _null, t10));
 							}
 						}
 						values = t2[i];
 						nodes = t4[i];
-						for (t7 = A.MapExtensions_get_pairs(values, t1, t3), t7 = t7.get$iterator(t7), t8 = J.getInterceptor$asx(nodes); t7.moveNext$0();) {
-							t9 = t7.get$current(t7);
-							$name = t9._0;
-							value = t9._1;
-							t9 = t8.$index(nodes, $name);
-							t9.toString;
-							configuration.$indexSet(0, $name, new A.ConfiguredValue(value, _null, t9));
+						for (t7 = A.MapExtensions_get_pairs(values, t1, t3), t7 = t7.get$iterator(t7); t7.moveNext$0();) {
+							t8 = t7.get$current();
+							$name = t8._0;
+							value = t8._1;
+							t8 = nodes.$index(0, $name);
+							t8.toString;
+							configuration.$indexSet(0, $name, new A.ConfiguredValue(value, _null, t8));
 						}
 					}
 					return new A.Configuration(configuration, _null);
@@ -39832,7 +37630,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (value != null) {
 							t2 = A.LinkedHashMap_LinkedHashMap$_empty(type$.FileSpan, type$.String);
 							for (t3 = A.MapExtensions_get_pairs(t1, type$.Module_Callable, type$.AstNode), t3 = t3.get$iterator(t3), t4 = "includes " + type; t3.moveNext$0();) {
-								t1 = t3.get$current(t3);
+								t1 = t3.get$current();
 								module = t1._0;
 								node = t1._1;
 								if (callback.call$1(module) != null)
@@ -39851,10 +37649,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.Environment__getVariableFromGlobalModule_closure.prototype = {
 				call$1(module) {
-					var t1 = module.get$variables();
-					return t1.$index(t1, this.name);
+					return module.get$variables().$index(0, this.name);
 				},
-				$signature: 313
+				$signature: 310
 			};
 			A.Environment_setVariable_closure.prototype = {
 				call$0() {
@@ -39862,14 +37659,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._lastVariableName = this.name;
 					return t1._lastVariableIndex = 0;
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A.Environment_setVariable_closure0.prototype = {
 				call$1(module) {
-					var t1 = module.get$variables();
-					return t1.containsKey$1(t1, this.name) ? module : null;
+					return module.get$variables().containsKey$1(this.name) ? module : null;
 				},
-				$signature: 114
+				$signature: 311
 			};
 			A.Environment_setVariable_closure1.prototype = {
 				call$0() {
@@ -39877,33 +37673,31 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = t1._variableIndex$1(this.name);
 					return t2 == null ? t1._variables.length - 1 : t2;
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A.Environment__getFunctionFromGlobalModule_closure.prototype = {
 				call$1(module) {
-					var t1 = module.get$functions(module);
-					return t1.$index(t1, this.name);
+					return module.get$functions(module).$index(0, this.name);
 				},
-				$signature: 80
+				$signature: 78
 			};
 			A.Environment__getMixinFromGlobalModule_closure.prototype = {
 				call$1(module) {
-					var t1 = module.get$mixins();
-					return t1.$index(t1, this.name);
+					return module.get$mixins().$index(0, this.name);
 				},
-				$signature: 80
+				$signature: 78
 			};
 			A.Environment_toModule_closure.prototype = {
 				call$1(modules) {
 					return new A.MapKeySet(modules, type$.MapKeySet_Module_Callable);
 				},
-				$signature: 110
+				$signature: 57
 			};
 			A.Environment_toDummyModule_closure.prototype = {
 				call$1(modules) {
 					return new A.MapKeySet(modules, type$.MapKeySet_Module_Callable);
 				},
-				$signature: 110
+				$signature: 57
 			};
 			A._EnvironmentModule.prototype = {
 				get$url(_) {
@@ -39920,10 +37714,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					t1 = this._environment$_environment;
 					t2 = t1._variables;
-					if (!J.containsKey$1$x(B.JSArray_methods.get$first(t2), $name))
+					if (!B.JSArray_methods.get$first(t2).containsKey$1($name))
 						throw A.wrapException(A.SassScriptException$("Undefined variable.", null));
-					J.$indexSet$ax(B.JSArray_methods.get$first(t2), $name, value);
-					J.$indexSet$ax(B.JSArray_methods.get$first(t1._variableNodes), $name, nodeWithSpan);
+					B.JSArray_methods.get$first(t2).$indexSet(0, $name, value);
+					B.JSArray_methods.get$first(t1._variableNodes).$indexSet(0, $name, nodeWithSpan);
 					return;
 				},
 				variableIdentity$1($name) {
@@ -39939,7 +37733,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (variables.get$length(variables) < t1.get$length(t1)) {
 							t2 = A.LinkedHashSet_LinkedHashSet$_empty(t2);
 							for (t3 = variables.get$iterator(variables); t3.moveNext$0();) {
-								_0_0 = t1.$index(0, t3.get$current(t3));
+								_0_0 = t1.$index(0, t3.get$current());
 								if (_0_0 != null)
 									t2.add$1(0, _0_0);
 							}
@@ -39947,7 +37741,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						} else {
 							t3 = A.LinkedHashSet_LinkedHashSet$_empty(t2);
 							for (t1 = A.MapExtensions_get_pairs(t1, type$.String, t2), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
-								t2 = t1.get$current(t1);
+								t2 = t1.get$current();
 								variable = t2._0;
 								module = t2._1;
 								if (variables.contains$1(0, variable))
@@ -39965,7 +37759,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!_this.transitivelyContainsCss)
 						return _this;
 					t1 = _this.css;
-					_0_0 = _this.extensionStore.clone$0(0);
+					_0_0 = _this.extensionStore.clone$0();
 					return A._EnvironmentModule$_(_this._environment$_environment, new A._CloneCssVisitor(_0_0._1)._clone_css$_visitChildren$2(A.ModifiableCssStylesheet$(t1.get$span(t1)), t1), _this.preModuleComments, _0_0._0, _this._modulesByVariable, _this.variables, _this.variableNodes, _this.functions, _this.mixins, true, _this.transitivelyContainsExtensions);
 				},
 				toString$0(_) {
@@ -40018,43 +37812,43 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(module) {
 					return module.get$variables();
 				},
-				$signature: 117
+				$signature: 114
 			};
 			A._EnvironmentModule__EnvironmentModule_closure0.prototype = {
 				call$1(module) {
 					return module.get$variableNodes();
 				},
-				$signature: 118
+				$signature: 115
 			};
 			A._EnvironmentModule__EnvironmentModule_closure1.prototype = {
 				call$1(module) {
 					return module.get$functions(module);
 				},
-				$signature: 112
+				$signature: 108
 			};
 			A._EnvironmentModule__EnvironmentModule_closure2.prototype = {
 				call$1(module) {
 					return module.get$mixins();
 				},
-				$signature: 112
+				$signature: 108
 			};
 			A._EnvironmentModule__EnvironmentModule_closure3.prototype = {
 				call$1(module) {
 					return module.get$transitivelyContainsCss();
 				},
-				$signature: 36
+				$signature: 37
 			};
 			A._EnvironmentModule__EnvironmentModule_closure4.prototype = {
 				call$1(module) {
 					return module.get$transitivelyContainsExtensions();
 				},
-				$signature: 36
+				$signature: 37
 			};
 			A._EnvironmentModule_couldHaveBeenConfigured_closure.prototype = {
 				call$1(module) {
 					return module.couldHaveBeenConfigured$1(this.variables);
 				},
-				$signature: 36
+				$signature: 37
 			};
 			A.SassException.prototype = {
 				get$trace(_) {
@@ -40081,7 +37875,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						buffer = new A.StringBuffer(""),
 						t1 = "Error: " + _this._span_exception$_message + "\n";
 					buffer._contents = t1;
-					buffer._contents = t1 + A.SourceSpanException.prototype.get$span.call(_this, 0).highlight$1$color(0, color);
+					buffer._contents = t1 + A.SourceSpanException.prototype.get$span.call(_this, 0).highlight$1$color(color);
 					for (t1 = _this.get$trace(_this).toString$0(0).split("\n"), t2 = t1.length, _i = 0; _i < t2; ++_i) {
 						frame = t1[_i];
 						if (frame.length === 0)
@@ -40115,7 +37909,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, _i, frame, _this = this,
 						useColor = color === true,
 						buffer = new A.StringBuffer("Error: " + _this._span_exception$_message + "\n");
-					A.NullableExtension_andThen(A.Highlighter$multiple(A.SourceSpanException.prototype.get$span.call(_this, 0), _this.primaryLabel, _this.secondarySpans, useColor, null, null).highlight$0(0), buffer.get$write(buffer));
+					A.NullableExtension_andThen(A.Highlighter$multiple(A.SourceSpanException.prototype.get$span.call(_this, 0), _this.primaryLabel, _this.secondarySpans, useColor, null, null).highlight$0(), buffer.get$write(buffer));
 					for (t1 = _this.get$trace(_this).toString$0(0).split("\n"), t2 = t1.length, _i = 0; _i < t2; ++_i) {
 						frame = t1[_i];
 						if (frame.length === 0)
@@ -40167,7 +37961,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.SassFormatException.prototype = {
-				get$source(_) {
+				get$source() {
 					var t1 = A.SourceSpanException.prototype.get$span.call(this, 0);
 					return A.String_String$fromCharCodes(B.NativeUint32List_methods.sublist$2(t1.get$file(t1)._decodedChars, 0, null), 0, null);
 				},
@@ -40183,7 +37977,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$isSourceSpanFormatException: 1
 			};
 			A.MultiSpanSassFormatException.prototype = {
-				get$source(_) {
+				get$source() {
 					var t1 = A.SourceSpanException.prototype.get$span.call(this, 0);
 					return A.String_String$fromCharCodes(B.NativeUint32List_methods.sublist$2(t1.get$file(t1)._decodedChars, 0, null), 0, null);
 				},
@@ -40238,7 +38032,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				addExtensions$1(extenders) {
 					throw A.wrapException(A.UnsupportedError$("addExtensions() can't be called for a const ExtensionStore."));
 				},
-				clone$0(_) {
+				clone$0() {
 					return B.Record2_EmptyExtensionStore_Map_empty;
 				},
 				$isExtensionStore: 1
@@ -40300,7 +38094,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 											$async$goto = 3;
 											break;
 										}
-										t2 = t1.get$current(t1);
+										t2 = t1.get$current();
 										simple = t2._0;
 										sources = t2._1;
 										if (!callback.call$1(simple)) {
@@ -40308,7 +38102,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 											$async$goto = 2;
 											break;
 										}
-										t2 = J.get$iterator$ax(J.get$values$x(sources));
+										t2 = sources.get$values(sources), t2 = t2.get$iterator(t2);
 									case 4:
 										// for condition
 										if (!t2.moveNext$0()) {
@@ -40316,7 +38110,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 											$async$goto = 5;
 											break;
 										}
-										t3 = t2.get$current(t2);
+										t3 = t2.get$current();
 										$async$goto = t3 instanceof A.MergedExtension ? 6 : 8;
 										break;
 									case 6:
@@ -40366,7 +38160,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var originalSelector, error, stackTrace, t1, exception, t2, t3, t4, modifiableSelector, _this = this;
 					selector = selector;
 					originalSelector = selector;
-					if (!J.accept$1$z(originalSelector, B._IsInvisibleVisitor_true))
+					if (!originalSelector.accept$1(B._IsInvisibleVisitor_true))
 						_this._originals.addAll$1(0, originalSelector.components);
 					t1 = _this._extensions;
 					if (t1.__js_helper$_length !== 0)
@@ -40400,7 +38194,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						for (t5 = t1[_i].components, t6 = t5.length, _i0 = 0; _i0 < t6; ++_i0)
 							for (t7 = t5[_i0].selector.components, t8 = t7.length, _i1 = 0; _i1 < t8; ++_i1) {
 								simple = t7[_i1];
-								t3.putIfAbsent$2(0, simple, new A.ExtensionStore__registerSelector_closure()).add$1(0, selector);
+								t3.putIfAbsent$2(simple, new A.ExtensionStore__registerSelector_closure()).add$1(0, selector);
 								_0_2_isSet = simple instanceof A.PseudoSelector;
 								_0_2 = null;
 								if (_0_2_isSet) {
@@ -40416,32 +38210,32 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							}
 				},
 				addExtension$4(extender, target, extend, mediaContext) {
-					var t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, newExtensions, _i, complex, t12, extension, _0_0, t13, newExtensionsByTarget, additionalExtensions, _this = this,
+					var t2, t3, t4, t5, t6, t7, t8, t9, t10, newExtensions, _i, complex, t11, extension, _0_0, t12, newExtensionsByTarget, additionalExtensions, _this = this,
 						selectors = _this._selectors.$index(0, target),
 						t1 = _this._extensionsByExtender,
 						existingExtensions = t1.$index(0, target),
-						sources = _this._extensions.putIfAbsent$2(0, target, new A.ExtensionStore_addExtension_closure());
-					for (t2 = extender.components, t3 = t2.length, t4 = selectors == null, t5 = _this._sourceSpecificity, t6 = J.getInterceptor$asx(sources), t7 = extend.span, t8 = extend.isOptional, t9 = existingExtensions != null, t10 = type$.ComplexSelector, t11 = type$.Extension, newExtensions = null, _i = 0; _i < t3; ++_i) {
+						sources = _this._extensions.putIfAbsent$2(target, new A.ExtensionStore_addExtension_closure());
+					for (t2 = extender.components, t3 = t2.length, t4 = selectors == null, t5 = _this._sourceSpecificity, t6 = extend.span, t7 = extend.isOptional, t8 = existingExtensions != null, t9 = type$.ComplexSelector, t10 = type$.Extension, newExtensions = null, _i = 0; _i < t3; ++_i) {
 						complex = t2[_i];
-						if (complex.accept$1(0, B.C__IsUselessVisitor))
+						if (complex.accept$1(B.C__IsUselessVisitor))
 							continue;
 						complex.get$specificity();
-						t12 = new A.Extender(complex, false);
-						extension = t12._extension = new A.Extension(t12, target, mediaContext, t8, t7);
-						_0_0 = t6.$index(sources, complex);
+						t11 = new A.Extender(complex, false);
+						extension = t11._extension = new A.Extension(t11, target, mediaContext, t7, t6);
+						_0_0 = sources.$index(0, complex);
 						if (_0_0 != null) {
-							t6.$indexSet(sources, complex, A.MergedExtension_merge(_0_0, extension));
+							sources.$indexSet(0, complex, A.MergedExtension_merge(_0_0, extension));
 							continue;
 						}
-						t6.$indexSet(sources, complex, extension);
-						for (t12 = new A._SyncStarIterator(_this._simpleSelectors$1(complex)._outerHelper()); t12.moveNext$0();) {
-							t13 = t12._async$_current;
-							J.add$1$ax(t1.putIfAbsent$2(0, t13, new A.ExtensionStore_addExtension_closure0()), extension);
-							t5.putIfAbsent$2(0, t13, new A.ExtensionStore_addExtension_closure1(complex));
+						sources.$indexSet(0, complex, extension);
+						for (t11 = new A._SyncStarIterator(_this._simpleSelectors$1(complex)._outerHelper()); t11.moveNext$0();) {
+							t12 = t11._async$_current;
+							J.add$1$ax(t1.putIfAbsent$2(t12, new A.ExtensionStore_addExtension_closure0()), extension);
+							t5.putIfAbsent$2(t12, new A.ExtensionStore_addExtension_closure1(complex));
 						}
-						if (!t4 || t9) {
+						if (!t4 || t8) {
 							if (newExtensions == null)
-								newExtensions = A.LinkedHashMap_LinkedHashMap$_empty(t10, t11);
+								newExtensions = A.LinkedHashMap_LinkedHashMap$_empty(t9, t10);
 							newExtensions.$indexSet(0, complex, extension);
 						}
 					}
@@ -40449,10 +38243,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return;
 					t1 = type$.SimpleSelector;
 					newExtensionsByTarget = A.LinkedHashMap_LinkedHashMap$_literal([target, newExtensions], t1, type$.Map_ComplexSelector_Extension);
-					if (t9) {
+					if (t8) {
 						additionalExtensions = _this._extendExistingExtensions$2(existingExtensions, newExtensionsByTarget);
 						if (additionalExtensions != null)
-							A.mapAddAll2(newExtensionsByTarget, additionalExtensions, t1, t10, t11);
+							A.mapAddAll2(newExtensionsByTarget, additionalExtensions, t1, t9, t10);
 					}
 					if (!t4)
 						_this._extendExistingSelectors$2(selectors, newExtensionsByTarget);
@@ -40556,7 +38350,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					};
 				},
 				_extendExistingExtensions$2(extensions, newExtensions) {
-					var extension, selectors, error, stackTrace, t1, t2, t3, t4, t5, t6, additionalExtensions, _i, t7, exception, t8, t9, selectors0, t10, t11, t12, t13, t14, t15, withExtender, _0_0, _i0, _i1;
+					var extension, selectors, error, stackTrace, t1, t2, t3, t4, t5, t6, additionalExtensions, _i, t7, exception, t8, t9, selectors0, t10, t11, t12, t13, t14, withExtender, _0_0, _i0, _i1;
 					for (t1 = J.toList$0$ax(extensions), t2 = t1.length, t3 = this._extensionsByExtender, t4 = type$.SimpleSelector, t5 = type$.Map_ComplexSelector_Extension, t6 = this._extensions, additionalExtensions = null, _i = 0; _i < t1.length; t1.length === t2 || (0, A.throwConcurrentModificationError)(t1), ++_i) {
 						extension = t1[_i];
 						t7 = t6.$index(0, extension.target);
@@ -40584,28 +38378,28 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							selectors0.SubListIterable$3(t8, 1, null, t9._precomputed1);
 							selectors = selectors0;
 						}
-						for (t8 = J.get$iterator$ax(selectors), t9 = J.getInterceptor$asx(t7); t8.moveNext$0();) {
-							t10 = t8.get$current(t8);
-							t11 = extension;
-							t12 = t11.target;
-							t13 = t11.span;
-							t14 = t11.mediaContext;
-							t11 = t11.isOptional;
-							t10.get$specificity();
-							t15 = new A.Extender(t10, false);
-							withExtender = t15._extension = new A.Extension(t15, t12, t14, t11, t13);
-							_0_0 = t9.$index(t7, t10);
+						for (t8 = J.get$iterator$ax(selectors); t8.moveNext$0();) {
+							t9 = t8.get$current();
+							t10 = extension;
+							t11 = t10.target;
+							t12 = t10.span;
+							t13 = t10.mediaContext;
+							t10 = t10.isOptional;
+							t9.get$specificity();
+							t14 = new A.Extender(t9, false);
+							withExtender = t14._extension = new A.Extension(t14, t11, t13, t10, t12);
+							_0_0 = t7.$index(0, t9);
 							if (_0_0 != null)
-								t9.$indexSet(t7, t10, A.MergedExtension_merge(_0_0, withExtender));
+								t7.$indexSet(0, t9, A.MergedExtension_merge(_0_0, withExtender));
 							else {
-								t9.$indexSet(t7, t10, withExtender);
-								for (t11 = t10.components, t12 = t11.length, _i0 = 0; _i0 < t12; ++_i0)
-									for (t13 = t11[_i0].selector.components, t14 = t13.length, _i1 = 0; _i1 < t14; ++_i1)
-										J.add$1$ax(t3.putIfAbsent$2(0, t13[_i1], new A.ExtensionStore__extendExistingExtensions_closure()), withExtender);
-								if (newExtensions.containsKey$1(0, extension.target)) {
+								t7.$indexSet(0, t9, withExtender);
+								for (t10 = t9.components, t11 = t10.length, _i0 = 0; _i0 < t11; ++_i0)
+									for (t12 = t10[_i0].selector.components, t13 = t12.length, _i1 = 0; _i1 < t13; ++_i1)
+										J.add$1$ax(t3.putIfAbsent$2(t12[_i1], new A.ExtensionStore__extendExistingExtensions_closure()), withExtender);
+								if (newExtensions.containsKey$1(extension.target)) {
 									if (additionalExtensions == null)
 										additionalExtensions = A.LinkedHashMap_LinkedHashMap$_empty(t4, t5);
-									J.$indexSet$ax(additionalExtensions.putIfAbsent$2(0, extension.target, new A.ExtensionStore__extendExistingExtensions_closure0()), t10, withExtender);
+									additionalExtensions.putIfAbsent$2(extension.target, new A.ExtensionStore__extendExistingExtensions_closure0()).$indexSet(0, t9, withExtender);
 								}
 							}
 						}
@@ -40615,7 +38409,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_extendExistingSelectors$2(selectors, newExtensions) {
 					var selector, error, stackTrace, t1, t2, oldValue, exception, t3, t4, t5, t6;
 					for (t1 = selectors.get$iterator(selectors), t2 = this._mediaContexts; t1.moveNext$0();) {
-						selector = t1.get$current(t1);
+						selector = t1.get$current();
 						oldValue = selector.value;
 						try {
 							selector.value = this._extendList$3(selector.value, newExtensions, t2.$index(0, selector));
@@ -40639,14 +38433,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 				},
 				addExtensions$1(extensionStores) {
-					var t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, extensionsToExtend, selectorsToExtend, newExtensions, t12, t13, target, newSources, first, extensionsForTarget, t14, selectorsForTarget, t15, _2_0, t16, t17, extender, extension, _this = this;
+					var t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, extensionsToExtend, selectorsToExtend, newExtensions, t12, t13, target, newSources, first, extensionsForTarget, t14, selectorsForTarget, t15, _2_0, t16, extender, extension, _this = this;
 					for (t1 = J.get$iterator$ax(extensionStores), t2 = type$.SimpleSelector, t3 = type$.Map_ComplexSelector_Extension, t4 = _this._extensions, t5 = type$.ComplexSelector, t6 = type$.Extension, t7 = _this._selectors, t8 = _this._extensionsByExtender, t9 = type$.JSArray_Extension, t10 = type$.ModifiableBox_SelectorList, t11 = _this._sourceSpecificity, extensionsToExtend = null, selectorsToExtend = null, newExtensions = null; t1.moveNext$0();) {
-						t12 = t1.get$current(t1);
+						t12 = t1.get$current();
 						if (t12.get$isEmpty(t12))
 							continue;
 						t11.addAll$1(0, t12.get$_sourceSpecificity());
 						for (t12 = A.MapExtensions_get_pairs(t12.get$_extensions(), t2, t3), t12 = t12.get$iterator(t12); t12.moveNext$0();) {
-							t13 = t12.get$current(t12);
+							t13 = t12.get$current();
 							target = t13._0;
 							newSources = t13._1;
 							if (target instanceof A.PlaceholderSelector) {
@@ -40678,23 +38472,23 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							}
 							_2_0 = t4.$index(0, target);
 							if (_2_0 != null)
-								for (t15 = A.MapExtensions_get_pairs(newSources, t5, t6), t15 = t15.get$iterator(t15), t16 = J.getInterceptor$x(_2_0); t15.moveNext$0();) {
-									t17 = t15.get$current(t15);
-									extender = t17._0;
-									extension = t17._1;
-									if (t16.containsKey$1(_2_0, extender)) {
-										t17 = t16.$index(_2_0, extender);
-										extension = A.MergedExtension_merge(t17 == null ? t6._as(t17) : t17, extension);
-										t16.$indexSet(_2_0, extender, extension);
+								for (t15 = A.MapExtensions_get_pairs(newSources, t5, t6), t15 = t15.get$iterator(t15); t15.moveNext$0();) {
+									t16 = t15.get$current();
+									extender = t16._0;
+									extension = t16._1;
+									if (_2_0.containsKey$1(extender)) {
+										t16 = _2_0.$index(0, extender);
+										extension = A.MergedExtension_merge(t16 == null ? t6._as(t16) : t16, extension);
+										_2_0.$indexSet(0, extender, extension);
 									} else
-										t16.$indexSet(_2_0, extender, extension);
+										_2_0.$indexSet(0, extender, extension);
 									if (!t13 || t14) {
 										if (newExtensions == null) {
 											newExtensions = A.LinkedHashMap_LinkedHashMap$_empty(t2, t3);
-											t17 = newExtensions;
+											t16 = newExtensions;
 										} else
-											t17 = newExtensions;
-										J.$indexSet$ax(t17.putIfAbsent$2(0, target, new A.ExtensionStore_addExtensions_closure()), extender, extension);
+											t16 = newExtensions;
+										t16.putIfAbsent$2(target, new A.ExtensionStore_addExtensions_closure()).$indexSet(0, extender, extension);
 									}
 								}
 							else {
@@ -40773,7 +38567,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						else {
 							t11 = A._setArrayType([], t9);
 							for (t12 = J.get$iterator$ax(extended); t12.moveNext$0();) {
-								t13 = t12.get$current(t12);
+								t13 = t12.get$current();
 								t14 = t13.leadingCombinators;
 								if (t14.length === 0 || B.C_ListEquality0.equals$2(0, t1, t14)) {
 									t14 = t13.components;
@@ -40831,10 +38625,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return _null;
 					if (options.length === 1) {
 						for (t1 = J.get$iterator$ax(options[0]), t2 = component.combinators, t3 = type$.JSArray_ComplexSelector, result = _null; t1.moveNext$0();) {
-							t4 = t1.get$current(t1);
+							t4 = t1.get$current();
 							t4.assertCompatibleMediaContext$1(mediaQueryContext);
 							complex = t4.selector.withAdditionalCombinators$1(t2);
-							if (complex.accept$1(0, B.C__IsUselessVisitor))
+							if (complex.accept$1(B.C__IsUselessVisitor))
 								continue;
 							if (result == null)
 								result = A._setArrayType([], t3);
@@ -40859,8 +38653,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (extended == null)
 							continue;
 						for (t1 = J.get$iterator$ax(extended); t1.moveNext$0();) {
-							withCombinators = t1.get$current(t1).withAdditionalCombinators$1(t6);
-							if (!withCombinators.accept$1(0, B.C__IsUselessVisitor))
+							withCombinators = t1.get$current().withAdditionalCombinators$1(t6);
+							if (!withCombinators.accept$1(B.C__IsUselessVisitor))
 								t3.push(withCombinators);
 						}
 					}
@@ -40871,7 +38665,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, originals, originalsLineBreak, t4, complexes, _null = null,
 						toUnify = A.QueueList$(_null, type$.ComplexSelector);
 					for (t1 = J.getInterceptor$ax(extenders), t2 = t1.get$iterator(extenders), t3 = type$.JSArray_SimpleSelector, originals = _null, originalsLineBreak = false; t2.moveNext$0();) {
-						t4 = t2.get$current(t2);
+						t4 = t2.get$current();
 						if (t4.isOriginal) {
 							if (originals == null)
 								originals = A._setArrayType([], t3);
@@ -40880,10 +38674,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							originalsLineBreak = originalsLineBreak || t4.lineBreak;
 						} else {
 							t4 = t4.selector;
-							if (t4.accept$1(0, B.C__IsUselessVisitor))
+							if (t4.accept$1(B.C__IsUselessVisitor))
 								return _null;
 							else
-								toUnify._queue_list$_add$1(0, t4);
+								toUnify._queue_list$_add$1(t4);
 						}
 					}
 					if (originals != null)
@@ -40892,7 +38686,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (complexes == null)
 						return _null;
 					for (t1 = t1.get$iterator(extenders); t1.moveNext$0();)
-						t1.get$current(t1).assertCompatibleMediaContext$1(mediaQueryContext);
+						t1.get$current().assertCompatibleMediaContext$1(mediaQueryContext);
 					return complexes;
 				},
 				_extendSimple$4(simple, extensions, mediaQueryContext, targetsUsed) {
@@ -40979,7 +38773,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return specificity;
 				},
-				clone$0(_) {
+				clone$0() {
 					var t3, t4, _this = this,
 						t1 = type$.SimpleSelector,
 						newSelectors = A.LinkedHashMap_LinkedHashMap$_empty(t1, type$.Set_ModifiableBox_SelectorList),
@@ -41007,56 +38801,56 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(extension) {
 					return !extension.isOptional;
 				},
-				$signature: 126
+				$signature: 124
 			};
 			A.ExtensionStore__registerSelector_closure.prototype = {
 				call$0() {
 					return A.LinkedHashSet_LinkedHashSet$_empty(type$.ModifiableBox_SelectorList);
 				},
-				$signature: 133
+				$signature: 131
 			};
 			A.ExtensionStore_addExtension_closure.prototype = {
 				call$0() {
 					return A.LinkedHashMap_LinkedHashMap$_empty(type$.ComplexSelector, type$.Extension);
 				},
-				$signature: 48
+				$signature: 46
 			};
 			A.ExtensionStore_addExtension_closure0.prototype = {
 				call$0() {
 					return A._setArrayType([], type$.JSArray_Extension);
 				},
-				$signature: 87
+				$signature: 106
 			};
 			A.ExtensionStore_addExtension_closure1.prototype = {
 				call$0() {
 					return this.complex.get$specificity();
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A.ExtensionStore__extendExistingExtensions_closure.prototype = {
 				call$0() {
 					return A._setArrayType([], type$.JSArray_Extension);
 				},
-				$signature: 87
+				$signature: 106
 			};
 			A.ExtensionStore__extendExistingExtensions_closure0.prototype = {
 				call$0() {
 					return A.LinkedHashMap_LinkedHashMap$_empty(type$.ComplexSelector, type$.Extension);
 				},
-				$signature: 48
+				$signature: 46
 			};
 			A.ExtensionStore_addExtensions_closure.prototype = {
 				call$0() {
 					return A.LinkedHashMap_LinkedHashMap$_empty(type$.ComplexSelector, type$.Extension);
 				},
-				$signature: 48
+				$signature: 46
 			};
 			A.ExtensionStore__extendComplex_closure.prototype = {
 				call$1(path) {
 					var t1 = this.complex;
 					return J.map$1$1$ax(A.weave(path, t1.span, t1.lineBreak), new A.ExtensionStore__extendComplex__closure(this._box_0, this.$this, t1), type$.ComplexSelector);
 				},
-				$signature: 166
+				$signature: 111
 			};
 			A.ExtensionStore__extendComplex__closure.prototype = {
 				call$1(outputComplex) {
@@ -41067,13 +38861,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.first = false;
 					return outputComplex;
 				},
-				$signature: 32
+				$signature: 31
 			};
 			A.ExtensionStore__extendCompound_closure.prototype = {
 				call$1(extender) {
 					return B.JSArray_methods.get$last(extender.selector.components).selector.components;
 				},
-				$signature: 168
+				$signature: 166
 			};
 			A.ExtensionStore__extendCompound_closure0.prototype = {
 				call$1(_) {
@@ -41100,24 +38894,24 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = this.$this;
 					if (t2._mode !== B.ExtendMode_replace_1_replace)
 						t1.push(t2._extenderForSimple$1(simple));
-					for (t2 = J.get$iterator$ax(J.get$values$x(extensionsForSimple)); t2.moveNext$0();)
-						t1.push(t2.get$current(t2).extender);
+					for (t2 = extensionsForSimple.get$values(extensionsForSimple), t2 = t2.get$iterator(t2); t2.moveNext$0();)
+						t1.push(t2.get$current().extender);
 					return t1;
 				},
-				$signature: 169
+				$signature: 167
 			};
 			A.ExtensionStore__extendSimple_closure.prototype = {
 				call$1(pseudo) {
 					var t1 = this.withoutPseudo.call$1(pseudo);
 					return t1 == null ? A._setArrayType([this.$this._extenderForSimple$1(pseudo)], type$.JSArray_Extender) : t1;
 				},
-				$signature: 170
+				$signature: 168
 			};
 			A.ExtensionStore__extendSimple_closure0.prototype = {
 				call$1(result) {
 					return A._setArrayType([result], type$.JSArray_List_Extender);
 				},
-				$signature: 172
+				$signature: 170
 			};
 			A.ExtensionStore__extendPseudo_closure.prototype = {
 				call$1(complex) {
@@ -41179,13 +38973,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							return A._setArrayType([], type$.JSArray_ComplexSelector);
 					}
 				},
-				$signature: 175
+				$signature: 173
 			};
 			A.ExtensionStore__extendPseudo_closure3.prototype = {
 				call$1(complex) {
 					return this.pseudo.withSelector$1(A.SelectorList$(A._setArrayType([complex], type$.JSArray_ComplexSelector), this.selector.span));
 				},
-				$signature: 189
+				$signature: 187
 			};
 			A.ExtensionStore__trim_closure.prototype = {
 				call$1(complex2) {
@@ -41205,8 +38999,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						newSelectorSet = A.LinkedHashSet_LinkedHashSet$_empty(type$.ModifiableBox_SelectorList);
 					_this.newSelectors.$indexSet(0, simple, newSelectorSet);
 					for (t1 = selectors.get$iterator(selectors), t2 = _this.newBoxes, t3 = _this.oldToNewSelectors, t4 = _this.$this._mediaContexts, t5 = _this.newMediaContexts; t1.moveNext$0();) {
-						t6 = t1.get$current(t1);
-						newSelector = t2.putIfAbsent$2(0, t6, new A.ExtensionStore_clone__closure(t6));
+						t6 = t1.get$current();
+						newSelector = t2.putIfAbsent$2(t6, new A.ExtensionStore_clone__closure(t6));
 						newSelectorSet.add$1(0, newSelector);
 						t3.$indexSet(0, t6.value, new A.Box(newSelector, newSelector.$ti._eval$1("Box<1>")));
 						_0_0 = t4.$index(0, t6);
@@ -41214,13 +39008,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t5.$indexSet(0, newSelector, _0_0);
 					}
 				},
-				$signature: 190
+				$signature: 188
 			};
 			A.ExtensionStore_clone__closure.prototype = {
 				call$0() {
 					return new A.ModifiableBox(this.selector.value, type$.ModifiableBox_SelectorList);
 				},
-				$signature: 199
+				$signature: 197
 			};
 			A.unifyComplex_closure.prototype = {
 				call$1(complex) {
@@ -41249,31 +39043,31 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 217
+				$signature: 215
 			};
 			A._weaveParents_closure0.prototype = {
 				call$1(sequence) {
 					return A._complexIsParentSuperselector(sequence.get$first(sequence), this.group);
 				},
-				$signature: 83
+				$signature: 85
 			};
 			A._weaveParents_closure1.prototype = {
 				call$1(sequence) {
 					return sequence.get$length(0) === 0;
 				},
-				$signature: 83
+				$signature: 85
 			};
 			A._weaveParents_closure2.prototype = {
 				call$1(choice) {
 					return J.get$isNotEmpty$asx(choice);
 				},
-				$signature: 227
+				$signature: 225
 			};
 			A._mustUnify_closure.prototype = {
 				call$1(component) {
 					return B.JSArray_methods.any$1(component.selector.components, new A._mustUnify__closure(this.uniqueSelectors));
 				},
-				$signature: 29
+				$signature: 26
 			};
 			A._mustUnify__closure.prototype = {
 				call$1(simple) {
@@ -41332,13 +39126,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($parent) {
 					return $parent.combinators.length > 1;
 				},
-				$signature: 29
+				$signature: 26
 			};
 			A.complexIsSuperselector_closure0.prototype = {
 				call$1(component) {
 					return A._isSupercombinator(this.combinator1, A.IterableExtension_get_firstOrNull(component.combinators));
 				},
-				$signature: 29
+				$signature: 26
 			};
 			A._compatibleWithPreviousCombinator_closure.prototype = {
 				call$1(component) {
@@ -41351,7 +39145,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = true;
 					return t1;
 				},
-				$signature: 29
+				$signature: 26
 			};
 			A.compoundIsSuperselector_closure.prototype = {
 				call$1(simple1) {
@@ -41363,7 +39157,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(selector2) {
 					return A.listIsSuperselector(this.selector1.components, selector2.components);
 				},
-				$signature: 33
+				$signature: 32
 			};
 			A._selectorPseudoIsSuperselector_closure0.prototype = {
 				call$1(complex1) {
@@ -41386,17 +39180,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(selector2) {
 					return A.listIsSuperselector(this.selector1.components, selector2.components);
 				},
-				$signature: 33
+				$signature: 32
 			};
 			A._selectorPseudoIsSuperselector_closure2.prototype = {
 				call$1(selector2) {
 					return A.listIsSuperselector(this.selector1.components, selector2.components);
 				},
-				$signature: 33
+				$signature: 32
 			};
 			A._selectorPseudoIsSuperselector_closure3.prototype = {
 				call$1(complex) {
-					if (complex.accept$1(0, B._IsBogusVisitor_true))
+					if (complex.accept$1(B._IsBogusVisitor_true))
 						return false;
 					return B.JSArray_methods.any$1(this.compound2.components, new A._selectorPseudoIsSuperselector__closure(complex, this.pseudo1));
 				},
@@ -41462,7 +39256,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = B.C_ListEquality0.equals$2(0, this.selector1.components, selector2.components);
 					return t1;
 				},
-				$signature: 33
+				$signature: 32
 			};
 			A._selectorPseudoIsSuperselector_closure5.prototype = {
 				call$1(pseudo2) {
@@ -41485,13 +39279,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(pseudo) {
 					return pseudo.isClass === this.isClass && pseudo.name === this.name;
 				},
-				$signature: 232
+				$signature: 230
 			};
 			A._selectorPseudoArgs_closure0.prototype = {
 				call$1(pseudo) {
 					return pseudo.selector;
 				},
-				$signature: 233
+				$signature: 231
 			};
 			A.MergedExtension.prototype = {
 				unmerge$0() {
@@ -41579,19 +39373,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(color) {
 					return B.JSNumber_methods.round$0(color._legacyChannel$2(B.RgbColorSpace_i0P, "red"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.global_closure1.prototype = {
 				call$1(color) {
 					return B.JSNumber_methods.round$0(color._legacyChannel$2(B.RgbColorSpace_i0P, "green"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.global_closure2.prototype = {
 				call$1(color) {
 					return B.JSNumber_methods.round$0(color._legacyChannel$2(B.RgbColorSpace_i0P, "blue"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.global_closure3.prototype = {
 				call$1($arguments) {
@@ -41881,7 +39675,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(argument) {
 					return argument instanceof A.SassString && !argument._hasQuotes && B.JSString_methods.contains$1(argument._string$_text, $.$get$_microsoftFilterStart());
 				},
-				$signature: 23
+				$signature: 22
 			};
 			A.global_closure36.prototype = {
 				call$1($arguments) {
@@ -41934,19 +39728,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(color) {
 					return B.JSNumber_methods.round$0(color._legacyChannel$2(B.RgbColorSpace_i0P, "red"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.module_closure2.prototype = {
 				call$1(color) {
 					return B.JSNumber_methods.round$0(color._legacyChannel$2(B.RgbColorSpace_i0P, "green"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.module_closure3.prototype = {
 				call$1(color) {
 					return B.JSNumber_methods.round$0(color._legacyChannel$2(B.RgbColorSpace_i0P, "blue"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.module_closure4.prototype = {
 				call$1($arguments) {
@@ -42051,7 +39845,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(argument) {
 					return argument instanceof A.SassString && !argument._hasQuotes && B.JSString_methods.contains$1(argument._string$_text, $.$get$_microsoftFilterStart());
 				},
-				$signature: 23
+				$signature: 22
 			};
 			A.module_closure15.prototype = {
 				call$1($arguments) {
@@ -42151,7 +39945,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(channel) {
 					return channel.name === this.channelName;
 				},
-				$signature: 34
+				$signature: 33
 			};
 			A.module_closure23.prototype = {
 				call$1($arguments) {
@@ -42250,7 +40044,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 261
+				$signature: 259
 			};
 			A.module_closure24.prototype = {
 				call$1($arguments) {
@@ -42343,19 +40137,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(component) {
 					return B.JSString_methods.padLeft$2(B.JSInt_methods.toRadixString$1(A.fuzzyRound(component), 16), 2, "0").toUpperCase();
 				},
-				$signature: 268
+				$signature: 266
 			};
 			A._updateComponents_closure.prototype = {
 				call$1(space) {
 					return this.originalColor.toSpace$2$legacyMissing(space, false);
 				},
-				$signature: 271
+				$signature: 269
 			};
 			A._updateComponents_closure0.prototype = {
 				call$1(info) {
 					return this._box_0.name === info.name;
 				},
-				$signature: 34
+				$signature: 33
 			};
 			A._changeColor_closure.prototype = {
 				call$0() {
@@ -42363,7 +40157,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					A.warnForDeprecation("$alpha: Passing a unit other than % (" + t1.toString$0(0) + string$.x29x20is_d + t1.unitSuggestion$1("alpha") + string$.x0a_See_, B.Deprecation_PHd);
 					return t1.valueInRange$3(0, 1, "alpha");
 				},
-				$signature: 274
+				$signature: 272
 			};
 			A._adjustColor_closure.prototype = {
 				call$1(alpha) {
@@ -42375,7 +40169,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(argument) {
 					return A.serializeValue(argument, false, true);
 				},
-				$signature: 68
+				$signature: 66
 			};
 			A._removedColorFunction_closure.prototype = {
 				call$1($arguments) {
@@ -42385,21 +40179,21 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t4 = this.negative ? "-" : "";
 					throw A.wrapException(A.SassScriptException$("The function " + t1 + "() isn't in the sass:color module.\n\nRecommendation: color.adjust(" + t3 + ", $" + this.argument + ": " + t4 + t2.$index($arguments, 1).toString$0(0) + ")\n\nMore info: https://sass-lang.com/documentation/functions/color#" + t1, null));
 				},
-				$signature: 285
+				$signature: 283
 			};
 			A._rgb_closure.prototype = {
 				call$1(alpha) {
 					var t1 = A._percentageOrUnitless(alpha.assertNumber$1("alpha"), 1, "alpha");
 					return isNaN(t1) ? 0 : B.JSNumber_methods.clamp$2(t1, 0, 1);
 				},
-				$signature: 90
+				$signature: 88
 			};
 			A._hsl_closure.prototype = {
 				call$1(alpha) {
 					var t1 = A._percentageOrUnitless(alpha.assertNumber$1("alpha"), 1, "alpha");
 					return isNaN(t1) ? 0 : B.JSNumber_methods.clamp$2(t1, 0, 1);
 				},
-				$signature: 90
+				$signature: 88
 			};
 			A._parseChannels_closure.prototype = {
 				call$1($name) {
@@ -42411,19 +40205,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(channel) {
 					return channel.get$isSpecialNumber();
 				},
-				$signature: 23
+				$signature: 22
 			};
 			A._colorFromChannels_closure.prototype = {
 				call$1(channel0) {
 					return A._angleValue(channel0, "hue");
 				},
-				$signature: 44
+				$signature: 42
 			};
 			A._colorFromChannels_closure0.prototype = {
 				call$1(channel0) {
 					return A._angleValue(channel0, "hue");
 				},
-				$signature: 44
+				$signature: 42
 			};
 			A._channelFromValue_closure.prototype = {
 				call$1(value) {
@@ -42468,7 +40262,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 44
+				$signature: 42
 			};
 			A._channelFunction_closure.prototype = {
 				call$1($arguments) {
@@ -42485,7 +40279,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(channel) {
 					return channel.name === this.channelName;
 				},
-				$signature: 34
+				$signature: 33
 			};
 			A._length_closure0.prototype = {
 				call$1($arguments) {
@@ -42637,13 +40431,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(list) {
 					return list.get$asList();
 				},
-				$signature: 292
+				$signature: 290
 			};
 			A._zip__closure0.prototype = {
 				call$1(list) {
 					return this._box_0.i !== J.get$length$asx(list);
 				},
-				$signature: 296
+				$signature: 294
 			};
 			A._zip__closure1.prototype = {
 				call$1(list) {
@@ -42702,7 +40496,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = A._setArrayType([t1.$index($arguments, 1)], type$.JSArray_Value);
 					B.JSArray_methods.addAll$1(t2, t1.$index($arguments, 2).get$asList());
 					for (t1 = A.IterableExtension_get_exceptLast(t2), t1 = t1.get$iterator(t1); t1.moveNext$0(); map = value) {
-						value = map._map$_contents.$index(0, t1.get$current(t1));
+						value = map._map$_contents.$index(0, t1.get$current());
 						if (!(value instanceof A.SassMap))
 							return B.C__SassNull;
 					}
@@ -42722,7 +40516,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(_) {
 					return J.$index$asx(this.$arguments, 2);
 				},
-				$signature: 31
+				$signature: 29
 			};
 			A._set_closure0.prototype = {
 				call$1($arguments) {
@@ -42753,7 +40547,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(_) {
 					return this._box_0.value;
 				},
-				$signature: 31
+				$signature: 29
 			};
 			A._merge_closure.prototype = {
 				call$1($arguments) {
@@ -42766,7 +40560,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2.addAll$1(0, map2._map$_contents);
 					return new A.SassMap(A.ConstantMap_ConstantMap$from(t2, t1, t1));
 				},
-				$signature: 22
+				$signature: 21
 			};
 			A._merge_closure0.prototype = {
 				call$1($arguments) {
@@ -42804,14 +40598,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2.addAll$1(0, this.map2._map$_contents);
 					return new A.SassMap(A.ConstantMap_ConstantMap$from(t2, t1, t1));
 				},
-				$signature: 300
+				$signature: 298
 			};
 			A._deepMerge_closure.prototype = {
 				call$1($arguments) {
 					var t1 = J.getInterceptor$asx($arguments);
 					return A._deepMergeImpl(t1.$index($arguments, 0).assertMap$1("map1"), t1.$index($arguments, 1).assertMap$1("map2"));
 				},
-				$signature: 22
+				$signature: 21
 			};
 			A._deepRemove_closure.prototype = {
 				call$1($arguments) {
@@ -42828,7 +40622,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, nestedMap, t2,
 						_0_0 = value.tryMap$0();
 					if (_0_0 != null) {
-						t1 = _0_0._map$_contents.containsKey$1(0, B.JSArray_methods.get$last(this.keys));
+						t1 = _0_0._map$_contents.containsKey$1(B.JSArray_methods.get$last(this.keys));
 						nestedMap = _0_0;
 					} else {
 						nestedMap = null;
@@ -42842,13 +40636,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return value;
 				},
-				$signature: 31
+				$signature: 29
 			};
 			A._remove_closure.prototype = {
 				call$1($arguments) {
 					return J.$index$asx($arguments, 0).assertMap$1("map");
 				},
-				$signature: 22
+				$signature: 21
 			};
 			A._remove_closure0.prototype = {
 				call$1($arguments) {
@@ -42863,7 +40657,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						mutableMap.remove$1(0, t2[_i]);
 					return new A.SassMap(A.ConstantMap_ConstantMap$from(mutableMap, t1, t1));
 				},
-				$signature: 22
+				$signature: 21
 			};
 			A._keys_closure.prototype = {
 				call$1($arguments) {
@@ -42887,11 +40681,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = A._setArrayType([t1.$index($arguments, 1)], type$.JSArray_Value);
 					B.JSArray_methods.addAll$1(t2, t1.$index($arguments, 2).get$asList());
 					for (t1 = A.IterableExtension_get_exceptLast(t2), t1 = t1.get$iterator(t1); t1.moveNext$0(); map = value) {
-						value = map._map$_contents.$index(0, t1.get$current(t1));
+						value = map._map$_contents.$index(0, t1.get$current());
 						if (!(value instanceof A.SassMap))
 							return B.SassBoolean_false;
 					}
-					return map._map$_contents.containsKey$1(0, B.JSArray_methods.get$last(t2)) ? B.SassBoolean_true : B.SassBoolean_false;
+					return map._map$_contents.containsKey$1(B.JSArray_methods.get$last(t2)) ? B.SassBoolean_true : B.SassBoolean_false;
 				},
 				$signature: 9
 			};
@@ -42901,7 +40695,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = type$.Value,
 						mutableMap = A.LinkedHashMap_LinkedHashMap$of(map._map$_contents, t1, t1),
 						t2 = _this.keyIterator,
-						key = t2.get$current(t2);
+						key = t2.get$current();
 					if (!t2.moveNext$0()) {
 						t2 = mutableMap.$index(0, key);
 						if (t2 == null)
@@ -42917,7 +40711,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					mutableMap.$indexSet(0, key, _this.call$1(t2 ? B.SassMap_Map_empty : nestedMap));
 					return new A.SassMap(A.ConstantMap_ConstantMap$from(mutableMap, t1, t1));
 				},
-				$signature: 301
+				$signature: 299
 			};
 			A.global_closure.prototype = {
 				call$1($arguments) {
@@ -43026,7 +40820,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(argument) {
 					return argument.assertNumber$0();
 				},
-				$signature: 307
+				$signature: 305
 			};
 			A._log_closure.prototype = {
 				call$1($arguments) {
@@ -43209,14 +41003,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = type$.Value;
 						t2 = A.LinkedHashMap_LinkedHashMap$_empty(t1, t1);
 						for (t3 = A.MapExtensions_get_pairs(_1_0._keywords, type$.String, t1), t3 = t3.get$iterator(t3); t3.moveNext$0();) {
-							t4 = t3.get$current(t3);
+							t4 = t3.get$current();
 							t2.$indexSet(0, new A.SassString(t4._0, false), t4._1);
 						}
 						return new A.SassMap(A.ConstantMap_ConstantMap$from(t2, t1, t1));
 					} else
 						throw A.wrapException("$args: " + t1.$index($arguments, 0).toString$0(0) + " is not an argument list.");
 				},
-				$signature: 22
+				$signature: 21
 			};
 			A.moduleFunctions_closure.prototype = {
 				call$1($arguments) {
@@ -43235,7 +41029,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(argument) {
 					return argument instanceof A.Value ? argument : new A.SassString(J.toString$0$(argument), false);
 				},
-				$signature: 308
+				$signature: 306
 			};
 			A.moduleFunctions_closure1.prototype = {
 				call$1($arguments) {
@@ -43299,13 +41093,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.first = false;
 					return result;
 				},
-				$signature: 106
+				$signature: 60
 			};
 			A._nest__closure0.prototype = {
 				call$2($parent, child) {
 					return child.nestWithin$1($parent);
 				},
-				$signature: 62
+				$signature: 68
 			};
 			A._append_closure.prototype = {
 				call$1($arguments) {
@@ -43322,7 +41116,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(selector) {
 					return A.SassApiValue_assertSelector(selector, false, null);
 				},
-				$signature: 106
+				$signature: 60
 			};
 			A._append__closure0.prototype = {
 				call$2($parent, child) {
@@ -43330,7 +41124,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = this.span;
 					return A.SelectorList$(new A.MappedListIterable(t1, new A._append___closure($parent, t2), A._arrayInstanceType(t1)._eval$1("MappedListIterable<1,ComplexSelector>")), t2).nestWithin$1($parent);
 				},
-				$signature: 62
+				$signature: 68
 			};
 			A._append___closure.prototype = {
 				call$1(complex) {
@@ -43356,7 +41150,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					B.JSArray_methods.addAll$1(t2, rest);
 					return A.ComplexSelector$(B.List_empty1, t2, t1, false);
 				},
-				$signature: 32
+				$signature: 31
 			};
 			A._extend_closure.prototype = {
 				call$1($arguments) {
@@ -43433,7 +41227,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(simple) {
 					return new A.SassString(A.serializeSelector(simple, true), false);
 				},
-				$signature: 316
+				$signature: 314
 			};
 			A._parse_closure.prototype = {
 				call$1($arguments) {
@@ -43478,13 +41272,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(rune) {
 					return new A.SassString(A.Primitives_stringFromCharCode(rune), this.string._hasQuotes);
 				},
-				$signature: 317
+				$signature: 315
 			};
 			A.module__closure0.prototype = {
 				call$1(chunk) {
 					return new A.SassString(chunk, this.string._hasQuotes);
 				},
-				$signature: 321
+				$signature: 319
 			};
 			A._unquote_closure.prototype = {
 				call$1($arguments) {
@@ -43615,18 +41409,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (resolvedUrl == null)
 							resolvedUrl = url;
 						key = new A._Record_3_forImport(baseImporter, resolvedUrl, forImport);
-						relativeResult = _this._perImporterCanonicalizeCache.putIfAbsent$2(0, key, new A.ImportCache_canonicalize_closure(_this, baseImporter, resolvedUrl, baseUrl, forImport, key, url));
+						relativeResult = _this._perImporterCanonicalizeCache.putIfAbsent$2(key, new A.ImportCache_canonicalize_closure(_this, baseImporter, resolvedUrl, baseUrl, forImport, key, url));
 						if (relativeResult != null)
 							return relativeResult;
 					}
 					key = new A._Record_2_forImport(url, forImport);
 					t1 = _this._canonicalizeCache;
-					if (t1.containsKey$1(0, key))
+					if (t1.containsKey$1(key))
 						return t1.$index(0, key);
 					for (t2 = _this._importers, t3 = type$.Record_1_nullable_Object, t4 = _this._perImporterCanonicalizeCache, t5 = type$.nullable_Record_3_Importer_and_Uri_and_Uri_originalUrl, t6 = type$.Record_3_Importer_and_Uri_and_Uri_originalUrl, cacheable = true, i = 0; i < t2.length; ++i) {
 						importer = t2[i];
 						perImporterKey = new A._Record_3_forImport(importer, url, forImport);
-						if (t4.containsKey$1(0, perImporterKey)) {
+						if (t4.containsKey$1(perImporterKey)) {
 							t7 = t4.$index(0, perImporterKey);
 							_1_0 = new A._Record_1(t7 == null ? t5._as(t7) : t7);
 						} else
@@ -43719,7 +41513,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A._Record_2(new A._Record_3_originalUrl(importer, result, url), cacheable);
 				},
 				importCanonical$3$originalUrl(importer, canonicalUrl, originalUrl) {
-					return this._import_cache$_importCache.putIfAbsent$2(0, canonicalUrl, new A.ImportCache_importCanonical_closure(this, importer, canonicalUrl, originalUrl));
+					return this._import_cache$_importCache.putIfAbsent$2(canonicalUrl, new A.ImportCache_importCanonical_closure(this, importer, canonicalUrl, originalUrl));
 				},
 				humanize$1(canonicalUrl) {
 					var t1 = this._canonicalizeCache,
@@ -43743,13 +41537,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1._nonCanonicalRelativeUrls.$indexSet(0, _this.key, _this.url);
 					return _0_0._0;
 				},
-				$signature: 323
+				$signature: 321
 			};
 			A.ImportCache__canonicalize_closure.prototype = {
 				call$0() {
 					return this.importer.canonicalize$1(0, this.url);
 				},
-				$signature: 325
+				$signature: 323
 			};
 			A.ImportCache_importCanonical_closure.prototype = {
 				call$0() {
@@ -43767,25 +41561,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = _this.originalUrl.resolveUri$1(t2);
 					return A.Stylesheet_Stylesheet$parse(t3, t1, false, t2);
 				},
-				$signature: 334
+				$signature: 332
 			};
 			A.ImportCache_humanize_closure.prototype = {
 				call$1(result) {
 					return result._1.$eq(0, this.canonicalUrl);
 				},
-				$signature: 342
+				$signature: 340
 			};
 			A.ImportCache_humanize_closure0.prototype = {
 				call$1(result) {
 					return result._2;
 				},
-				$signature: 343
+				$signature: 341
 			};
 			A.ImportCache_humanize_closure1.prototype = {
 				call$1(url) {
 					return url.get$path(url).length;
 				},
-				$signature: 369
+				$signature: 367
 			};
 			A.ImportCache_humanize_closure2.prototype = {
 				call$1(url) {
@@ -43793,7 +41587,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = this.canonicalUrl;
 					return url.resolve$1(0, A.ParsedPath_ParsedPath$parse(t2.get$path(t2), t1.style).get$basename());
 				},
-				$signature: 70
+				$signature: 73
 			};
 			A.Importer.prototype = {
 				isNonCanonicalScheme$1(scheme) {
@@ -43837,7 +41631,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t1) {
 						t1 = A.absolute(resolved);
 						t2 = $.$get$context();
-						t1 = A._realCasePath(t2.normalize$1(0, t1));
+						t1 = A._realCasePath(t2.normalize$1(t1));
 					} else {
 						t1 = $.$get$context();
 						t2 = t1.canonicalize$1(0, resolved);
@@ -43847,7 +41641,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t2.toUri$1(t1);
 				},
-				$signature: 74
+				$signature: 81
 			};
 			A.JSToDartFileImporter.prototype = {
 				canonicalize$1(_, url) {
@@ -43883,7 +41677,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this._findFileUrl.call$2(this.url.toString$0(0), A.canonicalizeContext());
 				},
-				$signature: 47
+				$signature: 45
 			};
 			A.JSToDartImporter.prototype = {
 				canonicalize$1(_, url) {
@@ -43932,13 +41726,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this._sync$_canonicalize.call$2(this.url.toString$0(0), A.canonicalizeContext());
 				},
-				$signature: 47
+				$signature: 45
 			};
 			A.JSToDartImporter_load_closure.prototype = {
 				call$0() {
 					return this.$this._load.call$1(/*DSH- new self.URL(*/this.url.toString$0(0)/*DSH-)*/);
 				},
-				$signature: 47
+				$signature: 45
 			};
 			A.NoOpImporter.prototype = {
 				canonicalize$1(_, url) {
@@ -43961,19 +41755,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return A._exactlyOne(A._tryPath($.$get$context().withoutExtension$1(this.path) + ".import" + this.extension));
 				},
-				$signature: 37
+				$signature: 38
 			};
 			A.resolveImportPath_closure0.prototype = {
 				call$0() {
 					return A._exactlyOne(A._tryPathWithExtensions(this.path + ".import"));
 				},
-				$signature: 37
+				$signature: 38
 			};
 			A._tryPathAsDirectory_closure.prototype = {
 				call$0() {
 					return A._exactlyOne(A._tryPathWithExtensions(A.join(this.path, "index.import")));
 				},
-				$signature: 37
+				$signature: 38
 			};
 			A._exactlyOne_closure.prototype = {
 				call$1(path) {
@@ -44068,7 +41862,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t2.length === 0) {
 						if (_this._isMapped$1(target))
 							return error;
-						return new A.SourceSpanFormatException(error.get$source(error), error._span_exception$_message, t1.span);
+						return new A.SourceSpanFormatException(error.get$source(), error._span_exception$_message, t1.span);
 					}
 					source = _this.mapSpan$1(target);
 					if (source === target)
@@ -44077,12 +41871,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					endIndex = _this._indexInContents$1(target.get$end(target));
 					t1 = error._span_exception$_message;
 					if (!A.SubListIterable$(t2, startIndex, null, A._arrayInstanceType(t2)._precomputed1).take$1(0, endIndex - startIndex + 1).any$1(0, new A.InterpolationMap_mapException_closure()))
-						return new A.SourceSpanFormatException(error.get$source(error), t1, source);
+						return new A.SourceSpanFormatException(error.get$source(), t1, source);
 					else {
 						t2 = type$.SourceSpan;
 						t3 = type$.String;
 						t4 = A.LinkedHashMap_LinkedHashMap$_literal([target, "error in interpolated output"], t2, t3);
-						return new A.MultiSourceSpanFormatException(error.get$source(error), "", A.ConstantMap_ConstantMap$from(t4, t2, t3), t1, source);
+						return new A.MultiSourceSpanFormatException(error.get$source(), "", A.ConstantMap_ConstantMap$from(t4, t2, t3), t1, source);
 					}
 				},
 				mapSpan$1(target) {
@@ -44309,19 +42103,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($content) {
 					return $content instanceof A.Expression;
 				},
-				$signature: 98
+				$signature: 104
 			};
 			A._realCasePath_helper.prototype = {
 				call$2(path, realPath) {
 					var dirname = $.$get$context().dirname$1(path);
 					if (dirname === path)
 						return path;
-					return $._realCaseCache.putIfAbsent$2(0, path, new A._realCasePath_helper_closure(path, realPath, this, dirname));
+					return $._realCaseCache.putIfAbsent$2(path, new A._realCasePath_helper_closure(path, realPath, this, dirname));
 				},
 				call$1(path) {
 					return this.call$2(path, null);
 				},
-				$signature: 119
+				$signature: 117
 			};
 			A._realCasePath_helper_closure.prototype = {
 				call$0() {
@@ -44367,7 +42161,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							throw exception;
 					}
 				},
-				$signature: 27
+				$signature: 24
 			};
 			A._realCasePath_helper__closure.prototype = {
 				call$1(realPath) {
@@ -44394,7 +42188,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					*/
 					return dsh.fileManagerProxy.readFile(this.path); //DSH+
 				},
-				$signature: 43
+				$signature: 41
 			};
 			A.fileExists_closure.prototype = {
 				call$0() {
@@ -44416,7 +42210,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					*/
 					return dsh.fileManagerProxy.fileExists(this.path); //DSH+
 				},
-				$signature: 20
+				$signature: 19
 			};
 			A.dirExists_closure.prototype = {
 				call$0() {
@@ -44438,7 +42232,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					*/
 					return true; //DSH+
 				},
-				$signature: 20
+				$signature: 19
 			};
 			A.linkExists_closure.prototype = {
 				call$0() {
@@ -44457,7 +42251,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					*/
 					return false;
 				},
-				$signature: 20
+				$signature: 19
 			};
 			A.listDir_closure.prototype = {
 				call$0() {
@@ -44470,13 +42264,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure")); //DSH+
 				},
-				$signature: 121
+				$signature: 119
 			};
 			A.listDir__closure.prototype = {
 				call$1(child) {
 					return A.join(this.path, A._asString(child));
 				},
-				$signature: 122
+				$signature: 120
 			};
 			A.listDir__closure0.prototype = {
 				call$1(child) {
@@ -44491,7 +42285,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir_closure_list")); //DSH+
 				},
-				$signature: 123
+				$signature: 121
 			};
 			A.listDir__list_closure.prototype = {
 				call$1(child) {
@@ -44501,7 +42295,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "listDir__list_closure")); //DSH+
 				},
-				$signature: 113
+				$signature: 122
 			};
 			A.realpath_closure.prototype = {
 				call$0() {
@@ -44510,7 +42304,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					*/
 					throw new Error(formatString(ERROR_MSG_PATTERN_METHOD_NOT_SUPPORTED, "realpath_closure")); //DSH+
 				},
-				$signature: 27
+				$signature: 24
 			};
 			/*DSH-
 			A.JSArray0.prototype = {};
@@ -44538,7 +42332,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					*/
 				},
-				$signature: 108
+				$signature: 96
 			};
 			A._parseFunctions__closure.prototype = {
 				call$1($arguments) {
@@ -44563,7 +42357,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return type$.Function._as(this.callback).call$1(A.toJSArray(this.$arguments));
 				},
-				$signature: 43
+				$signature: 41
 			};
 			/*DSH-
 			A.CompileOptions.prototype = {};
@@ -44585,7 +42379,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($self) {
 					return A.LinkedHashSet_LinkedHashSet$_literal([A.jsThrow(new self.Error("Compiler can not be directly constructed. Please use `sass.initCompiler()` instead."))], type$.Never);
 				},
-				$signature: 127
+				$signature: 125
 			};
 			A.compilerClass__closure0.prototype = {
 				call$3($self, path, options) {
@@ -44601,7 +42395,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 128
+				$signature: 126
 			};
 			A.compilerClass__closure1.prototype = {
 				call$3($self, source, options) {
@@ -44617,13 +42411,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 129
+				$signature: 127
 			};
 			A.compilerClass__closure2.prototype = {
 				call$1($self) {
 					$self._disposed = true;
 				},
-				$signature: 130
+				$signature: 128
 			};
 			A.Deprecation0.prototype = {};
 			A.deprecations_closure.prototype = {
@@ -44652,7 +42446,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 27
+				$signature: 24
 			};
 			A.parseDeprecations_closure.prototype = {
 				call$0() {
@@ -44679,7 +42473,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 											$async$goto = 3;
 											break;
 										}
-										item = t1.get$current(t1);
+										item = t1.get$current();
 										t5 = typeof item == "string";
 										id = t5 ? item : null;
 										$async$goto = t5 ? 4 : 5;
@@ -44767,7 +42561,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						};
 					};
 				},
-				$signature: 131
+				$signature: 129
 			};
 			A.versionClass_closure.prototype = {
 				call$0() {
@@ -44785,7 +42579,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				"call*": "call$4",
 				$requiredArgCount: 4,
-				$signature: 132
+				$signature: 130
 			};
 			A.versionClass__closure0.prototype = {
 				call$1(version) {
@@ -44794,7 +42588,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						throw A.wrapException(A.FormatException$("Build identifiers and prerelease versions not supported.", null, null));
 					return v;
 				},
-				$signature: 60
+				$signature: 58
 			};
 			/*DSH-
 			A._NodeException.prototype = {};
@@ -44816,13 +42610,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(exception) {
 					return J.get$_dartException$x(exception)._span_exception$_message;
 				},
-				$signature: 61
+				$signature: 59
 			};
 			A.exceptionClass__closure0.prototype = {
 				call$1(exception) {
 					return J.get$trace$z(J.get$_dartException$x(exception)).toString$0(0);
 				},
-				$signature: 61
+				$signature: 59
 			};
 			A.exceptionClass__closure1.prototype = {
 				call$1(exception) {
@@ -44830,7 +42624,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = J.getInterceptor$x(t1);
 					return A.SourceSpanException.prototype.get$span.call(t2, t1);
 				},
-				$signature: 135
+				$signature: 133
 			};
 			A.Exports.prototype = {};
 			A.LoggerNamespace.prototype = {};
@@ -44844,7 +42638,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				"call*": "call$3",
 				$requiredArgCount: 3,
-				$signature: 136
+				$signature: 134
 			};
 			A.JSImporter.prototype = {};
 			A.JSImporterResult.prototype = {};
@@ -44852,14 +42646,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($self) {
 					return $self._fromImport;
 				},
-				$signature: 137
+				$signature: 135
 			};
 			A.updateCanonicalizeContextPrototype_closure0.prototype = {
 				call$1($self) {
 					$self._wasContainingUrlAccessed = true;
 					return A.NullableExtension_andThen($self._containingUrl, A.utils__dartToJSUrl$closure());
 				},
-				$signature: 138
+				$signature: 136
 			};
 			/*DSH-
 			A.NodeImporterResult.prototype = {};
@@ -44879,65 +42673,65 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(inner) {
 					return new A.JSExpressionVisitor(inner);
 				},
-				$signature: 139
+				$signature: 137
 			};
 			A.loadParserExports_closure0.prototype = {
 				call$1(inner) {
 					return new A.JSIfConditionExpressionVisitor(inner);
 				},
-				$signature: 140
+				$signature: 138
 			};
 			A.loadParserExports_closure1.prototype = {
 				call$1(inner) {
 					return new A.JSStatementVisitor(inner);
 				},
-				$signature: 141
+				$signature: 139
 			};
 			A.loadParserExports_closure2.prototype = {
 				call$1(inner) {
 					return new A.JSSimpleSelectorVisitor(inner);
 				},
-				$signature: 142
+				$signature: 140
 			};
 			A.loadParserExports_closure3.prototype = {
 				call$1(text) {
 					return A.SourceFile$fromString(text, null);
 				},
-				$signature: 143
+				$signature: 141
 			};
 			A.loadParserExports_closure4.prototype = {
 				call$1(set) {
 					var t1 = A.List_List$_of(set, type$.nullable_Object);
 					return new self.Set(t1);
 				},
-				$signature: 144
+				$signature: 142
 			};
 			A._updateLazyFileSpanPrototype_closure.prototype = {
 				call$0() {
 					return $.$get$bogusSpan();
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A._updateLazyFileSpanPrototype_closure0.prototype = {
 				call$1(span) {
 					var t1 = span.get$span(0);
 					return t1.get$file(t1);
 				},
-				$signature: 145
+				$signature: 143
 			};
 			A._updateLazyFileSpanPrototype_closure1.prototype = {
 				call$1(span) {
 					var t1 = span.get$span(0);
 					return t1.get$length(t1);
 				},
-				$signature: 146
+				$signature: 144
 			};
 			A._updateLazyFileSpanPrototype_closure2.prototype = {
 				call$1(span) {
 					var t1 = span.get$span(0);
 					return t1.get$sourceUrl(t1);
 				},
-				$signature: 147
+				$signature: 145
 			};
 			A._updateAstPrototypes_closure.prototype = {
 				call$3($self, start, end) {
@@ -44951,7 +42745,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 148
+				$signature: 146
 			};
 			A._updateAstPrototypes_closure0.prototype = {
 				call$3($self, start, end) {
@@ -44965,91 +42759,91 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 149
+				$signature: 147
 			};
 			A._updateAstPrototypes_closure1.prototype = {
 				call$1($self) {
 					return $self._decodedChars;
 				},
-				$signature: 150
+				$signature: 148
 			};
 			A._updateAstPrototypes_closure2.prototype = {
 				call$1($self) {
 					return $self.get$asPlain();
 				},
-				$signature: 151
+				$signature: 149
 			};
 			A._updateAstPrototypes_closure3.prototype = {
 				call$2($self, visitor) {
-					return $self.accept$1(0, visitor);
+					return $self.accept$1(visitor);
 				},
-				$signature: 152
+				$signature: 150
 			};
 			A._updateAstPrototypes_closure4.prototype = {
 				call$2($self, visitor) {
-					return $self.accept$1(0, visitor);
+					return $self.accept$1(visitor);
 				},
-				$signature: 153
+				$signature: 151
 			};
 			A._updateAstPrototypes_closure5.prototype = {
 				call$2($self, visitor) {
-					return $self.accept$1(0, visitor);
+					return $self.accept$1(visitor);
 				},
-				$signature: 154
+				$signature: 152
 			};
 			A._updateAstPrototypes_closure6.prototype = {
 				call$2($self, visitor) {
-					return $self.accept$1(0, visitor);
+					return $self.accept$1(visitor);
 				},
-				$signature: 155
+				$signature: 153
 			};
 			A._updateAstPrototypes_closure7.prototype = {
 				call$1($self) {
 					return $self.$arguments;
 				},
-				$signature: 156
+				$signature: 154
 			};
 			A._updateAstPrototypes_closure8.prototype = {
 				call$1($self) {
 					return $self.$arguments;
 				},
-				$signature: 157
+				$signature: 155
 			};
 			A._updateAstPrototypes_closure9.prototype = {
 				call$1($self) {
 					return $self.$arguments;
 				},
-				$signature: 158
+				$signature: 156
 			};
 			A._updateAstPrototypes_closure10.prototype = {
 				call$1($self) {
 					return $self.$arguments;
 				},
-				$signature: 159
+				$signature: 157
 			};
 			A._updateAstPrototypes_closure11.prototype = {
 				call$1($self) {
 					return $self.$arguments;
 				},
-				$signature: 160
+				$signature: 158
 			};
 			A._updateAstPrototypes_closure12.prototype = {
 				call$1($self) {
 					return $self.$arguments;
 				},
-				$signature: 161
+				$signature: 159
 			};
 			A._updateAstPrototypes_closure13.prototype = {
 				call$1($self) {
 					return $self.get$span($self);
 				},
-				$signature: 162
+				$signature: 160
 			};
 			A._addSupportsConditionToInterpolation_closure.prototype = {
 				call$1($self) {
 					return $self.toInterpolation$0();
 				},
-				$signature: 163
+				$signature: 161
 			};
 			A.JSClass.prototype = {};
 			A.JSClassExtension_setCustomInspect_closure.prototype = {
@@ -45064,53 +42858,53 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 164
+				$signature: 162
 			};
 			A.JSClassExtension_get_defineStaticMethod_closure.prototype = {
 				call$2($name, body) {
 					this._this[$name] = A.allowInteropNamed($name, body);
 					return null;
 				},
-				$signature: 50
+				$signature: 48
 			};
 			A.JSClassExtension_get_defineMethod_closure.prototype = {
 				call$2($name, body) {
 					J.get$$prototype$x(this._this)[$name] = A.allowInteropCaptureThisNamed($name, body);
 					return null;
 				},
-				$signature: 50
+				$signature: 48
 			};
 			A.JSClassExtension_get_defineGetter_closure.prototype = {
 				call$2($name, body) {
 					A.defineGetter(J.get$$prototype$x(this._this), $name, body, null);
 					return null;
 				},
-				$signature: 50
+				$signature: 48
 			};
 			A.JSSet.prototype = {};
 			A.updateSourceSpanPrototype_closure.prototype = {
 				call$0() {
 					return this.span;
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A.updateSourceSpanPrototype_closure0.prototype = {
 				call$1(span) {
 					return span.get$start(span);
 				},
-				$signature: 63
+				$signature: 61
 			};
 			A.updateSourceSpanPrototype_closure1.prototype = {
 				call$1(span) {
 					return span.get$end(span);
 				},
-				$signature: 63
+				$signature: 61
 			};
 			A.updateSourceSpanPrototype_closure2.prototype = {
 				call$1(span) {
 					return A.NullableExtension_andThen(span.get$sourceUrl(span), new A.updateSourceSpanPrototype__closure());
 				},
-				$signature: 167
+				$signature: 165
 			};
 			A.updateSourceSpanPrototype__closure.prototype = {
 				call$1(url) {
@@ -45122,31 +42916,31 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = url;
 					return /*DSH- new self.URL(*/t1.toString$0(0)/*DSH-)*/;
 				},
-				$signature: 64
+				$signature: 62
 			};
 			A.updateSourceSpanPrototype_closure3.prototype = {
 				call$1(span) {
-					return span.get$text(span);
+					return span.get$text();
 				},
-				$signature: 65
+				$signature: 63
 			};
 			A.updateSourceSpanPrototype_closure4.prototype = {
 				call$1(span) {
 					return span.get$context(span);
 				},
-				$signature: 65
+				$signature: 63
 			};
 			A.updateSourceSpanPrototype_closure5.prototype = {
 				call$1($location) {
-					return $location.get$line($location);
+					return $location.get$line();
 				},
-				$signature: 66
+				$signature: 64
 			};
 			A.updateSourceSpanPrototype_closure6.prototype = {
 				call$1($location) {
 					return $location.get$column();
 				},
-				$signature: 66
+				$signature: 64
 			};
 			A.JSUrl.prototype = {};
 			/*DSH-
@@ -45157,7 +42951,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.map.$indexSet(0, key, value);
 					return value;
 				},
-				$signature: 108
+				$signature: 96
 			};
 			/*DSH-
 			A._RequireMain.prototype = {};
@@ -45180,37 +42974,37 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($self) {
 					return J.toString$0$($self);
 				},
-				$signature: 96
+				$signature: 94
 			};
 			A.valueClass__closure0.prototype = {
 				call$1($self) {
 					return new self.immutable.List($self.get$asList());
 				},
-				$signature: 171
+				$signature: 169
 			};
 			A.valueClass__closure1.prototype = {
 				call$1($self) {
 					return $self.get$hasBrackets();
 				},
-				$signature: 23
+				$signature: 22
 			};
 			A.valueClass__closure2.prototype = {
 				call$1($self) {
 					return $self.get$isTruthy();
 				},
-				$signature: 23
+				$signature: 22
 			};
 			A.valueClass__closure3.prototype = {
 				call$1($self) {
 					return $self.get$realNull();
 				},
-				$signature: 67
+				$signature: 65
 			};
 			A.valueClass__closure4.prototype = {
 				call$1($self) {
 					return $self.get$separator($self).separator;
 				},
-				$signature: 173
+				$signature: 171
 			};
 			A.valueClass__closure5.prototype = {
 				call$3($self, sassIndex, $name) {
@@ -45224,13 +43018,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 174
+				$signature: 172
 			};
 			A.valueClass__closure6.prototype = {
 				call$2($self, index) {
 					return index < 1 && index >= -1 ? $self : self.undefined;
 				},
-				$signature: 59
+				$signature: 56
 			};
 			A.valueClass__closure7.prototype = {
 				call$2($self, $name) {
@@ -45244,7 +43038,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 176
+				$signature: 174
 			};
 			A.valueClass__closure8.prototype = {
 				call$2($self, $name) {
@@ -45258,7 +43052,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 177
+				$signature: 175
 			};
 			A.valueClass__closure9.prototype = {
 				call$2($self, $name) {
@@ -45272,7 +43066,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 178
+				$signature: 176
 			};
 			A.valueClass__closure10.prototype = {
 				call$2($self, $name) {
@@ -45286,7 +43080,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 179
+				$signature: 177
 			};
 			A.valueClass__closure11.prototype = {
 				call$2($self, $name) {
@@ -45300,7 +43094,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 180
+				$signature: 178
 			};
 			A.valueClass__closure12.prototype = {
 				call$2($self, $name) {
@@ -45314,7 +43108,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 181
+				$signature: 179
 			};
 			A.valueClass__closure13.prototype = {
 				call$2($self, $name) {
@@ -45328,7 +43122,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 182
+				$signature: 180
 			};
 			A.valueClass__closure14.prototype = {
 				call$2($self, $name) {
@@ -45342,19 +43136,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 183
+				$signature: 181
 			};
 			A.valueClass__closure15.prototype = {
 				call$1($self) {
 					return $self.tryMap$0();
 				},
-				$signature: 184
+				$signature: 182
 			};
 			A.valueClass__closure16.prototype = {
 				call$2($self, other) {
 					return $self.$eq(0, other);
 				},
-				$signature: 185
+				$signature: 183
 			};
 			A.valueClass__closure17.prototype = {
 				call$2($self, _) {
@@ -45368,13 +43162,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 186
+				$signature: 184
 			};
 			A.valueClass__closure18.prototype = {
 				call$1($self) {
 					return $self.toString$0(0);
 				},
-				$signature: 68
+				$signature: 66
 			};
 			A.argumentListClass_closure.prototype = {
 				call$0() {
@@ -45393,7 +43187,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = type$.Value;
 					t1 = J.cast$1$0$ax(t1, t2);
 					t3 = self.immutable.isOrderedMap(keywords) ? A.immutableMapToDartMap(type$.ImmutableMap._as(keywords)) : A.objectToMap(keywords);
-					return A.SassArgumentList$(t1, t3.cast$2$0(t3, type$.String, t2), A.jsToDartSeparator(separator));
+					return A.SassArgumentList$(t1, t3.cast$2$0(0, type$.String, t2), A.jsToDartSeparator(separator));
 				},
 				call$3($self, contents, keywords) {
 					return this.call$4($self, contents, keywords, ",");
@@ -45403,14 +43197,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [","];
 				},
-				$signature: 187
+				$signature: 185
 			};
 			A.argumentListClass__closure0.prototype = {
 				call$1($self) {
 					$self._wereKeywordsAccessed = true;
 					return A.dartMapToImmutableMap($self._keywords);
 				},
-				$signature: 188
+				$signature: 186
 			};
 			A.booleanClass_closure.prototype = {
 				call$0() {
@@ -45433,7 +43227,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 69
+				$signature: 67
 			};
 			A.calculationClass_closure.prototype = {
 				call$0() {
@@ -45461,14 +43255,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 69
+				$signature: 67
 			};
 			A.calculationClass__closure0.prototype = {
 				call$1(argument) {
 					A._assertCalculationValue(argument);
 					return new A.SassCalculation("calc", A.List_List$unmodifiable(A._setArrayType([argument], type$.JSArray_Object), type$.Object));
 				},
-				$signature: 51
+				$signature: 49
 			};
 			A.calculationClass__closure1.prototype = {
 				call$1($arguments) {
@@ -45478,7 +43272,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					argList.forEach$1(argList, A.calculation0___assertCalculationValue$closure());
 					return new A.SassCalculation("min", A.List_List$unmodifiable(argList, t2));
 				},
-				$signature: 51
+				$signature: 49
 			};
 			A.calculationClass__closure2.prototype = {
 				call$1($arguments) {
@@ -45488,7 +43282,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					argList.forEach$1(argList, A.calculation0___assertCalculationValue$closure());
 					return new A.SassCalculation("max", A.List_List$unmodifiable(argList, t2));
 				},
-				$signature: 51
+				$signature: 49
 			};
 			A.calculationClass__closure3.prototype = {
 				call$3(min, value, max) {
@@ -45514,7 +43308,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null, null];
 				},
-				$signature: 191
+				$signature: 189
 			};
 			A.calculationClass__closure4.prototype = {
 				call$2($self, $name) {
@@ -45528,13 +43322,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 192
+				$signature: 190
 			};
 			A.calculationClass__closure5.prototype = {
 				call$1($self) {
 					return new self.immutable.List($self.$arguments);
 				},
-				$signature: 193
+				$signature: 191
 			};
 			A.calculationOperationClass_closure.prototype = {
 				call$0() {
@@ -45561,43 +43355,43 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				"call*": "call$4",
 				$requiredArgCount: 4,
-				$signature: 194
+				$signature: 192
 			};
 			A.calculationOperationClass___closure.prototype = {
 				call$1(value) {
 					return value.operator === this.strOperator;
 				},
-				$signature: 195
+				$signature: 193
 			};
 			A.calculationOperationClass__closure0.prototype = {
 				call$2($self, other) {
 					return $self.$eq(0, other);
 				},
-				$signature: 196
+				$signature: 194
 			};
 			A.calculationOperationClass__closure1.prototype = {
 				call$1($self) {
 					return $self.get$hashCode(0);
 				},
-				$signature: 197
+				$signature: 195
 			};
 			A.calculationOperationClass__closure2.prototype = {
 				call$1($self) {
 					return $self._operator.operator;
 				},
-				$signature: 198
+				$signature: 196
 			};
 			A.calculationOperationClass__closure3.prototype = {
 				call$1($self) {
 					return $self._left;
 				},
-				$signature: 71
+				$signature: 69
 			};
 			A.calculationOperationClass__closure4.prototype = {
 				call$1($self) {
 					return $self._right;
 				},
-				$signature: 71
+				$signature: 69
 			};
 			A.calculationInterpolationClass_closure.prototype = {
 				call$0() {
@@ -45616,25 +43410,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2($self, value) {
 					return new A.CalculationInterpolation(value);
 				},
-				$signature: 200
+				$signature: 198
 			};
 			A.calculationInterpolationClass__closure0.prototype = {
 				call$2($self, other) {
 					return other instanceof A.CalculationInterpolation && $self._calculation$_value === other._calculation$_value;
 				},
-				$signature: 201
+				$signature: 199
 			};
 			A.calculationInterpolationClass__closure1.prototype = {
 				call$1($self) {
 					return B.JSString_methods.get$hashCode($self._calculation$_value);
 				},
-				$signature: 202
+				$signature: 200
 			};
 			A.calculationInterpolationClass__closure2.prototype = {
 				call$1($self) {
 					return $self._calculation$_value;
 				},
-				$signature: 203
+				$signature: 201
 			};
 			A.colorClass_closure.prototype = {
 				call$0() {
@@ -45772,25 +43566,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							throw A.wrapException("Unreachable");
 					}
 				},
-				$signature: 204
+				$signature: 202
 			};
 			A.colorClass__closure0.prototype = {
 				call$2($self, other) {
 					return $self.$eq(0, other);
 				},
-				$signature: 205
+				$signature: 203
 			};
 			A.colorClass__closure1.prototype = {
 				call$1($self) {
 					return $self.get$hashCode(0);
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.colorClass__closure2.prototype = {
 				call$2($self, space) {
 					return A._toSpace($self, space);
 				},
-				$signature: 206
+				$signature: 204
 			};
 			A.colorClass__closure3.prototype = {
 				call$2($self, space) {
@@ -45804,7 +43598,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 207
+				$signature: 205
 			};
 			A.colorClass__closure4.prototype = {
 				call$2($self, options) {
@@ -45814,7 +43608,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t2.get$isInGamut() ? t2 : t1.map$1(0, t2);
 					return t1.toSpace$1($self._space);
 				},
-				$signature: 208
+				$signature: 206
 			};
 			A.colorClass__closure5.prototype = {
 				call$3($self, channel, options) {
@@ -45828,13 +43622,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 209
+				$signature: 207
 			};
 			A.colorClass__closure6.prototype = {
 				call$2($self, channel) {
 					return $self.isChannelMissing$1(channel);
 				},
-				$signature: 210
+				$signature: 208
 			};
 			A.colorClass__closure7.prototype = {
 				call$3($self, channel, options) {
@@ -45848,7 +43642,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 211
+				$signature: 209
 			};
 			A.colorClass__closure8.prototype = {
 				call$2($self, options) {
@@ -45884,7 +43678,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							A.warnForDeprecationFromApi("Changing a channel not in this color's space without explicitly specifying the `space` option is deprecated.\nMore info: https://sass-lang.com/d/color-4-api", B.Deprecation_alT);
 					}
 					for (t2 = J.get$iterator$ax(self.Object.keys(options)), t4 = space._channels, t5 = type$.JSArray_String; t2.moveNext$0();) {
-						t6 = t2.get$current(t2);
+						t6 = t2.get$current();
 						if (B.JSArray_methods.contains$1(A._setArrayType(["alpha", "space"], t5), t6))
 							continue;
 						if (!B.JSArray_methods.any$1(t4, new A.colorClass___closure(t6)))
@@ -46036,13 +43830,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return changedColor.toSpace$1(t3);
 				},
-				$signature: 212
+				$signature: 210
 			};
 			A.colorClass___closure.prototype = {
 				call$1(channel) {
 					return channel.name === this.key;
 				},
-				$signature: 34
+				$signature: 33
 			};
 			A.colorClass__closure_changedValue.prototype = {
 				call$1(channel) {
@@ -46055,7 +43849,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = false;
 					return t2 ? t1[channel] : this.color.channel$1(0, channel);
 				},
-				$signature: 213
+				$signature: 211
 			};
 			A.colorClass__closure9.prototype = {
 				call$3($self, color2, options) {
@@ -46078,28 +43872,28 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 214
+				$signature: 212
 			};
 			A.colorClass__closure10.prototype = {
 				call$1($self) {
 					A.warnForDeprecationFromApi("red is deprecated, use `channel` instead.\nMore info: https://sass-lang.com/d/color-4-api", B.Deprecation_alT);
 					return B.JSNumber_methods.round$0($self._legacyChannel$2(B.RgbColorSpace_i0P, "red"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.colorClass__closure11.prototype = {
 				call$1($self) {
 					A.warnForDeprecationFromApi("green is deprecated, use `channel` instead.\nMore info: https://sass-lang.com/d/color-4-api", B.Deprecation_alT);
 					return B.JSNumber_methods.round$0($self._legacyChannel$2(B.RgbColorSpace_i0P, "green"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.colorClass__closure12.prototype = {
 				call$1($self) {
 					A.warnForDeprecationFromApi("blue is deprecated, use `channel` instead.\nMore info: https://sass-lang.com/d/color-4-api", B.Deprecation_alT);
 					return B.JSNumber_methods.round$0($self._legacyChannel$2(B.RgbColorSpace_i0P, "blue"));
 				},
-				$signature: 19
+				$signature: 18
 			};
 			A.colorClass__closure13.prototype = {
 				call$1($self) {
@@ -46147,25 +43941,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($self) {
 					return $self._space.name;
 				},
-				$signature: 215
+				$signature: 213
 			};
 			A.colorClass__closure20.prototype = {
 				call$1($self) {
 					return $self._space.get$isLegacyInternal();
 				},
-				$signature: 216
+				$signature: 214
 			};
 			A.colorClass__closure21.prototype = {
 				call$1($self) {
 					return new self.immutable.List($self.get$channelsOrNull());
 				},
-				$signature: 72
+				$signature: 70
 			};
 			A.colorClass__closure22.prototype = {
 				call$1($self) {
 					return new self.immutable.List($self.get$channels());
 				},
-				$signature: 72
+				$signature: 70
 			};
 			A._Channels.prototype = {};
 			A._ConstructionOptions.prototype = {};
@@ -46190,7 +43984,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				"call*": "call$3",
 				$requiredArgCount: 3,
-				$signature: 218
+				$signature: 216
 			};
 			A.functionClass__closure0.prototype = {
 				call$1(_) {
@@ -46241,7 +44035,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null, null];
 				},
-				$signature: 219
+				$signature: 217
 			};
 			A.listClass__closure0.prototype = {
 				call$2($self, indexFloat) {
@@ -46252,7 +44046,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return self.undefined;
 					return $self.get$asList()[index];
 				},
-				$signature: 59
+				$signature: 56
 			};
 			A._ConstructorOptions.prototype = {};
 			A.mapClass_closure.prototype = {
@@ -46269,14 +44063,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.mapClass__closure.prototype = {
 				call$2($self, contents) {
-					var t1, t2;
+					var t1;
 					if (contents == null)
 						t1 = B.SassMap_Map_empty;
 					else {
-						t1 = A.immutableMapToDartMap(contents);
-						t2 = type$.Value;
-						t2 = new A.SassMap(A.ConstantMap_ConstantMap$from(t1.cast$2$0(t1, t2, t2), t2, t2));
-						t1 = t2;
+						t1 = type$.Value;
+						t1 = new A.SassMap(A.ConstantMap_ConstantMap$from(A.immutableMapToDartMap(contents).cast$2$0(0, t1, t1), t1, t1));
 					}
 					return t1;
 				},
@@ -46288,13 +44080,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 220
+				$signature: 218
 			};
 			A.mapClass__closure0.prototype = {
 				call$1($self) {
 					return A.dartMapToImmutableMap($self._map$_contents);
 				},
-				$signature: 221
+				$signature: 219
 			};
 			A.mapClass__closure1.prototype = {
 				call$2($self, indexOrKey) {
@@ -46320,7 +44112,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return t1 == null ? self.undefined : t1;
 					}
 				},
-				$signature: 222
+				$signature: 220
 			};
 			A.mixinClass_closure.prototype = {
 				call$0() {
@@ -46335,7 +44127,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($self) {
 					A.jsThrow(new self.Error("It is not possible to construct a SassMixin through the JavaScript API"));
 				},
-				$signature: 223
+				$signature: 221
 			};
 			A.mixinClass__closure0.prototype = {
 				call$1(_) {
@@ -46385,43 +44177,43 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 224
+				$signature: 222
 			};
 			A.numberClass__closure0.prototype = {
 				call$1($self) {
 					return $self._number$_value;
 				},
-				$signature: 44
+				$signature: 42
 			};
 			A.numberClass__closure1.prototype = {
 				call$1($self) {
 					return A.fuzzyIsInt($self._number$_value);
 				},
-				$signature: 73
+				$signature: 71
 			};
 			A.numberClass__closure2.prototype = {
 				call$1($self) {
 					return A.fuzzyAsInt($self._number$_value);
 				},
-				$signature: 226
+				$signature: 224
 			};
 			A.numberClass__closure3.prototype = {
 				call$1($self) {
 					return new self.immutable.List($self.get$numeratorUnits($self));
 				},
-				$signature: 94
+				$signature: 72
 			};
 			A.numberClass__closure4.prototype = {
 				call$1($self) {
 					return new self.immutable.List($self.get$denominatorUnits($self));
 				},
-				$signature: 94
+				$signature: 72
 			};
 			A.numberClass__closure5.prototype = {
 				call$1($self) {
 					return $self.get$hasUnits();
 				},
-				$signature: 73
+				$signature: 71
 			};
 			A.numberClass__closure6.prototype = {
 				call$2($self, $name) {
@@ -46435,7 +44227,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 228
+				$signature: 226
 			};
 			A.numberClass__closure7.prototype = {
 				call$4($self, min, max, $name) {
@@ -46449,7 +44241,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 229
+				$signature: 227
 			};
 			A.numberClass__closure8.prototype = {
 				call$2($self, $name) {
@@ -46464,7 +44256,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 230
+				$signature: 228
 			};
 			A.numberClass__closure9.prototype = {
 				call$3($self, unit, $name) {
@@ -46479,19 +44271,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 231
+				$signature: 229
 			};
 			A.numberClass__closure10.prototype = {
 				call$2($self, unit) {
 					return $self.hasUnit$1(unit);
 				},
-				$signature: 75
+				$signature: 92
 			};
 			A.numberClass__closure11.prototype = {
 				call$2($self, unit) {
 					return $self.get$hasUnits() && $self.compatibleWithUnit$1(unit);
 				},
-				$signature: 75
+				$signature: 92
 			};
 			A.numberClass__closure12.prototype = {
 				call$4($self, numeratorUnits, denominatorUnits, $name) {
@@ -46509,7 +44301,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 76
+				$signature: 74
 			};
 			A.numberClass__closure13.prototype = {
 				call$4($self, other, $name, otherName) {
@@ -46526,7 +44318,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null, null];
 				},
-				$signature: 77
+				$signature: 75
 			};
 			A.numberClass__closure14.prototype = {
 				call$4($self, numeratorUnits, denominatorUnits, $name) {
@@ -46543,7 +44335,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 78
+				$signature: 76
 			};
 			A.numberClass__closure15.prototype = {
 				call$4($self, other, $name, otherName) {
@@ -46560,7 +44352,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null, null];
 				},
-				$signature: 79
+				$signature: 77
 			};
 			A.numberClass__closure16.prototype = {
 				call$4($self, numeratorUnits, denominatorUnits, $name) {
@@ -46577,7 +44369,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 76
+				$signature: 74
 			};
 			A.numberClass__closure17.prototype = {
 				call$4($self, other, $name, otherName) {
@@ -46594,7 +44386,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null, null];
 				},
-				$signature: 77
+				$signature: 75
 			};
 			A.numberClass__closure18.prototype = {
 				call$4($self, numeratorUnits, denominatorUnits, $name) {
@@ -46611,7 +44403,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 78
+				$signature: 76
 			};
 			A.numberClass__closure19.prototype = {
 				call$4($self, other, $name, otherName) {
@@ -46628,7 +44420,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null, null];
 				},
-				$signature: 79
+				$signature: 77
 			};
 			A._ConstructorOptions0.prototype = {};
 			A.stringClass_closure.prototype = {
@@ -46668,25 +44460,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null, null];
 				},
-				$signature: 237
+				$signature: 235
 			};
 			A.stringClass__closure0.prototype = {
 				call$1($self) {
 					return $self._string$_text;
 				},
-				$signature: 238
+				$signature: 236
 			};
 			A.stringClass__closure1.prototype = {
 				call$1($self) {
 					return $self._hasQuotes;
 				},
-				$signature: 239
+				$signature: 237
 			};
 			A.stringClass__closure2.prototype = {
 				call$1($self) {
 					return $self.get$_sassLength();
 				},
-				$signature: 240
+				$signature: 238
 			};
 			A.stringClass__closure3.prototype = {
 				call$3($self, sassIndex, $name) {
@@ -46710,7 +44502,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$defaultValues() {
 					return [null];
 				},
-				$signature: 241
+				$signature: 239
 			};
 			A._ConstructorOptions1.prototype = {};
 			A.JSExpressionVisitor.prototype = {
@@ -47020,7 +44812,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(count) {
 					return count - 5;
 				},
-				$signature: 243
+				$signature: 241
 			};
 			/*DSH-
 			A.JSToDartLogger.prototype = {
@@ -47102,7 +44894,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (span == null)
 						t1 = result._contents = t1 + (": " + message + "\n");
 					else if (trace != null) {
-						t1 += ": " + message + "\n\n" + span.highlight$1$color(0, t2) + "\n";
+						t1 += ": " + message + "\n\n" + span.highlight$1$color(t2) + "\n";
 						result._contents = t1;
 					} else {
 						t1 += " on " + span.message$2$color(0, "\n" + message, t2) + "\n";
@@ -47153,7 +44945,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return false;
 				},
 				setVariable$3($name, value, nodeWithSpan) {
-					if (!this.variables.containsKey$1(0, $name))
+					if (!this.variables.containsKey$1($name))
 						throw A.wrapException(A.SassScriptException$("Undefined variable.", null));
 					throw A.wrapException(A.SassScriptException$("Cannot modify built-in variable.", null));
 				},
@@ -47255,7 +45047,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!t3) {
 						t3 = A.LinkedHashSet_LinkedHashSet$_empty(type$.String);
 						for (t4 = variables.get$iterator(variables), t5 = t2.length; t4.moveNext$0();) {
-							t6 = t4.get$current(t4);
+							t6 = t4.get$current();
 							if (B.JSString_methods.startsWith$1(t6, t2))
 								t3.add$1(0, B.JSString_methods.substring$1(t6, t5));
 						}
@@ -47263,7 +45055,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					_1_0 = t1.shownVariables;
 					if (_1_0 != null)
-						return _this._forwarded_view$_inner.couldHaveBeenConfigured$1(variables.intersection$1(0, _1_0));
+						return _this._forwarded_view$_inner.couldHaveBeenConfigured$1(variables.intersection$1(_1_0));
 					else {
 						_2_0 = t1.hiddenVariables;
 						if (_2_0 != null) {
@@ -47333,8 +45125,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._shadowed_view$_inner.get$transitivelyContainsExtensions();
 				},
 				setVariable$3($name, value, nodeWithSpan) {
-					var t1 = this.variables;
-					if (!t1.containsKey$1(t1, $name))
+					if (!this.variables.containsKey$1($name))
 						throw A.wrapException(A.SassScriptException$("Undefined variable.", null));
 					else
 						this._shadowed_view$_inner.setVariable$3($name, value, nodeWithSpan);
@@ -47350,8 +45141,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = t2.couldHaveBeenConfigured$1(variables);
 					else {
 						t3 = A.LinkedHashSet_LinkedHashSet$_empty(type$.String);
-						for (t1 = J.get$iterator$ax(t1.get$keys(t1)); t1.moveNext$0();) {
-							t4 = t1.get$current(t1);
+						for (t1 = t1.get$keys(t1), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
+							t4 = t1.get$current();
 							if (variables.contains$1(0, t4))
 								t3.add$1(0, t4);
 						}
@@ -47429,20 +45220,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.whitespace$1$consumeNewlines(true);
 					atRules = A.LinkedHashSet_LinkedHashSet$_empty(type$.String);
 					do {
-						atRules.add$1(0, t1.identifier$0(0).toLowerCase());
+						atRules.add$1(0, t1.identifier$0().toLowerCase());
 						t1.whitespace$1$consumeNewlines(true);
 					} while (t1.lookingAtIdentifier$0());
 					t2.expectChar$1(41);
 					t2.expectDone$0();
 					return new A.AtRootQuery(include, atRules, atRules.contains$1(0, "all"), atRules.contains$1(0, "rule"));
 				},
-				$signature: 244
+				$signature: 242
 			};
 			A._disallowedFunctionNames_closure.prototype = {
 				call$1($function) {
 					return $function.name;
 				},
-				$signature: 245
+				$signature: 243
 			};
 			A.CssParser.prototype = {
 				get$plainCss() {
@@ -47453,14 +45244,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (_this._inExpression)
 						return false;
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					_this.super$Parser$silentComment();
 					_this.error$2(0, string$.Silent, _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 				},
 				atRule$2$root(child, root) {
 					var $name, _0_0, result, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					t1.expectChar$1(64);
 					$name = _this.interpolatedIdentifier$0();
 					_this.whitespace$1$consumeNewlines(true);
@@ -47474,7 +45265,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 						if ("function" === _0_0) {
 							_this.whitespace$1$consumeNewlines(true);
-							if (!t1.matches$1(0, "--")) {
+							if (!t1.matches$1("--")) {
 								_this.almostAnyValue$0();
 								_this.error$2(0, "This at-rule isn't allowed in plain CSS.", t1.spanFrom$1(start));
 								result = null;
@@ -47507,7 +45298,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_cssImportRule$1(start) {
 					var _0_0, t3, string, $name, _0_3, _0_4, t4, _0_8, t5, modifiers, _this = this, _null = null,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						_1_0 = t1.peekChar$0();
 					$label1$1: {
 						if (117 === _1_0 || 85 === _1_0) {
@@ -47568,7 +45359,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				parentheses$0() {
 					var expression, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					t1.expectChar$1(40);
 					_this.whitespace$1$consumeNewlines(true);
 					expression = _this.expressionUntilComma$0();
@@ -47578,14 +45369,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				identifierLike$0() {
 					var t2, allowEmptySecondArg, $arguments, t3, t4, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position),
+						start = new A._SpanScannerState(t1, t1._position),
 						identifier = _this.interpolatedIdentifier$0(),
 						plain = identifier.get$asPlain(),
 						lower = plain.toLowerCase(),
 						_0_0 = _this.trySpecialFunction$2(lower, start);
 					if (_0_0 != null)
 						return _0_0;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					if (t1.scanChar$1(46))
 						return _this.namespacedExpression$2(plain, start);
 					else if (lower === "if" && t1.peekChar$0() === 40)
@@ -47598,7 +45389,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						do {
 							_this.whitespace$1$consumeNewlines(true);
 							if (allowEmptySecondArg && $arguments.length === 1 && t1.peekChar$0() === 41) {
-								t3 = A.FileLocation$_(t1._sourceFile, t1._string_scanner$_position);
+								t3 = A.FileLocation$_(t1._sourceFile, t1._position);
 								t4 = t3.offset;
 								t4 = A._FileSpan$(t3.file, t4, t4);
 								$arguments.push(new A.StringExpression(new A.Interpolation(A.List_List$unmodifiable([""], type$.Object), B.List_null, t4), false));
@@ -47685,7 +45476,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2.expectDone$0();
 					return selectors;
 				},
-				$signature: 370
+				$signature: 244
 			};
 			A.MediaQueryParser.prototype = {
 				parse$0(_) {
@@ -47710,7 +45501,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 						return A.CssMediaQuery$condition(conditions, conjunction);
 					}
-					identifier1 = _this.identifier$0(0);
+					identifier1 = _this.identifier$0();
 					if (A.equalsIgnoreCase(identifier1, "not")) {
 						_this.expectWhitespace$0();
 						if (!_this.lookingAtIdentifier$0())
@@ -47719,7 +45510,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.whitespace$1$consumeNewlines(true);
 					if (!_this.lookingAtIdentifier$0())
 						return A.CssMediaQuery$type(identifier1, _null, _null);
-					identifier2 = _this.identifier$0(0);
+					identifier2 = _this.identifier$0();
 					if (A.equalsIgnoreCase(identifier2, _s3_)) {
 						_this.expectWhitespace$0();
 						type = identifier1;
@@ -47775,7 +45566,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2.expectDone$0();
 					return queries;
 				},
-				$signature: 247
+				$signature: 368
 			};
 			A.Parser.prototype = {
 				_parseIdentifier$0() {
@@ -47791,7 +45582,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this.scanner,
 						t2 = t1.string.length;
 					for (;;) {
-						if (t1._string_scanner$_position !== t2) {
+						if (t1._position !== t2) {
 							t3 = t1.peekChar$0();
 							t3 = t3 === 32 || t3 === 9 || t3 === 10 || t3 === 13 || t3 === 12;
 						} else
@@ -47806,7 +45597,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this.scanner,
 						t2 = t1.string.length;
 					for (;;) {
-						if (t1._string_scanner$_position !== t2) {
+						if (t1._position !== t2) {
 							t3 = t1.peekChar$0();
 							t3 = t3 === 32 || t3 === 9;
 						} else
@@ -47833,7 +45624,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				expectWhitespace$1$consumeNewlines(consumeNewlines) {
 					var t2, t3,
 						t1 = this.scanner;
-					if (t1._string_scanner$_position !== t1.string.length) {
+					if (t1._position !== t1.string.length) {
 						t2 = t1.peekChar$0();
 						t3 = !(t2 === 32 || t2 === 9 || t2 === 10 || t2 === 13 || t2 === 12 || this.scanComment$0());
 						t2 = t3;
@@ -47852,7 +45643,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.expect$1("//");
 					t2 = t1.string.length;
 					for (;;) {
-						if (t1._string_scanner$_position !== t2) {
+						if (t1._position !== t2) {
 							t3 = t1.peekChar$0();
 							t3 = !(t3 === 10 || t3 === 13 || t3 === 12);
 						} else
@@ -47877,7 +45668,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break;
 					}
 				},
-				identifier$2$normalize$unit(_, normalize, unit) {
+				identifier$2$normalize$unit(normalize, unit) {
 					var t2, _0_0, _this = this,
 						_s20_ = "Expected identifier.",
 						text = new A.StringBuffer(""),
@@ -47906,7 +45697,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break $label0$0;
 						}
 						if (92 === _0_0) {
-							text._contents = t2 + _this.escape$1$identifierStart(0, true);
+							text._contents = t2 + _this.escape$1$identifierStart(true);
 							break $label0$0;
 						}
 						t1.error$1(0, _s20_);
@@ -47915,14 +45706,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = text._contents;
 					return t1.charCodeAt(0) == 0 ? t1 : t1;
 				},
-				identifier$0(_) {
-					return this.identifier$2$normalize$unit(0, false, false);
+				identifier$0() {
+					return this.identifier$2$normalize$unit(false, false);
 				},
-				identifier$1$normalize(_, normalize) {
-					return this.identifier$2$normalize$unit(0, normalize, false);
+				identifier$1$normalize(normalize) {
+					return this.identifier$2$normalize$unit(normalize, false);
 				},
-				identifier$1$unit(_, unit) {
-					return this.identifier$2$normalize$unit(0, false, unit);
+				identifier$1$unit(unit) {
+					return this.identifier$2$normalize$unit(false, unit);
 				},
 				_identifierBody$3$normalize$unit(text, normalize, unit) {
 					var t1, _1_0, _0_0, t2;
@@ -47966,7 +45757,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							continue;
 						}
 						if (92 === _1_0) {
-							t2 = this.escape$0(0);
+							t2 = this.escape$0();
 							text._contents += t2;
 							continue;
 						}
@@ -47981,7 +45772,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this.scanner,
 						quote = t1.readChar$0();
 					if (quote !== 39 && quote !== 34)
-						t1.error$2$position(0, "Expected string.", t1._string_scanner$_position - 1);
+						t1.error$2$position(0, "Expected string.", t1._position - 1);
 					buffer = new A.StringBuffer("");
 					for (;;) {
 						_0_0 = t1.peekChar$0();
@@ -48018,24 +45809,24 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break;
 						wroteNewline0 = false;
 						if (92 === next) {
-							t4 = _this.escape$1$identifierStart(0, true);
+							t4 = _this.escape$1$identifierStart(true);
 							buffer._contents += t4;
 							wroteNewline = wroteNewline0;
 							continue;
 						}
 						if (34 === next || 39 === next) {
-							start = t1._string_scanner$_position;
+							start = t1._position;
 							t3.call$0();
-							end = t1._string_scanner$_position;
+							end = t1._position;
 							buffer._contents += B.JSString_methods.substring$2(t1.string, start, end);
 							wroteNewline = wroteNewline0;
 							continue;
 						}
 						if (47 === next) {
 							if (t1.peekChar$1(1) === 42) {
-								start = t1._string_scanner$_position;
+								start = t1._position;
 								t2.call$0();
-								end = t1._string_scanner$_position;
+								end = t1._position;
 								buffer._contents += B.JSString_methods.substring$2(t1.string, start, end);
 							} else {
 								t4 = A.Primitives_stringFromCharCode(t1.readChar$0());
@@ -48100,7 +45891,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							continue;
 						}
 						if (_this.lookingAtIdentifier$0()) {
-							t4 = _this.identifier$0(0);
+							t4 = _this.identifier$0();
 							buffer._contents += t4;
 						} else {
 							t4 = A.Primitives_stringFromCharCode(t1.readChar$0());
@@ -48121,11 +45912,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				tryUrl$0() {
 					var buffer, _0_0, t2, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (!_this.scanIdentifier$1("url"))
 						return null;
 					if (!t1.scanChar$1(40)) {
-						t1.set$state(0, start);
+						t1.set$state(start);
 						return null;
 					}
 					_this.whitespace$1$consumeNewlines(true);
@@ -48136,7 +45927,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (_0_0 == null)
 							break;
 						if (92 === _0_0) {
-							t2 = _this.escape$0(0);
+							t2 = _this.escape$0();
 							buffer._contents += t2;
 							continue;
 						}
@@ -48163,18 +45954,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 						break;
 					}
-					t1.set$state(0, start);
+					t1.set$state(start);
 					return null;
 				},
 				variableName$0() {
 					this.scanner.expectChar$1(36);
-					return this.identifier$1$normalize(0, true);
+					return this.identifier$1$normalize(true);
 				},
-				escape$1$identifierStart(_, identifierStart) {
+				escape$1$identifierStart(identifierStart) {
 					var value, _0_0, i, next, t2, exception,
 						_s25_ = "Expected escape sequence.",
 						t1 = this.scanner,
-						start = t1._string_scanner$_position;
+						start = t1._position;
 					t1.expectChar$1(92);
 					value = 0;
 					$label0$1: {
@@ -48220,7 +46011,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							return t2;
 						} catch (exception) {
 							if (type$.RangeError._is(A.unwrapException(exception)))
-								t1.error$3$length$position(0, "Invalid Unicode code point.", t1._string_scanner$_position - start, start);
+								t1.error$3$length$position(0, "Invalid Unicode code point.", t1._position - start, start);
 							else
 								throw exception;
 						}
@@ -48243,8 +46034,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							return A.String_String$fromCharCodes(A._setArrayType([92, value], type$.JSArray_int), 0, null);
 					}
 				},
-				escape$0(_) {
-					return this.escape$1$identifierStart(0, false);
+				escape$0() {
+					return this.escape$1$identifierStart(false);
 				},
 				scanCharIf$1(condition) {
 					var t1 = this.scanner;
@@ -48267,10 +46058,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return true;
 					}
 					if (92 === _0_0) {
-						t3 = t2._string_scanner$_position;
+						t3 = t2._position;
 						if (t1.call$1(A.consumeEscapedCharacter(t2)))
 							return true;
-						t2.set$state(0, new A._SpanScannerState(t2, t3));
+						t2.set$state(new A._SpanScannerState(t2, t3));
 					}
 					return false;
 				},
@@ -48282,7 +46073,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (this.scanIdentChar$2$caseSensitive(letter, false))
 						return;
 					t1 = this.scanner;
-					t1.error$2$position(0, 'Expected "' + A.Primitives_stringFromCharCode(letter) + '".', t1._string_scanner$_position);
+					t1.error$2$position(0, 'Expected "' + A.Primitives_stringFromCharCode(letter) + '".', t1._position);
 				},
 				lookingAtIdentifier$1($forward) {
 					var t1, _1_0, t2, _0_0;
@@ -48337,11 +46128,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!_this.lookingAtIdentifier$0())
 						return false;
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					if (_this._consumeIdentifier$2(text, caseSensitive) && !_this.lookingAtIdentifierBody$0())
 						return true;
 					else {
-						t1.set$state(0, new A._SpanScannerState(t1, t2));
+						t1.set$state(new A._SpanScannerState(t1, t2));
 						return false;
 					}
 				},
@@ -48362,7 +46153,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if ($name == null)
 						$name = '"' + text + '"';
 					t1 = this.scanner;
-					start = t1._string_scanner$_position;
+					start = t1._position;
 					for (t2 = new A.CodeUnits(text), t3 = type$.CodeUnits, t2 = new A.ListIterator(t2, t2.get$length(0), t3._eval$1("ListIterator<ListBase.E>")), t4 = "Expected " + $name, t5 = t4 + ".", t3 = t3._eval$1("ListBase.E"); t2.moveNext$0();) {
 						t6 = t2.__internal$_current;
 						if (this.scanIdentChar$2$caseSensitive(t6 == null ? t3._as(t6) : t6, false))
@@ -48378,7 +46169,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				rawText$1(consumer) {
 					var t1 = this.scanner,
-						start = t1._string_scanner$_position;
+						start = t1._position;
 					consumer.call$0();
 					return t1.substring$1(0, start);
 				},
@@ -48391,7 +46182,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				spanFromPosition$2(start, end) {
 					var t1 = this.scanner,
-						t2 = end == null ? t1._string_scanner$_position : end,
+						t2 = end == null ? t1._position : end,
 						span = t1._sourceFile.span$2(0, start, t2);
 					return this._interpolationMap == null ? span : new A.LazyFileSpan(new A.Parser_spanFromPosition_closure(this, span));
 				},
@@ -48419,7 +46210,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							error = t1;
 							stackTrace = A.getTraceFromException(exception);
 							t1 = J.get$span$x(error);
-							A.throwWithTrace(new A.SourceSpanFormatException(J.get$source$z(error), message, t1), error, stackTrace);
+							A.throwWithTrace(new A.SourceSpanFormatException(error.get$source(), message, t1), error, stackTrace);
 						} else
 							throw exception;
 					}
@@ -48464,7 +46255,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								span = _this._adjustExceptionSpan$1(span);
 								t1 = A.LinkedHashMap_LinkedHashMap$_empty(t3, t4);
 								for (t3 = A.MapExtensions_get_pairs(secondarySpans, t3, t4), t3 = t3.get$iterator(t3); t3.moveNext$0();) {
-									t2 = t3.get$current(t3);
+									t2 = t3.get$current();
 									span0 = null;
 									description = null;
 									_0_0 = t2;
@@ -48532,17 +46323,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A.Parser__parseIdentifier_closure.prototype = {
 				call$0() {
 					var t1 = this.$this,
-						result = t1.identifier$0(0);
+						result = t1.identifier$0();
 					t1.scanner.expectDone$0();
 					return result;
 				},
-				$signature: 27
+				$signature: 24
 			};
 			A.Parser_escape_closure.prototype = {
 				call$1(char) {
 					return char === 32 || char === 9 || char === 10 || char === 13 || char === 12;
 				},
-				$signature: 28
+				$signature: 25
 			};
 			A.Parser_scanIdentChar_matches.prototype = {
 				call$1(actual) {
@@ -48558,7 +46349,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = type$.InterpolationMap._as(t1);
 					return t1.mapSpan$1(this.span);
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A.Parser_spanFromPosition_closure.prototype = {
 				call$0() {
@@ -48567,7 +46358,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = type$.InterpolationMap._as(t1);
 					return t1.mapSpan$1(this.span);
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A.SassParser.prototype = {
 				get$currentIndentation() {
@@ -48579,7 +46370,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				styleRuleSelector$0() {
 					var t4, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						t3 = new A.StringBuffer(""),
 						buffer = new A.InterpolationBuffer(t3, A._setArrayType([], type$.JSArray_Object), A._setArrayType([], type$.JSArray_nullable_FileSpan));
 					do {
@@ -48619,19 +46410,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = _this.scanner;
 						_0_0 = t1.peekChar$0();
 						if (117 === _0_0 || 85 === _0_0) {
-							start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+							start = new A._SpanScannerState(t1, t1._position);
 							if (_this.scanIdentifier$1("url"))
 								if (t1.scanChar$1(40)) {
-									t1.set$state(0, start);
+									t1.set$state(start);
 									return _this.super$StylesheetParser$importArgument();
 								} else
-									t1.set$state(0, start);
+									t1.set$state(start);
 							break $label0$0;
 						}
 						if (39 === _0_0 || 34 === _0_0)
 							return _this.super$StylesheetParser$importArgument();
 					}
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					next = t1.peekChar$0();
 					for (;;) {
 						t3 = false;
@@ -48667,14 +46458,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (_this._peekIndentation$0() !== ifIndentation)
 						return false;
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					startIndentation = _this._currentIndentation;
 					startNextIndentation = _this._nextIndentation;
 					startNextIndentationEnd = _this._nextIndentationEnd;
 					_this._readIndentation$0();
 					if (t1.scanChar$1(64) && _this.scanIdentifier$1("else"))
 						return true;
-					t1.set$state(0, new A._SpanScannerState(t1, t2));
+					t1.set$state(new A._SpanScannerState(t1, t2));
 					_this._currentIndentation = startIndentation;
 					_this._nextIndentation = startNextIndentation;
 					_this._nextIndentationEnd = startNextIndentationEnd;
@@ -48690,9 +46481,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this.scanner,
 						_0_0 = t1.peekChar$0();
 					if (9 === _0_0 || 32 === _0_0)
-						t1.error$3$length$position(0, "Indenting at the beginning of the document is illegal.", t1._string_scanner$_position, 0);
+						t1.error$3$length$position(0, "Indenting at the beginning of the document is illegal.", t1._position, 0);
 					statements = A._setArrayType([], type$.JSArray_Statement);
-					for (t2 = t1.string.length; t1._string_scanner$_position !== t2;) {
+					for (t2 = t1.string.length; t1._position !== t2;) {
 						_1_0 = this._child$1(statement);
 						if (_1_0 != null)
 							statements.push(_1_0);
@@ -48737,7 +46528,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_sass$_silentComment$0() {
 					var buffer, parentIndentation, t3, t4, t5, commentPrefix, i, t6, i0, t7, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					t1.expect$1("//");
 					buffer = new A.StringBuffer("");
 					parentIndentation = _this._currentIndentation;
@@ -48754,7 +46545,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 									buffer._contents = t6;
 								}
 								for (;;) {
-									if (t1._string_scanner$_position !== t3) {
+									if (t1._position !== t3) {
 										t7 = t1.peekChar$0();
 										t7 = !(t7 === 10 || t7 === 13 || t7 === 12);
 									} else
@@ -48781,7 +46572,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_sass$_loudComment$0() {
 					var t2, t3, t4, buffer, parentIndentation, t5, t6, first, beginningOfComment, t7, end, i, _1_0, _0_0, span, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					t1.expect$1("/*");
 					t2 = new A.StringBuffer("");
 					t3 = A._setArrayType([], type$.JSArray_Object);
@@ -48791,7 +46582,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					parentIndentation = _this._currentIndentation;
 					for (t5 = t1.string, t6 = t5.length, first = true;; first = false) {
 						if (first) {
-							beginningOfComment = t1._string_scanner$_position;
+							beginningOfComment = t1._position;
 							_this.spaces$0();
 							t7 = t1.peekChar$0();
 							if (t7 === 10 || t7 === 13 || t7 === 12) {
@@ -48799,7 +46590,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								t7 = A.Primitives_stringFromCharCode(32);
 								t2._contents += t7;
 							} else {
-								end = t1._string_scanner$_position;
+								end = t1._position;
 								t2._contents += B.JSString_methods.substring$2(t5, beginningOfComment, end);
 							}
 						} else
@@ -48808,7 +46599,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t7 = A.Primitives_stringFromCharCode(32);
 							t2._contents += t7;
 						}
-						while (t1._string_scanner$_position !== t6) {
+						while (t1._position !== t6) {
 							_1_0 = t1.peekChar$0();
 							if (10 === _1_0 || 13 === _1_0 || 12 === _1_0)
 								break;
@@ -48841,15 +46632,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 										_this._readIndentation$0();
 										_this.whitespace$1$consumeNewlines(false);
 									}
-									if (t1._string_scanner$_position !== t6) {
+									if (t1._position !== t6) {
 										t2 = t1.peekChar$0();
 										t2 = !(t2 === 10 || t2 === 13 || t2 === 12);
 									} else
 										t2 = false;
 									if (t2) {
-										t2 = t1._string_scanner$_position;
+										t2 = t1._position;
 										for (;;) {
-											if (t1._string_scanner$_position !== t6) {
+											if (t1._position !== t6) {
 												t3 = t1.peekChar$0();
 												t3 = !(t3 === 10 || t3 === 13 || t3 === 12);
 											} else
@@ -48882,7 +46673,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				whitespaceWithoutComments$1$consumeNewlines(consumeNewlines) {
 					var t1, t2, next, t3;
-					for (t1 = this.scanner, t2 = t1.string.length; t1._string_scanner$_position !== t2;) {
+					for (t1 = this.scanner, t2 = t1.string.length; t1._position !== t2;) {
 						next = t1.peekChar$0();
 						if (consumeNewlines)
 							t3 = !(next === 32 || next === 9 || next === 10 || next === 13 || next === 12);
@@ -48952,9 +46743,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (childIndentation == null)
 							childIndentation = indentation;
 						if (childIndentation !== indentation) {
-							t3 = t1._string_scanner$_position;
+							t3 = t1._position;
 							t4 = t2.getColumn$1(t3);
-							t1.error$3$length$position(0, "Inconsistent indentation, expected " + childIndentation + " spaces.", t2.getColumn$1(t1._string_scanner$_position), t3 - t4);
+							t1.error$3$length$position(0, "Inconsistent indentation, expected " + childIndentation + " spaces.", t2.getColumn$1(t1._position), t3 - t4);
 						}
 						body.call$0();
 					}
@@ -48967,7 +46758,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this._currentIndentation = currentIndentation;
 					t1 = _this._nextIndentationEnd;
 					t1.toString;
-					_this.scanner.set$state(0, t1);
+					_this.scanner.set$state(t1);
 					_this._nextIndentationEnd = _this._nextIndentation = null;
 					return currentIndentation;
 				},
@@ -48977,7 +46768,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (_0_0 != null)
 						return _0_0;
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					t3 = t1.string.length;
 					if (t2 === t3) {
 						_this._nextIndentation = 0;
@@ -48986,7 +46777,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					start = new A._SpanScannerState(t1, t2);
 					if (!_this.scanCharIf$1(new A.SassParser__peekIndentation_closure()))
-						t1.error$2$position(0, "Expected newline.", t1._string_scanner$_position);
+						t1.error$2$position(0, "Expected newline.", t1._position);
 					containsTab = A._Cell$named("containsTab");
 					containsSpace = A._Cell$named("containsSpace");
 					nextIndentation = A._Cell$named("nextIndentation");
@@ -49013,11 +46804,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							nextIndentation._value = t4 + 1;
 							t1.readChar$0();
 						}
-						t4 = t1._string_scanner$_position;
+						t4 = t1._position;
 						if (t4 === t3) {
 							_this._nextIndentation = 0;
 							_this._nextIndentationEnd = new A._SpanScannerState(t1, t4);
-							t1.set$state(0, start);
+							t1.set$state(start);
 							return 0;
 						}
 					} while (_this.scanCharIf$1(new A.SassParser__peekIndentation_closure0()));
@@ -49025,28 +46816,28 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t3 = containsSpace._readLocal$0();
 					if (t2) {
 						if (t3) {
-							t2 = t1._string_scanner$_position;
+							t2 = t1._position;
 							t3 = t1._sourceFile;
 							t4 = t3.getColumn$1(t2);
-							t1.error$3$length$position(0, "Tabs and spaces may not be mixed.", t3.getColumn$1(t1._string_scanner$_position), t2 - t4);
+							t1.error$3$length$position(0, "Tabs and spaces may not be mixed.", t3.getColumn$1(t1._position), t2 - t4);
 						} else if (_this._spaces === true) {
-							t2 = t1._string_scanner$_position;
+							t2 = t1._position;
 							t3 = t1._sourceFile;
 							t4 = t3.getColumn$1(t2);
-							t1.error$3$length$position(0, "Expected spaces, was tabs.", t3.getColumn$1(t1._string_scanner$_position), t2 - t4);
+							t1.error$3$length$position(0, "Expected spaces, was tabs.", t3.getColumn$1(t1._position), t2 - t4);
 						}
 					} else if (t3 && _this._spaces === false) {
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 						t3 = t1._sourceFile;
 						t4 = t3.getColumn$1(t2);
-						t1.error$3$length$position(0, "Expected tabs, was spaces.", t3.getColumn$1(t1._string_scanner$_position), t2 - t4);
+						t1.error$3$length$position(0, "Expected tabs, was spaces.", t3.getColumn$1(t1._position), t2 - t4);
 					}
 					_this._nextIndentation = nextIndentation._readLocal$0();
 					if (nextIndentation._readLocal$0() > 0)
 						if (_this._spaces == null)
 							_this._spaces = containsSpace._readLocal$0();
-					_this._nextIndentationEnd = new A._SpanScannerState(t1, t1._string_scanner$_position);
-					t1.set$state(0, start);
+					_this._nextIndentationEnd = new A._SpanScannerState(t1, t1._position);
+					t1.set$state(start);
 					return nextIndentation._readLocal$0();
 				},
 				_tryTrailingSemicolon$0() {
@@ -49061,7 +46852,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(char) {
 					return char === 10 || char === 13 || char === 12;
 				},
-				$signature: 28
+				$signature: 25
 			};
 			A.SassParser_children_closure.prototype = {
 				call$0() {
@@ -49075,19 +46866,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(char) {
 					return char === 10 || char === 13 || char === 12;
 				},
-				$signature: 28
+				$signature: 25
 			};
 			A.SassParser__peekIndentation_closure0.prototype = {
 				call$1(char) {
 					return char === 10 || char === 13 || char === 12;
 				},
-				$signature: 28
+				$signature: 25
 			};
 			A.SassParser__tryTrailingSemicolon_closure.prototype = {
 				call$1(char) {
 					return char === 59;
 				},
-				$signature: 28
+				$signature: 25
 			};
 			A.ScssParser.prototype = {
 				get$indented() {
@@ -49103,7 +46894,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, _0_0;
 					this.whitespaceWithoutComments$1$consumeNewlines(true);
 					t1 = this.scanner;
-					if (t1._string_scanner$_position === t1.string.length)
+					if (t1._position === t1.string.length)
 						return;
 					_0_0 = t1.peekChar$0();
 					if (59 === _0_0 || 125 === _0_0)
@@ -49123,19 +46914,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				scanElse$1(ifIndentation) {
 					var t3, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					_this.whitespace$1$consumeNewlines(true);
-					t3 = t1._string_scanner$_position;
+					t3 = t1._position;
 					if (t1.scanChar$1(64)) {
 						if (_this.scanIdentifier$2$caseSensitive("else", true))
 							return true;
 						if (_this.scanIdentifier$2$caseSensitive("elseif", true)) {
 							_this.warnings.push(new A._Record_3_deprecation_message_span(B.Deprecation_VUl, "@elseif is deprecated and will not be supported in future Sass versions.\n\nRecommendation: @else if", _this.spanFrom$1(new A._SpanScannerState(t1, t3))));
-							t1.set$position(0, t1._string_scanner$_position - 2);
+							t1.set$position(t1._position - 2);
 							return true;
 						}
 					}
-					t1.set$state(0, new A._SpanScannerState(t1, t2));
+					t1.set$state(new A._SpanScannerState(t1, t2));
 					return false;
 				},
 				children$1(_, child) {
@@ -49178,7 +46969,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, _0_0, _1_0, _this = this,
 						statements = A._setArrayType([], type$.JSArray_Statement);
 					_this.whitespaceWithoutComments$1$consumeNewlines(true);
-					for (t1 = _this.scanner, t2 = t1.string.length; t1._string_scanner$_position !== t2;)
+					for (t1 = _this.scanner, t2 = t1.string.length; t1._position !== t2;)
 						switch (t1.peekChar$0()) {
 							case 36:
 								statements.push(_this.variableDeclarationWithoutNamespace$0());
@@ -49213,13 +47004,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_silentComment$0() {
 					var t3, t4, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						start = new A._SpanScannerState(t1, t2);
 					t1.expect$1("//");
 					t3 = t1.string.length;
 					do {
 						for (;;) {
-							if (t1._string_scanner$_position !== t3) {
+							if (t1._position !== t3) {
 								t4 = t1.readChar$0();
 								t4 = !(t4 === 10 || t4 === 13 || t4 === 12);
 							} else
@@ -49227,7 +47018,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							if (!t4)
 								break;
 						}
-						if (t1._string_scanner$_position === t3)
+						if (t1._position === t3)
 							break;
 						_this.spaces$0();
 					} while (t1.scan$1("//"));
@@ -49238,7 +47029,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_loudComment$0() {
 					var t3, t4, t5, buffer, _0_0, t6,
 						t1 = this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					t1.expect$1("/*");
 					t3 = new A.StringBuffer("");
 					t4 = A._setArrayType([], type$.JSArray_Object);
@@ -49295,7 +47086,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_selectorList$0() {
 					var t4, t5, lineBreak, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						t3 = t1._sourceFile,
 						previousLine = t3.getLine$1(t2),
 						components = A._setArrayType([_this._complexSelector$0()], type$.JSArray_ComplexSelector);
@@ -49304,12 +47095,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this.whitespace$1$consumeNewlines(true);
 						if (t1.peekChar$0() === 44)
 							continue;
-						t5 = t1._string_scanner$_position;
+						t5 = t1._position;
 						if (t5 === t4)
 							break;
 						lineBreak = t3.getLine$1(t5) !== previousLine;
 						if (lineBreak)
-							previousLine = t3.getLine$1(t1._string_scanner$_position);
+							previousLine = t3.getLine$1(t1._position);
 						components.push(_this._complexSelector$1$lineBreak(lineBreak));
 					}
 					return A.SelectorList$(components, _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
@@ -49318,7 +47109,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t4, lastCompound, initialCombinators, _0_0, t5, result, _this = this,
 						_s18_ = "expected selector.",
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						componentStart = new A._SpanScannerState(t1, t2),
 						t3 = type$.JSArray_CssValue_Combinator,
 						combinators = A._setArrayType([], t3),
@@ -49327,19 +47118,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this.whitespace$1$consumeNewlines(true);
 						_0_0 = t1.peekChar$0();
 						if (43 === _0_0) {
-							t5 = t1._string_scanner$_position;
+							t5 = t1._position;
 							t1.readChar$0();
 							combinators.push(new A.CssValue(B.Combinator_sHB, _this.spanFrom$1(new A._SpanScannerState(t1, t5)), t4));
 							continue;
 						}
 						if (62 === _0_0) {
-							t5 = t1._string_scanner$_position;
+							t5 = t1._position;
 							t1.readChar$0();
 							combinators.push(new A.CssValue(B.Combinator_iUF, _this.spanFrom$1(new A._SpanScannerState(t1, t5)), t4));
 							continue;
 						}
 						if (126 === _0_0) {
-							t5 = t1._string_scanner$_position;
+							t5 = t1._position;
 							t1.readChar$0();
 							combinators.push(new A.CssValue(B.Combinator_98W, _this.spanFrom$1(new A._SpanScannerState(t1, t5)), t4));
 							continue;
@@ -49363,7 +47154,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								result.$flags = 3;
 								components.push(new A.ComplexSelectorComponent(lastCompound, result, t5));
 							} else if (combinators.length !== 0) {
-								componentStart = new A._SpanScannerState(t1, t1._string_scanner$_position);
+								componentStart = new A._SpanScannerState(t1, t1._position);
 								initialCombinators = combinators;
 							}
 							lastCompound = _this._compoundSelector$0();
@@ -49393,7 +47184,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_compoundSelector$0() {
 					var t3, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						components = A._setArrayType([_this._simpleSelector$0()], type$.JSArray_SimpleSelector);
 					for (t3 = _this._plainCss; _this._isSimpleSelectorStart$1(t1.peekChar$0());)
 						components.push(_this._simpleSelector$1$allowParent(t3));
@@ -49402,24 +47193,24 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_simpleSelector$1$allowParent(allowParent) {
 					var t2, $name, text, t3, suffix, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (allowParent == null)
 						allowParent = _this._allowParent;
 					switch (t1.peekChar$0()) {
 						case 91:
 							return _this._attributeSelector$0();
 						case 46:
-							t2 = t1._string_scanner$_position;
+							t2 = t1._position;
 							t1.expectChar$1(46);
-							return new A.ClassSelector(_this.identifier$0(0), _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
+							return new A.ClassSelector(_this.identifier$0(), _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 						case 35:
-							t2 = t1._string_scanner$_position;
+							t2 = t1._position;
 							t1.expectChar$1(35);
-							return new A.IDSelector(_this.identifier$0(0), _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
+							return new A.IDSelector(_this.identifier$0(), _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 						case 37:
-							t2 = t1._string_scanner$_position;
+							t2 = t1._position;
 							t1.expectChar$1(37);
-							$name = _this.identifier$0(0);
+							$name = _this.identifier$0();
 							t2 = _this.spanFrom$1(new A._SpanScannerState(t1, t2));
 							if (_this._plainCss)
 								_this.error$2(0, string$.Placeh, _this.spanFrom$1(start));
@@ -49427,7 +47218,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						case 58:
 							return _this._pseudoSelector$0();
 						case 38:
-							t2 = t1._string_scanner$_position;
+							t2 = t1._position;
 							t1.expectChar$1(38);
 							if (_this.lookingAtIdentifierBody$0()) {
 								text = new A.StringBuffer("");
@@ -49439,7 +47230,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							} else
 								suffix = null;
 							if (_this._plainCss && suffix != null)
-								t1.error$3$length$position(0, string$.Parent, t1._string_scanner$_position - t2, t2);
+								t1.error$3$length$position(0, string$.Parent, t1._position - t2, t2);
 							t1 = _this.spanFrom$1(new A._SpanScannerState(t1, t2));
 							if (!allowParent)
 								_this.error$2(0, "Parent selectors aren't allowed here.", _this.spanFrom$1(start));
@@ -49454,7 +47245,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_attributeSelector$0() {
 					var $name, operator, next, value, modifier, _this = this, _null = null,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					t1.expectChar$1(91);
 					_this.whitespace$1$consumeNewlines(true);
 					$name = _this._attributeName$0();
@@ -49464,7 +47255,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					operator = _this._attributeOperator$0();
 					_this.whitespace$1$consumeNewlines(true);
 					next = t1.peekChar$0();
-					value = next === 39 || next === 34 ? _this.string$0() : _this.identifier$0(0);
+					value = next === 39 || next === 34 ? _this.string$0() : _this.identifier$0();
 					_this.whitespace$1$consumeNewlines(true);
 					next = t1.peekChar$0();
 					modifier = next != null && A.CharacterExtension_get_isAlphabetic(next) ? A.Primitives_stringFromCharCode(t1.readChar$0()) : _null;
@@ -49476,19 +47267,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = _this.scanner;
 					if (t1.scanChar$1(42)) {
 						t1.expectChar$1(124);
-						return new A.QualifiedName(_this.identifier$0(0), "*");
+						return new A.QualifiedName(_this.identifier$0(), "*");
 					}
 					if (t1.scanChar$1(124))
-						return new A.QualifiedName(_this.identifier$0(0), "");
-					nameOrNamespace = _this.identifier$0(0);
+						return new A.QualifiedName(_this.identifier$0(), "");
+					nameOrNamespace = _this.identifier$0();
 					if (t1.peekChar$0() !== 124 || t1.peekChar$1(1) === 61)
 						return new A.QualifiedName(nameOrNamespace, null);
 					t1.readChar$0();
-					return new A.QualifiedName(_this.identifier$0(0), nameOrNamespace);
+					return new A.QualifiedName(_this.identifier$0(), nameOrNamespace);
 				},
 				_attributeOperator$0() {
 					var t1 = this.scanner,
-						start = t1._string_scanner$_position;
+						start = t1._position;
 					switch (t1.readChar$0()) {
 						case 61:
 							return B.AttributeOperator_jFZ;
@@ -49514,10 +47305,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_pseudoSelector$0() {
 					var element, $name, unvendored, argument, selector, t2, _this = this, _null = null,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					t1.expectChar$1(58);
 					element = t1.scanChar$1(58);
-					$name = _this.identifier$0(0);
+					$name = _this.identifier$0();
 					if (!t1.scanChar$1(40))
 						return A.PseudoSelector$($name, _this.spanFrom$1(start), _null, element, _null);
 					_this.whitespace$1$consumeNewlines(true);
@@ -49595,20 +47386,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_typeOrUniversalSelector$0() {
 					var nameOrNamespace, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (t1.scanChar$1(42)) {
 						if (!t1.scanChar$1(124))
 							return new A.UniversalSelector(null, _this.spanFrom$1(start));
-						return t1.scanChar$1(42) ? new A.UniversalSelector("*", _this.spanFrom$1(start)) : new A.TypeSelector(new A.QualifiedName(_this.identifier$0(0), "*"), _this.spanFrom$1(start));
+						return t1.scanChar$1(42) ? new A.UniversalSelector("*", _this.spanFrom$1(start)) : new A.TypeSelector(new A.QualifiedName(_this.identifier$0(), "*"), _this.spanFrom$1(start));
 					} else if (t1.scanChar$1(124))
-						return t1.scanChar$1(42) ? new A.UniversalSelector("", _this.spanFrom$1(start)) : new A.TypeSelector(new A.QualifiedName(_this.identifier$0(0), ""), _this.spanFrom$1(start));
-					nameOrNamespace = _this.identifier$0(0);
+						return t1.scanChar$1(42) ? new A.UniversalSelector("", _this.spanFrom$1(start)) : new A.TypeSelector(new A.QualifiedName(_this.identifier$0(), ""), _this.spanFrom$1(start));
+					nameOrNamespace = _this.identifier$0();
 					if (!t1.scanChar$1(124))
 						return new A.TypeSelector(new A.QualifiedName(nameOrNamespace, null), _this.spanFrom$1(start));
 					else if (t1.scanChar$1(42))
 						return new A.UniversalSelector(nameOrNamespace, _this.spanFrom$1(start));
 					else
-						return new A.TypeSelector(new A.QualifiedName(_this.identifier$0(0), nameOrNamespace), _this.spanFrom$1(start));
+						return new A.TypeSelector(new A.QualifiedName(_this.identifier$0(), nameOrNamespace), _this.spanFrom$1(start));
 				},
 				_isSimpleSelectorStart$1(character) {
 					var t1;
@@ -49632,22 +47423,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.$this,
 						selector = t1._selectorList$0();
 					t1 = t1.scanner;
-					if (t1._string_scanner$_position !== t1.string.length)
+					if (t1._position !== t1.string.length)
 						t1.error$1(0, "expected selector.");
 					return selector;
 				},
-				$signature: 250
+				$signature: 248
 			};
 			A.SelectorParser_parseCompoundSelector_closure.prototype = {
 				call$0() {
 					var t1 = this.$this,
 						compound = t1._compoundSelector$0();
 					t1 = t1.scanner;
-					if (t1._string_scanner$_position !== t1.string.length)
+					if (t1._position !== t1.string.length)
 						t1.error$1(0, "expected selector.");
 					return compound;
 				},
-				$signature: 251
+				$signature: 249
 			};
 			A.StylesheetParser.prototype = {
 				parse$0(_) {
@@ -49672,7 +47463,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (!_this.get$indented() || !_this.lookingAtIdentifier$1(1))
 							return _this._styleRule$0();
 						_this._isUseAllowed = false;
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 						t1.readChar$0();
 						return _this._includeRule$1(new A._SpanScannerState(t1, t2));
 					}
@@ -49680,7 +47471,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (!_this.get$indented())
 							return _this._styleRule$0();
 						_this._isUseAllowed = false;
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 						t1.readChar$0();
 						_this.whitespace$1$consumeNewlines(true);
 						return _this._mixinRule$1(new A._SpanScannerState(t1, t2));
@@ -49698,7 +47489,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.lastSilentComment = null;
 					if (start_ == null) {
 						t1 = _this.scanner;
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					} else
 						start = start_;
 					$name = _this.variableName$0();
@@ -49712,10 +47503,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2.expectChar$1(58);
 					_this.whitespace$1$consumeNewlines(true);
 					value = _this._expression$0();
-					flagStart = new A._SpanScannerState(t2, t2._string_scanner$_position);
+					flagStart = new A._SpanScannerState(t2, t2._position);
 					for (t3 = _this.warnings, guarded = false, global = false; t2.scanChar$1(33);) {
 						$label0$0: {
-							_0_0 = _this.identifier$0(0);
+							_0_0 = _this.identifier$0();
 							if ("default" === _0_0) {
 								if (guarded)
 									t3.push(new A._Record_3_deprecation_message_span(B.Deprecation_DVV, "!default should only be written once for each variable.\nThis will be an error in Dart Sass 2.0.0.", _this.spanFrom$1(flagStart)));
@@ -49733,12 +47524,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							_this.error$2(0, "Invalid flag name.", _this.spanFrom$1(flagStart));
 						}
 						_this.whitespace$1$consumeNewlines(false);
-						flagStart = new A._SpanScannerState(t2, t2._string_scanner$_position);
+						flagStart = new A._SpanScannerState(t2, t2._position);
 					}
 					_this.expectStatementSeparator$1("variable declaration");
 					declaration = A.VariableDeclaration$($name, value, _this.spanFrom$1(start), precedingComment, global, guarded, namespace);
 					if (global)
-						_this._globalVariables.putIfAbsent$2(0, $name, new A.StylesheetParser_variableDeclarationWithoutNamespace_closure0(declaration));
+						_this._globalVariables.putIfAbsent$2($name, new A.StylesheetParser_variableDeclarationWithoutNamespace_closure0(declaration));
 					return declaration;
 				},
 				variableDeclarationWithoutNamespace$0() {
@@ -49753,7 +47544,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!_this.lookingAtIdentifier$0())
 						return _this._styleRule$0();
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					variableOrInterpolation = _this._variableDeclarationOrInterpolation$0();
 					if (variableOrInterpolation instanceof A.VariableDeclaration)
 						t1 = variableOrInterpolation;
@@ -49770,14 +47561,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (_this.get$indented() && _this.scanner.scanChar$1(92))
 						return _this._styleRule$0();
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					declarationOrBuffer = _this._declarationOrBuffer$0();
 					return declarationOrBuffer instanceof A.Statement ? declarationOrBuffer : _this._styleRule$2(type$.InterpolationBuffer._as(declarationOrBuffer), new A._SpanScannerState(t1, t2));
 				},
 				_declarationOrBuffer$0() {
 					var midBuffer, couldBeSelector, beforeDeclaration, value, additional, t2, t3, variableOrInterpolation, $name, isCustomProperty, t4, postColonWhitespace, _0_0, exception, _1_0, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position),
+						start = new A._SpanScannerState(t1, t1._position),
 						nameBuffer = new A.InterpolationBuffer(new A.StringBuffer(""), A._setArrayType([], type$.JSArray_Object), A._setArrayType([], type$.JSArray_nullable_FileSpan)),
 						startsWithPunctuation = _this._lookingAtPotentialPropertyHack$0();
 					if (startsWithPunctuation) {
@@ -49797,7 +47588,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						nameBuffer.addInterpolation$1(type$.Interpolation._as(variableOrInterpolation));
 					_this._isUseAllowed = false;
-					if (t1.matches$1(0, "/*")) {
+					if (t1.matches$1("/*")) {
 						t2 = _this.rawText$1(_this.get$loudComment());
 						t3 = nameBuffer._interpolation_buffer$_text;
 						t3._contents += t2;
@@ -49806,7 +47597,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = midBuffer;
 					t3 = _this.rawText$1(new A.StylesheetParser__declarationOrBuffer_closure0(_this));
 					t2._contents += t3;
-					t3 = t1._string_scanner$_position;
+					t3 = t1._position;
 					if (!t1.scanChar$1(58)) {
 						if (midBuffer._contents.length !== 0) {
 							t1 = nameBuffer._interpolation_buffer$_text;
@@ -49830,7 +47621,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t3 = true;
 					if (t3) {
 						if (_this.atEndOfStatement$0()) {
-							t1 = A.FileLocation$_(t1._sourceFile, t1._string_scanner$_position);
+							t1 = A.FileLocation$_(t1._sourceFile, t1._position);
 							t2 = t1.offset;
 							t2 = A.Interpolation$(B.List_empty6, B.List_empty7, A._FileSpan$(t1.file, t2, t2));
 							t1 = t2;
@@ -49858,7 +47649,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return _0_0;
 					midBuffer._contents += postColonWhitespace;
 					couldBeSelector = postColonWhitespace.length === 0 && _this._lookingAtInterpolatedIdentifier$0();
-					beforeDeclaration = new A._SpanScannerState(t1, t1._string_scanner$_position);
+					beforeDeclaration = new A._SpanScannerState(t1, t1._position);
 					value = null;
 					try {
 						value = _this._expression$0();
@@ -49871,7 +47662,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (type$.FormatException._is(A.unwrapException(exception))) {
 							if (!couldBeSelector)
 								throw exception;
-							t1.set$state(0, beforeDeclaration);
+							t1.set$state(beforeDeclaration);
 							additional = _this.almostAnyValue$0();
 							if (!_this.get$indented() && t1.peekChar$0() === 59)
 								throw exception;
@@ -49896,9 +47687,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!_this.lookingAtIdentifier$0())
 						return _this.interpolatedIdentifier$0();
 					t1 = _this.scanner;
-					start = new A._SpanScannerState(t1, t1._string_scanner$_position);
-					identifier = _this.identifier$0(0);
-					if (t1.matches$1(0, ".$")) {
+					start = new A._SpanScannerState(t1, t1._position);
+					identifier = _this.identifier$0();
+					if (t1.matches$1(".$")) {
 						t1.readChar$0();
 						return _this.variableDeclarationWithoutNamespace$2(identifier, start);
 					} else {
@@ -49916,12 +47707,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = start_ == null;
 					if (t1) {
 						t2 = _this.scanner;
-						start = new A._SpanScannerState(t2, t2._string_scanner$_position);
+						start = new A._SpanScannerState(t2, t2._position);
 					} else
 						start = start_;
 					if (_this._parseSelectors) {
 						if (!t1)
-							_this.scanner.set$state(0, start);
+							_this.scanner.set$state(start);
 						selector = _this._stylesheet$_selectorList$0();
 						return _this._withStyleRuleChildren$1$3(selector, start, new A.StylesheetParser__styleRule_closure(_this, selector, start), type$.StyleRule);
 					} else {
@@ -49949,7 +47740,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_propertyOrVariableDeclaration$0() {
 					var t2, nameBuffer, t3, $name, variableOrInterpolation, _0_0, value, _1_0, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (_this._lookingAtPotentialPropertyHack$0()) {
 						t2 = new A.StringBuffer("");
 						nameBuffer = new A.InterpolationBuffer(t2, A._setArrayType([], type$.JSArray_Object), A._setArrayType([], type$.JSArray_nullable_FileSpan));
@@ -50002,7 +47793,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				atRule$2$root(child, root) {
 					var $name, wasUseAllowed, value, optional, url, namespace, configuration, span, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					t1.expectChar$2$name(64, "@-rule");
 					$name = _this.interpolatedIdentifier$0();
 					wasUseAllowed = _this._isUseAllowed;
@@ -50086,7 +47877,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_declarationAtRule$0() {
 					var _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position),
+						start = new A._SpanScannerState(t1, t1._position),
 						_0_0 = _this._plainAtRuleName$0();
 					$label0$0: {
 						if ("content" === _0_0) {
@@ -50135,10 +47926,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var state, variableDeclarationError, stackTrace, statement, t2, namespace, exception, t3, start, _0_0, value, _this = this,
 						t1 = _this.scanner;
 					if (t1.peekChar$0() !== 64) {
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 						state = new A._SpanScannerState(t1, t2);
 						try {
-							namespace = _this.identifier$0(0);
+							namespace = _this.identifier$0();
 							t1.expectChar$1(46);
 							t2 = _this.variableDeclarationWithoutNamespace$2(namespace, new A._SpanScannerState(t1, t2));
 							return t2;
@@ -50148,7 +47939,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							if (t3._is(t2)) {
 								variableDeclarationError = t2;
 								stackTrace = A.getTraceFromException(exception);
-								t1.set$state(0, state);
+								t1.set$state(state);
 								statement = null;
 								try {
 									statement = _this._declarationOrStyleRule$0();
@@ -50164,7 +47955,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								throw exception;
 						}
 					}
-					start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+					start = new A._SpanScannerState(t1, t1._position);
 					_0_0 = _this._plainAtRuleName$0();
 					$label0$0: {
 						if ("debug" === _0_0) {
@@ -50210,14 +48001,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				_plainAtRuleName$0() {
 					this.scanner.expectChar$2$name(64, "@-rule");
-					return this.identifier$0(0);
+					return this.identifier$0();
 				},
 				_atRootRule$1(start) {
 					var t1, t2, t3, buffer, t4, _this = this;
 					_this.whitespace$1$consumeNewlines(false);
 					t1 = _this.scanner;
 					if (t1.peekChar$0() === 40) {
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 						t3 = new A.StringBuffer("");
 						buffer = new A.InterpolationBuffer(t3, A._setArrayType([], type$.JSArray_Object), A._setArrayType([], type$.JSArray_nullable_FileSpan));
 						t1.expectChar$1(40);
@@ -50254,7 +48045,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!_this._inMixin)
 						_this.error$2(0, "@content is only allowed within mixin declarations.", _this.spanFrom$1(start));
 					t1 = _this.scanner;
-					beforeWhitespace = A.FileLocation$_(t1._sourceFile, t1._string_scanner$_position);
+					beforeWhitespace = A.FileLocation$_(t1._sourceFile, t1._position);
 					_this.whitespace$1$consumeNewlines(false);
 					if (t1.peekChar$0() === 40) {
 						$arguments = _this._argumentInvocation$1$mixin(true);
@@ -50271,7 +48062,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.whitespace$1$consumeNewlines(true);
 					value = _this._expression$0();
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					_this.expectStatementSeparator$1("@debug rule");
 					return new A.DebugRule(value, _this.spanFrom$2(start, new A._SpanScannerState(t1, t2)));
 				},
@@ -50285,7 +48076,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = _this.scanner; t1.scanChar$1(44);) {
 						_this.whitespace$1$consumeNewlines(true);
 						t1.expectChar$1(36);
-						variables.push(_this.identifier$1$normalize(0, true));
+						variables.push(_this.identifier$1$normalize(true));
 						_this.whitespace$1$consumeNewlines(true);
 					}
 					_this.whitespace$1$consumeNewlines(true);
@@ -50298,7 +48089,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.whitespace$1$consumeNewlines(true);
 					value = _this._expression$0();
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					_this.expectStatementSeparator$1("@error rule");
 					return new A.ErrorRule(value, _this.spanFrom$2(start, new A._SpanScannerState(t1, t2)));
 				},
@@ -50308,10 +48099,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					precedingComment = _this.lastSilentComment;
 					_this.lastSilentComment = null;
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
-					if (t1.matches$1(0, "--"))
+					t2 = t1._position;
+					if (t1.matches$1("--"))
 						return _this.unknownAtRule$2(start, atRuleName);
-					$name = _this.identifier$0(0);
+					$name = _this.identifier$0();
 					if (A.equalsIgnoreCase($name, "type"))
 						_this.error$2(0, "This name is reserved for the plain-CSS function.", _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 					_this.whitespace$1$consumeNewlines(true);
@@ -50349,7 +48140,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.whitespace$1$consumeNewlines(false);
 					if (_this.scanIdentifier$1("as")) {
 						_this.whitespace$1$consumeNewlines(true);
-						prefix = _this.identifier$1$normalize(0, true);
+						prefix = _this.identifier$1$normalize(true);
 						_this.scanner.expectChar$1(42);
 						_this.whitespace$1$consumeNewlines(false);
 					} else
@@ -50461,7 +48252,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				importArgument$0() {
 					var url, urlSpan, innerError, stackTrace, modifiers, exception, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position),
+						start = new A._SpanScannerState(t1, t1._position),
 						_0_0 = t1.peekChar$0();
 					if (117 === _0_0 || 85 === _0_0) {
 						url = _this.dynamicUrl$0();
@@ -50475,7 +48266,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.whitespace$1$consumeNewlines(false);
 					modifiers = _this.tryImportModifiers$0();
 					if (_this.isPlainImportUrl$1(url) || modifiers != null)
-						return new A.StaticImport(new A.Interpolation(A.List_List$unmodifiable([J.get$text$z(urlSpan)], type$.Object), B.List_null, urlSpan), modifiers, _this.spanFrom$1(start));
+						return new A.StaticImport(new A.Interpolation(A.List_List$unmodifiable([urlSpan.get$text()], type$.Object), B.List_null, urlSpan), modifiers, _this.spanFrom$1(start));
 					else
 						try {
 							t1 = _this.parseImportUrl$1(url);
@@ -50523,7 +48314,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!_this._lookingAtInterpolatedIdentifier$0() && _this.scanner.peekChar$0() !== 40)
 						return null;
 					t1 = _this.scanner;
-					start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+					start = new A._SpanScannerState(t1, t1._position);
 					t2 = new A.StringBuffer("");
 					t3 = A._setArrayType([], type$.JSArray_Object);
 					t4 = A._setArrayType([], type$.JSArray_nullable_FileSpan);
@@ -50587,7 +48378,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (_this.scanIdentifier$1("not")) {
 						_this.whitespace$1$consumeNewlines(true);
 						t1 = _this.scanner;
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 						return new A.SupportsNegation(_this._supportsConditionInParens$0(), _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 					} else {
 						t1 = _this.scanner;
@@ -50597,7 +48388,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							_0_0 = _this._tryImportSupportsFunction$0();
 							if (_0_0 != null)
 								return _0_0;
-							t2 = t1._string_scanner$_position;
+							t2 = t1._position;
 							$name = _this._expression$1$consumeNewlines(true);
 							t1.expectChar$1(58);
 							return new A.SupportsDeclaration($name, _this._supportsDeclarationValue$1($name), _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
@@ -50609,10 +48400,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!_this._lookingAtInterpolatedIdentifier$0())
 						return null;
 					t1 = _this.scanner;
-					start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+					start = new A._SpanScannerState(t1, t1._position);
 					$name = _this.interpolatedIdentifier$0();
 					if (!t1.scanChar$1(40)) {
-						t1.set$state(0, start);
+						t1.set$state(start);
 						return null;
 					}
 					value = _this._interpolatedDeclarationValue$3$allowEmpty$allowSemicolon$consumeNewlines(true, true, true);
@@ -50622,7 +48413,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_includeRule$1(start) {
 					var $name, t1, name0, namespace, $arguments, t2, t3, contentParameters, contentParameters_, wasInContentBlock, $content, span, _this = this, _null = null;
 					_this.whitespace$1$consumeNewlines(true);
-					$name = _this.identifier$0(0);
+					$name = _this.identifier$0();
 					t1 = _this.scanner;
 					if (t1.scanChar$1(46)) {
 						name0 = _this._publicIdentifier$0();
@@ -50634,7 +48425,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t1.peekChar$0() === 40)
 						$arguments = _this._argumentInvocation$1$mixin(true);
 					else {
-						t2 = A.FileLocation$_(t1._sourceFile, t1._string_scanner$_position);
+						t2 = A.FileLocation$_(t1._sourceFile, t1._position);
 						t3 = t2.offset;
 						$arguments = A.ArgumentList$empty(A._FileSpan$(t2.file, t3, t3));
 					}
@@ -50648,7 +48439,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = contentParameters == null;
 					if (!t2 || _this.lookingAtChildren$0()) {
 						if (t2) {
-							t1 = A.FileLocation$_(t1._sourceFile, t1._string_scanner$_position);
+							t1 = A.FileLocation$_(t1._sourceFile, t1._position);
 							t2 = t1.offset;
 							contentParameters_ = new A.ParameterList(B.List_empty8, _null, A._FileSpan$(t1.file, t2, t2));
 						} else
@@ -50677,15 +48468,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					precedingComment = _this.lastSilentComment;
 					_this.lastSilentComment = null;
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
-					$name = _this.identifier$0(0);
+					t2 = t1._position;
+					$name = _this.identifier$0();
 					if (B.JSString_methods.startsWith$1($name, "--"))
 						_this.error$2(0, string$.Sass__, _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 					_this.whitespace$1$consumeNewlines(false);
 					if (t1.peekChar$0() === 40)
 						parameters = _this._parameterList$0();
 					else {
-						t1 = A.FileLocation$_(t1._sourceFile, t1._string_scanner$_position);
+						t1 = A.FileLocation$_(t1._sourceFile, t1._position);
 						t2 = t1.offset;
 						parameters = new A.ParameterList(B.List_empty8, null, A._FileSpan$(t1.file, t2, t2));
 					}
@@ -50701,7 +48492,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, t4, t5, buffer, _0_0, identifierStart, identifier, _1_0, argument, t6, trailing, start0, end, _this = this, _box_0 = {};
 					_this.whitespace$1$consumeNewlines(false);
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					t3 = new A.StringBuffer("");
 					t4 = A._setArrayType([], type$.JSArray_Object);
 					t5 = A._setArrayType([], type$.JSArray_nullable_FileSpan);
@@ -50715,8 +48506,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t5.push(_0_0._1);
 							_box_0.needsDeprecationWarning = true;
 						} else {
-							identifierStart = new A._SpanScannerState(t1, t1._string_scanner$_position);
-							identifier = _this.identifier$0(0);
+							identifierStart = new A._SpanScannerState(t1, t1._position);
+							identifier = _this.identifier$0();
 							$label0$0: {
 								if ("url" === identifier || "url-prefix" === identifier || "domain" === identifier) {
 									_1_0 = _this._tryUrlContents$2$name(identifierStart, identifier);
@@ -50758,9 +48549,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break;
 						t6 = A.Primitives_stringFromCharCode(44);
 						t3._contents += t6;
-						start0 = t1._string_scanner$_position;
+						start0 = t1._position;
 						new A.StylesheetParser_mozDocumentRule_closure(_this).call$0();
-						end = t1._string_scanner$_position;
+						end = t1._position;
 						t3._contents += B.JSString_methods.substring$2(t1.string, start0, end);
 					}
 					return _this._withChildren$3(_this.get$_statement(), start, new A.StylesheetParser_mozDocumentRule_closure0(_box_0, _this, $name, buffer.interpolation$1(_this.spanFrom$1(new A._SpanScannerState(t1, t2)))));
@@ -50776,7 +48567,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var namespace, basename, dot, t1, exception, _this = this;
 					if (_this.scanIdentifier$1("as")) {
 						_this.whitespace$1$consumeNewlines(true);
-						return _this.scanner.scanChar$1(42) ? null : _this.identifier$0(0);
+						return _this.scanner.scanChar$1(42) ? null : _this.identifier$0();
 					}
 					basename = url.get$pathSegments().length === 0 ? "" : B.JSArray_methods.get$last(url.get$pathSegments());
 					dot = B.JSString_methods.indexOf$1(basename, ".");
@@ -50803,18 +48594,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.expectChar$1(40);
 					for (t2 = _this.warnings;;) {
 						_this.whitespace$1$consumeNewlines(true);
-						variableStart = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						variableStart = new A._SpanScannerState(t1, t1._position);
 						t1.expectChar$1(36);
-						$name = _this.identifier$1$normalize(0, true);
+						$name = _this.identifier$1$normalize(true);
 						if (B.JSString_methods.startsWith$1($name, "-"))
 							t2.push(new A._Record_3_deprecation_message_span(B.Deprecation_lkJ, "Configuring private variables is deprecated.\nThis will be an error in Dart Sass 2.0.0.", _this.spanFrom$1(variableStart)));
 						_this.whitespace$1$consumeNewlines(true);
 						t1.expectChar$1(58);
 						_this.whitespace$1$consumeNewlines(true);
 						expression = _this.expressionUntilComma$0();
-						t3 = t1._string_scanner$_position;
+						t3 = t1._position;
 						if (allowGuarded && t1.scanChar$1(33)) {
-							guarded = _this.identifier$0(0) === "default";
+							guarded = _this.identifier$0() === "default";
 							if (guarded)
 								_this.whitespace$1$consumeNewlines(true);
 							else
@@ -50843,7 +48634,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.whitespace$1$consumeNewlines(true);
 					value = _this._expression$0();
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					_this.expectStatementSeparator$1("@warn rule");
 					return new A.WarnRule(value, _this.spanFrom$2(start, new A._SpanScannerState(t1, t2)));
 				},
@@ -50892,15 +48683,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_parameterList$0() {
 					var parameters, named, restParameter, t3, $name, defaultValue, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					t1.expectChar$1(40);
 					_this.whitespace$1$consumeNewlines(true);
 					parameters = A._setArrayType([], type$.JSArray_Parameter);
 					named = A.LinkedHashSet_LinkedHashSet$_empty(type$.String);
 					while (restParameter = null, t1.peekChar$0() === 36) {
-						t3 = t1._string_scanner$_position;
+						t3 = t1._position;
 						t1.expectChar$1(36);
-						$name = _this.identifier$1$normalize(0, true);
+						$name = _this.identifier$1$normalize(true);
 						_this.whitespace$1$consumeNewlines(true);
 						if (t1.scanChar$1(58)) {
 							_this.whitespace$1$consumeNewlines(true);
@@ -50931,7 +48722,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_argumentInvocation$2$allowEmptySecondArg$mixin(allowEmptySecondArg, mixin) {
 					var positional, t3, named, namedSpans, t4, t5, t6, rest, emittedRestDeprecation, keywordRest, expression, emittedRestDeprecation0, t7, value, t8, result, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					t1.expectChar$1(40);
 					_this.whitespace$1$consumeNewlines(true);
 					positional = A._setArrayType([], type$.JSArray_Expression);
@@ -50945,7 +48736,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (expression instanceof A.VariableExpression && t1.scanChar$1(58)) {
 							_this.whitespace$1$consumeNewlines(true);
 							t7 = expression.name;
-							if (named.containsKey$1(0, t7))
+							if (named.containsKey$1(t7))
 								_this.error$2(0, "Duplicate argument.", expression.span);
 							value = _this.expressionUntilComma$1$singleEquals(t4);
 							named.$indexSet(0, t7, value);
@@ -50981,7 +48772,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this.whitespace$1$consumeNewlines(true);
 						if (allowEmptySecondArg && positional.length === 1 && named.__js_helper$_length === 0 && rest == null && t1.peekChar$0() === 41) {
 							t3 = t1._sourceFile;
-							t4 = t1._string_scanner$_position;
+							t4 = t1._position;
 							new A.FileLocation(t3, t4).FileLocation$_$2(t3, t4);
 							t5 = new A._FileSpan(t3, t4, t4);
 							t5._FileSpan$3(t3, t4, t4);
@@ -51012,7 +48803,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this.scanner.error$1(0, _s20_);
 					if (bracketList) {
 						t2 = _this.scanner;
-						beforeBracket = new A._SpanScannerState(t2, t2._string_scanner$_position);
+						beforeBracket = new A._SpanScannerState(t2, t2._position);
 						t2.expectChar$1(91);
 						_this.whitespace$1$consumeNewlines(true);
 						if (t2.scanChar$1(93)) {
@@ -51023,7 +48814,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					} else
 						beforeBracket = null;
 					t2 = _this.scanner;
-					start = new A._SpanScannerState(t2, t2._string_scanner$_position);
+					start = new A._SpanScannerState(t2, t2._position);
 					wasInExpression = _this._inExpression;
 					wasInParentheses = _this._inParentheses;
 					_this._inExpression = true;
@@ -51056,7 +48847,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							continue;
 						}
 						if (38 === _3_0) {
-							addSingleExpression.call$1(_this._selector$0(0));
+							addSingleExpression.call$1(_this._selector$0());
 							continue;
 						}
 						if (39 === _3_0 || 34 === _3_0) {
@@ -51311,7 +49102,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break $label0$0;
 						}
 						if (38 === _0_0) {
-							t1 = _this._selector$0(0);
+							t1 = _this._selector$0();
 							break $label0$0;
 						}
 						if (39 === _0_0 || 34 === _0_0) {
@@ -51336,7 +49127,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break $label0$0;
 						}
 						if (37 === _0_0) {
-							t2 = t1._string_scanner$_position;
+							t2 = t1._position;
 							t1.readChar$0();
 							t2 = _this.spanFrom$1(new A._SpanScannerState(t1, t2));
 							t2 = new A.StringExpression(new A.Interpolation(A.List_List$unmodifiable(["%"], type$.Object), B.List_null, t2), false);
@@ -51369,10 +49160,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this._inParentheses = true;
 					try {
 						t1 = _this.scanner;
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 						t1.expectChar$1(40);
 						_this.whitespace$1$consumeNewlines(true);
-						inside = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						inside = new A._SpanScannerState(t1, t1._position);
 						if (!_this._lookingAtExpression$0()) {
 							t1.expectChar$1(41);
 							t1 = A._setArrayType([], type$.JSArray_Expression);
@@ -51431,7 +49222,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = _this.scanner;
 					if (t1.peekChar$1(1) === 123)
 						return _this.identifierLike$0();
-					start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+					start = new A._SpanScannerState(t1, t1._position);
 					t1.expectChar$1(35);
 					t2 = t1.peekChar$0();
 					if (t2 == null)
@@ -51440,10 +49231,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = t2 >= 48 && t2 <= 57;
 					if (t2 === true)
 						return new A.ColorExpression(_this._hexColorContents$1(start), _this.spanFrom$1(start));
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					identifier = _this.interpolatedIdentifier$0();
 					if (_this._isHexColor$1(identifier)) {
-						t1.set$state(0, new A._SpanScannerState(t1, t2));
+						t1.set$state(new A._SpanScannerState(t1, t2));
 						return new A.ColorExpression(_this._hexColorContents$1(start), _this.spanFrom$1(start));
 					}
 					t1 = new A.StringBuffer("");
@@ -51524,7 +49315,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_importantExpression$0() {
 					var _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					t1.readChar$0();
 					_this.whitespace$1$consumeNewlines(true);
 					_this.expectIdentifier$1("important");
@@ -51534,12 +49325,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_unaryOperation$0() {
 					var _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						operator = _this._unaryOperatorFor$1(t1.readChar$0());
 					if (operator == null)
-						t1.error$2$position(0, "Expected unary operator.", t1._string_scanner$_position - 1);
+						t1.error$2$position(0, "Expected unary operator.", t1._position - 1);
 					else if (_this.get$plainCss() && operator !== B.UnaryOperator_Y93)
-						t1.error$3$length$position(0, "Operators aren't allowed in plain CSS.", 1, t1._string_scanner$_position - 1);
+						t1.error$3$length$position(0, "Operators aren't allowed in plain CSS.", 1, t1._position - 1);
 					_this.whitespace$1$consumeNewlines(true);
 					return new A.UnaryOperationExpression(operator, _this._singleExpression$0(), _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 				},
@@ -51566,14 +49357,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_number$0() {
 					var number, unit, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						first = t1.peekChar$0(),
 						t3 = first !== 43;
 					if (!t3 || first === 45)
 						t1.readChar$0();
 					if (t1.peekChar$0() !== 46)
 						_this._consumeNaturalNumber$0();
-					_this._tryDecimal$1$allowTrailingDot(t1._string_scanner$_position !== t2 && t3 && first !== 45);
+					_this._tryDecimal$1$allowTrailingDot(t1._position !== t2 && t3 && first !== 45);
 					_this._tryExponent$0();
 					number = A.double_parse(t1.substring$1(0, t2));
 					if (t1.scanChar$1(37))
@@ -51583,7 +49374,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t3 = t1.peekChar$0() !== 45 || t1.peekChar$1(1) !== 45;
 						else
 							t3 = false;
-						unit = t3 ? _this.identifier$1$unit(0, true) : null;
+						unit = t3 ? _this.identifier$1$unit(true) : null;
 					}
 					return new A.NumberExpression(number, unit, _this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 				},
@@ -51592,7 +49383,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this.scanner,
 						t2 = t1.readChar$0();
 					if (!(t2 >= 48 && t2 <= 57))
-						t1.error$2$position(0, "Expected digit.", t1._string_scanner$_position - 1);
+						t1.error$2$position(0, "Expected digit.", t1._position - 1);
 					for (;;) {
 						$self = t1.peekChar$0();
 						if (!($self != null && $self >= 48 && $self <= 57))
@@ -51609,7 +49400,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!($self != null && $self >= 48 && $self <= 57)) {
 						if (allowTrailingDot)
 							return;
-						t1.error$2$position(0, "Expected digit.", t1._string_scanner$_position + 1);
+						t1.error$2$position(0, "Expected digit.", t1._position + 1);
 					}
 					t1.readChar$0();
 					for (;;) {
@@ -51645,7 +49436,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var firstRangeLength, hasQuestionMark, t3, secondRangeLength, _this = this,
 						_s26_ = "Expected at most 6 digits.",
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						start = new A._SpanScannerState(t1, t2);
 					_this.expectIdentChar$1(117);
 					t1.expectChar$1(43);
@@ -51663,7 +49454,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return new A.StringExpression(new A.Interpolation(A.List_List$unmodifiable([t1], type$.Object), B.List_null, t2), false);
 					}
 					if (t1.scanChar$1(45)) {
-						t3 = t1._string_scanner$_position;
+						t3 = t1._position;
 						for (secondRangeLength = 0; _this.scanCharIf$1(new A.StylesheetParser__unicodeRange_closure0());)
 							++secondRangeLength;
 						if (secondRangeLength === 0)
@@ -51680,29 +49471,29 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_variable$0() {
 					var _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position),
+						start = new A._SpanScannerState(t1, t1._position),
 						$name = _this.variableName$0();
 					if (_this.get$plainCss())
 						_this.error$2(0, string$.Sass_v, _this.spanFrom$1(start));
 					return new A.VariableExpression(null, $name, _this.spanFrom$1(start));
 				},
-				_selector$0(_) {
+				_selector$0() {
 					var t1, start, _this = this;
 					if (_this.get$plainCss())
 						_this.scanner.error$2$length(0, "The parent selector isn't allowed in plain CSS.", 1);
 					t1 = _this.scanner;
-					start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+					start = new A._SpanScannerState(t1, t1._position);
 					t1.expectChar$1(38);
 					if (t1.scanChar$1(38)) {
 						_this.warnings.push(new A._Record_3_deprecation_message_span(null, 'In Sass, "&&" means two copies of the parent selector. You probably want to use "and" instead.', _this.spanFrom$1(start)));
-						t1.set$position(0, t1._string_scanner$_position - 1);
+						t1.set$position(t1._position - 1);
 					}
 					return new A.SelectorExpression(_this.spanFrom$1(start));
 				},
 				interpolatedString$0() {
 					var t3, t4, t5, buffer, _1_0, second, t6, _0_0,
 						t1 = this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						quote = t1.readChar$0();
 					if (quote !== 39 && quote !== 34)
 						t1.error$2$position(0, "Expected string.", t2);
@@ -51746,7 +49537,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				interpolatedStringToken$0() {
 					var t3, t4, t5, buffer, t6, _1_0, second, t7, start, end, _0_0, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						quote = t1.readChar$0();
 					if (quote !== 39 && quote !== 34)
 						t1.error$2$position(0, "Expected string.", t2);
@@ -51778,9 +49569,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 										t3._contents += t7;
 									}
 							} else {
-								start = t1._string_scanner$_position;
+								start = t1._position;
 								new A.StylesheetParser_interpolatedStringToken_closure(_this).call$0();
-								end = t1._string_scanner$_position;
+								end = t1._position;
 								t3._contents += B.JSString_methods.substring$2(t1.string, start, end);
 							}
 							continue;
@@ -51800,14 +49591,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				identifierLike$0() {
 					var beforeParen, invocation, expression, t1, _0_0, suggestion, exception, _1_0, t4, _2_0, _3_0, _3_2, _3_4, _this = this,
 						t2 = _this.scanner,
-						start = new A._SpanScannerState(t2, t2._string_scanner$_position),
+						start = new A._SpanScannerState(t2, t2._position),
 						identifier = _this.interpolatedIdentifier$0(),
 						plain = identifier.get$asPlain(),
 						lower = A._Cell$named("lower"),
 						t3 = plain != null;
 					if (t3) {
 						if (plain === "if" && t2.peekChar$0() === 40) {
-							beforeParen = new A._SpanScannerState(t2, t2._string_scanner$_position);
+							beforeParen = new A._SpanScannerState(t2, t2._position);
 							try {
 								invocation = _this._argumentInvocation$0();
 								expression = new A.LegacyIfExpression(invocation, identifier.span.expand$1(0, invocation.span));
@@ -51827,7 +49618,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								return expression;
 							} catch (exception) {
 								if (type$.FormatException._is(A.unwrapException(exception))) {
-									t2.set$state(0, beforeParen);
+									t2.set$state(beforeParen);
 									return _this.ifExpression$1(start);
 								} else
 									throw exception;
@@ -51914,7 +49705,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_s11_ = "expressions",
 						_s21_ = "must have length >= 2",
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					if (_this.scanIdentifier$1("not")) {
 						if (t1.peekChar$0() === 40)
 							t1.error$1(0, 'Whitespace is required between "not" and "("');
@@ -52078,14 +49869,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this.whitespace$1$consumeNewlines(true);
 					}
 					t1 = preceding.get$span(preceding);
-					t4 = A.FileLocation$_(t4._sourceFile, t4._string_scanner$_position);
+					t4 = A.FileLocation$_(t4._sourceFile, t4._position);
 					t2 = t4.offset;
 					return new A.IfConditionRaw(buffer.interpolation$1(t1.expand$1(0, A._FileSpan$(t4.file, t2, t2))));
 				},
 				_ifGroup$0() {
 					var expression, t2, identifier, _0_1, _0_6, plain, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (40 === t1.peekChar$0()) {
 						t1.expectChar$1(40);
 						_this.whitespace$1$consumeNewlines(true);
@@ -52139,7 +49930,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1.add$2(0, _0_0._0, span);
 						return new A.IfConditionRaw(t1.interpolation$1(span));
 					}
-					start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+					start = new A._SpanScannerState(t1, t1._position);
 					$label0$0: {
 						t2 = _this.scanIdentifier$1("if");
 						if (t2) {
@@ -52159,7 +49950,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t2 = new A.Interpolation(A.List_List$unmodifiable(["attr"], type$.Object), B.List_null, t2);
 							break $label0$0;
 						}
-						t2 = t1.matches$1(0, "--");
+						t2 = t1.matches$1("--");
 						if (t2) {
 							t2 = _this.interpolatedIdentifier$0();
 							break $label0$0;
@@ -52170,7 +49961,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t2 == null)
 						return null;
 					if (!t1.scanChar$1(40)) {
-						t1.set$state(0, start);
+						t1.set$state(start);
 						return null;
 					}
 					$arguments = _this._interpolatedDeclarationValue$3$allowEmpty$allowSemicolon$consumeNewlines(true, true, true);
@@ -52255,7 +50046,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_tryUrlContents$2$name(start, $name) {
 					var t3, t4, t5, buffer, t6, _1_0, _1_6, _0_0, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					if (!t1.scanChar$1(40))
 						return null;
 					_this.whitespaceWithoutComments$1$consumeNewlines(true);
@@ -52271,7 +50062,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (_1_0 == null)
 							break;
 						if (92 === _1_0) {
-							t6 = _this.escape$0(0);
+							t6 = _this.escape$0();
 							t3._contents += t6;
 							continue;
 						}
@@ -52308,7 +50099,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 						break;
 					}
-					t1.set$state(0, new A._SpanScannerState(t1, t2));
+					t1.set$state(new A._SpanScannerState(t1, t2));
 					return null;
 				},
 				_tryUrlContents$1(start) {
@@ -52317,7 +50108,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				dynamicUrl$0() {
 					var _0_0, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					_this.expectIdentifier$1("url");
 					_0_0 = _this._tryUrlContents$1(start);
 					if (_0_0 != null)
@@ -52328,7 +50119,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				almostAnyValue$1$omitComments(omitComments) {
 					var t4, t5, t6, t7, _2_0, t8, _0_0, _0_2, start, end, _0_4, identifier, _1_0, bracket, char, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						t3 = new A.StringBuffer(""),
 						buffer = new A.InterpolationBuffer(t3, A._setArrayType([], type$.JSArray_Object), A._setArrayType([], type$.JSArray_nullable_FileSpan)),
 						brackets = A._setArrayType([], type$.JSArray_int);
@@ -52351,9 +50142,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 									_0_0 = t1.peekChar$1(1);
 									_0_2 = 42 === _0_0;
 									if (_0_2 && t6) {
-										start = t1._string_scanner$_position;
+										start = t1._position;
 										t7.call$0();
-										end = t1._string_scanner$_position;
+										end = t1._position;
 										t3._contents += B.JSString_methods.substring$2(t4, start, end);
 										break $label1$1;
 									}
@@ -52364,9 +50155,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 									_0_4 = 47 === _0_0;
 									if (_0_4 && t6) {
 										t8 = _this.get$silentComment();
-										start = t1._string_scanner$_position;
+										start = t1._position;
 										t8.call$0();
-										end = t1._string_scanner$_position;
+										end = t1._position;
 										t3._contents += B.JSString_methods.substring$2(t4, start, end);
 										break $label1$1;
 									}
@@ -52393,8 +50184,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							if (33 === _2_0 || 59 === _2_0 || 123 === _2_0 || 125 === _2_0)
 								break;
 							if (117 === _2_0 || 85 === _2_0) {
-								t8 = t1._string_scanner$_position;
-								identifier = _this.identifier$0(0);
+								t8 = t1._position;
+								identifier = _this.identifier$0();
 								if (identifier !== "url" && identifier !== "url-prefix") {
 									t3._contents += identifier;
 									continue;
@@ -52405,7 +50196,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								else {
 									if ((t8 === 0 ? 1 / t8 < 0 : t8 < 0) || t8 > t5)
 										A.throwExpression(A.ArgumentError$("Invalid position " + t8, null));
-									t1._string_scanner$_position = t8;
+									t1._position = t8;
 									t1._lastMatch = null;
 									t8 = A.Primitives_stringFromCharCode(t1.readChar$0());
 									t3._contents += t8;
@@ -52439,7 +50230,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								break;
 							t8 = _this.lookingAtIdentifier$0();
 							if (t8) {
-								t8 = _this.identifier$0(0);
+								t8 = _this.identifier$0();
 								t3._contents += t8;
 								break $label0$0;
 							}
@@ -52454,7 +50245,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_interpolatedDeclarationValue$7$allowColon$allowEmpty$allowOpenBrace$allowSemicolon$consumeNewlines$endAfterOf$silentComments(allowColon, allowEmpty, allowOpenBrace, allowSemicolon, consumeNewlines, endAfterOf, silentComments) {
 					var t5, t6, t7, t8, t9, t10, t11, wroteNewline, _2_0, wroteNewline0, t12, _0_0, start, end, _2_12, _2_14_isSet, _2_14, t13, _2_16, _2_18_isSet, _2_20, _2_18, _2_20_isSet, _2_22, bracket, identifier, _1_0, of, _this = this, _null = null,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						t3 = new A.StringBuffer(""),
 						t4 = A._setArrayType([], type$.JSArray_Object),
 						buffer = new A.InterpolationBuffer(t3, t4, A._setArrayType([], type$.JSArray_nullable_FileSpan)),
@@ -52464,7 +50255,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							_2_0 = t1.peekChar$0();
 							wroteNewline0 = false;
 							if (92 === _2_0) {
-								t12 = _this.escape$1$identifierStart(0, true);
+								t12 = _this.escape$1$identifierStart(true);
 								t3._contents += t12;
 								wroteNewline = wroteNewline0;
 								break $label0$0;
@@ -52478,9 +50269,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								$label1$1: {
 									_0_0 = t1.peekChar$1(1);
 									if (42 === _0_0) {
-										start = t1._string_scanner$_position;
+										start = t1._position;
 										t11.call$0();
-										end = t1._string_scanner$_position;
+										end = t1._position;
 										t3._contents += B.JSString_methods.substring$2(t7, start, end);
 										break $label1$1;
 									}
@@ -52601,8 +50392,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								break $label0$0;
 							}
 							if (117 === _2_0 || 85 === _2_0) {
-								t12 = t1._string_scanner$_position;
-								identifier = _this.identifier$0(0);
+								t12 = t1._position;
+								identifier = _this.identifier$0();
 								if (identifier !== "url" && identifier !== "url-prefix") {
 									t3._contents += identifier;
 									wroteNewline = wroteNewline0;
@@ -52614,7 +50405,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								else {
 									if ((t12 === 0 ? 1 / t12 < 0 : t12 < 0) || t12 > t8)
 										A.throwExpression(A.ArgumentError$("Invalid position " + t12, _null));
-									t1._string_scanner$_position = t12;
+									t1._position = t12;
 									t1._lastMatch = null;
 									t12 = A.Primitives_stringFromCharCode(t1.readChar$0());
 									t3._contents += t12;
@@ -52624,9 +50415,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							}
 							if (111 === _2_0 || 79 === _2_0) {
 								if (endAfterOf && brackets.length === 0) {
-									start = t1._string_scanner$_position;
+									start = t1._position;
 									new A.StylesheetParser__interpolatedDeclarationValue_closure(_this).call$0();
-									end = t1._string_scanner$_position;
+									end = t1._position;
 									of = B.JSString_methods.substring$2(t7, start, end);
 									if (of !== "") {
 										t3._contents += of;
@@ -52642,7 +50433,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								break;
 							t12 = _this.lookingAtIdentifier$0();
 							if (t12) {
-								t12 = _this.identifier$0(0);
+								t12 = _this.identifier$0();
 								t3._contents += t12;
 								wroteNewline = wroteNewline0;
 								break $label0$0;
@@ -52685,7 +50476,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t3, _1_0, _0_0, _this = this,
 						_s20_ = "Expected identifier.",
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position),
+						start = new A._SpanScannerState(t1, t1._position),
 						t2 = new A.StringBuffer(""),
 						buffer = new A.InterpolationBuffer(t2, A._setArrayType([], type$.JSArray_Object), A._setArrayType([], type$.JSArray_nullable_FileSpan));
 					if (t1.scanChar$1(45)) {
@@ -52707,7 +50498,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break $label0$0;
 						}
 						if (92 === _1_0) {
-							t1 = _this.escape$1$identifierStart(0, true);
+							t1 = _this.escape$1$identifierStart(true);
 							t2._contents += t1;
 							break $label0$0;
 						}
@@ -52746,7 +50537,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							continue;
 						}
 						if (92 === _1_0) {
-							t5 = this.escape$0(0);
+							t5 = this.escape$0();
 							t4._contents += t5;
 							continue;
 						}
@@ -52763,7 +50554,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				singleInterpolation$0() {
 					var contents, span, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					t1.expect$1("#{");
 					_this.whitespace$1$consumeNewlines(true);
 					contents = _this._expression$1$consumeNewlines(true);
@@ -52777,19 +50568,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t3, t4, lineBreak, _this = this,
 						t1 = _this.scanner,
 						t2 = t1._sourceFile,
-						previousLine = t2.getLine$1(t1._string_scanner$_position),
+						previousLine = t2.getLine$1(t1._position),
 						components = A._setArrayType([_this._stylesheet$_complexSelector$0()], type$.JSArray_InterpolatedComplexSelector);
 					_this.whitespace$1$consumeNewlines(false);
 					for (t3 = t1.string.length; t1.scanChar$1(44);) {
 						_this.whitespace$1$consumeNewlines(true);
 						if (t1.peekChar$0() === 44)
 							continue;
-						t4 = t1._string_scanner$_position;
+						t4 = t1._position;
 						if (t4 === t3)
 							break;
 						lineBreak = t2.getLine$1(t4) !== previousLine;
 						if (lineBreak)
-							previousLine = t2.getLine$1(t1._string_scanner$_position);
+							previousLine = t2.getLine$1(t1._position);
 						components.push(_this._stylesheet$_complexSelector$1$lineBreak(lineBreak));
 					}
 					return A.InterpolatedSelectorList$(components);
@@ -52798,7 +50589,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t3, leadingCombinator, combinator, lastCompound, allowCombinator, _0_0, t4, _this = this, _null = null,
 						_s18_ = "expected selector.",
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						componentStart = new A._SpanScannerState(t1, t2),
 						components = A._setArrayType([], type$.JSArray_InterpolatedComplexSelectorComponent);
 					for (t3 = type$.CssValue_Combinator, leadingCombinator = _null, combinator = leadingCombinator, lastCompound = combinator;;) {
@@ -52806,19 +50597,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						allowCombinator = combinator == null;
 						_0_0 = t1.peekChar$0();
 						if (43 === _0_0 && allowCombinator) {
-							t4 = t1._string_scanner$_position;
+							t4 = t1._position;
 							t1.readChar$0();
 							combinator = new A.CssValue(B.Combinator_sHB, _this.spanFrom$1(new A._SpanScannerState(t1, t4)), t3);
 							continue;
 						}
 						if (62 === _0_0 && allowCombinator) {
-							t4 = t1._string_scanner$_position;
+							t4 = t1._position;
 							t1.readChar$0();
 							combinator = new A.CssValue(B.Combinator_iUF, _this.spanFrom$1(new A._SpanScannerState(t1, t4)), t3);
 							continue;
 						}
 						if (126 === _0_0 && allowCombinator) {
-							t4 = t1._string_scanner$_position;
+							t4 = t1._position;
 							t1.readChar$0();
 							combinator = new A.CssValue(B.Combinator_98W, _this.spanFrom$1(new A._SpanScannerState(t1, t4)), t3);
 							continue;
@@ -52839,7 +50630,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							if (lastCompound != null)
 								components.push(new A.InterpolatedComplexSelectorComponent(lastCompound, combinator, _this.spanFrom$1(componentStart)));
 							else if (!allowCombinator) {
-								componentStart = new A._SpanScannerState(t1, t1._string_scanner$_position);
+								componentStart = new A._SpanScannerState(t1, t1._position);
 								leadingCombinator = combinator;
 							}
 							lastCompound = _this._stylesheet$_compoundSelector$0();
@@ -52878,7 +50669,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_stylesheet$_simpleSelector$1$allowParent(allowParent) {
 					var $name, t2, t3, t4, t5, text, suffix, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position),
+						start = new A._SpanScannerState(t1, t1._position),
 						_0_0 = t1.peekChar$0();
 					if (91 === _0_0)
 						return _this._stylesheet$_attributeSelector$0();
@@ -52900,10 +50691,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (58 === _0_0)
 						return _this._stylesheet$_pseudoSelector$0();
 					if (38 === _0_0) {
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 						t1.expectChar$1(38);
 						if (_this._lookingAtInterpolatedIdentifierBody$0()) {
-							t3 = t1._string_scanner$_position;
+							t3 = t1._position;
 							t4 = new A.StringBuffer("");
 							t5 = A._setArrayType([], type$.JSArray_Object);
 							text = new A.InterpolationBuffer(t4, t5, A._setArrayType([], type$.JSArray_nullable_FileSpan));
@@ -52914,7 +50705,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						} else
 							suffix = null;
 						if (_this.get$plainCss() && suffix != null)
-							t1.error$3$length$position(0, string$.Parent, t1._string_scanner$_position - t2, t2);
+							t1.error$3$length$position(0, string$.Parent, t1._position - t2, t2);
 						t1 = _this.spanFrom$1(new A._SpanScannerState(t1, t2));
 						if (!allowParent)
 							_this.error$2(0, "Parent selectors aren't allowed here.", _this.spanFrom$1(start));
@@ -52928,7 +50719,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_stylesheet$_attributeSelector$0() {
 					var $name, operator, next, value, modifier, _this = this, _null = null,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					t1.expectChar$1(91);
 					_this.whitespace$1$consumeNewlines(true);
 					$name = _this._stylesheet$_attributeName$0();
@@ -52948,7 +50739,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_stylesheet$_attributeName$0() {
 					var t2, t3, nameOrNamespace, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (t1.scanChar$1(42)) {
 						t2 = _this.spanFrom$1(start);
 						t3 = A.List_List$unmodifiable(["*"], type$.Object);
@@ -52969,7 +50760,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_stylesheet$_attributeOperator$0() {
 					var op,
 						t1 = this.scanner,
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 					switch (t1.readChar$0()) {
 						case 61:
 							op = B.AttributeOperator_jFZ;
@@ -53003,7 +50794,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_stylesheet$_pseudoSelector$0() {
 					var element, $name, unvendored, argument, selector, _this = this, _null = null,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					t1.expectChar$1(58);
 					element = t1.scanChar$1(58);
 					$name = _this.interpolatedIdentifier$0();
@@ -53031,9 +50822,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_stylesheet$_typeOrUniversalSelector$0() {
 					var t2, namespace, nameOrNamespace, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (t1.scanChar$1(42)) {
-						t2 = t1._string_scanner$_position;
+						t2 = t1._position;
 						if (!t1.scanChar$1(124))
 							return new A.InterpolatedUniversalSelector(null, _this.spanFrom$1(start));
 						t2 = _this.spanFrom$2(start, new A._SpanScannerState(t1, t2));
@@ -53080,7 +50871,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_mediaQueryList$0() {
 					var t4, _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
+						t2 = t1._position,
 						t3 = new A.StringBuffer(""),
 						buffer = new A.InterpolationBuffer(t3, A._setArrayType([], type$.JSArray_Object), A._setArrayType([], type$.JSArray_nullable_FileSpan));
 					for (;;) {
@@ -53255,7 +51046,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_supportsCondition$1$inParentheses(inParentheses) {
 					var condition, operator, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (_this.scanIdentifier$1("not")) {
 						_this.whitespace$1$consumeNewlines(inParentheses);
 						return new A.SupportsNegation(_this._supportsConditionInParens$0(), _this.spanFrom$1(start));
@@ -53283,7 +51074,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_supportsConditionInParens$0() {
 					var $name, nameStart, wasInParentheses, identifier, _1_0, operation, contents, identifier0, t2, $arguments, _0_0, _0_4_isSet, _0_4, condition, exception, value, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position);
+						start = new A._SpanScannerState(t1, t1._position);
 					if (_this._lookingAtInterpolatedIdentifier$0()) {
 						identifier0 = _this.interpolatedIdentifier$0();
 						t2 = identifier0.get$asPlain();
@@ -53323,14 +51114,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return condition.withSpan$1(_this.spanFrom$1(start));
 					}
 					$name = null;
-					nameStart = new A._SpanScannerState(t1, t1._string_scanner$_position);
+					nameStart = new A._SpanScannerState(t1, t1._position);
 					wasInParentheses = _this._inParentheses;
 					try {
 						$name = _this._expression$1$consumeNewlines(true);
 						t1.expectChar$1(58);
 					} catch (exception) {
 						if (type$.FormatException._is(A.unwrapException(exception))) {
-							t1.set$state(0, nameStart);
+							t1.set$state(nameStart);
 							_this._inParentheses = wasInParentheses;
 							identifier = _this.interpolatedIdentifier$0();
 							_1_0 = _this._trySupportsOperation$2(identifier, nameStart);
@@ -53378,7 +51169,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!(expression instanceof A.Expression))
 						return _null;
 					t1 = _this.scanner;
-					t2 = t1._string_scanner$_position;
+					t2 = t1._position;
 					_this.whitespace$1$consumeNewlines(true);
 					for (t3 = interpolation.span, operator = _null, operation = operator; _this.lookingAtIdentifier$0();) {
 						if (operator != null)
@@ -53389,7 +51180,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							if (!_this.scanIdentifier$1("or")) {
 								if ((t2 === 0 ? 1 / t2 < 0 : t2 < 0) || t2 > t1.string.length)
 									A.throwExpression(A.ArgumentError$("Invalid position " + t2, _null));
-								t1._string_scanner$_position = t2;
+								t1._position = t2;
 								return t1._lastMatch = null;
 							}
 							operator = B.BooleanOperator_1;
@@ -53555,7 +51346,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_urlString$0() {
 					var innerError, stackTrace, exception, _this = this,
 						t1 = _this.scanner,
-						start = new A._SpanScannerState(t1, t1._string_scanner$_position),
+						start = new A._SpanScannerState(t1, t1._position),
 						url = _this.string$0();
 					try {
 						t1 = A.Uri_parse(url);
@@ -53573,8 +51364,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_publicIdentifier$0() {
 					var _this = this,
 						t1 = _this.scanner,
-						t2 = t1._string_scanner$_position,
-						result = _this.identifier$0(0);
+						t2 = t1._position,
+						result = _this.identifier$0();
 					_this._assertPublic$2(result, new A.StylesheetParser__publicIdentifier_closure(_this, new A._SpanScannerState(t1, t2)));
 					return result;
 				},
@@ -53599,13 +51390,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var statements,
 						t1 = this.$this,
 						t2 = t1.scanner,
-						t3 = t2._string_scanner$_position;
+						t3 = t2._position;
 					t2.scanChar$1(65279);
 					statements = t1.statements$1(new A.StylesheetParser_parse__closure(t1));
 					t2.expectDone$0();
 					return A.Stylesheet$internal(statements, t1.spanFrom$1(new A._SpanScannerState(t2, t3)), t1.warnings, t1._globalVariables, t1.get$plainCss());
 				},
-				$signature: 255
+				$signature: 253
 			};
 			A.StylesheetParser_parse__closure.prototype = {
 				call$0() {
@@ -53617,7 +51408,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1._statement$1$root(true);
 				},
-				$signature: 256
+				$signature: 254
 			};
 			A.StylesheetParser_parseParameterList_closure.prototype = {
 				call$0() {
@@ -53625,15 +51416,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this.$this,
 						t2 = t1.scanner;
 					t2.expectChar$2$name(64, "@-rule");
-					t1.identifier$0(0);
+					t1.identifier$0();
 					t1.whitespace$1$consumeNewlines(true);
-					t1.identifier$0(0);
+					t1.identifier$0();
 					parameters = t1._parameterList$0();
 					t1.whitespace$1$consumeNewlines(true);
 					t2.expectChar$1(123);
 					return parameters;
 				},
-				$signature: 257
+				$signature: 255
 			};
 			A.StylesheetParser__parseSingleProduction_closure.prototype = {
 				call$0() {
@@ -53649,37 +51440,37 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var parameters, t2, t3,
 						t1 = this.$this,
-						$name = t1.identifier$0(0);
+						$name = t1.identifier$0();
 					if (this.requireParens || t1.scanner.peekChar$0() === 40)
 						parameters = t1._parameterList$0();
 					else {
 						t2 = t1.scanner;
-						t2 = A.FileLocation$_(t2._sourceFile, t2._string_scanner$_position);
+						t2 = A.FileLocation$_(t2._sourceFile, t2._position);
 						t3 = t2.offset;
 						parameters = new A.ParameterList(B.List_empty8, null, A._FileSpan$(t2.file, t3, t3));
 					}
 					t1.scanner.expectDone$0();
 					return new A._Record_2($name, parameters);
 				},
-				$signature: 258
+				$signature: 256
 			};
 			A.StylesheetParser__statement_closure.prototype = {
 				call$0() {
 					return this.$this._statement$0();
 				},
-				$signature: 53
+				$signature: 51
 			};
 			A.StylesheetParser_variableDeclarationWithoutNamespace_closure.prototype = {
 				call$0() {
 					return this.$this.spanFrom$1(this.start);
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A.StylesheetParser_variableDeclarationWithoutNamespace_closure0.prototype = {
 				call$0() {
 					return this.declaration.span;
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A.StylesheetParser__declarationOrBuffer_closure.prototype = {
 				call$0() {
@@ -53709,13 +51500,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(children, span) {
 					return A.StyleRule$withParsedSelector(this.selector, children, this.$this.spanFrom$1(this.start));
 				},
-				$signature: 84
+				$signature: 82
 			};
 			A.StylesheetParser__styleRule_closure0.prototype = {
 				call$2(children, span) {
 					return A.StyleRule$(this._box_0.interpolation, children, this.$this.spanFrom$1(this.start));
 				},
-				$signature: 84
+				$signature: 82
 			};
 			A.StylesheetParser__withStyleRuleChildren_closure.prototype = {
 				call$2(children, span) {
@@ -53742,19 +51533,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(children, span) {
 					return A.Declaration$nested(this.name, children, span, this.value);
 				},
-				$signature: 260
+				$signature: 258
 			};
 			A.StylesheetParser__atRootRule_closure.prototype = {
 				call$2(children, span) {
 					return A.AtRootRule$(children, span, this.query);
 				},
-				$signature: 85
+				$signature: 83
 			};
 			A.StylesheetParser__atRootRule_closure0.prototype = {
 				call$2(children, span) {
 					return A.AtRootRule$(children, span, null);
 				},
-				$signature: 85
+				$signature: 83
 			};
 			A.StylesheetParser__eachRule_closure.prototype = {
 				call$2(children, span) {
@@ -53762,13 +51553,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.$this._inControlDirective = _this.wasInControlDirective;
 					return A.EachRule$(_this.variables, _this.list, children, span);
 				},
-				$signature: 262
+				$signature: 260
 			};
 			A.StylesheetParser__functionRule_closure.prototype = {
 				call$2(children, span) {
 					return A.FunctionRule$(this.name, this.parameters, children, span, this.precedingComment);
 				},
-				$signature: 263
+				$signature: 261
 			};
 			A.StylesheetParser__forRule_closure.prototype = {
 				call$0() {
@@ -53783,7 +51574,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					} else
 						return false;
 				},
-				$signature: 20
+				$signature: 19
 			};
 			A.StylesheetParser__forRule_closure0.prototype = {
 				call$2(children, span) {
@@ -53793,7 +51584,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.toString;
 					return A.ForRule$(_this.variable, _this.from, _this.to, children, span, t1);
 				},
-				$signature: 264
+				$signature: 262
 			};
 			A.StylesheetParser__memberList_closure.prototype = {
 				call$0() {
@@ -53801,7 +51592,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t1.scanner.peekChar$0() === 36)
 						this.variables.add$1(0, t1.variableName$0());
 					else
-						this.identifiers.add$1(0, t1.identifier$1$normalize(0, true));
+						this.identifiers.add$1(0, t1.identifier$1$normalize(true));
 				},
 				$signature: 0
 			};
@@ -53809,13 +51600,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(children, span) {
 					return A.ContentBlock$(this.contentParameters_, children, span);
 				},
-				$signature: 265
+				$signature: 263
 			};
 			A.StylesheetParser_mediaRule_closure.prototype = {
 				call$2(children, span) {
 					return A.MediaRule$(this.query, children, span);
 				},
-				$signature: 266
+				$signature: 264
 			};
 			A.StylesheetParser__mixinRule_closure.prototype = {
 				call$2(children, span) {
@@ -53823,7 +51614,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.$this._inMixin = false;
 					return A.MixinRule$(_this.name, _this.parameters, children, span, _this.precedingComment);
 				},
-				$signature: 267
+				$signature: 265
 			};
 			A.StylesheetParser_mozDocumentRule_closure.prototype = {
 				call$0() {
@@ -53838,26 +51629,26 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this.$this.warnings.push(new A._Record_3_deprecation_message_span(B.Deprecation_Gmv, "@-moz-document is deprecated and support will be removed in Dart Sass 2.0.0.\n\nFor details, see https://sass-lang.com/d/moz-document.", span));
 					return A.AtRule$(_this.name, span, children, _this.value);
 				},
-				$signature: 86
+				$signature: 84
 			};
 			A.StylesheetParser_supportsRule_closure.prototype = {
 				call$2(children, span) {
 					return A.SupportsRule$(this.condition, children, span);
 				},
-				$signature: 269
+				$signature: 267
 			};
 			A.StylesheetParser__whileRule_closure.prototype = {
 				call$2(children, span) {
 					this.$this._inControlDirective = this.wasInControlDirective;
 					return A.WhileRule$(this.condition, children, span);
 				},
-				$signature: 270
+				$signature: 268
 			};
 			A.StylesheetParser_unknownAtRule_closure.prototype = {
 				call$2(children, span) {
 					return A.AtRule$(this.name, span, children, this._box_0.value);
 				},
-				$signature: 86
+				$signature: 84
 			};
 			A.StylesheetParser__expression_resetState.prototype = {
 				call$0() {
@@ -53865,7 +51656,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this._box_0;
 					t1.operands_ = t1.operators_ = t1.spaceExpressions_ = t1.commaExpressions_ = null;
 					t2 = this.$this;
-					t2.scanner.set$state(0, this.start);
+					t2.scanner.set$state(this.start);
 					t1.allowSlash = true;
 					t1.singleExpression_ = t2._singleExpression$0();
 				},
@@ -53881,7 +51672,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (right == null) {
 						t2 = _this.$this.scanner;
 						t3 = operator.operator.length;
-						t2.error$3$length$position(0, "Expected expression.", t3, t2._string_scanner$_position - t3);
+						t2.error$3$length$position(0, "Expected expression.", t3, t2._position - t3);
 					}
 					if (t1.allowSlash) {
 						t2 = _this.$this;
@@ -53953,7 +51744,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					t1.singleExpression_ = expression;
 				},
-				$signature: 54
+				$signature: 52
 			};
 			A.StylesheetParser__expression_addOperator.prototype = {
 				call$1(operator) {
@@ -53962,7 +51753,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t1.get$plainCss() && operator !== B.BinaryOperator_g6F && operator !== B.BinaryOperator_jCK && operator !== B.BinaryOperator_tDf && operator !== B.BinaryOperator_wkM && operator !== B.BinaryOperator_ehp) {
 						t2 = t1.scanner;
 						t3 = operator.operator.length;
-						t2.error$3$length$position(0, "Operators aren't allowed in plain CSS.", t3, t2._string_scanner$_position - t3);
+						t2.error$3$length$position(0, "Operators aren't allowed in plain CSS.", t3, t2._position - t3);
 					}
 					t2 = _this._box_0;
 					t2.allowSlash = t2.allowSlash && operator === B.BinaryOperator_ehp;
@@ -53983,9 +51774,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (singleExpression == null) {
 						t3 = t1.scanner;
 						t4 = operator.operator.length;
-						t3.error$3$length$position(0, "Expected expression.", t4, t3._string_scanner$_position - t4);
+						t3.error$3$length$position(0, "Expected expression.", t4, t3._position - t4);
 					}
-					operatorEnd = t1.scanner._string_scanner$_position;
+					operatorEnd = t1.scanner._position;
 					t1.whitespace$1$consumeNewlines(true);
 					if (operator === B.BinaryOperator_bgA && !t1._lookingAtExpression$0()) {
 						t1 = t1.spanFromPosition$2(operatorEnd - 1, operatorEnd);
@@ -53996,7 +51787,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2.singleExpression_ = t1._singleExpression$0();
 					}
 				},
-				$signature: 272
+				$signature: 270
 			};
 			A.StylesheetParser__expression_resolveSpaceExpressions.prototype = {
 				call$0() {
@@ -54021,7 +51812,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.scanner.peekChar$0() === 44;
 				},
-				$signature: 20
+				$signature: 19
 			};
 			A.StylesheetParser__isHexColor_closure.prototype = {
 				call$1(char) {
@@ -54033,13 +51824,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(char) {
 					return char != null && A.CharacterExtension_get_isHex(char);
 				},
-				$signature: 28
+				$signature: 25
 			};
 			A.StylesheetParser__unicodeRange_closure0.prototype = {
 				call$1(char) {
 					return char != null && A.CharacterExtension_get_isHex(char);
 				},
-				$signature: 28
+				$signature: 25
 			};
 			A.StylesheetParser_interpolatedStringToken_closure.prototype = {
 				call$0() {
@@ -54051,13 +51842,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.spanFrom$1(this.start);
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A.StylesheetParser_trySpecialFunction_closure.prototype = {
 				call$1(contents) {
 					return new A.StringExpression(contents, false);
 				},
-				$signature: 273
+				$signature: 271
 			};
 			A.StylesheetParser__interpolatedDeclarationValue_closure.prototype = {
 				call$0() {
@@ -54083,13 +51874,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 20
+				$signature: 19
 			};
 			A.StylesheetParser__publicIdentifier_closure.prototype = {
 				call$0() {
 					return this.$this.spanFrom$1(this.start);
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A.Syntax.prototype = {
 				_enumToString$0() {
@@ -54140,8 +51931,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.get$span(0);
 					return t1.get$file(t1);
 				},
-				highlight$1$color(_, color) {
-					return this.get$span(0).highlight$1$color(0, color);
+				highlight$1$color(color) {
+					return this.get$span(0).highlight$1$color(color);
 				},
 				get$length(_) {
 					var t1 = this.get$span(0);
@@ -54161,9 +51952,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.get$span(0);
 					return t1.get$start(t1);
 				},
-				get$text(_) {
-					var t1 = this.get$span(0);
-					return t1.get$text(t1);
+				get$text() {
+					return this.get$span(0).get$text();
 				},
 				$isComparable: 1,
 				$isFileSpan: 1,
@@ -54184,25 +51974,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._limited_map_view$_keys._collection$_length !== 0;
 				},
 				$index(_, key) {
-					var t1;
-					if (this._limited_map_view$_keys.contains$1(0, key)) {
-						t1 = this._limited_map_view$_map;
-						t1 = t1.$index(t1, key);
-					} else
-						t1 = null;
-					return t1;
+					return this._limited_map_view$_keys.contains$1(0, key) ? this._limited_map_view$_map.$index(0, key) : null;
 				},
-				containsKey$1(_, key) {
+				containsKey$1(key) {
 					return this._limited_map_view$_keys.contains$1(0, key);
 				},
 				remove$1(_, key) {
-					var t1;
-					if (this._limited_map_view$_keys.contains$1(0, key)) {
-						t1 = this._limited_map_view$_map;
-						t1 = t1.remove$1(t1, key);
-					} else
-						t1 = null;
-					return t1;
+					return this._limited_map_view$_keys.contains$1(0, key) ? this._limited_map_view$_map.remove$1(0, key) : null;
 				}
 			};
 			A.MapExtensions_get_pairs_closure.prototype = {
@@ -54234,28 +52012,28 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (map instanceof A.MergedMapView)
 							for (t3 = map._mapsByKey, t3 = new A.LinkedHashMapValueIterator(t3, t3._modifications, t3._first); t3.moveNext$0();) {
 								t4 = t3.__js_helper$_current;
-								A.setAll(t2, J.get$keys$x(t4), t4);
+								A.setAll(t2, t4.get$keys(t4), t4);
 							}
 						else
-							A.setAll(t2, J.get$keys$x(map), map);
+							A.setAll(t2, map.get$keys(map), map);
 					}
 				},
 				$index(_, key) {
 					var t1 = this._mapsByKey.$index(0, this.$ti._precomputed1._as(key));
-					return t1 == null ? null : J.$index$asx(t1, key);
+					return t1 == null ? null : t1.$index(0, key);
 				},
 				$indexSet(_, key, value) {
 					var _0_0 = this._mapsByKey.$index(0, key);
 					if (_0_0 != null)
-						J.$indexSet$ax(_0_0, key, value);
+						_0_0.$indexSet(0, key, value);
 					else
 						throw A.wrapException(A.UnsupportedError$("New entries may not be added to MergedMapView."));
 				},
 				remove$1(_, key) {
 					throw A.wrapException(A.UnsupportedError$("Entries may not be removed from MergedMapView."));
 				},
-				containsKey$1(_, key) {
-					return this._mapsByKey.containsKey$1(0, key);
+				containsKey$1(key) {
+					return this._mapsByKey.containsKey$1(key);
 				}
 			};
 			A.MultiSpan.prototype = {
@@ -54267,9 +52045,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this._multi_span$_primary;
 					return t1.get$end(t1);
 				},
-				get$text(_) {
-					var t1 = this._multi_span$_primary;
-					return t1.get$text(t1);
+				get$text() {
+					return this._multi_span$_primary.get$text();
 				},
 				get$context(_) {
 					var t1 = this._multi_span$_primary;
@@ -54296,8 +52073,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				expand$1(_, other) {
 					return new A.MultiSpan(this._multi_span$_primary.expand$1(0, other), this.primaryLabel, this.secondarySpans);
 				},
-				highlight$1$color(_, color) {
-					return A.Highlighter$multiple(this._multi_span$_primary, this.primaryLabel, this.secondarySpans, color === true, null, null).highlight$0(0);
+				highlight$1$color(color) {
+					return A.Highlighter$multiple(this._multi_span$_primary, this.primaryLabel, this.secondarySpans, color === true, null, null).highlight$0();
 				},
 				message$2$color(_, message, color) {
 					var t1 = J.$eq$(color, true) || typeof color == "string",
@@ -54361,8 +52138,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$index(_, key) {
 					return typeof key == "string" && B.JSString_methods.startsWith$1(key, this._prefix) ? this._prefixed_map_view$_map.$index(0, B.JSString_methods.substring$1(key, this._prefix.length)) : null;
 				},
-				containsKey$1(_, key) {
-					return typeof key == "string" && B.JSString_methods.startsWith$1(key, this._prefix) && this._prefixed_map_view$_map.containsKey$1(0, B.JSString_methods.substring$1(key, this._prefix.length));
+				containsKey$1(key) {
+					return typeof key == "string" && B.JSString_methods.startsWith$1(key, this._prefix) && this._prefixed_map_view$_map.containsKey$1(B.JSString_methods.substring$1(key, this._prefix.length));
 				}
 			};
 			A._PrefixedKeys.prototype = {
@@ -54372,11 +52149,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				get$iterator(_) {
 					var t1 = this._view._prefixed_map_view$_map;
-					t1 = J.map$1$1$ax(t1.get$keys(t1), new A._PrefixedKeys_iterator_closure(this), type$.String);
+					t1 = t1.get$keys(t1);
+					t1 = t1.map$1$1(t1, new A._PrefixedKeys_iterator_closure(this), type$.String);
 					return t1.get$iterator(t1);
 				},
 				contains$1(_, key) {
-					return this._view.containsKey$1(0, key);
+					return this._view.containsKey$1(key);
 				}
 			};
 			A._PrefixedKeys_iterator_closure.prototype = {
@@ -54387,14 +52165,16 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.PublicMemberMapView.prototype = {
 				get$keys(_) {
-					return J.where$1$ax(J.get$keys$x(this._public_member_map_view$_inner), A.utils1__isPublic$closure());
+					var t1 = this._public_member_map_view$_inner;
+					t1 = t1.get$keys(t1);
+					return t1.where$1(t1, A.utils1__isPublic$closure());
 				},
-				containsKey$1(_, key) {
-					return typeof key == "string" && A.isPublic(key) && J.containsKey$1$x(this._public_member_map_view$_inner, key);
+				containsKey$1(key) {
+					return typeof key == "string" && A.isPublic(key) && this._public_member_map_view$_inner.containsKey$1(key);
 				},
 				$index(_, key) {
 					if (typeof key == "string" && A.isPublic(key))
-						return J.$index$asx(this._public_member_map_view$_inner, key);
+						return this._public_member_map_view$_inner.$index(0, key);
 					return null;
 				}
 			};
@@ -54497,7 +52277,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t3 = t2 === 0 ? t3.prefixColumn : 0;
 					return new A.Entry(entry.source, A.SourceLocation$(t1.offset + this.prefixLength, t1.column + t3, t2 + t4, null), entry.identifierName);
 				},
-				$signature: 276
+				$signature: 274
 			};
 			A.StringExtension_toCssIdentifier_writeEscape.prototype = {
 				call$1(character) {
@@ -54513,7 +52293,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1._contents += t2;
 					}
 				},
-				$signature: 89
+				$signature: 87
 			};
 			A.StringExtension_toCssIdentifier_consumeSurrogatePair.prototype = {
 				call$1(character) {
@@ -54532,7 +52312,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2._contents += t1;
 					}
 				},
-				$signature: 89
+				$signature: 87
 			};
 			A.UnprefixedMapView.prototype = {
 				get$keys(_) {
@@ -54541,8 +52321,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$index(_, key) {
 					return typeof key == "string" ? this._unprefixed_map_view$_map.$index(0, this._unprefixed_map_view$_prefix + key) : null;
 				},
-				containsKey$1(_, key) {
-					return typeof key == "string" && this._unprefixed_map_view$_map.containsKey$1(0, this._unprefixed_map_view$_prefix + key);
+				containsKey$1(key) {
+					return typeof key == "string" && this._unprefixed_map_view$_map.containsKey$1(this._unprefixed_map_view$_prefix + key);
 				},
 				remove$1(_, key) {
 					var t1 = this._unprefixed_map_view$_map.remove$1(0, this._unprefixed_map_view$_prefix + key);
@@ -54552,11 +52332,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A._UnprefixedKeys.prototype = {
 				get$iterator(_) {
 					var t1 = this._unprefixed_map_view$_view._unprefixed_map_view$_map;
-					t1 = J.where$1$ax(t1.get$keys(t1), new A._UnprefixedKeys_iterator_closure(this)).map$1$1(0, new A._UnprefixedKeys_iterator_closure0(this), type$.String);
+					t1 = t1.get$keys(t1);
+					t1 = t1.where$1(t1, new A._UnprefixedKeys_iterator_closure(this)).map$1$1(0, new A._UnprefixedKeys_iterator_closure0(this), type$.String);
 					return t1.get$iterator(t1);
 				},
 				contains$1(_, key) {
-					return this._unprefixed_map_view$_view.containsKey$1(0, key);
+					return this._unprefixed_map_view$_view.containsKey$1(key);
 				}
 			};
 			A._UnprefixedKeys_iterator_closure.prototype = {
@@ -54617,7 +52398,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.destination,
 						_0_0 = t1.$index(0, key);
 					if (_0_0 != null)
-						J.addAll$1$ax(_0_0, inner);
+						_0_0.addAll$1(0, inner);
 					else
 						t1.$indexSet(0, key, inner);
 				},
@@ -54843,11 +52624,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$isTruthy() {
 					return this.value;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor._buffer.write$1(0, String(this.value));
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				assertBoolean$1($name) {
 					return this;
@@ -54860,11 +52641,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$isSpecialNumber() {
 					return true;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitCalculation$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				assertCalculation$1($name) {
 					return this;
@@ -54889,14 +52670,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return other instanceof A.SassCalculation && this.name === other.name && B.C_ListEquality0.equals$2(0, this.$arguments, other.$arguments);
 				},
 				get$hashCode(_) {
-					return B.JSString_methods.get$hashCode(this.name) ^ B.C_ListEquality.hash$1(0, this.$arguments);
+					return B.JSString_methods.get$hashCode(this.name) ^ B.C_ListEquality.hash$1(this.$arguments);
 				}
 			};
 			A.SassCalculation__verifyLength_closure.prototype = {
 				call$1(arg) {
 					return arg instanceof A.SassString;
 				},
-				$signature: 98
+				$signature: 104
 			};
 			A.CalculationOperation.prototype = {
 				$eq(_, other) {
@@ -55027,11 +52808,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitColor$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				assertColor$1($name) {
 					return this;
@@ -56500,7 +54281,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.SassFunction.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					var t1, t2;
 					if (!visitor._inspect)
 						A.throwExpression(A.SassScriptException$(this.toString$0(0) + " isn't a valid CSS value.", null));
@@ -56511,8 +54292,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.writeCharCode$1(41);
 					return null;
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				assertFunction$1($name) {
 					return this;
@@ -56559,11 +54340,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return _this.super$Value$toString(0);
 					return "(" + _this.super$Value$toString(0) + ")";
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitList$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				assertMap$1($name) {
 					return this._list$_contents.length === 0 ? B.SassMap_Map_empty : this.super$Value$assertMap($name);
@@ -56582,14 +54363,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return t1;
 				},
 				get$hashCode(_) {
-					return B.C_ListEquality.hash$1(0, this._list$_contents);
+					return B.C_ListEquality.hash$1(this._list$_contents);
 				}
 			};
 			A.SassList_isBlank_closure.prototype = {
 				call$1(element) {
 					return element.get$isBlank();
 				},
-				$signature: 23
+				$signature: 22
 			};
 			A.ListSeparator.prototype = {
 				_enumToString$0() {
@@ -56609,7 +54390,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = type$.JSArray_Value,
 						t2 = A._setArrayType([], t1);
 					for (t3 = type$.Value, t4 = A.MapExtensions_get_pairs(this._map$_contents, t3, t3), t4 = t4.get$iterator(t4); t4.moveNext$0();) {
-						t5 = t4.get$current(t4);
+						t5 = t4.get$current();
 						result = A.List_List$from(A._setArrayType([t5._0, t5._1], t1), false, t3);
 						result.$flags = 3;
 						t2.push(new A.SassList(result, B.ListSeparator_SrV, false));
@@ -56620,11 +54401,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this._map$_contents;
 					return t1.get$length(t1);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitMap$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				assertMap$1($name) {
 					return this;
@@ -56645,11 +54426,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				get$hashCode(_) {
 					var t1 = this._map$_contents;
-					return t1.get$isEmpty(t1) ? B.C_ListEquality.hash$1(0, B.List_empty0) : B.C_MapEquality.hash$1(0, t1);
+					return t1.get$isEmpty(t1) ? B.C_ListEquality.hash$1(B.List_empty0) : B.C_MapEquality.hash$1(t1);
 				}
 			};
 			A.SassMixin.prototype = {
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					var t1, t2;
 					if (!visitor._inspect)
 						A.throwExpression(A.SassScriptException$(this.toString$0(0) + " isn't a valid CSS value.", null));
@@ -56660,8 +54441,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.writeCharCode$1(41);
 					return null;
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				assertMixin$1($name) {
 					return this;
@@ -56686,13 +54467,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$realNull() {
 					return null;
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					if (visitor._inspect)
 						visitor._buffer.write$1(0, "null");
 					return null;
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				unaryNot$0() {
 					return B.SassBoolean_true;
@@ -56703,11 +54484,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var _this = this;
 					return _this.get$hasUnits() ? _this._unitString$2(_this.get$numeratorUnits(_this), _this.get$denominatorUnits(_this)) : "";
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					return visitor.visitNumber$1(this);
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				withoutSlash$0() {
 					var _this = this;
@@ -56817,11 +54598,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = _this.get$numeratorUnits(_this);
 					oldNumerators = A._setArrayType(t2.slice(0), A._arrayInstanceType(t2));
 					for (t1 = t1.get$iterator(newNumerators); t1.moveNext$0();)
-						A.removeFirstWhere(oldNumerators, new A.SassNumber__coerceOrConvertValue_closure(_box_0, t1.get$current(t1)), new A.SassNumber__coerceOrConvertValue_closure0(compatibilityException));
+						A.removeFirstWhere(oldNumerators, new A.SassNumber__coerceOrConvertValue_closure(_box_0, t1.get$current()), new A.SassNumber__coerceOrConvertValue_closure0(compatibilityException));
 					t1 = _this.get$denominatorUnits(_this);
 					oldDenominators = A._setArrayType(t1.slice(0), A._arrayInstanceType(t1));
 					for (t1 = J.get$iterator$ax(newDenominators); t1.moveNext$0();)
-						A.removeFirstWhere(oldDenominators, new A.SassNumber__coerceOrConvertValue_closure1(_box_0, t1.get$current(t1)), new A.SassNumber__coerceOrConvertValue_closure2(compatibilityException));
+						A.removeFirstWhere(oldDenominators, new A.SassNumber__coerceOrConvertValue_closure1(_box_0, t1.get$current()), new A.SassNumber__coerceOrConvertValue_closure2(compatibilityException));
 					if (oldNumerators.length !== 0 || oldDenominators.length !== 0)
 						throw A.wrapException(compatibilityException.call$0());
 					return _box_0.value;
@@ -57182,8 +54963,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return B.JSArray_methods.fold$2(units, 1, new A.SassNumber__canonicalMultiplier_closure(this));
 				},
 				canonicalMultiplierForUnit$1(unit) {
-					var innerMap = B.Map_NtHoP.$index(0, unit);
-					return innerMap == null ? 1 : 1 / J.get$first$ax(innerMap.get$values(innerMap));
+					var t1,
+						innerMap = B.Map_NtHoP.$index(0, unit);
+					if (innerMap == null)
+						t1 = 1;
+					else {
+						t1 = innerMap.get$values(innerMap);
+						t1 = 1 / t1.get$first(t1);
+					}
+					return t1;
 				},
 				unitSuggestion$2($name, unit) {
 					var t2, t3, result, _this = this,
@@ -57244,7 +55032,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return new A.SassScriptException(t1 == null ? t3 : "$" + t1 + ": " + t3);
 					}
 				},
-				$signature: 278
+				$signature: 276
 			};
 			A.SassNumber__coerceOrConvertValue_closure.prototype = {
 				call$1(oldNumerator) {
@@ -57282,13 +55070,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(num1, num2) {
 					return num1 + num2;
 				},
-				$signature: 49
+				$signature: 47
 			};
 			A.SassNumber_minus_closure.prototype = {
 				call$2(num1, num2) {
 					return num1 - num2;
 				},
-				$signature: 49
+				$signature: 47
 			};
 			A.SassNumber_multiplyUnits_closure.prototype = {
 				call$1(denominator) {
@@ -57328,7 +55116,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_0_0 = B.Map_NtHoP.$index(0, unit1);
 					$label0$0: {
 						if (_0_0 != null) {
-							t1 = B.JSArray_methods.any$1(this.units2, _0_0.get$containsKey(_0_0));
+							t1 = B.JSArray_methods.any$1(this.units2, _0_0.get$containsKey());
 							break $label0$0;
 						}
 						t1 = B.JSArray_methods.contains$1(this.units2, unit1);
@@ -57357,7 +55145,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$2(multiplier, unit) {
 					return multiplier * this.$this.canonicalMultiplierForUnit$1(unit);
 				},
-				$signature: 280
+				$signature: 278
 			};
 			A.SassNumber_unitSuggestion_closure.prototype = {
 				call$1(unit) {
@@ -57434,7 +55222,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (knownCompatibilities == null)
 						return true;
 					otherUnit = other._unit.toLowerCase();
-					return knownCompatibilities.contains$1(0, otherUnit) || !t1.containsKey$1(0, otherUnit);
+					return knownCompatibilities.contains$1(0, otherUnit) || !t1.containsKey$1(otherUnit);
 				},
 				compatibleWithUnit$1(unit) {
 					return A.conversionFactor(this._unit, unit) != null;
@@ -57524,7 +55312,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(factor) {
 					return new A.SingleUnitSassNumber(this.unit, this.$this._number$_value * factor, null);
 				},
-				$signature: 281
+				$signature: 279
 			};
 			A.SingleUnitSassNumber__coerceValueToUnit_closure.prototype = {
 				call$1(factor) {
@@ -57818,7 +55606,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				assertUnquoted$0() {
 					return this.assertUnquoted$1(null);
 				},
-				accept$1$1(_, visitor) {
+				accept$1$1(visitor) {
 					var t1 = visitor._quote && this._hasQuotes,
 						t2 = this._string$_text;
 					if (t1)
@@ -57827,8 +55615,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						visitor._visitUnquotedString$1(t2);
 					return null;
 				},
-				accept$1(_, visitor) {
-					return this.accept$1$1(0, visitor, type$.dynamic);
+				accept$1(visitor) {
+					return this.accept$1$1(visitor, type$.dynamic);
 				},
 				assertString$1($name) {
 					return this;
@@ -57888,11 +55676,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(component) {
 					return this.$this.visitCompoundSelector$1(component.selector);
 				},
-				$signature: 29
+				$signature: 26
 			};
 			A.AnySelectorVisitor_visitCompoundSelector_closure.prototype = {
 				call$1(simple) {
-					return simple.accept$1(0, this.$this);
+					return simple.accept$1(this.$this);
 				},
 				$signature: 5
 			};
@@ -57933,8 +55721,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_clone_css$_visitChildren$1$2(newParent, oldParent) {
 					var t1, t2, newChild;
 					for (t1 = J.get$iterator$ax(oldParent.get$children(oldParent)); t1.moveNext$0();) {
-						t2 = t1.get$current(t1);
-						newChild = t2.accept$1(0, this);
+						t2 = t1.get$current();
+						newChild = t2.accept$1(this);
 						newChild.isGroupEnd = t2.get$isGroupEnd();
 						newParent.addChild$1(newChild);
 					}
@@ -58159,7 +55947,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							upstream = t4[_i];
 							_0_0 = upstream.get$url(upstream);
 							if (_0_0 != null)
-								J.add$1$ax(downstreamExtensionStores.putIfAbsent$2(0, _0_0, new A._EvaluateVisitor__extendModules_closure0()), t3.get$extensionStore());
+								J.add$1$ax(downstreamExtensionStores.putIfAbsent$2(_0_0, new A._EvaluateVisitor__extendModules_closure0()), t3.get$extensionStore());
 						}
 						unsatisfiedExtensions.removeAll$1(t3.get$extensionStore().extensionsWhereTarget$1(originalSelectors.get$contains(originalSelectors)));
 					}
@@ -58193,9 +55981,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						this._warn$3(warning._1, warning._2, warning._0);
 					}
 					for (t1 = node.children, t2 = t1.length, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, this);
+						t1[_i].accept$1(this);
 					for (t1 = A.MapExtensions_get_pairs(node.globalVariables, type$.String, type$.FileSpan), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
-						t2 = t1.get$current(t1);
+						t2 = t1.get$current();
 						$name = t2._0;
 						span = t2._1;
 						this.visitVariableDeclaration$1(0, new A.VariableDeclaration(null, $name, new A.NullExpression(span), true, false, span));
@@ -58218,7 +56006,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					root = _this._trimIncluded$1(included);
 					if (root === _this._assertInModule$2(_this.__parent, _s8_)) {
-						_this._environment.scope$2$when(0, new A._EvaluateVisitor_visitAtRootRule_closure(_this, node), node.hasDeclarations);
+						_this._environment.scope$2$when(new A._EvaluateVisitor_visitAtRootRule_closure(_this, node), node.hasDeclarations);
 						return _null;
 					}
 					if (included.length >= 1) {
@@ -58283,7 +56071,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return null;
 				},
 				visitDebugRule$1(_, node) {
-					var value = node.expression.accept$1(0, this),
+					var value = node.expression.accept$1(this),
 						t1 = value instanceof A.SassString ? value._string$_text : A.serializeValue(value, true, true);
 					this._logger.debug$2(0, t1, node.span);
 					return null;
@@ -58302,7 +56090,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						$name = new A.CssValue(_0_0 + "-" + $name.value, $name.span, type$.CssValue_String);
 					_1_0 = node.value;
 					if (_1_0 != null) {
-						value = _1_0.accept$1(0, _this);
+						value = _1_0.accept$1(_this);
 						if (!value.get$isBlank() || value.get$asList().length === 0 || B.JSString_methods.startsWith$1($name.value, "--")) {
 							_this._copyParentAfterSibling$0();
 							t1 = _this._assertInModule$2(_this.__parent, "__parent");
@@ -58322,7 +56110,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1.children = _2_0;
 						oldDeclarationName = _this._declarationName;
 						_this._declarationName = $name.value;
-						_this._environment.scope$2$when(0, new A._EvaluateVisitor_visitDeclaration_closure(t1, _this), node.hasDeclarations);
+						_this._environment.scope$2$when(new A._EvaluateVisitor_visitDeclaration_closure(t1, _this), node.hasDeclarations);
 						_this._declarationName = oldDeclarationName;
 					}
 					return _null;
@@ -58330,7 +56118,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				visitEachRule$1(_, node) {
 					var _this = this,
 						t1 = node.list,
-						list = t1.accept$1(0, _this),
+						list = t1.accept$1(_this),
 						nodeWithSpan = _this._expressionNode$1(t1),
 						_0_0 = node.variables;
 					$label0$0: {
@@ -58347,7 +56135,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = new A._EvaluateVisitor_visitEachRule_closure0(t1, _this, nodeWithSpan);
 						break $label0$0;
 					}
-					return _this._environment.scope$2$semiGlobal(0, new A._EvaluateVisitor_visitEachRule_closure1(_this, list, t1, node), true);
+					return _this._environment.scope$2$semiGlobal(new A._EvaluateVisitor_visitEachRule_closure1(_this, list, t1, node), true);
 				},
 				_setMultipleVariables$3(variables, value, nodeWithSpan) {
 					var i,
@@ -58360,7 +56148,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						this._environment.setLocalVariable$3(variables[i], B.C__SassNull, nodeWithSpan);
 				},
 				visitErrorRule$1(_, node) {
-					throw A.wrapException(this._evaluate$_exception$2(node.expression.accept$1(0, this).toString$0(0), node.span));
+					throw A.wrapException(this._evaluate$_exception$2(node.expression.accept$1(this).toString$0(0), node.span));
 				},
 				visitExtendRule$1(_, node) {
 					var t1, t2, t3, t4, t5, _i, complex, visitor, t6, t7, _0_0, compound, simple, _this = this, _null = null,
@@ -58369,12 +56157,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						throw A.wrapException(_this._evaluate$_exception$2(string$.x40exten, node.span));
 					for (t1 = styleRule.originalSelector.components, t2 = t1.length, t3 = node.span, t4 = type$.SourceSpan, t5 = type$.String, _i = 0; _i < t2; ++_i) {
 						complex = t1[_i];
-						if (!complex.accept$1(0, B._IsBogusVisitor_true))
+						if (!complex.accept$1(B._IsBogusVisitor_true))
 							continue;
 						visitor = A._SerializeVisitor$(_null, true, _null, _null, true, false, _null, true);
-						complex.accept$1(0, visitor);
+						complex.accept$1(visitor);
 						t6 = B.JSString_methods.trim$0(visitor._buffer.toString$0(0));
-						t7 = complex.accept$1(0, B.C__IsUselessVisitor) ? "can't" : "shouldn't";
+						t7 = complex.accept$1(B.C__IsUselessVisitor) ? "can't" : "shouldn't";
 						_this._warn$3('The selector "' + t6 + '" is invalid CSS and ' + t7 + " be an extender.\nThis will be an error in Dart Sass 2.0.0.\n\nMore info: https://sass-lang.com/d/bogus-combinators", new A.MultiSpan(A.SpanExtensions_trimRight(complex.span), "invalid selector", A.ConstantMap_ConstantMap$from(A.LinkedHashMap_LinkedHashMap$_literal([t3, "@extend rule"], t4, t5), t4, t5)), B.Deprecation_2PR);
 					}
 					_0_0 = _this._performInterpolationWithMap$2$warnForColor(node.selector, true);
@@ -58432,7 +56220,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						direction = from > to ? -1 : 1;
 					if (from === (!node.isExclusive ? t1.to = to + direction : to))
 						return null;
-					return _this._environment.scope$2$semiGlobal(0, new A._EvaluateVisitor_visitForRule_closure3(t1, _this, node, from, direction, fromNumber), true);
+					return _this._environment.scope$2$semiGlobal(new A._EvaluateVisitor_visitForRule_closure3(t1, _this, node, from, direction, fromNumber), true);
 				},
 				visitForwardRule$1(_, node) {
 					var newConfiguration, t4, _i, variable, $name, _this = this,
@@ -58456,7 +56244,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t3 = A.LinkedHashSet_LinkedHashSet$_empty(t3);
 						for (_i = 0; _i < t2; ++_i)
 							t3.add$1(0, t1[_i].name);
-						for (t1 = newConfiguration._configuration$_values, t2 = J.toList$0$ax(t1.get$keys(t1)), t4 = t2.length, _i = 0; _i < t2.length; t2.length === t4 || (0, A.throwConcurrentModificationError)(t2), ++_i) {
+						for (t1 = newConfiguration._configuration$_values, t2 = t1.get$keys(t1), t2 = t2.toList$0(t2), t4 = t2.length, _i = 0; _i < t2.length; t2.length === t4 || (0, A.throwConcurrentModificationError)(t2), ++_i) {
 							$name = t2[_i];
 							if (!t3.contains$1(0, $name))
 								if (!t1.get$isEmpty(t1))
@@ -58493,7 +56281,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 						t4 = variable.expression;
 						variableNodeWithSpan = this._expressionNode$1(t4);
-						newValues.$indexSet(0, variable.name, new A.ConfiguredValue(this._withoutSlash$2(t4.accept$1(0, this), variableNodeWithSpan), variable.span, variableNodeWithSpan));
+						newValues.$indexSet(0, variable.name, new A.ConfiguredValue(this._withoutSlash$2(t4.accept$1(this), variableNodeWithSpan), variable.span, variableNodeWithSpan));
 					}
 					if (configuration instanceof A.ExplicitConfiguration || t1.get$isEmpty(t1))
 						return new A.ExplicitConfiguration(node, newValues, _null);
@@ -58510,17 +56298,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = _this._preModuleComments;
 					if (t1 == null)
 						t1 = _this._preModuleComments = A.LinkedHashMap_LinkedHashMap$_empty(type$.Module_Callable, type$.List_CssComment);
-					J.addAll$1$ax(t1.putIfAbsent$2(0, module, new A._EvaluateVisitor__registerCommentsForModule_closure()), new A.UnmodifiableListView(J.cast$1$0$ax(_this._assertInModule$2(_this.__root, _s5_).children._collection$_source, type$.CssComment), type$.UnmodifiableListView_CssComment));
+					J.addAll$1$ax(t1.putIfAbsent$2(module, new A._EvaluateVisitor__registerCommentsForModule_closure()), new A.UnmodifiableListView(J.cast$1$0$ax(_this._assertInModule$2(_this.__root, _s5_).children._collection$_source, type$.CssComment), type$.UnmodifiableListView_CssComment));
 					_this._assertInModule$2(_this.__root, _s5_).clearChildren$0();
 					_this.__endOfImports = 0;
 				},
 				_removeUsedConfiguration$3$except(upstream, downstream, except) {
 					var t1, t2, t3, t4, _i, $name;
-					for (t1 = upstream._configuration$_values, t2 = J.toList$0$ax(t1.get$keys(t1)), t3 = t2.length, t4 = downstream._configuration$_values, _i = 0; _i < t2.length; t2.length === t3 || (0, A.throwConcurrentModificationError)(t2), ++_i) {
+					for (t1 = upstream._configuration$_values, t2 = t1.get$keys(t1), t2 = t2.toList$0(t2), t3 = t2.length, t4 = downstream._configuration$_values, _i = 0; _i < t2.length; t2.length === t3 || (0, A.throwConcurrentModificationError)(t2), ++_i) {
 						$name = t2[_i];
 						if (except.contains$1(0, $name))
 							continue;
-						if (!t4.containsKey$1(0, $name))
+						if (!t4.containsKey$1($name))
 							if (!t1.get$isEmpty(t1))
 								t1.remove$1(0, $name);
 					}
@@ -58548,7 +56336,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						index = t4.length - 1,
 						t5 = node.name;
 					t1._functionIndices.$indexSet(0, t5, index);
-					J.$indexSet$ax(t4[index], t5, new A.UserDefinedCallable(node, t2, t3, type$.UserDefinedCallable_Environment));
+					t4[index].$indexSet(0, t5, new A.UserDefinedCallable(node, t2, t3, type$.UserDefinedCallable_Environment));
 					return null;
 				},
 				visitIfRule$1(_, node) {
@@ -58556,7 +56344,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						clause = node.lastClause;
 					for (t1 = node.clauses, t2 = t1.length, _i = 0; _i < t2; ++_i) {
 						clauseToCheck = t1[_i];
-						if (clauseToCheck.expression.accept$1(0, this).get$isTruthy()) {
+						if (clauseToCheck.expression.accept$1(this).get$isTruthy()) {
 							clause = clauseToCheck;
 							break;
 						}
@@ -58702,18 +56490,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						mixin = _this._addExceptionSpan$2(node, new A._EvaluateVisitor_visitIncludeRule_closure(_this, node));
 					if (B.JSString_methods.startsWith$1(node.originalName, "--") && mixin instanceof A.UserDefinedCallable && !B.JSString_methods.startsWith$1(mixin.declaration.originalName, "--")) {
 						t1 = node.span;
-						if (B.JSString_methods.startsWith$1(t1.get$text(t1), "+"))
+						if (B.JSString_methods.startsWith$1(t1.get$text(), "+"))
 							startSpan = A.SpanExtensions_trimLeft(A.FileSpanExtension_subspan(t1, 1, _null));
 						else {
-							scanner = A.StringScanner$(t1.get$text(t1), _null, _null);
+							scanner = A.StringScanner$(t1.get$text(), _null, _null);
 							scanner.expectChar$1(64);
 							A._scanIdentifier(scanner);
-							startSpan = A.SpanExtensions_trimLeft(A.FileSpanExtension_subspan(t1, scanner._string_scanner$_position, _null));
+							startSpan = A.SpanExtensions_trimLeft(A.FileSpanExtension_subspan(t1, scanner._position, _null));
 						}
 						if (node.namespace != null) {
-							scanner = A.StringScanner$(startSpan.get$text(startSpan), _null, _null);
+							scanner = A.StringScanner$(startSpan.get$text(), _null, _null);
 							A._scanIdentifier(scanner);
-							startSpan = A.FileSpanExtension_subspan(A.FileSpanExtension_subspan(startSpan, scanner._string_scanner$_position, _null), 1, _null);
+							startSpan = A.FileSpanExtension_subspan(A.FileSpanExtension_subspan(startSpan, scanner._position, _null), 1, _null);
 						}
 						throw A.wrapException(_this._evaluate$_exception$2(string$.Sass__, A.SpanExtensions_initialIdentifier(startSpan)));
 					}
@@ -58728,7 +56516,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						index = t4.length - 1,
 						t5 = node.name;
 					t1._mixinIndices.$indexSet(0, t5, index);
-					J.$indexSet$ax(t4[index], t5, new A.UserDefinedCallable(node, t2, t3, type$.UserDefinedCallable_Environment));
+					t4[index].$indexSet(0, t5, new A.UserDefinedCallable(node, t2, t3, type$.UserDefinedCallable_Environment));
 					return null;
 				},
 				visitLoudComment$1(_, node) {
@@ -58781,9 +56569,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, t4, _0_0, t5, result,
 						queries = A._setArrayType([], type$.JSArray_CssMediaQuery);
 					for (t1 = J.get$iterator$ax(queries1), t2 = J.getInterceptor$ax(queries2); t1.moveNext$0();) {
-						t3 = t1.get$current(t1);
+						t3 = t1.get$current();
 						for (t4 = t2.get$iterator(queries2); t4.moveNext$0();) {
-							_0_0 = t3.merge$1(t4.get$current(t4));
+							_0_0 = t3.merge$1(t4.get$current());
 							if (B._SingletonCssMediaQueryMergeResult_0 === _0_0)
 								continue;
 							if (B._SingletonCssMediaQueryMergeResult_1 === _0_0)
@@ -58798,7 +56586,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				visitReturnRule$1(_, node) {
 					var t1 = node.expression;
-					return this._withoutSlash$2(t1.accept$1(0, this), t1);
+					return this._withoutSlash$2(t1.accept$1(this), t1);
 				},
 				visitSilentComment$1(_, node) {
 					return null;
@@ -58831,7 +56619,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t1 = false;
 							break $label0$0;
 						}
-						t1 = !(_this._assertInModule$2(_this.__stylesheet, _s11_).plainCss && parsedSelector.accept$1(0, B.C__ContainsParentSelectorVisitor));
+						t1 = !(_this._assertInModule$2(_this.__stylesheet, _s11_).plainCss && parsedSelector.accept$1(B.C__ContainsParentSelectorVisitor));
 						break $label0$0;
 					}
 					if (t1) {
@@ -58872,26 +56660,26 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				_warnForBogusCombinators$1(rule) {
 					var t1, t2, t3, t4, t5, _i, complex, visitor, t6, t7, t8, t9, _this = this, _null = null;
-					if (!rule.accept$1(0, B._IsInvisibleVisitor_false_false))
+					if (!rule.accept$1(B._IsInvisibleVisitor_false_false))
 						for (t1 = rule._style_rule$_selector._box$_inner.value.components, t2 = t1.length, t3 = type$.SourceSpan, t4 = type$.String, t5 = rule.children, _i = 0; _i < t2; ++_i) {
 							complex = t1[_i];
-							if (!complex.accept$1(0, B._IsBogusVisitor_true))
+							if (!complex.accept$1(B._IsBogusVisitor_true))
 								continue;
-							if (complex.accept$1(0, B.C__IsUselessVisitor)) {
+							if (complex.accept$1(B.C__IsUselessVisitor)) {
 								visitor = A._SerializeVisitor$(_null, true, _null, _null, true, false, _null, true);
-								complex.accept$1(0, visitor);
+								complex.accept$1(visitor);
 								_this._warn$3('The selector "' + B.JSString_methods.trim$0(visitor._buffer.toString$0(0)) + '" is invalid CSS. It will be omitted from the generated CSS.\nThis will be an error in Dart Sass 2.0.0.\n\nMore info: https://sass-lang.com/d/bogus-combinators', A.SpanExtensions_trimRight(complex.span), B.Deprecation_2PR);
 							} else if (complex.leadingCombinators.length !== 0) {
 								if (!_this._assertInModule$2(_this.__stylesheet, "_stylesheet").plainCss) {
 									visitor = A._SerializeVisitor$(_null, true, _null, _null, true, false, _null, true);
-									complex.accept$1(0, visitor);
+									complex.accept$1(visitor);
 									_this._warn$3('The selector "' + B.JSString_methods.trim$0(visitor._buffer.toString$0(0)) + '" is invalid CSS.\nThis will be an error in Dart Sass 2.0.0.\n\nMore info: https://sass-lang.com/d/bogus-combinators', A.SpanExtensions_trimRight(complex.span), B.Deprecation_2PR);
 								}
 							} else {
 								visitor = A._SerializeVisitor$(_null, true, _null, _null, true, false, _null, true);
-								complex.accept$1(0, visitor);
+								complex.accept$1(visitor);
 								t6 = B.JSString_methods.trim$0(visitor._buffer.toString$0(0));
-								t7 = complex.accept$1(0, B._IsBogusVisitor_false) ? " It will be omitted from the generated CSS." : "";
+								t7 = complex.accept$1(B._IsBogusVisitor_false) ? " It will be omitted from the generated CSS." : "";
 								t8 = A.SpanExtensions_trimRight(complex.span);
 								if (t5.get$length(0) === 0)
 									A.throwExpression(A.IterableElementError_noElement());
@@ -58927,7 +56715,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 						if (condition instanceof A.SupportsInterpolation) {
 							t1 = condition.expression;
-							t1 = _this._evaluate$_serialize$3$quote(t1.accept$1(0, _this), t1, false);
+							t1 = _this._evaluate$_serialize$3$quote(t1.accept$1(_this), t1, false);
 							break $label0$0;
 						}
 						t1 = {};
@@ -59008,7 +56796,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this._warn$3(t1, node.span, B.Deprecation_pwd);
 					}
 					t1 = node.expression;
-					_this._addExceptionSpan$2(node, new A._EvaluateVisitor_visitVariableDeclaration_closure1(_this, node, _this._withoutSlash$2(t1.accept$1(0, _this), t1)));
+					_this._addExceptionSpan$2(node, new A._EvaluateVisitor_visitVariableDeclaration_closure1(_this, node, _this._withoutSlash$2(t1.accept$1(_this), t1)));
 					return _null;
 				},
 				visitUseRule$1(_, node) {
@@ -59021,7 +56809,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							variable = t1[_i];
 							t3 = variable.expression;
 							variableNodeWithSpan = _this._expressionNode$1(t3);
-							values.$indexSet(0, variable.name, new A.ConfiguredValue(_this._withoutSlash$2(t3.accept$1(0, _this), variableNodeWithSpan), variable.span, variableNodeWithSpan));
+							values.$indexSet(0, variable.name, new A.ConfiguredValue(_this._withoutSlash$2(t3.accept$1(_this), variableNodeWithSpan), variable.span, variableNodeWithSpan));
 						}
 						configuration = new A.ExplicitConfiguration(node, values, null);
 					} else
@@ -59039,7 +56827,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return null;
 				},
 				visitWhileRule$1(_, node) {
-					return this._environment.scope$3$semiGlobal$when(0, new A._EvaluateVisitor_visitWhileRule_closure(this, node), true, node.hasDeclarations);
+					return this._environment.scope$3$semiGlobal$when(new A._EvaluateVisitor_visitWhileRule_closure(this, node), true, node.hasDeclarations);
 				},
 				visitBinaryOperationExpression$1(_, node) {
 					var t1, _this = this;
@@ -59106,7 +56894,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					throw A.wrapException(this._evaluate$_exception$2("Undefined variable.", node.span));
 				},
 				visitUnaryOperationExpression$1(_, node) {
-					return this._addExceptionSpan$2(node, new A._EvaluateVisitor_visitUnaryOperationExpression_closure(node, node.operand.accept$1(0, this)));
+					return this._addExceptionSpan$2(node, new A._EvaluateVisitor_visitUnaryOperationExpression_closure(node, node.operand.accept$1(this)));
 				},
 				visitBooleanExpression$1(_, node) {
 					return node.value ? B.SassBoolean_true : B.SassBoolean_false;
@@ -59117,7 +56905,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t4 = t1[_i];
 						condition = t4._0;
 						expression = t4._1;
-						result = condition == null ? null : condition.accept$1(0, _this);
+						result = condition == null ? null : condition.accept$1(_this);
 						if (result == null)
 							result = true;
 						t4 = typeof result == "string";
@@ -59125,16 +56913,16 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (t4) {
 							if (results == null)
 								results = A._setArrayType([], t3);
-							results.push(new A._Record_2(condition, expression.accept$1(0, _this)));
+							results.push(new A._Record_2(condition, expression.accept$1(_this)));
 							continue;
 						}
 						_1_2 = true === result;
 						if (_1_2 && results != null) {
-							results.push(new A._Record_2("else", expression.accept$1(0, _this)));
+							results.push(new A._Record_2("else", expression.accept$1(_this)));
 							continue;
 						}
 						if (_1_2)
-							return expression.accept$1(0, _this);
+							return expression.accept$1(_this);
 					}
 					if (results == null)
 						return B.C__SassNull;
@@ -59142,7 +56930,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				visitIfConditionParenthesized$1(_, node) {
 					var t1,
-						_0_0 = node.expression.accept$1(0, this);
+						_0_0 = node.expression.accept$1(this);
 					$label0$0: {
 						if (typeof _0_0 == "string") {
 							t1 = "(" + _0_0 + ")";
@@ -59155,7 +56943,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				visitIfConditionNegation$1(_, node) {
 					var t1,
-						_0_0 = node.expression.accept$1(0, this);
+						_0_0 = node.expression.accept$1(this);
 					$label0$0: {
 						if (typeof _0_0 == "string") {
 							t1 = "not " + _0_0;
@@ -59173,7 +56961,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, t4, t5, t6, values, _i, expression, _0_0, t7, right, _1_6_isSet, _1_6, string;
 					for (t1 = node.expressions, t2 = t1.length, t3 = node.op, t4 = t3 === B.BooleanOperator_0, t5 = t3 === B.BooleanOperator_1, t6 = type$.JSArray_Record_2_IfConditionExpression_and_String, values = null, _i = 0; _i < t2; ++_i) {
 						expression = t1[_i];
-						_0_0 = expression.accept$1(0, this);
+						_0_0 = expression.accept$1(this);
 						t7 = typeof _0_0 == "string";
 						right = t7 ? _0_0 : null;
 						if (t7) {
@@ -59214,7 +57002,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._performInterpolation$1(node.name) + "(" + this._performInterpolation$1(node.$arguments) + ")";
 				},
 				visitIfConditionSass$1(_, node) {
-					return node.expression.accept$1(0, this).get$isTruthy();
+					return node.expression.accept$1(this).get$isTruthy();
 				},
 				visitIfConditionRaw$1(_, node) {
 					return this._performInterpolation$1(node.text);
@@ -59243,8 +57031,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1.toString;
 						ifFalse = t1;
 					}
-					result = condition.accept$1(0, _this).get$isTruthy() ? ifTrue : ifFalse;
-					return _this._withoutSlash$2(result.accept$1(0, _this), _this._expressionNode$1(result));
+					result = condition.accept$1(_this).get$isTruthy() ? ifTrue : ifFalse;
+					return _this._withoutSlash$2(result.accept$1(_this), _this._expressionNode$1(result));
 				},
 				visitNullExpression$1(_, node) {
 					return B.C__SassNull;
@@ -59254,7 +57042,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				visitParenthesizedExpression$1(_, node) {
 					var _this = this;
-					return _this._assertInModule$2(_this.__stylesheet, "_stylesheet").plainCss ? A.throwExpression(_this._evaluate$_exception$2("Parentheses aren't allowed in plain CSS.", node.span)) : node.expression.accept$1(0, _this);
+					return _this._assertInModule$2(_this.__stylesheet, "_stylesheet").plainCss ? A.throwExpression(_this._evaluate$_exception$2("Parentheses aren't allowed in plain CSS.", node.span)) : node.expression.accept$1(_this);
 				},
 				visitColorExpression$1(_, node) {
 					return node.value;
@@ -59271,9 +57059,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t2 = node.pairs, t3 = t2.length, _i = 0; _i < t3; ++_i) {
 						t4 = t2[_i];
 						key = t4._0;
-						keyValue = key.accept$1(0, this);
-						valueValue = t4._1.accept$1(0, this);
-						if (map.containsKey$1(0, keyValue)) {
+						keyValue = key.accept$1(this);
+						valueValue = t4._1.accept$1(this);
+						if (map.containsKey$1(keyValue)) {
 							t1 = keyNodes.$index(0, keyValue);
 							oldValueSpan = t1 == null ? null : t1.get$span(t1);
 							t1 = key.get$span(key);
@@ -59535,7 +57323,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						result = _this._visitCalculationExpression$2$inLegacySassFunction(inner, inLegacySassFunction);
 						return result instanceof A.SassString ? new A.SassString("(" + result._string$_text + ")", false) : result;
 					}
-					if (node instanceof A.StringExpression && node.accept$1(0, B.C_IsCalculationSafeVisitor)) {
+					if (node instanceof A.StringExpression && node.accept$1(B.C_IsCalculationSafeVisitor)) {
 						t1 = node.text;
 						t2 = t1.get$asPlain();
 						_0_0 = t2 == null ? _null : t2.toLowerCase();
@@ -59578,7 +57366,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return _this._addExceptionSpan$2(node, new A._EvaluateVisitor__visitCalculationExpression_closure(_box_0, _this, node, inLegacySassFunction));
 					}
 					if (node instanceof A.NumberExpression || node instanceof A.VariableExpression || node instanceof A.FunctionExpression || node instanceof A.LegacyIfExpression) {
-						_1_0 = node.accept$1(0, _this);
+						_1_0 = node.accept$1(_this);
 						$label1$1: {
 							if (_1_0 instanceof A.SassNumber) {
 								t1 = _1_0;
@@ -59748,9 +57536,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								t3 = buffer;
 								t4 = argument;
 								/*DSH-
-								t4 = _this._evaluate$_serialize$3$quote(t4.accept$1(0, _this), t4, true);
+								t4 = _this._evaluate$_serialize$3$quote(t4.accept$1(_this), t4, true);
 								*/
-								evaluatedValue = t4.accept$1(0, _this); //DSH+
+								evaluatedValue = t4.accept$1(_this); //DSH+
 								if (isUrlFunction) { //DSH+
 									evaluatedValue._string$_text = dsh.fileManagerProxy.convertPathToAbsolute(evaluatedValue.text); //DSH+
 								} //DSH+
@@ -59759,7 +57547,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							}
 							restArg = $arguments.rest;
 							if (restArg != null) {
-								rest = restArg.accept$1(0, _this);
+								rest = restArg.accept$1(_this);
 								if (!first)
 									buffer._contents += ", ";
 								t1 = buffer;
@@ -59802,7 +57590,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t3 = evaluated._values[0].remove$1(0, parameter.name);
 						if (t3 == null) {
 							t3 = parameter.defaultValue;
-							t3 = _this._withoutSlash$2(t3.accept$1(0, _this), t3);
+							t3 = _this._withoutSlash$2(t3.accept$1(_this), t3);
 						}
 						t2.push(t3);
 					}
@@ -59846,7 +57634,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = $arguments.positional, t2 = t1.length, _i = 0; _i < t2; ++_i) {
 						expression = t1[_i];
 						nodeForSpan = _this._expressionNode$1(expression);
-						positional.push(_this._withoutSlash$2(expression.accept$1(0, _this), nodeForSpan));
+						positional.push(_this._withoutSlash$2(expression.accept$1(_this), nodeForSpan));
 						positionalNodes.push(nodeForSpan);
 					}
 					t1 = type$.String;
@@ -59854,23 +57642,23 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = type$.AstNode;
 					namedNodes = A.LinkedHashMap_LinkedHashMap$_empty(t1, t2);
 					for (t3 = A.MapExtensions_get_pairs($arguments.named, t1, type$.Expression), t3 = t3.get$iterator(t3); t3.moveNext$0();) {
-						t4 = t3.get$current(t3);
+						t4 = t3.get$current();
 						$name = t4._0;
 						value = t4._1;
 						nodeForSpan = _this._expressionNode$1(value);
-						named.$indexSet(0, $name, _this._withoutSlash$2(value.accept$1(0, _this), nodeForSpan));
+						named.$indexSet(0, $name, _this._withoutSlash$2(value.accept$1(_this), nodeForSpan));
 						namedNodes.$indexSet(0, $name, nodeForSpan);
 					}
 					restArgs = $arguments.rest;
 					if (restArgs == null)
 						return new A._Record_5_named_namedNodes_positional_positionalNodes_separator([named, namedNodes, positional, positionalNodes, B.ListSeparator_undecided_null_3_undecided]);
-					rest = restArgs.accept$1(0, _this);
+					rest = restArgs.accept$1(_this);
 					restNodeForSpan = _this._expressionNode$1(restArgs);
 					if (rest instanceof A.SassMap) {
 						_this._addRestMap$4(named, rest, restArgs, new A._EvaluateVisitor__evaluateArguments_closure());
 						t3 = A.LinkedHashMap_LinkedHashMap$_empty(t1, t2);
-						for (t4 = rest._map$_contents, t4 = J.get$iterator$ax(t4.get$keys(t4)), t5 = type$.SassString; t4.moveNext$0();)
-							t3.$indexSet(0, t5._as(t4.get$current(t4))._string$_text, restNodeForSpan);
+						for (t4 = rest._map$_contents, t4 = t4.get$keys(t4), t4 = t4.get$iterator(t4), t5 = type$.SassString; t4.moveNext$0();)
+							t3.$indexSet(0, t5._as(t4.get$current())._string$_text, restNodeForSpan);
 						namedNodes.addAll$1(0, t3);
 						separator = B.ListSeparator_undecided_null_3_undecided;
 					} else if (rest instanceof A.SassList) {
@@ -59890,13 +57678,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					keywordRestArgs = $arguments.keywordRest;
 					if (keywordRestArgs == null)
 						return new A._Record_5_named_namedNodes_positional_positionalNodes_separator([named, namedNodes, positional, positionalNodes, separator]);
-					keywordRest = keywordRestArgs.accept$1(0, _this);
+					keywordRest = keywordRestArgs.accept$1(_this);
 					keywordRestNodeForSpan = _this._expressionNode$1(keywordRestArgs);
 					if (keywordRest instanceof A.SassMap) {
 						_this._addRestMap$4(named, keywordRest, keywordRestArgs, new A._EvaluateVisitor__evaluateArguments_closure2());
 						t1 = A.LinkedHashMap_LinkedHashMap$_empty(t1, t2);
-						for (t2 = keywordRest._map$_contents, t2 = J.get$iterator$ax(t2.get$keys(t2)), t3 = type$.SassString; t2.moveNext$0();)
-							t1.$indexSet(0, t3._as(t2.get$current(t2))._string$_text, keywordRestNodeForSpan);
+						for (t2 = keywordRest._map$_contents, t2 = t2.get$keys(t2), t2 = t2.get$iterator(t2), t3 = type$.SassString; t2.moveNext$0();)
+							t1.$indexSet(0, t3._as(t2.get$current())._string$_text, keywordRestNodeForSpan);
 						namedNodes.addAll$1(0, t1);
 						return new A._Record_5_named_namedNodes_positional_positionalNodes_separator([named, namedNodes, positional, positionalNodes, separator]);
 					} else
@@ -59911,7 +57699,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = t1.positional;
 					positional = A._setArrayType(t2.slice(0), A._arrayInstanceType(t2));
 					named = A.LinkedHashMap_LinkedHashMap$of(t1.named, type$.String, type$.Expression);
-					rest = restArgs_.accept$1(0, _this);
+					rest = restArgs_.accept$1(_this);
 					restNodeForSpan = _this._expressionNode$1(restArgs_);
 					if (rest instanceof A.SassMap)
 						_this._addRestMap$4(named, rest, invocation, new A._EvaluateVisitor__evaluateMacroArguments_closure(restArgs_));
@@ -59927,7 +57715,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					keywordRestArgs_ = t1.keywordRest;
 					if (keywordRestArgs_ == null)
 						return new A._Record_2(positional, named);
-					keywordRest = keywordRestArgs_.accept$1(0, _this);
+					keywordRest = keywordRestArgs_.accept$1(_this);
 					keywordRestNodeForSpan = _this._expressionNode$1(keywordRestArgs_);
 					if (keywordRest instanceof A.SassMap) {
 						_this._addRestMap$4(named, keywordRest, invocation, new A._EvaluateVisitor__evaluateMacroArguments_closure2(_this, keywordRestNodeForSpan, keywordRestArgs_));
@@ -59962,7 +57750,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								break $label0$0;
 							}
 							if (value instanceof A.Expression) {
-								_0_0 = value.accept$1(0, _this);
+								_0_0 = value.accept$1(_this);
 								$label1$1: {
 									if (_0_0 instanceof A.SassString) {
 										text = _0_0._string$_text;
@@ -60091,7 +57879,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t1 = false;
 							break $label0$0;
 						}
-						t1 = !(node.fromPlainCss && node._style_rule$_selector._box$_inner.value.accept$1(0, B.C__ContainsParentSelectorVisitor));
+						t1 = !(node.fromPlainCss && node._style_rule$_selector._box$_inner.value.accept$1(B.C__ContainsParentSelectorVisitor));
 						break $label0$0;
 					}
 					t2 = node._style_rule$_selector._box$_inner;
@@ -60123,7 +57911,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				visitCssStylesheet$1(node) {
 					var t1;
 					for (t1 = J.get$iterator$ax(node.get$children(node)); t1.moveNext$0();)
-						t1.get$current(t1).accept$1(0, this);
+						t1.get$current().accept$1(this);
 				},
 				visitCssSupportsRule$1(node) {
 					var rule, _this = this;
@@ -60197,8 +57985,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							continue;
 						}
 						t3._as(value);
-						result = value.accept$1(0, _this);
-						if (warnForColor && $.$get$namesByColor().containsKey$1(0, result)) {
+						result = value.accept$1(_this);
+						if (warnForColor && $.$get$namesByColor().containsKey$1(result)) {
 							result0 = A.List_List$from([""], false, t6);
 							result0.$flags = 3;
 							t8 = $.$get$namesByColor();
@@ -60228,7 +58016,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this._addChild$2$through(node, through);
 					oldParent = _this._assertInModule$2(_this.__parent, "__parent");
 					_this.__parent = node;
-					result = _this._environment.scope$2$when(0, callback, scopeWhen);
+					result = _this._environment.scope$2$when(callback, scopeWhen);
 					_this.__parent = oldParent;
 					return result;
 				},
@@ -60438,8 +58226,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (type$.SassRuntimeException._is(t1)) {
 							error = t1;
 							stackTrace = A.getTraceFromException(exception);
-							t1 = J.get$span$x(error);
-							if (!B.JSString_methods.startsWith$1(t1.get$text(t1), "@error"))
+							if (!B.JSString_methods.startsWith$1(J.get$span$x(error).get$text(), "@error"))
 								throw exception;
 							t1 = error._span_exception$_message;
 							t2 = nodeWithSpan.get$span(nodeWithSpan);
@@ -60500,7 +58287,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = t1._environment;
 					t3 = variable._string$_text;
 					t4 = A.stringReplaceAllUnchecked(t3, "_", "-");
-					return t2.getFunction$2$namespace(t4, module == null ? null : module._string$_text) != null || t1._builtInFunctions.containsKey$1(0, t3) ? B.SassBoolean_true : B.SassBoolean_false;
+					return t2.getFunction$2$namespace(t4, module == null ? null : module._string$_text) != null || t1._builtInFunctions.containsKey$1(t3) ? B.SassBoolean_true : B.SassBoolean_false;
 				},
 				$signature: 9
 			};
@@ -60536,12 +58323,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = type$.Value;
 					t2 = A.LinkedHashMap_LinkedHashMap$_empty(t1, t1);
 					for (t3 = A.MapExtensions_get_pairs(module.get$variables(), type$.String, t1), t3 = t3.get$iterator(t3); t3.moveNext$0();) {
-						t4 = t3.get$current(t3);
+						t4 = t3.get$current();
 						t2.$indexSet(0, new A.SassString(t4._0, true), t4._1);
 					}
 					return new A.SassMap(A.ConstantMap_ConstantMap$from(t2, t1, t1));
 				},
-				$signature: 22
+				$signature: 21
 			};
 			A._EvaluateVisitor_closure5.prototype = {
 				call$1($arguments) {
@@ -60554,12 +58341,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = type$.Value;
 					t3 = A.LinkedHashMap_LinkedHashMap$_empty(t2, t2);
 					for (t4 = A.MapExtensions_get_pairs(module.get$functions(module), type$.String, type$.Callable), t4 = t4.get$iterator(t4), t1 = t1._evaluate$_compileContext; t4.moveNext$0();) {
-						t5 = t4.get$current(t4);
+						t5 = t4.get$current();
 						t3.$indexSet(0, new A.SassString(t5._0, true), new A.SassFunction(t5._1, t1));
 					}
 					return new A.SassMap(A.ConstantMap_ConstantMap$from(t3, t2, t2));
 				},
-				$signature: 22
+				$signature: 21
 			};
 			A._EvaluateVisitor_closure6.prototype = {
 				call$1($arguments) {
@@ -60572,12 +58359,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2 = type$.Value;
 					t3 = A.LinkedHashMap_LinkedHashMap$_empty(t2, t2);
 					for (t4 = A.MapExtensions_get_pairs(module.get$mixins(), type$.String, type$.Callable), t4 = t4.get$iterator(t4), t1 = t1._evaluate$_compileContext; t4.moveNext$0();) {
-						t5 = t4.get$current(t4);
+						t5 = t4.get$current();
 						t3.$indexSet(0, new A.SassString(t5._0, true), new A.SassMixin(t5._1, t1));
 					}
 					return new A.SassMap(A.ConstantMap_ConstantMap$from(t3, t2, t2));
 				},
-				$signature: 22
+				$signature: 21
 			};
 			A._EvaluateVisitor_closure7.prototype = {
 				call$1($arguments) {
@@ -60600,7 +58387,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						throw A.wrapException("Function not found: " + $name.toString$0(0));
 					return new A.SassFunction(callable, t1._evaluate$_compileContext);
 				},
-				$signature: 284
+				$signature: 282
 			};
 			A._EvaluateVisitor__closure2.prototype = {
 				call$0() {
@@ -60631,7 +58418,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						throw A.wrapException("Mixin not found: " + $name.toString$0(0));
 					return new A.SassMixin(callable, t1._evaluate$_compileContext);
 				},
-				$signature: 286
+				$signature: 284
 			};
 			A._EvaluateVisitor__closure1.prototype = {
 				call$0() {
@@ -60660,7 +58447,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t5 = type$.Value;
 						t6 = A.LinkedHashMap_LinkedHashMap$_empty(t5, t5);
 						for (args._wereKeywordsAccessed = true, t4 = A.MapExtensions_get_pairs(t4, type$.String, t5), t4 = t4.get$iterator(t4); t4.moveNext$0();) {
-							t7 = t4.get$current(t4);
+							t7 = t4.get$current();
 							t6.$indexSet(0, new A.SassString(t7._0, false), t7._1);
 						}
 						t4 = new A.ValueExpression(new A.SassMap(A.ConstantMap_ConstantMap$from(t6, t5, t5)), callableNode.get$span(callableNode));
@@ -60711,7 +58498,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._loadModule$7$baseUrl$configuration$namesInErrors(url, "load-css()", t2, new A._EvaluateVisitor__closure0(t1), t3.get$sourceUrl(t3), configuration, true);
 					t1._assertConfigurationIsEmpty$2$nameInError(configuration, true);
 				},
-				$signature: 92
+				$signature: 90
 			};
 			A._EvaluateVisitor__closure.prototype = {
 				call$2(variable, value) {
@@ -60719,7 +58506,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = variable.assertString$1("with key"),
 						$name = A.stringReplaceAllUnchecked(t1._string$_text, "_", "-");
 					t1 = _this.values;
-					if (t1.containsKey$1(0, $name))
+					if (t1.containsKey$1($name))
 						throw A.wrapException("The variable $" + $name + " was configured twice.");
 					else if (B.JSString_methods.startsWith$1($name, "-") && !_this._box_0.privateDeprecation) {
 						_this._box_0.privateDeprecation = true;
@@ -60727,14 +58514,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					t1.$indexSet(0, $name, new A.ConfiguredValue(value, _this.span, _this.callableNode));
 				},
-				$signature: 93
+				$signature: 91
 			};
 			A._EvaluateVisitor__closure0.prototype = {
 				call$2(module, _) {
 					var t1 = this.$this;
-					return t1._combineCss$2$clone(module, true).accept$1(0, t1);
+					return t1._combineCss$2$clone(module, true).accept$1(t1);
 				},
-				$signature: 45
+				$signature: 43
 			};
 			A._EvaluateVisitor_closure11.prototype = {
 				call$1($arguments) {
@@ -60755,7 +58542,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						A.throwExpression(A.SassScriptException$(t2.toString$0(0) + " does not belong to current compilation.", null));
 					t1._applyMixin$5(t2.callable, t1._environment._content, invocation, callableNode, callableNode);
 				},
-				$signature: 92
+				$signature: 90
 			};
 			A._EvaluateVisitor_run_closure.prototype = {
 				call$0() {
@@ -60774,13 +58561,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					module = t2._addExceptionTrace$1(new A._EvaluateVisitor_run__closure(t2, _this.importer, t1));
 					return new A._Record_2_loadedUrls_stylesheet(t2._loadedUrls, t2._combineCss$1(module));
 				},
-				$signature: 290
+				$signature: 288
 			};
 			A._EvaluateVisitor_run__closure.prototype = {
 				call$0() {
 					return this.$this._execute$2(this.importer, this.node);
 				},
-				$signature: 291
+				$signature: 289
 			};
 			A._EvaluateVisitor__loadModule_closure.prototype = {
 				call$0() {
@@ -60800,14 +58587,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					canonicalUrl = t4.get$sourceUrl(t4);
 					if (canonicalUrl != null) {
 						t4 = t2._activeModules;
-						if (t4.containsKey$1(0, canonicalUrl)) {
+						if (t4.containsKey$1(canonicalUrl)) {
 							message = _this.namesInErrors ? "Module loop: " + $.$get$context().prettyUri$1(canonicalUrl) + " is already being loaded." : "Module loop: this module is already being loaded.";
 							t1 = A.NullableExtension_andThen(t4.$index(0, canonicalUrl), new A._EvaluateVisitor__loadModule__closure(t2, message));
 							throw A.wrapException(t1 == null ? t2._evaluate$_exception$1(message) : t1);
 						} else
 							t4.$indexSet(0, canonicalUrl, t3);
 					}
-					t4 = t2._evaluate$_modules.containsKey$1(0, canonicalUrl);
+					t4 = t2._evaluate$_modules.containsKey$1(canonicalUrl);
 					oldInDependency = t2._inDependency;
 					t2._inDependency = _1_0._2;
 					t1.module = null;
@@ -60825,7 +58612,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(previousLoad) {
 					return this.$this._multiSpanException$3(this.message, "new load", A.LinkedHashMap_LinkedHashMap$_literal([previousLoad.get$span(previousLoad), "original load"], type$.FileSpan, type$.String));
 				},
-				$signature: 95
+				$signature: 93
 			};
 			A._EvaluateVisitor__loadModule__closure0.prototype = {
 				call$0() {
@@ -60890,7 +58677,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(module) {
 					return module.get$transitivelyContainsCss();
 				},
-				$signature: 36
+				$signature: 37
 			};
 			A._EvaluateVisitor__combineCss_closure0.prototype = {
 				call$1(target) {
@@ -60922,7 +58709,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					B.JSArray_methods.addAll$1(t4, t1.getRange$2(statements, 0, index));
 					B.JSArray_methods.addAll$1(t3, t1.getRange$2(statements, index, t1.get$length(statements)));
 				},
-				$signature: 293
+				$signature: 291
 			};
 			A._EvaluateVisitor__extendModules_closure.prototype = {
 				call$1(target) {
@@ -60934,13 +58721,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return A._setArrayType([], type$.JSArray_ExtensionStore);
 				},
-				$signature: 294
+				$signature: 292
 			};
 			A._EvaluateVisitor_visitAtRootRule_closure.prototype = {
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -60948,7 +58735,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 2
 			};
@@ -60957,7 +58744,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.$this,
 						oldParent = t1._assertInModule$2(t1.__parent, "__parent");
 					t1.__parent = this.newParent;
-					t1._environment.scope$2$when(0, callback, this.node.hasDeclarations);
+					t1._environment.scope$2$when(callback, this.node.hasDeclarations);
 					t1.__parent = oldParent;
 				},
 				$signature: 30
@@ -60998,7 +58785,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($parent) {
 					return $parent instanceof A.ModifiableCssAtRule;
 				},
-				$signature: 295
+				$signature: 293
 			};
 			A._EvaluateVisitor__scopeForAtRoot_closure4.prototype = {
 				call$1(callback) {
@@ -61014,7 +58801,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.content.declaration.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 					return null;
 				},
 				$signature: 0
@@ -61023,7 +58810,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this._box_0.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61033,13 +58820,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = this.nodeWithSpan;
 					return t1._environment.setLocalVariable$3(this._box_0.variable, t1._withoutSlash$2(value, t2), t2);
 				},
-				$signature: 38
+				$signature: 36
 			};
 			A._EvaluateVisitor_visitEachRule_closure0.prototype = {
 				call$1(value) {
 					return this.$this._setMultipleVariables$3(this._box_1.variables, value, this.nodeWithSpan);
 				},
-				$signature: 38
+				$signature: 36
 			};
 			A._EvaluateVisitor_visitEachRule_closure1.prototype = {
 				call$0() {
@@ -61047,7 +58834,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = _this.$this;
 					return t1._handleReturn$2(_this.list.get$asList(), new A._EvaluateVisitor_visitEachRule__closure(t1, _this.setVariables, _this.node));
 				},
-				$signature: 26
+				$signature: 23
 			};
 			A._EvaluateVisitor_visitEachRule__closure.prototype = {
 				call$1(element) {
@@ -61056,25 +58843,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = this.$this;
 					return t1._handleReturn$2(this.node.children, new A._EvaluateVisitor_visitEachRule___closure(t1));
 				},
-				$signature: 67
+				$signature: 65
 			};
 			A._EvaluateVisitor_visitEachRule___closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 42
+				$signature: 34
 			};
 			A._EvaluateVisitor_visitAtRule_closure.prototype = {
 				call$1(value) {
 					return this.$this._interpolationToValue$3$trim$warnForColor(value, true, true);
 				},
-				$signature: 299
+				$signature: 297
 			};
 			A._EvaluateVisitor_visitAtRule_closure0.prototype = {
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61085,7 +58872,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						styleRule = t1._atRootExcludingStyleRule ? null : t1._styleRuleIgnoringAtRoot;
 					if (styleRule == null || t1._inKeyframes || _this.name.value === "font-face")
 						for (t2 = _this.children, t3 = t2.length, _i = 0; _i < t3; ++_i)
-							t2[_i].accept$1(0, t1);
+							t2[_i].accept$1(t1);
 					else
 						t1._withParent$3$scopeWhen(A.ModifiableCssStyleRule$(styleRule._style_rule$_selector, styleRule.span, false, styleRule.originalSelector), new A._EvaluateVisitor_visitAtRule__closure(t1, _this.children), false);
 				},
@@ -61095,7 +58882,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61103,32 +58890,32 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor_visitForRule_closure.prototype = {
 				call$0() {
-					return this.node.from.accept$1(0, this.$this).assertNumber$0();
+					return this.node.from.accept$1(this.$this).assertNumber$0();
 				},
-				$signature: 100
+				$signature: 98
 			};
 			A._EvaluateVisitor_visitForRule_closure0.prototype = {
 				call$0() {
-					return this.node.to.accept$1(0, this.$this).assertNumber$0();
+					return this.node.to.accept$1(this.$this).assertNumber$0();
 				},
-				$signature: 100
+				$signature: 98
 			};
 			A._EvaluateVisitor_visitForRule_closure1.prototype = {
 				call$0() {
 					return this.fromNumber.assertInt$0();
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A._EvaluateVisitor_visitForRule_closure2.prototype = {
 				call$0() {
 					var t1 = this.fromNumber;
 					return this.toNumber.coerce$2(t1.get$numeratorUnits(t1), t1.get$denominatorUnits(t1)).assertInt$0();
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A._EvaluateVisitor_visitForRule_closure3.prototype = {
 				call$0() {
@@ -61146,13 +58933,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return null;
 				},
-				$signature: 26
+				$signature: 23
 			};
 			A._EvaluateVisitor_visitForRule__closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 42
+				$signature: 34
 			};
 			A._EvaluateVisitor_visitForwardRule_closure.prototype = {
 				call$2(module, firstLoad) {
@@ -61160,7 +58947,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						this.$this._registerCommentsForModule$1(module);
 					this.$this._environment.forwardModule$2(module, this.node);
 				},
-				$signature: 45
+				$signature: 43
 			};
 			A._EvaluateVisitor_visitForwardRule_closure0.prototype = {
 				call$2(module, firstLoad) {
@@ -61168,33 +58955,33 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						this.$this._registerCommentsForModule$1(module);
 					this.$this._environment.forwardModule$2(module, this.node);
 				},
-				$signature: 45
+				$signature: 43
 			};
 			A._EvaluateVisitor__registerCommentsForModule_closure.prototype = {
 				call$0() {
 					return A._setArrayType([], type$.JSArray_CssComment);
 				},
-				$signature: 302
+				$signature: 300
 			};
 			A._EvaluateVisitor_visitIfRule_closure.prototype = {
 				call$1(clause) {
 					var t1 = this.$this;
-					return t1._environment.scope$3$semiGlobal$when(0, new A._EvaluateVisitor_visitIfRule__closure(t1, clause), true, clause.hasDeclarations);
+					return t1._environment.scope$3$semiGlobal$when(new A._EvaluateVisitor_visitIfRule__closure(t1, clause), true, clause.hasDeclarations);
 				},
-				$signature: 303
+				$signature: 301
 			};
 			A._EvaluateVisitor_visitIfRule__closure.prototype = {
 				call$0() {
 					var t1 = this.$this;
 					return t1._handleReturn$2(this.clause.children, new A._EvaluateVisitor_visitIfRule___closure(t1));
 				},
-				$signature: 26
+				$signature: 23
 			};
 			A._EvaluateVisitor_visitIfRule___closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 42
+				$signature: 34
 			};
 			A._EvaluateVisitor__visitDynamicImport_closure.prototype = {
 				call$0() {
@@ -61212,7 +58999,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					url = t3.get$sourceUrl(t3);
 					if (url != null) {
 						t3 = t1._activeModules;
-						if (t3.containsKey$1(0, url)) {
+						if (t3.containsKey$1(url)) {
 							t2 = A.NullableExtension_andThen(t3.$index(0, url), new A._EvaluateVisitor__visitDynamicImport__closure(t1));
 							throw A.wrapException(t2 == null ? t1._evaluate$_exception$1("This file is already being loaded.") : t2);
 						}
@@ -61261,10 +59048,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._environment.importForwards$1(module);
 					if (loadsUserDefinedModules) {
 						if (module.transitivelyContainsCss)
-							t1._combineCss$2$clone(module, module.transitivelyContainsExtensions).accept$1(0, t1);
+							t1._combineCss$2$clone(module, module.transitivelyContainsExtensions).accept$1(t1);
 						visitor = new A._ImportedCssVisitor(t1);
 						for (t2 = J.get$iterator$ax(children._readLocal$0()); t2.moveNext$0();)
-							t2.get$current(t2).accept$1(0, visitor);
+							t2.get$current().accept$1(visitor);
 					}
 					t1._activeModules.remove$1(0, url);
 				},
@@ -61274,19 +59061,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(previousLoad) {
 					return this.$this._multiSpanException$3("This file is already being loaded.", "new load", A.LinkedHashMap_LinkedHashMap$_literal([previousLoad.get$span(previousLoad), "original load"], type$.FileSpan, type$.String));
 				},
-				$signature: 95
+				$signature: 93
 			};
 			A._EvaluateVisitor__visitDynamicImport__closure0.prototype = {
 				call$1(rule) {
 					return rule.url.get$scheme() !== "sass";
 				},
-				$signature: 304
+				$signature: 302
 			};
 			A._EvaluateVisitor__visitDynamicImport__closure1.prototype = {
 				call$1(rule) {
 					return rule.url.get$scheme() !== "sass";
 				},
-				$signature: 305
+				$signature: 303
 			};
 			A._EvaluateVisitor__visitDynamicImport__closure2.prototype = {
 				call$0() {
@@ -61372,9 +59159,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._EvaluateVisitor__applyMixin____closure.prototype = {
 				call$0() {
-					return this.statement.accept$1(0, this.$this);
+					return this.statement.accept$1(this.$this);
 				},
-				$signature: 26
+				$signature: 23
 			};
 			A._EvaluateVisitor_visitIncludeRule_closure.prototype = {
 				call$0() {
@@ -61388,7 +59175,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.$this;
 					return new A.UserDefinedCallable($content, t1._environment.closure$0(), t1._inDependency, type$.UserDefinedCallable_Environment);
 				},
-				$signature: 306
+				$signature: 304
 			};
 			A._EvaluateVisitor_visitIncludeRule_closure1.prototype = {
 				call$0() {
@@ -61402,13 +59189,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 18
+				$signature: 17
 			};
 			A._EvaluateVisitor_visitMediaRule_closure.prototype = {
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61416,7 +59203,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(mediaQueries) {
 					return this.$this._mergeMediaQueries$2(mediaQueries, this.queries);
 				},
-				$signature: 101
+				$signature: 99
 			};
 			A._EvaluateVisitor_visitMediaRule_closure1.prototype = {
 				call$0() {
@@ -61438,7 +59225,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1._withParent$3$scopeWhen(A.ModifiableCssStyleRule$(_0_0._style_rule$_selector, _0_0.span, false, _0_0.originalSelector), new A._EvaluateVisitor_visitMediaRule___closure(t1, this.node), false);
 					else
 						for (t2 = this.node.children, t3 = t2.length, _i = 0; _i < t3; ++_i)
-							t2[_i].accept$1(0, t1);
+							t2[_i].accept$1(t1);
 				},
 				$signature: 0
 			};
@@ -61446,7 +59233,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61460,13 +59247,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = true;
 					return t1;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor_visitStyleRule_closure.prototype = {
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61474,7 +59261,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor_visitStyleRule_closure2.prototype = {
 				call$0() {
@@ -61487,7 +59274,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61495,19 +59282,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor__warnForBogusCombinators_closure.prototype = {
 				call$1(child) {
 					return child instanceof A.ModifiableCssComment;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor_visitSupportsRule_closure.prototype = {
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61520,7 +59307,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1._withParent$2(A.ModifiableCssStyleRule$(_0_0._style_rule$_selector, _0_0.span, false, _0_0.originalSelector), new A._EvaluateVisitor_visitSupportsRule__closure(t1, this.node));
 					else
 						for (t2 = this.node.children, t3 = t2.length, _i = 0; _i < t3; ++_i)
-							t2[_i].accept$1(0, t1);
+							t2[_i].accept$1(t1);
 				},
 				$signature: 0
 			};
@@ -61528,7 +59315,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, _i;
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
-						t1[_i].accept$1(0, t3);
+						t1[_i].accept$1(t3);
 				},
 				$signature: 0
 			};
@@ -61536,7 +59323,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor__visitSupportsCondition_closure.prototype = {
 				call$0() {
@@ -61544,12 +59331,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this.$this,
 						t2 = this._box_0,
 						t3 = t2.declaration.name;
-					t3 = t1._evaluate$_serialize$3$quote(t3.accept$1(0, t1), t3, true);
+					t3 = t1._evaluate$_serialize$3$quote(t3.accept$1(t1), t3, true);
 					t4 = t2.declaration.get$isCustomProperty() ? "" : " ";
 					t2 = t2.declaration.value;
-					return "(" + t3 + ":" + t4 + t1._evaluate$_serialize$3$quote(t2.accept$1(0, t1), t2, true) + ")";
+					return "(" + t3 + ":" + t4 + t1._evaluate$_serialize$3$quote(t2.accept$1(t1), t2, true) + ")";
 				},
-				$signature: 27
+				$signature: 24
 			};
 			A._EvaluateVisitor_visitVariableDeclaration_closure.prototype = {
 				call$0() {
@@ -61564,7 +59351,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.node;
 					return this.$this._environment.getVariable$2$namespace(t1.name, t1.namespace);
 				},
-				$signature: 26
+				$signature: 23
 			};
 			A._EvaluateVisitor_visitVariableDeclaration_closure1.prototype = {
 				call$0() {
@@ -61585,14 +59372,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t3 == null) {
 						t1._globalModules.$indexSet(0, module, t2);
 						t1._allModules.push(module);
-						t1 = J.get$keys$x(B.JSArray_methods.get$first(t1._variables));
-						t2 = module.get$variables();
-						_0_0 = A.IterableExtension_firstWhereOrNull(t1, t2.get$containsKey(t2));
+						t1 = B.JSArray_methods.get$first(t1._variables);
+						_0_0 = A.IterableExtension_firstWhereOrNull(t1.get$keys(t1), module.get$variables().get$containsKey());
 						if (_0_0 != null)
 							A.throwExpression(A.SassScriptException$('This module and the new module both define a variable named "$' + _0_0 + '".', null));
 					} else {
 						t4 = t1._modules;
-						if (t4.containsKey$1(0, t3)) {
+						if (t4.containsKey$1(t3)) {
 							t5 = t1._namespaceNodes.$index(0, t3);
 							span = t5 == null ? null : t5.span;
 							t5 = A.LinkedHashMap_LinkedHashMap$_empty(type$.FileSpan, type$.String);
@@ -61605,87 +59391,87 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1._allModules.push(module);
 					}
 				},
-				$signature: 45
+				$signature: 43
 			};
 			A._EvaluateVisitor_visitWarnRule_closure.prototype = {
 				call$0() {
-					return this.node.expression.accept$1(0, this.$this);
+					return this.node.expression.accept$1(this.$this);
 				},
-				$signature: 25
+				$signature: 27
 			};
 			A._EvaluateVisitor_visitWhileRule_closure.prototype = {
 				call$0() {
 					var t1, t2, t3, _0_0;
-					for (t1 = this.node, t2 = t1.condition, t3 = this.$this, t1 = t1.children; t2.accept$1(0, t3).get$isTruthy();) {
+					for (t1 = this.node, t2 = t1.condition, t3 = this.$this, t1 = t1.children; t2.accept$1(t3).get$isTruthy();) {
 						_0_0 = t3._handleReturn$2(t1, new A._EvaluateVisitor_visitWhileRule__closure(t3));
 						if (_0_0 != null)
 							return _0_0;
 					}
 					return null;
 				},
-				$signature: 26
+				$signature: 23
 			};
 			A._EvaluateVisitor_visitWhileRule__closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 42
+				$signature: 34
 			};
 			A._EvaluateVisitor_visitBinaryOperationExpression_closure.prototype = {
 				call$0() {
 					var t1 = this.node,
 						t2 = this.$this,
-						left = t1.left.accept$1(0, t2);
+						left = t1.left.accept$1(t2);
 					switch (t1.operator.index) {
 						case 0:
-							t1 = t1.right.accept$1(0, t2);
+							t1 = t1.right.accept$1(t2);
 							t1 = new A.SassString(A.serializeValue(left, false, true) + "=" + A.serializeValue(t1, false, true), false);
 							break;
 						case 1:
-							t1 = left.get$isTruthy() ? left : t1.right.accept$1(0, t2);
+							t1 = left.get$isTruthy() ? left : t1.right.accept$1(t2);
 							break;
 						case 2:
-							t1 = left.get$isTruthy() ? t1.right.accept$1(0, t2) : left;
+							t1 = left.get$isTruthy() ? t1.right.accept$1(t2) : left;
 							break;
 						case 3:
-							t1 = left.$eq(0, t1.right.accept$1(0, t2)) ? B.SassBoolean_true : B.SassBoolean_false;
+							t1 = left.$eq(0, t1.right.accept$1(t2)) ? B.SassBoolean_true : B.SassBoolean_false;
 							break;
 						case 4:
-							t1 = !left.$eq(0, t1.right.accept$1(0, t2)) ? B.SassBoolean_true : B.SassBoolean_false;
+							t1 = !left.$eq(0, t1.right.accept$1(t2)) ? B.SassBoolean_true : B.SassBoolean_false;
 							break;
 						case 5:
-							t1 = left.greaterThan$1(t1.right.accept$1(0, t2));
+							t1 = left.greaterThan$1(t1.right.accept$1(t2));
 							break;
 						case 6:
-							t1 = left.greaterThanOrEquals$1(t1.right.accept$1(0, t2));
+							t1 = left.greaterThanOrEquals$1(t1.right.accept$1(t2));
 							break;
 						case 7:
-							t1 = left.lessThan$1(t1.right.accept$1(0, t2));
+							t1 = left.lessThan$1(t1.right.accept$1(t2));
 							break;
 						case 8:
-							t1 = left.lessThanOrEquals$1(t1.right.accept$1(0, t2));
+							t1 = left.lessThanOrEquals$1(t1.right.accept$1(t2));
 							break;
 						case 9:
-							t1 = left.plus$1(t1.right.accept$1(0, t2));
+							t1 = left.plus$1(t1.right.accept$1(t2));
 							break;
 						case 10:
-							t1 = left.minus$1(t1.right.accept$1(0, t2));
+							t1 = left.minus$1(t1.right.accept$1(t2));
 							break;
 						case 11:
-							t1 = left.times$1(t1.right.accept$1(0, t2));
+							t1 = left.times$1(t1.right.accept$1(t2));
 							break;
 						case 12:
-							t1 = t2._slash$3(left, t1.right.accept$1(0, t2), t1);
+							t1 = t2._slash$3(left, t1.right.accept$1(t2), t1);
 							break;
 						case 13:
-							t1 = left.modulo$1(t1.right.accept$1(0, t2));
+							t1 = left.modulo$1(t1.right.accept$1(t2));
 							break;
 						default:
 							t1 = null;
 					}
 					return t1;
 				},
-				$signature: 25
+				$signature: 27
 			};
 			A._EvaluateVisitor__slash_recommendation.prototype = {
 				call$1(expression) {
@@ -61704,14 +59490,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 97
+				$signature: 95
 			};
 			A._EvaluateVisitor_visitVariableExpression_closure.prototype = {
 				call$0() {
 					var t1 = this.node;
 					return this.$this._environment.getVariable$2$namespace(t1.name, t1.namespace);
 				},
-				$signature: 26
+				$signature: 23
 			};
 			A._EvaluateVisitor_visitUnaryOperationExpression_closure.prototype = {
 				call$0() {
@@ -61734,25 +59520,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 25
+				$signature: 27
 			};
 			A._EvaluateVisitor_visitIfExpression_closure.prototype = {
 				call$1(pair) {
 					return pair._0 + ": " + pair._1.toString$0(0);
 				},
-				$signature: 309
+				$signature: 307
 			};
 			A._EvaluateVisitor_visitIfConditionOperation_closure.prototype = {
 				call$1(pair) {
 					return pair._1;
 				},
-				$signature: 310
+				$signature: 308
 			};
 			A._EvaluateVisitor_visitListExpression_closure.prototype = {
 				call$1(expression) {
-					return expression.accept$1(0, this.$this);
+					return expression.accept$1(this.$this);
 				},
-				$signature: 311
+				$signature: 309
 			};
 			A._EvaluateVisitor_visitFunctionExpression_closure.prototype = {
 				call$0() {
@@ -61763,16 +59549,16 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._EvaluateVisitor_visitFunctionExpression_closure0.prototype = {
 				call$1(argument) {
-					return argument.accept$1(0, B.C_IsCalculationSafeVisitor);
+					return argument.accept$1(B.C_IsCalculationSafeVisitor);
 				},
-				$signature: 103
+				$signature: 101
 			};
 			A._EvaluateVisitor_visitFunctionExpression_closure1.prototype = {
 				call$0() {
 					var t1 = this.node;
 					return this.$this._runFunctionCallable$3(t1.$arguments, this._box_0.$function, t1);
 				},
-				$signature: 25
+				$signature: 27
 			};
 			A._EvaluateVisitor__visitCalculation_closure.prototype = {
 				call$2(message, deprecation) {
@@ -61781,7 +59567,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(message) {
 					return this.call$2(message, null);
 				},
-				$signature: 104
+				$signature: 102
 			};
 			A._EvaluateVisitor__checkCalculationArguments_check.prototype = {
 				call$1(maxArgs) {
@@ -61795,7 +59581,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.call$1(null);
 				},
-				$signature: 314
+				$signature: 312
 			};
 			A._EvaluateVisitor__visitCalculationExpression_closure.prototype = {
 				call$0() {
@@ -61806,7 +59592,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t4 = _this.inLegacySassFunction;
 					return A.SassCalculation_operateInternal(t1._binaryOperatorToCalculationOperator$2(t2.operator, t3), t1._visitCalculationExpression$2$inLegacySassFunction(t2.left, t4), t1._visitCalculationExpression$2$inLegacySassFunction(t2.right, t4), t4, !t1._inSupportsDeclaration, new A._EvaluateVisitor__visitCalculationExpression__closure(t1, t3));
 				},
-				$signature: 315
+				$signature: 313
 			};
 			A._EvaluateVisitor__visitCalculationExpression__closure.prototype = {
 				call$2(message, deprecation) {
@@ -61815,14 +59601,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(message) {
 					return this.call$2(message, null);
 				},
-				$signature: 104
+				$signature: 102
 			};
 			A._EvaluateVisitor_visitInterpolatedFunctionExpression_closure.prototype = {
 				call$0() {
 					var t1 = this.node;
 					return this.$this._runFunctionCallable$3(t1.$arguments, this.$function, t1);
 				},
-				$signature: 25
+				$signature: 27
 			};
 			A._EvaluateVisitor__runUserDefinedCallable_closure.prototype = {
 				call$0() {
@@ -61839,7 +59625,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var _this = this,
 						t1 = _this.$this;
-					return t1._environment.scope$1(0, new A._EvaluateVisitor__runUserDefinedCallable___closure(t1, _this.evaluated, _this.callable, _this.nodeWithSpan, _this.run, _this.V));
+					return t1._environment.scope$1(new A._EvaluateVisitor__runUserDefinedCallable___closure(t1, _this.evaluated, _this.callable, _this.nodeWithSpan, _this.run, _this.V));
 				},
 				$signature() {
 					return this.V._eval$1("0()");
@@ -61864,7 +59650,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						value = t2[0].remove$1(0, t6);
 						if (value == null) {
 							t7 = parameter.defaultValue;
-							value = t1._withoutSlash$2(t7.accept$1(0, t1), t1._expressionNode$1(t7));
+							value = t1._withoutSlash$2(t7.accept$1(t1), t1._expressionNode$1(t7));
 						}
 						t7 = t1._environment;
 						t8 = t2[1].$index(0, t6);
@@ -61912,13 +59698,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, t4, _i, $returnValue;
 					for (t1 = this.callable.declaration, t2 = t1.children, t3 = t2.length, t4 = this.$this, _i = 0; _i < t3; ++_i) {
-						$returnValue = t2[_i].accept$1(0, t4);
+						$returnValue = t2[_i].accept$1(t4);
 						if ($returnValue instanceof A.Value)
 							return $returnValue;
 					}
 					throw A.wrapException(t4._evaluate$_exception$2("Function finished without @return.", t1.span));
 				},
-				$signature: 25
+				$signature: 27
 			};
 			A._EvaluateVisitor__runBuiltInCallable_closure.prototype = {
 				call$0() {
@@ -61930,7 +59716,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this._box_0.callback.call$1(this.evaluated._values[2]);
 				},
-				$signature: 25
+				$signature: 27
 			};
 			A._EvaluateVisitor__runBuiltInCallable_closure1.prototype = {
 				call$1($name) {
@@ -61942,13 +59728,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(value) {
 					return value;
 				},
-				$signature: 31
+				$signature: 29
 			};
 			A._EvaluateVisitor__evaluateArguments_closure0.prototype = {
 				call$1(value) {
 					return this.$this._withoutSlash$2(value, this.restNodeForSpan);
 				},
-				$signature: 31
+				$signature: 29
 			};
 			A._EvaluateVisitor__evaluateArguments_closure1.prototype = {
 				call$2(key, value) {
@@ -61957,27 +59743,27 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this.named.$indexSet(0, key, _this.$this._withoutSlash$2(value, t1));
 					_this.namedNodes.$indexSet(0, key, t1);
 				},
-				$signature: 105
+				$signature: 103
 			};
 			A._EvaluateVisitor__evaluateArguments_closure2.prototype = {
 				call$1(value) {
 					return value;
 				},
-				$signature: 31
+				$signature: 29
 			};
 			A._EvaluateVisitor__evaluateMacroArguments_closure.prototype = {
 				call$1(value) {
 					var t1 = this.restArgs;
 					return new A.ValueExpression(value, t1.get$span(t1));
 				},
-				$signature: 57
+				$signature: 54
 			};
 			A._EvaluateVisitor__evaluateMacroArguments_closure0.prototype = {
 				call$1(value) {
 					var t1 = this.restArgs;
 					return new A.ValueExpression(this.$this._withoutSlash$2(value, this.restNodeForSpan), t1.get$span(t1));
 				},
-				$signature: 57
+				$signature: 54
 			};
 			A._EvaluateVisitor__evaluateMacroArguments_closure1.prototype = {
 				call$2(key, value) {
@@ -61985,14 +59771,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = _this.restArgs;
 					_this.named.$indexSet(0, key, new A.ValueExpression(_this.$this._withoutSlash$2(value, _this.restNodeForSpan), t1.get$span(t1)));
 				},
-				$signature: 105
+				$signature: 103
 			};
 			A._EvaluateVisitor__evaluateMacroArguments_closure2.prototype = {
 				call$1(value) {
 					var t1 = this.keywordRestArgs;
 					return new A.ValueExpression(this.$this._withoutSlash$2(value, this.keywordRestNodeForSpan), t1.get$span(t1));
 				},
-				$signature: 57
+				$signature: 54
 			};
 			A._EvaluateVisitor__addRestMap_closure.prototype = {
 				call$2(key, value) {
@@ -62005,7 +59791,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						throw A.wrapException(t1._evaluate$_exception$2("Variable keyword argument map must have string keys.\n" + key.toString$0(0) + " is not a string in " + _this.map.toString$0(0) + ".", t2.get$span(t2)));
 					}
 				},
-				$signature: 93
+				$signature: 91
 			};
 			A._EvaluateVisitor__verifyArguments_closure.prototype = {
 				call$0() {
@@ -62018,7 +59804,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, t4;
 					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t4 = t1.__internal$_current;
-						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+						(t4 == null ? t2._as(t4) : t4).accept$1(t3);
 					}
 				},
 				$signature: 0
@@ -62028,7 +59814,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, t4;
 					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t4 = t1.__internal$_current;
-						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+						(t4 == null ? t2._as(t4) : t4).accept$1(t3);
 					}
 				},
 				$signature: 0
@@ -62037,14 +59823,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor_visitCssKeyframeBlock_closure.prototype = {
 				call$0() {
 					var t1, t2, t3, t4;
 					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t4 = t1.__internal$_current;
-						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+						(t4 == null ? t2._as(t4) : t4).accept$1(t3);
 					}
 				},
 				$signature: 0
@@ -62053,14 +59839,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor_visitCssMediaRule_closure.prototype = {
 				call$0() {
 					var t1, t2, t3, t4;
 					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t4 = t1.__internal$_current;
-						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+						(t4 == null ? t2._as(t4) : t4).accept$1(t3);
 					}
 				},
 				$signature: 0
@@ -62069,7 +59855,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(mediaQueries) {
 					return this.$this._mergeMediaQueries$2(mediaQueries, this.node.queries);
 				},
-				$signature: 101
+				$signature: 99
 			};
 			A._EvaluateVisitor_visitCssMediaRule_closure1.prototype = {
 				call$0() {
@@ -62092,7 +59878,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						for (t2 = this.node.children, t3 = t2.$ti, t2 = new A.ListIterator(t2, t2.get$length(0), t3._eval$1("ListIterator<ListBase.E>")), t3 = t3._eval$1("ListBase.E"); t2.moveNext$0();) {
 							t4 = t2.__internal$_current;
-							(t4 == null ? t3._as(t4) : t4).accept$1(0, t1);
+							(t4 == null ? t3._as(t4) : t4).accept$1(t1);
 						}
 				},
 				$signature: 0
@@ -62102,7 +59888,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, t4;
 					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t4 = t1.__internal$_current;
-						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+						(t4 == null ? t2._as(t4) : t4).accept$1(t3);
 					}
 				},
 				$signature: 0
@@ -62117,7 +59903,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = true;
 					return t1;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor_visitCssStyleRule_closure0.prototype = {
 				call$0() {
@@ -62131,7 +59917,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, t4;
 					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t4 = t1.__internal$_current;
-						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+						(t4 == null ? t2._as(t4) : t4).accept$1(t3);
 					}
 				},
 				$signature: 0
@@ -62140,14 +59926,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor_visitCssSupportsRule_closure.prototype = {
 				call$0() {
 					var t1, t2, t3, t4;
 					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t4 = t1.__internal$_current;
-						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+						(t4 == null ? t2._as(t4) : t4).accept$1(t3);
 					}
 				},
 				$signature: 0
@@ -62162,7 +59948,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						for (t2 = this.node.children, t3 = t2.$ti, t2 = new A.ListIterator(t2, t2.get$length(0), t3._eval$1("ListIterator<ListBase.E>")), t3 = t3._eval$1("ListBase.E"); t2.moveNext$0();) {
 							t4 = t2.__internal$_current;
-							(t4 == null ? t3._as(t4) : t4).accept$1(0, t1);
+							(t4 == null ? t3._as(t4) : t4).accept$1(t1);
 						}
 				},
 				$signature: 0
@@ -62172,7 +59958,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, t4;
 					for (t1 = this.node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = this.$this, t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t4 = t1.__internal$_current;
-						(t4 == null ? t2._as(t4) : t4).accept$1(0, t3);
+						(t4 == null ? t2._as(t4) : t4).accept$1(t3);
 					}
 				},
 				$signature: 0
@@ -62181,7 +59967,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluateVisitor__performInterpolationHelper_closure.prototype = {
 				call$1(targetOffsets) {
@@ -62193,20 +59979,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						A.throwExpression(A.ArgumentError$("InterpolationMap must have " + A.S(expectedLocations) + " targetOffsets if the interpolation has " + t3 + " components.", null));
 					return new A.InterpolationMap(t1, t2);
 				},
-				$signature: 318
+				$signature: 316
 			};
 			A._EvaluateVisitor__serialize_closure.prototype = {
 				call$0() {
 					return A.serializeValue(this.value, false, this.quote);
 				},
-				$signature: 27
+				$signature: 24
 			};
 			A._EvaluateVisitor__expressionNode_closure.prototype = {
 				call$0() {
 					var t1 = this.expression;
 					return this.$this._environment.getVariableNode$2$namespace(t1.name, t1.namespace);
 				},
-				$signature: 319
+				$signature: 317
 			};
 			A._EvaluateVisitor__withoutSlash_recommendation.prototype = {
 				call$1(number) {
@@ -62224,7 +60010,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t1;
 				},
-				$signature: 320
+				$signature: 318
 			};
 			A._EvaluateVisitor__stackFrame_closure.prototype = {
 				call$1(url) {
@@ -62232,7 +60018,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t1 == null ? null : t1.humanize$1(url);
 					return t1 == null ? url : t1;
 				},
-				$signature: 70
+				$signature: 73
 			};
 			A._ImportedCssVisitor.prototype = {
 				visitCssAtRule$1(node) {
@@ -62273,7 +60059,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3;
 					for (t1 = node.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t2 = t2._eval$1("ListBase.E"); t1.moveNext$0();) {
 						t3 = t1.__internal$_current;
-						(t3 == null ? t2._as(t3) : t3).accept$1(0, this);
+						(t3 == null ? t2._as(t3) : t3).accept$1(this);
 					}
 				},
 				visitCssSupportsRule$1(node) {
@@ -62284,7 +60070,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._ImportedCssVisitor_visitCssMediaRule_closure.prototype = {
 				call$1(node) {
@@ -62295,19 +60081,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = true;
 					return t1;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._ImportedCssVisitor_visitCssStyleRule_closure.prototype = {
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._ImportedCssVisitor_visitCssSupportsRule_closure.prototype = {
 				call$1(node) {
 					return node instanceof A.ModifiableCssStyleRule;
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._EvaluationContext.prototype = {
 				get$currentCallableSpan() {
@@ -62362,39 +60148,39 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.EveryCssVisitor_visitCssAtRule_closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A.EveryCssVisitor_visitCssKeyframeBlock_closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A.EveryCssVisitor_visitCssMediaRule_closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A.EveryCssVisitor_visitCssStyleRule_closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A.EveryCssVisitor_visitCssStylesheet_closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A.EveryCssVisitor_visitCssSupportsRule_closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
-				$signature: 4
+				$signature: 3
 			};
 			A._MakeExpressionCalculationSafe.prototype = {
 				visitBinaryOperationExpression$1(_, node) {
@@ -62436,7 +60222,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			A.__MakeExpressionCalculationSafe_Object_ReplaceExpressionVisitor.prototype = {};
 			A.IsCalculationSafeVisitor.prototype = {
 				visitBinaryOperationExpression$1(_, node) {
-					return B.Set_xkEMv.contains$1(0, node.operator) && node.left.accept$1(0, this) && node.right.accept$1(0, this);
+					return B.Set_xkEMv.contains$1(0, node.operator) && node.left.accept$1(this) && node.right.accept$1(this);
 				},
 				visitBooleanExpression$1(_, node) {
 					return false;
@@ -62475,7 +60261,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return true;
 				},
 				visitParenthesizedExpression$1(_, node) {
-					return node.expression.accept$1(0, this);
+					return node.expression.accept$1(this);
 				},
 				visitSelectorExpression$1(_, node) {
 					return false;
@@ -62510,13 +60296,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.IsCalculationSafeVisitor_visitListExpression_closure.prototype = {
 				call$1(expression) {
-					return expression.accept$1(0, this.$this);
+					return expression.accept$1(this.$this);
 				},
-				$signature: 103
+				$signature: 101
 			};
 			A.ReplaceExpressionVisitor.prototype = {
 				visitBinaryOperationExpression$1(_, node) {
-					return new A.BinaryOperationExpression(node.operator, node.left.accept$1(0, this), node.right.accept$1(0, this), false);
+					return new A.BinaryOperationExpression(node.operator, node.left.accept$1(this), node.right.accept$1(this), false);
 				},
 				visitBooleanExpression$1(_, node) {
 					return node;
@@ -62544,7 +60330,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = A._setArrayType([], type$.JSArray_Record_2_Expression_and_Expression);
 					for (t2 = node.pairs, t3 = t2.length, _i = 0; _i < t3; ++_i) {
 						t4 = t2[_i];
-						t1.push(new A._Record_2(t4._0.accept$1(0, this), t4._1.accept$1(0, this)));
+						t1.push(new A._Record_2(t4._0.accept$1(this), t4._1.accept$1(this)));
 					}
 					return new A.MapExpression(A.List_List$unmodifiable(t1, type$.Record_2_Expression_and_Expression), node.span);
 				},
@@ -62555,7 +60341,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return node;
 				},
 				visitParenthesizedExpression$1(_, node) {
-					return new A.ParenthesizedExpression(node.expression.accept$1(0, this), node.span);
+					return new A.ParenthesizedExpression(node.expression.accept$1(this), node.span);
 				},
 				visitSelectorExpression$1(_, node) {
 					return node;
@@ -62567,7 +60353,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A.SupportsExpression(this.visitSupportsCondition$1(node.condition));
 				},
 				visitUnaryOperationExpression$1(_, node) {
-					return new A.UnaryOperationExpression(node.operator, node.operand.accept$1(0, this), node.span);
+					return new A.UnaryOperationExpression(node.operator, node.operand.accept$1(this), node.span);
 				},
 				visitValueExpression$1(_, node) {
 					return node;
@@ -62576,10 +60362,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return node;
 				},
 				visitIfConditionParenthesized$1(_, node) {
-					return new A.IfConditionParenthesized(node.expression.accept$1(0, this), node.span);
+					return new A.IfConditionParenthesized(node.expression.accept$1(this), node.span);
 				},
 				visitIfConditionNegation$1(_, node) {
-					return new A.IfConditionNegation(node.expression.accept$1(0, this), node.span);
+					return new A.IfConditionNegation(node.expression.accept$1(this), node.span);
 				},
 				visitIfConditionOperation$1(_, node) {
 					var t1 = node.expressions;
@@ -62589,7 +60375,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return new A.IfConditionFunction(this.visitInterpolation$1(node.name), this.visitInterpolation$1(node.$arguments), node.span);
 				},
 				visitIfConditionSass$1(_, node) {
-					return new A.IfConditionSass(node.expression.accept$1(0, this), node.span);
+					return new A.IfConditionSass(node.expression.accept$1(this), node.span);
 				},
 				visitIfConditionRaw$1(_, node) {
 					return new A.IfConditionRaw(this.visitInterpolation$1(node.text));
@@ -62601,13 +60387,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t3 = type$.Expression,
 						t4 = A.LinkedHashMap_LinkedHashMap$_empty(t2, t3);
 					for (t2 = A.MapExtensions_get_pairs(invocation.named, t2, t3), t2 = t2.get$iterator(t2); t2.moveNext$0();) {
-						t3 = t2.get$current(t2);
-						t4.$indexSet(0, t3._0, t3._1.accept$1(0, _this));
+						t3 = t2.get$current();
+						t4.$indexSet(0, t3._0, t3._1.accept$1(_this));
 					}
 					t2 = invocation.rest;
-					t2 = t2 == null ? null : t2.accept$1(0, _this);
+					t2 = t2 == null ? null : t2.accept$1(_this);
 					t3 = invocation.keywordRest;
-					t3 = t3 == null ? null : t3.accept$1(0, _this);
+					t3 = t3 == null ? null : t3.accept$1(_this);
 					return A.ArgumentList$(new A.MappedListIterable(t1, new A.ReplaceExpressionVisitor_visitArgumentList_closure(_this), A._arrayInstanceType(t1)._eval$1("MappedListIterable<1,Expression>")), t4, invocation.namedSpans, invocation.span, t3, t2);
 				},
 				visitSupportsCondition$1(condition) {
@@ -62617,9 +60403,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else if (condition instanceof A.SupportsNegation)
 						return new A.SupportsNegation(_this.visitSupportsCondition$1(condition.condition), condition.span);
 					else if (condition instanceof A.SupportsInterpolation)
-						return new A.SupportsInterpolation(condition.expression.accept$1(0, _this), condition.span);
+						return new A.SupportsInterpolation(condition.expression.accept$1(_this), condition.span);
 					else if (condition instanceof A.SupportsDeclaration)
-						return new A.SupportsDeclaration(condition.name.accept$1(0, _this), condition.value.accept$1(0, _this), condition.span);
+						return new A.SupportsDeclaration(condition.name.accept$1(_this), condition.value.accept$1(_this), condition.span);
 					else
 						throw A.wrapException(A.SassException$("BUG: Unknown SupportsCondition " + condition.toString$0(0) + ".", condition.get$span(condition), null));
 				},
@@ -62630,27 +60416,27 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.ReplaceExpressionVisitor_visitListExpression_closure.prototype = {
 				call$1(item) {
-					return item.accept$1(0, this.$this);
+					return item.accept$1(this.$this);
 				},
-				$signature: 107
+				$signature: 105
 			};
 			A.ReplaceExpressionVisitor_visitIfConditionOperation_closure.prototype = {
 				call$1(expression) {
-					return expression.accept$1(0, this.$this);
+					return expression.accept$1(this.$this);
 				},
-				$signature: 322
+				$signature: 320
 			};
 			A.ReplaceExpressionVisitor_visitArgumentList_closure.prototype = {
 				call$1(expression) {
-					return expression.accept$1(0, this.$this);
+					return expression.accept$1(this.$this);
 				},
-				$signature: 107
+				$signature: 105
 			};
 			A.ReplaceExpressionVisitor_visitInterpolation_closure.prototype = {
 				call$1(node) {
-					return node instanceof A.Expression ? node.accept$1(0, this.$this) : node;
+					return node instanceof A.Expression ? node.accept$1(this.$this) : node;
 				},
-				$signature: 58
+				$signature: 55
 			};
 			A.SelectorSearchVisitor.prototype = {
 				visitAttributeSelector$1(_, attribute) {
@@ -62697,7 +60483,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.SelectorSearchVisitor_visitCompoundSelector_closure.prototype = {
 				call$1(simple) {
-					return simple.accept$1(0, this.$this);
+					return simple.accept$1(this.$this);
 				},
 				$signature() {
 					return A._instanceType(this.$this)._eval$1("SelectorSearchVisitor.T?(SimpleSelector)");
@@ -62713,9 +60499,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				visitCssStylesheet$1(node) {
 					var t1, t2, t3, t4, t5, t6, previous, previous0, t7, _this = this;
 					for (t1 = J.get$iterator$ax(node.get$children(node)), t2 = !_this._inspect, t3 = _this._style === B.OutputStyle_1, t4 = !t3, t5 = type$.CssParentNode, t6 = _this._buffer, previous = null; t1.moveNext$0();) {
-						previous0 = t1.get$current(t1);
+						previous0 = t1.get$current();
 						if (t2)
-							t7 = t3 ? previous0.accept$1(0, B._IsInvisibleVisitor_true_true) : previous0.accept$1(0, B._IsInvisibleVisitor_true_false);
+							t7 = t3 ? previous0.accept$1(B._IsInvisibleVisitor_true_true) : previous0.accept$1(B._IsInvisibleVisitor_true_false);
 						else
 							t7 = false;
 						if (t7)
@@ -62734,7 +60520,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 										t6.write$1(0, "\n");
 							}
 						}
-						previous0.accept$1(0, _this);
+						previous0.accept$1(_this);
 						previous = previous0;
 					}
 					if (previous != null)
@@ -62876,7 +60662,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_writeFoldedValue$1(node) {
 					var t1, t2, next, t3,
 						scanner = A.StringScanner$(type$.SassString._as(node.value.value)._string$_text, null, null);
-					for (t1 = scanner.string.length, t2 = this._buffer; scanner._string_scanner$_position !== t1;) {
+					for (t1 = scanner.string.length, t2 = this._buffer; scanner._position !== t1;) {
 						next = scanner.readChar$0();
 						if (next !== 10) {
 							t2.writeCharCode$1(next);
@@ -62916,7 +60702,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						scanner = A.LineScanner$(text),
 						t1 = scanner.string.length;
 					for (;;) {
-						if (scanner._string_scanner$_position !== t1) {
+						if (scanner._position !== t1) {
 							character = scanner.super$StringScanner$readChar();
 							scanner._adjustLineAndColumn$1(character);
 							t2 = character !== 10;
@@ -62925,21 +60711,21 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (!t2)
 							break;
 					}
-					if (scanner._string_scanner$_position === t1)
+					if (scanner._position === t1)
 						return scanner.peekChar$1(-1) === 10 ? -1 : null;
-					for (min = null; scanner._string_scanner$_position !== t1;) {
-						while (scanner._string_scanner$_position !== t1) {
+					for (min = null; scanner._position !== t1;) {
+						while (scanner._position !== t1) {
 							next = scanner.peekChar$0();
 							if (next !== 32 && next !== 9)
 								break;
 							scanner._adjustLineAndColumn$1(scanner.super$StringScanner$readChar());
 						}
-						if (scanner._string_scanner$_position === t1 || scanner.scanChar$1(10))
+						if (scanner._position === t1 || scanner.scanChar$1(10))
 							continue;
 						min0 = scanner._line_scanner$_column;
 						min = min == null ? min0 : Math.min(min, min0);
 						for (;;) {
-							if (scanner._string_scanner$_position !== t1) {
+							if (scanner._position !== t1) {
 								character = scanner.super$StringScanner$readChar();
 								scanner._adjustLineAndColumn$1(character);
 								t2 = character !== 10;
@@ -62954,7 +60740,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_writeWithIndent$2(text, minimumIndentation) {
 					var t1, t2, t3, character, lineStart, newlines, end,
 						scanner = A.LineScanner$(text);
-					for (t1 = scanner.string, t2 = t1.length, t3 = this._buffer; scanner._string_scanner$_position !== t2;) {
+					for (t1 = scanner.string, t2 = t1.length, t3 = this._buffer; scanner._position !== t2;) {
 						character = scanner.super$StringScanner$readChar();
 						scanner._adjustLineAndColumn$1(character);
 						if (character === 10)
@@ -62962,9 +60748,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t3.writeCharCode$1(character);
 					}
 					for (;;) {
-						lineStart = scanner._string_scanner$_position;
+						lineStart = scanner._position;
 						for (newlines = 1;;) {
-							if (scanner._string_scanner$_position === t2) {
+							if (scanner._position === t2) {
 								t3.writeCharCode$1(32);
 								return;
 							}
@@ -62974,7 +60760,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								if (32 === character || 9 === character)
 									continue;
 								if (10 === character) {
-									lineStart = scanner._string_scanner$_position;
+									lineStart = scanner._position;
 									++newlines;
 									break $label0$2;
 								}
@@ -62983,10 +60769,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 						this._writeTimes$2(10, newlines);
 						this._writeIndentation$0();
-						end = scanner._string_scanner$_position;
+						end = scanner._position;
 						t3.write$1(0, B.JSString_methods.substring$2(t1, lineStart + minimumIndentation, end));
 						for (;;) {
-							if (scanner._string_scanner$_position === t2)
+							if (scanner._position === t2)
 								return;
 							character = scanner.super$StringScanner$readChar();
 							scanner._adjustLineAndColumn$1(character);
@@ -63039,7 +60825,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break $label1$1;
 						}
 						if (value instanceof A.Value) {
-							value.accept$1(0, _this);
+							value.accept$1(_this);
 							break $label1$1;
 						}
 						t1 = value instanceof A.CalculationOperation;
@@ -63087,7 +60873,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_writeCalculationUnits$2(numeratorUnits, denominatorUnits) {
 					var t1, t2, t3, t4;
 					for (t1 = J.get$iterator$ax(numeratorUnits), t2 = this._buffer, t3 = this._style !== B.OutputStyle_1; t1.moveNext$0();) {
-						t4 = t1.get$current(t1);
+						t4 = t1.get$current();
 						if (t3)
 							t2.writeCharCode$1(32);
 						t2.writeCharCode$1(42);
@@ -63097,7 +60883,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2.write$1(0, t4);
 					}
 					for (t1 = J.get$iterator$ax(denominatorUnits); t1.moveNext$0();) {
-						t4 = t1.get$current(t1);
+						t4 = t1.get$current();
 						if (t3)
 							t2.writeCharCode$1(32);
 						t2.writeCharCode$1(47);
@@ -63426,8 +61212,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = _0_0 instanceof A.SpanColorFormat;
 					format = t1 ? _0_0 : null;
 					if (t1) {
-						t1 = format._color$_span;
-						_this._buffer.write$1(0, t1.get$text(t1));
+						_this._buffer.write$1(0, format._color$_span.get$text());
 						return;
 					}
 					if (opaque) {
@@ -63685,7 +61470,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var needsParens = value instanceof A.SassList && value._separator === B.ListSeparator_z0K && !value._hasBrackets;
 					if (needsParens)
 						this._buffer.writeCharCode$1(40);
-					value.accept$1(0, this);
+					value.accept$1(this);
 					if (needsParens)
 						this._buffer.writeCharCode$1(41);
 				},
@@ -64056,7 +61841,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this._buffer,
 						start = t1.get$length(t1);
 					for (t2 = compound.components, t3 = t2.length, _i = 0; _i < t3; ++_i)
-						t2[_i].accept$1(0, this);
+						t2[_i].accept$1(this);
 					if (t1.get$length(t1) === start)
 						t1.writeCharCode$1(42);
 				},
@@ -64069,7 +61854,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1, t2, t3, first, t4, _this = this,
 						complexes = list.components;
 					for (t1 = J.get$iterator$ax(_this._inspect ? complexes : new A.WhereIterable(complexes, new A._SerializeVisitor_visitSelectorList_closure(), A._arrayInstanceType(complexes)._eval$1("WhereIterable<1>"))), t2 = _this._style !== B.OutputStyle_1, t3 = _this._buffer, first = true; t1.moveNext$0();) {
-						t4 = t1.get$current(t1);
+						t4 = t1.get$current();
 						if (first)
 							first = false;
 						else {
@@ -64101,7 +61886,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if ("not" === t1) {
 						_0_4 = pseudo.selector;
 						if (_0_4 instanceof A.SelectorList)
-							t2 = (_0_4 == null ? type$.SelectorList._as(_0_4) : _0_4).accept$1(0, B._IsInvisibleVisitor_true);
+							t2 = (_0_4 == null ? type$.SelectorList._as(_0_4) : _0_4).accept$1(B._IsInvisibleVisitor_true);
 					}
 					if (t2)
 						return;
@@ -64147,7 +61932,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t8 = t2.__internal$_current;
 						previous0 = t8 == null ? t3._as(t8) : t8;
 						if (t7)
-							t8 = t4 ? previous0.accept$1(0, B._IsInvisibleVisitor_true_true) : previous0.accept$1(0, B._IsInvisibleVisitor_true_false);
+							t8 = t4 ? previous0.accept$1(B._IsInvisibleVisitor_true_true) : previous0.accept$1(B._IsInvisibleVisitor_true_false);
 						else
 							t8 = false;
 						if (t8)
@@ -64213,8 +61998,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					searchFrom = t2.offset - t3.get$start(t3).offset - 1;
 					if (searchFrom < 0)
 						return false;
-					t2 = previous.get$span(previous);
-					endOffset = Math.max(0, B.JSString_methods.lastIndexOf$2(t2.get$text(t2), "{", searchFrom));
+					endOffset = Math.max(0, B.JSString_methods.lastIndexOf$2(previous.get$span(previous).get$text(), "{", searchFrom));
 					t2 = previous.get$span(previous);
 					t2 = t2.get$file(t2);
 					t3 = previous.get$span(previous);
@@ -64244,7 +62028,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_writeBetween$1$3(iterable, text, callback) {
 					var t1, t2, first, value;
 					for (t1 = J.get$iterator$ax(iterable), t2 = this._buffer, first = true; t1.moveNext$0();) {
-						value = t1.get$current(t1);
+						value = t1.get$current();
 						if (first)
 							first = false;
 						else
@@ -64384,7 +62168,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._SerializeVisitor_visitCssDeclaration_closure0.prototype = {
 				call$0() {
-					return this.node.value.value.accept$1(0, this.$this);
+					return this.node.value.value.accept$1(this.$this);
 				},
 				$signature: 2
 			};
@@ -64392,7 +62176,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(element) {
 					return !element.get$isBlank();
 				},
-				$signature: 23
+				$signature: 22
 			};
 			A._SerializeVisitor_visitList_closure0.prototype = {
 				call$1(element) {
@@ -64400,17 +62184,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						needsParens = t1._serialize$_elementNeedsParens$2(this.value._separator, element);
 					if (needsParens)
 						t1._buffer.writeCharCode$1(40);
-					element.accept$1(0, t1);
+					element.accept$1(t1);
 					if (needsParens)
 						t1._buffer.writeCharCode$1(41);
 				},
-				$signature: 38
+				$signature: 36
 			};
 			A._SerializeVisitor_visitList_closure1.prototype = {
 				call$1(element) {
-					element.accept$1(0, this.$this);
+					element.accept$1(this.$this);
 				},
-				$signature: 38
+				$signature: 36
 			};
 			A._SerializeVisitor_visitMap_closure.prototype = {
 				call$1(entry) {
@@ -64419,11 +62203,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._buffer.write$1(0, ": ");
 					t1._writeMapElement$1(entry.value);
 				},
-				$signature: 328
+				$signature: 326
 			};
 			A._SerializeVisitor_visitSelectorList_closure.prototype = {
 				call$1(complex) {
-					return !complex.accept$1(0, B._IsInvisibleVisitor_true);
+					return !complex.accept$1(B._IsInvisibleVisitor_true);
 				},
 				$signature: 7
 			};
@@ -64435,13 +62219,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._SerializeVisitor__visitChildren_closure.prototype = {
 				call$0() {
-					return this.child.accept$1(0, this.$this);
+					return this.child.accept$1(this.$this);
 				},
 				$signature: 2
 			};
 			A._SerializeVisitor__visitChildren_closure0.prototype = {
 				call$0() {
-					this.child.accept$1(0, this.$this);
+					this.child.accept$1(this.$this);
 				},
 				$signature: 2
 			};
@@ -64469,8 +62253,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2,
 						t1 = this.buffer;
 					if (t1 != null) {
-						t2 = node.span;
-						t2 = t2.get$text(t2);
+						t2 = node.span.get$text();
 						t1 = t1._interpolation_buffer$_text;
 						t1._contents += t2;
 					}
@@ -64494,8 +62277,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t1.length === 0) {
 						t1 = _this.buffer;
 						if (t1 != null) {
-							t2 = $arguments.span;
-							t2 = t2.get$text(t2);
+							t2 = $arguments.span.get$text();
 							t1 = t1._interpolation_buffer$_text;
 							t1._contents += t2;
 						}
@@ -64541,7 +62323,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t5._contents += t8;
 						}
 						if (!t4) {
-							condition.accept$1(0, _this);
+							condition.accept$1(_this);
 							t4 = _this.buffer;
 							if (t4 != null) {
 								t5 = A.SpanExtensions_between(condition.get$span(condition), expression.get$span(expression));
@@ -64552,7 +62334,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								t4._contents += t7;
 							}
 						}
-						expression.accept$1(0, _this);
+						expression.accept$1(_this);
 						lastSpan = expression.get$span(expression);
 					}
 				},
@@ -64567,7 +62349,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1._contents += t2;
 					}
 					t1 = node.expression;
-					t1.accept$1(0, this);
+					t1.accept$1(this);
 					t2 = this.buffer;
 					if (t2 != null) {
 						t1 = A.SpanExtensions_after(node.span, t1.get$span(t1));
@@ -64586,7 +62368,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = t1._interpolation_buffer$_text;
 						t1._contents += t2;
 					}
-					node.expression.accept$1(0, this);
+					node.expression.accept$1(this);
 				},
 				visitIfConditionOperation$1(_, node) {
 					this._writeListAndBetween$2(node.expressions, new A.SourceInterpolationVisitor_visitIfConditionOperation_closure(this));
@@ -64637,8 +62419,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t3 && t2 === 0) {
 						t1 = _this.buffer;
 						if (t1 != null) {
-							t2 = node.span;
-							t2 = t2.get$text(t2);
+							t2 = node.span.get$text();
 							t1 = t1._interpolation_buffer$_text;
 							t1._contents += t2;
 						}
@@ -64676,8 +62457,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2,
 						t1 = this.buffer;
 					if (t1 != null) {
-						t2 = node.span;
-						t2 = t2.get$text(t2);
+						t2 = node.span.get$text();
 						t1 = t1._interpolation_buffer$_text;
 						t1._contents += t2;
 					}
@@ -64695,8 +62475,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (t1.get$asPlain() != null) {
 						t2 = _this.buffer;
 						if (t2 != null) {
-							t1 = t1.span;
-							t1 = t1.get$text(t1);
+							t1 = t1.span.get$text();
 							t2 = t2._interpolation_buffer$_text;
 							t2._contents += t1;
 						}
@@ -64787,21 +62566,21 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.SourceInterpolationVisitor__visitArguments_closure.prototype = {
 				call$1(node) {
-					return node.accept$1(0, this.$this);
+					return node.accept$1(this.$this);
 				},
-				$signature: 54
+				$signature: 52
 			};
 			A.SourceInterpolationVisitor_visitIfConditionOperation_closure.prototype = {
 				call$1(node) {
-					return node.accept$1(0, this.$this);
+					return node.accept$1(this.$this);
 				},
-				$signature: 329
+				$signature: 327
 			};
 			A.SourceInterpolationVisitor_visitListExpression_closure.prototype = {
 				call$1(node) {
-					return node.accept$1(0, this.$this);
+					return node.accept$1(this.$this);
 				},
-				$signature: 54
+				$signature: 52
 			};
 			A.StatementSearchVisitor.prototype = {
 				visitAtRootRule$1(_, node) {
@@ -64900,7 +62679,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.StatementSearchVisitor_visitIfRule__closure0.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
 				$signature() {
 					return A._instanceType(this.$this)._eval$1("StatementSearchVisitor.T?(Statement)");
@@ -64916,7 +62695,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.StatementSearchVisitor_visitIfRule__closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
 				$signature() {
 					return A._instanceType(this.$this)._eval$1("StatementSearchVisitor.T?(Statement)");
@@ -64924,7 +62703,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.StatementSearchVisitor_visitChildren_closure.prototype = {
 				call$1(child) {
-					return child.accept$1(0, this.$this);
+					return child.accept$1(this.$this);
 				},
 				$signature() {
 					return A._instanceType(this.$this)._eval$1("StatementSearchVisitor.T?(Statement)");
@@ -64961,7 +62740,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							first = true;
 						}
 						for (t3 = J.get$iterator$ax(entry.entries); t3.moveNext$0(); column = column0, first = false) {
-							t4 = t3.get$current(t3);
+							t4 = t3.get$current();
 							if (!first)
 								buff._contents += ",";
 							column0 = t4.column;
@@ -65012,32 +62791,32 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.urls.__js_helper$_length;
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A.SingleMapping_SingleMapping$fromEntries_closure0.prototype = {
 				call$0() {
 					return this.sourceEntry.source.file;
 				},
-				$signature: 330
+				$signature: 328
 			};
 			A.SingleMapping_SingleMapping$fromEntries_closure1.prototype = {
 				call$1(i) {
 					return this.files.$index(0, i);
 				},
-				$signature: 331
+				$signature: 329
 			};
 			A.SingleMapping_toJson_closure.prototype = {
 				call$1(file) {
 					return file == null ? null : A.String_String$fromCharCodes(B.NativeUint32List_methods.sublist$2(file._decodedChars, 0, null), 0, null);
 				},
-				$signature: 332
+				$signature: 330
 			};
 			A.SingleMapping_toJson_closure0.prototype = {
 				call$2($name, value) {
 					this.result.$indexSet(0, $name, value);
 					return value;
 				},
-				$signature: 17
+				$signature: 100
 			};
 			A.TargetLineEntry.prototype = {
 				toString$0(_) {
@@ -65054,7 +62833,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$length(_) {
 					return this._decodedChars.length;
 				},
-				get$lines(_) {
+				get$lines() {
 					return this._lineStarts.length;
 				},
 				SourceFile$decoded$2$url(decodedChars, url) {
@@ -65144,7 +62923,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = this._lineStarts;
 						t2 = t1.length;
 						if (line >= t2)
-							throw A.wrapException(A.RangeError$("Line " + line + " must be less than the number of lines in the file, " + this.get$lines(0) + "."));
+							throw A.wrapException(A.RangeError$("Line " + line + " must be less than the number of lines in the file, " + this.get$lines() + "."));
 					}
 					result = t1[line];
 					if (result <= this._decodedChars.length) {
@@ -65161,7 +62940,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$sourceUrl(_) {
 					return this.file.url;
 				},
-				get$line(_) {
+				get$line() {
 					return this.file.getLine$1(this.offset);
 				},
 				get$column() {
@@ -65182,7 +62961,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.offset;
 					return A._FileSpan$(this.file, t1, t1);
 				},
-				get$offset(receiver) {
+				get$offset() {
 					return this.offset;
 				}
 			};
@@ -65199,7 +62978,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$end(_) {
 					return A.FileLocation$_(this.file, this._end);
 				},
-				get$text(_) {
+				get$text() {
 					return A.String_String$fromCharCodes(B.NativeUint32List_methods.sublist$2(this.file._decodedChars, this._start, this._end), 0, null);
 				},
 				get$context(_) {
@@ -65267,8 +63046,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.Highlighter.prototype = {
-				highlight$0(_) {
-					var t2, highlightsByColumn, t3, t4, i, line, lastLine, t5, t6, t7, t8, t9, t10, t11, t12, t13, index, primaryIdx, primary, _i, highlight, _this = this, _null = null,
+				highlight$0() {
+					var t2, highlightsByColumn, t3, t4, i, line, lastLine, t5, t6, t7, t8, t9, t10, t11, index, primaryIdx, primary, _i, highlight, _this = this, _null = null,
 						t1 = _this._lines;
 					_this._writeFileStart$1(B.JSArray_methods.get$first(t1).url);
 					t2 = _this._maxMultilineSpans;
@@ -65292,15 +63071,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							if (t10 == null)
 								t10 = t6._as(t10);
 							t11 = t10.span;
-							t12 = t11.get$start(t11);
-							t12 = t12.get$line(t12);
-							t13 = t11.get$end(t11);
-							if (t12 !== t13.get$line(t13)) {
-								t12 = t11.get$start(t11);
-								t11 = t12.get$line(t12) === t8 && _this._isOnlyWhitespace$1(B.JSString_methods.substring$2(t9, 0, t11.get$start(t11).get$column()));
-							} else
-								t11 = false;
-							if (t11) {
+							if (t11.get$start(t11).get$line() !== t11.get$end(t11).get$line() && t11.get$start(t11).get$line() === t8 && _this._isOnlyWhitespace$1(B.JSString_methods.substring$2(t9, 0, t11.get$start(t11).get$column()))) {
 								index = B.JSArray_methods.indexOf$1(highlightsByColumn, _null);
 								if (index < 0)
 									A.throwExpression(A.ArgumentError$(A.S(highlightsByColumn) + " contains no null elements.", _null));
@@ -65317,10 +63088,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t6 = primary != null;
 						if (t6) {
 							t7 = primary.span;
-							t10 = t7.get$start(t7);
-							t10 = t10.get$line(t10) === t8 ? t7.get$start(t7).get$column() : 0;
-							t11 = t7.get$end(t7);
-							_this._writeHighlightedText$4$color(t9, t10, t11.get$line(t11) === t8 ? t7.get$end(t7).get$column() : t9.length, t4);
+							t10 = t7.get$start(t7).get$line() === t8 ? t7.get$start(t7).get$column() : 0;
+							_this._writeHighlightedText$4$color(t9, t10, t7.get$end(t7).get$line() === t8 ? t7.get$end(t7).get$column() : t9.length, t4);
 						} else
 							_this._writeText$1(t9);
 						t3._contents += "\n";
@@ -65368,15 +63137,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							startLine = null;
 						else {
 							t7 = highlight.span;
-							t7 = t7.get$start(t7);
-							startLine = t7.get$line(t7);
+							startLine = t7.get$start(t7).get$line();
 						}
 						if (t6)
 							endLine = null;
 						else {
 							t7 = highlight.span;
-							t7 = t7.get$end(t7);
-							endLine = t7.get$line(t7);
+							endLine = t7.get$end(t7).get$line();
 						}
 						if (t1 && highlight === current) {
 							_this._colorize$2$color(new A.Highlighter__writeMultilineHighlights_closure(_this, startLine, line), currentColor);
@@ -65404,13 +63171,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this._writeText$1(B.JSString_methods.substring$2(text, endColumn, text.length));
 				},
 				_writeIndicator$3(line, highlight, highlightsByColumn) {
-					var t3, coversWholeLine, _this = this,
+					var t2, coversWholeLine, _this = this,
 						color = highlight.isPrimary ? _this._primaryColor : _this._secondaryColor,
-						t1 = highlight.span,
-						t2 = t1.get$start(t1);
-					t2 = t2.get$line(t2);
-					t3 = t1.get$end(t1);
-					if (t2 === t3.get$line(t3)) {
+						t1 = highlight.span;
+					if (t1.get$start(t1).get$line() === t1.get$end(t1).get$line()) {
 						_this._writeSidebar$0();
 						t1 = _this._highlighter$_buffer;
 						t1._contents += " ";
@@ -65419,9 +63183,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t1._contents += " ";
 						_this._writeLabel$3(highlight, highlightsByColumn, _this._colorize$2$color(new A.Highlighter__writeIndicator_closure(_this, line, highlight), color));
 					} else {
-						t2 = t1.get$start(t1);
-						t3 = line.number;
-						if (t2.get$line(t2) === t3) {
+						t2 = line.number;
+						if (t1.get$start(t1).get$line() === t2) {
 							if (B.JSArray_methods.contains$1(highlightsByColumn, highlight))
 								return;
 							A.replaceFirstNull(highlightsByColumn, highlight);
@@ -65431,20 +63194,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							_this._writeMultilineHighlights$3$current(line, highlightsByColumn, highlight);
 							_this._colorize$2$color(new A.Highlighter__writeIndicator_closure0(_this, line, highlight), color);
 							t1._contents += "\n";
-						} else {
-							t2 = t1.get$end(t1);
-							if (t2.get$line(t2) === t3) {
-								coversWholeLine = t1.get$end(t1).get$column() === line.text.length;
-								if (coversWholeLine && highlight.label == null) {
-									A.replaceWithNull(highlightsByColumn, highlight);
-									return;
-								}
-								_this._writeSidebar$0();
-								_this._highlighter$_buffer._contents += " ";
-								_this._writeMultilineHighlights$3$current(line, highlightsByColumn, highlight);
-								_this._writeLabel$3(highlight, highlightsByColumn, _this._colorize$2$color(new A.Highlighter__writeIndicator_closure1(_this, coversWholeLine, line, highlight), color));
+						} else if (t1.get$end(t1).get$line() === t2) {
+							coversWholeLine = t1.get$end(t1).get$column() === line.text.length;
+							if (coversWholeLine && highlight.label == null) {
 								A.replaceWithNull(highlightsByColumn, highlight);
+								return;
 							}
+							_this._writeSidebar$0();
+							_this._highlighter$_buffer._contents += " ";
+							_this._writeMultilineHighlights$3$current(line, highlightsByColumn, highlight);
+							_this._writeLabel$3(highlight, highlightsByColumn, _this._colorize$2$color(new A.Highlighter__writeIndicator_closure1(_this, coversWholeLine, line, highlight), color));
+							A.replaceWithNull(highlightsByColumn, highlight);
 						}
 					}
 				},
@@ -65569,30 +63329,27 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return null;
 					return A._asStringQ(t1);
 				},
-				$signature: 37
+				$signature: 38
 			};
 			A.Highlighter$__closure.prototype = {
 				call$1(line) {
 					var t1 = line.highlights;
 					return new A.WhereIterable(t1, new A.Highlighter$___closure(), A._arrayInstanceType(t1)._eval$1("WhereIterable<1>")).get$length(0);
 				},
-				$signature: 333
+				$signature: 331
 			};
 			A.Highlighter$___closure.prototype = {
 				call$1(highlight) {
-					var t1 = highlight.span,
-						t2 = t1.get$start(t1);
-					t2 = t2.get$line(t2);
-					t1 = t1.get$end(t1);
-					return t2 !== t1.get$line(t1);
+					var t1 = highlight.span;
+					return t1.get$start(t1).get$line() !== t1.get$end(t1).get$line();
 				},
-				$signature: 46
+				$signature: 44
 			};
 			A.Highlighter$__closure0.prototype = {
 				call$1(line) {
 					return line.url;
 				},
-				$signature: 335
+				$signature: 333
 			};
 			A.Highlighter__collateLines_closure.prototype = {
 				call$1(highlight) {
@@ -65600,13 +63357,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t1.get$sourceUrl(t1);
 					return t1 == null ? new A.Object() : t1;
 				},
-				$signature: 336
+				$signature: 334
 			};
 			A.Highlighter__collateLines_closure0.prototype = {
 				call$2(highlight1, highlight2) {
 					return highlight1.span.compareTo$1(0, highlight2.span);
 				},
-				$signature: 337
+				$signature: 335
 			};
 			A.Highlighter__collateLines_closure1.prototype = {
 				call$1(entry) {
@@ -65615,13 +63372,12 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						highlightsForFile = entry.value,
 						lines = A._setArrayType([], type$.JSArray__Line);
 					for (t1 = J.getInterceptor$ax(highlightsForFile), t2 = t1.get$iterator(highlightsForFile), t3 = type$.JSArray__Highlight; t2.moveNext$0();) {
-						t4 = t2.get$current(t2).span;
+						t4 = t2.get$current().span;
 						context = t4.get$context(t4);
-						t5 = A.findLineStart(context, t4.get$text(t4), t4.get$start(t4).get$column());
+						t5 = A.findLineStart(context, t4.get$text(), t4.get$start(t4).get$column());
 						t5.toString;
 						linesBeforeSpan = B.JSString_methods.allMatches$1("\n", B.JSString_methods.substring$2(context, 0, t5)).get$length(0);
-						t4 = t4.get$start(t4);
-						lineNumber = t4.get$line(t4) - linesBeforeSpan;
+						lineNumber = t4.get$start(t4).get$line() - linesBeforeSpan;
 						for (t4 = context.split("\n"), t5 = t4.length, _i = 0; _i < t5; ++_i) {
 							line = t4[_i];
 							if (lines.length === 0 || lineNumber > B.JSArray_methods.get$last(lines).number)
@@ -65640,8 +63396,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							if (t6 == null)
 								t6 = t4._as(t6);
 							t7 = t6.span;
-							t7 = t7.get$start(t7);
-							if (t7.get$line(t7) > t5)
+							if (t7.get$start(t7).get$line() > t5)
 								break;
 							activeHighlights.push(t6);
 						}
@@ -65650,21 +63405,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return lines;
 				},
-				$signature: 338
+				$signature: 336
 			};
 			A.Highlighter__collateLines__closure.prototype = {
 				call$1(highlight) {
 					var t1 = highlight.span;
-					t1 = t1.get$end(t1);
-					return t1.get$line(t1) < this.line.number;
+					return t1.get$end(t1).get$line() < this.line.number;
 				},
-				$signature: 46
+				$signature: 44
 			};
 			A.Highlighter_highlight_closure.prototype = {
 				call$1(highlight) {
 					return highlight.isPrimary;
 				},
-				$signature: 46
+				$signature: 44
 			};
 			A.Highlighter__writeFileStart_closure.prototype = {
 				call$0() {
@@ -65779,7 +63533,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t2._contents = t4;
 					return t4.length - t3.length;
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A.Highlighter__writeIndicator_closure0.prototype = {
 				call$0() {
@@ -65803,7 +63557,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return t2._contents.length - t3.length;
 				},
-				$signature: 21
+				$signature: 20
 			};
 			A.Highlighter__writeLabel_closure.prototype = {
 				call$0() {
@@ -65839,14 +63593,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._Highlight.prototype = {
 				toString$0(_) {
-					var t4, t5,
-						t1 = this.isPrimary ? "primary " : "",
-						t2 = this.span,
-						t3 = t2.get$start(t2);
-					t3 = t3.get$line(t3);
-					t4 = t2.get$start(t2).get$column();
-					t5 = t2.get$end(t2);
-					t2 = t1 + ("" + t3 + ":" + t4 + "-" + t5.get$line(t5) + ":" + t2.get$end(t2).get$column());
+					var t1 = this.isPrimary ? "primary " : "",
+						t2 = this.span;
+					t2 = t1 + ("" + t2.get$start(t2).get$line() + ":" + t2.get$start(t2).get$column() + "-" + t2.get$end(t2).get$line() + ":" + t2.get$end(t2).get$column());
 					t1 = this.label;
 					t1 = t1 != null ? t2 + (" (" + t1 + ")") : t2;
 					return t1.charCodeAt(0) == 0 ? t1 : t1;
@@ -65856,18 +63605,16 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					var t1, t2, t3, t4,
 						newSpan = this.span;
-					if (!(type$.SourceSpanWithContext._is(newSpan) && A.findLineStart(newSpan.get$context(newSpan), newSpan.get$text(newSpan), newSpan.get$start(newSpan).get$column()) != null)) {
-						t1 = newSpan.get$start(newSpan);
-						t1 = A.SourceLocation$(t1.get$offset(t1), 0, 0, newSpan.get$sourceUrl(newSpan));
-						t2 = newSpan.get$end(newSpan);
-						t2 = t2.get$offset(t2);
+					if (!(type$.SourceSpanWithContext._is(newSpan) && A.findLineStart(newSpan.get$context(newSpan), newSpan.get$text(), newSpan.get$start(newSpan).get$column()) != null)) {
+						t1 = A.SourceLocation$(newSpan.get$start(newSpan).get$offset(), 0, 0, newSpan.get$sourceUrl(newSpan));
+						t2 = newSpan.get$end(newSpan).get$offset();
 						t3 = newSpan.get$sourceUrl(newSpan);
-						t4 = A.countCodeUnits(newSpan.get$text(newSpan), 10);
-						newSpan = A.SourceSpanWithContext$(t1, A.SourceLocation$(t2, A._Highlight__lastLineLength(newSpan.get$text(newSpan)), t4, t3), newSpan.get$text(newSpan), newSpan.get$text(newSpan));
+						t4 = A.countCodeUnits(newSpan.get$text(), 10);
+						newSpan = A.SourceSpanWithContext$(t1, A.SourceLocation$(t2, A._Highlight__lastLineLength(newSpan.get$text()), t4, t3), newSpan.get$text(), newSpan.get$text());
 					}
 					return A._Highlight__normalizeEndOfLine(A._Highlight__normalizeTrailingNewline(A._Highlight__normalizeNewlines(newSpan)));
 				},
-				$signature: 339
+				$signature: 337
 			};
 			A._Line.prototype = {
 				toString$0(_) {
@@ -65879,18 +63626,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.sourceUrl;
 					if (!J.$eq$(t1, other.get$sourceUrl(other)))
 						throw A.wrapException(A.ArgumentError$('Source URLs "' + A.S(t1) + '" and "' + A.S(other.get$sourceUrl(other)) + "\" don't match.", null));
-					return Math.abs(this.offset - other.get$offset(other));
+					return Math.abs(this.offset - other.get$offset());
 				},
 				compareTo$1(_, other) {
 					var t1 = this.sourceUrl;
 					if (!J.$eq$(t1, other.get$sourceUrl(other)))
 						throw A.wrapException(A.ArgumentError$('Source URLs "' + A.S(t1) + '" and "' + A.S(other.get$sourceUrl(other)) + "\" don't match.", null));
-					return this.offset - other.get$offset(other);
+					return this.offset - other.get$offset();
 				},
 				$eq(_, other) {
 					if (other == null)
 						return false;
-					return type$.SourceLocation._is(other) && J.$eq$(this.sourceUrl, other.get$sourceUrl(other)) && this.offset === other.get$offset(other);
+					return type$.SourceLocation._is(other) && J.$eq$(this.sourceUrl, other.get$sourceUrl(other)) && this.offset === other.get$offset();
 				},
 				get$hashCode(_) {
 					var t1 = this.sourceUrl;
@@ -65909,10 +63656,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$sourceUrl(receiver) {
 					return this.sourceUrl;
 				},
-				get$offset(receiver) {
+				get$offset() {
 					return this.offset;
 				},
-				get$line(receiver) {
+				get$line() {
 					return this.line;
 				},
 				get$column() {
@@ -65923,17 +63670,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				distance$1(other) {
 					if (!J.$eq$(this.file.url, other.get$sourceUrl(other)))
 						throw A.wrapException(A.ArgumentError$('Source URLs "' + A.S(this.get$sourceUrl(0)) + '" and "' + A.S(other.get$sourceUrl(other)) + "\" don't match.", null));
-					return Math.abs(this.offset - other.get$offset(other));
+					return Math.abs(this.offset - other.get$offset());
 				},
 				compareTo$1(_, other) {
 					if (!J.$eq$(this.file.url, other.get$sourceUrl(other)))
 						throw A.wrapException(A.ArgumentError$('Source URLs "' + A.S(this.get$sourceUrl(0)) + '" and "' + A.S(other.get$sourceUrl(other)) + "\" don't match.", null));
-					return this.offset - other.get$offset(other);
+					return this.offset - other.get$offset();
 				},
 				$eq(_, other) {
 					if (other == null)
 						return false;
-					return type$.SourceLocation._is(other) && J.$eq$(this.file.url, other.get$sourceUrl(other)) && this.offset === other.get$offset(other);
+					return type$.SourceLocation._is(other) && J.$eq$(this.file.url, other.get$sourceUrl(other)) && this.offset === other.get$offset();
 				},
 				get$hashCode(_) {
 					var t1 = this.file.url;
@@ -65959,7 +63706,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = this.start;
 					if (!J.$eq$(t1.get$sourceUrl(t1), t2.get$sourceUrl(t2)))
 						throw A.wrapException(A.ArgumentError$('Source URLs "' + A.S(t2.get$sourceUrl(t2)) + '" and  "' + A.S(t1.get$sourceUrl(t1)) + "\" don't match.", null));
-					else if (t1.get$offset(t1) < t2.get$offset(t2))
+					else if (t1.get$offset() < t2.get$offset())
 						throw A.wrapException(A.ArgumentError$("End " + t1.toString$0(0) + " must come after start " + t2.toString$0(0) + ".", null));
 					else {
 						t3 = this.text;
@@ -65973,7 +63720,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				get$end(receiver) {
 					return this.end;
 				},
-				get$text(receiver) {
+				get$text() {
 					return this.text;
 				}
 			};
@@ -65995,7 +63742,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				$isException: 1
 			};
 			A.SourceSpanFormatException.prototype = {$isFormatException: 1,
-				get$source(receiver) {
+				get$source() {
 					return this.source;
 				}
 			};
@@ -66018,11 +63765,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return t1.get$sourceUrl(t1);
 				},
 				get$length(_) {
-					var t2, _this = this,
-						t1 = _this.get$end(_this);
-					t1 = t1.get$offset(t1);
-					t2 = _this.get$start(_this);
-					return t1 - t2.get$offset(t2);
+					var _this = this;
+					return _this.get$end(_this).get$offset() - _this.get$start(_this).get$offset();
 				},
 				compareTo$1(_, other) {
 					var _this = this,
@@ -66031,8 +63775,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				message$2$color(_, message, color) {
 					var t2, t3, highlight, _this = this,
-						t1 = _this.get$start(_this);
-					t1 = "line " + (t1.get$line(t1) + 1) + ", column " + (_this.get$start(_this).get$column() + 1);
+						t1 = "line " + (_this.get$start(_this).get$line() + 1) + ", column " + (_this.get$start(_this).get$column() + 1);
 					if (_this.get$sourceUrl(_this) != null) {
 						t2 = _this.get$sourceUrl(_this);
 						t3 = $.$get$context();
@@ -66041,7 +63784,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = t2;
 					}
 					t1 += ": " + message;
-					highlight = _this.highlight$1$color(0, color);
+					highlight = _this.highlight$1$color(color);
 					if (highlight.length !== 0)
 						t1 = t1 + "\n" + highlight;
 					return t1.charCodeAt(0) == 0 ? t1 : t1;
@@ -66049,11 +63792,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				message$1(_, message) {
 					return this.message$2$color(0, message, null);
 				},
-				highlight$1$color(_, color) {
+				highlight$1$color(color) {
 					var _this = this;
 					if (!type$.SourceSpanWithContext._is(_this) && _this.get$length(_this) === 0)
 						return "";
-					return A.Highlighter$(_this, color).highlight$0(0);
+					return A.Highlighter$(_this, color).highlight$0();
 				},
 				$eq(_, other) {
 					var _this = this;
@@ -66067,7 +63810,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				toString$0(_) {
 					var _this = this;
-					return "<" + A.getRuntimeTypeOfDartObject(_this).toString$0(0) + ": from " + _this.get$start(_this).toString$0(0) + " to " + _this.get$end(_this).toString$0(0) + ' "' + _this.get$text(_this) + '">';
+					return "<" + A.getRuntimeTypeOfDartObject(_this).toString$0(0) + ": from " + _this.get$start(_this).toString$0(0) + " to " + _this.get$end(_this).toString$0(0) + ' "' + _this.get$text() + '">';
 				},
 				$isComparable: 1,
 				$isSourceSpan: 1
@@ -66084,11 +63827,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return "data:...";
 					return $.$get$context().prettyUri$1(t1);
 				},
-				get$location(_) {
+				get$location() {
 					return this.get$library() + " " + this.line + ":" + this.column;
 				},
 				toString$0(_) {
-					return this.get$location(0) + " in " + this.member;
+					return this.get$location() + " in " + this.member;
 				}
 			};
 			A.Trace.prototype = {
@@ -66101,18 +63844,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.Trace_toString_closure0.prototype = {
 				call$1(frame) {
-					return frame.get$location(0).length;
+					return frame.get$location().length;
 				},
-				$signature: 340
+				$signature: 338
 			};
 			A.Trace_toString_closure.prototype = {
 				call$1(frame) {
-					return B.JSString_methods.padRight$1(frame.get$location(0), this.longest) + "  " + frame.member + "\n";
+					return B.JSString_methods.padRight$1(frame.get$location(), this.longest) + "  " + frame.member + "\n";
 				},
-				$signature: 341
+				$signature: 339
 			};
 			A.StringScannerException.prototype = {
-				get$source(_) {
+				get$source() {
 					return A._asString(this.source);
 				}
 			};
@@ -66147,7 +63890,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (!_this.super$StringScanner$scan(pattern))
 						return false;
 					t1 = _this.get$lastMatch();
-					newlines = _this._newlinesIn$2$endPosition(t1.pattern, _this._string_scanner$_position);
+					newlines = _this._newlinesIn$2$endPosition(t1.pattern, _this._position);
 					t1 = _this._line_scanner$_line;
 					t2 = newlines.length;
 					_this._line_scanner$_line = t1 + t2;
@@ -66173,23 +63916,23 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			A.SpanScanner.prototype = {
-				set$state(_, state) {
+				set$state(state) {
 					if (state._scanner !== this)
 						throw A.wrapException(A.ArgumentError$("The given LineScannerState was not returned by this LineScanner.", null));
-					this.set$position(0, state.position);
+					this.set$position(state.position);
 				},
 				spanFrom$2(startState, endState) {
-					var endPosition = endState == null ? this._string_scanner$_position : endState.position;
+					var endPosition = endState == null ? this._position : endState.position;
 					return this._sourceFile.span$2(0, startState.position, endPosition);
 				},
 				spanFrom$1(startState) {
 					return this.spanFrom$2(startState, null);
 				},
-				matches$1(_, pattern) {
+				matches$1(pattern) {
 					var t1, t2, _this = this;
-					if (!_this.super$StringScanner$matches(0, pattern))
+					if (!_this.super$StringScanner$matches(pattern))
 						return false;
-					t1 = _this._string_scanner$_position;
+					t1 = _this._position;
 					t2 = _this.get$lastMatch();
 					_this._sourceFile.span$2(0, t1, t2.start + t2.pattern.length);
 					return true;
@@ -66200,7 +63943,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					A.validateErrorArgs(t1, null, position, $length);
 					match = position == null && $length == null ? _this.get$lastMatch() : null;
 					if (position == null)
-						position = match == null ? _this._string_scanner$_position : match.start;
+						position = match == null ? _this._position : match.start;
 					if ($length == null)
 						if (match == null)
 							$length = 0;
@@ -66222,30 +63965,30 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._SpanScannerState.prototype = {};
 			A.StringScanner.prototype = {
-				set$position(_, position) {
+				set$position(position) {
 					if (B.JSInt_methods.get$isNegative(position) || position > this.string.length)
 						throw A.wrapException(A.ArgumentError$("Invalid position " + position, null));
-					this._string_scanner$_position = position;
+					this._position = position;
 					this._lastMatch = null;
 				},
 				get$lastMatch() {
 					var _this = this;
-					if (_this._string_scanner$_position !== _this._lastMatchPosition)
+					if (_this._position !== _this._lastMatchPosition)
 						_this._lastMatch = null;
 					return _this._lastMatch;
 				},
 				readChar$0() {
 					var _this = this,
 						t1 = _this.string;
-					if (_this._string_scanner$_position === t1.length)
+					if (_this._position === t1.length)
 						_this._fail$1("more input");
-					return t1.charCodeAt(_this._string_scanner$_position++);
+					return t1.charCodeAt(_this._position++);
 				},
 				peekChar$1(offset) {
 					var index;
 					if (offset == null)
 						offset = 0;
-					index = this._string_scanner$_position + offset;
+					index = this._position + offset;
 					if (index < 0 || index >= this.string.length)
 						return null;
 					return this.string.charCodeAt(index);
@@ -66256,7 +63999,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				scanChar$1(character) {
 					var t1, t2, t3, t4, _this = this;
 					if (character >= 65536 && character <= 1114111) {
-						t1 = _this._string_scanner$_position;
+						t1 = _this._position;
 						t2 = t1 + 1;
 						t3 = _this.string;
 						if (t2 < t3.length) {
@@ -66267,17 +64010,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						if (t2)
 							return false;
 						else {
-							_this._string_scanner$_position = t1 + 2;
+							_this._position = t1 + 2;
 							return true;
 						}
 					} else {
-						t1 = _this._string_scanner$_position;
+						t1 = _this._position;
 						t2 = _this.string;
 						if (t1 === t2.length)
 							return false;
 						if (t2.charCodeAt(t1) !== character)
 							return false;
-						_this._string_scanner$_position = t1 + 1;
+						_this._position = t1 + 1;
 						return true;
 					}
 				},
@@ -66296,10 +64039,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				scan$1(pattern) {
 					var t1, _this = this,
-						success = _this.matches$1(0, pattern);
+						success = _this.matches$1(pattern);
 					if (success) {
 						t1 = _this._lastMatch;
-						_this._lastMatchPosition = _this._string_scanner$_position = t1.start + t1.pattern.length;
+						_this._lastMatchPosition = _this._position = t1.start + t1.pattern.length;
 					}
 					return success;
 				},
@@ -66312,19 +64055,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this._fail$1($name);
 				},
 				expectDone$0() {
-					if (this._string_scanner$_position === this.string.length)
+					if (this._position === this.string.length)
 						return;
 					this._fail$1("no more input");
 				},
-				matches$1(_, pattern) {
+				matches$1(pattern) {
 					var _this = this,
-						t1 = B.JSString_methods.matchAsPrefix$2(pattern, _this.string, _this._string_scanner$_position);
+						t1 = B.JSString_methods.matchAsPrefix$2(pattern, _this.string, _this._position);
 					_this._lastMatch = t1;
-					_this._lastMatchPosition = _this._string_scanner$_position;
+					_this._lastMatchPosition = _this._position;
 					return t1 != null;
 				},
 				substring$1(_, start) {
-					var end = this._string_scanner$_position;
+					var end = this._position;
 					return B.JSString_methods.substring$2(this.string, start, end);
 				},
 				error$3$length$position(_, message, $length, position) {
@@ -66333,7 +64076,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					A.validateErrorArgs(t1, null, position, $length);
 					match = position == null && $length == null ? _this.get$lastMatch() : null;
 					if (position == null)
-						position = match == null ? _this._string_scanner$_position : match.start;
+						position = match == null ? _this._position : match.start;
 					if ($length == null)
 						if (match == null)
 							$length = 0;
@@ -66347,7 +64090,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this.error$3$length$position(0, message, null, null);
 				},
 				_fail$1($name) {
-					this.error$3$length$position(0, "expected " + $name + ".", 0, this._string_scanner$_position);
+					this.error$3$length$position(0, "expected " + $name + ".", 0, this._position);
 				}
 			};
 			A.AsciiGlyphSet.prototype = {
@@ -66409,9 +64152,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				}
 			};
 			(function aliases() {
-				var _ = J.Interceptor.prototype;
-				_.super$Interceptor$toString = _.toString$0;
-				_ = J.LegacyJavaScriptObject.prototype;
+				var _ = J.LegacyJavaScriptObject.prototype;
 				_.super$LegacyJavaScriptObject$toString = _.toString$0;
 				_ = A.ListBase.prototype;
 				_.super$ListBase$setRange = _.setRange$4;
@@ -66474,169 +64215,168 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			(function installTearOffs() {
 				var _static_2 = hunkHelpers._static_2,
 					_instance_1_i = hunkHelpers._instance_1i,
+					_instance_1_u = hunkHelpers._instance_1u,
 					_static_1 = hunkHelpers._static_1,
 					_static_0 = hunkHelpers._static_0,
 					_static = hunkHelpers.installStaticTearOff,
-					_instance_1_u = hunkHelpers._instance_1u,
 					_instance_0_u = hunkHelpers._instance_0u,
 					_instance = hunkHelpers.installInstanceTearOff;
-				_static_2(J, "_interceptors_JSArray__compareAny$closure", "JSArray__compareAny", 111);
-				_instance_1_i(J.JSArray.prototype, "get$contains", "contains$1", 3);
-				_instance_1_i(A._CastIterableBase.prototype, "get$contains", "contains$1", 3);
-				_instance_1_i(A.CastMap.prototype, "get$containsKey", "containsKey$1", 3);
-				_instance_1_i(A.ConstantStringMap.prototype, "get$containsKey", "containsKey$1", 3);
-				_instance_1_i(A.ConstantStringSet.prototype, "get$contains", "contains$1", 3);
-				_instance_1_i(A.GeneralConstantSet.prototype, "get$contains", "contains$1", 3);
-				_instance_1_i(A.JsLinkedHashMap.prototype, "get$containsKey", "containsKey$1", 3);
-				_static_1(A, "async__AsyncRun__scheduleImmediateJsOverride$closure", "_AsyncRun__scheduleImmediateJsOverride", 52);
-				_static_1(A, "async__AsyncRun__scheduleImmediateWithSetImmediate$closure", "_AsyncRun__scheduleImmediateWithSetImmediate", 52);
-				_static_1(A, "async__AsyncRun__scheduleImmediateWithTimer$closure", "_AsyncRun__scheduleImmediateWithTimer", 52);
+				_static_2(J, "_interceptors_JSArray__compareAny$closure", "JSArray__compareAny", 109);
+				_instance_1_i(J.JSArray.prototype, "get$contains", "contains$1", 4);
+				_instance_1_i(A._CastIterableBase.prototype, "get$contains", "contains$1", 4);
+				_instance_1_u(A.CastMap.prototype, "get$containsKey", "containsKey$1", 4);
+				_instance_1_u(A.ConstantStringMap.prototype, "get$containsKey", "containsKey$1", 4);
+				_instance_1_i(A.ConstantStringSet.prototype, "get$contains", "contains$1", 4);
+				_instance_1_i(A.GeneralConstantSet.prototype, "get$contains", "contains$1", 4);
+				_instance_1_u(A.JsLinkedHashMap.prototype, "get$containsKey", "containsKey$1", 4);
+				/*DSH-
+				_static_1(A, "async__AsyncRun__scheduleImmediateJsOverride$closure", "_AsyncRun__scheduleImmediateJsOverride", 50);
+				_static_1(A, "async__AsyncRun__scheduleImmediateWithSetImmediate$closure", "_AsyncRun__scheduleImmediateWithSetImmediate", 50);
+				_static_1(A, "async__AsyncRun__scheduleImmediateWithTimer$closure", "_AsyncRun__scheduleImmediateWithTimer", 50);
 				_static_0(A, "async___startMicrotaskLoop$closure", "_startMicrotaskLoop", 2);
-				_static(A, "async___rootHandleUncaughtError$closure", 5, null, ["call$5"], ["_rootHandleUncaughtError"], 344, 0);
+				_static(A, "async___rootHandleUncaughtError$closure", 5, null, ["call$5"], ["_rootHandleUncaughtError"], 342, 0);
+				*/
 				_static(A, "async___rootRun$closure", 4, null, ["call$1$4", "call$4"], ["_rootRun", function($self, $parent, zone, f) {
 					return A._rootRun($self, $parent, zone, f, type$.dynamic);
-				}], 345, 1);
+				}], 343, 1);
+				/*DSH-
 				_static(A, "async___rootRunUnary$closure", 5, null, ["call$2$5", "call$5"], ["_rootRunUnary", function($self, $parent, zone, f, arg) {
 					var t1 = type$.dynamic;
 					return A._rootRunUnary($self, $parent, zone, f, arg, t1, t1);
-				}], 346, 1);
+				}], 344, 1);
 				_static(A, "async___rootRunBinary$closure", 6, null, ["call$3$6", "call$6"], ["_rootRunBinary", function($self, $parent, zone, f, arg1, arg2) {
 					var t1 = type$.dynamic;
 					return A._rootRunBinary($self, $parent, zone, f, arg1, arg2, t1, t1, t1);
-				}], 347, 1);
+				}], 345, 1);
 				_static(A, "async___rootRegisterCallback$closure", 4, null, ["call$1$4", "call$4"], ["_rootRegisterCallback", function($self, $parent, zone, f) {
 					return A._rootRegisterCallback($self, $parent, zone, f, type$.dynamic);
-				}], 348, 0);
+				}], 346, 0);
 				_static(A, "async___rootRegisterUnaryCallback$closure", 4, null, ["call$2$4", "call$4"], ["_rootRegisterUnaryCallback", function($self, $parent, zone, f) {
 					var t1 = type$.dynamic;
 					return A._rootRegisterUnaryCallback($self, $parent, zone, f, t1, t1);
-				}], 349, 0);
+				}], 347, 0);
 				_static(A, "async___rootRegisterBinaryCallback$closure", 4, null, ["call$3$4", "call$4"], ["_rootRegisterBinaryCallback", function($self, $parent, zone, f) {
 					var t1 = type$.dynamic;
 					return A._rootRegisterBinaryCallback($self, $parent, zone, f, t1, t1, t1);
-				}], 350, 0);
-				_static(A, "async___rootErrorCallback$closure", 5, null, ["call$5"], ["_rootErrorCallback"], 351, 0);
-				_static(A, "async___rootScheduleMicrotask$closure", 4, null, ["call$4"], ["_rootScheduleMicrotask"], 352, 0);
-				_static(A, "async___rootCreateTimer$closure", 5, null, ["call$5"], ["_rootCreateTimer"], 353, 0);
-				_static(A, "async___rootCreatePeriodicTimer$closure", 5, null, ["call$5"], ["_rootCreatePeriodicTimer"], 354, 0);
-				_static(A, "async___rootPrint$closure", 4, null, ["call$4"], ["_rootPrint"], 355, 0);
-				_static(A, "async___rootFork$closure", 5, null, ["call$5"], ["_rootFork"], 356, 0);
-				_static_2(A, "collection_ListBase__compareAny$closure", "ListBase__compareAny", 111);
-				_instance_1_i(A._HashMap.prototype, "get$containsKey", "containsKey$1", 3);
-				_instance_1_i(A._LinkedHashSet.prototype, "get$contains", "contains$1", 3);
-				_instance_1_i(A.MapBase.prototype, "get$containsKey", "containsKey$1", 3);
-				_instance_1_i(A.MapView.prototype, "get$containsKey", "containsKey$1", 3);
-				_instance_1_i(A.UnmodifiableSetView.prototype, "get$contains", "contains$1", 3);
+				}], 348, 0);
+				_static(A, "async___rootErrorCallback$closure", 5, null, ["call$5"], ["_rootErrorCallback"], 349, 0);
+				_static(A, "async___rootScheduleMicrotask$closure", 4, null, ["call$4"], ["_rootScheduleMicrotask"], 350, 0);
+				_static(A, "async___rootCreateTimer$closure", 5, null, ["call$5"], ["_rootCreateTimer"], 351, 0);
+				_static(A, "async___rootCreatePeriodicTimer$closure", 5, null, ["call$5"], ["_rootCreatePeriodicTimer"], 352, 0);
+				_static(A, "async___rootPrint$closure", 4, null, ["call$4"], ["_rootPrint"], 353, 0);
+				*/
+				_static(A, "async___rootFork$closure", 5, null, ["call$5"], ["_rootFork"], 354, 0);
+				_static_2(A, "collection_ListBase__compareAny$closure", "ListBase__compareAny", 109);
+				_instance_1_u(A._HashMap.prototype, "get$containsKey", "containsKey$1", 4);
+				_instance_1_i(A._LinkedHashSet.prototype, "get$contains", "contains$1", 4);
+				_instance_1_u(A.MapBase.prototype, "get$containsKey", "containsKey$1", 4);
+				_instance_1_u(A.MapView.prototype, "get$containsKey", "containsKey$1", 4);
+				_instance_1_i(A.UnmodifiableSetView.prototype, "get$contains", "contains$1", 4);
 				_static_1(A, "core_Uri_decodeComponent$closure", "Uri_decodeComponent", 8);
-				_instance_1_i(A.Iterable.prototype, "get$contains", "contains$1", 3);
-				_instance_1_i(A.StringBuffer.prototype, "get$write", "write$1", 56);
-				_instance_1_i(A.MidiInputMap.prototype, "get$containsKey", "containsKey$1", 40);
-				_instance_1_i(A.MidiOutputMap.prototype, "get$containsKey", "containsKey$1", 40);
-				_instance_1_i(A.RtcStatsReport.prototype, "get$containsKey", "containsKey$1", 40);
-				_instance_1_i(A.Storage.prototype, "get$containsKey", "containsKey$1", 3);
+				_instance_1_i(A.Iterable.prototype, "get$contains", "contains$1", 4);
+				_instance_1_i(A.StringBuffer.prototype, "get$write", "write$1", 53);
 				_static(A, "math__max$closure", 2, null, ["call$1$2", "call$2"], ["max", function(a, b) {
 					return A.max(a, b, type$.num);
-				}], 357, 1);
-				_instance_1_i(A.AudioParamMap.prototype, "get$containsKey", "containsKey$1", 40);
-				_instance_1_i(A.EmptyUnmodifiableSet.prototype, "get$contains", "contains$1", 3);
-				_instance_1_i(A._DelegatingIterableBase.prototype, "get$contains", "contains$1", 3);
-				_instance_1_i(A.MapKeySet.prototype, "get$contains", "contains$1", 3);
-				_static_1(A, "version_Version___parse_tearOff$closure", "Version___parse_tearOff", 60);
-				_instance_1_u(A.VersionRange.prototype, "get$allows", "allows$1", 288);
+				}], 355, 1);
+				_instance_1_i(A.EmptyUnmodifiableSet.prototype, "get$contains", "contains$1", 4);
+				_instance_1_i(A._DelegatingIterableBase.prototype, "get$contains", "contains$1", 4);
+				_instance_1_i(A.MapKeySet.prototype, "get$contains", "contains$1", 4);
+				_static_1(A, "version_Version___parse_tearOff$closure", "Version___parse_tearOff", 58);
+				_instance_1_u(A.VersionRange.prototype, "get$allows", "allows$1", 285);
 				_instance_1_u(A._IsInvisibleVisitor0.prototype, "get$visitComplexSelector", "visitComplexSelector$1", 7);
 				_instance_1_u(A._IsBogusVisitor.prototype, "get$visitComplexSelector", "visitComplexSelector$1", 7);
 				_instance_1_u(A._IsUselessVisitor.prototype, "get$visitComplexSelector", "visitComplexSelector$1", 7);
-				_instance_1_u(A.SelectorList.prototype, "get$isSuperselector", "isSuperselector$1", 33);
+				_instance_1_u(A.SelectorList.prototype, "get$isSuperselector", "isSuperselector$1", 32);
 				_instance_1_u(A.PseudoSelector.prototype, "get$isSuperselector", "isSuperselector$1", 5);
 				_instance_1_u(A.SimpleSelector.prototype, "get$isSuperselector", "isSuperselector$1", 5);
 				_instance_1_u(A.TypeSelector.prototype, "get$isSuperselector", "isSuperselector$1", 5);
 				_instance_1_u(A.UniversalSelector.prototype, "get$isSuperselector", "isSuperselector$1", 5);
-				_instance_1_u(A.EmptyExtensionStore.prototype, "get$addExtensions", "addExtensions$1", 99);
-				_instance_1_u(A.ExtensionStore.prototype, "get$addExtensions", "addExtensions$1", 99);
+				_instance_1_u(A.EmptyExtensionStore.prototype, "get$addExtensions", "addExtensions$1", 110);
+				_instance_1_u(A.ExtensionStore.prototype, "get$addExtensions", "addExtensions$1", 110);
 				_static_1(A, "functions___isUnique$closure", "_isUnique", 5);
 				_static(A, "compile__compile$closure", 1, function() {
 					return [null];
 				}, ["call$2", "call$1"], ["compile", function(path) {
 					return A.compile(path, null);
-				}], 358, 0);
+				}], 356, 0);
 				_static(A, "compile__compileString$closure", 1, function() {
 					return [null];
 				}, ["call$2", "call$1"], ["compileString", function(text) {
 					return A.compileString(text, null);
-				}], 359, 0);
-				_static_1(A, "compile___parseImporter$closure", "_parseImporter", 360);
-				_static_1(A, "compile___simplifyCalcArg$closure", "_simplifyCalcArg", 58);
-				_static_0(A, "compiler__initCompiler$closure", "initCompiler", 361);
-				_static_1(A, "immutable__jsToDartList$closure", "jsToDartList", 362);
-				_static_0(A, "parser__loadParserExports$closure", "loadParserExports", 363);
-				_static(A, "parser___parse$closure", 3, null, ["call$3"], ["_parse"], 364, 0);
-				_static_1(A, "parser___parseIdentifier$closure", "_parseIdentifier", 365);
+				}], 357, 0);
+				_static_1(A, "compile___parseImporter$closure", "_parseImporter", 358);
+				_static_1(A, "compile___simplifyCalcArg$closure", "_simplifyCalcArg", 55);
+				_static_0(A, "compiler__initCompiler$closure", "initCompiler", 359);
+				_static_1(A, "immutable__jsToDartList$closure", "jsToDartList", 360);
+				_static_0(A, "parser__loadParserExports$closure", "loadParserExports", 361);
+				_static(A, "parser___parse$closure", 3, null, ["call$3"], ["_parse"], 362, 0);
+				_static_1(A, "parser___parseIdentifier$closure", "_parseIdentifier", 363);
 				_static_1(A, "parser___toCssIdentifier$closure", "_toCssIdentifier", 8);
-				_static_1(A, "utils__jsToDartUrl$closure", "jsToDartUrl", 366);
-				_static_1(A, "utils__dartToJSUrl$closure", "dartToJSUrl", 64);
-				_static_1(A, "utils__mapToObject$closure", "mapToObject", 367);
-				_static_1(A, "calculation0___assertCalculationValue$closure", "_assertCalculationValue", 109);
-				_static_1(A, "calculation0___isValidClampArg$closure", "_isValidClampArg", 3);
-				_instance_0_u(A.CssParser.prototype, "get$silentComment", "silentComment$0", 20);
+				_static_1(A, "utils__jsToDartUrl$closure", "jsToDartUrl", 364);
+				_static_1(A, "utils__dartToJSUrl$closure", "dartToJSUrl", 62);
+				_static_1(A, "utils__mapToObject$closure", "mapToObject", 365);
+				_static_1(A, "calculation0___assertCalculationValue$closure", "_assertCalculationValue", 107);
+				_static_1(A, "calculation0___isValidClampArg$closure", "_isValidClampArg", 4);
+				_instance_0_u(A.CssParser.prototype, "get$silentComment", "silentComment$0", 19);
 				var _;
-				_instance_0_u(_ = A.Parser.prototype, "get$silentComment", "silentComment$0", 20);
+				_instance_0_u(_ = A.Parser.prototype, "get$silentComment", "silentComment$0", 19);
 				_instance_0_u(_, "get$loudComment", "loudComment$0", 2);
-				_instance_0_u(_, "get$string", "string$0", 27);
+				_instance_0_u(_, "get$string", "string$0", 24);
 				_instance(_, "get$error", 1, 2, function() {
 					return [null];
-				}, ["call$3", "call$2"], ["error$3", "error$2"], 248, 0, 0);
-				_instance(_ = A.StylesheetParser.prototype, "get$_statement", 0, 0, null, ["call$1$root", "call$0"], ["_statement$1$root", "_statement$0"], 252, 0, 0);
-				_instance_0_u(_, "get$_declarationChild", "_declarationChild$0", 53);
-				_instance_0_u(_, "get$_functionChild", "_functionChild$0", 53);
-				_instance_0_u(_, "get$_number", "_number$0", 254);
+				}, ["call$3", "call$2"], ["error$3", "error$2"], 246, 0, 0);
+				_instance(_ = A.StylesheetParser.prototype, "get$_statement", 0, 0, null, ["call$1$root", "call$0"], ["_statement$1$root", "_statement$0"], 250, 0, 0);
+				_instance_0_u(_, "get$_declarationChild", "_declarationChild$0", 51);
+				_instance_0_u(_, "get$_functionChild", "_functionChild$0", 51);
+				_instance_0_u(_, "get$_number", "_number$0", 252);
 				_instance(A.LazyFileSpan.prototype, "get$message", 1, 1, function() {
 					return {color: null};
-				}, ["call$2$color", "call$1"], ["message$2$color", "message$1"], 88, 0, 0);
-				_instance_1_i(A.LimitedMapView.prototype, "get$containsKey", "containsKey$1", 3);
-				_instance_1_i(A.MergedMapView.prototype, "get$containsKey", "containsKey$1", 3);
+				}, ["call$2$color", "call$1"], ["message$2$color", "message$1"], 86, 0, 0);
+				_instance_1_u(A.LimitedMapView.prototype, "get$containsKey", "containsKey$1", 4);
+				_instance_1_u(A.MergedMapView.prototype, "get$containsKey", "containsKey$1", 4);
 				_instance(A.MultiSpan.prototype, "get$message", 1, 1, function() {
 					return {color: null};
-				}, ["call$2$color", "call$1"], ["message$2$color", "message$1"], 275, 0, 0);
-				_instance_1_i(A.NoSourceMapBuffer.prototype, "get$write", "write$1", 56);
-				_instance_1_i(A.PrefixedMapView.prototype, "get$containsKey", "containsKey$1", 3);
-				_instance_1_i(A.PublicMemberMapView.prototype, "get$containsKey", "containsKey$1", 3);
-				_instance_1_i(A.SourceMapBuffer.prototype, "get$write", "write$1", 56);
-				_instance_1_i(A.UnprefixedMapView.prototype, "get$containsKey", "containsKey$1", 3);
+				}, ["call$2$color", "call$1"], ["message$2$color", "message$1"], 273, 0, 0);
+				_instance_1_i(A.NoSourceMapBuffer.prototype, "get$write", "write$1", 53);
+				_instance_1_u(A.PrefixedMapView.prototype, "get$containsKey", "containsKey$1", 4);
+				_instance_1_u(A.PublicMemberMapView.prototype, "get$containsKey", "containsKey$1", 4);
+				_instance_1_i(A.SourceMapBuffer.prototype, "get$write", "write$1", 53);
+				_instance_1_u(A.UnprefixedMapView.prototype, "get$containsKey", "containsKey$1", 4);
 				_static_1(A, "utils1__isPublic$closure", "isPublic", 14);
 				_static_1(A, "utils1__unvendor$closure", "unvendor", 8);
-				_static_1(A, "calculation_SassCalculation__simplify$closure", "SassCalculation__simplify", 58);
-				_instance_1_u(A.ColorChannel.prototype, "get$isAnalogous", "isAnalogous$1", 34);
+				_static_1(A, "calculation_SassCalculation__simplify$closure", "SassCalculation__simplify", 55);
+				_instance_1_u(A.ColorChannel.prototype, "get$isAnalogous", "isAnalogous$1", 33);
 				_instance_1_u(A.DisplayP3ColorSpace.prototype, "get$toLinear", "toLinear$1", 16);
 				_instance_1_u(A.SrgbColorSpace.prototype, "get$toLinear", "toLinear$1", 16);
 				_instance_1_u(A.AnySelectorVisitor.prototype, "get$visitComplexSelector", "visitComplexSelector$1", 7);
-				_instance(_ = A._EvaluateVisitor.prototype, "get$_interpolationToValue", 0, 1, null, ["call$3$trim$warnForColor", "call$1", "call$2$warnForColor"], ["_interpolationToValue$3$trim$warnForColor", "_interpolationToValue$1", "_interpolationToValue$2$warnForColor"], 282, 0, 0);
-				_instance_1_u(_, "get$_expressionNode", "_expressionNode$1", 283);
+				_instance(_ = A._EvaluateVisitor.prototype, "get$_interpolationToValue", 0, 1, null, ["call$3$trim$warnForColor", "call$1", "call$2$warnForColor"], ["_interpolationToValue$3$trim$warnForColor", "_interpolationToValue$1", "_interpolationToValue$2$warnForColor"], 280, 0, 0);
+				_instance_1_u(_, "get$_expressionNode", "_expressionNode$1", 281);
 				_instance_1_u(_ = A.SelectorSearchVisitor.prototype, "get$visitComplexSelector", "visitComplexSelector$1", "SelectorSearchVisitor.T?(ComplexSelector)");
 				_instance_1_u(_, "get$visitSelectorList", "visitSelectorList$1", "SelectorSearchVisitor.T?(SelectorList)");
-				_instance_1_u(_ = A._SerializeVisitor.prototype, "get$_visitMediaQuery", "_visitMediaQuery$1", 324);
-				_instance_1_u(_, "get$_writeCalculationValue", "_writeCalculationValue$1", 109);
-				_instance(_, "get$_writeChannel", 0, 1, null, ["call$2", "call$1"], ["_writeChannel$2", "_writeChannel$1"], 326, 0, 0);
-				_instance_1_u(_, "get$visitSelectorList", "visitSelectorList$1", 327);
-				_instance_1_u(_, "get$_requiresSemicolon", "_requiresSemicolon$1", 4);
+				_instance_1_u(_ = A._SerializeVisitor.prototype, "get$_visitMediaQuery", "_visitMediaQuery$1", 322);
+				_instance_1_u(_, "get$_writeCalculationValue", "_writeCalculationValue$1", 107);
+				_instance(_, "get$_writeChannel", 0, 1, null, ["call$2", "call$1"], ["_writeChannel$2", "_writeChannel$1"], 324, 0, 0);
+				_instance_1_u(_, "get$visitSelectorList", "visitSelectorList$1", 325);
+				_instance_1_u(_, "get$_requiresSemicolon", "_requiresSemicolon$1", 3);
 				_instance_1_i(_ = A.StatementSearchVisitor.prototype, "get$visitContentBlock", "visitContentBlock$1", "StatementSearchVisitor.T?(ContentBlock)");
 				_instance_1_u(_, "get$visitChildren", "visitChildren$1", "StatementSearchVisitor.T?(List<Statement>)");
 				_instance(A.SourceSpanMixin.prototype, "get$message", 1, 1, function() {
 					return {color: null};
-				}, ["call$2$color", "call$1"], ["message$2$color", "message$1"], 88, 0, 0);
-				_static_1(A, "path__toUri$closure", "toUri", 74);
-				_static_1(A, "utils2__validateUrlScheme$closure", "validateUrlScheme", 368);
-				_static_2(A, "number0__fuzzyLessThan$closure", "fuzzyLessThan", 41);
-				_static_2(A, "number0__fuzzyLessThanOrEquals$closure", "fuzzyLessThanOrEquals", 41);
-				_static_2(A, "number0__fuzzyGreaterThan$closure", "fuzzyGreaterThan", 41);
-				_static_2(A, "number0__fuzzyGreaterThanOrEquals$closure", "fuzzyGreaterThanOrEquals", 41);
-				_static_2(A, "number0__moduloLikeSass$closure", "moduloLikeSass", 49);
-				_static_1(A, "number0__sqrt$closure", "sqrt", 24);
-				_static_1(A, "number0__sin$closure", "sin", 24);
-				_static_1(A, "number0__cos$closure", "cos", 24);
-				_static_1(A, "number0__tan$closure", "tan", 24);
-				_static_1(A, "number0__atan$closure", "atan", 24);
-				_static_1(A, "number0__asin$closure", "asin", 24);
-				_static_1(A, "number0__acos$closure", "acos", 24);
+				}, ["call$2$color", "call$1"], ["message$2$color", "message$1"], 86, 0, 0);
+				_static_1(A, "path__toUri$closure", "toUri", 81);
+				_static_1(A, "utils2__validateUrlScheme$closure", "validateUrlScheme", 366);
+				_static_2(A, "number0__fuzzyLessThan$closure", "fuzzyLessThan", 40);
+				_static_2(A, "number0__fuzzyLessThanOrEquals$closure", "fuzzyLessThanOrEquals", 40);
+				_static_2(A, "number0__fuzzyGreaterThan$closure", "fuzzyGreaterThan", 40);
+				_static_2(A, "number0__fuzzyGreaterThanOrEquals$closure", "fuzzyGreaterThanOrEquals", 40);
+				_static_2(A, "number0__moduloLikeSass$closure", "moduloLikeSass", 47);
+				_static_1(A, "number0__sqrt$closure", "sqrt", 28);
+				_static_1(A, "number0__sin$closure", "sin", 28);
+				_static_1(A, "number0__cos$closure", "cos", 28);
+				_static_1(A, "number0__tan$closure", "tan", 28);
+				_static_1(A, "number0__atan$closure", "atan", 28);
+				_static_1(A, "number0__asin$closure", "asin", 28);
+				_static_1(A, "number0__acos$closure", "acos", 28);
 				_static_1(A, "utils0__srgbAndDisplayP3FromLinear$closure", "srgbAndDisplayP3FromLinear", 16);
 			})();
 			(function inheritance() {
@@ -66644,10 +64384,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_inherit = hunkHelpers.inherit,
 					_inheritMany = hunkHelpers.inheritMany;
 				_inherit(A.Object, null);
-				_inheritMany(A.Object, [A.JS_CONST, J.Interceptor, A.SafeToStringHook, J.ArrayIterator, A.Iterable, A.CastIterator, A.Closure, A.MapBase, A.Error, A.ListBase, A.SentinelValue, A.ListIterator, A.MappedIterator, A.WhereIterator, A.ExpandIterator, A.TakeIterator, A.SkipIterator, A.EmptyIterator, A.FollowedByIterator, A.WhereTypeIterator, A.NonNullsIterator, A.FixedLengthListMixin, A.UnmodifiableListMixin, A.Symbol, A._Record, A.MapView, A.ConstantMap, A._KeysOrValuesOrElementsIterator, A.SetBase, A.JSInvocationMirror, A.TypeErrorDecoder, A.NullThrownFromJavaScriptException, A.ExceptionAndStackTrace, A._StackTrace, A._Required, A.LinkedHashMapCell, A.LinkedHashMapKeyIterator, A.LinkedHashMapValueIterator, A.LinkedHashMapEntryIterator, A.JSSyntaxRegExp, A._MatchImplementation, A._AllMatchesIterator, A.StringMatch, A._StringAllMatchesIterator, A._Cell, A.Rti, A._FunctionParameters, A._Type, A._TimerImpl, A._SyncStarIterator, A._AsyncCallbackEntry, A._ZoneFunction, A._ZoneSpecification, A._ZoneDelegate, A._Zone, A._HashMapKeyIterator, A._LinkedHashSetCell, A._LinkedHashSetIterator, A._MapBaseValueIterator, A._UnmodifiableMapMixin, A._ListQueueIterator, A._UnmodifiableSetMixin, A.Codec, A.Converter, A._Utf8Encoder, A._Utf8Decoder, A.DateTime, A.Duration, A._Enum, A.OutOfMemoryError, A.StackOverflowError, A._Exception, A.FormatException, A.MapEntry, A.Null, A.RuneIterator, A.StringBuffer, A._Uri, A.UriData, A._SimpleUri, A.Expando, A.CssStyleDeclarationBase, A.ImmutableListMixin, A.FixedSizeListIterator, A._JSRandom, A.DefaultEquality, A.IterableEquality, A.ListEquality, A._MapEntry, A.MapEquality, A._QueueList_Object_ListMixin, A._DelegatingIterableBase, A.UnmodifiableSetMixin, A.Context, A.Style, A.ParsedPath, A.PathException, A.Version, A.VersionRange, A.CssMediaQuery, A.MediaQuerySuccessfulMergeResult, A.CssNode, A.__IsInvisibleVisitor_Object_EveryCssVisitor, A.CssValue, A._FakeAstNode, A.ArgumentList, A.AtRootQuery, A.ConfiguredVariable, A.Expression, A.IfConditionExpression, A.DynamicImport, A.StaticImport, A.InterpolatedSelector, A.InterpolatedComplexSelectorComponent, A.InterpolatedQualifiedName, A.Interpolation, A.Parameter, A.ParameterList, A.Statement, A.IfRuleClause, A.__HasContentVisitor_Object_StatementSearchVisitor, A.SupportsAnything, A.SupportsDeclaration, A.SupportsFunction, A.SupportsInterpolation, A.SupportsNegation, A.SupportsOperation, A.Selector, A.__IsInvisibleVisitor_Object_AnySelectorVisitor, A.__IsBogusVisitor_Object_AnySelectorVisitor, A.__IsUselessVisitor_Object_AnySelectorVisitor, A.__ContainsParentSelectorVisitor_Object_AnySelectorVisitor, A.ComplexSelectorComponent, A.__ParentSelectorVisitor_Object_SelectorSearchVisitor, A.QualifiedName, A.AsyncBuiltInCallable, A.BuiltInCallable, A.PlainCssCallable, A.UserDefinedCallable, A.CompileResult, A.Configuration, A.ConfiguredValue, A.Environment, A._EnvironmentModule, A.SourceSpanException, A.SassScriptException, A.EmptyExtensionStore, A.Extension, A.Extender, A.ExtensionStore, A.ImportCache, A.AsyncImporter, A.CanonicalizeContext, A.ImporterResult, A.InterpolationBuffer, A.InterpolationMap, A.FileSystemException, A.Compiler, A.JSExpressionVisitor, A.JSIfConditionExpressionVisitor, A.JSSimpleSelectorVisitor, A.JSStatementVisitor, A.LoggerWithDeprecationType, A.BuiltInModule, A.ForwardedModuleView, A.ShadowedModuleView, A.Parser, A.Box, A.ModifiableBox, A.LazyFileSpan, A.MultiSpan, A.NoSourceMapBuffer, A.SourceMapBuffer, A.Value, A.CalculationOperation, A.CalculationInterpolation, A._ColorFormatEnum, A.SpanColorFormat, A.ColorChannel, A.GamutMapMethod, A.InterpolationMethod, A.ColorSpace, A.AnySelectorVisitor, A._CloneCssVisitor, A._EvaluateVisitor, A._ImportedCssVisitor, A._EvaluationContext, A.EveryCssVisitor, A.__MakeExpressionCalculationSafe_Object_ReplaceExpressionVisitor, A.IsCalculationSafeVisitor, A.ReplaceExpressionVisitor, A.SelectorSearchVisitor, A._SerializeVisitor, A.SourceInterpolationVisitor, A.StatementSearchVisitor, A.Entry, A.Mapping, A.TargetLineEntry, A.TargetEntry, A.SourceFile, A.SourceLocationMixin, A.SourceSpanMixin, A.Highlighter, A._Highlight, A._Line, A.SourceLocation, A.Frame, A.Trace, A.StringScanner, A._SpanScannerState, A.AsciiGlyphSet, A.UnicodeGlyphSet]);
+				_inheritMany(A.Object, [A.JS_CONST, J.Interceptor, A.SafeToStringHook, J.ArrayIterator, A.Iterable, A.CastIterator, A.Closure, A.MapBase, A.Error, A.ListBase, A.SentinelValue, A.ListIterator, A.MappedIterator, A.WhereIterator, A.ExpandIterator, A.TakeIterator, A.SkipIterator, A.EmptyIterator, A.FollowedByIterator, A.WhereTypeIterator, A.NonNullsIterator, A.FixedLengthListMixin, A.UnmodifiableListMixin, A.Symbol, A._Record, A.MapView, A.ConstantMap, A._KeysOrValuesOrElementsIterator, A.SetBase, A.JSInvocationMirror, A.TypeErrorDecoder, A.NullThrownFromJavaScriptException, A.ExceptionAndStackTrace, A._StackTrace, A._Required, A.LinkedHashMapCell, A.LinkedHashMapKeyIterator, A.LinkedHashMapValueIterator, A.LinkedHashMapEntryIterator, A.JSSyntaxRegExp, A._MatchImplementation, A._AllMatchesIterator, A.StringMatch, A._StringAllMatchesIterator, A._Cell, A.Rti, A._FunctionParameters, A._Type/*DSH-, A._TimerImpl*/, A._SyncStarIterator, A._AsyncCallbackEntry, A._ZoneFunction, A._ZoneSpecification, A._ZoneDelegate, A._Zone, A._HashMapKeyIterator, A._LinkedHashSetCell, A._LinkedHashSetIterator, A._MapBaseValueIterator, A._UnmodifiableMapMixin, A._ListQueueIterator, A._UnmodifiableSetMixin, A.Codec, A.Converter, A._Utf8Encoder, A._Utf8Decoder, A.DateTime, A.Duration, A._Enum, A.OutOfMemoryError, A.StackOverflowError, A._Exception, A.FormatException, A.MapEntry, A.Null, A.RuneIterator, A.StringBuffer, A._Uri, A.UriData, A._SimpleUri, A.Expando, A._JSRandom, A.DefaultEquality, A.IterableEquality, A.ListEquality, A._MapEntry, A.MapEquality, A._QueueList_Object_ListMixin, A._DelegatingIterableBase, A.UnmodifiableSetMixin, A.Context, A.Style, A.ParsedPath, A.PathException, A.Version, A.VersionRange, A.CssMediaQuery, A.MediaQuerySuccessfulMergeResult, A.CssNode, A.__IsInvisibleVisitor_Object_EveryCssVisitor, A.CssValue, A._FakeAstNode, A.ArgumentList, A.AtRootQuery, A.ConfiguredVariable, A.Expression, A.IfConditionExpression, A.DynamicImport, A.StaticImport, A.InterpolatedSelector, A.InterpolatedComplexSelectorComponent, A.InterpolatedQualifiedName, A.Interpolation, A.Parameter, A.ParameterList, A.Statement, A.IfRuleClause, A.__HasContentVisitor_Object_StatementSearchVisitor, A.SupportsAnything, A.SupportsDeclaration, A.SupportsFunction, A.SupportsInterpolation, A.SupportsNegation, A.SupportsOperation, A.Selector, A.__IsInvisibleVisitor_Object_AnySelectorVisitor, A.__IsBogusVisitor_Object_AnySelectorVisitor, A.__IsUselessVisitor_Object_AnySelectorVisitor, A.__ContainsParentSelectorVisitor_Object_AnySelectorVisitor, A.ComplexSelectorComponent, A.__ParentSelectorVisitor_Object_SelectorSearchVisitor, A.QualifiedName, A.AsyncBuiltInCallable, A.BuiltInCallable, A.PlainCssCallable, A.UserDefinedCallable, A.CompileResult, A.Configuration, A.ConfiguredValue, A.Environment, A._EnvironmentModule, A.SourceSpanException, A.SassScriptException, A.EmptyExtensionStore, A.Extension, A.Extender, A.ExtensionStore, A.ImportCache, A.AsyncImporter, A.CanonicalizeContext, A.ImporterResult, A.InterpolationBuffer, A.InterpolationMap, A.FileSystemException, A.Compiler, A.JSExpressionVisitor, A.JSIfConditionExpressionVisitor, A.JSSimpleSelectorVisitor, A.JSStatementVisitor, A.LoggerWithDeprecationType, A.BuiltInModule, A.ForwardedModuleView, A.ShadowedModuleView, A.Parser, A.Box, A.ModifiableBox, A.LazyFileSpan, A.MultiSpan, A.NoSourceMapBuffer, A.SourceMapBuffer, A.Value, A.CalculationOperation, A.CalculationInterpolation, A._ColorFormatEnum, A.SpanColorFormat, A.ColorChannel, A.GamutMapMethod, A.InterpolationMethod, A.ColorSpace, A.AnySelectorVisitor, A._CloneCssVisitor, A._EvaluateVisitor, A._ImportedCssVisitor, A._EvaluationContext, A.EveryCssVisitor, A.__MakeExpressionCalculationSafe_Object_ReplaceExpressionVisitor, A.IsCalculationSafeVisitor, A.ReplaceExpressionVisitor, A.SelectorSearchVisitor, A._SerializeVisitor, A.SourceInterpolationVisitor, A.StatementSearchVisitor, A.Entry, A.Mapping, A.TargetLineEntry, A.TargetEntry, A.SourceFile, A.SourceLocationMixin, A.SourceSpanMixin, A.Highlighter, A._Highlight, A._Line, A.SourceLocation, A.Frame, A.Trace, A.StringScanner, A._SpanScannerState, A.AsciiGlyphSet, A.UnicodeGlyphSet]);
 				_inheritMany(J.Interceptor, [J.JSBool, J.JSNull, J.JavaScriptObject, J.JavaScriptBigInt, J.JavaScriptSymbol, J.JSNumber, J.JSString]);
-				_inheritMany(J.JavaScriptObject, [J.LegacyJavaScriptObject, J.JSArray, A.NativeByteBuffer, A.NativeTypedData, A.EventTarget, A.AccessibleNodeList, A.Event, A.Blob, A.CssTransformComponent, A.CssRule, A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase, A.CssStyleValue, A.DataTransferItemList, A.ReportBody, A.DomError, A.DomException, A._DomRectList_JavaScriptObject_ListMixin, A.DomRectReadOnly, A._DomStringList_JavaScriptObject_ListMixin, A.DomTokenList, A._FileList_JavaScriptObject_ListMixin, A.Gamepad, A.History, A._HtmlCollection_JavaScriptObject_ListMixin, A.Location, A.MediaError, A.MediaList, A._MidiInputMap_JavaScriptObject_MapMixin, A._MidiOutputMap_JavaScriptObject_MapMixin, A.MimeType, A._MimeTypeArray_JavaScriptObject_ListMixin, A.NavigatorUserMediaError, A._NodeList_JavaScriptObject_ListMixin, A.OverconstrainedError, A.Plugin, A._PluginArray_JavaScriptObject_ListMixin, A.PositionError, A._RtcStatsReport_JavaScriptObject_MapMixin, A.SpeechGrammar, A._SpeechGrammarList_JavaScriptObject_ListMixin, A.SpeechRecognitionResult, A._Storage_JavaScriptObject_MapMixin, A.StyleSheet, A._TextTrackCueList_JavaScriptObject_ListMixin, A.TimeRanges, A.Touch, A._TouchList_JavaScriptObject_ListMixin, A.TrackDefaultList, A.Url, A.__CssRuleList_JavaScriptObject_ListMixin, A.__GamepadList_JavaScriptObject_ListMixin, A.__NamedNodeMap_JavaScriptObject_ListMixin, A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin, A.__StyleSheetList_JavaScriptObject_ListMixin, A.Length, A._LengthList_JavaScriptObject_ListMixin, A.Number, A._NumberList_JavaScriptObject_ListMixin, A.PointList, A._StringList_JavaScriptObject_ListMixin, A.Transform, A._TransformList_JavaScriptObject_ListMixin, A.AudioBuffer, A._AudioParamMap_JavaScriptObject_MapMixin]);
-				_inheritMany(J.LegacyJavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction/*DSH-, A.BufferModule, A.BufferConstants, A.Buffer0, A.ConsoleModule, A.Console, A.EventEmitter, A.FS, A.FSConstants, A.Realpath, A.RealpathSync, A.FSWatcher, A.ReadStream, A.ReadStreamOptions, A.WriteStream, A.WriteStreamOptions, A.FileOptions, A.StatOptions, A.MkdirOptions, A.RmdirOptions, A.WatchOptions, A.WatchFileOptions, A.Stats, A.Promise, A.Date, A.JsError, A.Atomics, A.Modules, A.Module, A.Net, A.Socket, A.NetAddress, A.NetServer, A.NodeJsError, A.Process, A.CPUUsage, A.Release, A.StreamModule, A.Readable, A.Writable, A.Duplex, A.Transform0, A.WritableOptions, A.ReadableOptions, A.Immediate, A.Timeout, A.TTY, A.Util, A.JSArray0, A.Chokidar, A.ChokidarOptions, A.ChokidarWatcher, A.CompileOptions, A.NodeCompileResult*/, A.Deprecation0/*DSH-, A.Exports, A.LoggerNamespace, A.JSFunction*/, A.ImmutableList, A.ImmutableMap, A.JSImporter, A.JSImporterResult/*DSH-, A.NodeImporterResult, A.RenderContext, A.RenderContextOptions, A.RenderContextResult, A.RenderContextResultStats, A.Types, A.JSLogger, A.WarnOptions, A.DebugOptions, A.JSModule, A.JSModuleRequire, A.ParserExports*/, A.JSClass, A.JSSet, A.JSUrl/*DSH-, A._PropertyDescriptor, A._RequireMain*/, A._Channels, A._ChannelOptions, A._ToGamutOptions, A._InterpolationOptions, A._ConstructorOptions, A._ConstructorOptions0, A._ConstructorOptions1, A.JSExpressionVisitorObject, A.JSIfConditionExpressionVisitorObject, A.JSSimpleSelectorVisitorObject, A.JSStatementVisitorObject]);
+				_inheritMany(J.JavaScriptObject, [J.LegacyJavaScriptObject, J.JSArray, A.NativeByteBuffer, A.NativeTypedData]);
+				_inheritMany(J.LegacyJavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction/*DSH-, A.BufferModule, A.BufferConstants, A.Buffer, A.ConsoleModule, A.Console, A.EventEmitter, A.FS, A.FSConstants, A.Realpath, A.RealpathSync, A.FSWatcher, A.ReadStream, A.ReadStreamOptions, A.WriteStream, A.WriteStreamOptions, A.FileOptions, A.StatOptions, A.MkdirOptions, A.RmdirOptions, A.WatchOptions, A.WatchFileOptions, A.Stats, A.Promise, A.Date, A.JsError, A.Atomics, A.Modules, A.Module, A.Net, A.Socket, A.NetAddress, A.NetServer, A.NodeJsError, A.Process, A.CPUUsage, A.Release, A.StreamModule, A.Readable, A.Writable, A.Duplex, A.Transform, A.WritableOptions, A.ReadableOptions, A.Immediate, A.Timeout, A.TTY, A.Util, A.JSArray0, A.Chokidar, A.ChokidarOptions, A.ChokidarWatcher, A.CompileOptions, A.NodeCompileResult*/, A.Deprecation0/*DSH-, A.Exports, A.LoggerNamespace, A.JSFunction*/, A.ImmutableList, A.ImmutableMap, A.JSImporter, A.JSImporterResult/*DSH-, A.NodeImporterResult, A.RenderContext, A.RenderContextOptions, A.RenderContextResult, A.RenderContextResultStats, A.Types, A.JSLogger, A.WarnOptions, A.DebugOptions, A.JSModule, A.JSModuleRequire, A.ParserExports*/, A.JSClass, A.JSSet, A.JSUrl/*DSH-, A._PropertyDescriptor, A._RequireMain*/, A._Channels, A._ChannelOptions, A._ToGamutOptions, A._InterpolationOptions, A._ConstructorOptions, A._ConstructorOptions0, A._ConstructorOptions1, A.JSExpressionVisitorObject, A.JSIfConditionExpressionVisitorObject, A.JSSimpleSelectorVisitorObject, A.JSStatementVisitorObject]);
 				_inherit(J.JSArraySafeToStringHook, A.SafeToStringHook);
 				_inherit(J.JSUnmodifiableArray, J.JSArray);
 				_inheritMany(J.JSNumber, [J.JSInt, J.JSNumNotInt]);
@@ -66655,8 +64395,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_inheritMany(A._CastIterableBase, [A.CastIterable, A.__CastListBase__CastIterableBase_ListMixin]);
 				_inherit(A._EfficientLengthCastIterable, A.CastIterable);
 				_inherit(A._CastListBase, A.__CastListBase__CastIterableBase_ListMixin);
-				_inheritMany(A.Closure, [A.Closure2Args, A.CastMap_entries_closure, A.Instantiation, A.Closure0Args, A.TearOffClosure, A.initHooks_closure, A.initHooks_closure1, A._AsyncRun__initializeScheduleImmediate_internalCallback, A._AsyncRun__initializeScheduleImmediate_closure, A._CustomZone_bindUnaryCallback_closure, A._RootZone_bindUnaryCallback_closure, A._HashMap_values_closure, A.MapBase_entries_closure, A._Uri__makePath_closure, A.jsify__convert, A.MapKeySet_difference_closure, A.Context_joinAll_closure, A.Context_split_closure, A._validateArgList_closure, A.ParsedPath__splitExtension_closure, A.WindowsStyle_absolutePathToUri_closure, A.Version__splitParts_closure, A.ModifiableCssNode_hasFollowingSibling_closure, A.ListExpression_toString_closure, A.Interpolation_toString_closure, A.ParameterList_verify_closure, A.ParameterList_verify_closure0, A.EachRule_toString_closure, A.IfRuleClause$__closure, A.IfRuleClause$___closure, A.ParentStatement_closure, A.ParentStatement__closure, A._IsBogusVisitor_visitComplexSelector_closure, A._IsUselessVisitor_visitComplexSelector_closure, A.ComplexSelectorComponent_toString_closure, A.CompoundSelector_hasComplicatedSuperselectorSemantics_closure, A.IDSelector_unify_closure, A.SelectorList_asSassList_closure, A.SelectorList_nestWithin_closure, A.SelectorList_nestWithin__closure, A.SelectorList_nestWithin__closure0, A.SelectorList__nestWithinCompound_closure, A.SelectorList__nestWithinCompound_closure0, A.SelectorList__nestWithinCompound_closure1, A.SelectorList_withAdditionalCombinators_closure, A.PseudoSelector_specificity__closure, A.PseudoSelector_specificity__closure0, A.PseudoSelector_unify_closure, A.SimpleSelector_isSuperselector_closure, A.SimpleSelector_isSuperselector__closure, A.BuiltInCallable$mixin_closure, A.BuiltInCallable_withDeprecationWarning_closure, A._compileStylesheet_closure, A.Deprecation_fromId_closure, A.Environment__getVariableFromGlobalModule_closure, A.Environment_setVariable_closure0, A.Environment__getFunctionFromGlobalModule_closure, A.Environment__getMixinFromGlobalModule_closure, A.Environment_toModule_closure, A.Environment_toDummyModule_closure, A._EnvironmentModule__EnvironmentModule_closure, A._EnvironmentModule__EnvironmentModule_closure0, A._EnvironmentModule__EnvironmentModule_closure1, A._EnvironmentModule__EnvironmentModule_closure2, A._EnvironmentModule__EnvironmentModule_closure3, A._EnvironmentModule__EnvironmentModule_closure4, A._EnvironmentModule_couldHaveBeenConfigured_closure, A.ExtensionStore_extensionsWhereTarget_closure, A.ExtensionStore__extendComplex_closure, A.ExtensionStore__extendComplex__closure, A.ExtensionStore__extendCompound_closure, A.ExtensionStore__extendCompound_closure0, A.ExtensionStore__extendCompound_closure1, A.ExtensionStore__extendSimple_withoutPseudo, A.ExtensionStore__extendSimple_closure, A.ExtensionStore__extendSimple_closure0, A.ExtensionStore__extendPseudo_closure, A.ExtensionStore__extendPseudo_closure0, A.ExtensionStore__extendPseudo_closure1, A.ExtensionStore__extendPseudo_closure2, A.ExtensionStore__extendPseudo_closure3, A.ExtensionStore__trim_closure, A.ExtensionStore__trim_closure0, A.unifyComplex_closure, A._weaveParents_closure0, A._weaveParents_closure1, A._weaveParents_closure2, A._mustUnify_closure, A._mustUnify__closure, A.paths__closure, A.paths___closure, A.listIsSuperselector_closure, A.listIsSuperselector__closure, A.complexIsSuperselector_closure, A.complexIsSuperselector_closure0, A._compatibleWithPreviousCombinator_closure, A.compoundIsSuperselector_closure, A._selectorPseudoIsSuperselector_closure, A._selectorPseudoIsSuperselector_closure0, A._selectorPseudoIsSuperselector_closure1, A._selectorPseudoIsSuperselector_closure2, A._selectorPseudoIsSuperselector_closure3, A._selectorPseudoIsSuperselector__closure, A._selectorPseudoIsSuperselector___closure, A._selectorPseudoIsSuperselector___closure0, A._selectorPseudoIsSuperselector_closure4, A._selectorPseudoIsSuperselector_closure5, A._selectorPseudoArgs_closure, A._selectorPseudoArgs_closure0, A.globalFunctions_closure, A.global_closure0, A.global_closure1, A.global_closure2, A.global_closure3, A.global_closure4, A.global_closure5, A.global_closure6, A.global_closure7, A.global_closure8, A.global_closure9, A.global_closure10, A.global_closure11, A.global_closure12, A.global_closure13, A.global_closure14, A.global_closure15, A.global_closure16, A.global_closure17, A.global_closure18, A.global_closure19, A.global_closure20, A.global_closure21, A.global_closure22, A.global_closure23, A.global_closure24, A.global_closure25, A.global_closure26, A.global_closure27, A.global_closure28, A.global_closure29, A.global_closure30, A.global_closure31, A.global_closure32, A.global_closure33, A.global_closure34, A.global_closure35, A.global__closure, A.global_closure36, A.global_closure37, A.global_closure38, A.global_closure39, A.global_closure40, A.global_closure41, A.global_closure42, A.module_closure1, A.module_closure2, A.module_closure3, A.module_closure4, A.module_closure5, A.module_closure6, A.module_closure7, A.module_closure8, A.module_closure9, A.module_closure10, A.module_closure11, A.module_closure12, A.module_closure13, A.module_closure14, A.module__closure2, A.module_closure15, A.module_closure16, A.module_closure17, A.module_closure18, A.module_closure19, A.module_closure20, A.module_closure21, A.module_closure22, A.module__closure1, A.module_closure23, A.module_closure_toXyzNoMissing, A.module_closure24, A._mix_closure, A._complement_closure, A._adjust_closure, A._scale_closure, A._change_closure, A._ieHexStr_closure, A._ieHexStr_closure_hexString, A._updateComponents_closure, A._updateComponents_closure0, A._adjustColor_closure, A._functionString_closure, A._removedColorFunction_closure, A._rgb_closure, A._hsl_closure, A._parseChannels_closure, A._parseChannels_closure0, A._colorFromChannels_closure, A._colorFromChannels_closure0, A._channelFromValue_closure, A._channelFunction_closure, A._suggestScaleAndAdjust_closure, A._length_closure0, A._nth_closure, A._setNth_closure, A._join_closure, A._append_closure0, A._zip_closure, A._zip__closure, A._zip__closure0, A._zip__closure1, A._index_closure0, A._separator_closure, A._isBracketed_closure, A._slash_closure, A._get_closure, A._set_closure, A._set__closure0, A._set_closure0, A._set__closure, A._merge_closure, A._merge_closure0, A._merge__closure, A._deepMerge_closure, A._deepRemove_closure, A._deepRemove__closure, A._remove_closure, A._remove_closure0, A._keys_closure, A._values_closure, A._hasKey_closure, A._modify_modifyNestedMap, A.global_closure, A.module_closure0, A._ceil_closure, A._clamp_closure, A._floor_closure, A._max_closure, A._min_closure, A._round_closure, A._hypot_closure, A._hypot__closure, A._log_closure, A._pow_closure, A._atan2_closure, A._compatible_closure, A._isUnitless_closure, A._unit_closure, A._percentage_closure, A._randomFunction_closure, A._div_closure, A._singleArgumentMathFunc_closure, A._numberFunction_closure, A._shared_closure, A._shared_closure0, A._shared_closure1, A._shared_closure2, A.moduleFunctions_closure, A.moduleFunctions_closure0, A.moduleFunctions__closure, A.moduleFunctions_closure1, A._nest_closure, A._nest__closure, A._append_closure, A._append__closure, A._append___closure, A._extend_closure, A._replace_closure, A._unify_closure, A._isSuperselector_closure, A._simpleSelectors_closure, A._simpleSelectors__closure, A._parse_closure, A.module_closure, A.module__closure, A.module__closure0, A._unquote_closure, A._quote_closure, A._length_closure, A._insert_closure, A._index_closure, A._slice_closure, A._toUpperCase_closure, A._toLowerCase_closure, A._uniqueId_closure, A.ImportCache_humanize_closure, A.ImportCache_humanize_closure0, A.ImportCache_humanize_closure1, A.ImportCache_humanize_closure2, A.FilesystemImporter_canonicalize_closure, A._exactlyOne_closure, A.InterpolationMap_mapException_closure, A._realCasePath_helper, A._realCasePath_helper__closure, A.listDir__closure, A.listDir__closure0, A.listDir_closure_list, A.listDir__list_closure, A._parseFunctions__closure, A.compilerClass__closure, A.compilerClass__closure0, A.compilerClass__closure1, A.compilerClass__closure2, A.versionClass__closure, A.versionClass__closure0/*DSH-, A.exceptionClass__closure, A.exceptionClass__closure0, A.exceptionClass__closure1*/, A.immutableMapToDartMap_closure, A.updateCanonicalizeContextPrototype_closure, A.updateCanonicalizeContextPrototype_closure0, A.loadParserExports_closure, A.loadParserExports_closure0, A.loadParserExports_closure1, A.loadParserExports_closure2, A.loadParserExports_closure3, A.loadParserExports_closure4, A._updateLazyFileSpanPrototype_closure0, A._updateLazyFileSpanPrototype_closure1, A._updateLazyFileSpanPrototype_closure2, A._updateAstPrototypes_closure, A._updateAstPrototypes_closure0, A._updateAstPrototypes_closure1, A._updateAstPrototypes_closure2, A._updateAstPrototypes_closure7, A._updateAstPrototypes_closure8, A._updateAstPrototypes_closure9, A._updateAstPrototypes_closure10, A._updateAstPrototypes_closure11, A._updateAstPrototypes_closure12, A._updateAstPrototypes_closure13, A._addSupportsConditionToInterpolation_closure, A.JSClassExtension_setCustomInspect_closure, A.updateSourceSpanPrototype_closure0, A.updateSourceSpanPrototype_closure1, A.updateSourceSpanPrototype_closure2, A.updateSourceSpanPrototype__closure, A.updateSourceSpanPrototype_closure3, A.updateSourceSpanPrototype_closure4, A.updateSourceSpanPrototype_closure5, A.updateSourceSpanPrototype_closure6, A.valueClass__closure, A.valueClass__closure0, A.valueClass__closure1, A.valueClass__closure2, A.valueClass__closure3, A.valueClass__closure4, A.valueClass__closure5, A.valueClass__closure7, A.valueClass__closure8, A.valueClass__closure9, A.valueClass__closure10, A.valueClass__closure11, A.valueClass__closure12, A.valueClass__closure13, A.valueClass__closure14, A.valueClass__closure15, A.valueClass__closure17, A.valueClass__closure18, A.argumentListClass__closure, A.argumentListClass__closure0, A.booleanClass__closure, A.calculationClass__closure, A.calculationClass__closure0, A.calculationClass__closure1, A.calculationClass__closure2, A.calculationClass__closure3, A.calculationClass__closure4, A.calculationClass__closure5, A.calculationOperationClass__closure, A.calculationOperationClass___closure, A.calculationOperationClass__closure1, A.calculationOperationClass__closure2, A.calculationOperationClass__closure3, A.calculationOperationClass__closure4, A.calculationInterpolationClass__closure1, A.calculationInterpolationClass__closure2, A.colorClass__closure1, A.colorClass__closure3, A.colorClass__closure5, A.colorClass__closure7, A.colorClass___closure, A.colorClass__closure_changedValue, A.colorClass__closure9, A.colorClass__closure10, A.colorClass__closure11, A.colorClass__closure12, A.colorClass__closure13, A.colorClass__closure14, A.colorClass__closure15, A.colorClass__closure16, A.colorClass__closure17, A.colorClass__closure18, A.colorClass__closure19, A.colorClass__closure20, A.colorClass__closure21, A.colorClass__closure22, A.functionClass__closure, A.functionClass__closure0, A.listClass__closure, A.mapClass__closure, A.mapClass__closure0, A.mixinClass__closure, A.mixinClass__closure0, A.numberClass__closure, A.numberClass__closure0, A.numberClass__closure1, A.numberClass__closure2, A.numberClass__closure3, A.numberClass__closure4, A.numberClass__closure5, A.numberClass__closure6, A.numberClass__closure7, A.numberClass__closure8, A.numberClass__closure9, A.numberClass__closure12, A.numberClass__closure13, A.numberClass__closure14, A.numberClass__closure15, A.numberClass__closure16, A.numberClass__closure17, A.numberClass__closure18, A.numberClass__closure19, A.stringClass__closure, A.stringClass__closure0, A.stringClass__closure1, A.stringClass__closure2, A.stringClass__closure3, A.DeprecationProcessingLogger_summarize_closure, A.DeprecationProcessingLogger_summarize_closure0, A._disallowedFunctionNames_closure, A.Parser_escape_closure, A.Parser_scanIdentChar_matches, A.SassParser_styleRuleSelector_closure, A.SassParser__peekIndentation_closure, A.SassParser__peekIndentation_closure0, A.SassParser__tryTrailingSemicolon_closure, A.StylesheetParser__declarationOrBuffer_closure1, A.StylesheetParser__expression_addSingleExpression, A.StylesheetParser__expression_addOperator, A.StylesheetParser__isHexColor_closure, A.StylesheetParser__unicodeRange_closure, A.StylesheetParser__unicodeRange_closure0, A.StylesheetParser_trySpecialFunction_closure, A.MapExtensions_get_pairs_closure, A._PrefixedKeys_iterator_closure, A.SourceMapBuffer_buildSourceMap_closure, A.StringExtension_toCssIdentifier_writeEscape, A.StringExtension_toCssIdentifier_consumeSurrogatePair, A._UnprefixedKeys_iterator_closure, A._UnprefixedKeys_iterator_closure0, A.indent_closure, A.flattenVertically_closure, A.flattenVertically_closure0, A.SassCalculation__verifyLength_closure, A.SassColor$_forSpace_closure, A.HwbColorSpace_convert_toRgb, A.SassList_isBlank_closure, A.SassNumber__coerceOrConvertValue_closure, A.SassNumber__coerceOrConvertValue_closure1, A.SassNumber_multiplyUnits_closure, A.SassNumber_multiplyUnits_closure1, A.SassNumber__areAnyConvertible_closure, A.SassNumber__canonicalizeUnitList_closure, A.SassNumber_unitSuggestion_closure, A.SassNumber_unitSuggestion_closure0, A.SingleUnitSassNumber__coerceToUnit_closure, A.SingleUnitSassNumber__coerceValueToUnit_closure, A.SingleUnitSassNumber_multiplyUnits_closure, A.AnySelectorVisitor_visitComplexSelector_closure, A.AnySelectorVisitor_visitCompoundSelector_closure, A._EvaluateVisitor_closure, A._EvaluateVisitor_closure0, A._EvaluateVisitor_closure1, A._EvaluateVisitor_closure2, A._EvaluateVisitor_closure3, A._EvaluateVisitor_closure4, A._EvaluateVisitor_closure5, A._EvaluateVisitor_closure6, A._EvaluateVisitor_closure7, A._EvaluateVisitor_closure8, A._EvaluateVisitor_closure9, A._EvaluateVisitor_closure10, A._EvaluateVisitor_closure11, A._EvaluateVisitor__loadModule__closure, A._EvaluateVisitor__combineCss_closure, A._EvaluateVisitor__combineCss_closure0, A._EvaluateVisitor__combineCss_visitModule, A._EvaluateVisitor__extendModules_closure, A._EvaluateVisitor__scopeForAtRoot_closure, A._EvaluateVisitor__scopeForAtRoot_closure0, A._EvaluateVisitor__scopeForAtRoot_closure1, A._EvaluateVisitor__scopeForAtRoot_closure2, A._EvaluateVisitor__scopeForAtRoot_closure3, A._EvaluateVisitor__scopeForAtRoot_closure4, A._EvaluateVisitor_visitEachRule_closure, A._EvaluateVisitor_visitEachRule_closure0, A._EvaluateVisitor_visitEachRule__closure, A._EvaluateVisitor_visitEachRule___closure, A._EvaluateVisitor_visitAtRule_closure, A._EvaluateVisitor_visitAtRule_closure2, A._EvaluateVisitor_visitForRule__closure, A._EvaluateVisitor_visitIfRule_closure, A._EvaluateVisitor_visitIfRule___closure, A._EvaluateVisitor__visitDynamicImport__closure, A._EvaluateVisitor__visitDynamicImport__closure0, A._EvaluateVisitor__visitDynamicImport__closure1, A._EvaluateVisitor_visitIncludeRule_closure0, A._EvaluateVisitor_visitMediaRule_closure0, A._EvaluateVisitor_visitMediaRule_closure2, A._EvaluateVisitor_visitStyleRule_closure0, A._EvaluateVisitor_visitStyleRule_closure1, A._EvaluateVisitor__warnForBogusCombinators_closure, A._EvaluateVisitor_visitSupportsRule_closure1, A._EvaluateVisitor_visitWhileRule__closure, A._EvaluateVisitor__slash_recommendation, A._EvaluateVisitor_visitIfExpression_closure, A._EvaluateVisitor_visitIfConditionOperation_closure, A._EvaluateVisitor_visitListExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure0, A._EvaluateVisitor__visitCalculation_closure, A._EvaluateVisitor__checkCalculationArguments_check, A._EvaluateVisitor__visitCalculationExpression__closure, A._EvaluateVisitor__runUserDefinedCallable____closure, A._EvaluateVisitor__runBuiltInCallable_closure1, A._EvaluateVisitor__evaluateArguments_closure, A._EvaluateVisitor__evaluateArguments_closure0, A._EvaluateVisitor__evaluateArguments_closure2, A._EvaluateVisitor__evaluateMacroArguments_closure, A._EvaluateVisitor__evaluateMacroArguments_closure0, A._EvaluateVisitor__evaluateMacroArguments_closure2, A._EvaluateVisitor_visitCssAtRule_closure1, A._EvaluateVisitor_visitCssKeyframeBlock_closure0, A._EvaluateVisitor_visitCssMediaRule_closure0, A._EvaluateVisitor_visitCssMediaRule_closure2, A._EvaluateVisitor_visitCssStyleRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure1, A._EvaluateVisitor__performInterpolationHelper_closure, A._EvaluateVisitor__withoutSlash_recommendation, A._EvaluateVisitor__stackFrame_closure, A._ImportedCssVisitor_visitCssAtRule_closure, A._ImportedCssVisitor_visitCssMediaRule_closure, A._ImportedCssVisitor_visitCssStyleRule_closure, A._ImportedCssVisitor_visitCssSupportsRule_closure, A.EveryCssVisitor_visitCssAtRule_closure, A.EveryCssVisitor_visitCssKeyframeBlock_closure, A.EveryCssVisitor_visitCssMediaRule_closure, A.EveryCssVisitor_visitCssStyleRule_closure, A.EveryCssVisitor_visitCssStylesheet_closure, A.EveryCssVisitor_visitCssSupportsRule_closure, A.IsCalculationSafeVisitor_visitListExpression_closure, A.ReplaceExpressionVisitor_visitListExpression_closure, A.ReplaceExpressionVisitor_visitIfConditionOperation_closure, A.ReplaceExpressionVisitor_visitArgumentList_closure, A.ReplaceExpressionVisitor_visitInterpolation_closure, A.SelectorSearchVisitor_visitComplexSelector_closure, A.SelectorSearchVisitor_visitCompoundSelector_closure, A.serialize_closure, A._SerializeVisitor_visitList_closure, A._SerializeVisitor_visitList_closure0, A._SerializeVisitor_visitList_closure1, A._SerializeVisitor_visitMap_closure, A._SerializeVisitor_visitSelectorList_closure, A.SourceInterpolationVisitor__visitArguments_closure, A.SourceInterpolationVisitor_visitIfConditionOperation_closure, A.SourceInterpolationVisitor_visitListExpression_closure, A.StatementSearchVisitor_visitIfRule_closure, A.StatementSearchVisitor_visitIfRule__closure0, A.StatementSearchVisitor_visitIfRule_closure0, A.StatementSearchVisitor_visitIfRule__closure, A.StatementSearchVisitor_visitChildren_closure, A.SingleMapping_SingleMapping$fromEntries_closure1, A.SingleMapping_toJson_closure, A.Highlighter$__closure, A.Highlighter$___closure, A.Highlighter$__closure0, A.Highlighter__collateLines_closure, A.Highlighter__collateLines_closure1, A.Highlighter__collateLines__closure, A.Highlighter_highlight_closure, A.Trace_toString_closure0, A.Trace_toString_closure]);
-				_inheritMany(A.Closure2Args, [A._CastListBase_sort_closure, A.CastMap_forEach_closure, A.Primitives_functionNoSuchMethod_closure, A.JsLinkedHashMap_addAll_closure, A.initHooks_closure0, A._HashMap_addAll_closure, A.HashMap_HashMap$from_closure, A.LinkedHashMap_LinkedHashMap$from_closure, A.MapBase_addAll_closure, A.MapBase_mapToString_closure, A.NoSuchMethodError_toString_closure, A.Uri_parseIPv6Address_error, A.MidiInputMap_keys_closure, A.MidiInputMap_values_closure, A.MidiOutputMap_keys_closure, A.MidiOutputMap_values_closure, A.RtcStatsReport_keys_closure, A.RtcStatsReport_values_closure, A.Storage_addAll_closure, A.Storage_keys_closure, A.Storage_values_closure, A.AudioParamMap_keys_closure, A.AudioParamMap_values_closure, A.IfRule_toString_closure, A.ComplexSelector_specificity_closure, A.CompoundSelector_specificity_closure, A.main_closure, A.main_closure0, A.ExtensionStore_clone_closure, A._weaveParents_closure, A.paths_closure, A._nest__closure0, A._append__closure0, A._parseFunctions_closure, A._updateAstPrototypes_closure3, A._updateAstPrototypes_closure4, A._updateAstPrototypes_closure5, A._updateAstPrototypes_closure6, A.JSClassExtension_get_defineStaticMethod_closure, A.JSClassExtension_get_defineMethod_closure, A.JSClassExtension_get_defineGetter_closure, A.objectToMap_closure, A.valueClass__closure6, A.valueClass__closure16, A.calculationOperationClass__closure0, A.calculationInterpolationClass__closure, A.calculationInterpolationClass__closure0, A.colorClass__closure, A.colorClass__closure0, A.colorClass__closure2, A.colorClass__closure4, A.colorClass__closure6, A.colorClass__closure8, A.listClass__closure0, A.mapClass__closure1, A.numberClass__closure10, A.numberClass__closure11, A.StylesheetParser__styleRule_closure, A.StylesheetParser__styleRule_closure0, A.StylesheetParser__withStyleRuleChildren_closure, A.StylesheetParser__tryDeclarationChildren_closure, A.StylesheetParser__atRootRule_closure, A.StylesheetParser__atRootRule_closure0, A.StylesheetParser__eachRule_closure, A.StylesheetParser__functionRule_closure, A.StylesheetParser__forRule_closure0, A.StylesheetParser__includeRule_closure, A.StylesheetParser_mediaRule_closure, A.StylesheetParser__mixinRule_closure, A.StylesheetParser_mozDocumentRule_closure0, A.StylesheetParser_supportsRule_closure, A.StylesheetParser__whileRule_closure, A.StylesheetParser_unknownAtRule_closure, A.longestCommonSubsequence_backtrack, A.mapAddAll2_closure, A.SassNumber_plus_closure, A.SassNumber_minus_closure, A.SassNumber__canonicalMultiplier_closure, A._EvaluateVisitor__closure, A._EvaluateVisitor__closure0, A._EvaluateVisitor_visitForwardRule_closure, A._EvaluateVisitor_visitForwardRule_closure0, A._EvaluateVisitor_visitUseRule_closure, A._EvaluateVisitor__evaluateArguments_closure1, A._EvaluateVisitor__evaluateMacroArguments_closure1, A._EvaluateVisitor__addRestMap_closure, A.SingleMapping_toJson_closure0, A.Highlighter__collateLines_closure0]);
+				_inheritMany(A.Closure, [A.Closure2Args, A.CastMap_entries_closure, A.Instantiation, A.Closure0Args, A.TearOffClosure, A.initHooks_closure, A.initHooks_closure1/*DSH-, A._AsyncRun__initializeScheduleImmediate_internalCallback, A._AsyncRun__initializeScheduleImmediate_closure, A._CustomZone_bindUnaryCallback_closure, A._RootZone_bindUnaryCallback_closure*/, A._HashMap_values_closure, A.MapBase_entries_closure, A._Uri__makePath_closure, A.jsify__convert, A.MapKeySet_difference_closure, A.Context_joinAll_closure, A.Context_split_closure, A._validateArgList_closure, A.ParsedPath__splitExtension_closure, A.WindowsStyle_absolutePathToUri_closure, A.Version__splitParts_closure, A.ModifiableCssNode_hasFollowingSibling_closure, A.ListExpression_toString_closure, A.Interpolation_toString_closure, A.ParameterList_verify_closure, A.ParameterList_verify_closure0, A.EachRule_toString_closure, A.IfRuleClause$__closure, A.IfRuleClause$___closure, A.ParentStatement_closure, A.ParentStatement__closure, A._IsBogusVisitor_visitComplexSelector_closure, A._IsUselessVisitor_visitComplexSelector_closure, A.ComplexSelectorComponent_toString_closure, A.CompoundSelector_hasComplicatedSuperselectorSemantics_closure, A.IDSelector_unify_closure, A.SelectorList_asSassList_closure, A.SelectorList_nestWithin_closure, A.SelectorList_nestWithin__closure, A.SelectorList_nestWithin__closure0, A.SelectorList__nestWithinCompound_closure, A.SelectorList__nestWithinCompound_closure0, A.SelectorList__nestWithinCompound_closure1, A.SelectorList_withAdditionalCombinators_closure, A.PseudoSelector_specificity__closure, A.PseudoSelector_specificity__closure0, A.PseudoSelector_unify_closure, A.SimpleSelector_isSuperselector_closure, A.SimpleSelector_isSuperselector__closure, A.BuiltInCallable$mixin_closure, A.BuiltInCallable_withDeprecationWarning_closure, A._compileStylesheet_closure, A.Deprecation_fromId_closure, A.Environment__getVariableFromGlobalModule_closure, A.Environment_setVariable_closure0, A.Environment__getFunctionFromGlobalModule_closure, A.Environment__getMixinFromGlobalModule_closure, A.Environment_toModule_closure, A.Environment_toDummyModule_closure, A._EnvironmentModule__EnvironmentModule_closure, A._EnvironmentModule__EnvironmentModule_closure0, A._EnvironmentModule__EnvironmentModule_closure1, A._EnvironmentModule__EnvironmentModule_closure2, A._EnvironmentModule__EnvironmentModule_closure3, A._EnvironmentModule__EnvironmentModule_closure4, A._EnvironmentModule_couldHaveBeenConfigured_closure, A.ExtensionStore_extensionsWhereTarget_closure, A.ExtensionStore__extendComplex_closure, A.ExtensionStore__extendComplex__closure, A.ExtensionStore__extendCompound_closure, A.ExtensionStore__extendCompound_closure0, A.ExtensionStore__extendCompound_closure1, A.ExtensionStore__extendSimple_withoutPseudo, A.ExtensionStore__extendSimple_closure, A.ExtensionStore__extendSimple_closure0, A.ExtensionStore__extendPseudo_closure, A.ExtensionStore__extendPseudo_closure0, A.ExtensionStore__extendPseudo_closure1, A.ExtensionStore__extendPseudo_closure2, A.ExtensionStore__extendPseudo_closure3, A.ExtensionStore__trim_closure, A.ExtensionStore__trim_closure0, A.unifyComplex_closure, A._weaveParents_closure0, A._weaveParents_closure1, A._weaveParents_closure2, A._mustUnify_closure, A._mustUnify__closure, A.paths__closure, A.paths___closure, A.listIsSuperselector_closure, A.listIsSuperselector__closure, A.complexIsSuperselector_closure, A.complexIsSuperselector_closure0, A._compatibleWithPreviousCombinator_closure, A.compoundIsSuperselector_closure, A._selectorPseudoIsSuperselector_closure, A._selectorPseudoIsSuperselector_closure0, A._selectorPseudoIsSuperselector_closure1, A._selectorPseudoIsSuperselector_closure2, A._selectorPseudoIsSuperselector_closure3, A._selectorPseudoIsSuperselector__closure, A._selectorPseudoIsSuperselector___closure, A._selectorPseudoIsSuperselector___closure0, A._selectorPseudoIsSuperselector_closure4, A._selectorPseudoIsSuperselector_closure5, A._selectorPseudoArgs_closure, A._selectorPseudoArgs_closure0, A.globalFunctions_closure, A.global_closure0, A.global_closure1, A.global_closure2, A.global_closure3, A.global_closure4, A.global_closure5, A.global_closure6, A.global_closure7, A.global_closure8, A.global_closure9, A.global_closure10, A.global_closure11, A.global_closure12, A.global_closure13, A.global_closure14, A.global_closure15, A.global_closure16, A.global_closure17, A.global_closure18, A.global_closure19, A.global_closure20, A.global_closure21, A.global_closure22, A.global_closure23, A.global_closure24, A.global_closure25, A.global_closure26, A.global_closure27, A.global_closure28, A.global_closure29, A.global_closure30, A.global_closure31, A.global_closure32, A.global_closure33, A.global_closure34, A.global_closure35, A.global__closure, A.global_closure36, A.global_closure37, A.global_closure38, A.global_closure39, A.global_closure40, A.global_closure41, A.global_closure42, A.module_closure1, A.module_closure2, A.module_closure3, A.module_closure4, A.module_closure5, A.module_closure6, A.module_closure7, A.module_closure8, A.module_closure9, A.module_closure10, A.module_closure11, A.module_closure12, A.module_closure13, A.module_closure14, A.module__closure2, A.module_closure15, A.module_closure16, A.module_closure17, A.module_closure18, A.module_closure19, A.module_closure20, A.module_closure21, A.module_closure22, A.module__closure1, A.module_closure23, A.module_closure_toXyzNoMissing, A.module_closure24, A._mix_closure, A._complement_closure, A._adjust_closure, A._scale_closure, A._change_closure, A._ieHexStr_closure, A._ieHexStr_closure_hexString, A._updateComponents_closure, A._updateComponents_closure0, A._adjustColor_closure, A._functionString_closure, A._removedColorFunction_closure, A._rgb_closure, A._hsl_closure, A._parseChannels_closure, A._parseChannels_closure0, A._colorFromChannels_closure, A._colorFromChannels_closure0, A._channelFromValue_closure, A._channelFunction_closure, A._suggestScaleAndAdjust_closure, A._length_closure0, A._nth_closure, A._setNth_closure, A._join_closure, A._append_closure0, A._zip_closure, A._zip__closure, A._zip__closure0, A._zip__closure1, A._index_closure0, A._separator_closure, A._isBracketed_closure, A._slash_closure, A._get_closure, A._set_closure, A._set__closure0, A._set_closure0, A._set__closure, A._merge_closure, A._merge_closure0, A._merge__closure, A._deepMerge_closure, A._deepRemove_closure, A._deepRemove__closure, A._remove_closure, A._remove_closure0, A._keys_closure, A._values_closure, A._hasKey_closure, A._modify_modifyNestedMap, A.global_closure, A.module_closure0, A._ceil_closure, A._clamp_closure, A._floor_closure, A._max_closure, A._min_closure, A._round_closure, A._hypot_closure, A._hypot__closure, A._log_closure, A._pow_closure, A._atan2_closure, A._compatible_closure, A._isUnitless_closure, A._unit_closure, A._percentage_closure, A._randomFunction_closure, A._div_closure, A._singleArgumentMathFunc_closure, A._numberFunction_closure, A._shared_closure, A._shared_closure0, A._shared_closure1, A._shared_closure2, A.moduleFunctions_closure, A.moduleFunctions_closure0, A.moduleFunctions__closure, A.moduleFunctions_closure1, A._nest_closure, A._nest__closure, A._append_closure, A._append__closure, A._append___closure, A._extend_closure, A._replace_closure, A._unify_closure, A._isSuperselector_closure, A._simpleSelectors_closure, A._simpleSelectors__closure, A._parse_closure, A.module_closure, A.module__closure, A.module__closure0, A._unquote_closure, A._quote_closure, A._length_closure, A._insert_closure, A._index_closure, A._slice_closure, A._toUpperCase_closure, A._toLowerCase_closure, A._uniqueId_closure, A.ImportCache_humanize_closure, A.ImportCache_humanize_closure0, A.ImportCache_humanize_closure1, A.ImportCache_humanize_closure2, A.FilesystemImporter_canonicalize_closure, A._exactlyOne_closure, A.InterpolationMap_mapException_closure, A._realCasePath_helper, A._realCasePath_helper__closure, A.listDir__closure, A.listDir__closure0, A.listDir_closure_list, A.listDir__list_closure, A._parseFunctions__closure, A.compilerClass__closure, A.compilerClass__closure0, A.compilerClass__closure1, A.compilerClass__closure2, A.versionClass__closure, A.versionClass__closure0/*DSH-, A.exceptionClass__closure, A.exceptionClass__closure0, A.exceptionClass__closure1*/, A.immutableMapToDartMap_closure, A.updateCanonicalizeContextPrototype_closure, A.updateCanonicalizeContextPrototype_closure0, A.loadParserExports_closure, A.loadParserExports_closure0, A.loadParserExports_closure1, A.loadParserExports_closure2, A.loadParserExports_closure3, A.loadParserExports_closure4, A._updateLazyFileSpanPrototype_closure0, A._updateLazyFileSpanPrototype_closure1, A._updateLazyFileSpanPrototype_closure2, A._updateAstPrototypes_closure, A._updateAstPrototypes_closure0, A._updateAstPrototypes_closure1, A._updateAstPrototypes_closure2, A._updateAstPrototypes_closure7, A._updateAstPrototypes_closure8, A._updateAstPrototypes_closure9, A._updateAstPrototypes_closure10, A._updateAstPrototypes_closure11, A._updateAstPrototypes_closure12, A._updateAstPrototypes_closure13, A._addSupportsConditionToInterpolation_closure, A.JSClassExtension_setCustomInspect_closure, A.updateSourceSpanPrototype_closure0, A.updateSourceSpanPrototype_closure1, A.updateSourceSpanPrototype_closure2, A.updateSourceSpanPrototype__closure, A.updateSourceSpanPrototype_closure3, A.updateSourceSpanPrototype_closure4, A.updateSourceSpanPrototype_closure5, A.updateSourceSpanPrototype_closure6, A.valueClass__closure, A.valueClass__closure0, A.valueClass__closure1, A.valueClass__closure2, A.valueClass__closure3, A.valueClass__closure4, A.valueClass__closure5, A.valueClass__closure7, A.valueClass__closure8, A.valueClass__closure9, A.valueClass__closure10, A.valueClass__closure11, A.valueClass__closure12, A.valueClass__closure13, A.valueClass__closure14, A.valueClass__closure15, A.valueClass__closure17, A.valueClass__closure18, A.argumentListClass__closure, A.argumentListClass__closure0, A.booleanClass__closure, A.calculationClass__closure, A.calculationClass__closure0, A.calculationClass__closure1, A.calculationClass__closure2, A.calculationClass__closure3, A.calculationClass__closure4, A.calculationClass__closure5, A.calculationOperationClass__closure, A.calculationOperationClass___closure, A.calculationOperationClass__closure1, A.calculationOperationClass__closure2, A.calculationOperationClass__closure3, A.calculationOperationClass__closure4, A.calculationInterpolationClass__closure1, A.calculationInterpolationClass__closure2, A.colorClass__closure1, A.colorClass__closure3, A.colorClass__closure5, A.colorClass__closure7, A.colorClass___closure, A.colorClass__closure_changedValue, A.colorClass__closure9, A.colorClass__closure10, A.colorClass__closure11, A.colorClass__closure12, A.colorClass__closure13, A.colorClass__closure14, A.colorClass__closure15, A.colorClass__closure16, A.colorClass__closure17, A.colorClass__closure18, A.colorClass__closure19, A.colorClass__closure20, A.colorClass__closure21, A.colorClass__closure22, A.functionClass__closure, A.functionClass__closure0, A.listClass__closure, A.mapClass__closure, A.mapClass__closure0, A.mixinClass__closure, A.mixinClass__closure0, A.numberClass__closure, A.numberClass__closure0, A.numberClass__closure1, A.numberClass__closure2, A.numberClass__closure3, A.numberClass__closure4, A.numberClass__closure5, A.numberClass__closure6, A.numberClass__closure7, A.numberClass__closure8, A.numberClass__closure9, A.numberClass__closure12, A.numberClass__closure13, A.numberClass__closure14, A.numberClass__closure15, A.numberClass__closure16, A.numberClass__closure17, A.numberClass__closure18, A.numberClass__closure19, A.stringClass__closure, A.stringClass__closure0, A.stringClass__closure1, A.stringClass__closure2, A.stringClass__closure3, A.DeprecationProcessingLogger_summarize_closure, A.DeprecationProcessingLogger_summarize_closure0, A._disallowedFunctionNames_closure, A.Parser_escape_closure, A.Parser_scanIdentChar_matches, A.SassParser_styleRuleSelector_closure, A.SassParser__peekIndentation_closure, A.SassParser__peekIndentation_closure0, A.SassParser__tryTrailingSemicolon_closure, A.StylesheetParser__declarationOrBuffer_closure1, A.StylesheetParser__expression_addSingleExpression, A.StylesheetParser__expression_addOperator, A.StylesheetParser__isHexColor_closure, A.StylesheetParser__unicodeRange_closure, A.StylesheetParser__unicodeRange_closure0, A.StylesheetParser_trySpecialFunction_closure, A.MapExtensions_get_pairs_closure, A._PrefixedKeys_iterator_closure, A.SourceMapBuffer_buildSourceMap_closure, A.StringExtension_toCssIdentifier_writeEscape, A.StringExtension_toCssIdentifier_consumeSurrogatePair, A._UnprefixedKeys_iterator_closure, A._UnprefixedKeys_iterator_closure0, A.indent_closure, A.flattenVertically_closure, A.flattenVertically_closure0, A.SassCalculation__verifyLength_closure, A.SassColor$_forSpace_closure, A.HwbColorSpace_convert_toRgb, A.SassList_isBlank_closure, A.SassNumber__coerceOrConvertValue_closure, A.SassNumber__coerceOrConvertValue_closure1, A.SassNumber_multiplyUnits_closure, A.SassNumber_multiplyUnits_closure1, A.SassNumber__areAnyConvertible_closure, A.SassNumber__canonicalizeUnitList_closure, A.SassNumber_unitSuggestion_closure, A.SassNumber_unitSuggestion_closure0, A.SingleUnitSassNumber__coerceToUnit_closure, A.SingleUnitSassNumber__coerceValueToUnit_closure, A.SingleUnitSassNumber_multiplyUnits_closure, A.AnySelectorVisitor_visitComplexSelector_closure, A.AnySelectorVisitor_visitCompoundSelector_closure, A._EvaluateVisitor_closure, A._EvaluateVisitor_closure0, A._EvaluateVisitor_closure1, A._EvaluateVisitor_closure2, A._EvaluateVisitor_closure3, A._EvaluateVisitor_closure4, A._EvaluateVisitor_closure5, A._EvaluateVisitor_closure6, A._EvaluateVisitor_closure7, A._EvaluateVisitor_closure8, A._EvaluateVisitor_closure9, A._EvaluateVisitor_closure10, A._EvaluateVisitor_closure11, A._EvaluateVisitor__loadModule__closure, A._EvaluateVisitor__combineCss_closure, A._EvaluateVisitor__combineCss_closure0, A._EvaluateVisitor__combineCss_visitModule, A._EvaluateVisitor__extendModules_closure, A._EvaluateVisitor__scopeForAtRoot_closure, A._EvaluateVisitor__scopeForAtRoot_closure0, A._EvaluateVisitor__scopeForAtRoot_closure1, A._EvaluateVisitor__scopeForAtRoot_closure2, A._EvaluateVisitor__scopeForAtRoot_closure3, A._EvaluateVisitor__scopeForAtRoot_closure4, A._EvaluateVisitor_visitEachRule_closure, A._EvaluateVisitor_visitEachRule_closure0, A._EvaluateVisitor_visitEachRule__closure, A._EvaluateVisitor_visitEachRule___closure, A._EvaluateVisitor_visitAtRule_closure, A._EvaluateVisitor_visitAtRule_closure2, A._EvaluateVisitor_visitForRule__closure, A._EvaluateVisitor_visitIfRule_closure, A._EvaluateVisitor_visitIfRule___closure, A._EvaluateVisitor__visitDynamicImport__closure, A._EvaluateVisitor__visitDynamicImport__closure0, A._EvaluateVisitor__visitDynamicImport__closure1, A._EvaluateVisitor_visitIncludeRule_closure0, A._EvaluateVisitor_visitMediaRule_closure0, A._EvaluateVisitor_visitMediaRule_closure2, A._EvaluateVisitor_visitStyleRule_closure0, A._EvaluateVisitor_visitStyleRule_closure1, A._EvaluateVisitor__warnForBogusCombinators_closure, A._EvaluateVisitor_visitSupportsRule_closure1, A._EvaluateVisitor_visitWhileRule__closure, A._EvaluateVisitor__slash_recommendation, A._EvaluateVisitor_visitIfExpression_closure, A._EvaluateVisitor_visitIfConditionOperation_closure, A._EvaluateVisitor_visitListExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure0, A._EvaluateVisitor__visitCalculation_closure, A._EvaluateVisitor__checkCalculationArguments_check, A._EvaluateVisitor__visitCalculationExpression__closure, A._EvaluateVisitor__runUserDefinedCallable____closure, A._EvaluateVisitor__runBuiltInCallable_closure1, A._EvaluateVisitor__evaluateArguments_closure, A._EvaluateVisitor__evaluateArguments_closure0, A._EvaluateVisitor__evaluateArguments_closure2, A._EvaluateVisitor__evaluateMacroArguments_closure, A._EvaluateVisitor__evaluateMacroArguments_closure0, A._EvaluateVisitor__evaluateMacroArguments_closure2, A._EvaluateVisitor_visitCssAtRule_closure1, A._EvaluateVisitor_visitCssKeyframeBlock_closure0, A._EvaluateVisitor_visitCssMediaRule_closure0, A._EvaluateVisitor_visitCssMediaRule_closure2, A._EvaluateVisitor_visitCssStyleRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure1, A._EvaluateVisitor__performInterpolationHelper_closure, A._EvaluateVisitor__withoutSlash_recommendation, A._EvaluateVisitor__stackFrame_closure, A._ImportedCssVisitor_visitCssAtRule_closure, A._ImportedCssVisitor_visitCssMediaRule_closure, A._ImportedCssVisitor_visitCssStyleRule_closure, A._ImportedCssVisitor_visitCssSupportsRule_closure, A.EveryCssVisitor_visitCssAtRule_closure, A.EveryCssVisitor_visitCssKeyframeBlock_closure, A.EveryCssVisitor_visitCssMediaRule_closure, A.EveryCssVisitor_visitCssStyleRule_closure, A.EveryCssVisitor_visitCssStylesheet_closure, A.EveryCssVisitor_visitCssSupportsRule_closure, A.IsCalculationSafeVisitor_visitListExpression_closure, A.ReplaceExpressionVisitor_visitListExpression_closure, A.ReplaceExpressionVisitor_visitIfConditionOperation_closure, A.ReplaceExpressionVisitor_visitArgumentList_closure, A.ReplaceExpressionVisitor_visitInterpolation_closure, A.SelectorSearchVisitor_visitComplexSelector_closure, A.SelectorSearchVisitor_visitCompoundSelector_closure, A.serialize_closure, A._SerializeVisitor_visitList_closure, A._SerializeVisitor_visitList_closure0, A._SerializeVisitor_visitList_closure1, A._SerializeVisitor_visitMap_closure, A._SerializeVisitor_visitSelectorList_closure, A.SourceInterpolationVisitor__visitArguments_closure, A.SourceInterpolationVisitor_visitIfConditionOperation_closure, A.SourceInterpolationVisitor_visitListExpression_closure, A.StatementSearchVisitor_visitIfRule_closure, A.StatementSearchVisitor_visitIfRule__closure0, A.StatementSearchVisitor_visitIfRule_closure0, A.StatementSearchVisitor_visitIfRule__closure, A.StatementSearchVisitor_visitChildren_closure, A.SingleMapping_SingleMapping$fromEntries_closure1, A.SingleMapping_toJson_closure, A.Highlighter$__closure, A.Highlighter$___closure, A.Highlighter$__closure0, A.Highlighter__collateLines_closure, A.Highlighter__collateLines_closure1, A.Highlighter__collateLines__closure, A.Highlighter_highlight_closure, A.Trace_toString_closure0, A.Trace_toString_closure]);
+				_inheritMany(A.Closure2Args, [A._CastListBase_sort_closure, A.CastMap_forEach_closure, A.Primitives_functionNoSuchMethod_closure, A.JsLinkedHashMap_addAll_closure, A.initHooks_closure0, A._HashMap_addAll_closure, A.HashMap_HashMap$from_closure, A.LinkedHashMap_LinkedHashMap$from_closure, A.MapBase_addAll_closure, A.MapBase_mapToString_closure, A.NoSuchMethodError_toString_closure, A.Uri_parseIPv6Address_error, A.IfRule_toString_closure, A.ComplexSelector_specificity_closure, A.CompoundSelector_specificity_closure, A.main_closure, A.main_closure0, A.ExtensionStore_clone_closure, A._weaveParents_closure, A.paths_closure, A._nest__closure0, A._append__closure0, A._parseFunctions_closure, A._updateAstPrototypes_closure3, A._updateAstPrototypes_closure4, A._updateAstPrototypes_closure5, A._updateAstPrototypes_closure6, A.JSClassExtension_get_defineStaticMethod_closure, A.JSClassExtension_get_defineMethod_closure, A.JSClassExtension_get_defineGetter_closure, A.objectToMap_closure, A.valueClass__closure6, A.valueClass__closure16, A.calculationOperationClass__closure0, A.calculationInterpolationClass__closure, A.calculationInterpolationClass__closure0, A.colorClass__closure, A.colorClass__closure0, A.colorClass__closure2, A.colorClass__closure4, A.colorClass__closure6, A.colorClass__closure8, A.listClass__closure0, A.mapClass__closure1, A.numberClass__closure10, A.numberClass__closure11, A.StylesheetParser__styleRule_closure, A.StylesheetParser__styleRule_closure0, A.StylesheetParser__withStyleRuleChildren_closure, A.StylesheetParser__tryDeclarationChildren_closure, A.StylesheetParser__atRootRule_closure, A.StylesheetParser__atRootRule_closure0, A.StylesheetParser__eachRule_closure, A.StylesheetParser__functionRule_closure, A.StylesheetParser__forRule_closure0, A.StylesheetParser__includeRule_closure, A.StylesheetParser_mediaRule_closure, A.StylesheetParser__mixinRule_closure, A.StylesheetParser_mozDocumentRule_closure0, A.StylesheetParser_supportsRule_closure, A.StylesheetParser__whileRule_closure, A.StylesheetParser_unknownAtRule_closure, A.longestCommonSubsequence_backtrack, A.mapAddAll2_closure, A.SassNumber_plus_closure, A.SassNumber_minus_closure, A.SassNumber__canonicalMultiplier_closure, A._EvaluateVisitor__closure, A._EvaluateVisitor__closure0, A._EvaluateVisitor_visitForwardRule_closure, A._EvaluateVisitor_visitForwardRule_closure0, A._EvaluateVisitor_visitUseRule_closure, A._EvaluateVisitor__evaluateArguments_closure1, A._EvaluateVisitor__evaluateMacroArguments_closure1, A._EvaluateVisitor__addRestMap_closure, A.SingleMapping_toJson_closure0, A.Highlighter__collateLines_closure0]);
 				_inherit(A.CastList, A._CastListBase);
 				_inheritMany(A.MapBase, [A.CastMap, A.JsLinkedHashMap, A._HashMap, A.UnmodifiableMapBase, A.MergedMapView]);
 				_inheritMany(A.Error, [A.LateError, A.TypeError, A.JsNoSuchMethodError, A.UnknownJsTypeError, A.RuntimeError, A._Error, A.AssertionError, A.ArgumentError, A.NoSuchMethodError, A.UnsupportedError, A.UnimplementedError, A.StateError, A.ConcurrentModificationError]);
@@ -66692,7 +64432,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_inheritMany(A.NativeTypedArrayOfDouble, [A.NativeFloat32List, A.NativeFloat64List]);
 				_inheritMany(A.NativeTypedArrayOfInt, [A.NativeInt16List, A.NativeInt32List, A.NativeInt8List, A.NativeUint16List, A.NativeUint32List, A.NativeUint8ClampedList, A.NativeUint8List]);
 				_inherit(A._TypeError, A._Error);
-				_inheritMany(A.Closure0Args, [A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A._TimerImpl$periodic_closure, A._CustomZone_bindCallback_closure, A._CustomZone_bindCallbackGuarded_closure, A._rootHandleError_closure, A._RootZone_bindCallback_closure, A._RootZone_bindCallbackGuarded_closure, A._Utf8Decoder__decoder_closure, A._Utf8Decoder__decoderNonfatal_closure, A._isStrictMode_closure, A.ParsedPath__splitExtension_closure0, A.IfConditionOperation_toInterpolation_closure, A.PseudoSelector_specificity_closure, A.Environment_setVariable_closure, A.Environment_setVariable_closure1, A.ExtensionStore__registerSelector_closure, A.ExtensionStore_addExtension_closure, A.ExtensionStore_addExtension_closure0, A.ExtensionStore_addExtension_closure1, A.ExtensionStore__extendExistingExtensions_closure, A.ExtensionStore__extendExistingExtensions_closure0, A.ExtensionStore_addExtensions_closure, A.ExtensionStore_clone__closure, A._changeColor_closure, A.ImportCache_canonicalize_closure, A.ImportCache__canonicalize_closure, A.ImportCache_importCanonical_closure, A.JSToDartFileImporter_canonicalize_closure, A.JSToDartImporter_canonicalize_closure, A.JSToDartImporter_load_closure, A.resolveImportPath_closure, A.resolveImportPath_closure0, A._tryPathAsDirectory_closure, A._realCasePath_helper_closure, A._readFile_closure, A.fileExists_closure, A.dirExists_closure, A.linkExists_closure, A.listDir_closure, A.realpath_closure, A._parseFunctions___closure, A.compilerClass_closure, A.deprecations_closure, A.parseDeprecations_closure, A.versionClass_closure, A.exceptionClass_closure, A._updateLazyFileSpanPrototype_closure, A.updateSourceSpanPrototype_closure, A.valueClass_closure, A.argumentListClass_closure, A.booleanClass_closure, A.calculationClass_closure, A.calculationOperationClass_closure, A.calculationInterpolationClass_closure, A.colorClass_closure, A.functionClass_closure, A.listClass_closure, A.mapClass_closure, A.mixinClass_closure, A.numberClass_closure, A.stringClass_closure/*DSH-, A.JSToDartLogger_internalWarn_closure, A.JSToDartLogger_debug_closure*/, A.AtRootQueryParser_parse_closure, A.KeyframeSelectorParser_parse_closure, A.MediaQueryParser_parse_closure, A.Parser__parseIdentifier_closure, A.Parser_spanFrom_closure, A.Parser_spanFromPosition_closure, A.SassParser_children_closure, A.SelectorParser_parse_closure, A.SelectorParser_parseCompoundSelector_closure, A.StylesheetParser_parse_closure, A.StylesheetParser_parse__closure, A.StylesheetParser_parseParameterList_closure, A.StylesheetParser__parseSingleProduction_closure, A.StylesheetParser_parseSignature_closure, A.StylesheetParser__statement_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure0, A.StylesheetParser__declarationOrBuffer_closure, A.StylesheetParser__declarationOrBuffer_closure0, A.StylesheetParser__declarationOrBuffer_closure2, A.StylesheetParser__propertyOrVariableDeclaration_closure, A.StylesheetParser__forRule_closure, A.StylesheetParser__memberList_closure, A.StylesheetParser_mozDocumentRule_closure, A.StylesheetParser__expression_resetState, A.StylesheetParser__expression_resolveOneOperation, A.StylesheetParser__expression_resolveOperations, A.StylesheetParser__expression_resolveSpaceExpressions, A.StylesheetParser_expressionUntilComma_closure, A.StylesheetParser_interpolatedStringToken_closure, A.StylesheetParser_namespacedExpression_closure, A.StylesheetParser__interpolatedDeclarationValue_closure, A.StylesheetParser__expressionUntilComparison_closure, A.StylesheetParser__publicIdentifier_closure, A.SassNumber__coerceOrConvertValue_compatibilityException, A.SassNumber__coerceOrConvertValue_closure0, A.SassNumber__coerceOrConvertValue_closure2, A.SassNumber_multiplyUnits_closure0, A.SassNumber_multiplyUnits_closure2, A.SingleUnitSassNumber_multiplyUnits_closure0, A._EvaluateVisitor__closure2, A._EvaluateVisitor__closure1, A._EvaluateVisitor_run_closure, A._EvaluateVisitor_run__closure, A._EvaluateVisitor__loadModule_closure, A._EvaluateVisitor__loadModule_closure0, A._EvaluateVisitor__loadModule__closure0, A._EvaluateVisitor__execute_closure, A._EvaluateVisitor__extendModules_closure0, A._EvaluateVisitor_visitAtRootRule_closure, A._EvaluateVisitor_visitAtRootRule_closure0, A._EvaluateVisitor__scopeForAtRoot__closure, A._EvaluateVisitor_visitContentRule_closure, A._EvaluateVisitor_visitDeclaration_closure, A._EvaluateVisitor_visitEachRule_closure1, A._EvaluateVisitor_visitAtRule_closure0, A._EvaluateVisitor_visitAtRule_closure1, A._EvaluateVisitor_visitAtRule__closure, A._EvaluateVisitor_visitForRule_closure, A._EvaluateVisitor_visitForRule_closure0, A._EvaluateVisitor_visitForRule_closure1, A._EvaluateVisitor_visitForRule_closure2, A._EvaluateVisitor_visitForRule_closure3, A._EvaluateVisitor__registerCommentsForModule_closure, A._EvaluateVisitor_visitIfRule__closure, A._EvaluateVisitor__visitDynamicImport_closure, A._EvaluateVisitor__visitDynamicImport__closure2, A._EvaluateVisitor__applyMixin_closure, A._EvaluateVisitor__applyMixin__closure0, A._EvaluateVisitor__applyMixin_closure0, A._EvaluateVisitor__applyMixin__closure, A._EvaluateVisitor__applyMixin___closure, A._EvaluateVisitor__applyMixin____closure, A._EvaluateVisitor_visitIncludeRule_closure, A._EvaluateVisitor_visitIncludeRule_closure1, A._EvaluateVisitor_visitMediaRule_closure, A._EvaluateVisitor_visitMediaRule_closure1, A._EvaluateVisitor_visitMediaRule__closure, A._EvaluateVisitor_visitMediaRule___closure, A._EvaluateVisitor_visitStyleRule_closure, A._EvaluateVisitor_visitStyleRule_closure2, A._EvaluateVisitor_visitStyleRule__closure, A._EvaluateVisitor_visitSupportsRule_closure, A._EvaluateVisitor_visitSupportsRule_closure0, A._EvaluateVisitor_visitSupportsRule__closure, A._EvaluateVisitor__visitSupportsCondition_closure, A._EvaluateVisitor_visitVariableDeclaration_closure, A._EvaluateVisitor_visitVariableDeclaration_closure0, A._EvaluateVisitor_visitVariableDeclaration_closure1, A._EvaluateVisitor_visitWarnRule_closure, A._EvaluateVisitor_visitWhileRule_closure, A._EvaluateVisitor_visitBinaryOperationExpression_closure, A._EvaluateVisitor_visitVariableExpression_closure, A._EvaluateVisitor_visitUnaryOperationExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure1, A._EvaluateVisitor__visitCalculationExpression_closure, A._EvaluateVisitor_visitInterpolatedFunctionExpression_closure, A._EvaluateVisitor__runUserDefinedCallable_closure, A._EvaluateVisitor__runUserDefinedCallable__closure, A._EvaluateVisitor__runUserDefinedCallable___closure, A._EvaluateVisitor__runFunctionCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure0, A._EvaluateVisitor__verifyArguments_closure, A._EvaluateVisitor_visitCssAtRule_closure, A._EvaluateVisitor_visitCssAtRule_closure0, A._EvaluateVisitor_visitCssKeyframeBlock_closure, A._EvaluateVisitor_visitCssMediaRule_closure, A._EvaluateVisitor_visitCssMediaRule_closure1, A._EvaluateVisitor_visitCssMediaRule__closure, A._EvaluateVisitor_visitCssMediaRule___closure, A._EvaluateVisitor_visitCssStyleRule_closure0, A._EvaluateVisitor_visitCssStyleRule__closure, A._EvaluateVisitor_visitCssSupportsRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure0, A._EvaluateVisitor_visitCssSupportsRule__closure, A._EvaluateVisitor__serialize_closure, A._EvaluateVisitor__expressionNode_closure, A._SerializeVisitor_visitCssComment_closure, A._SerializeVisitor_visitCssAtRule_closure, A._SerializeVisitor_visitCssMediaRule_closure, A._SerializeVisitor_visitCssImport_closure, A._SerializeVisitor_visitCssImport__closure, A._SerializeVisitor_visitCssKeyframeBlock_closure, A._SerializeVisitor_visitCssStyleRule_closure, A._SerializeVisitor_visitCssSupportsRule_closure, A._SerializeVisitor_visitCssDeclaration_closure, A._SerializeVisitor_visitCssDeclaration_closure0, A._SerializeVisitor__write_closure, A._SerializeVisitor__visitChildren_closure, A._SerializeVisitor__visitChildren_closure0, A.SingleMapping_SingleMapping$fromEntries_closure, A.SingleMapping_SingleMapping$fromEntries_closure0, A.Highlighter_closure, A.Highlighter__writeFileStart_closure, A.Highlighter__writeMultilineHighlights_closure, A.Highlighter__writeMultilineHighlights_closure0, A.Highlighter__writeMultilineHighlights_closure1, A.Highlighter__writeMultilineHighlights_closure2, A.Highlighter__writeMultilineHighlights__closure, A.Highlighter__writeMultilineHighlights__closure0, A.Highlighter__writeHighlightedText_closure, A.Highlighter__writeIndicator_closure, A.Highlighter__writeIndicator_closure0, A.Highlighter__writeIndicator_closure1, A.Highlighter__writeLabel_closure, A.Highlighter__writeLabel_closure0, A.Highlighter__writeSidebar_closure, A._Highlight_closure]);
+				_inheritMany(A.Closure0Args, [/*DSH- A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A._TimerImpl$periodic_closure, A._CustomZone_bindCallback_closure, A._CustomZone_bindCallbackGuarded_closure, A._rootHandleError_closure, A._RootZone_bindCallback_closure, A._RootZone_bindCallbackGuarded_closure,*/ A._Utf8Decoder__decoder_closure, A._Utf8Decoder__decoderNonfatal_closure, A._isStrictMode_closure, A.ParsedPath__splitExtension_closure0, A.IfConditionOperation_toInterpolation_closure, A.PseudoSelector_specificity_closure, A.Environment_setVariable_closure, A.Environment_setVariable_closure1, A.ExtensionStore__registerSelector_closure, A.ExtensionStore_addExtension_closure, A.ExtensionStore_addExtension_closure0, A.ExtensionStore_addExtension_closure1, A.ExtensionStore__extendExistingExtensions_closure, A.ExtensionStore__extendExistingExtensions_closure0, A.ExtensionStore_addExtensions_closure, A.ExtensionStore_clone__closure, A._changeColor_closure, A.ImportCache_canonicalize_closure, A.ImportCache__canonicalize_closure, A.ImportCache_importCanonical_closure, A.JSToDartFileImporter_canonicalize_closure, A.JSToDartImporter_canonicalize_closure, A.JSToDartImporter_load_closure, A.resolveImportPath_closure, A.resolveImportPath_closure0, A._tryPathAsDirectory_closure, A._realCasePath_helper_closure, A._readFile_closure, A.fileExists_closure, A.dirExists_closure, A.linkExists_closure, A.listDir_closure, A.realpath_closure, A._parseFunctions___closure, A.compilerClass_closure, A.deprecations_closure, A.parseDeprecations_closure, A.versionClass_closure, A.exceptionClass_closure, A._updateLazyFileSpanPrototype_closure, A.updateSourceSpanPrototype_closure, A.valueClass_closure, A.argumentListClass_closure, A.booleanClass_closure, A.calculationClass_closure, A.calculationOperationClass_closure, A.calculationInterpolationClass_closure, A.colorClass_closure, A.functionClass_closure, A.listClass_closure, A.mapClass_closure, A.mixinClass_closure, A.numberClass_closure, A.stringClass_closure/*DSH-, A.JSToDartLogger_internalWarn_closure, A.JSToDartLogger_debug_closure*/, A.AtRootQueryParser_parse_closure, A.KeyframeSelectorParser_parse_closure, A.MediaQueryParser_parse_closure, A.Parser__parseIdentifier_closure, A.Parser_spanFrom_closure, A.Parser_spanFromPosition_closure, A.SassParser_children_closure, A.SelectorParser_parse_closure, A.SelectorParser_parseCompoundSelector_closure, A.StylesheetParser_parse_closure, A.StylesheetParser_parse__closure, A.StylesheetParser_parseParameterList_closure, A.StylesheetParser__parseSingleProduction_closure, A.StylesheetParser_parseSignature_closure, A.StylesheetParser__statement_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure0, A.StylesheetParser__declarationOrBuffer_closure, A.StylesheetParser__declarationOrBuffer_closure0, A.StylesheetParser__declarationOrBuffer_closure2, A.StylesheetParser__propertyOrVariableDeclaration_closure, A.StylesheetParser__forRule_closure, A.StylesheetParser__memberList_closure, A.StylesheetParser_mozDocumentRule_closure, A.StylesheetParser__expression_resetState, A.StylesheetParser__expression_resolveOneOperation, A.StylesheetParser__expression_resolveOperations, A.StylesheetParser__expression_resolveSpaceExpressions, A.StylesheetParser_expressionUntilComma_closure, A.StylesheetParser_interpolatedStringToken_closure, A.StylesheetParser_namespacedExpression_closure, A.StylesheetParser__interpolatedDeclarationValue_closure, A.StylesheetParser__expressionUntilComparison_closure, A.StylesheetParser__publicIdentifier_closure, A.SassNumber__coerceOrConvertValue_compatibilityException, A.SassNumber__coerceOrConvertValue_closure0, A.SassNumber__coerceOrConvertValue_closure2, A.SassNumber_multiplyUnits_closure0, A.SassNumber_multiplyUnits_closure2, A.SingleUnitSassNumber_multiplyUnits_closure0, A._EvaluateVisitor__closure2, A._EvaluateVisitor__closure1, A._EvaluateVisitor_run_closure, A._EvaluateVisitor_run__closure, A._EvaluateVisitor__loadModule_closure, A._EvaluateVisitor__loadModule_closure0, A._EvaluateVisitor__loadModule__closure0, A._EvaluateVisitor__execute_closure, A._EvaluateVisitor__extendModules_closure0, A._EvaluateVisitor_visitAtRootRule_closure, A._EvaluateVisitor_visitAtRootRule_closure0, A._EvaluateVisitor__scopeForAtRoot__closure, A._EvaluateVisitor_visitContentRule_closure, A._EvaluateVisitor_visitDeclaration_closure, A._EvaluateVisitor_visitEachRule_closure1, A._EvaluateVisitor_visitAtRule_closure0, A._EvaluateVisitor_visitAtRule_closure1, A._EvaluateVisitor_visitAtRule__closure, A._EvaluateVisitor_visitForRule_closure, A._EvaluateVisitor_visitForRule_closure0, A._EvaluateVisitor_visitForRule_closure1, A._EvaluateVisitor_visitForRule_closure2, A._EvaluateVisitor_visitForRule_closure3, A._EvaluateVisitor__registerCommentsForModule_closure, A._EvaluateVisitor_visitIfRule__closure, A._EvaluateVisitor__visitDynamicImport_closure, A._EvaluateVisitor__visitDynamicImport__closure2, A._EvaluateVisitor__applyMixin_closure, A._EvaluateVisitor__applyMixin__closure0, A._EvaluateVisitor__applyMixin_closure0, A._EvaluateVisitor__applyMixin__closure, A._EvaluateVisitor__applyMixin___closure, A._EvaluateVisitor__applyMixin____closure, A._EvaluateVisitor_visitIncludeRule_closure, A._EvaluateVisitor_visitIncludeRule_closure1, A._EvaluateVisitor_visitMediaRule_closure, A._EvaluateVisitor_visitMediaRule_closure1, A._EvaluateVisitor_visitMediaRule__closure, A._EvaluateVisitor_visitMediaRule___closure, A._EvaluateVisitor_visitStyleRule_closure, A._EvaluateVisitor_visitStyleRule_closure2, A._EvaluateVisitor_visitStyleRule__closure, A._EvaluateVisitor_visitSupportsRule_closure, A._EvaluateVisitor_visitSupportsRule_closure0, A._EvaluateVisitor_visitSupportsRule__closure, A._EvaluateVisitor__visitSupportsCondition_closure, A._EvaluateVisitor_visitVariableDeclaration_closure, A._EvaluateVisitor_visitVariableDeclaration_closure0, A._EvaluateVisitor_visitVariableDeclaration_closure1, A._EvaluateVisitor_visitWarnRule_closure, A._EvaluateVisitor_visitWhileRule_closure, A._EvaluateVisitor_visitBinaryOperationExpression_closure, A._EvaluateVisitor_visitVariableExpression_closure, A._EvaluateVisitor_visitUnaryOperationExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure1, A._EvaluateVisitor__visitCalculationExpression_closure, A._EvaluateVisitor_visitInterpolatedFunctionExpression_closure, A._EvaluateVisitor__runUserDefinedCallable_closure, A._EvaluateVisitor__runUserDefinedCallable__closure, A._EvaluateVisitor__runUserDefinedCallable___closure, A._EvaluateVisitor__runFunctionCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure0, A._EvaluateVisitor__verifyArguments_closure, A._EvaluateVisitor_visitCssAtRule_closure, A._EvaluateVisitor_visitCssAtRule_closure0, A._EvaluateVisitor_visitCssKeyframeBlock_closure, A._EvaluateVisitor_visitCssMediaRule_closure, A._EvaluateVisitor_visitCssMediaRule_closure1, A._EvaluateVisitor_visitCssMediaRule__closure, A._EvaluateVisitor_visitCssMediaRule___closure, A._EvaluateVisitor_visitCssStyleRule_closure0, A._EvaluateVisitor_visitCssStyleRule__closure, A._EvaluateVisitor_visitCssSupportsRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure0, A._EvaluateVisitor_visitCssSupportsRule__closure, A._EvaluateVisitor__serialize_closure, A._EvaluateVisitor__expressionNode_closure, A._SerializeVisitor_visitCssComment_closure, A._SerializeVisitor_visitCssAtRule_closure, A._SerializeVisitor_visitCssMediaRule_closure, A._SerializeVisitor_visitCssImport_closure, A._SerializeVisitor_visitCssImport__closure, A._SerializeVisitor_visitCssKeyframeBlock_closure, A._SerializeVisitor_visitCssStyleRule_closure, A._SerializeVisitor_visitCssSupportsRule_closure, A._SerializeVisitor_visitCssDeclaration_closure, A._SerializeVisitor_visitCssDeclaration_closure0, A._SerializeVisitor__write_closure, A._SerializeVisitor__visitChildren_closure, A._SerializeVisitor__visitChildren_closure0, A.SingleMapping_SingleMapping$fromEntries_closure, A.SingleMapping_SingleMapping$fromEntries_closure0, A.Highlighter_closure, A.Highlighter__writeFileStart_closure, A.Highlighter__writeMultilineHighlights_closure, A.Highlighter__writeMultilineHighlights_closure0, A.Highlighter__writeMultilineHighlights_closure1, A.Highlighter__writeMultilineHighlights_closure2, A.Highlighter__writeMultilineHighlights__closure, A.Highlighter__writeMultilineHighlights__closure0, A.Highlighter__writeHighlightedText_closure, A.Highlighter__writeIndicator_closure, A.Highlighter__writeIndicator_closure0, A.Highlighter__writeIndicator_closure1, A.Highlighter__writeLabel_closure, A.Highlighter__writeLabel_closure0, A.Highlighter__writeSidebar_closure, A._Highlight_closure]);
 				_inheritMany(A._Zone, [A._CustomZone, A._RootZone]);
 				_inherit(A._IdentityHashMap, A._HashMap);
 				_inherit(A._LinkedHashSet, A._SetBase);
@@ -66703,65 +64443,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_inherit(A.Utf8Codec, A.Encoding);
 				_inheritMany(A.ArgumentError, [A.RangeError, A.IndexError]);
 				_inherit(A._DataUri, A._Uri);
-				_inheritMany(A.EventTarget, [A.Node, A.FileWriter, A.SourceBuffer, A._SourceBufferList_EventTarget_ListMixin, A.TextTrack, A.TextTrackCue, A._TextTrackList_EventTarget_ListMixin, A.VideoTrackList, A.AudioTrackList, A.BaseAudioContext]);
-				_inheritMany(A.Node, [A.Element, A.CharacterData]);
-				_inherit(A.HtmlElement, A.Element);
-				_inheritMany(A.HtmlElement, [A.AnchorElement, A.AreaElement, A.FormElement, A.SelectElement]);
-				_inheritMany(A.Event, [A.ApplicationCacheErrorEvent, A.ErrorEvent, A.MediaKeyMessageEvent, A.PresentationConnectionCloseEvent, A.SpeechRecognitionError]);
-				_inherit(A.CssPerspective, A.CssTransformComponent);
-				_inherit(A.CssStyleDeclaration, A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase);
-				_inheritMany(A.CssStyleValue, [A.CssTransformValue, A.CssUnparsedValue]);
-				_inheritMany(A.ReportBody, [A.DeprecationReport, A.InterventionReport]);
-				_inherit(A._DomRectList_JavaScriptObject_ListMixin_ImmutableListMixin, A._DomRectList_JavaScriptObject_ListMixin);
-				_inherit(A.DomRectList, A._DomRectList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._DomStringList_JavaScriptObject_ListMixin_ImmutableListMixin, A._DomStringList_JavaScriptObject_ListMixin);
-				_inherit(A.DomStringList, A._DomStringList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.File, A.Blob);
-				_inherit(A._FileList_JavaScriptObject_ListMixin_ImmutableListMixin, A._FileList_JavaScriptObject_ListMixin);
-				_inherit(A.FileList, A._FileList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._HtmlCollection_JavaScriptObject_ListMixin_ImmutableListMixin, A._HtmlCollection_JavaScriptObject_ListMixin);
-				_inherit(A.HtmlCollection, A._HtmlCollection_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.MidiInputMap, A._MidiInputMap_JavaScriptObject_MapMixin);
-				_inherit(A.MidiOutputMap, A._MidiOutputMap_JavaScriptObject_MapMixin);
-				_inherit(A._MimeTypeArray_JavaScriptObject_ListMixin_ImmutableListMixin, A._MimeTypeArray_JavaScriptObject_ListMixin);
-				_inherit(A.MimeTypeArray, A._MimeTypeArray_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._NodeList_JavaScriptObject_ListMixin_ImmutableListMixin, A._NodeList_JavaScriptObject_ListMixin);
-				_inherit(A.NodeList, A._NodeList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._PluginArray_JavaScriptObject_ListMixin_ImmutableListMixin, A._PluginArray_JavaScriptObject_ListMixin);
-				_inherit(A.PluginArray, A._PluginArray_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.RtcStatsReport, A._RtcStatsReport_JavaScriptObject_MapMixin);
-				_inherit(A._SourceBufferList_EventTarget_ListMixin_ImmutableListMixin, A._SourceBufferList_EventTarget_ListMixin);
-				_inherit(A.SourceBufferList, A._SourceBufferList_EventTarget_ListMixin_ImmutableListMixin);
-				_inherit(A._SpeechGrammarList_JavaScriptObject_ListMixin_ImmutableListMixin, A._SpeechGrammarList_JavaScriptObject_ListMixin);
-				_inherit(A.SpeechGrammarList, A._SpeechGrammarList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.Storage, A._Storage_JavaScriptObject_MapMixin);
-				_inherit(A._TextTrackCueList_JavaScriptObject_ListMixin_ImmutableListMixin, A._TextTrackCueList_JavaScriptObject_ListMixin);
-				_inherit(A.TextTrackCueList, A._TextTrackCueList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._TextTrackList_EventTarget_ListMixin_ImmutableListMixin, A._TextTrackList_EventTarget_ListMixin);
-				_inherit(A.TextTrackList, A._TextTrackList_EventTarget_ListMixin_ImmutableListMixin);
-				_inherit(A._TouchList_JavaScriptObject_ListMixin_ImmutableListMixin, A._TouchList_JavaScriptObject_ListMixin);
-				_inherit(A.TouchList, A._TouchList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.__CssRuleList_JavaScriptObject_ListMixin_ImmutableListMixin, A.__CssRuleList_JavaScriptObject_ListMixin);
-				_inherit(A._CssRuleList, A.__CssRuleList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._DomRect, A.DomRectReadOnly);
-				_inherit(A.__GamepadList_JavaScriptObject_ListMixin_ImmutableListMixin, A.__GamepadList_JavaScriptObject_ListMixin);
-				_inherit(A._GamepadList, A.__GamepadList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.__NamedNodeMap_JavaScriptObject_ListMixin_ImmutableListMixin, A.__NamedNodeMap_JavaScriptObject_ListMixin);
-				_inherit(A._NamedNodeMap, A.__NamedNodeMap_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin_ImmutableListMixin, A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin);
-				_inherit(A._SpeechRecognitionResultList, A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.__StyleSheetList_JavaScriptObject_ListMixin_ImmutableListMixin, A.__StyleSheetList_JavaScriptObject_ListMixin);
-				_inherit(A._StyleSheetList, A.__StyleSheetList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._LengthList_JavaScriptObject_ListMixin_ImmutableListMixin, A._LengthList_JavaScriptObject_ListMixin);
-				_inherit(A.LengthList, A._LengthList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._NumberList_JavaScriptObject_ListMixin_ImmutableListMixin, A._NumberList_JavaScriptObject_ListMixin);
-				_inherit(A.NumberList, A._NumberList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._StringList_JavaScriptObject_ListMixin_ImmutableListMixin, A._StringList_JavaScriptObject_ListMixin);
-				_inherit(A.StringList, A._StringList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A._TransformList_JavaScriptObject_ListMixin_ImmutableListMixin, A._TransformList_JavaScriptObject_ListMixin);
-				_inherit(A.TransformList, A._TransformList_JavaScriptObject_ListMixin_ImmutableListMixin);
-				_inherit(A.AudioParamMap, A._AudioParamMap_JavaScriptObject_MapMixin);
-				_inherit(A.OfflineAudioContext, A.BaseAudioContext);
 				_inherit(A.EmptyUnmodifiableSet, A._EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin);
 				_inherit(A.QueueList, A._QueueList_Object_ListMixin);
 				_inherit(A._CastQueueList, A.QueueList);
@@ -66838,54 +64519,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_mixin(A.UnmodifiableMapBase, A._UnmodifiableMapMixin);
 				_mixin(A._UnmodifiableMapView_MapView__UnmodifiableMapMixin, A._UnmodifiableMapMixin);
 				_mixin(A._UnmodifiableSetView_SetBase__UnmodifiableSetMixin, A._UnmodifiableSetMixin);
-				_mixin(A._CssStyleDeclaration_JavaScriptObject_CssStyleDeclarationBase, A.CssStyleDeclarationBase);
-				_mixin(A._DomRectList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._DomRectList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._DomStringList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._DomStringList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._FileList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._FileList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._HtmlCollection_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._HtmlCollection_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._MidiInputMap_JavaScriptObject_MapMixin, A.MapBase);
-				_mixin(A._MidiOutputMap_JavaScriptObject_MapMixin, A.MapBase);
-				_mixin(A._MimeTypeArray_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._MimeTypeArray_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._NodeList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._NodeList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._PluginArray_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._PluginArray_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._RtcStatsReport_JavaScriptObject_MapMixin, A.MapBase);
-				_mixin(A._SourceBufferList_EventTarget_ListMixin, A.ListBase);
-				_mixin(A._SourceBufferList_EventTarget_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._SpeechGrammarList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._SpeechGrammarList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._Storage_JavaScriptObject_MapMixin, A.MapBase);
-				_mixin(A._TextTrackCueList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._TextTrackCueList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._TextTrackList_EventTarget_ListMixin, A.ListBase);
-				_mixin(A._TextTrackList_EventTarget_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._TouchList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._TouchList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A.__CssRuleList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A.__CssRuleList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A.__GamepadList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A.__GamepadList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A.__NamedNodeMap_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A.__NamedNodeMap_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A.__SpeechRecognitionResultList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A.__StyleSheetList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A.__StyleSheetList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._LengthList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._LengthList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._NumberList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._NumberList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._StringList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._StringList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._TransformList_JavaScriptObject_ListMixin, A.ListBase);
-				_mixin(A._TransformList_JavaScriptObject_ListMixin_ImmutableListMixin, A.ImmutableListMixin);
-				_mixin(A._AudioParamMap_JavaScriptObject_MapMixin, A.MapBase);
 				_mixin(A._EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin, A.UnmodifiableSetMixin);
 				_mixin(A._QueueList_Object_ListMixin, A.ListBase);
 				_mixin(A._UnmodifiableSetView_DelegatingSet_UnmodifiableSetMixin, A.UnmodifiableSetMixin);
@@ -66904,7 +64537,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				typeUniverse: {eC: new Map(), tR: {}, eT: {}, tPV: {}, sEA: []},
 				mangledGlobalNames: {int: "int", double: "double", num: "num", String: "String", bool: "bool", Null: "Null", List: "List", Object: "Object", Map: "Map", JSObject: "JSObject"},
 				mangledNames: {},
-				types: ["Null()", "Value(List<Value>)", "~()", "bool(Object?)", "bool(CssNode)", "bool(SimpleSelector)", "SassString(List<Value>)", "bool(ComplexSelector)", "String(String)", "SassBoolean(List<Value>)", "JSClass()", "SassColor(List<Value>)", "SassNumber(List<Value>)", "SassList(List<Value>)", "bool(String)", "double(SassColor)", "double(double)", "~(String,@)", "FileSpan()", "int(SassColor)", "bool()", "int()", "SassMap(List<Value>)", "bool(Value)", "SassNumber(SassNumber)", "Value()", "Value?()", "String()", "bool(int?)", "bool(ComplexSelectorComponent)", "Null(~())", "Value(Value)", "ComplexSelector(ComplexSelector)", "bool(SelectorList)", "bool(ColorChannel)", "bool(int)", "bool(Module0<Callable>)", "String?()", "~(Value)", "Callable?()", "bool(@)", "bool(num,num)", "Value?(Statement)", "@()", "double(SassNumber)", "~(Module0<Callable>,bool)", "bool(_Highlight)", "Object?()", "Map<ComplexSelector,Extension>()", "double(double,double)", "~(String,Function)", "SassCalculation(Object)", "~(~())", "Statement()", "~(Expression)", "~(String,String)", "~(Object?)", "ValueExpression(Value)", "Object(Object)", "Value?(Value,num)", "Version(String)"/*DSH-, "String(_NodeException)"*/, "SelectorList(SelectorList,SelectorList)", "FileLocation(FileSpan)", "JSUrl(Uri)", "String(FileSpan)", "int(SourceLocation)", "Value?(Value)", "String(Value)", "0&(Object[Object?])", "Uri(Uri)", "Object(CalculationOperation)", "ImmutableList(SassColor)", "bool(SassNumber)", "Uri(String)", "bool(SassNumber,String)", "SassNumber(SassNumber,Object,Object[String?])", "SassNumber(SassNumber,SassNumber[String?,String?])", "double(SassNumber,Object,Object[String?])", "double(SassNumber,SassNumber[String?,String?])", "Callable?(Module0<Callable>)", "int(ComplexSelector)", "bool(Import)", "bool(Queue<List<ComplexSelectorComponent>>)", "StyleRule(List<Statement>,FileSpan)", "AtRootRule(List<Statement>,FileSpan)", "AtRule(List<Statement>,FileSpan)", "List<Extension>()", "String(String{color:Object?})", "~(int)", "double(Value)", "bool(Statement)", "~(List<Value>)", "~(Value,Value)", "ImmutableList(SassNumber)", "SassRuntimeException(AstNode)", "String(Object)", "String(Expression)", "bool(Object)", "~(Iterable<ExtensionStore>)", "SassNumber()", "List<CssMediaQuery>?(List<CssMediaQuery>)", "~(@,@)", "bool(Expression)", "~(String[Deprecation?])", "~(String,Value)", "SelectorList(Value)", "Expression(Expression)", "~(String,Object?)", "~(Object)", "MapKeySet<Module0<Callable>>(Map<Module0<Callable>,AstNode>)", "int(@,@)", "Map<String,Callable>(Module0<Callable>)", "Iterable<String>(@)", "Module0<Callable>?(Module0<Callable>)", "@(@,String)", "0&(String,int?)", "Map<String,Value>(Module0<Callable>)", "Map<String,AstNode>(Module0<Callable>)", "String(String[String?])", "@(String)", "Iterable<String>()", "String(@)", "Iterable<String>(String)", "String(Parameter)", "String(int,IfClause)", "bool(Extension)", "Set<0&>(Object)"/*DSH-, "NodeCompileResult(Compiler,String[CompileOptions?])", "NodeCompileResult(Compiler,String[CompileStringOptions?])"*/, "Null(Compiler)", "Iterable<Deprecation>()", "Version(Object,int,int,int)", "Set<ModifiableBox<SelectorList>>()", "Null(@)"/*DSH-, "FileSpan(_NodeException)"*/, "~(Object?,Object,Object?)", "bool(CanonicalizeContext)", "JSUrl?(CanonicalizeContext)", "JSExpressionVisitor(JSExpressionVisitorObject)", "JSIfConditionExpressionVisitor(JSIfConditionExpressionVisitorObject)", "JSStatementVisitor(JSStatementVisitorObject)", "JSSimpleSelectorVisitor(JSSimpleSelectorVisitorObject)", "SourceFile(String)", "JSSet(Set<Object?>)", "SourceFile(LazyFileSpan)", "int(LazyFileSpan)", "Uri?(LazyFileSpan)", "String(SourceFile,int[int?])", "FileSpan(SourceFile,int[int?])", "List<int>(SourceFile)", "String?(Interpolation)", "Object?(Statement,StatementVisitor<Object?>)", "Object?(Expression,ExpressionVisitor<Object?>)", "Object?(InterpolatedSelector,InterpolatedSelectorVisitor<Object?>)", "Object?(IfConditionExpression,IfConditionExpressionVisitor<Object?>)", "ArgumentList(IncludeRule)", "ArgumentList(ContentRule)", "ArgumentList(FunctionExpression)", "ArgumentList(LegacyIfExpression)", "ArgumentList(InterpolatedFunctionExpression)", "Interpolation(IfConditionFunction)", "FileSpan(AstNode)", "Interpolation(SupportsCondition)", "String(Object,@,@[@])", "~(Object?,Object?)", "Iterable<ComplexSelector>(List<ComplexSelector>)", "JSUrl?(FileSpan)", "List<SimpleSelector>(Extender)", "List<Extender>?(SimpleSelector)", "List<Extender>(PseudoSelector)", "ImmutableList(Value)", "List<List<Extender>>(List<Extender>)", "String?(Value)", "int(Value,Value[String?])", "List<ComplexSelector>(ComplexSelector)", "SassBoolean(Value[String?])", "SassCalculation(Value[String?])", "SassColor(Value[String?])", "SassFunction(Value[String?])", "SassMap(Value[String?])", "SassMixin(Value[String?])", "SassNumber(Value[String?])", "SassString(Value[String?])", "SassMap?(Value)", "bool(Value,Object?)", "int(Value[Object?])", "SassArgumentList(Object,Object,Object[String?])", "ImmutableMap(SassArgumentList)", "PseudoSelector(ComplexSelector)", "~(SimpleSelector,Set<ModifiableBox<SelectorList>>)", "SassCalculation(Object[Object?,Object?])", "SassCalculation(SassCalculation[String?])", "ImmutableList(SassCalculation)", "Object(Object,String,Object,Object)", "bool(CalculationOperator)", "bool(CalculationOperation,Object)", "int(CalculationOperation)", "String(CalculationOperation)", "ModifiableBox<SelectorList>()", "CalculationInterpolation(Object,String)", "bool(CalculationInterpolation,Object)", "int(CalculationInterpolation)", "String(CalculationInterpolation)", "SassColor(Object,_ConstructionOptions)", "bool(SassColor,Object)", "SassColor(SassColor,String)", "bool(SassColor[String?])", "SassColor(SassColor,_ToGamutOptions)", "double(SassColor,String[_ChannelOptions?])", "bool(SassColor,String)", "bool(SassColor,String[_ChannelOptions?])", "SassColor(SassColor,_ConstructionOptions)", "double?(String)", "SassColor(SassColor,SassColor[_InterpolationOptions?])", "String(SassColor)", "bool(SassColor)", "List<ComplexSelectorComponent>?(List<ComplexSelectorComponent>,List<ComplexSelectorComponent>)", "SassFunction(Object,String,Value(List<Value>))", "SassList(Object[Object?,_ConstructorOptions?])", "SassMap(Object[ImmutableMap?])", "ImmutableMap(SassMap)", "Value?(SassMap,Object)", "0&(Object)", "SassNumber(Object,num[Object?])", "Object?(Object?)", "int?(SassNumber)", "bool(List<Iterable<ComplexSelectorComponent>>)", "int(SassNumber[String?])", "double(SassNumber,num,num[String?])", "SassNumber(SassNumber[String?])", "SassNumber(SassNumber,String[String?])", "bool(PseudoSelector)", "SelectorList?(PseudoSelector)", "@(@)", "int(int,ComplexSelectorComponent)", "String(CssValue<Combinator>)", "SassString(Object[Object?,_ConstructorOptions1?])", "String(SassString)", "bool(SassString)", "int(SassString)", "int(SassString,Value[String?])", "int(int,SimpleSelector)", "int(int)", "AtRootQuery()", "String(BuiltInCallable)", "~(Symbol0,@)", "List<CssMediaQuery>()", "0&(String,FileSpan[StackTrace?])", "String(String?)", "SelectorList()", "CompoundSelector()", "Statement({root:bool})", "SassList(ComplexSelector)", "NumberExpression()", "Stylesheet()", "Statement?()", "ParameterList()", "+(String,ParameterList)()", "Iterable<ComplexSelector>(ComplexSelector)", "Declaration(List<Statement>,FileSpan)", "SassColor(SassColor)", "EachRule(List<Statement>,FileSpan)", "FunctionRule(List<Statement>,FileSpan)", "ForRule(List<Statement>,FileSpan)", "ContentBlock(List<Statement>,FileSpan)", "MediaRule(List<Statement>,FileSpan)", "MixinRule(List<Statement>,FileSpan)", "String(double)", "SupportsRule(List<Statement>,FileSpan)", "WhileRule(List<Statement>,FileSpan)", "SassColor(ColorSpace)", "~(BinaryOperator)", "StringExpression(Interpolation)", "double()", "String(String{color:@})", "Entry(Entry)", "bool(String?)", "SassScriptException()", "SimpleSelector(SimpleSelector)", "double(double,String)", "SingleUnitSassNumber(double)", "CssValue<String>(Interpolation{trim:bool,warnForColor:bool})", "AstNode(AstNode)", "SassFunction(List<Value>)", "0&(List<Value>)", "SassMixin(List<Value>)", "Object(String)", "bool(Version)", "bool(ModifiableCssNode)", "+loadedUrls,stylesheet(Set<Uri>,CssStylesheet)()", "Module0<Callable>()", "List<Value>(Value)", "~(Module0<Callable>)", "List<ExtensionStore>()", "bool(ModifiableCssParentNode)", "bool(List<Value>)"/*DSH-, "~(String,WarnOptions)", "~(String,DebugOptions)"*/, "CssValue<String>(Interpolation)", "SassMap(Value)", "SassMap(SassMap)", "List<CssComment>()", "Value?(IfRuleClause)", "bool(UseRule)", "bool(ForwardRule)", "UserDefinedCallable<Environment>(ContentBlock)", "SassNumber(Value)", "Value(Object)", "String(+(String,Value))", "String(+(IfConditionExpression,String))", "Value(Expression)", "bool(Deprecation)", "Value?(Module0<Callable>)", "~([int?])", "Object()", "SassString(SimpleSelector)", "SassString(int)", "InterpolationMap(List<int>)", "AstNode?()", "String(SassNumber)", "SassString(String)", "IfConditionExpression(IfConditionExpression)", "+originalUrl(Importer,Uri,Uri)?()", "~(CssMediaQuery)", "Uri?()", "~(double?[String?])", "~(SelectorList)", "~(MapEntry<Value,Value>)", "~(IfConditionExpression)", "SourceFile()", "SourceFile?(int)", "String?(SourceFile?)", "int(_Line)", "Stylesheet?()", "Object(_Line)", "Object(_Highlight)", "int(_Highlight,_Highlight)", "List<_Line>(MapEntry<Object,List<_Highlight>>)", "SourceSpanWithContext()", "int(Frame)", "String(Frame)", "bool(+originalUrl(Importer,Uri,Uri))", "Uri(+originalUrl(Importer,Uri,Uri))", "~(Zone?,ZoneDelegate?,Zone,Object,StackTrace)", "0^(Zone?,ZoneDelegate?,Zone,0^())<Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^),1^)<Object?,Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^,2^),1^,2^)<Object?,Object?,Object?>", "0^()(Zone,ZoneDelegate,Zone,0^())<Object?>", "0^(1^)(Zone,ZoneDelegate,Zone,0^(1^))<Object?,Object?>", "0^(1^,2^)(Zone,ZoneDelegate,Zone,0^(1^,2^))<Object?,Object?,Object?>", "AsyncError?(Zone,ZoneDelegate,Zone,Object,StackTrace?)", "~(Zone?,ZoneDelegate?,Zone,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~(Timer))", "~(Zone,ZoneDelegate,Zone,String)", "Zone(Zone?,ZoneDelegate?,Zone,ZoneSpecification?,Map<Object?,Object?>?)", "0^(0^,0^)<num>"/*DSH-, "NodeCompileResult(String[CompileOptions?])", "NodeCompileResult(String[CompileStringOptions?])"*/, "Importer(Object?)", "Compiler()", "List<Object?>(Object?)", "ParserExports()", "Stylesheet(String,String,String?)", "String?(String)", "Uri(JSUrl)", "Object(Map<String,Object?>)", "~(String)", "int(Uri)", "List<String>()"],
+				types: ["Null()", "Value(List<Value>)", "~()", "bool(CssNode)", "bool(Object?)", "bool(SimpleSelector)", "SassString(List<Value>)", "bool(ComplexSelector)", "String(String)", "SassBoolean(List<Value>)", "JSClass()", "SassColor(List<Value>)", "SassNumber(List<Value>)", "SassList(List<Value>)", "bool(String)", "double(SassColor)", "double(double)", "FileSpan()", "int(SassColor)", "bool()", "int()", "SassMap(List<Value>)", "bool(Value)", "Value?()", "String()", "bool(int?)", "bool(ComplexSelectorComponent)", "Value()", "SassNumber(SassNumber)", "Value(Value)", "Null(~())", "ComplexSelector(ComplexSelector)", "bool(SelectorList)", "bool(ColorChannel)", "Value?(Statement)", "bool(int)", "~(Value)", "bool(Module0<Callable>)", "String?()", "Callable?()", "bool(num,num)", "@()", "double(SassNumber)", "~(Module0<Callable>,bool)", "bool(_Highlight)", "Object?()", "Map<ComplexSelector,Extension>()", "double(double,double)", "~(String,Function)", "SassCalculation(Object)", "~(~())", "Statement()", "~(Expression)", "~(Object?)", "ValueExpression(Value)", "Object(Object)", "Value?(Value,num)", "MapKeySet<Module0<Callable>>(Map<Module0<Callable>,AstNode>)", "Version(String)"/*DSH-, "String(_NodeException)"*/, "SelectorList(Value)", "FileLocation(FileSpan)", "JSUrl(Uri)", "String(FileSpan)", "int(SourceLocation)", "Value?(Value)", "String(Value)", "0&(Object[Object?])", "SelectorList(SelectorList,SelectorList)", "Object(CalculationOperation)", "ImmutableList(SassColor)", "bool(SassNumber)", "ImmutableList(SassNumber)", "Uri(Uri)", "SassNumber(SassNumber,Object,Object[String?])", "SassNumber(SassNumber,SassNumber[String?,String?])", "double(SassNumber,Object,Object[String?])", "double(SassNumber,SassNumber[String?,String?])", "Callable?(Module0<Callable>)", "int(ComplexSelector)", "bool(Import)", "Uri(String)", "StyleRule(List<Statement>,FileSpan)", "AtRootRule(List<Statement>,FileSpan)", "AtRule(List<Statement>,FileSpan)", "bool(Queue<List<ComplexSelectorComponent>>)", "String(String{color:Object?})", "~(int)", "double(Value)", "bool(Statement)", "~(List<Value>)", "~(Value,Value)", "bool(SassNumber,String)", "SassRuntimeException(AstNode)", "String(Object)", "String(Expression)", "~(String,Object?)", "~(@,@)", "SassNumber()", "List<CssMediaQuery>?(List<CssMediaQuery>)", "~(String,@)", "bool(Expression)", "~(String[Deprecation?])", "~(String,Value)", "bool(Object)", "Expression(Expression)", "List<Extension>()", "~(Object)", "Map<String,Callable>(Module0<Callable>)", "int(@,@)", "~(Iterable<ExtensionStore>)", "Iterable<ComplexSelector>(List<ComplexSelector>)", "@(@)", "~(Symbol0,@)", "Map<String,Value>(Module0<Callable>)", "Map<String,AstNode>(Module0<Callable>)", "@(@,String)", "String(String[String?])", "String(Parameter)", "Iterable<String>()", "String(@)", "Iterable<String>(String)", "Iterable<String>(@)", "String(int,IfClause)", "bool(Extension)", "Set<0&>(Object)"/*DSH-, "NodeCompileResult(Compiler,String[CompileOptions?])", "NodeCompileResult(Compiler,String[CompileStringOptions?])"*/, "Null(Compiler)", "Iterable<Deprecation>()", "Version(Object,int,int,int)", "Set<ModifiableBox<SelectorList>>()", "0&(String,int?)"/*DSH-, "FileSpan(_NodeException)"*/, "~(Object?,Object,Object?)", "bool(CanonicalizeContext)", "JSUrl?(CanonicalizeContext)", "JSExpressionVisitor(JSExpressionVisitorObject)", "JSIfConditionExpressionVisitor(JSIfConditionExpressionVisitorObject)", "JSStatementVisitor(JSStatementVisitorObject)", "JSSimpleSelectorVisitor(JSSimpleSelectorVisitorObject)", "SourceFile(String)", "JSSet(Set<Object?>)", "SourceFile(LazyFileSpan)", "int(LazyFileSpan)", "Uri?(LazyFileSpan)", "String(SourceFile,int[int?])", "FileSpan(SourceFile,int[int?])", "List<int>(SourceFile)", "String?(Interpolation)", "Object?(Statement,StatementVisitor<Object?>)", "Object?(Expression,ExpressionVisitor<Object?>)", "Object?(InterpolatedSelector,InterpolatedSelectorVisitor<Object?>)", "Object?(IfConditionExpression,IfConditionExpressionVisitor<Object?>)", "ArgumentList(IncludeRule)", "ArgumentList(ContentRule)", "ArgumentList(FunctionExpression)", "ArgumentList(LegacyIfExpression)", "ArgumentList(InterpolatedFunctionExpression)", "Interpolation(IfConditionFunction)", "FileSpan(AstNode)", "Interpolation(SupportsCondition)", "String(Object,@,@[@])", "@(String)", "Object?(Object?)", "JSUrl?(FileSpan)", "List<SimpleSelector>(Extender)", "List<Extender>?(SimpleSelector)", "List<Extender>(PseudoSelector)", "ImmutableList(Value)", "List<List<Extender>>(List<Extender>)", "String?(Value)", "int(Value,Value[String?])", "List<ComplexSelector>(ComplexSelector)", "SassBoolean(Value[String?])", "SassCalculation(Value[String?])", "SassColor(Value[String?])", "SassFunction(Value[String?])", "SassMap(Value[String?])", "SassMixin(Value[String?])", "SassNumber(Value[String?])", "SassString(Value[String?])", "SassMap?(Value)", "bool(Value,Object?)", "int(Value[Object?])", "SassArgumentList(Object,Object,Object[String?])", "ImmutableMap(SassArgumentList)", "PseudoSelector(ComplexSelector)", "~(SimpleSelector,Set<ModifiableBox<SelectorList>>)", "SassCalculation(Object[Object?,Object?])", "SassCalculation(SassCalculation[String?])", "ImmutableList(SassCalculation)", "Object(Object,String,Object,Object)", "bool(CalculationOperator)", "bool(CalculationOperation,Object)", "int(CalculationOperation)", "String(CalculationOperation)", "ModifiableBox<SelectorList>()", "CalculationInterpolation(Object,String)", "bool(CalculationInterpolation,Object)", "int(CalculationInterpolation)", "String(CalculationInterpolation)", "SassColor(Object,_ConstructionOptions)", "bool(SassColor,Object)", "SassColor(SassColor,String)", "bool(SassColor[String?])", "SassColor(SassColor,_ToGamutOptions)", "double(SassColor,String[_ChannelOptions?])", "bool(SassColor,String)", "bool(SassColor,String[_ChannelOptions?])", "SassColor(SassColor,_ConstructionOptions)", "double?(String)", "SassColor(SassColor,SassColor[_InterpolationOptions?])", "String(SassColor)", "bool(SassColor)", "List<ComplexSelectorComponent>?(List<ComplexSelectorComponent>,List<ComplexSelectorComponent>)", "SassFunction(Object,String,Value(List<Value>))", "SassList(Object[Object?,_ConstructorOptions?])", "SassMap(Object[ImmutableMap?])", "ImmutableMap(SassMap)", "Value?(SassMap,Object)", "0&(Object)", "SassNumber(Object,num[Object?])", "Null(@)", "int?(SassNumber)", "bool(List<Iterable<ComplexSelectorComponent>>)", "int(SassNumber[String?])", "double(SassNumber,num,num[String?])", "SassNumber(SassNumber[String?])", "SassNumber(SassNumber,String[String?])", "bool(PseudoSelector)", "SelectorList?(PseudoSelector)", "int(int,ComplexSelectorComponent)", "String(CssValue<Combinator>)", "int(int,SimpleSelector)", "SassString(Object[Object?,_ConstructorOptions1?])", "String(SassString)", "bool(SassString)", "int(SassString)", "int(SassString,Value[String?])", "~(Object?,Object?)", "int(int)", "AtRootQuery()", "String(BuiltInCallable)", "List<String>()", "String(String?)", "0&(String,FileSpan[StackTrace?])", "SassList(ComplexSelector)", "SelectorList()", "CompoundSelector()", "Statement({root:bool})", "Iterable<ComplexSelector>(ComplexSelector)", "NumberExpression()", "Stylesheet()", "Statement?()", "ParameterList()", "+(String,ParameterList)()", "bool(String?)", "Declaration(List<Statement>,FileSpan)", "SassColor(SassColor)", "EachRule(List<Statement>,FileSpan)", "FunctionRule(List<Statement>,FileSpan)", "ForRule(List<Statement>,FileSpan)", "ContentBlock(List<Statement>,FileSpan)", "MediaRule(List<Statement>,FileSpan)", "MixinRule(List<Statement>,FileSpan)", "String(double)", "SupportsRule(List<Statement>,FileSpan)", "WhileRule(List<Statement>,FileSpan)", "SassColor(ColorSpace)", "~(BinaryOperator)", "StringExpression(Interpolation)", "double()", "String(String{color:@})", "Entry(Entry)", "SimpleSelector(SimpleSelector)", "SassScriptException()", "Object(String)", "double(double,String)", "SingleUnitSassNumber(double)", "CssValue<String>(Interpolation{trim:bool,warnForColor:bool})", "AstNode(AstNode)", "SassFunction(List<Value>)", "0&(List<Value>)", "SassMixin(List<Value>)", "bool(Version)", "bool(ModifiableCssNode)"/*DSH-, "~(String,WarnOptions)"*/, "+loadedUrls,stylesheet(Set<Uri>,CssStylesheet)()", "Module0<Callable>()", "List<Value>(Value)", "~(Module0<Callable>)", "List<ExtensionStore>()", "bool(ModifiableCssParentNode)", "bool(List<Value>)"/*DSH-, "~(String,DebugOptions)"*/, "bool(Deprecation)", "CssValue<String>(Interpolation)", "SassMap(Value)", "SassMap(SassMap)", "List<CssComment>()", "Value?(IfRuleClause)", "bool(UseRule)", "bool(ForwardRule)", "UserDefinedCallable<Environment>(ContentBlock)", "SassNumber(Value)", "Value(Object)", "String(+(String,Value))", "String(+(IfConditionExpression,String))", "Value(Expression)", "Value?(Module0<Callable>)", "Module0<Callable>?(Module0<Callable>)", "~([int?])", "Object()", "SassString(SimpleSelector)", "SassString(int)", "InterpolationMap(List<int>)", "AstNode?()", "String(SassNumber)", "SassString(String)", "IfConditionExpression(IfConditionExpression)", "+originalUrl(Importer,Uri,Uri)?()", "~(CssMediaQuery)", "Uri?()", "~(double?[String?])", "~(SelectorList)", "~(MapEntry<Value,Value>)", "~(IfConditionExpression)", "SourceFile()", "SourceFile?(int)", "String?(SourceFile?)", "int(_Line)", "Stylesheet?()", "Object(_Line)", "Object(_Highlight)", "int(_Highlight,_Highlight)", "List<_Line>(MapEntry<Object,List<_Highlight>>)", "SourceSpanWithContext()", "int(Frame)", "String(Frame)", "bool(+originalUrl(Importer,Uri,Uri))", "Uri(+originalUrl(Importer,Uri,Uri))", "~(Zone?,ZoneDelegate?,Zone,Object,StackTrace)", "0^(Zone?,ZoneDelegate?,Zone,0^())<Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^),1^)<Object?,Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^,2^),1^,2^)<Object?,Object?,Object?>", "0^()(Zone,ZoneDelegate,Zone,0^())<Object?>", "0^(1^)(Zone,ZoneDelegate,Zone,0^(1^))<Object?,Object?>", "0^(1^,2^)(Zone,ZoneDelegate,Zone,0^(1^,2^))<Object?,Object?,Object?>", "AsyncError?(Zone,ZoneDelegate,Zone,Object,StackTrace?)", "~(Zone?,ZoneDelegate?,Zone,~())"/*DSH-, "Timer(Zone,ZoneDelegate,Zone,Duration,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~(Timer))"*/, "~(Zone,ZoneDelegate,Zone,String)", "Zone(Zone?,ZoneDelegate?,Zone,ZoneSpecification?,Map<Object?,Object?>?)", "0^(0^,0^)<num>"/*DSH-, "NodeCompileResult(String[CompileOptions?])", "NodeCompileResult(String[CompileStringOptions?])"*/, "Importer(Object?)", "Compiler()", "List<Object?>(Object?)", "ParserExports()", "Stylesheet(String,String,String?)", "String?(String)", "Uri(JSUrl)", "Object(Map<String,Object?>)", "~(String)", "int(Uri)", "List<CssMediaQuery>()"],
 				interceptorsByTag: null,
 				leafTags: null,
 				arrayRti: Symbol("$ti"),
@@ -66921,7 +64554,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					"5;named,namedNodes,positional,positionalNodes,separator": types => o => o instanceof A._Record_5_named_namedNodes_positional_positionalNodes_separator && A.pairwiseIsTest(types, o._values)
 				}
 			};
-			A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject"' + /*DSH- ',"BufferModule":"LegacyJavaScriptObject","BufferConstants":"LegacyJavaScriptObject","Buffer0":"LegacyJavaScriptObject","ConsoleModule":"LegacyJavaScriptObject","Console":"LegacyJavaScriptObject","EventEmitter":"LegacyJavaScriptObject","FS":"LegacyJavaScriptObject","FSConstants":"LegacyJavaScriptObject","Realpath":"LegacyJavaScriptObject","RealpathSync":"LegacyJavaScriptObject","FSWatcher":"LegacyJavaScriptObject","ReadStream":"LegacyJavaScriptObject","ReadStreamOptions":"LegacyJavaScriptObject","WriteStream":"LegacyJavaScriptObject","WriteStreamOptions":"LegacyJavaScriptObject","FileOptions":"LegacyJavaScriptObject","StatOptions":"LegacyJavaScriptObject","MkdirOptions":"LegacyJavaScriptObject","RmdirOptions":"LegacyJavaScriptObject","WatchOptions":"LegacyJavaScriptObject","WatchFileOptions":"LegacyJavaScriptObject","Stats":"LegacyJavaScriptObject","Promise":"LegacyJavaScriptObject","Date":"LegacyJavaScriptObject","JsError":"LegacyJavaScriptObject","Atomics":"LegacyJavaScriptObject","Modules":"LegacyJavaScriptObject","Module":"LegacyJavaScriptObject","Net":"LegacyJavaScriptObject","Socket":"LegacyJavaScriptObject","NetAddress":"LegacyJavaScriptObject","NetServer":"LegacyJavaScriptObject","NodeJsError":"LegacyJavaScriptObject","JsAssertionError":"LegacyJavaScriptObject","JsRangeError":"LegacyJavaScriptObject","JsReferenceError":"LegacyJavaScriptObject","JsSyntaxError":"LegacyJavaScriptObject","JsTypeError":"LegacyJavaScriptObject","JsSystemError":"LegacyJavaScriptObject","Process":"LegacyJavaScriptObject","CPUUsage":"LegacyJavaScriptObject","Release":"LegacyJavaScriptObject","StreamModule":"LegacyJavaScriptObject","Readable":"LegacyJavaScriptObject","Writable":"LegacyJavaScriptObject","Duplex":"LegacyJavaScriptObject","Transform0":"LegacyJavaScriptObject","WritableOptions":"LegacyJavaScriptObject","ReadableOptions":"LegacyJavaScriptObject","Immediate":"LegacyJavaScriptObject","Timeout":"LegacyJavaScriptObject","TTY":"LegacyJavaScriptObject","TTYReadStream":"LegacyJavaScriptObject","TTYWriteStream":"LegacyJavaScriptObject","Util":"LegacyJavaScriptObject","JSArray0":"LegacyJavaScriptObject","Chokidar":"LegacyJavaScriptObject","ChokidarOptions":"LegacyJavaScriptObject","ChokidarWatcher":"LegacyJavaScriptObject","CompileOptions":"LegacyJavaScriptObject","CompileStringOptions":"LegacyJavaScriptObject","NodeCompileResult":"LegacyJavaScriptObject"' + */',"Deprecation0":"LegacyJavaScriptObject"' + /*DSH- ',"_NodeException":"LegacyJavaScriptObject","Exports":"LegacyJavaScriptObject","LoggerNamespace":"LegacyJavaScriptObject","JSFunction":"LegacyJavaScriptObject"' + */',"ImmutableList":"LegacyJavaScriptObject","ImmutableMap":"LegacyJavaScriptObject","JSImporter":"LegacyJavaScriptObject","JSImporterResult":"LegacyJavaScriptObject"' + /*DSH- ',"NodeImporterResult":"LegacyJavaScriptObject","RenderContext":"LegacyJavaScriptObject","RenderContextOptions":"LegacyJavaScriptObject","RenderContextResult":"LegacyJavaScriptObject","RenderContextResultStats":"LegacyJavaScriptObject","Types":"LegacyJavaScriptObject","WarnOptions":"LegacyJavaScriptObject","DebugOptions":"LegacyJavaScriptObject","JSLogger":"LegacyJavaScriptObject","JSModule":"LegacyJavaScriptObject","JSModuleRequire":"LegacyJavaScriptObject","ParserExports":"LegacyJavaScriptObject"' + */',"JSClass":"LegacyJavaScriptObject","JSSet":"LegacyJavaScriptObject","JSUrl":"LegacyJavaScriptObject"' + /*DSH- ',"_PropertyDescriptor":"LegacyJavaScriptObject","_RequireMain":"LegacyJavaScriptObject"' + */',"_ConstructionOptions":"LegacyJavaScriptObject","_ChannelOptions":"LegacyJavaScriptObject","_ToGamutOptions":"LegacyJavaScriptObject","_InterpolationOptions":"LegacyJavaScriptObject","_Channels":"LegacyJavaScriptObject","_ConstructorOptions":"LegacyJavaScriptObject","_ConstructorOptions0":"LegacyJavaScriptObject","_ConstructorOptions1":"LegacyJavaScriptObject","JSExpressionVisitorObject":"LegacyJavaScriptObject","JSIfConditionExpressionVisitorObject":"LegacyJavaScriptObject","JSSimpleSelectorVisitorObject":"LegacyJavaScriptObject","JSStatementVisitorObject":"LegacyJavaScriptObject","KeyframeEffect":"JavaScriptObject","KeyframeEffectReadOnly":"JavaScriptObject","AnimationEffectReadOnly":"JavaScriptObject","AbortPaymentEvent":"Event","ExtendableEvent":"Event","AudioContext":"BaseAudioContext","AbsoluteOrientationSensor":"EventTarget","OrientationSensor":"EventTarget","Sensor":"EventTarget","MathMLElement":"Element","AudioElement":"HtmlElement","MediaElement":"HtmlElement","HtmlDocument":"Node","Document":"Node","VttCue":"TextTrackCue","CDataSection":"CharacterData","Text":"CharacterData","HtmlFormControlsCollection":"HtmlCollection","CssCharsetRule":"CssRule","CssMatrixComponent":"CssTransformComponent","CssStyleSheet":"StyleSheet","CssurlImageValue":"CssStyleValue","CssImageValue":"CssStyleValue","CssResourceValue":"CssStyleValue","NativeArrayBuffer":"NativeByteBuffer","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"TrustedGetRuntimeType":[]},"JavaScriptObject":{"JSObject":[]},"LegacyJavaScriptObject":{"JSObject":[]' + /*DSH- ',"JsSystemError":[],"CompileOptions":[],"CompileStringOptions":[],"NodeCompileResult":[]' + */',"Deprecation0":[]' + /*DSH- ',"_NodeException":[]' + */',"ImmutableList":[],"ImmutableMap":[],"JSImporter":[],"JSImporterResult":[]' + /*DSH- ',"WarnOptions":[],"DebugOptions":[],"ParserExports":[]' + */',"JSClass":[],"JSSet":[],"JSUrl":[],"_ConstructionOptions":[],"_ChannelOptions":[],"_ToGamutOptions":[],"_InterpolationOptions":[],"_ConstructorOptions":[],"_ConstructorOptions0":[],"_ConstructorOptions1":[],"JSExpressionVisitorObject":[],"JSIfConditionExpressionVisitorObject":[],"JSSimpleSelectorVisitorObject":[],"JSStatementVisitorObject":[]},"JSArray":{"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSArraySafeToStringHook":{"SafeToStringHook":[]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSNumber":{"double":[],"num":[],"Comparable":["num"]},"JSInt":{"double":[],"int":[],"num":[],"Comparable":["num"],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"double":[],"num":[],"Comparable":["num"],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"Comparable":["String"],"TrustedGetRuntimeType":[]},"_CastIterableBase":{"Iterable":["2"]},"CastIterable":{"_CastIterableBase":["1","2"],"Iterable":["2"],"Iterable.E":"2"},"_EfficientLengthCastIterable":{"CastIterable":["1","2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"_CastListBase":{"ListBase":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"]},"CastList":{"_CastListBase":["1","2"],"ListBase":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListBase.E":"2","Iterable.E":"2"},"CastMap":{"MapBase":["3","4"],"Map":["3","4"],"MapBase.V":"4","MapBase.K":"3"},"LateError":{"Error":[]},"CodeUnits":{"ListBase":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListBase.E":"int"},"EfficientLengthIterable":{"Iterable":["1"]},"ListIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"SubListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"MappedIterable":{"Iterable":["2"],"Iterable.E":"2"},"EfficientLengthMappedIterable":{"MappedIterable":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MappedListIterable":{"ListIterable":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListIterable.E":"2"},"WhereIterable":{"Iterable":["1"],"Iterable.E":"1"},"ExpandIterable":{"Iterable":["2"],"Iterable.E":"2"},"TakeIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthTakeIterable":{"TakeIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"SkipIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthSkipIterable":{"SkipIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"EmptyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"FollowedByIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthFollowedByIterable":{"FollowedByIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"WhereTypeIterable":{"Iterable":["1"],"Iterable.E":"1"},"NonNullsIterable":{"Iterable":["1"],"Iterable.E":"1"},"UnmodifiableListBase":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ReversedListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"Symbol":{"Symbol0":[]},"ConstantMapView":{"UnmodifiableMapView":["1","2"],"Map":["1","2"]},"ConstantMap":{"Map":["1","2"]},"ConstantStringMap":{"ConstantMap":["1","2"],"Map":["1","2"]},"_KeysOrValues":{"Iterable":["1"],"Iterable.E":"1"},"ConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ConstantStringSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"GeneralConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"Instantiation":{"Function":[]},"Instantiation1":{"Function":[]},"NullError":{"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"NullThrownFromJavaScriptException":{"Exception":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"Closure0Args":{"Function":[]},"Closure2Args":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"LinkedHashMapKeysIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapValuesIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapEntriesIterable":{"EfficientLengthIterable":["MapEntry<1,2>"],"Iterable":["MapEntry<1,2>"],"Iterable.E":"MapEntry<1,2>"},"JsIdentityLinkedHashMap":{"JsLinkedHashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"JsConstantLinkedHashMap":{"JsLinkedHashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_MatchImplementation":{"RegExpMatch":[],"Match":[]},"_AllMatchesIterable":{"Iterable":["RegExpMatch"],"Iterable.E":"RegExpMatch"},"StringMatch":{"Match":[]},"_StringAllMatchesIterable":{"Iterable":["Match"],"Iterable.E":"Match"},"NativeByteBuffer":{"JSObject":[],"ByteBuffer":[],"TrustedGetRuntimeType":[]},"NativeTypedData":{"JSObject":[]},"NativeByteData":{"ByteData":[],"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"],"JSObject":[]},"NativeTypedArrayOfDouble":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"]},"NativeTypedArrayOfInt":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"]},"NativeFloat32List":{"NativeTypedArrayOfDouble":[],"Float32List":[],"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeFloat64List":{"NativeTypedArrayOfDouble":[],"Float64List":[],"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeInt16List":{"NativeTypedArrayOfInt":[],"Int16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt32List":{"NativeTypedArrayOfInt":[],"Int32List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt8List":{"NativeTypedArrayOfInt":[],"Int8List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint16List":{"NativeTypedArrayOfInt":[],"Uint16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint32List":{"NativeTypedArrayOfInt":[],"Uint32List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8ClampedList":{"NativeTypedArrayOfInt":[],"Uint8ClampedList":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8List":{"NativeTypedArrayOfInt":[],"Uint8List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"_Error":{"Error":[]},"_TypeError":{"Error":[]},"AsyncError":{"Error":[]},"_SyncStarIterable":{"Iterable":["1"],"Iterable.E":"1"},"_ZoneSpecification":{"ZoneSpecification":[]},"_ZoneDelegate":{"ZoneDelegate":[]},"_Zone":{"Zone":[]},"_CustomZone":{"Zone":[]},"_RootZone":{"Zone":[]},"Queue":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_IdentityHashMap":{"_HashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_HashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_LinkedHashSet":{"_SetBase":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_LinkedIdentityHashSet":{"_LinkedHashSet":["1"],"_SetBase":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableListView":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1"},"ListBase":{"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapBase":{"Map":["1","2"]},"UnmodifiableMapBase":{"MapBase":["1","2"],"Map":["1","2"]},"_MapBaseValueIterable":{"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MapView":{"Map":["1","2"]},"UnmodifiableMapView":{"Map":["1","2"]},"ListQueue":{"Queue":["1"],"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"SetBase":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_SetBase":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableSetView":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"DateTime":{"Comparable":["DateTime"]},"double":{"num":[],"Comparable":["num"]},"Duration":{"Comparable":["Duration"]},"int":{"num":[],"Comparable":["num"]},"List":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"num":{"Comparable":["num"]},"RegExpMatch":{"Match":[]},"Set":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"String":{"Comparable":["String"]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"RangeError":[],"Error":[]},"NoSuchMethodError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"StateError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"_Exception":{"Exception":[]},"FormatException":{"Exception":[]},"Runes":{"Iterable":["int"],"Iterable.E":"int"},"_Uri":{"_PlatformUri":[],"Uri":[]},"_SimpleUri":{"_PlatformUri":[],"Uri":[]},"_DataUri":{"_PlatformUri":[],"Uri":[]},"CssRule":{"JSObject":[]},"File":{"JSObject":[]},"Gamepad":{"JSObject":[]},"MimeType":{"JSObject":[]},"Node":{"JSObject":[]},"Plugin":{"JSObject":[]},"SourceBuffer":{"JSObject":[]},"SpeechGrammar":{"JSObject":[]},"SpeechRecognitionResult":{"JSObject":[]},"StyleSheet":{"JSObject":[]},"TextTrack":{"JSObject":[]},"TextTrackCue":{"JSObject":[]},"Touch":{"JSObject":[]},"HtmlElement":{"Node":[],"JSObject":[]},"AccessibleNodeList":{"JSObject":[]},"AnchorElement":{"Node":[],"JSObject":[]},"ApplicationCacheErrorEvent":{"JSObject":[]},"AreaElement":{"Node":[],"JSObject":[]},"Blob":{"JSObject":[]},"CharacterData":{"Node":[],"JSObject":[]},"CssPerspective":{"JSObject":[]},"CssStyleDeclaration":{"JSObject":[]},"CssStyleValue":{"JSObject":[]},"CssTransformComponent":{"JSObject":[]},"CssTransformValue":{"JSObject":[]},"CssUnparsedValue":{"JSObject":[]},"DataTransferItemList":{"JSObject":[]},"DeprecationReport":{"JSObject":[]},"DomError":{"JSObject":[]},"DomException":{"JSObject":[]},"DomRectList":{"ListBase":["Rectangle<num>"],"ImmutableListMixin":["Rectangle<num>"],"List":["Rectangle<num>"],"JavaScriptIndexingBehavior":["Rectangle<num>"],"EfficientLengthIterable":["Rectangle<num>"],"JSObject":[],"Iterable":["Rectangle<num>"],"ImmutableListMixin.E":"Rectangle<num>","ListBase.E":"Rectangle<num>"},"DomRectReadOnly":{"Rectangle":["num"],"JSObject":[]},"DomStringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"JavaScriptIndexingBehavior":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ImmutableListMixin.E":"String","ListBase.E":"String"},"DomTokenList":{"JSObject":[]},"Element":{"Node":[],"JSObject":[]},"ErrorEvent":{"JSObject":[]},"Event":{"JSObject":[]},"EventTarget":{"JSObject":[]},"FileList":{"ListBase":["File"],"ImmutableListMixin":["File"],"List":["File"],"JavaScriptIndexingBehavior":["File"],"EfficientLengthIterable":["File"],"JSObject":[],"Iterable":["File"],"ImmutableListMixin.E":"File","ListBase.E":"File"},"FileWriter":{"JSObject":[]},"FormElement":{"Node":[],"JSObject":[]},"History":{"JSObject":[]},"HtmlCollection":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"InterventionReport":{"JSObject":[]},"Location":{"JSObject":[]},"MediaError":{"JSObject":[]},"MediaKeyMessageEvent":{"JSObject":[]},"MediaList":{"JSObject":[]},"MidiInputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"MidiOutputMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"MimeTypeArray":{"ListBase":["MimeType"],"ImmutableListMixin":["MimeType"],"List":["MimeType"],"JavaScriptIndexingBehavior":["MimeType"],"EfficientLengthIterable":["MimeType"],"JSObject":[],"Iterable":["MimeType"],"ImmutableListMixin.E":"MimeType","ListBase.E":"MimeType"},"NavigatorUserMediaError":{"JSObject":[]},"NodeList":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"OverconstrainedError":{"JSObject":[]},"PluginArray":{"ListBase":["Plugin"],"ImmutableListMixin":["Plugin"],"List":["Plugin"],"JavaScriptIndexingBehavior":["Plugin"],"EfficientLengthIterable":["Plugin"],"JSObject":[],"Iterable":["Plugin"],"ImmutableListMixin.E":"Plugin","ListBase.E":"Plugin"},"PositionError":{"JSObject":[]},"PresentationConnectionCloseEvent":{"JSObject":[]},"ReportBody":{"JSObject":[]},"RtcStatsReport":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"SelectElement":{"Node":[],"JSObject":[]},"SourceBufferList":{"ListBase":["SourceBuffer"],"ImmutableListMixin":["SourceBuffer"],"List":["SourceBuffer"],"JavaScriptIndexingBehavior":["SourceBuffer"],"EfficientLengthIterable":["SourceBuffer"],"JSObject":[],"Iterable":["SourceBuffer"],"ImmutableListMixin.E":"SourceBuffer","ListBase.E":"SourceBuffer"},"SpeechGrammarList":{"ListBase":["SpeechGrammar"],"ImmutableListMixin":["SpeechGrammar"],"List":["SpeechGrammar"],"JavaScriptIndexingBehavior":["SpeechGrammar"],"EfficientLengthIterable":["SpeechGrammar"],"JSObject":[],"Iterable":["SpeechGrammar"],"ImmutableListMixin.E":"SpeechGrammar","ListBase.E":"SpeechGrammar"},"SpeechRecognitionError":{"JSObject":[]},"Storage":{"MapBase":["String","String"],"JSObject":[],"Map":["String","String"],"MapBase.V":"String","MapBase.K":"String"},"TextTrackCueList":{"ListBase":["TextTrackCue"],"ImmutableListMixin":["TextTrackCue"],"List":["TextTrackCue"],"JavaScriptIndexingBehavior":["TextTrackCue"],"EfficientLengthIterable":["TextTrackCue"],"JSObject":[],"Iterable":["TextTrackCue"],"ImmutableListMixin.E":"TextTrackCue","ListBase.E":"TextTrackCue"},"TextTrackList":{"ListBase":["TextTrack"],"ImmutableListMixin":["TextTrack"],"List":["TextTrack"],"JavaScriptIndexingBehavior":["TextTrack"],"EfficientLengthIterable":["TextTrack"],"JSObject":[],"Iterable":["TextTrack"],"ImmutableListMixin.E":"TextTrack","ListBase.E":"TextTrack"},"TimeRanges":{"JSObject":[]},"TouchList":{"ListBase":["Touch"],"ImmutableListMixin":["Touch"],"List":["Touch"],"JavaScriptIndexingBehavior":["Touch"],"EfficientLengthIterable":["Touch"],"JSObject":[],"Iterable":["Touch"],"ImmutableListMixin.E":"Touch","ListBase.E":"Touch"},"TrackDefaultList":{"JSObject":[]},"Url":{"JSObject":[]},"VideoTrackList":{"JSObject":[]},"_CssRuleList":{"ListBase":["CssRule"],"ImmutableListMixin":["CssRule"],"List":["CssRule"],"JavaScriptIndexingBehavior":["CssRule"],"EfficientLengthIterable":["CssRule"],"JSObject":[],"Iterable":["CssRule"],"ImmutableListMixin.E":"CssRule","ListBase.E":"CssRule"},"_DomRect":{"Rectangle":["num"],"JSObject":[]},"_GamepadList":{"ListBase":["Gamepad?"],"ImmutableListMixin":["Gamepad?"],"List":["Gamepad?"],"JavaScriptIndexingBehavior":["Gamepad?"],"EfficientLengthIterable":["Gamepad?"],"JSObject":[],"Iterable":["Gamepad?"],"ImmutableListMixin.E":"Gamepad?","ListBase.E":"Gamepad?"},"_NamedNodeMap":{"ListBase":["Node"],"ImmutableListMixin":["Node"],"List":["Node"],"JavaScriptIndexingBehavior":["Node"],"EfficientLengthIterable":["Node"],"JSObject":[],"Iterable":["Node"],"ImmutableListMixin.E":"Node","ListBase.E":"Node"},"_SpeechRecognitionResultList":{"ListBase":["SpeechRecognitionResult"],"ImmutableListMixin":["SpeechRecognitionResult"],"List":["SpeechRecognitionResult"],"JavaScriptIndexingBehavior":["SpeechRecognitionResult"],"EfficientLengthIterable":["SpeechRecognitionResult"],"JSObject":[],"Iterable":["SpeechRecognitionResult"],"ImmutableListMixin.E":"SpeechRecognitionResult","ListBase.E":"SpeechRecognitionResult"},"_StyleSheetList":{"ListBase":["StyleSheet"],"ImmutableListMixin":["StyleSheet"],"List":["StyleSheet"],"JavaScriptIndexingBehavior":["StyleSheet"],"EfficientLengthIterable":["StyleSheet"],"JSObject":[],"Iterable":["StyleSheet"],"ImmutableListMixin.E":"StyleSheet","ListBase.E":"StyleSheet"},"Length":{"JSObject":[]},"Number":{"JSObject":[]},"Transform":{"JSObject":[]},"LengthList":{"ListBase":["Length"],"ImmutableListMixin":["Length"],"List":["Length"],"EfficientLengthIterable":["Length"],"JSObject":[],"Iterable":["Length"],"ImmutableListMixin.E":"Length","ListBase.E":"Length"},"NumberList":{"ListBase":["Number"],"ImmutableListMixin":["Number"],"List":["Number"],"EfficientLengthIterable":["Number"],"JSObject":[],"Iterable":["Number"],"ImmutableListMixin.E":"Number","ListBase.E":"Number"},"PointList":{"JSObject":[]},"StringList":{"ListBase":["String"],"ImmutableListMixin":["String"],"List":["String"],"EfficientLengthIterable":["String"],"JSObject":[],"Iterable":["String"],"ImmutableListMixin.E":"String","ListBase.E":"String"},"TransformList":{"ListBase":["Transform"],"ImmutableListMixin":["Transform"],"List":["Transform"],"EfficientLengthIterable":["Transform"],"JSObject":[],"Iterable":["Transform"],"ImmutableListMixin.E":"Transform","ListBase.E":"Transform"},"AudioBuffer":{"JSObject":[]},"AudioParamMap":{"MapBase":["String","@"],"JSObject":[],"Map":["String","@"],"MapBase.V":"@","MapBase.K":"String"},"AudioTrackList":{"JSObject":[]},"BaseAudioContext":{"JSObject":[]},"OfflineAudioContext":{"JSObject":[]},"EmptyUnmodifiableSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"QueueList":{"ListBase":["1"],"List":["1"],"Queue":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1","QueueList.E":"1"},"_CastQueueList":{"QueueList":["2"],"ListBase":["2"],"List":["2"],"Queue":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListBase.E":"2","QueueList.E":"2"},"UnmodifiableSetView0":{"DelegatingSet":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapKeySet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_DelegatingIterableBase":{"Iterable":["1"]},"DelegatingSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"PathException":{"Exception":[]},"Version":{"VersionRange":[],"Comparable":["VersionRange"]},"VersionRange":{"Comparable":["VersionRange"]},"ModifiableCssAtRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssComment":{"ModifiableCssNode":[],"CssComment":[],"CssNode":[],"AstNode":[]},"ModifiableCssDeclaration":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssImport":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssKeyframeBlock":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssMediaRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssNode":{"CssNode":[],"AstNode":[]},"ModifiableCssParentNode":{"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStyleRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStylesheet":{"ModifiableCssParentNode":[],"CssStylesheet":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssSupportsRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssNode":{"AstNode":[]},"CssParentNode":{"CssNode":[],"AstNode":[]},"CssStylesheet":{"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssValue":{"AstNode":[]},"_FakeAstNode":{"AstNode":[]},"ArgumentList":{"SassNode":[],"AstNode":[]},"ConfiguredVariable":{"SassNode":[],"AstNode":[]},"Expression":{"SassNode":[],"AstNode":[]},"BinaryOperationExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"BooleanExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ColorExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"FunctionExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"IfConditionExpression":{"SassNode":[],"AstNode":[]},"IfConditionFunction":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"IfConditionParenthesized":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionNegation":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionOperation":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionSass":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionRaw":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"InterpolatedFunctionExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"LegacyIfExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ListExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"MapExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"NullExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"NumberExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ParenthesizedExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"SelectorExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"StringExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"SupportsExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"UnaryOperationExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ValueExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"VariableExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"DynamicImport":{"Import":[],"SassNode":[],"AstNode":[]},"StaticImport":{"Import":[],"SassNode":[],"AstNode":[]},"InterpolatedSelector":{"SassNode":[],"AstNode":[]},"InterpolatedAttributeSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedClassSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedComplexSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedComplexSelectorComponent":{"SassNode":[],"AstNode":[]},"InterpolatedCompoundSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedIDSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedSelectorList":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedParentSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedPlaceholderSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedPseudoSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedQualifiedName":{"SassNode":[],"AstNode":[]},"InterpolatedSimpleSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedTypeSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedUniversalSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"Interpolation":{"SassNode":[],"AstNode":[]},"Parameter":{"SassNode":[],"AstNode":[]},"ParameterList":{"SassNode":[],"AstNode":[]},"Statement":{"SassNode":[],"AstNode":[]},"AtRootRule":{"Statement":[],"SassNode":[],"AstNode":[]},"AtRule":{"Statement":[],"SassNode":[],"AstNode":[]},"CallableDeclaration":{"Statement":[],"SassNode":[],"AstNode":[]},"ContentBlock":{"Statement":[],"SassNode":[],"AstNode":[]},"ContentRule":{"Statement":[],"SassNode":[],"AstNode":[]},"DebugRule":{"Statement":[],"SassNode":[],"AstNode":[]},"Declaration":{"Statement":[],"SassNode":[],"AstNode":[]},"EachRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ErrorRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ExtendRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ForRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ForwardRule":{"Statement":[],"SassNode":[],"AstNode":[]},"FunctionRule":{"Statement":[],"SassNode":[],"AstNode":[]},"IfClause":{"IfRuleClause":[]},"ElseClause":{"IfRuleClause":[]},"IfRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ImportRule":{"Statement":[],"SassNode":[],"AstNode":[]},"IncludeRule":{"Statement":[],"SassNode":[],"AstNode":[]},"LoudComment":{"Statement":[],"SassNode":[],"AstNode":[]},"MediaRule":{"Statement":[],"SassNode":[],"AstNode":[]},"MixinRule":{"Statement":[],"SassNode":[],"AstNode":[]},"_HasContentVisitor":{"StatementSearchVisitor":["bool"],"StatementVisitor":["bool?"],"StatementSearchVisitor.T":"bool"},"ParentStatement":{"Statement":[],"SassNode":[],"AstNode":[]},"ReturnRule":{"Statement":[],"SassNode":[],"AstNode":[]},"SilentComment":{"Statement":[],"SassNode":[],"AstNode":[]},"StyleRule":{"Statement":[],"SassNode":[],"AstNode":[]},"Stylesheet":{"Statement":[],"SassNode":[],"AstNode":[]},"SupportsRule":{"Statement":[],"SassNode":[],"AstNode":[]},"UseRule":{"Statement":[],"SassNode":[],"AstNode":[]},"VariableDeclaration":{"Statement":[],"SassNode":[],"AstNode":[]},"WarnRule":{"Statement":[],"SassNode":[],"AstNode":[]},"WhileRule":{"Statement":[],"SassNode":[],"AstNode":[]},"SupportsAnything":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsDeclaration":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsFunction":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsInterpolation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsNegation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsOperation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"Selector":{"AstNode":[]},"AttributeSelector":{"SimpleSelector":[],"AstNode":[]},"ClassSelector":{"SimpleSelector":[],"AstNode":[]},"ComplexSelector":{"AstNode":[]},"CompoundSelector":{"AstNode":[]},"IDSelector":{"SimpleSelector":[],"AstNode":[]},"SelectorList":{"AstNode":[]},"_ParentSelectorVisitor":{"SelectorSearchVisitor":["ParentSelector"],"SelectorSearchVisitor.T":"ParentSelector"},"ParentSelector":{"SimpleSelector":[],"AstNode":[]},"PlaceholderSelector":{"SimpleSelector":[],"AstNode":[]},"PseudoSelector":{"SimpleSelector":[],"AstNode":[]},"SimpleSelector":{"AstNode":[]},"TypeSelector":{"SimpleSelector":[],"AstNode":[]},"UniversalSelector":{"SimpleSelector":[],"AstNode":[]},"AsyncBuiltInCallable":{"AsyncCallable":[]},"BuiltInCallable":{"Callable":[],"AsyncBuiltInCallable":[],"AsyncCallable":[]},"PlainCssCallable":{"Callable":[],"AsyncCallable":[]},"UserDefinedCallable":{"Callable":[],"AsyncCallable":[]},"ExplicitConfiguration":{"Configuration":[]},"_EnvironmentModule":{"Module0":["Callable"]},"SassRuntimeException":{"Exception":[]},"SassException":{"Exception":[]},"MultiSpanSassException":{"Exception":[]},"MultiSpanSassRuntimeException":{"SassRuntimeException":[],"Exception":[]},"SassFormatException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"MultiSpanSassFormatException":{"MultiSourceSpanFormatException":[],"SassFormatException":[],"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"EmptyExtensionStore":{"ExtensionStore":[]},"MergedExtension":{"Extension":[]},"FilesystemImporter":{"Importer":[]},"JSToDartFileImporter":{"Importer":[]},"JSToDartImporter":{"Importer":[]},"NoOpImporter":{"Importer":[]},"JSExpressionVisitor":{"ExpressionVisitor":["Object?"]},"JSIfConditionExpressionVisitor":{"IfConditionExpressionVisitor":["Object?"]},"JSSimpleSelectorVisitor":{"InterpolatedSelectorVisitor":["Object?"]},"JSStatementVisitor":{"StatementVisitor":["Object?"]},"BuiltInModule":{"Module0":["1"]},"ForwardedModuleView":{"Module0":["1"]},"ShadowedModuleView":{"Module0":["1"]},"LazyFileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"LimitedMapView":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"MergedMapView":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"MultiSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"PrefixedMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"_PrefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"PublicMemberMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"UnprefixedMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"_UnprefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"SassArgumentList":{"SassList":[],"Value":[]},"SassBoolean":{"Value":[]},"SassCalculation":{"Value":[]},"SassColor":{"Value":[]},"LinearChannel":{"ColorChannel":[]},"A98RgbColorSpace":{"ColorSpace":[]},"DisplayP3ColorSpace":{"ColorSpace":[]},"DisplayP3LinearColorSpace":{"ColorSpace":[]},"HslColorSpace":{"ColorSpace":[]},"HwbColorSpace":{"ColorSpace":[]},"LabColorSpace":{"ColorSpace":[]},"LchColorSpace":{"ColorSpace":[]},"LmsColorSpace":{"ColorSpace":[]},"OklabColorSpace":{"ColorSpace":[]},"OklchColorSpace":{"ColorSpace":[]},"ProphotoRgbColorSpace":{"ColorSpace":[]},"Rec2020ColorSpace":{"ColorSpace":[]},"RgbColorSpace":{"ColorSpace":[]},"SrgbColorSpace":{"ColorSpace":[]},"SrgbLinearColorSpace":{"ColorSpace":[]},"XyzD50ColorSpace":{"ColorSpace":[]},"XyzD65ColorSpace":{"ColorSpace":[]},"SassFunction":{"Value":[]},"SassList":{"Value":[]},"SassMap":{"Value":[]},"SassMixin":{"Value":[]},"_SassNull":{"Value":[]},"SassNumber":{"Value":[]},"ComplexSassNumber":{"SassNumber":[],"Value":[]},"SingleUnitSassNumber":{"SassNumber":[],"Value":[]},"UnitlessSassNumber":{"SassNumber":[],"Value":[]},"SassString":{"Value":[]},"_EvaluateVisitor":{"StatementVisitor":["Value?"],"ExpressionVisitor":["Value"],"IfConditionExpressionVisitor":["Object"]},"_MakeExpressionCalculationSafe":{"ExpressionVisitor":["Expression"],"IfConditionExpressionVisitor":["IfConditionExpression"]},"IsCalculationSafeVisitor":{"ExpressionVisitor":["bool"]},"SourceInterpolationVisitor":{"ExpressionVisitor":["~"],"IfConditionExpressionVisitor":["~"]},"Entry":{"Comparable":["Entry"]},"FileLocation":{"SourceLocation":[],"Comparable":["SourceLocation"]},"FileSpan":{"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"_FileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceLocation":{"Comparable":["SourceLocation"]},"SourceLocationMixin":{"SourceLocation":[],"Comparable":["SourceLocation"]},"SourceSpan":{"Comparable":["SourceSpan"]},"SourceSpanBase":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanException":{"Exception":[]},"SourceSpanFormatException":{"FormatException":[],"Exception":[]},"MultiSourceSpanException":{"Exception":[]},"MultiSourceSpanFormatException":{"FormatException":[],"Exception":[]},"SourceSpanMixin":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanWithContext":{"SourceSpan":[],"Comparable":["SourceSpan"]},"Trace":{"StackTrace":[]},"StringScannerException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"Int8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint8ClampedList":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Int16List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint16List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Int32List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint32List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Float32List":{"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"Float64List":{"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"CssComment":{"CssNode":[],"AstNode":[]},"Import":{"SassNode":[],"AstNode":[]},"SassNode":{"AstNode":[]},"SupportsCondition":{"SassNode":[],"AstNode":[]},"Callable":{"AsyncCallable":[]}}'));
+			A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject"' + /*DSH- ',"BufferModule":"LegacyJavaScriptObject","BufferConstants":"LegacyJavaScriptObject","Buffer":"LegacyJavaScriptObject","ConsoleModule":"LegacyJavaScriptObject","Console":"LegacyJavaScriptObject","EventEmitter":"LegacyJavaScriptObject","FS":"LegacyJavaScriptObject","FSConstants":"LegacyJavaScriptObject","Realpath":"LegacyJavaScriptObject","RealpathSync":"LegacyJavaScriptObject","FSWatcher":"LegacyJavaScriptObject","ReadStream":"LegacyJavaScriptObject","ReadStreamOptions":"LegacyJavaScriptObject","WriteStream":"LegacyJavaScriptObject","WriteStreamOptions":"LegacyJavaScriptObject","FileOptions":"LegacyJavaScriptObject","StatOptions":"LegacyJavaScriptObject","MkdirOptions":"LegacyJavaScriptObject","RmdirOptions":"LegacyJavaScriptObject","WatchOptions":"LegacyJavaScriptObject","WatchFileOptions":"LegacyJavaScriptObject","Stats":"LegacyJavaScriptObject","Promise":"LegacyJavaScriptObject","Date":"LegacyJavaScriptObject","JsError":"LegacyJavaScriptObject","Atomics":"LegacyJavaScriptObject","Modules":"LegacyJavaScriptObject","Module":"LegacyJavaScriptObject","Net":"LegacyJavaScriptObject","Socket":"LegacyJavaScriptObject","NetAddress":"LegacyJavaScriptObject","NetServer":"LegacyJavaScriptObject","NodeJsError":"LegacyJavaScriptObject","JsAssertionError":"LegacyJavaScriptObject","JsRangeError":"LegacyJavaScriptObject","JsReferenceError":"LegacyJavaScriptObject","JsSyntaxError":"LegacyJavaScriptObject","JsTypeError":"LegacyJavaScriptObject","JsSystemError":"LegacyJavaScriptObject","Process":"LegacyJavaScriptObject","CPUUsage":"LegacyJavaScriptObject","Release":"LegacyJavaScriptObject","StreamModule":"LegacyJavaScriptObject","Readable":"LegacyJavaScriptObject","Writable":"LegacyJavaScriptObject","Duplex":"LegacyJavaScriptObject","Transform":"LegacyJavaScriptObject","WritableOptions":"LegacyJavaScriptObject","ReadableOptions":"LegacyJavaScriptObject","Immediate":"LegacyJavaScriptObject","Timeout":"LegacyJavaScriptObject","TTY":"LegacyJavaScriptObject","TTYReadStream":"LegacyJavaScriptObject","TTYWriteStream":"LegacyJavaScriptObject","Util":"LegacyJavaScriptObject","JSArray0":"LegacyJavaScriptObject","Chokidar":"LegacyJavaScriptObject","ChokidarOptions":"LegacyJavaScriptObject","ChokidarWatcher":"LegacyJavaScriptObject","CompileOptions":"LegacyJavaScriptObject","CompileStringOptions":"LegacyJavaScriptObject","NodeCompileResult":"LegacyJavaScriptObject"' + */',"Deprecation0":"LegacyJavaScriptObject"' + /*DSH- ',"_NodeException":"LegacyJavaScriptObject","Exports":"LegacyJavaScriptObject","LoggerNamespace":"LegacyJavaScriptObject","JSFunction":"LegacyJavaScriptObject"' + */',"ImmutableList":"LegacyJavaScriptObject","ImmutableMap":"LegacyJavaScriptObject","JSImporter":"LegacyJavaScriptObject","JSImporterResult":"LegacyJavaScriptObject"' + /*DSH- ',"NodeImporterResult":"LegacyJavaScriptObject","RenderContext":"LegacyJavaScriptObject","RenderContextOptions":"LegacyJavaScriptObject","RenderContextResult":"LegacyJavaScriptObject","RenderContextResultStats":"LegacyJavaScriptObject","Types":"LegacyJavaScriptObject","WarnOptions":"LegacyJavaScriptObject","DebugOptions":"LegacyJavaScriptObject","JSLogger":"LegacyJavaScriptObject","JSModule":"LegacyJavaScriptObject","JSModuleRequire":"LegacyJavaScriptObject","ParserExports":"LegacyJavaScriptObject"' + */',"JSClass":"LegacyJavaScriptObject","JSSet":"LegacyJavaScriptObject","JSUrl":"LegacyJavaScriptObject"' + /*DSH- ',"_PropertyDescriptor":"LegacyJavaScriptObject","_RequireMain":"LegacyJavaScriptObject"' + */',"_ConstructionOptions":"LegacyJavaScriptObject","_ChannelOptions":"LegacyJavaScriptObject","_ToGamutOptions":"LegacyJavaScriptObject","_InterpolationOptions":"LegacyJavaScriptObject","_Channels":"LegacyJavaScriptObject","_ConstructorOptions":"LegacyJavaScriptObject","_ConstructorOptions0":"LegacyJavaScriptObject","_ConstructorOptions1":"LegacyJavaScriptObject","JSExpressionVisitorObject":"LegacyJavaScriptObject","JSIfConditionExpressionVisitorObject":"LegacyJavaScriptObject","JSSimpleSelectorVisitorObject":"LegacyJavaScriptObject","JSStatementVisitorObject":"LegacyJavaScriptObject","NativeArrayBuffer":"NativeByteBuffer","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"TrustedGetRuntimeType":[]},"JavaScriptObject":{"JSObject":[]},"LegacyJavaScriptObject":{"JSObject":[]' + /*DSH- ',"JsSystemError":[],"CompileOptions":[],"CompileStringOptions":[],"NodeCompileResult":[]' + */',"Deprecation0":[]' + /*DSH- ',"_NodeException":[]' + */',"ImmutableList":[],"ImmutableMap":[],"JSImporter":[],"JSImporterResult":[]' + /*DSH- ',"WarnOptions":[],"DebugOptions":[],"ParserExports":[]' + */',"JSClass":[],"JSSet":[],"JSUrl":[],"_ConstructionOptions":[],"_ChannelOptions":[],"_ToGamutOptions":[],"_InterpolationOptions":[],"_ConstructorOptions":[],"_ConstructorOptions0":[],"_ConstructorOptions1":[],"JSExpressionVisitorObject":[],"JSIfConditionExpressionVisitorObject":[],"JSSimpleSelectorVisitorObject":[],"JSStatementVisitorObject":[]},"JSArray":{"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSArraySafeToStringHook":{"SafeToStringHook":[]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"EfficientLengthIterable":["1"],"JSObject":[],"Iterable":["1"]},"JSNumber":{"double":[],"num":[],"Comparable":["num"]},"JSInt":{"double":[],"int":[],"num":[],"Comparable":["num"],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"double":[],"num":[],"Comparable":["num"],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"Comparable":["String"],"TrustedGetRuntimeType":[]},"_CastIterableBase":{"Iterable":["2"]},"CastIterable":{"_CastIterableBase":["1","2"],"Iterable":["2"],"Iterable.E":"2"},"_EfficientLengthCastIterable":{"CastIterable":["1","2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"_CastListBase":{"ListBase":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"]},"CastList":{"_CastListBase":["1","2"],"ListBase":["2"],"List":["2"],"_CastIterableBase":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListBase.E":"2","Iterable.E":"2"},"CastMap":{"MapBase":["3","4"],"Map":["3","4"],"MapBase.V":"4","MapBase.K":"3"},"LateError":{"Error":[]},"CodeUnits":{"ListBase":["int"],"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"],"ListBase.E":"int"},"EfficientLengthIterable":{"Iterable":["1"]},"ListIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"SubListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"MappedIterable":{"Iterable":["2"],"Iterable.E":"2"},"EfficientLengthMappedIterable":{"MappedIterable":["1","2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MappedListIterable":{"ListIterable":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2","ListIterable.E":"2"},"WhereIterable":{"Iterable":["1"],"Iterable.E":"1"},"ExpandIterable":{"Iterable":["2"],"Iterable.E":"2"},"TakeIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthTakeIterable":{"TakeIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"SkipIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthSkipIterable":{"SkipIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"EmptyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"FollowedByIterable":{"Iterable":["1"],"Iterable.E":"1"},"EfficientLengthFollowedByIterable":{"FollowedByIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"WhereTypeIterable":{"Iterable":["1"],"Iterable.E":"1"},"NonNullsIterable":{"Iterable":["1"],"Iterable.E":"1"},"UnmodifiableListBase":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ReversedListIterable":{"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"Symbol":{"Symbol0":[]},"ConstantMapView":{"UnmodifiableMapView":["1","2"],"Map":["1","2"]},"ConstantMap":{"Map":["1","2"]},"ConstantStringMap":{"ConstantMap":["1","2"],"Map":["1","2"]},"_KeysOrValues":{"Iterable":["1"],"Iterable.E":"1"},"ConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"ConstantStringSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"GeneralConstantSet":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"Instantiation":{"Function":[]},"Instantiation1":{"Function":[]},"NullError":{"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"NullThrownFromJavaScriptException":{"Exception":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"Closure0Args":{"Function":[]},"Closure2Args":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"LinkedHashMapKeysIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapValuesIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"LinkedHashMapEntriesIterable":{"EfficientLengthIterable":["MapEntry<1,2>"],"Iterable":["MapEntry<1,2>"],"Iterable.E":"MapEntry<1,2>"},"JsIdentityLinkedHashMap":{"JsLinkedHashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"JsConstantLinkedHashMap":{"JsLinkedHashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_MatchImplementation":{"RegExpMatch":[],"Match":[]},"_AllMatchesIterable":{"Iterable":["RegExpMatch"],"Iterable.E":"RegExpMatch"},"StringMatch":{"Match":[]},"_StringAllMatchesIterable":{"Iterable":["Match"],"Iterable.E":"Match"},"NativeByteBuffer":{"JSObject":[],"ByteBuffer":[],"TrustedGetRuntimeType":[]},"NativeTypedData":{"JSObject":[]},"NativeByteData":{"ByteData":[],"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"],"JSObject":[]},"NativeTypedArrayOfDouble":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"]},"NativeTypedArrayOfInt":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"]},"NativeFloat32List":{"NativeTypedArrayOfDouble":[],"Float32List":[],"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeFloat64List":{"NativeTypedArrayOfDouble":[],"Float64List":[],"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"EfficientLengthIterable":["double"],"JSObject":[],"Iterable":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeInt16List":{"NativeTypedArrayOfInt":[],"Int16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt32List":{"NativeTypedArrayOfInt":[],"Int32List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt8List":{"NativeTypedArrayOfInt":[],"Int8List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint16List":{"NativeTypedArrayOfInt":[],"Uint16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint32List":{"NativeTypedArrayOfInt":[],"Uint32List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8ClampedList":{"NativeTypedArrayOfInt":[],"Uint8ClampedList":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8List":{"NativeTypedArrayOfInt":[],"Uint8List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"EfficientLengthIterable":["int"],"JSObject":[],"Iterable":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"_Error":{"Error":[]},"_TypeError":{"Error":[]},"AsyncError":{"Error":[]},"_SyncStarIterable":{"Iterable":["1"],"Iterable.E":"1"},"_ZoneSpecification":{"ZoneSpecification":[]},"_ZoneDelegate":{"ZoneDelegate":[]},"_Zone":{"Zone":[]},"_CustomZone":{"Zone":[]},"_RootZone":{"Zone":[]},"Queue":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"_HashMap":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_IdentityHashMap":{"_HashMap":["1","2"],"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"_HashMapKeyIterable":{"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"_LinkedHashSet":{"_SetBase":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_LinkedIdentityHashSet":{"_LinkedHashSet":["1"],"_SetBase":["1"],"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableListView":{"ListBase":["1"],"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1"},"ListBase":{"List":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapBase":{"Map":["1","2"]},"UnmodifiableMapBase":{"MapBase":["1","2"],"Map":["1","2"]},"_MapBaseValueIterable":{"EfficientLengthIterable":["2"],"Iterable":["2"],"Iterable.E":"2"},"MapView":{"Map":["1","2"]},"UnmodifiableMapView":{"Map":["1","2"]},"ListQueue":{"Queue":["1"],"ListIterable":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1","ListIterable.E":"1"},"SetBase":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_SetBase":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"UnmodifiableSetView":{"SetBase":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"DateTime":{"Comparable":["DateTime"]},"double":{"num":[],"Comparable":["num"]},"Duration":{"Comparable":["Duration"]},"int":{"num":[],"Comparable":["num"]},"List":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"num":{"Comparable":["num"]},"RegExpMatch":{"Match":[]},"Set":{"EfficientLengthIterable":["1"],"Iterable":["1"]},"String":{"Comparable":["String"]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"RangeError":[],"Error":[]},"NoSuchMethodError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"StateError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"_Exception":{"Exception":[]},"FormatException":{"Exception":[]},"Runes":{"Iterable":["int"],"Iterable.E":"int"},"_Uri":{"_PlatformUri":[],"Uri":[]},"_SimpleUri":{"_PlatformUri":[],"Uri":[]},"_DataUri":{"_PlatformUri":[],"Uri":[]},"EmptyUnmodifiableSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"Iterable.E":"1"},"QueueList":{"ListBase":["1"],"List":["1"],"Queue":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"],"ListBase.E":"1","QueueList.E":"1"},"_CastQueueList":{"QueueList":["2"],"ListBase":["2"],"List":["2"],"Queue":["2"],"EfficientLengthIterable":["2"],"Iterable":["2"],"ListBase.E":"2","QueueList.E":"2"},"UnmodifiableSetView0":{"DelegatingSet":["1"],"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"MapKeySet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"_DelegatingIterableBase":{"Iterable":["1"]},"DelegatingSet":{"Set":["1"],"EfficientLengthIterable":["1"],"Iterable":["1"]},"PathException":{"Exception":[]},"Version":{"VersionRange":[],"Comparable":["VersionRange"]},"VersionRange":{"Comparable":["VersionRange"]},"ModifiableCssAtRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssComment":{"ModifiableCssNode":[],"CssComment":[],"CssNode":[],"AstNode":[]},"ModifiableCssDeclaration":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssImport":{"ModifiableCssNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssKeyframeBlock":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssMediaRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssNode":{"CssNode":[],"AstNode":[]},"ModifiableCssParentNode":{"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStyleRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssStylesheet":{"ModifiableCssParentNode":[],"CssStylesheet":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"ModifiableCssSupportsRule":{"ModifiableCssParentNode":[],"ModifiableCssNode":[],"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssNode":{"AstNode":[]},"CssParentNode":{"CssNode":[],"AstNode":[]},"CssStylesheet":{"CssParentNode":[],"CssNode":[],"AstNode":[]},"CssValue":{"AstNode":[]},"_FakeAstNode":{"AstNode":[]},"ArgumentList":{"SassNode":[],"AstNode":[]},"ConfiguredVariable":{"SassNode":[],"AstNode":[]},"Expression":{"SassNode":[],"AstNode":[]},"BinaryOperationExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"BooleanExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ColorExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"FunctionExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"IfConditionExpression":{"SassNode":[],"AstNode":[]},"IfConditionFunction":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"IfConditionParenthesized":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionNegation":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionOperation":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionSass":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"IfConditionRaw":{"IfConditionExpression":[],"SassNode":[],"AstNode":[]},"InterpolatedFunctionExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"LegacyIfExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ListExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"MapExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"NullExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"NumberExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ParenthesizedExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"SelectorExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"StringExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"SupportsExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"UnaryOperationExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"ValueExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"VariableExpression":{"Expression":[],"SassNode":[],"AstNode":[]},"DynamicImport":{"Import":[],"SassNode":[],"AstNode":[]},"StaticImport":{"Import":[],"SassNode":[],"AstNode":[]},"InterpolatedSelector":{"SassNode":[],"AstNode":[]},"InterpolatedAttributeSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedClassSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedComplexSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedComplexSelectorComponent":{"SassNode":[],"AstNode":[]},"InterpolatedCompoundSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedIDSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedSelectorList":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedParentSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedPlaceholderSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedPseudoSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedQualifiedName":{"SassNode":[],"AstNode":[]},"InterpolatedSimpleSelector":{"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedTypeSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"InterpolatedUniversalSelector":{"InterpolatedSimpleSelector":[],"InterpolatedSelector":[],"SassNode":[],"AstNode":[]},"Interpolation":{"SassNode":[],"AstNode":[]},"Parameter":{"SassNode":[],"AstNode":[]},"ParameterList":{"SassNode":[],"AstNode":[]},"Statement":{"SassNode":[],"AstNode":[]},"AtRootRule":{"Statement":[],"SassNode":[],"AstNode":[]},"AtRule":{"Statement":[],"SassNode":[],"AstNode":[]},"CallableDeclaration":{"Statement":[],"SassNode":[],"AstNode":[]},"ContentBlock":{"Statement":[],"SassNode":[],"AstNode":[]},"ContentRule":{"Statement":[],"SassNode":[],"AstNode":[]},"DebugRule":{"Statement":[],"SassNode":[],"AstNode":[]},"Declaration":{"Statement":[],"SassNode":[],"AstNode":[]},"EachRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ErrorRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ExtendRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ForRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ForwardRule":{"Statement":[],"SassNode":[],"AstNode":[]},"FunctionRule":{"Statement":[],"SassNode":[],"AstNode":[]},"IfClause":{"IfRuleClause":[]},"ElseClause":{"IfRuleClause":[]},"IfRule":{"Statement":[],"SassNode":[],"AstNode":[]},"ImportRule":{"Statement":[],"SassNode":[],"AstNode":[]},"IncludeRule":{"Statement":[],"SassNode":[],"AstNode":[]},"LoudComment":{"Statement":[],"SassNode":[],"AstNode":[]},"MediaRule":{"Statement":[],"SassNode":[],"AstNode":[]},"MixinRule":{"Statement":[],"SassNode":[],"AstNode":[]},"_HasContentVisitor":{"StatementSearchVisitor":["bool"],"StatementVisitor":["bool?"],"StatementSearchVisitor.T":"bool"},"ParentStatement":{"Statement":[],"SassNode":[],"AstNode":[]},"ReturnRule":{"Statement":[],"SassNode":[],"AstNode":[]},"SilentComment":{"Statement":[],"SassNode":[],"AstNode":[]},"StyleRule":{"Statement":[],"SassNode":[],"AstNode":[]},"Stylesheet":{"Statement":[],"SassNode":[],"AstNode":[]},"SupportsRule":{"Statement":[],"SassNode":[],"AstNode":[]},"UseRule":{"Statement":[],"SassNode":[],"AstNode":[]},"VariableDeclaration":{"Statement":[],"SassNode":[],"AstNode":[]},"WarnRule":{"Statement":[],"SassNode":[],"AstNode":[]},"WhileRule":{"Statement":[],"SassNode":[],"AstNode":[]},"SupportsAnything":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsDeclaration":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsFunction":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsInterpolation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsNegation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"SupportsOperation":{"SupportsCondition":[],"SassNode":[],"AstNode":[]},"Selector":{"AstNode":[]},"AttributeSelector":{"SimpleSelector":[],"AstNode":[]},"ClassSelector":{"SimpleSelector":[],"AstNode":[]},"ComplexSelector":{"AstNode":[]},"CompoundSelector":{"AstNode":[]},"IDSelector":{"SimpleSelector":[],"AstNode":[]},"SelectorList":{"AstNode":[]},"_ParentSelectorVisitor":{"SelectorSearchVisitor":["ParentSelector"],"SelectorSearchVisitor.T":"ParentSelector"},"ParentSelector":{"SimpleSelector":[],"AstNode":[]},"PlaceholderSelector":{"SimpleSelector":[],"AstNode":[]},"PseudoSelector":{"SimpleSelector":[],"AstNode":[]},"SimpleSelector":{"AstNode":[]},"TypeSelector":{"SimpleSelector":[],"AstNode":[]},"UniversalSelector":{"SimpleSelector":[],"AstNode":[]},"AsyncBuiltInCallable":{"AsyncCallable":[]},"BuiltInCallable":{"Callable":[],"AsyncBuiltInCallable":[],"AsyncCallable":[]},"PlainCssCallable":{"Callable":[],"AsyncCallable":[]},"UserDefinedCallable":{"Callable":[],"AsyncCallable":[]},"ExplicitConfiguration":{"Configuration":[]},"_EnvironmentModule":{"Module0":["Callable"]},"SassRuntimeException":{"Exception":[]},"SassException":{"Exception":[]},"MultiSpanSassException":{"Exception":[]},"MultiSpanSassRuntimeException":{"SassRuntimeException":[],"Exception":[]},"SassFormatException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"MultiSpanSassFormatException":{"MultiSourceSpanFormatException":[],"SassFormatException":[],"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"EmptyExtensionStore":{"ExtensionStore":[]},"MergedExtension":{"Extension":[]},"FilesystemImporter":{"Importer":[]},"JSToDartFileImporter":{"Importer":[]},"JSToDartImporter":{"Importer":[]},"NoOpImporter":{"Importer":[]},"JSExpressionVisitor":{"ExpressionVisitor":["Object?"]},"JSIfConditionExpressionVisitor":{"IfConditionExpressionVisitor":["Object?"]},"JSSimpleSelectorVisitor":{"InterpolatedSelectorVisitor":["Object?"]},"JSStatementVisitor":{"StatementVisitor":["Object?"]},"BuiltInModule":{"Module0":["1"]},"ForwardedModuleView":{"Module0":["1"]},"ShadowedModuleView":{"Module0":["1"]},"LazyFileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"LimitedMapView":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"MergedMapView":{"MapBase":["1","2"],"Map":["1","2"],"MapBase.V":"2","MapBase.K":"1"},"MultiSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"PrefixedMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"_PrefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"PublicMemberMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"UnprefixedMapView":{"MapBase":["String","1"],"Map":["String","1"],"MapBase.V":"1","MapBase.K":"String"},"_UnprefixedKeys":{"Iterable":["String"],"Iterable.E":"String"},"SassArgumentList":{"SassList":[],"Value":[]},"SassBoolean":{"Value":[]},"SassCalculation":{"Value":[]},"SassColor":{"Value":[]},"LinearChannel":{"ColorChannel":[]},"A98RgbColorSpace":{"ColorSpace":[]},"DisplayP3ColorSpace":{"ColorSpace":[]},"DisplayP3LinearColorSpace":{"ColorSpace":[]},"HslColorSpace":{"ColorSpace":[]},"HwbColorSpace":{"ColorSpace":[]},"LabColorSpace":{"ColorSpace":[]},"LchColorSpace":{"ColorSpace":[]},"LmsColorSpace":{"ColorSpace":[]},"OklabColorSpace":{"ColorSpace":[]},"OklchColorSpace":{"ColorSpace":[]},"ProphotoRgbColorSpace":{"ColorSpace":[]},"Rec2020ColorSpace":{"ColorSpace":[]},"RgbColorSpace":{"ColorSpace":[]},"SrgbColorSpace":{"ColorSpace":[]},"SrgbLinearColorSpace":{"ColorSpace":[]},"XyzD50ColorSpace":{"ColorSpace":[]},"XyzD65ColorSpace":{"ColorSpace":[]},"SassFunction":{"Value":[]},"SassList":{"Value":[]},"SassMap":{"Value":[]},"SassMixin":{"Value":[]},"_SassNull":{"Value":[]},"SassNumber":{"Value":[]},"ComplexSassNumber":{"SassNumber":[],"Value":[]},"SingleUnitSassNumber":{"SassNumber":[],"Value":[]},"UnitlessSassNumber":{"SassNumber":[],"Value":[]},"SassString":{"Value":[]},"_EvaluateVisitor":{"StatementVisitor":["Value?"],"ExpressionVisitor":["Value"],"IfConditionExpressionVisitor":["Object"]},"_MakeExpressionCalculationSafe":{"ExpressionVisitor":["Expression"],"IfConditionExpressionVisitor":["IfConditionExpression"]},"IsCalculationSafeVisitor":{"ExpressionVisitor":["bool"]},"SourceInterpolationVisitor":{"ExpressionVisitor":["~"],"IfConditionExpressionVisitor":["~"]},"Entry":{"Comparable":["Entry"]},"FileLocation":{"SourceLocation":[],"Comparable":["SourceLocation"]},"FileSpan":{"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"_FileSpan":{"FileSpan":[],"SourceSpanWithContext":[],"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceLocation":{"Comparable":["SourceLocation"]},"SourceLocationMixin":{"SourceLocation":[],"Comparable":["SourceLocation"]},"SourceSpan":{"Comparable":["SourceSpan"]},"SourceSpanBase":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanException":{"Exception":[]},"SourceSpanFormatException":{"FormatException":[],"Exception":[]},"MultiSourceSpanException":{"Exception":[]},"MultiSourceSpanFormatException":{"FormatException":[],"Exception":[]},"SourceSpanMixin":{"SourceSpan":[],"Comparable":["SourceSpan"]},"SourceSpanWithContext":{"SourceSpan":[],"Comparable":["SourceSpan"]},"Trace":{"StackTrace":[]},"StringScannerException":{"SourceSpanFormatException":[],"FormatException":[],"Exception":[]},"Int8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint8List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint8ClampedList":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Int16List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint16List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Int32List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Uint32List":{"List":["int"],"EfficientLengthIterable":["int"],"Iterable":["int"]},"Float32List":{"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"Float64List":{"List":["double"],"EfficientLengthIterable":["double"],"Iterable":["double"]},"CssComment":{"CssNode":[],"AstNode":[]},"Import":{"SassNode":[],"AstNode":[]},"SassNode":{"AstNode":[]},"SupportsCondition":{"SassNode":[],"AstNode":[]},"Callable":{"AsyncCallable":[]}}'));
 			A._Universe_addErasedTypes(init.typeUniverse, JSON.parse('{"WhereIterator":1,"SkipIterator":1,"EmptyIterator":1,"FollowedByIterator":1,"NonNullsIterator":1,"FixedLengthListMixin":1,"UnmodifiableListMixin":1,"UnmodifiableListBase":1,"__CastListBase__CastIterableBase_ListMixin":2,"ConstantSet":1,"LinkedHashMapKeyIterator":1,"LinkedHashMapValueIterator":1,"NativeTypedArray":1,"_SyncStarIterator":1,"_ZoneFunction":1,"Queue":1,"UnmodifiableMapBase":2,"_UnmodifiableMapMixin":2,"MapView":2,"_UnmodifiableSetMixin":1,"_UnmodifiableMapView_MapView__UnmodifiableMapMixin":2,"_UnmodifiableSetView_SetBase__UnmodifiableSetMixin":1,"Codec":2,"Converter":2,"Expando":1,"_EmptyUnmodifiableSet_IterableBase_UnmodifiableSetMixin":1,"DefaultEquality":1,"IterableEquality":1,"ListEquality":1,"_QueueList_Object_ListMixin":1,"UnmodifiableSetMixin":1,"_UnmodifiableSetView_DelegatingSet_UnmodifiableSetMixin":1,"_DelegatingIterableBase":1,"_MapKeySet__DelegatingIterableBase_UnmodifiableSetMixin":1,"ParentStatement":1,"ExpressionVisitor":1,"IfConditionExpressionVisitor":1}'));
 			var string$ = {
 				x00_____: "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\u03f6\x00\u0404\u03f4 \u03f4\u03f6\u01f6\u01f6\u03f6\u03fc\u01f4\u03ff\u03ff\u0584\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u05d4\u01f4\x00\u01f4\x00\u0504\u05c4\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u0400\x00\u0400\u0200\u03f7\u0200\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u03ff\u0200\u0200\u0200\u03f7\x00",
@@ -67066,7 +64699,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					JSArray_Map_String_AstNode: findType("JSArray<Map<String,AstNode>>"),
 					JSArray_Map_String_Callable: findType("JSArray<Map<String,Callable>>"),
 					JSArray_Map_String_Value: findType("JSArray<Map<String,Value>>"),
-					JSArray_Map_dynamic_dynamic: findType("JSArray<Map<@,@>>"),
 					JSArray_ModifiableCssImport: findType("JSArray<ModifiableCssImport>"),
 					JSArray_ModifiableCssNode: findType("JSArray<ModifiableCssNode>"),
 					JSArray_ModifiableCssParentNode: findType("JSArray<ModifiableCssParentNode>"),
@@ -67169,7 +64801,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					Record_3_Importer_and_Uri_and_Uri_originalUrl: findType("+originalUrl(Importer,Uri,Uri)"),
 					Record_3_Importer_and_Uri_and_bool_forImport: findType("+forImport(Importer,Uri,bool)"),
 					Record_3_nullable_Object_and_nullable_Object_and_nullable_Object_originalUrl: findType("+originalUrl(Object?,Object?,Object?)"),
-					Rectangle_dynamic: findType("Rectangle<@>"),
 					RegExpMatch: findType("RegExpMatch"),
 					ReversedListIterable_Frame: findType("ReversedListIterable<Frame>"),
 					Runes: findType("Runes"),
@@ -67193,7 +64824,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					String: findType("String"),
 					StringExpression: findType("StringExpression"),
 					StyleRule: findType("StyleRule"),
+					/*DSH-
 					Timer: findType("Timer"),
+					*/
 					Trace: findType("Trace"),
 					TrustedGetRuntimeType: findType("TrustedGetRuntimeType"),
 					TypeSelector: findType("TypeSelector"),
@@ -67336,16 +64969,21 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return "HTMLElement";
 				}
 			}
+			/*DSH-
 			function getUnknownTagGenericBrowser(object, tag) {
 				if (object instanceof HTMLElement) return "HTMLElement";
 				return getUnknownTag(object, tag);
 			}
+			*/
 			function prototypeForTag(tag) {
+				/*DSH-
 				if (typeof window == "undefined") return null;
 				if (typeof window[tag] == "undefined") return null;
 				var constructor = window[tag];
 				if (typeof constructor != "function") return null;
 				return constructor.prototype;
+				*/
+				return null; //DSH+
 			}
 			function discriminator(tag) { return null; }
 			/*DSH-
@@ -67357,6 +64995,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				prototypeForTag: prototypeForTag,
 				discriminator: discriminator };
 		};
+		/*DSH-
 				B.C_JS_CONST6 = function(getTagFallback) {
 			return function(hooks) {
 				if (typeof navigator != "object") return hooks;
@@ -67426,6 +65065,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			hooks.getTag = getTagIE;
 			hooks.prototypeForTag = prototypeForTagIE;
 		};
+		*/
 				B.C_JS_CONST2 = function(hooks) {
 			var getTag = hooks.getTag;
 			var prototypeForTag = hooks.prototypeForTag;
@@ -67444,8 +65084,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			hooks.getTag = getTagFixed;
 			hooks.prototypeForTag = prototypeForTagFixed;
 		};
+		/*DSH-
 				B.C_JS_CONST3 = function(hooks) { return hooks; }
 		;
+		*/
 				B.C_ListEquality = new A.ListEquality();
 				B.C_ListEquality0 = new A.ListEquality();
 				B.C_MapEquality = new A.MapEquality(A.findType("MapEquality<Object,Object>"));
@@ -67651,7 +65293,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				B.Set_xkEMv = new A.GeneralConstantSet([B.BinaryOperator_wkM, B.BinaryOperator_ehp, B.BinaryOperator_jCK, B.BinaryOperator_tDf], A.findType("GeneralConstantSet<BinaryOperator>"));
 				B.SrgbColorSpace_thf = new A.SrgbColorSpace("srgb", B.List_U47);
 				B.SrgbLinearColorSpace_kUj = new A.SrgbLinearColorSpace("srgb-linear", B.List_U47);
-				/*DSH- 
+				/*DSH-
 				B.StderrLogger_false = new A.StderrLogger(false);
 				*/
 				B.Symbol__canonicalizeContext = new A.Symbol("_canonicalizeContext");
@@ -67694,20 +65336,26 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				B._IsInvisibleVisitor_true_true = new A._IsInvisibleVisitor(true, true);
 				B._SingletonCssMediaQueryMergeResult_0 = new A._SingletonCssMediaQueryMergeResult(0, "empty");
 				B._SingletonCssMediaQueryMergeResult_1 = new A._SingletonCssMediaQueryMergeResult(1, "unrepresentable");
+				/*DSH-
 				B._ZoneFunction_KjJ = new A._ZoneFunction(B.C__RootZone, A.async___rootHandleUncaughtError$closure());
 				B._ZoneFunction_PAY = new A._ZoneFunction(B.C__RootZone, A.async___rootCreatePeriodicTimer$closure());
 				B._ZoneFunction_Xkh = new A._ZoneFunction(B.C__RootZone, A.async___rootRegisterUnaryCallback$closure());
 				B._ZoneFunction__RootZone__rootCreateTimer = new A._ZoneFunction(B.C__RootZone, A.async___rootCreateTimer$closure());
 				B._ZoneFunction__RootZone__rootErrorCallback = new A._ZoneFunction(B.C__RootZone, A.async___rootErrorCallback$closure());
+				*/
 				B._ZoneFunction__RootZone__rootFork = new A._ZoneFunction(B.C__RootZone, A.async___rootFork$closure());
+				/*DSH-
 				B._ZoneFunction__RootZone__rootPrint = new A._ZoneFunction(B.C__RootZone, A.async___rootPrint$closure());
 				B._ZoneFunction__RootZone__rootRegisterCallback = new A._ZoneFunction(B.C__RootZone, A.async___rootRegisterCallback$closure());
+				*/
 				B._ZoneFunction__RootZone__rootRun = new A._ZoneFunction(B.C__RootZone, A.async___rootRun$closure());
+				/*DSH-
 				B._ZoneFunction__RootZone__rootRunBinary = new A._ZoneFunction(B.C__RootZone, A.async___rootRunBinary$closure());
 				B._ZoneFunction__RootZone__rootRunUnary = new A._ZoneFunction(B.C__RootZone, A.async___rootRunUnary$closure());
 				B._ZoneFunction__RootZone__rootScheduleMicrotask = new A._ZoneFunction(B.C__RootZone, A.async___rootScheduleMicrotask$closure());
 				B._ZoneFunction_e9o = new A._ZoneFunction(B.C__RootZone, A.async___rootRegisterBinaryCallback$closure());
-				B._ZoneSpecification_Ipa = new A._ZoneSpecification(null, null, null, null, null, null, null, null, null, null, null, null, null);
+				*/
+				B._ZoneSpecification_Ipa = new A._ZoneSpecification(/*DSH- null, */null/*DSH-, null, null, null, null, null, null, null, null, null, null*/, null);
 			})();
 			(function staticFields() {
 				$._JS_INTEROP_INTERCEPTOR_TAG = null;
@@ -67793,7 +65441,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return e.message;
 					}
 				}()));
+				/*DSH-
 				_lazyFinal($, "_AsyncRun__scheduleImmediateClosure", "$get$_AsyncRun__scheduleImmediateClosure", () => A._AsyncRun__initializeScheduleImmediate());
+				*/
 				_lazyFinal($, "_RootZone__rootMap", "$get$_RootZone__rootMap", () => {
 					var t1 = type$.dynamic;
 					return A.HashMap_HashMap(t1, t1);
@@ -67802,6 +65452,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_lazyFinal($, "_Utf8Decoder__decoder", "$get$_Utf8Decoder__decoder", () => new A._Utf8Decoder__decoder_closure().call$0());
 				_lazyFinal($, "_Utf8Decoder__decoderNonfatal", "$get$_Utf8Decoder__decoderNonfatal", () => new A._Utf8Decoder__decoderNonfatal_closure().call$0());
 				_lazyFinal($, "_Base64Decoder__inverseAlphabet", "$get$_Base64Decoder__inverseAlphabet", () => A.NativeInt8List__create1(A._ensureNativeList(A._setArrayType([-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -1, -2, -2, -2, -2, -2, 62, -2, 62, -2, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -2, -2, -2, -1, -2, -2, -2, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -2, -2, -2, -2, 63, -2, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -2, -2, -2, -2, -2], type$.JSArray_int))));
+				_lazyFinal($, "_Uri__isWindowsCached", "$get$_Uri__isWindowsCached", () => {
+					var t1 = typeof process != "undefined"/*DSH- && Object.prototype.toString.call(process) == "[object process]"*/ && process.platform == "win32";
+					return t1;
+				});
 				_lazyFinal($, "_Uri__needsNoEncoding", "$get$_Uri__needsNoEncoding", () => A.RegExp_RegExp("^[\\-\\.0-9A-Z_a-z~]*$"));
 				_lazyFinal($, "_hashSeed", "$get$_hashSeed", () => A.objectHashCode(B.Type_Object_A4p));
 				_lazyFinal($, "_isStrictMode", "$get$_isStrictMode", () => new A._isStrictMode_closure().call$0());
@@ -67822,7 +65476,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = type$.String,
 						t3 = A.LinkedHashMap_LinkedHashMap$_empty(t1, t2);
 					for (t1 = A.MapExtensions_get_pairs($.$get$colorsByName(), t2, t1), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
-						t2 = t1.get$current(t1);
+						t2 = t1.get$current();
 						$name = t2._0;
 						t3.$indexSet(0, t2._1, $name);
 					}
@@ -67938,7 +65592,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t2,
 						t1 = A._setArrayType([], type$.JSArray_BuiltInCallable);
 					for (t2 = $.$get$_shared(), t2 = t2.get$iterator(t2); t2.moveNext$0();)
-						t1.push(t2.get$current(0).withDeprecationWarning$1("meta"));
+						t1.push(t2.get$current().withDeprecationWarning$1("meta"));
 					return A.UnmodifiableListView$(t1, type$.BuiltInCallable);
 				});
 				_lazyFinal($, "moduleFunctions", "$get$moduleFunctions", () => {
@@ -68105,10 +65759,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = type$.String,
 						t2 = A.LinkedHashMap_LinkedHashMap$_empty(t1, t1);
 					for (t1 = A.MapExtensions_get_pairs(B.Map_Sr65K, t1, type$.List_String), t1 = t1.get$iterator(t1); t1.moveNext$0();) {
-						t3 = t1.get$current(t1);
+						t3 = t1.get$current();
 						type = t3._0;
 						for (t3 = J.get$iterator$ax(t3._1); t3.moveNext$0();)
-							t2.$indexSet(0, t3.get$current(t3), type);
+							t2.$indexSet(0, t3.get$current(), type);
 					}
 					return t2;
 				});
@@ -68118,7 +65772,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (_i = 0; _i < 5; ++_i) {
 						set = B.List_BFg[_i];
 						for (t2 = set.get$iterator(set); t2.moveNext$0();)
-							t1.$indexSet(0, t2.get$current(0), set);
+							t1.$indexSet(0, t2.get$current(), set);
 					}
 					return t1;
 				});
@@ -68151,8 +65805,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					init.dispatchPropertyName = init.getIsolateTag("dispatch_record");
 				}();
-				hunkHelpers.setOrUpdateInterceptorsByTag({WebGL: J.Interceptor, AnimationEffectReadOnly: J.JavaScriptObject, AnimationEffectTiming: J.JavaScriptObject, AnimationEffectTimingReadOnly: J.JavaScriptObject, AnimationTimeline: J.JavaScriptObject, AnimationWorkletGlobalScope: J.JavaScriptObject, AuthenticatorAssertionResponse: J.JavaScriptObject, AuthenticatorAttestationResponse: J.JavaScriptObject, AuthenticatorResponse: J.JavaScriptObject, BackgroundFetchFetch: J.JavaScriptObject, BackgroundFetchManager: J.JavaScriptObject, BackgroundFetchSettledFetch: J.JavaScriptObject, BarProp: J.JavaScriptObject, BarcodeDetector: J.JavaScriptObject, BluetoothRemoteGATTDescriptor: J.JavaScriptObject, Body: J.JavaScriptObject, BudgetState: J.JavaScriptObject, CacheStorage: J.JavaScriptObject, CanvasGradient: J.JavaScriptObject, CanvasPattern: J.JavaScriptObject, CanvasRenderingContext2D: J.JavaScriptObject, Client: J.JavaScriptObject, Clients: J.JavaScriptObject, CookieStore: J.JavaScriptObject, Coordinates: J.JavaScriptObject, Credential: J.JavaScriptObject, CredentialUserData: J.JavaScriptObject, CredentialsContainer: J.JavaScriptObject, Crypto: J.JavaScriptObject, CryptoKey: J.JavaScriptObject, CSS: J.JavaScriptObject, CSSVariableReferenceValue: J.JavaScriptObject, CustomElementRegistry: J.JavaScriptObject, DataTransfer: J.JavaScriptObject, DataTransferItem: J.JavaScriptObject, DeprecatedStorageInfo: J.JavaScriptObject, DeprecatedStorageQuota: J.JavaScriptObject, DetectedBarcode: J.JavaScriptObject, DetectedFace: J.JavaScriptObject, DetectedText: J.JavaScriptObject, DeviceAcceleration: J.JavaScriptObject, DeviceRotationRate: J.JavaScriptObject, DirectoryEntry: J.JavaScriptObject, webkitFileSystemDirectoryEntry: J.JavaScriptObject, FileSystemDirectoryEntry: J.JavaScriptObject, DirectoryReader: J.JavaScriptObject, WebKitDirectoryReader: J.JavaScriptObject, webkitFileSystemDirectoryReader: J.JavaScriptObject, FileSystemDirectoryReader: J.JavaScriptObject, DocumentOrShadowRoot: J.JavaScriptObject, DocumentTimeline: J.JavaScriptObject, DOMImplementation: J.JavaScriptObject, Iterator: J.JavaScriptObject, DOMMatrix: J.JavaScriptObject, DOMMatrixReadOnly: J.JavaScriptObject, DOMParser: J.JavaScriptObject, DOMPoint: J.JavaScriptObject, DOMPointReadOnly: J.JavaScriptObject, DOMQuad: J.JavaScriptObject, DOMStringMap: J.JavaScriptObject, Entry: J.JavaScriptObject, webkitFileSystemEntry: J.JavaScriptObject, FileSystemEntry: J.JavaScriptObject, External: J.JavaScriptObject, FaceDetector: J.JavaScriptObject, FederatedCredential: J.JavaScriptObject, FileEntry: J.JavaScriptObject, webkitFileSystemFileEntry: J.JavaScriptObject, FileSystemFileEntry: J.JavaScriptObject, DOMFileSystem: J.JavaScriptObject, WebKitFileSystem: J.JavaScriptObject, webkitFileSystem: J.JavaScriptObject, FileSystem: J.JavaScriptObject, FontFace: J.JavaScriptObject, FontFaceSource: J.JavaScriptObject, FormData: J.JavaScriptObject, GamepadButton: J.JavaScriptObject, GamepadPose: J.JavaScriptObject, Geolocation: J.JavaScriptObject, Position: J.JavaScriptObject, GeolocationPosition: J.JavaScriptObject, Headers: J.JavaScriptObject, HTMLHyperlinkElementUtils: J.JavaScriptObject, IdleDeadline: J.JavaScriptObject, ImageBitmap: J.JavaScriptObject, ImageBitmapRenderingContext: J.JavaScriptObject, ImageCapture: J.JavaScriptObject, ImageData: J.JavaScriptObject, InputDeviceCapabilities: J.JavaScriptObject, IntersectionObserver: J.JavaScriptObject, IntersectionObserverEntry: J.JavaScriptObject, KeyframeEffect: J.JavaScriptObject, KeyframeEffectReadOnly: J.JavaScriptObject, MediaCapabilities: J.JavaScriptObject, MediaCapabilitiesInfo: J.JavaScriptObject, MediaDeviceInfo: J.JavaScriptObject, MediaKeyStatusMap: J.JavaScriptObject, MediaKeySystemAccess: J.JavaScriptObject, MediaKeys: J.JavaScriptObject, MediaKeysPolicy: J.JavaScriptObject, MediaMetadata: J.JavaScriptObject, MediaSession: J.JavaScriptObject, MediaSettingsRange: J.JavaScriptObject, MemoryInfo: J.JavaScriptObject, MessageChannel: J.JavaScriptObject, Metadata: J.JavaScriptObject, MutationObserver: J.JavaScriptObject, WebKitMutationObserver: J.JavaScriptObject, MutationRecord: J.JavaScriptObject, NavigationPreloadManager: J.JavaScriptObject, Navigator: J.JavaScriptObject, NavigatorAutomationInformation: J.JavaScriptObject, NavigatorConcurrentHardware: J.JavaScriptObject, NavigatorCookies: J.JavaScriptObject, NodeFilter: J.JavaScriptObject, NodeIterator: J.JavaScriptObject, NonDocumentTypeChildNode: J.JavaScriptObject, NonElementParentNode: J.JavaScriptObject, NoncedElement: J.JavaScriptObject, OffscreenCanvasRenderingContext2D: J.JavaScriptObject, PaintRenderingContext2D: J.JavaScriptObject, PaintSize: J.JavaScriptObject, PaintWorkletGlobalScope: J.JavaScriptObject, PasswordCredential: J.JavaScriptObject, Path2D: J.JavaScriptObject, PaymentAddress: J.JavaScriptObject, PaymentInstruments: J.JavaScriptObject, PaymentManager: J.JavaScriptObject, PaymentResponse: J.JavaScriptObject, PerformanceEntry: J.JavaScriptObject, PerformanceLongTaskTiming: J.JavaScriptObject, PerformanceMark: J.JavaScriptObject, PerformanceMeasure: J.JavaScriptObject, PerformanceNavigation: J.JavaScriptObject, PerformanceNavigationTiming: J.JavaScriptObject, PerformanceObserver: J.JavaScriptObject, PerformanceObserverEntryList: J.JavaScriptObject, PerformancePaintTiming: J.JavaScriptObject, PerformanceResourceTiming: J.JavaScriptObject, PerformanceServerTiming: J.JavaScriptObject, PerformanceTiming: J.JavaScriptObject, Permissions: J.JavaScriptObject, PhotoCapabilities: J.JavaScriptObject, Presentation: J.JavaScriptObject, PresentationReceiver: J.JavaScriptObject, PublicKeyCredential: J.JavaScriptObject, PushManager: J.JavaScriptObject, PushMessageData: J.JavaScriptObject, PushSubscription: J.JavaScriptObject, PushSubscriptionOptions: J.JavaScriptObject, Range: J.JavaScriptObject, RelatedApplication: J.JavaScriptObject, ReportingObserver: J.JavaScriptObject, ResizeObserver: J.JavaScriptObject, ResizeObserverEntry: J.JavaScriptObject, RTCCertificate: J.JavaScriptObject, RTCIceCandidate: J.JavaScriptObject, mozRTCIceCandidate: J.JavaScriptObject, RTCLegacyStatsReport: J.JavaScriptObject, RTCRtpContributingSource: J.JavaScriptObject, RTCRtpReceiver: J.JavaScriptObject, RTCRtpSender: J.JavaScriptObject, RTCSessionDescription: J.JavaScriptObject, mozRTCSessionDescription: J.JavaScriptObject, RTCStatsResponse: J.JavaScriptObject, Screen: J.JavaScriptObject, ScrollState: J.JavaScriptObject, ScrollTimeline: J.JavaScriptObject, Selection: J.JavaScriptObject, SpeechRecognitionAlternative: J.JavaScriptObject, SpeechSynthesisVoice: J.JavaScriptObject, StaticRange: J.JavaScriptObject, StorageManager: J.JavaScriptObject, StyleMedia: J.JavaScriptObject, StylePropertyMap: J.JavaScriptObject, StylePropertyMapReadonly: J.JavaScriptObject, SyncManager: J.JavaScriptObject, TaskAttributionTiming: J.JavaScriptObject, TextDetector: J.JavaScriptObject, TextMetrics: J.JavaScriptObject, TrackDefault: J.JavaScriptObject, TreeWalker: J.JavaScriptObject, TrustedHTML: J.JavaScriptObject, TrustedScriptURL: J.JavaScriptObject, TrustedURL: J.JavaScriptObject, UnderlyingSourceBase: J.JavaScriptObject, URLSearchParams: J.JavaScriptObject, VRCoordinateSystem: J.JavaScriptObject, VRDisplayCapabilities: J.JavaScriptObject, VREyeParameters: J.JavaScriptObject, VRFrameData: J.JavaScriptObject, VRFrameOfReference: J.JavaScriptObject, VRPose: J.JavaScriptObject, VRStageBounds: J.JavaScriptObject, VRStageBoundsPoint: J.JavaScriptObject, VRStageParameters: J.JavaScriptObject, ValidityState: J.JavaScriptObject, VideoPlaybackQuality: J.JavaScriptObject, VideoTrack: J.JavaScriptObject, VTTRegion: J.JavaScriptObject, WindowClient: J.JavaScriptObject, WorkletAnimation: J.JavaScriptObject, WorkletGlobalScope: J.JavaScriptObject, XPathEvaluator: J.JavaScriptObject, XPathExpression: J.JavaScriptObject, XPathNSResolver: J.JavaScriptObject, XPathResult: J.JavaScriptObject, XMLSerializer: J.JavaScriptObject, XSLTProcessor: J.JavaScriptObject, Bluetooth: J.JavaScriptObject, BluetoothCharacteristicProperties: J.JavaScriptObject, BluetoothRemoteGATTServer: J.JavaScriptObject, BluetoothRemoteGATTService: J.JavaScriptObject, BluetoothUUID: J.JavaScriptObject, BudgetService: J.JavaScriptObject, Cache: J.JavaScriptObject, DOMFileSystemSync: J.JavaScriptObject, DirectoryEntrySync: J.JavaScriptObject, DirectoryReaderSync: J.JavaScriptObject, EntrySync: J.JavaScriptObject, FileEntrySync: J.JavaScriptObject, FileReaderSync: J.JavaScriptObject, FileWriterSync: J.JavaScriptObject, HTMLAllCollection: J.JavaScriptObject, Mojo: J.JavaScriptObject, MojoHandle: J.JavaScriptObject, MojoWatcher: J.JavaScriptObject, NFC: J.JavaScriptObject, PagePopupController: J.JavaScriptObject, Report: J.JavaScriptObject, Request: J.JavaScriptObject, Response: J.JavaScriptObject, SubtleCrypto: J.JavaScriptObject, USBAlternateInterface: J.JavaScriptObject, USBConfiguration: J.JavaScriptObject, USBDevice: J.JavaScriptObject, USBEndpoint: J.JavaScriptObject, USBInTransferResult: J.JavaScriptObject, USBInterface: J.JavaScriptObject, USBIsochronousInTransferPacket: J.JavaScriptObject, USBIsochronousInTransferResult: J.JavaScriptObject, USBIsochronousOutTransferPacket: J.JavaScriptObject, USBIsochronousOutTransferResult: J.JavaScriptObject, USBOutTransferResult: J.JavaScriptObject, WorkerLocation: J.JavaScriptObject, WorkerNavigator: J.JavaScriptObject, Worklet: J.JavaScriptObject, IDBCursor: J.JavaScriptObject, IDBCursorWithValue: J.JavaScriptObject, IDBFactory: J.JavaScriptObject, IDBIndex: J.JavaScriptObject, IDBKeyRange: J.JavaScriptObject, IDBObjectStore: J.JavaScriptObject, IDBObservation: J.JavaScriptObject, IDBObserver: J.JavaScriptObject, IDBObserverChanges: J.JavaScriptObject, SVGAngle: J.JavaScriptObject, SVGAnimatedAngle: J.JavaScriptObject, SVGAnimatedBoolean: J.JavaScriptObject, SVGAnimatedEnumeration: J.JavaScriptObject, SVGAnimatedInteger: J.JavaScriptObject, SVGAnimatedLength: J.JavaScriptObject, SVGAnimatedLengthList: J.JavaScriptObject, SVGAnimatedNumber: J.JavaScriptObject, SVGAnimatedNumberList: J.JavaScriptObject, SVGAnimatedPreserveAspectRatio: J.JavaScriptObject, SVGAnimatedRect: J.JavaScriptObject, SVGAnimatedString: J.JavaScriptObject, SVGAnimatedTransformList: J.JavaScriptObject, SVGMatrix: J.JavaScriptObject, SVGPoint: J.JavaScriptObject, SVGPreserveAspectRatio: J.JavaScriptObject, SVGRect: J.JavaScriptObject, SVGUnitTypes: J.JavaScriptObject, AudioListener: J.JavaScriptObject, AudioParam: J.JavaScriptObject, AudioTrack: J.JavaScriptObject, AudioWorkletGlobalScope: J.JavaScriptObject, AudioWorkletProcessor: J.JavaScriptObject, PeriodicWave: J.JavaScriptObject, WebGLActiveInfo: J.JavaScriptObject, ANGLEInstancedArrays: J.JavaScriptObject, ANGLE_instanced_arrays: J.JavaScriptObject, WebGLBuffer: J.JavaScriptObject, WebGLCanvas: J.JavaScriptObject, WebGLColorBufferFloat: J.JavaScriptObject, WebGLCompressedTextureASTC: J.JavaScriptObject, WebGLCompressedTextureATC: J.JavaScriptObject, WEBGL_compressed_texture_atc: J.JavaScriptObject, WebGLCompressedTextureETC1: J.JavaScriptObject, WEBGL_compressed_texture_etc1: J.JavaScriptObject, WebGLCompressedTextureETC: J.JavaScriptObject, WebGLCompressedTexturePVRTC: J.JavaScriptObject, WEBGL_compressed_texture_pvrtc: J.JavaScriptObject, WebGLCompressedTextureS3TC: J.JavaScriptObject, WEBGL_compressed_texture_s3tc: J.JavaScriptObject, WebGLCompressedTextureS3TCsRGB: J.JavaScriptObject, WebGLDebugRendererInfo: J.JavaScriptObject, WEBGL_debug_renderer_info: J.JavaScriptObject, WebGLDebugShaders: J.JavaScriptObject, WEBGL_debug_shaders: J.JavaScriptObject, WebGLDepthTexture: J.JavaScriptObject, WEBGL_depth_texture: J.JavaScriptObject, WebGLDrawBuffers: J.JavaScriptObject, WEBGL_draw_buffers: J.JavaScriptObject, EXTsRGB: J.JavaScriptObject, EXT_sRGB: J.JavaScriptObject, EXTBlendMinMax: J.JavaScriptObject, EXT_blend_minmax: J.JavaScriptObject, EXTColorBufferFloat: J.JavaScriptObject, EXTColorBufferHalfFloat: J.JavaScriptObject, EXTDisjointTimerQuery: J.JavaScriptObject, EXTDisjointTimerQueryWebGL2: J.JavaScriptObject, EXTFragDepth: J.JavaScriptObject, EXT_frag_depth: J.JavaScriptObject, EXTShaderTextureLOD: J.JavaScriptObject, EXT_shader_texture_lod: J.JavaScriptObject, EXTTextureFilterAnisotropic: J.JavaScriptObject, EXT_texture_filter_anisotropic: J.JavaScriptObject, WebGLFramebuffer: J.JavaScriptObject, WebGLGetBufferSubDataAsync: J.JavaScriptObject, WebGLLoseContext: J.JavaScriptObject, WebGLExtensionLoseContext: J.JavaScriptObject, WEBGL_lose_context: J.JavaScriptObject, OESElementIndexUint: J.JavaScriptObject, OES_element_index_uint: J.JavaScriptObject, OESStandardDerivatives: J.JavaScriptObject, OES_standard_derivatives: J.JavaScriptObject, OESTextureFloat: J.JavaScriptObject, OES_texture_float: J.JavaScriptObject, OESTextureFloatLinear: J.JavaScriptObject, OES_texture_float_linear: J.JavaScriptObject, OESTextureHalfFloat: J.JavaScriptObject, OES_texture_half_float: J.JavaScriptObject, OESTextureHalfFloatLinear: J.JavaScriptObject, OES_texture_half_float_linear: J.JavaScriptObject, OESVertexArrayObject: J.JavaScriptObject, OES_vertex_array_object: J.JavaScriptObject, WebGLProgram: J.JavaScriptObject, WebGLQuery: J.JavaScriptObject, WebGLRenderbuffer: J.JavaScriptObject, WebGLRenderingContext: J.JavaScriptObject, WebGL2RenderingContext: J.JavaScriptObject, WebGLSampler: J.JavaScriptObject, WebGLShader: J.JavaScriptObject, WebGLShaderPrecisionFormat: J.JavaScriptObject, WebGLSync: J.JavaScriptObject, WebGLTexture: J.JavaScriptObject, WebGLTimerQueryEXT: J.JavaScriptObject, WebGLTransformFeedback: J.JavaScriptObject, WebGLUniformLocation: J.JavaScriptObject, WebGLVertexArrayObject: J.JavaScriptObject, WebGLVertexArrayObjectOES: J.JavaScriptObject, WebGL2RenderingContextBase: J.JavaScriptObject, ArrayBuffer: A.NativeByteBuffer, SharedArrayBuffer: A.NativeByteBuffer, ArrayBufferView: A.NativeTypedData, DataView: A.NativeByteData, Float32Array: A.NativeFloat32List, Float64Array: A.NativeFloat64List, Int16Array: A.NativeInt16List, Int32Array: A.NativeInt32List, Int8Array: A.NativeInt8List, Uint16Array: A.NativeUint16List, Uint32Array: A.NativeUint32List, Uint8ClampedArray: A.NativeUint8ClampedList, CanvasPixelArray: A.NativeUint8ClampedList, Uint8Array: A.NativeUint8List, HTMLAudioElement: A.HtmlElement, HTMLBRElement: A.HtmlElement, HTMLBaseElement: A.HtmlElement, HTMLBodyElement: A.HtmlElement, HTMLButtonElement: A.HtmlElement, HTMLCanvasElement: A.HtmlElement, HTMLContentElement: A.HtmlElement, HTMLDListElement: A.HtmlElement, HTMLDataElement: A.HtmlElement, HTMLDataListElement: A.HtmlElement, HTMLDetailsElement: A.HtmlElement, HTMLDialogElement: A.HtmlElement, HTMLDivElement: A.HtmlElement, HTMLEmbedElement: A.HtmlElement, HTMLFieldSetElement: A.HtmlElement, HTMLHRElement: A.HtmlElement, HTMLHeadElement: A.HtmlElement, HTMLHeadingElement: A.HtmlElement, HTMLHtmlElement: A.HtmlElement, HTMLIFrameElement: A.HtmlElement, HTMLImageElement: A.HtmlElement, HTMLInputElement: A.HtmlElement, HTMLLIElement: A.HtmlElement, HTMLLabelElement: A.HtmlElement, HTMLLegendElement: A.HtmlElement, HTMLLinkElement: A.HtmlElement, HTMLMapElement: A.HtmlElement, HTMLMediaElement: A.HtmlElement, HTMLMenuElement: A.HtmlElement, HTMLMetaElement: A.HtmlElement, HTMLMeterElement: A.HtmlElement, HTMLModElement: A.HtmlElement, HTMLOListElement: A.HtmlElement, HTMLObjectElement: A.HtmlElement, HTMLOptGroupElement: A.HtmlElement, HTMLOptionElement: A.HtmlElement, HTMLOutputElement: A.HtmlElement, HTMLParagraphElement: A.HtmlElement, HTMLParamElement: A.HtmlElement, HTMLPictureElement: A.HtmlElement, HTMLPreElement: A.HtmlElement, HTMLProgressElement: A.HtmlElement, HTMLQuoteElement: A.HtmlElement, HTMLScriptElement: A.HtmlElement, HTMLShadowElement: A.HtmlElement, HTMLSlotElement: A.HtmlElement, HTMLSourceElement: A.HtmlElement, HTMLSpanElement: A.HtmlElement, HTMLStyleElement: A.HtmlElement, HTMLTableCaptionElement: A.HtmlElement, HTMLTableCellElement: A.HtmlElement, HTMLTableDataCellElement: A.HtmlElement, HTMLTableHeaderCellElement: A.HtmlElement, HTMLTableColElement: A.HtmlElement, HTMLTableElement: A.HtmlElement, HTMLTableRowElement: A.HtmlElement, HTMLTableSectionElement: A.HtmlElement, HTMLTemplateElement: A.HtmlElement, HTMLTextAreaElement: A.HtmlElement, HTMLTimeElement: A.HtmlElement, HTMLTitleElement: A.HtmlElement, HTMLTrackElement: A.HtmlElement, HTMLUListElement: A.HtmlElement, HTMLUnknownElement: A.HtmlElement, HTMLVideoElement: A.HtmlElement, HTMLDirectoryElement: A.HtmlElement, HTMLFontElement: A.HtmlElement, HTMLFrameElement: A.HtmlElement, HTMLFrameSetElement: A.HtmlElement, HTMLMarqueeElement: A.HtmlElement, HTMLElement: A.HtmlElement, AccessibleNodeList: A.AccessibleNodeList, HTMLAnchorElement: A.AnchorElement, ApplicationCacheErrorEvent: A.ApplicationCacheErrorEvent, HTMLAreaElement: A.AreaElement, Blob: A.Blob, CDATASection: A.CharacterData, CharacterData: A.CharacterData, Comment: A.CharacterData, ProcessingInstruction: A.CharacterData, Text: A.CharacterData, CSSPerspective: A.CssPerspective, CSSCharsetRule: A.CssRule, CSSConditionRule: A.CssRule, CSSFontFaceRule: A.CssRule, CSSGroupingRule: A.CssRule, CSSImportRule: A.CssRule, CSSKeyframeRule: A.CssRule, MozCSSKeyframeRule: A.CssRule, WebKitCSSKeyframeRule: A.CssRule, CSSKeyframesRule: A.CssRule, MozCSSKeyframesRule: A.CssRule, WebKitCSSKeyframesRule: A.CssRule, CSSMediaRule: A.CssRule, CSSNamespaceRule: A.CssRule, CSSPageRule: A.CssRule, CSSRule: A.CssRule, CSSStyleRule: A.CssRule, CSSSupportsRule: A.CssRule, CSSViewportRule: A.CssRule, CSSStyleDeclaration: A.CssStyleDeclaration, MSStyleCSSProperties: A.CssStyleDeclaration, CSS2Properties: A.CssStyleDeclaration, CSSImageValue: A.CssStyleValue, CSSKeywordValue: A.CssStyleValue, CSSNumericValue: A.CssStyleValue, CSSPositionValue: A.CssStyleValue, CSSResourceValue: A.CssStyleValue, CSSUnitValue: A.CssStyleValue, CSSURLImageValue: A.CssStyleValue, CSSStyleValue: A.CssStyleValue, CSSMatrixComponent: A.CssTransformComponent, CSSRotation: A.CssTransformComponent, CSSScale: A.CssTransformComponent, CSSSkew: A.CssTransformComponent, CSSTranslation: A.CssTransformComponent, CSSTransformComponent: A.CssTransformComponent, CSSTransformValue: A.CssTransformValue, CSSUnparsedValue: A.CssUnparsedValue, DataTransferItemList: A.DataTransferItemList, DeprecationReport: A.DeprecationReport, DOMError: A.DomError, DOMException: A.DomException, ClientRectList: A.DomRectList, DOMRectList: A.DomRectList, DOMRectReadOnly: A.DomRectReadOnly, DOMStringList: A.DomStringList, DOMTokenList: A.DomTokenList, MathMLElement: A.Element, SVGAElement: A.Element, SVGAnimateElement: A.Element, SVGAnimateMotionElement: A.Element, SVGAnimateTransformElement: A.Element, SVGAnimationElement: A.Element, SVGCircleElement: A.Element, SVGClipPathElement: A.Element, SVGDefsElement: A.Element, SVGDescElement: A.Element, SVGDiscardElement: A.Element, SVGEllipseElement: A.Element, SVGFEBlendElement: A.Element, SVGFEColorMatrixElement: A.Element, SVGFEComponentTransferElement: A.Element, SVGFECompositeElement: A.Element, SVGFEConvolveMatrixElement: A.Element, SVGFEDiffuseLightingElement: A.Element, SVGFEDisplacementMapElement: A.Element, SVGFEDistantLightElement: A.Element, SVGFEFloodElement: A.Element, SVGFEFuncAElement: A.Element, SVGFEFuncBElement: A.Element, SVGFEFuncGElement: A.Element, SVGFEFuncRElement: A.Element, SVGFEGaussianBlurElement: A.Element, SVGFEImageElement: A.Element, SVGFEMergeElement: A.Element, SVGFEMergeNodeElement: A.Element, SVGFEMorphologyElement: A.Element, SVGFEOffsetElement: A.Element, SVGFEPointLightElement: A.Element, SVGFESpecularLightingElement: A.Element, SVGFESpotLightElement: A.Element, SVGFETileElement: A.Element, SVGFETurbulenceElement: A.Element, SVGFilterElement: A.Element, SVGForeignObjectElement: A.Element, SVGGElement: A.Element, SVGGeometryElement: A.Element, SVGGraphicsElement: A.Element, SVGImageElement: A.Element, SVGLineElement: A.Element, SVGLinearGradientElement: A.Element, SVGMarkerElement: A.Element, SVGMaskElement: A.Element, SVGMetadataElement: A.Element, SVGPathElement: A.Element, SVGPatternElement: A.Element, SVGPolygonElement: A.Element, SVGPolylineElement: A.Element, SVGRadialGradientElement: A.Element, SVGRectElement: A.Element, SVGScriptElement: A.Element, SVGSetElement: A.Element, SVGStopElement: A.Element, SVGStyleElement: A.Element, SVGElement: A.Element, SVGSVGElement: A.Element, SVGSwitchElement: A.Element, SVGSymbolElement: A.Element, SVGTSpanElement: A.Element, SVGTextContentElement: A.Element, SVGTextElement: A.Element, SVGTextPathElement: A.Element, SVGTextPositioningElement: A.Element, SVGTitleElement: A.Element, SVGUseElement: A.Element, SVGViewElement: A.Element, SVGGradientElement: A.Element, SVGComponentTransferFunctionElement: A.Element, SVGFEDropShadowElement: A.Element, SVGMPathElement: A.Element, Element: A.Element, ErrorEvent: A.ErrorEvent, AbortPaymentEvent: A.Event, AnimationEvent: A.Event, AnimationPlaybackEvent: A.Event, BackgroundFetchClickEvent: A.Event, BackgroundFetchEvent: A.Event, BackgroundFetchFailEvent: A.Event, BackgroundFetchedEvent: A.Event, BeforeInstallPromptEvent: A.Event, BeforeUnloadEvent: A.Event, BlobEvent: A.Event, CanMakePaymentEvent: A.Event, ClipboardEvent: A.Event, CloseEvent: A.Event, CompositionEvent: A.Event, CustomEvent: A.Event, DeviceMotionEvent: A.Event, DeviceOrientationEvent: A.Event, ExtendableEvent: A.Event, ExtendableMessageEvent: A.Event, FetchEvent: A.Event, FocusEvent: A.Event, FontFaceSetLoadEvent: A.Event, ForeignFetchEvent: A.Event, GamepadEvent: A.Event, HashChangeEvent: A.Event, InstallEvent: A.Event, KeyboardEvent: A.Event, MediaEncryptedEvent: A.Event, MediaQueryListEvent: A.Event, MediaStreamEvent: A.Event, MediaStreamTrackEvent: A.Event, MessageEvent: A.Event, MIDIConnectionEvent: A.Event, MIDIMessageEvent: A.Event, MouseEvent: A.Event, DragEvent: A.Event, MutationEvent: A.Event, NotificationEvent: A.Event, PageTransitionEvent: A.Event, PaymentRequestEvent: A.Event, PaymentRequestUpdateEvent: A.Event, PointerEvent: A.Event, PopStateEvent: A.Event, PresentationConnectionAvailableEvent: A.Event, ProgressEvent: A.Event, PromiseRejectionEvent: A.Event, PushEvent: A.Event, RTCDataChannelEvent: A.Event, RTCDTMFToneChangeEvent: A.Event, RTCPeerConnectionIceEvent: A.Event, RTCTrackEvent: A.Event, SecurityPolicyViolationEvent: A.Event, SensorErrorEvent: A.Event, SpeechRecognitionEvent: A.Event, SpeechSynthesisEvent: A.Event, StorageEvent: A.Event, SyncEvent: A.Event, TextEvent: A.Event, TouchEvent: A.Event, TrackEvent: A.Event, TransitionEvent: A.Event, WebKitTransitionEvent: A.Event, UIEvent: A.Event, VRDeviceEvent: A.Event, VRDisplayEvent: A.Event, VRSessionEvent: A.Event, WheelEvent: A.Event, MojoInterfaceRequestEvent: A.Event, ResourceProgressEvent: A.Event, USBConnectionEvent: A.Event, IDBVersionChangeEvent: A.Event, AudioProcessingEvent: A.Event, OfflineAudioCompletionEvent: A.Event, WebGLContextEvent: A.Event, Event: A.Event, InputEvent: A.Event, SubmitEvent: A.Event, AbsoluteOrientationSensor: A.EventTarget, Accelerometer: A.EventTarget, AccessibleNode: A.EventTarget, AmbientLightSensor: A.EventTarget, Animation: A.EventTarget, ApplicationCache: A.EventTarget, DOMApplicationCache: A.EventTarget, OfflineResourceList: A.EventTarget, BackgroundFetchRegistration: A.EventTarget, BatteryManager: A.EventTarget, BroadcastChannel: A.EventTarget, CanvasCaptureMediaStreamTrack: A.EventTarget, DedicatedWorkerGlobalScope: A.EventTarget, EventSource: A.EventTarget, FileReader: A.EventTarget, FontFaceSet: A.EventTarget, Gyroscope: A.EventTarget, XMLHttpRequest: A.EventTarget, XMLHttpRequestEventTarget: A.EventTarget, XMLHttpRequestUpload: A.EventTarget, LinearAccelerationSensor: A.EventTarget, Magnetometer: A.EventTarget, MediaDevices: A.EventTarget, MediaKeySession: A.EventTarget, MediaQueryList: A.EventTarget, MediaRecorder: A.EventTarget, MediaSource: A.EventTarget, MediaStream: A.EventTarget, MediaStreamTrack: A.EventTarget, MessagePort: A.EventTarget, MIDIAccess: A.EventTarget, MIDIInput: A.EventTarget, MIDIOutput: A.EventTarget, MIDIPort: A.EventTarget, NetworkInformation: A.EventTarget, Notification: A.EventTarget, OffscreenCanvas: A.EventTarget, OrientationSensor: A.EventTarget, PaymentRequest: A.EventTarget, Performance: A.EventTarget, PermissionStatus: A.EventTarget, PresentationAvailability: A.EventTarget, PresentationConnection: A.EventTarget, PresentationConnectionList: A.EventTarget, PresentationRequest: A.EventTarget, RelativeOrientationSensor: A.EventTarget, RemotePlayback: A.EventTarget, RTCDataChannel: A.EventTarget, DataChannel: A.EventTarget, RTCDTMFSender: A.EventTarget, RTCPeerConnection: A.EventTarget, webkitRTCPeerConnection: A.EventTarget, mozRTCPeerConnection: A.EventTarget, ScreenOrientation: A.EventTarget, Sensor: A.EventTarget, ServiceWorker: A.EventTarget, ServiceWorkerContainer: A.EventTarget, ServiceWorkerGlobalScope: A.EventTarget, ServiceWorkerRegistration: A.EventTarget, SharedWorker: A.EventTarget, SharedWorkerGlobalScope: A.EventTarget, SpeechRecognition: A.EventTarget, webkitSpeechRecognition: A.EventTarget, SpeechSynthesis: A.EventTarget, SpeechSynthesisUtterance: A.EventTarget, VR: A.EventTarget, VRDevice: A.EventTarget, VRDisplay: A.EventTarget, VRSession: A.EventTarget, VisualViewport: A.EventTarget, WebSocket: A.EventTarget, Window: A.EventTarget, DOMWindow: A.EventTarget, Worker: A.EventTarget, WorkerGlobalScope: A.EventTarget, WorkerPerformance: A.EventTarget, BluetoothDevice: A.EventTarget, BluetoothRemoteGATTCharacteristic: A.EventTarget, Clipboard: A.EventTarget, MojoInterfaceInterceptor: A.EventTarget, USB: A.EventTarget, IDBDatabase: A.EventTarget, IDBOpenDBRequest: A.EventTarget, IDBVersionChangeRequest: A.EventTarget, IDBRequest: A.EventTarget, IDBTransaction: A.EventTarget, AnalyserNode: A.EventTarget, RealtimeAnalyserNode: A.EventTarget, AudioBufferSourceNode: A.EventTarget, AudioDestinationNode: A.EventTarget, AudioNode: A.EventTarget, AudioScheduledSourceNode: A.EventTarget, AudioWorkletNode: A.EventTarget, BiquadFilterNode: A.EventTarget, ChannelMergerNode: A.EventTarget, AudioChannelMerger: A.EventTarget, ChannelSplitterNode: A.EventTarget, AudioChannelSplitter: A.EventTarget, ConstantSourceNode: A.EventTarget, ConvolverNode: A.EventTarget, DelayNode: A.EventTarget, DynamicsCompressorNode: A.EventTarget, GainNode: A.EventTarget, AudioGainNode: A.EventTarget, IIRFilterNode: A.EventTarget, MediaElementAudioSourceNode: A.EventTarget, MediaStreamAudioDestinationNode: A.EventTarget, MediaStreamAudioSourceNode: A.EventTarget, OscillatorNode: A.EventTarget, Oscillator: A.EventTarget, PannerNode: A.EventTarget, AudioPannerNode: A.EventTarget, webkitAudioPannerNode: A.EventTarget, ScriptProcessorNode: A.EventTarget, JavaScriptAudioNode: A.EventTarget, StereoPannerNode: A.EventTarget, WaveShaperNode: A.EventTarget, EventTarget: A.EventTarget, File: A.File, FileList: A.FileList, FileWriter: A.FileWriter, HTMLFormElement: A.FormElement, Gamepad: A.Gamepad, History: A.History, HTMLCollection: A.HtmlCollection, HTMLFormControlsCollection: A.HtmlCollection, HTMLOptionsCollection: A.HtmlCollection, InterventionReport: A.InterventionReport, Location: A.Location, MediaError: A.MediaError, MediaKeyMessageEvent: A.MediaKeyMessageEvent, MediaList: A.MediaList, MIDIInputMap: A.MidiInputMap, MIDIOutputMap: A.MidiOutputMap, MimeType: A.MimeType, MimeTypeArray: A.MimeTypeArray, NavigatorUserMediaError: A.NavigatorUserMediaError, Document: A.Node, DocumentFragment: A.Node, HTMLDocument: A.Node, ShadowRoot: A.Node, XMLDocument: A.Node, Attr: A.Node, DocumentType: A.Node, Node: A.Node, NodeList: A.NodeList, RadioNodeList: A.NodeList, OverconstrainedError: A.OverconstrainedError, Plugin: A.Plugin, PluginArray: A.PluginArray, PositionError: A.PositionError, GeolocationPositionError: A.PositionError, PresentationConnectionCloseEvent: A.PresentationConnectionCloseEvent, ReportBody: A.ReportBody, RTCStatsReport: A.RtcStatsReport, HTMLSelectElement: A.SelectElement, SourceBuffer: A.SourceBuffer, SourceBufferList: A.SourceBufferList, SpeechGrammar: A.SpeechGrammar, SpeechGrammarList: A.SpeechGrammarList, SpeechRecognitionError: A.SpeechRecognitionError, SpeechRecognitionResult: A.SpeechRecognitionResult, Storage: A.Storage, CSSStyleSheet: A.StyleSheet, StyleSheet: A.StyleSheet, TextTrack: A.TextTrack, TextTrackCue: A.TextTrackCue, VTTCue: A.TextTrackCue, TextTrackCueList: A.TextTrackCueList, TextTrackList: A.TextTrackList, TimeRanges: A.TimeRanges, Touch: A.Touch, TouchList: A.TouchList, TrackDefaultList: A.TrackDefaultList, URL: A.Url, VideoTrackList: A.VideoTrackList, CSSRuleList: A._CssRuleList, ClientRect: A._DomRect, DOMRect: A._DomRect, GamepadList: A._GamepadList, NamedNodeMap: A._NamedNodeMap, MozNamedAttrMap: A._NamedNodeMap, SpeechRecognitionResultList: A._SpeechRecognitionResultList, StyleSheetList: A._StyleSheetList, SVGLength: A.Length, SVGLengthList: A.LengthList, SVGNumber: A.Number, SVGNumberList: A.NumberList, SVGPointList: A.PointList, SVGStringList: A.StringList, SVGTransform: A.Transform, SVGTransformList: A.TransformList, AudioBuffer: A.AudioBuffer, AudioParamMap: A.AudioParamMap, AudioTrackList: A.AudioTrackList, AudioContext: A.BaseAudioContext, webkitAudioContext: A.BaseAudioContext, BaseAudioContext: A.BaseAudioContext, OfflineAudioContext: A.OfflineAudioContext});
-				hunkHelpers.setOrUpdateLeafTags({WebGL: true, AnimationEffectReadOnly: true, AnimationEffectTiming: true, AnimationEffectTimingReadOnly: true, AnimationTimeline: true, AnimationWorkletGlobalScope: true, AuthenticatorAssertionResponse: true, AuthenticatorAttestationResponse: true, AuthenticatorResponse: true, BackgroundFetchFetch: true, BackgroundFetchManager: true, BackgroundFetchSettledFetch: true, BarProp: true, BarcodeDetector: true, BluetoothRemoteGATTDescriptor: true, Body: true, BudgetState: true, CacheStorage: true, CanvasGradient: true, CanvasPattern: true, CanvasRenderingContext2D: true, Client: true, Clients: true, CookieStore: true, Coordinates: true, Credential: true, CredentialUserData: true, CredentialsContainer: true, Crypto: true, CryptoKey: true, CSS: true, CSSVariableReferenceValue: true, CustomElementRegistry: true, DataTransfer: true, DataTransferItem: true, DeprecatedStorageInfo: true, DeprecatedStorageQuota: true, DetectedBarcode: true, DetectedFace: true, DetectedText: true, DeviceAcceleration: true, DeviceRotationRate: true, DirectoryEntry: true, webkitFileSystemDirectoryEntry: true, FileSystemDirectoryEntry: true, DirectoryReader: true, WebKitDirectoryReader: true, webkitFileSystemDirectoryReader: true, FileSystemDirectoryReader: true, DocumentOrShadowRoot: true, DocumentTimeline: true, DOMImplementation: true, Iterator: true, DOMMatrix: true, DOMMatrixReadOnly: true, DOMParser: true, DOMPoint: true, DOMPointReadOnly: true, DOMQuad: true, DOMStringMap: true, Entry: true, webkitFileSystemEntry: true, FileSystemEntry: true, External: true, FaceDetector: true, FederatedCredential: true, FileEntry: true, webkitFileSystemFileEntry: true, FileSystemFileEntry: true, DOMFileSystem: true, WebKitFileSystem: true, webkitFileSystem: true, FileSystem: true, FontFace: true, FontFaceSource: true, FormData: true, GamepadButton: true, GamepadPose: true, Geolocation: true, Position: true, GeolocationPosition: true, Headers: true, HTMLHyperlinkElementUtils: true, IdleDeadline: true, ImageBitmap: true, ImageBitmapRenderingContext: true, ImageCapture: true, ImageData: true, InputDeviceCapabilities: true, IntersectionObserver: true, IntersectionObserverEntry: true, KeyframeEffect: true, KeyframeEffectReadOnly: true, MediaCapabilities: true, MediaCapabilitiesInfo: true, MediaDeviceInfo: true, MediaKeyStatusMap: true, MediaKeySystemAccess: true, MediaKeys: true, MediaKeysPolicy: true, MediaMetadata: true, MediaSession: true, MediaSettingsRange: true, MemoryInfo: true, MessageChannel: true, Metadata: true, MutationObserver: true, WebKitMutationObserver: true, MutationRecord: true, NavigationPreloadManager: true, Navigator: true, NavigatorAutomationInformation: true, NavigatorConcurrentHardware: true, NavigatorCookies: true, NodeFilter: true, NodeIterator: true, NonDocumentTypeChildNode: true, NonElementParentNode: true, NoncedElement: true, OffscreenCanvasRenderingContext2D: true, PaintRenderingContext2D: true, PaintSize: true, PaintWorkletGlobalScope: true, PasswordCredential: true, Path2D: true, PaymentAddress: true, PaymentInstruments: true, PaymentManager: true, PaymentResponse: true, PerformanceEntry: true, PerformanceLongTaskTiming: true, PerformanceMark: true, PerformanceMeasure: true, PerformanceNavigation: true, PerformanceNavigationTiming: true, PerformanceObserver: true, PerformanceObserverEntryList: true, PerformancePaintTiming: true, PerformanceResourceTiming: true, PerformanceServerTiming: true, PerformanceTiming: true, Permissions: true, PhotoCapabilities: true, Presentation: true, PresentationReceiver: true, PublicKeyCredential: true, PushManager: true, PushMessageData: true, PushSubscription: true, PushSubscriptionOptions: true, Range: true, RelatedApplication: true, ReportingObserver: true, ResizeObserver: true, ResizeObserverEntry: true, RTCCertificate: true, RTCIceCandidate: true, mozRTCIceCandidate: true, RTCLegacyStatsReport: true, RTCRtpContributingSource: true, RTCRtpReceiver: true, RTCRtpSender: true, RTCSessionDescription: true, mozRTCSessionDescription: true, RTCStatsResponse: true, Screen: true, ScrollState: true, ScrollTimeline: true, Selection: true, SpeechRecognitionAlternative: true, SpeechSynthesisVoice: true, StaticRange: true, StorageManager: true, StyleMedia: true, StylePropertyMap: true, StylePropertyMapReadonly: true, SyncManager: true, TaskAttributionTiming: true, TextDetector: true, TextMetrics: true, TrackDefault: true, TreeWalker: true, TrustedHTML: true, TrustedScriptURL: true, TrustedURL: true, UnderlyingSourceBase: true, URLSearchParams: true, VRCoordinateSystem: true, VRDisplayCapabilities: true, VREyeParameters: true, VRFrameData: true, VRFrameOfReference: true, VRPose: true, VRStageBounds: true, VRStageBoundsPoint: true, VRStageParameters: true, ValidityState: true, VideoPlaybackQuality: true, VideoTrack: true, VTTRegion: true, WindowClient: true, WorkletAnimation: true, WorkletGlobalScope: true, XPathEvaluator: true, XPathExpression: true, XPathNSResolver: true, XPathResult: true, XMLSerializer: true, XSLTProcessor: true, Bluetooth: true, BluetoothCharacteristicProperties: true, BluetoothRemoteGATTServer: true, BluetoothRemoteGATTService: true, BluetoothUUID: true, BudgetService: true, Cache: true, DOMFileSystemSync: true, DirectoryEntrySync: true, DirectoryReaderSync: true, EntrySync: true, FileEntrySync: true, FileReaderSync: true, FileWriterSync: true, HTMLAllCollection: true, Mojo: true, MojoHandle: true, MojoWatcher: true, NFC: true, PagePopupController: true, Report: true, Request: true, Response: true, SubtleCrypto: true, USBAlternateInterface: true, USBConfiguration: true, USBDevice: true, USBEndpoint: true, USBInTransferResult: true, USBInterface: true, USBIsochronousInTransferPacket: true, USBIsochronousInTransferResult: true, USBIsochronousOutTransferPacket: true, USBIsochronousOutTransferResult: true, USBOutTransferResult: true, WorkerLocation: true, WorkerNavigator: true, Worklet: true, IDBCursor: true, IDBCursorWithValue: true, IDBFactory: true, IDBIndex: true, IDBKeyRange: true, IDBObjectStore: true, IDBObservation: true, IDBObserver: true, IDBObserverChanges: true, SVGAngle: true, SVGAnimatedAngle: true, SVGAnimatedBoolean: true, SVGAnimatedEnumeration: true, SVGAnimatedInteger: true, SVGAnimatedLength: true, SVGAnimatedLengthList: true, SVGAnimatedNumber: true, SVGAnimatedNumberList: true, SVGAnimatedPreserveAspectRatio: true, SVGAnimatedRect: true, SVGAnimatedString: true, SVGAnimatedTransformList: true, SVGMatrix: true, SVGPoint: true, SVGPreserveAspectRatio: true, SVGRect: true, SVGUnitTypes: true, AudioListener: true, AudioParam: true, AudioTrack: true, AudioWorkletGlobalScope: true, AudioWorkletProcessor: true, PeriodicWave: true, WebGLActiveInfo: true, ANGLEInstancedArrays: true, ANGLE_instanced_arrays: true, WebGLBuffer: true, WebGLCanvas: true, WebGLColorBufferFloat: true, WebGLCompressedTextureASTC: true, WebGLCompressedTextureATC: true, WEBGL_compressed_texture_atc: true, WebGLCompressedTextureETC1: true, WEBGL_compressed_texture_etc1: true, WebGLCompressedTextureETC: true, WebGLCompressedTexturePVRTC: true, WEBGL_compressed_texture_pvrtc: true, WebGLCompressedTextureS3TC: true, WEBGL_compressed_texture_s3tc: true, WebGLCompressedTextureS3TCsRGB: true, WebGLDebugRendererInfo: true, WEBGL_debug_renderer_info: true, WebGLDebugShaders: true, WEBGL_debug_shaders: true, WebGLDepthTexture: true, WEBGL_depth_texture: true, WebGLDrawBuffers: true, WEBGL_draw_buffers: true, EXTsRGB: true, EXT_sRGB: true, EXTBlendMinMax: true, EXT_blend_minmax: true, EXTColorBufferFloat: true, EXTColorBufferHalfFloat: true, EXTDisjointTimerQuery: true, EXTDisjointTimerQueryWebGL2: true, EXTFragDepth: true, EXT_frag_depth: true, EXTShaderTextureLOD: true, EXT_shader_texture_lod: true, EXTTextureFilterAnisotropic: true, EXT_texture_filter_anisotropic: true, WebGLFramebuffer: true, WebGLGetBufferSubDataAsync: true, WebGLLoseContext: true, WebGLExtensionLoseContext: true, WEBGL_lose_context: true, OESElementIndexUint: true, OES_element_index_uint: true, OESStandardDerivatives: true, OES_standard_derivatives: true, OESTextureFloat: true, OES_texture_float: true, OESTextureFloatLinear: true, OES_texture_float_linear: true, OESTextureHalfFloat: true, OES_texture_half_float: true, OESTextureHalfFloatLinear: true, OES_texture_half_float_linear: true, OESVertexArrayObject: true, OES_vertex_array_object: true, WebGLProgram: true, WebGLQuery: true, WebGLRenderbuffer: true, WebGLRenderingContext: true, WebGL2RenderingContext: true, WebGLSampler: true, WebGLShader: true, WebGLShaderPrecisionFormat: true, WebGLSync: true, WebGLTexture: true, WebGLTimerQueryEXT: true, WebGLTransformFeedback: true, WebGLUniformLocation: true, WebGLVertexArrayObject: true, WebGLVertexArrayObjectOES: true, WebGL2RenderingContextBase: true, ArrayBuffer: true, SharedArrayBuffer: true, ArrayBufferView: false, DataView: true, Float32Array: true, Float64Array: true, Int16Array: true, Int32Array: true, Int8Array: true, Uint16Array: true, Uint32Array: true, Uint8ClampedArray: true, CanvasPixelArray: true, Uint8Array: false, HTMLAudioElement: true, HTMLBRElement: true, HTMLBaseElement: true, HTMLBodyElement: true, HTMLButtonElement: true, HTMLCanvasElement: true, HTMLContentElement: true, HTMLDListElement: true, HTMLDataElement: true, HTMLDataListElement: true, HTMLDetailsElement: true, HTMLDialogElement: true, HTMLDivElement: true, HTMLEmbedElement: true, HTMLFieldSetElement: true, HTMLHRElement: true, HTMLHeadElement: true, HTMLHeadingElement: true, HTMLHtmlElement: true, HTMLIFrameElement: true, HTMLImageElement: true, HTMLInputElement: true, HTMLLIElement: true, HTMLLabelElement: true, HTMLLegendElement: true, HTMLLinkElement: true, HTMLMapElement: true, HTMLMediaElement: true, HTMLMenuElement: true, HTMLMetaElement: true, HTMLMeterElement: true, HTMLModElement: true, HTMLOListElement: true, HTMLObjectElement: true, HTMLOptGroupElement: true, HTMLOptionElement: true, HTMLOutputElement: true, HTMLParagraphElement: true, HTMLParamElement: true, HTMLPictureElement: true, HTMLPreElement: true, HTMLProgressElement: true, HTMLQuoteElement: true, HTMLScriptElement: true, HTMLShadowElement: true, HTMLSlotElement: true, HTMLSourceElement: true, HTMLSpanElement: true, HTMLStyleElement: true, HTMLTableCaptionElement: true, HTMLTableCellElement: true, HTMLTableDataCellElement: true, HTMLTableHeaderCellElement: true, HTMLTableColElement: true, HTMLTableElement: true, HTMLTableRowElement: true, HTMLTableSectionElement: true, HTMLTemplateElement: true, HTMLTextAreaElement: true, HTMLTimeElement: true, HTMLTitleElement: true, HTMLTrackElement: true, HTMLUListElement: true, HTMLUnknownElement: true, HTMLVideoElement: true, HTMLDirectoryElement: true, HTMLFontElement: true, HTMLFrameElement: true, HTMLFrameSetElement: true, HTMLMarqueeElement: true, HTMLElement: false, AccessibleNodeList: true, HTMLAnchorElement: true, ApplicationCacheErrorEvent: true, HTMLAreaElement: true, Blob: false, CDATASection: true, CharacterData: true, Comment: true, ProcessingInstruction: true, Text: true, CSSPerspective: true, CSSCharsetRule: true, CSSConditionRule: true, CSSFontFaceRule: true, CSSGroupingRule: true, CSSImportRule: true, CSSKeyframeRule: true, MozCSSKeyframeRule: true, WebKitCSSKeyframeRule: true, CSSKeyframesRule: true, MozCSSKeyframesRule: true, WebKitCSSKeyframesRule: true, CSSMediaRule: true, CSSNamespaceRule: true, CSSPageRule: true, CSSRule: true, CSSStyleRule: true, CSSSupportsRule: true, CSSViewportRule: true, CSSStyleDeclaration: true, MSStyleCSSProperties: true, CSS2Properties: true, CSSImageValue: true, CSSKeywordValue: true, CSSNumericValue: true, CSSPositionValue: true, CSSResourceValue: true, CSSUnitValue: true, CSSURLImageValue: true, CSSStyleValue: false, CSSMatrixComponent: true, CSSRotation: true, CSSScale: true, CSSSkew: true, CSSTranslation: true, CSSTransformComponent: false, CSSTransformValue: true, CSSUnparsedValue: true, DataTransferItemList: true, DeprecationReport: true, DOMError: true, DOMException: true, ClientRectList: true, DOMRectList: true, DOMRectReadOnly: false, DOMStringList: true, DOMTokenList: true, MathMLElement: true, SVGAElement: true, SVGAnimateElement: true, SVGAnimateMotionElement: true, SVGAnimateTransformElement: true, SVGAnimationElement: true, SVGCircleElement: true, SVGClipPathElement: true, SVGDefsElement: true, SVGDescElement: true, SVGDiscardElement: true, SVGEllipseElement: true, SVGFEBlendElement: true, SVGFEColorMatrixElement: true, SVGFEComponentTransferElement: true, SVGFECompositeElement: true, SVGFEConvolveMatrixElement: true, SVGFEDiffuseLightingElement: true, SVGFEDisplacementMapElement: true, SVGFEDistantLightElement: true, SVGFEFloodElement: true, SVGFEFuncAElement: true, SVGFEFuncBElement: true, SVGFEFuncGElement: true, SVGFEFuncRElement: true, SVGFEGaussianBlurElement: true, SVGFEImageElement: true, SVGFEMergeElement: true, SVGFEMergeNodeElement: true, SVGFEMorphologyElement: true, SVGFEOffsetElement: true, SVGFEPointLightElement: true, SVGFESpecularLightingElement: true, SVGFESpotLightElement: true, SVGFETileElement: true, SVGFETurbulenceElement: true, SVGFilterElement: true, SVGForeignObjectElement: true, SVGGElement: true, SVGGeometryElement: true, SVGGraphicsElement: true, SVGImageElement: true, SVGLineElement: true, SVGLinearGradientElement: true, SVGMarkerElement: true, SVGMaskElement: true, SVGMetadataElement: true, SVGPathElement: true, SVGPatternElement: true, SVGPolygonElement: true, SVGPolylineElement: true, SVGRadialGradientElement: true, SVGRectElement: true, SVGScriptElement: true, SVGSetElement: true, SVGStopElement: true, SVGStyleElement: true, SVGElement: true, SVGSVGElement: true, SVGSwitchElement: true, SVGSymbolElement: true, SVGTSpanElement: true, SVGTextContentElement: true, SVGTextElement: true, SVGTextPathElement: true, SVGTextPositioningElement: true, SVGTitleElement: true, SVGUseElement: true, SVGViewElement: true, SVGGradientElement: true, SVGComponentTransferFunctionElement: true, SVGFEDropShadowElement: true, SVGMPathElement: true, Element: false, ErrorEvent: true, AbortPaymentEvent: true, AnimationEvent: true, AnimationPlaybackEvent: true, BackgroundFetchClickEvent: true, BackgroundFetchEvent: true, BackgroundFetchFailEvent: true, BackgroundFetchedEvent: true, BeforeInstallPromptEvent: true, BeforeUnloadEvent: true, BlobEvent: true, CanMakePaymentEvent: true, ClipboardEvent: true, CloseEvent: true, CompositionEvent: true, CustomEvent: true, DeviceMotionEvent: true, DeviceOrientationEvent: true, ExtendableEvent: true, ExtendableMessageEvent: true, FetchEvent: true, FocusEvent: true, FontFaceSetLoadEvent: true, ForeignFetchEvent: true, GamepadEvent: true, HashChangeEvent: true, InstallEvent: true, KeyboardEvent: true, MediaEncryptedEvent: true, MediaQueryListEvent: true, MediaStreamEvent: true, MediaStreamTrackEvent: true, MessageEvent: true, MIDIConnectionEvent: true, MIDIMessageEvent: true, MouseEvent: true, DragEvent: true, MutationEvent: true, NotificationEvent: true, PageTransitionEvent: true, PaymentRequestEvent: true, PaymentRequestUpdateEvent: true, PointerEvent: true, PopStateEvent: true, PresentationConnectionAvailableEvent: true, ProgressEvent: true, PromiseRejectionEvent: true, PushEvent: true, RTCDataChannelEvent: true, RTCDTMFToneChangeEvent: true, RTCPeerConnectionIceEvent: true, RTCTrackEvent: true, SecurityPolicyViolationEvent: true, SensorErrorEvent: true, SpeechRecognitionEvent: true, SpeechSynthesisEvent: true, StorageEvent: true, SyncEvent: true, TextEvent: true, TouchEvent: true, TrackEvent: true, TransitionEvent: true, WebKitTransitionEvent: true, UIEvent: true, VRDeviceEvent: true, VRDisplayEvent: true, VRSessionEvent: true, WheelEvent: true, MojoInterfaceRequestEvent: true, ResourceProgressEvent: true, USBConnectionEvent: true, IDBVersionChangeEvent: true, AudioProcessingEvent: true, OfflineAudioCompletionEvent: true, WebGLContextEvent: true, Event: false, InputEvent: false, SubmitEvent: false, AbsoluteOrientationSensor: true, Accelerometer: true, AccessibleNode: true, AmbientLightSensor: true, Animation: true, ApplicationCache: true, DOMApplicationCache: true, OfflineResourceList: true, BackgroundFetchRegistration: true, BatteryManager: true, BroadcastChannel: true, CanvasCaptureMediaStreamTrack: true, DedicatedWorkerGlobalScope: true, EventSource: true, FileReader: true, FontFaceSet: true, Gyroscope: true, XMLHttpRequest: true, XMLHttpRequestEventTarget: true, XMLHttpRequestUpload: true, LinearAccelerationSensor: true, Magnetometer: true, MediaDevices: true, MediaKeySession: true, MediaQueryList: true, MediaRecorder: true, MediaSource: true, MediaStream: true, MediaStreamTrack: true, MessagePort: true, MIDIAccess: true, MIDIInput: true, MIDIOutput: true, MIDIPort: true, NetworkInformation: true, Notification: true, OffscreenCanvas: true, OrientationSensor: true, PaymentRequest: true, Performance: true, PermissionStatus: true, PresentationAvailability: true, PresentationConnection: true, PresentationConnectionList: true, PresentationRequest: true, RelativeOrientationSensor: true, RemotePlayback: true, RTCDataChannel: true, DataChannel: true, RTCDTMFSender: true, RTCPeerConnection: true, webkitRTCPeerConnection: true, mozRTCPeerConnection: true, ScreenOrientation: true, Sensor: true, ServiceWorker: true, ServiceWorkerContainer: true, ServiceWorkerGlobalScope: true, ServiceWorkerRegistration: true, SharedWorker: true, SharedWorkerGlobalScope: true, SpeechRecognition: true, webkitSpeechRecognition: true, SpeechSynthesis: true, SpeechSynthesisUtterance: true, VR: true, VRDevice: true, VRDisplay: true, VRSession: true, VisualViewport: true, WebSocket: true, Window: true, DOMWindow: true, Worker: true, WorkerGlobalScope: true, WorkerPerformance: true, BluetoothDevice: true, BluetoothRemoteGATTCharacteristic: true, Clipboard: true, MojoInterfaceInterceptor: true, USB: true, IDBDatabase: true, IDBOpenDBRequest: true, IDBVersionChangeRequest: true, IDBRequest: true, IDBTransaction: true, AnalyserNode: true, RealtimeAnalyserNode: true, AudioBufferSourceNode: true, AudioDestinationNode: true, AudioNode: true, AudioScheduledSourceNode: true, AudioWorkletNode: true, BiquadFilterNode: true, ChannelMergerNode: true, AudioChannelMerger: true, ChannelSplitterNode: true, AudioChannelSplitter: true, ConstantSourceNode: true, ConvolverNode: true, DelayNode: true, DynamicsCompressorNode: true, GainNode: true, AudioGainNode: true, IIRFilterNode: true, MediaElementAudioSourceNode: true, MediaStreamAudioDestinationNode: true, MediaStreamAudioSourceNode: true, OscillatorNode: true, Oscillator: true, PannerNode: true, AudioPannerNode: true, webkitAudioPannerNode: true, ScriptProcessorNode: true, JavaScriptAudioNode: true, StereoPannerNode: true, WaveShaperNode: true, EventTarget: false, File: true, FileList: true, FileWriter: true, HTMLFormElement: true, Gamepad: true, History: true, HTMLCollection: true, HTMLFormControlsCollection: true, HTMLOptionsCollection: true, InterventionReport: true, Location: true, MediaError: true, MediaKeyMessageEvent: true, MediaList: true, MIDIInputMap: true, MIDIOutputMap: true, MimeType: true, MimeTypeArray: true, NavigatorUserMediaError: true, Document: true, DocumentFragment: true, HTMLDocument: true, ShadowRoot: true, XMLDocument: true, Attr: true, DocumentType: true, Node: false, NodeList: true, RadioNodeList: true, OverconstrainedError: true, Plugin: true, PluginArray: true, PositionError: true, GeolocationPositionError: true, PresentationConnectionCloseEvent: true, ReportBody: false, RTCStatsReport: true, HTMLSelectElement: true, SourceBuffer: true, SourceBufferList: true, SpeechGrammar: true, SpeechGrammarList: true, SpeechRecognitionError: true, SpeechRecognitionResult: true, Storage: true, CSSStyleSheet: true, StyleSheet: true, TextTrack: true, TextTrackCue: true, VTTCue: true, TextTrackCueList: true, TextTrackList: true, TimeRanges: true, Touch: true, TouchList: true, TrackDefaultList: true, URL: true, VideoTrackList: true, CSSRuleList: true, ClientRect: true, DOMRect: true, GamepadList: true, NamedNodeMap: true, MozNamedAttrMap: true, SpeechRecognitionResultList: true, StyleSheetList: true, SVGLength: true, SVGLengthList: true, SVGNumber: true, SVGNumberList: true, SVGPointList: true, SVGStringList: true, SVGTransform: true, SVGTransformList: true, AudioBuffer: true, AudioParamMap: true, AudioTrackList: true, AudioContext: true, webkitAudioContext: true, BaseAudioContext: false, OfflineAudioContext: true});
+				hunkHelpers.setOrUpdateInterceptorsByTag({ArrayBuffer: A.NativeByteBuffer, SharedArrayBuffer: A.NativeByteBuffer, ArrayBufferView: A.NativeTypedData, DataView: A.NativeByteData, Float32Array: A.NativeFloat32List, Float64Array: A.NativeFloat64List, Int16Array: A.NativeInt16List, Int32Array: A.NativeInt32List, Int8Array: A.NativeInt8List, Uint16Array: A.NativeUint16List, Uint32Array: A.NativeUint32List, Uint8ClampedArray: A.NativeUint8ClampedList, CanvasPixelArray: A.NativeUint8ClampedList, Uint8Array: A.NativeUint8List});
+				hunkHelpers.setOrUpdateLeafTags({ArrayBuffer: true, SharedArrayBuffer: true, ArrayBufferView: false, DataView: true, Float32Array: true, Float64Array: true, Int16Array: true, Int32Array: true, Int8Array: true, Uint16Array: true, Uint32Array: true, Uint8ClampedArray: true, CanvasPixelArray: true, Uint8Array: false});
 				A.NativeTypedArray.$nativeSuperclassTag = "ArrayBufferView";
 				A._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView";
 				A._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView";
@@ -68160,10 +65814,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				A._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView";
 				A._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView";
 				A.NativeTypedArrayOfInt.$nativeSuperclassTag = "ArrayBufferView";
-				A._SourceBufferList_EventTarget_ListMixin.$nativeSuperclassTag = "EventTarget";
-				A._SourceBufferList_EventTarget_ListMixin_ImmutableListMixin.$nativeSuperclassTag = "EventTarget";
-				A._TextTrackList_EventTarget_ListMixin.$nativeSuperclassTag = "EventTarget";
-				A._TextTrackList_EventTarget_ListMixin_ImmutableListMixin.$nativeSuperclassTag = "EventTarget";
 			})();
 			Function.prototype.call$0 = function() {
 				return this();
@@ -68171,11 +65821,11 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			Function.prototype.call$1 = function(a) {
 				return this(a);
 			};
-			Function.prototype.call$2 = function(a, b) {
-				return this(a, b);
-			};
 			Function.prototype.call$1$1 = function(a) {
 				return this(a);
+			};
+			Function.prototype.call$2 = function(a, b) {
+				return this(a, b);
 			};
 			Function.prototype.call$3 = function(a, b, c) {
 				return this(a, b, c);

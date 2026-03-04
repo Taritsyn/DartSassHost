@@ -1,7 +1,7 @@
 ﻿using System;
 
 using JavaScriptEngineSwitcher.Core;
-#if !DEBUG
+#if NIL_JS && !DEBUG
 using JavaScriptEngineSwitcher.NiL;
 #endif
 using NUnit.Framework;
@@ -18,7 +18,7 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
-#if !DEBUG
+#if NIL_JS && !DEBUG
 		[Test]
 		public void MappingSassCompilerLoadErrorDuringCompilation([Values]bool fromFile)
 		{
@@ -26,7 +26,9 @@ namespace DartSassHost.Tests.Simple
 			IJsEngineFactory jsEngineFactory = new NiLJsEngineFactory();
 			string inputPath = GenerateSassFilePath("simplest-working", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
-			string targetErrorDescription = "SyntaxError: Trying to redefinition member \"et\" at (3068:39*2)";
+			string targetErrorDescription = "SyntaxError: Trying to redefinition member \"et\"" + Environment.NewLine +
+				"   at 2838:39"
+				;
 
 			// Act
 			string output;
@@ -67,6 +69,7 @@ namespace DartSassHost.Tests.Simple
 		{
 			// Arrange
 			string inputPath = GenerateSassFilePath("non-existing-files", "style");
+			string targetErrorDescription = string.Format("No such file or directory: {0}", inputPath);
 
 			// Act
 			string output;
@@ -87,11 +90,11 @@ namespace DartSassHost.Tests.Simple
 			// Assert
 			Assert.NotNull(exception);
 			Assert.AreEqual(
-				string.Format("Error: No such file or directory: {0}", inputPath),
+				"Error: " + targetErrorDescription,
 				exception.Message
 			);
 			Assert.AreEqual(
-				string.Format("No such file or directory: {0}", inputPath),
+				targetErrorDescription,
 				exception.Description
 			);
 			Assert.AreEqual(3, exception.Status);

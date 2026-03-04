@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support for the Dart Sass version 1.97.3.
+   Web browser API calls have been removed from the JS bundle containing the
+   original library.
 
    ============
    PROJECT SITE

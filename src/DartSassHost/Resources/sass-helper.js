@@ -3323,7 +3323,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					;
 
 				context = sass.forDsh.getContext();
-				fullPath = context.absolute$1(0, pathOrUrl);
+				fullPath = context.absolute$1(pathOrUrl);
 
 				return fullPath;
 			}
