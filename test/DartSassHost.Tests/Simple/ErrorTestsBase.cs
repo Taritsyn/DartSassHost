@@ -1,7 +1,7 @@
 ﻿using System;
 
 using JavaScriptEngineSwitcher.Core;
-#if NIL_JS && !DEBUG
+#if !DEBUG
 using JavaScriptEngineSwitcher.NiL;
 #endif
 using NUnit.Framework;
@@ -18,7 +18,7 @@ namespace DartSassHost.Tests.Simple
 		{ }
 
 
-#if NIL_JS && !DEBUG
+#if !DEBUG
 		[Test]
 		public void MappingSassCompilerLoadErrorDuringCompilation([Values]bool fromFile)
 		{
@@ -27,7 +27,7 @@ namespace DartSassHost.Tests.Simple
 			string inputPath = GenerateSassFilePath("simplest-working", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 			string targetErrorDescription = "SyntaxError: Trying to redefinition member \"et\"" + Environment.NewLine +
-				"   at 2838:39"
+				"   at 2839:39"
 				;
 
 			// Act
