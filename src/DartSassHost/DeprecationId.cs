@@ -225,6 +225,14 @@
 		public const string IfFunction = "if-function";
 
 		/// <summary>
+		/// Deprecation for uppercase reserved function names
+		/// </summary>
+		/// <remarks>
+		/// This deprecation became active in Dart Sass 1.98.0.
+		/// </remarks>
+		public const string FunctionName = "function-name";
+
+		/// <summary>
 		/// Used for any user-emitted deprecation warnings
 		/// </summary>
 		public const string UserAuthored = "user-authored";
