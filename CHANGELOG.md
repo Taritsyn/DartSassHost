@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v2.0.5 - April 20, 2026
+ * JS bundle is now being transpiled to ES2016 and no longer uses automatically generated polyfills
+
 ## v2.0.4 - April 8, 2026
  * Added support for the Dart Sass version 1.99.0
 

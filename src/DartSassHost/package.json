@@ -1,6 +1,6 @@
 {
   "name": "DartSassHost",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "devDependencies": {
     "google-closure-compiler": "20260415.0.0"
   },
