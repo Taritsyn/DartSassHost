@@ -30,7 +30,8 @@
    =============
    RELEASE NOTES
    =============
-   Added support for the Dart Sass version 1.99.0.
+   JS bundle is now being transpiled to ES2016 and no longer uses automatically
+   generated polyfills.
 
    ============
    PROJECT SITE

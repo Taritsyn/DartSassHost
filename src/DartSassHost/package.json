@@ -2,9 +2,9 @@
   "name": "DartSassHost",
   "version": "2.0.4",
   "devDependencies": {
-    "google-closure-compiler": "20260406.0.0"
+    "google-closure-compiler": "20260415.0.0"
   },
   "scripts": {
-    "minify-js": "google-closure-compiler --js ./Resources/sass-combined.js ./Resources/sass-helper.js --js_output_file ./Resources/sass-bundled.min.js --language_out ECMASCRIPT_2015 --compilation_level SIMPLE  --rewrite_polyfills true --isolate_polyfills --warning_level QUIET"
+    "minify-js": "google-closure-compiler --js ./Resources/es7-polyfills.js ./Resources/sass-combined.js ./Resources/sass-helper.js --js_output_file ./Resources/sass-bundled.min.js --language_out ECMASCRIPT_2016 --compilation_level SIMPLE --rewrite_polyfills false --env CUSTOM --warning_level QUIET"
   }
 }
