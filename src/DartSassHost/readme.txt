@@ -30,8 +30,9 @@
    =============
    RELEASE NOTES
    =============
-   JS bundle is now being transpiled to ES2016 and no longer uses automatically
-   generated polyfills.
+   Now, when passing paths to the `IsAppRelativeVirtualPath` and
+   `ToAbsoluteVirtualPath` methods of the `IFileManager` interface, the file scheme
+   is removed from them.
 
    ============
    PROJECT SITE

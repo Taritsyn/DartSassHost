@@ -2670,7 +2670,9 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 			};
 
 			DshFileManagerProxy.prototype._innerConvertPathToAbsolute = function (path) {
-				var absolutePath;
+				var processedPath,
+					absolutePath
+					;
 
 				if (!path || startsWithDataUriScheme(path)) {
 					return path;
@@ -2680,9 +2682,10 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 					absolutePath = this._convertedPathsCache.get(path);
 				}
 				else {
+					processedPath = dshUtils.removeFileSchemeFromPath(path);
 					absolutePath = path;
-					if (this._fileManager.IsAppRelativeVirtualPath(path)) {
-						absolutePath = this._fileManager.ToAbsoluteVirtualPath(path);
+					if (this._fileManager.IsAppRelativeVirtualPath(processedPath)) {
+						absolutePath = this._fileManager.ToAbsoluteVirtualPath(processedPath);
 					}
 
 					if (this._convertedPathsCache === null) {
