@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v2.0.7 - May 30, 2026
+ * Added support for the Dart Sass version 1.100.0
+
 ## v2.0.6 - May 7, 2026
  * Now, when passing paths to the `IsAppRelativeVirtualPath` and `ToAbsoluteVirtualPath` methods of the `IFileManager` interface, the file scheme is removed from them
 
