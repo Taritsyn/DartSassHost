@@ -233,6 +233,14 @@
 		public const string FunctionName = "function-name";
 
 		/// <summary>
+		/// Deprecation for adjacent compound selectors like <c>[class]a</c>
+		/// </summary>
+		/// <remarks>
+		/// This deprecation became active in Dart Sass 1.100.0.
+		/// </remarks>
+		public const string AdjacentCompounds = "adjacent-compounds";
+
+		/// <summary>
 		/// Used for any user-emitted deprecation warnings
 		/// </summary>
 		public const string UserAuthored = "user-authored";

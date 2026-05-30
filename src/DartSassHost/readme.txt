@@ -12,7 +12,7 @@
    DESCRIPTION
    ===========
    .NET wrapper around the Dart Sass (https://github.com/sass/dart-sass) version
-   1.99.0 with the ability to support a virtual file system.
+   1.100.0 with the ability to support a virtual file system.
 
    Since the original library is written in JavaScript, you will need a JS engine
    to run it. As a JS engine is used the JavaScript Engine Switcher library
@@ -30,9 +30,7 @@
    =============
    RELEASE NOTES
    =============
-   Now, when passing paths to the `IsAppRelativeVirtualPath` and
-   `ToAbsoluteVirtualPath` methods of the `IFileManager` interface, the file scheme
-   is removed from them.
+   Added support for the Dart Sass version 1.100.0.
 
    ============
    PROJECT SITE
