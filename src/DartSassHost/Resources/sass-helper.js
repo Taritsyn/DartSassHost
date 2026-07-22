@@ -2531,7 +2531,7 @@ var SassHelper = (function (sass, fileManager, currentOsPlatformName, undefined)
 						driveLetter = processedPath.substring(0, 1);
 						driveLetterInUpperCase = driveLetter.toUpperCase();
 						if (driveLetter !== driveLetterInUpperCase) {
-							pathWithoutDriveLetter = processedPath.substring(1, processedPath.length);
+							pathWithoutDriveLetter = processedPath.substring(1, processedPath.length - 1);
 							processedPath = driveLetterInUpperCase + pathWithoutDriveLetter;
 						}
 					}

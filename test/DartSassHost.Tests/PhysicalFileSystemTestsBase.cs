@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 using JavaScriptEngineSwitcher.Core;
 
@@ -8,6 +9,9 @@ namespace DartSassHost.Tests
 {
 	public abstract class PhysicalFileSystemTestsBase : TestsBase
 	{
+
+		private static readonly Regex _pathWithDriveLetterRegex = new Regex(@"^[a-zA-z]:[/\\]");
+
 		private readonly string _currentDirectory;
 		private readonly string _fileExtension;
 		private readonly string _subfolderName;
@@ -57,8 +61,34 @@ namespace DartSassHost.Tests
 		private string ToAbsolutePath(string path)
 		{
 			string absolutePath = Path.GetFullPath(Path.Combine(_currentDirectory, path));
+			absolutePath = FixPathWithDriveLetter(absolutePath);
 
 			return absolutePath;
+		}
+
+		private static string FixPathWithDriveLetter(string path)
+		{
+			if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			{
+				return path;
+			}
+
+			string processedPath = path;
+			bool hasDriveLetter = _pathWithDriveLetterRegex.IsMatch(processedPath);
+
+			if (hasDriveLetter)
+			{
+				string driveLetter = processedPath.Substring(0, 1);
+				string driveLetterInUpperCase = driveLetter.ToUpper();
+
+				if (driveLetter != driveLetterInUpperCase)
+				{
+					string pathWithoutDriveLetter = processedPath.Substring(1, processedPath.Length - 1);
+					processedPath = driveLetterInUpperCase + pathWithoutDriveLetter;
+				}
+			}
+
+			return processedPath;
 		}
 
 		public string GenerateSassFilePath(string folderName, string fileName)
