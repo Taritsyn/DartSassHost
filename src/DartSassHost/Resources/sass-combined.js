@@ -6321,7 +6321,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 	//#region URL: /sass.dart.js
 	modules['/sass.dart.js'] = function () {
 		/*!
-		 * Dart Sass v1.101.3
+		 * Dart Sass v1.102.0
 		 * https://sass-lang.com/dart-sass
 		 * https://github.com/sass/dart-sass
 		 *
@@ -15143,7 +15143,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					J.set$deprecations$x(self.exports, A.jsify($.$get$deprecations()));
 					J.set$Version$x(self.exports, $.$get$versionClass());
 					J.set$loadParserExports_$x(self.exports, A.allowInterop(A.parser__loadParserExports$closure()));
-					J.set$info$x(self.exports, "dart-sass\t1.101.3\t(Sass Compiler)\t[Dart]\ndart2js\t3.12.2\t(Dart Compiler)\t[Dart]");
+					J.set$info$x(self.exports, "dart-sass\t1.102.0\t(Sass Compiler)\t[Dart]\ndart2js\t3.12.2\t(Dart Compiler)\t[Dart]");
 					A.updateCanonicalizeContextPrototype();
 					A.updateSourceSpanPrototype();
 
@@ -23902,21 +23902,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this = t0;
 				},
 				serialize(node, charset, indentWidth, inspect, lineFeed, logger, sourceMap, style, useSpaces) {
-					var t1, css, t2, prefix,
+					var css, t1, prefix,
 						visitor = A._SerializeVisitor$(2, inspect, lineFeed, logger, true, sourceMap, style, true);
 					node.accept$1(visitor);
-					t1 = visitor._buffer;
-					css = t1.toString$0(0);
+					css = visitor._buffer.toString$0(0);
 					if (charset) {
-						t2 = new A.CodeUnits(css);
-						t2 = t2.any$1(t2, new A.serialize_closure());
+						t1 = new A.CodeUnits(css);
+						t1 = t1.any$1(t1, new A.serialize_closure());
 					} else
-						t2 = false;
-					if (t2)
+						t1 = false;
+					if (t1)
 						prefix = style === B.OutputStyle_1 ? "\ufeff" : '@charset "UTF-8";\n';
 					else
 						prefix = "";
-					t1 = sourceMap ? t1.buildSourceMap$1$prefix(prefix) : null;
+					t1 = sourceMap ? visitor._buffer.buildSourceMap$1$prefix(prefix) : null;
 					return new A._Record_2_sourceMap(prefix + css, t1);
 				},
 				serializeValue(value, inspect, quote) {
@@ -23990,6 +23989,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_SerializeVisitor_visitCssDeclaration_closure0: function _SerializeVisitor_visitCssDeclaration_closure0(t0, t1) {
 					this.$this = t0;
 					this.node = t1;
+				},
+				_SerializeVisitor__writeLegacyColor_closure: function _SerializeVisitor__writeLegacyColor_closure(t0, t1) {
+					this.$this = t0;
+					this.rgb = t1;
+				},
+				_SerializeVisitor__writeLegacyColor_closure0: function _SerializeVisitor__writeLegacyColor_closure0(t0, t1) {
+					this.$this = t0;
+					this.rgb = t1;
 				},
 				_SerializeVisitor_visitList_closure: function _SerializeVisitor_visitList_closure() {
 				},
@@ -28950,7 +28957,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.$this._tick = 1;
 					this.callback.call$0();
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._TimerImpl$periodic_closure.prototype = {
 				call$0() {
@@ -29237,7 +29244,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.runGuarded$1(this.registered);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			*/
 			A._RootZone.prototype = {
@@ -29367,7 +29374,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.runGuarded$1(this.f);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			*/
 			A._ZoneDelegate.prototype = {$isZoneDelegate: 1};
@@ -29376,7 +29383,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					A.Error_throwWithStackTrace(this.error, this.stackTrace);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			*/
 			A._ZoneSpecification.prototype = {$isZoneSpecification: 1};
@@ -37077,7 +37084,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					this.callback.call$1($arguments);
 					return B.C__SassNull;
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.BuiltInCallable_withDeprecationWarning_closure.prototype = {
 				call$1(args) {
@@ -37088,7 +37095,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					A.warnForDeprecation("Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.\nUse " + _this.module + "." + t1 + " instead.\n\nMore info and automated migrator: https://sass-lang.com/d/import", B.Deprecation_SGB);
 					return _this._box_0.$function.call$1(args);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.PlainCssCallable.prototype = {
 				$eq(_, other) {
@@ -39508,7 +39515,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = J.getInterceptor$asx($arguments);
 					return t1.$index($arguments, 0).get$isTruthy() ? t1.$index($arguments, 1) : t1.$index($arguments, 2);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure0.prototype = {
 				call$1(color) {
@@ -39532,49 +39539,49 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($arguments) {
 					return A._rgb("rgb", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure4.prototype = {
 				call$1($arguments) {
 					return A._rgb("rgb", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure5.prototype = {
 				call$1($arguments) {
 					return A._rgbTwoArg("rgb", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure6.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("rgb", J.$index$asx($arguments, 0), "channels", B.RgbColorSpace_i0P);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure7.prototype = {
 				call$1($arguments) {
 					return A._rgb("rgba", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure8.prototype = {
 				call$1($arguments) {
 					return A._rgb("rgba", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure9.prototype = {
 				call$1($arguments) {
 					return A._rgbTwoArg("rgba", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure10.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("rgba", J.$index$asx($arguments, 0), "channels", B.RgbColorSpace_i0P);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure11.prototype = {
 				call$1($arguments) {
@@ -39583,7 +39590,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						A.warnForDeprecation("Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.\nUse color.invert instead.\n\nMore info and automated migrator: https://sass-lang.com/d/import", B.Deprecation_SGB);
 					return A._invert($arguments, true);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure12.prototype = {
 				call$1(color) {
@@ -39607,13 +39614,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($arguments) {
 					return A._hsl("hsl", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure16.prototype = {
 				call$1($arguments) {
 					return A._hsl("hsl", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure17.prototype = {
 				call$1($arguments) {
@@ -39629,19 +39636,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($arguments) {
 					return A._parseChannels("hsl", J.$index$asx($arguments, 0), "channels", B.HslColorSpace_JQ2);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure19.prototype = {
 				call$1($arguments) {
 					return A._hsl("hsla", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure20.prototype = {
 				call$1($arguments) {
 					return A._hsl("hsla", $arguments);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure21.prototype = {
 				call$1($arguments) {
@@ -39657,7 +39664,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1($arguments) {
 					return A._parseChannels("hsla", J.$index$asx($arguments, 0), "channels", B.HslColorSpace_JQ2);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure23.prototype = {
 				call$1($arguments) {
@@ -39669,7 +39676,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return A._grayscale(t1.$index($arguments, 0));
 					}
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure24.prototype = {
 				call$1($arguments) {
@@ -39796,7 +39803,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = _0_0.assertColor$1("color").alphaOrNull;
 					return A.SassNumber_SassNumber(t1 == null ? 0 : t1, null);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure35.prototype = {
 				call$1($arguments) {
@@ -39827,43 +39834,43 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t1.$index($arguments, 0).assertColor$1("color").alphaOrNull;
 					return A.SassNumber_SassNumber(t1 == null ? 0 : t1, null);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure37.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("color", J.$index$asx($arguments, 0), "description", null);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure38.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("hwb", J.$index$asx($arguments, 0), "channels", B.HwbColorSpace_guQ);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure39.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("lab", J.$index$asx($arguments, 0), "channels", B.LabColorSpace_2nT);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure40.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("lch", J.$index$asx($arguments, 0), "channels", B.LchColorSpace_Bpv);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure41.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("oklab", J.$index$asx($arguments, 0), "channels", B.OklabColorSpace_540);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.global_closure42.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("oklch", J.$index$asx($arguments, 0), "channels", B.OklchColorSpace_9Gj);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.module_closure1.prototype = {
 				call$1(color) {
@@ -39890,7 +39897,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						A.warnForDeprecation("Passing a number (" + J.$index$asx($arguments, 0).toString$0(0) + ") to color.invert() is deprecated.\n\nRecommendation: " + result.toString$0(0), B.Deprecation_mqF);
 					return result;
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.module_closure5.prototype = {
 				call$1(color) {
@@ -39921,7 +39928,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					return A._grayscale(t1.$index($arguments, 0));
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.module_closure9.prototype = {
 				call$1($arguments) {
@@ -39929,13 +39936,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = type$.JSArray_Value;
 					return A._parseChannels("hwb", A.SassList$(A._setArrayType([A.SassList$(A._setArrayType([t1.$index($arguments, 0), t1.$index($arguments, 1), t1.$index($arguments, 2)], t2), B.ListSeparator_SrV, false), t1.$index($arguments, 3)], t2), B.ListSeparator_Lul, false), null, B.HwbColorSpace_guQ);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.module_closure10.prototype = {
 				call$1($arguments) {
 					return A._parseChannels("hwb", J.$index$asx($arguments, 0), "channels", B.HwbColorSpace_guQ);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.module_closure11.prototype = {
 				call$1(color) {
@@ -39967,7 +39974,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = _0_0.assertColor$1("color").alphaOrNull;
 					return A.SassNumber_SassNumber(t1 == null ? 0 : t1, null);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.module_closure14.prototype = {
 				call$1($arguments) {
@@ -40000,7 +40007,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t1.$index($arguments, 0).assertColor$1("color").alphaOrNull;
 					return A.SassNumber_SassNumber(t1 == null ? 0 : t1, null);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.module_closure16.prototype = {
 				call$1($arguments) {
@@ -40435,7 +40442,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						index = t1.$index($arguments, 1);
 					return list.get$asList()[list.sassIndexToListIndex$2(index, "n")];
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._setNth_closure.prototype = {
 				call$1($arguments) {
@@ -40584,7 +40591,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(list) {
 					return J.$index$asx(list, this._box_0.i);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._index_closure0.prototype = {
 				call$1($arguments) {
@@ -40592,7 +40599,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						index = B.JSArray_methods.indexOf$1(t1.$index($arguments, 0).get$asList(), t1.$index($arguments, 1));
 					return index === -1 ? B.C__SassNull : A.SassNumber_SassNumber(index + 1, null);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._separator_closure.prototype = {
 				call$1($arguments) {
@@ -40644,14 +40651,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = map._map$_contents.$index(0, B.JSArray_methods.get$last(t2));
 					return t1 == null ? B.C__SassNull : t1;
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._set_closure.prototype = {
 				call$1($arguments) {
 					var t1 = J.getInterceptor$asx($arguments);
 					return A._modify(t1.$index($arguments, 0).assertMap$1("map"), A._setArrayType([t1.$index($arguments, 1)], type$.JSArray_Value), new A._set__closure0($arguments), true);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._set__closure0.prototype = {
 				call$1(_) {
@@ -40682,7 +40689,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return A._modify(map, keys, new A._set__closure(t1), true);
 					throw A.wrapException("[BUG] Unreachable code");
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._set__closure.prototype = {
 				call$1(_) {
@@ -40726,7 +40733,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return A._modify(map1, keys, new A._merge__closure(last.assertMap$1("map2")), true);
 					throw A.wrapException("[BUG] Unreachable code");
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._merge__closure.prototype = {
 				call$1(oldValue) {
@@ -40756,7 +40763,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					B.JSArray_methods.addAll$1(t2, t1.$index($arguments, 2).get$asList());
 					return A._modify(map, A.IterableExtension_get_exceptLast(t2), new A._deepRemove__closure(t2), false);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._deepRemove__closure.prototype = {
 				call$1(value) {
@@ -41049,7 +41056,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						A.warn("math.div() will only support number arguments in a future release.\nUse list.slash() instead for a slash separator.");
 					return number1.dividedBy$1(number2);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._singleArgumentMathFunc_closure.prototype = {
 				call$1($arguments) {
@@ -41338,7 +41345,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1 = t1 == null ? null : t1.get$asSassList();
 					return t1 == null ? B.C__SassNull : t1;
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._isSuperselector_closure.prototype = {
 				call$1($arguments) {
@@ -41466,7 +41473,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						return B.C__SassNull;
 					return A.SassNumber_SassNumber(A.codeUnitIndexToCodepointIndex(t2, codeUnitIndex) + 1, null);
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._slice_closure.prototype = {
 				call$1($arguments) {
@@ -42392,7 +42399,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						throw exception;
 					}
 					*/
-					return false;
+					return false; //DSH+
 				},
 				$signature: 19
 			};
@@ -42494,7 +42501,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						throw A.wrapException(_s42_ + t1.get$name(t1) + '": ' + A.S(result) + " is not a sass.Value.");
 					}
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._parseFunctions___closure.prototype = {
 				call$0() {
@@ -44133,7 +44140,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(_) {
 					return B.C__SassNull;
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.listClass_closure.prototype = {
 				call$0() {
@@ -44276,7 +44283,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$1(_) {
 					return B.C__SassNull;
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A.numberClass_closure.prototype = {
 				call$0() {
@@ -45025,7 +45032,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this._fallback.debug$2(0, this.message, this.span);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StderrLogger.prototype = {
 				internalWarn$4$deprecation$span$trace(message, deprecation, span, trace) {
@@ -47019,7 +47026,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					if (_0_0 != null)
 						this.children.push(_0_0);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.SassParser__peekIndentation_closure.prototype = {
 				call$1(char) {
@@ -51731,13 +51738,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.whitespace$1$consumeNewlines(false);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser__declarationOrBuffer_closure0.prototype = {
 				call$0() {
 					return this.$this.whitespace$1$consumeNewlines(false);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser__declarationOrBuffer_closure1.prototype = {
 				call$1($name) {
@@ -51749,7 +51756,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.whitespace$1$consumeNewlines(false);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser__styleRule_closure.prototype = {
 				call$2(children, span) {
@@ -51782,7 +51789,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.whitespace$1$consumeNewlines(false);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser__tryDeclarationChildren_closure.prototype = {
 				call$2(children, span) {
@@ -51875,7 +51882,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.whitespace$1$consumeNewlines(false);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser_mozDocumentRule_closure0.prototype = {
 				call$2(children, span) {
@@ -51915,7 +51922,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.allowSlash = true;
 					t1.singleExpression_ = t2._singleExpression$0();
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser__expression_resolveOneOperation.prototype = {
 				call$0() {
@@ -51962,7 +51969,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						}
 					}
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser__expression_resolveOperations.prototype = {
 				call$0() {
@@ -51973,7 +51980,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.resolveOneOperation; operators.length !== 0;)
 						t1.call$0();
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser__expression_addSingleExpression.prototype = {
 				call$1(expression) {
@@ -52061,7 +52068,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.singleExpression_ = new A.ListExpression(A.List_List$unmodifiable(spaceExpressions, type$.Expression), B.ListSeparator_SrV, false, t2);
 					t1.spaceExpressions_ = null;
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser_expressionUntilComma_closure.prototype = {
 				call$0() {
@@ -52091,7 +52098,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return A.consumeEscapedCharacter(this.$this.scanner);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser_namespacedExpression_closure.prototype = {
 				call$0() {
@@ -52109,7 +52116,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this.scanIdentifier$2$caseSensitive("of", false);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.StylesheetParser__expressionUntilComparison_closure.prototype = {
 				call$0() {
@@ -54192,12 +54199,10 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return true;
 				},
 				toLinear$1(channel) {
-					var abs = Math.abs(channel);
-					return abs < 0.08124285829863151 ? channel / 4.5 : J.get$sign$in(channel) * Math.pow((abs + 1.09929682680944 - 1) / 1.09929682680944, 2.2222222222222223);
+					return J.get$sign$in(channel) * Math.pow(Math.abs(channel), 2.4);
 				},
 				fromLinear$1(channel) {
-					var abs = Math.abs(channel);
-					return abs > 0.018053968510807 ? J.get$sign$in(channel) * (1.09929682680944 * Math.pow(abs, 0.45) - 0.09929682680944008) : 4.5 * channel;
+					return J.get$sign$in(channel) * Math.pow(Math.abs(channel), 0.4166666666666667);
 				},
 				transformationMatrix$1(dest) {
 					var t1;
@@ -54537,14 +54542,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.SassFunction.prototype = {
 				accept$1$1(visitor) {
-					var t1, t2;
+					var t1;
 					if (!visitor._inspect)
 						A.throwExpression(A.SassScriptException$(this.toString$0(0) + " isn't a valid CSS value.", null));
-					t1 = visitor._buffer;
-					t1.write$1(0, "get-function(");
-					t2 = this.callable;
-					visitor._visitQuotedString$1(t2.get$name(t2));
-					t1.writeCharCode$1(41);
+					visitor._buffer.write$1(0, "get-function(");
+					t1 = this.callable;
+					visitor._visitQuotedString$1(t1.get$name(t1));
+					visitor._buffer.writeCharCode$1(41);
 					return null;
 				},
 				accept$1(visitor) {
@@ -54686,14 +54690,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A.SassMixin.prototype = {
 				accept$1$1(visitor) {
-					var t1, t2;
+					var t1;
 					if (!visitor._inspect)
 						A.throwExpression(A.SassScriptException$(this.toString$0(0) + " isn't a valid CSS value.", null));
-					t1 = visitor._buffer;
-					t1.write$1(0, "get-mixin(");
-					t2 = this.callable;
-					visitor._visitQuotedString$1(t2.get$name(t2));
-					t1.writeCharCode$1(41);
+					visitor._buffer.write$1(0, "get-mixin(");
+					t1 = this.callable;
+					visitor._visitQuotedString$1(t1.get$name(t1));
+					visitor._buffer.writeCharCode$1(41);
 					return null;
 				},
 				accept$1(visitor) {
@@ -55303,7 +55306,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return A.throwExpression(this.compatibilityException.call$0());
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.SassNumber__coerceOrConvertValue_closure1.prototype = {
 				call$1(oldDenominator) {
@@ -55319,7 +55322,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return A.throwExpression(this.compatibilityException.call$0());
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.SassNumber_plus_closure.prototype = {
 				call$2(num1, num2) {
@@ -55347,7 +55350,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.newNumerators.push(this.numerator);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.SassNumber_multiplyUnits_closure1.prototype = {
 				call$1(denominator) {
@@ -55363,7 +55366,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.newNumerators.push(this.numerator);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.SassNumber__areAnyConvertible_closure.prototype = {
 				call$1(unit1) {
@@ -55592,7 +55595,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					B.JSArray_methods.addAll$1(t1, t2.newNumerators);
 					t2.newNumerators = t1;
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.UnitlessSassNumber.prototype = {
 				get$numeratorUnits(_) {
@@ -58728,7 +58731,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t3 = t1._runFunctionCallable$3(invocation, t2.callable, t3);
 					return t3;
 				},
-				$signature: 1
+				$signature: 2
 			};
 			A._EvaluateVisitor_closure10.prototype = {
 				call$1($arguments) {
@@ -58828,7 +58831,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.callback.call$2(this._box_0.builtInModule, false);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__loadModule_closure0.prototype = {
 				call$0() {
@@ -58873,7 +58876,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.callback.call$2(this._box_1.module, this.firstLoad);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__execute_closure.prototype = {
 				call$0() {
@@ -58992,7 +58995,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.node.children, t2 = t1.length, t3 = this.$this, _i = 0; _i < t2; ++_i)
 						t1[_i].accept$1(t3);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__scopeForAtRoot_closure.prototype = {
 				call$1(callback) {
@@ -59310,7 +59313,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					t1._activeModules.remove$1(0, url);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__visitDynamicImport__closure.prototype = {
 				call$1(previousLoad) {
@@ -59380,14 +59383,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t1 = _this.$this;
 					t1._environment.asMixin$1(new A._EvaluateVisitor__applyMixin__closure0(t1, _this.$arguments, _this.mixin, _this.nodeWithSpanWithoutContent));
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__applyMixin__closure0.prototype = {
 				call$0() {
 					var _this = this;
 					_this.$this._runBuiltInCallable$3(_this.$arguments, _this.mixin, _this.nodeWithSpanWithoutContent);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__applyMixin_closure0.prototype = {
 				call$0() {
@@ -59402,7 +59405,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.$this;
 					t1._environment.asMixin$1(new A._EvaluateVisitor__applyMixin___closure(t1, this.mixin, this.nodeWithSpanWithoutContent));
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__applyMixin___closure.prototype = {
 				call$0() {
@@ -59410,7 +59413,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					for (t1 = this.mixin.declaration.children, t2 = t1.length, t3 = this.$this, t4 = this.nodeWithSpanWithoutContent, _i = 0; _i < t2; ++_i)
 						t3._addErrorSpan$2(t4, new A._EvaluateVisitor__applyMixin____closure(t3, t1[_i]));
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__applyMixin____closure.prototype = {
 				call$0() {
@@ -59779,7 +59782,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._EvaluateVisitor_visitIfExpression_closure.prototype = {
 				call$1(pair) {
-					return pair._0 + ": " + pair._1.toString$0(0);
+					return pair._0 + ": " + A.serializeValue(pair._1, false, true);
 				},
 				$signature: 309
 			};
@@ -59965,7 +59968,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this._box_0.overload.verify$2(this.evaluated._values[2].length, this.namedSet);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor__runBuiltInCallable_closure0.prototype = {
 				call$0() {
@@ -60052,7 +60055,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.parameters.verify$2(this.positional, new A.MapKeySet(this.named, type$.MapKeySet_String));
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._EvaluateVisitor_visitCssAtRule_closure.prototype = {
 				call$0() {
@@ -60870,27 +60873,27 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._SerializeVisitor.prototype = {
 				visitCssStylesheet$1(node) {
-					var t1, t2, t3, t4, t5, t6, previous, previous0, t7, _this = this;
-					for (t1 = J.get$iterator$ax(node.get$children(node)), t2 = !_this._inspect, t3 = _this._style === B.OutputStyle_1, t4 = !t3, t5 = type$.CssParentNode, t6 = _this._buffer, previous = null; t1.moveNext$0();) {
+					var t1, t2, t3, t4, t5, previous, previous0, t6, _this = this;
+					for (t1 = J.get$iterator$ax(node.get$children(node)), t2 = !_this._inspect, t3 = _this._style === B.OutputStyle_1, t4 = !t3, t5 = type$.CssParentNode, previous = null; t1.moveNext$0();) {
 						previous0 = t1.get$current();
 						if (t2)
-							t7 = t3 ? previous0.accept$1(B._IsInvisibleVisitor_true_true) : previous0.accept$1(B._IsInvisibleVisitor_true_false);
+							t6 = t3 ? previous0.accept$1(B._IsInvisibleVisitor_true_true) : previous0.accept$1(B._IsInvisibleVisitor_true_false);
 						else
-							t7 = false;
-						if (t7)
+							t6 = false;
+						if (t6)
 							continue;
 						if (previous != null) {
 							if (t5._is(previous) ? previous.get$isChildless() : !(previous instanceof A.ModifiableCssComment))
-								t6.writeCharCode$1(59);
+								_this._buffer.writeCharCode$1(59);
 							if (_this._isTrailingComment$2(previous0, previous)) {
 								if (t4)
-									t6.writeCharCode$1(32);
+									_this._buffer.writeCharCode$1(32);
 							} else {
 								if (t4)
-									t6.write$1(0, "\n");
+									_this._buffer.write$1(0, "\n");
 								if (previous.get$isGroupEnd())
 									if (t4)
-										t6.write$1(0, "\n");
+										_this._buffer.write$1(0, "\n");
 							}
 						}
 						previous0.accept$1(_this);
@@ -60901,29 +60904,27 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						t1 = false;
 					if (t1)
-						t6.writeCharCode$1(59);
+						_this._buffer.writeCharCode$1(59);
 				},
 				visitCssComment$1(node) {
 					this._buffer.forSpan$2(node.span, new A._SerializeVisitor_visitCssComment_closure(this, node));
 				},
 				visitCssAtRule$1(node) {
-					var t1, _this = this;
+					var _this = this;
 					_this._writeIndentation$0();
-					t1 = _this._buffer;
-					t1.forSpan$2(node.span, new A._SerializeVisitor_visitCssAtRule_closure(_this, node));
+					_this._buffer.forSpan$2(node.span, new A._SerializeVisitor_visitCssAtRule_closure(_this, node));
 					if (!node.isChildless) {
 						if (_this._style !== B.OutputStyle_1)
-							t1.writeCharCode$1(32);
+							_this._buffer.writeCharCode$1(32);
 						_this._visitChildren$1(node);
 					}
 				},
 				visitCssMediaRule$1(node) {
-					var t1, _this = this;
+					var _this = this;
 					_this._writeIndentation$0();
-					t1 = _this._buffer;
-					t1.forSpan$2(node.span, new A._SerializeVisitor_visitCssMediaRule_closure(_this, node));
+					_this._buffer.forSpan$2(node.span, new A._SerializeVisitor_visitCssMediaRule_closure(_this, node));
 					if (_this._style !== B.OutputStyle_1)
-						t1.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(32);
 					_this._visitChildren$1(node);
 				},
 				visitCssImport$1(node) {
@@ -60945,28 +60946,25 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this._visitQuotedString$1(urlContents);
 				},
 				visitCssKeyframeBlock$1(node) {
-					var t1, _this = this;
+					var _this = this;
 					_this._writeIndentation$0();
-					t1 = _this._buffer;
-					t1.forSpan$2(node.selector.span, new A._SerializeVisitor_visitCssKeyframeBlock_closure(_this, node));
+					_this._buffer.forSpan$2(node.selector.span, new A._SerializeVisitor_visitCssKeyframeBlock_closure(_this, node));
 					if (_this._style !== B.OutputStyle_1)
-						t1.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(32);
 					_this._visitChildren$1(node);
 				},
 				_visitMediaQuery$1(query) {
-					var t1, _1_0, _2_0, condition, operator, t2, _this = this,
+					var _1_0, _2_0, t1, condition, operator, t2, _this = this,
 						_0_0 = query.modifier;
 					if (_0_0 != null) {
-						t1 = _this._buffer;
-						t1.write$1(0, _0_0);
-						t1.writeCharCode$1(32);
+						_this._buffer.write$1(0, _0_0);
+						_this._buffer.writeCharCode$1(32);
 					}
 					_1_0 = query.type;
 					if (_1_0 != null) {
-						t1 = _this._buffer;
-						t1.write$1(0, _1_0);
+						_this._buffer.write$1(0, _1_0);
 						if (query.conditions.length !== 0)
-							t1.write$1(0, " and ");
+							_this._buffer.write$1(0, " and ");
 					}
 					_2_0 = query.conditions;
 					if (_2_0.length === 1)
@@ -60974,10 +60972,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						t1 = false;
 					if (t1) {
-						t1 = _this._buffer;
-						t1.write$1(0, "not ");
+						_this._buffer.write$1(0, "not ");
 						condition = B.JSArray_methods.get$first(_2_0);
-						t1.write$1(0, B.JSString_methods.substring$2(condition, 5, condition.length - 1));
+						_this._buffer.write$1(0, B.JSString_methods.substring$2(condition, 5, condition.length - 1));
 					} else {
 						operator = query.conjunction ? "and" : "or";
 						t1 = _this._style === B.OutputStyle_1 ? operator + " " : " " + operator + " ";
@@ -60988,34 +60985,32 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				visitCssStyleRule$1(node) {
 					var t1, _this = this;
 					_this._writeIndentation$0();
-					t1 = _this._buffer;
-					t1.forSpan$2(node._style_rule$_selector._box$_inner.value.span, new A._SerializeVisitor_visitCssStyleRule_closure(_this, node));
+					t1 = node._style_rule$_selector._box$_inner.value;
+					_this._buffer.forSpan$2(t1.span, new A._SerializeVisitor_visitCssStyleRule_closure(_this, node));
 					if (_this._style !== B.OutputStyle_1)
-						t1.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(32);
 					_this._visitChildren$1(node);
 				},
 				visitCssSupportsRule$1(node) {
-					var t1, _this = this;
+					var _this = this;
 					_this._writeIndentation$0();
-					t1 = _this._buffer;
-					t1.forSpan$2(node.span, new A._SerializeVisitor_visitCssSupportsRule_closure(_this, node));
+					_this._buffer.forSpan$2(node.span, new A._SerializeVisitor_visitCssSupportsRule_closure(_this, node));
 					if (_this._style !== B.OutputStyle_1)
-						t1.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(32);
 					_this._visitChildren$1(node);
 				},
 				visitCssDeclaration$1(node) {
-					var error, stackTrace, error0, stackTrace0, t1, exception, _this = this;
+					var error, stackTrace, error0, stackTrace0, exception, t1, _this = this;
 					_this._writeIndentation$0();
 					_this._write$1(node.name);
-					t1 = _this._buffer;
-					t1.writeCharCode$1(58);
+					_this._buffer.writeCharCode$1(58);
 					if (!node.parsedAsSassScript)
-						t1.forSpan$2(node.value.span, new A._SerializeVisitor_visitCssDeclaration_closure(_this, node));
+						_this._buffer.forSpan$2(node.value.span, new A._SerializeVisitor_visitCssDeclaration_closure(_this, node));
 					else {
 						if (_this._style !== B.OutputStyle_1)
-							t1.writeCharCode$1(32);
+							_this._buffer.writeCharCode$1(32);
 						try {
-							t1.forSpan$2(node.valueSpanForMap, new A._SerializeVisitor_visitCssDeclaration_closure0(_this, node));
+							_this._buffer.forSpan$2(node.valueSpanForMap, new A._SerializeVisitor_visitCssDeclaration_closure0(_this, node));
 						} catch (exception) {
 							t1 = A.unwrapException(exception);
 							if (t1 instanceof A.MultiSpanSassScriptException) {
@@ -61033,18 +61028,18 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 				},
 				_writeFoldedValue$1(node) {
-					var t1, t2, next, t3,
+					var t1, next, t2,
 						scanner = A.StringScanner$(type$.SassString._as(node.value.value)._string$_text, null, null);
-					for (t1 = scanner.string.length, t2 = this._buffer; scanner._position !== t1;) {
+					for (t1 = scanner.string.length; scanner._position !== t1;) {
 						next = scanner.readChar$0();
 						if (next !== 10) {
-							t2.writeCharCode$1(next);
+							this._buffer.writeCharCode$1(next);
 							continue;
 						}
-						t2.writeCharCode$1(32);
+						this._buffer.writeCharCode$1(32);
 						for (;;) {
-							t3 = scanner.peekChar$0();
-							if (!(t3 === 32 || t3 === 9 || t3 === 10 || t3 === 13 || t3 === 12))
+							t2 = scanner.peekChar$0();
+							if (!(t2 === 32 || t2 === 9 || t2 === 10 || t2 === 13 || t2 === 12))
 								break;
 							scanner.readChar$0();
 						}
@@ -61060,9 +61055,8 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break $label0$0;
 						}
 						if (-1 === _0_0) {
-							t1 = _this._buffer;
-							t1.write$1(0, A.trimAsciiRight(value, true));
-							t1.writeCharCode$1(32);
+							_this._buffer.write$1(0, A.trimAsciiRight(value, true));
+							_this._buffer.writeCharCode$1(32);
 							break $label0$0;
 						}
 						t1 = node.name.span;
@@ -61111,20 +61105,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return min == null ? -1 : min;
 				},
 				_writeWithIndent$2(text, minimumIndentation) {
-					var t1, t2, t3, character, lineStart, newlines, end,
+					var t1, t2, character, lineStart, newlines, t3, end, _this = this,
 						scanner = A.LineScanner$(text);
-					for (t1 = scanner.string, t2 = t1.length, t3 = this._buffer; scanner._position !== t2;) {
+					for (t1 = scanner.string, t2 = t1.length; scanner._position !== t2;) {
 						character = scanner.super$StringScanner$readChar();
 						scanner._adjustLineAndColumn$1(character);
 						if (character === 10)
 							break;
-						t3.writeCharCode$1(character);
+						_this._buffer.writeCharCode$1(character);
 					}
 					for (;;) {
 						lineStart = scanner._position;
 						for (newlines = 1;;) {
 							if (scanner._position === t2) {
-								t3.writeCharCode$1(32);
+								_this._buffer.writeCharCode$1(32);
 								return;
 							}
 							$label0$2: {
@@ -61140,8 +61134,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 								break;
 							}
 						}
-						this._writeTimes$2(10, newlines);
-						this._writeIndentation$0();
+						_this._writeTimes$2(10, newlines);
+						_this._writeIndentation$0();
+						t3 = _this._buffer;
 						end = scanner._position;
 						t3.write$1(0, B.JSString_methods.substring$2(t1, lineStart + minimumIndentation, end));
 						for (;;) {
@@ -61151,21 +61146,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							scanner._adjustLineAndColumn$1(character);
 							if (character === 10)
 								break;
-							t3.writeCharCode$1(character);
+							_this._buffer.writeCharCode$1(character);
 						}
 					}
 				},
 				visitCalculation$1(value) {
-					var t2, _this = this,
-						t1 = _this._buffer;
-					t1.write$1(0, value.name);
-					t1.writeCharCode$1(40);
-					t2 = _this._style === B.OutputStyle_1 ? "," : ", ";
-					_this._writeBetween$3(value.$arguments, t2, _this.get$_writeCalculationValue());
-					t1.writeCharCode$1(41);
+					var t1, _this = this;
+					_this._buffer.write$1(0, value.name);
+					_this._buffer.writeCharCode$1(40);
+					t1 = _this._style === B.OutputStyle_1 ? "," : ", ";
+					_this._writeBetween$3(value.$arguments, t1, _this.get$_writeCalculationValue());
+					_this._buffer.writeCharCode$1(41);
 				},
 				_writeCalculationValue$1(value) {
-					var t1, _0_0, _1_0, first, rest, left, right, operator, parenthesizeLeft, operatorWhitespace, parenthesizeRight, t2, _this = this;
+					var t1, _0_0, _1_0, first, rest, left, right, operator, parenthesizeLeft, operatorWhitespace, parenthesizeRight, _this = this;
 					$label1$1: {
 						t1 = value instanceof A.SassNumber;
 						if (t1 && !isFinite(value._number$_value)) {
@@ -61220,50 +61214,49 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							operatorWhitespace = _this._style !== B.OutputStyle_1 || operator.precedence === 1;
 							if (operatorWhitespace)
 								_this._buffer.writeCharCode$1(32);
-							t1 = _this._buffer;
-							t1.write$1(0, operator.operator);
+							_this._buffer.write$1(0, operator.operator);
 							if (operatorWhitespace)
-								t1.writeCharCode$1(32);
+								_this._buffer.writeCharCode$1(32);
 							if (!(right instanceof A.CalculationOperation && _this._parenthesizeCalculationRhs$2(operator, right._operator))) {
 								parenthesizeRight = false;
 								if (operator === B.CalculationOperator_wFL) {
 									if (right instanceof A.SassNumber)
-										t2 = isFinite(right._number$_value) ? right.get$hasComplexUnits() : right.get$hasUnits();
+										t1 = isFinite(right._number$_value) ? right.get$hasComplexUnits() : right.get$hasUnits();
 									else
-										t2 = parenthesizeRight;
-									parenthesizeRight = t2;
+										t1 = parenthesizeRight;
+									parenthesizeRight = t1;
 								}
 							} else
 								parenthesizeRight = true;
 							if (parenthesizeRight)
-								t1.writeCharCode$1(40);
+								_this._buffer.writeCharCode$1(40);
 							_this._writeCalculationValue$1(right);
 							if (parenthesizeRight)
-								t1.writeCharCode$1(41);
+								_this._buffer.writeCharCode$1(41);
 						}
 					}
 				},
 				_writeCalculationUnits$2(numeratorUnits, denominatorUnits) {
-					var t1, t2, t3, t4;
-					for (t1 = J.get$iterator$ax(numeratorUnits), t2 = this._buffer, t3 = this._style !== B.OutputStyle_1; t1.moveNext$0();) {
-						t4 = t1.get$current();
-						if (t3)
-							t2.writeCharCode$1(32);
-						t2.writeCharCode$1(42);
-						if (t3)
-							t2.writeCharCode$1(32);
-						t2.writeCharCode$1(49);
-						t2.write$1(0, t4);
+					var t1, t2, t3, _this = this;
+					for (t1 = J.get$iterator$ax(numeratorUnits), t2 = _this._style !== B.OutputStyle_1; t1.moveNext$0();) {
+						t3 = t1.get$current();
+						if (t2)
+							_this._buffer.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(42);
+						if (t2)
+							_this._buffer.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(49);
+						_this._buffer.write$1(0, t3);
 					}
 					for (t1 = J.get$iterator$ax(denominatorUnits); t1.moveNext$0();) {
-						t4 = t1.get$current();
-						if (t3)
-							t2.writeCharCode$1(32);
-						t2.writeCharCode$1(47);
-						if (t3)
-							t2.writeCharCode$1(32);
-						t2.writeCharCode$1(49);
-						t2.write$1(0, t4);
+						t3 = t1.get$current();
+						if (t2)
+							_this._buffer.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(47);
+						if (t2)
+							_this._buffer.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(49);
+						_this._buffer.write$1(0, t3);
 					}
 				},
 				_parenthesizeCalculationRhs$2(outer, right) {
@@ -61283,7 +61276,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return t1;
 				},
 				visitColor$1(value) {
-					var _0_0, _0_2, _0_6, t1, _0_4, _0_6_isSet, t2, _0_10_isSet, _0_10, _0_12_isSet, _0_14, _0_12, _0_14_isSet, t3, _0_10_isSet0, polar, t4, t5, _this = this, _null = null;
+					var _0_0, _0_2, _0_6, t1, _0_4, _0_6_isSet, _0_10_isSet, _0_10, t2, _0_12_isSet, _0_14, _0_12, _0_14_isSet, t3, _0_10_isSet0, polar, t4, _this = this, _null = null;
 					$label0$0: {
 						_0_0 = value._space;
 						_0_2 = B.RgbColorSpace_i0P === _0_0;
@@ -61305,15 +61298,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							break $label0$0;
 						}
 						if (_0_2) {
-							t1 = _this._buffer;
-							t1.write$1(0, "rgb(");
+							_this._buffer.write$1(0, "rgb(");
 							_this._writeChannel$1(value.channel0OrNull);
-							t1.writeCharCode$1(32);
+							_this._buffer.writeCharCode$1(32);
 							_this._writeChannel$1(value.channel1OrNull);
-							t1.writeCharCode$1(32);
+							_this._buffer.writeCharCode$1(32);
 							_this._writeChannel$1(value.channel2OrNull);
 							_this._maybeWriteSlashAlpha$1(value);
-							t1.writeCharCode$1(41);
+							_this._buffer.writeCharCode$1(41);
 							break $label0$0;
 						}
 						if (!_0_4)
@@ -61324,14 +61316,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t1 = _this._buffer;
 							t1.write$1(0, _0_0);
 							t1.writeCharCode$1(40);
-							t2 = _this._style === B.OutputStyle_1 ? _null : "deg";
-							_this._writeChannel$2(value.channel0OrNull, t2);
-							t1.writeCharCode$1(32);
+							t1 = _this._style === B.OutputStyle_1 ? _null : "deg";
+							_this._writeChannel$2(value.channel0OrNull, t1);
+							_this._buffer.writeCharCode$1(32);
 							_this._writeChannel$2(value.channel1OrNull, "%");
-							t1.writeCharCode$1(32);
+							_this._buffer.writeCharCode$1(32);
 							_this._writeChannel$2(value.channel2OrNull, "%");
 							_this._maybeWriteSlashAlpha$1(value);
-							t1.writeCharCode$1(41);
+							_this._buffer.writeCharCode$1(41);
 							break $label0$0;
 						}
 						_0_10_isSet = B.LabColorSpace_2nT !== _0_0;
@@ -61421,18 +61413,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t1 = true;
 						}
 						if (t1) {
+							_this._buffer.write$1(0, "color-mix(in ");
+							_this._buffer.write$1(0, _0_0);
 							t1 = _this._buffer;
-							t1.write$1(0, "color-mix(in ");
-							t1.write$1(0, _0_0);
 							t2 = _this._style === B.OutputStyle_1;
 							t1.write$1(0, t2 ? "," : ", ");
 							_this._writeColorFunction$1(value.toSpace$1(B.XyzD65ColorSpace_WiJ));
 							if (!t2)
-								t1.writeCharCode$1(32);
-							t1.write$1(0, "100%");
+								_this._buffer.writeCharCode$1(32);
+							_this._buffer.write$1(0, "100%");
+							t1 = _this._buffer;
 							t1.write$1(0, t2 ? "," : ", ");
+							t1 = _this._buffer;
 							t1.write$1(0, t2 ? "red" : "black");
-							t1.writeCharCode$1(41);
+							_this._buffer.writeCharCode$1(41);
 							break $label0$0;
 						}
 						t1 = true;
@@ -61444,48 +61438,49 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t1 = _this._buffer;
 							t1.write$1(0, _0_0);
 							t1.writeCharCode$1(40);
-							t2 = _0_0._channels;
-							polar = t2[2].isPolarAngle;
-							t3 = false;
+							t1 = _0_0._channels;
+							polar = t1[2].isPolarAngle;
+							t2 = false;
 							if (!_this._inspect) {
-								t4 = value.channel0OrNull;
-								if (t4 == null)
-									t4 = 0;
-								if (t4 > 0 || A.fuzzyEquals(t4, 0))
-									t4 = t4 < 100 || A.fuzzyEquals(t4, 100);
+								t3 = value.channel0OrNull;
+								if (t3 == null)
+									t3 = 0;
+								if (t3 > 0 || A.fuzzyEquals(t3, 0))
+									t3 = t3 < 100 || A.fuzzyEquals(t3, 100);
 								else
-									t4 = false;
-								if (t4) {
+									t3 = false;
+								if (t3) {
 									if (polar) {
-										t3 = value.channel1OrNull;
-										if (t3 == null)
-											t3 = 0;
-										t3 = t3 < 0 && !A.fuzzyEquals(t3, 0);
+										t2 = value.channel1OrNull;
+										if (t2 == null)
+											t2 = 0;
+										t2 = t2 < 0 && !A.fuzzyEquals(t2, 0);
 									}
 								} else
-									t3 = true;
+									t2 = true;
 							}
+							if (t2) {
+								t2 = _this._buffer;
+								t2.write$1(0, "from ");
+								t2.write$1(0, _this._style === B.OutputStyle_1 ? "red" : "black");
+								t2.writeCharCode$1(32);
+							}
+							t2 = _this._style !== B.OutputStyle_1;
+							t3 = t2 && value.channel0OrNull != null;
+							t4 = value.channel0OrNull;
 							if (t3) {
-								t1.write$1(0, "from ");
-								t1.write$1(0, _this._style === B.OutputStyle_1 ? "red" : "black");
-								t1.writeCharCode$1(32);
-							}
-							t3 = _this._style !== B.OutputStyle_1;
-							t4 = t3 && value.channel0OrNull != null;
-							t5 = value.channel0OrNull;
-							if (t4) {
-								t2 = type$.LinearChannel._as(t2[0]);
-								_this._writeNumber$1((t5 == null ? 0 : t5) * 100 / t2.max);
-								t1.writeCharCode$1(37);
+								t1 = type$.LinearChannel._as(t1[0]);
+								_this._writeNumber$1((t4 == null ? 0 : t4) * 100 / t1.max);
+								_this._buffer.writeCharCode$1(37);
 							} else
-								_this._writeChannel$1(t5);
-							t1.writeCharCode$1(32);
+								_this._writeChannel$1(t4);
+							_this._buffer.writeCharCode$1(32);
 							_this._writeChannel$1(value.channel1OrNull);
-							t1.writeCharCode$1(32);
-							t2 = polar && t3 ? "deg" : _null;
-							_this._writeChannel$2(value.channel2OrNull, t2);
+							_this._buffer.writeCharCode$1(32);
+							t1 = polar && t2 ? "deg" : _null;
+							_this._writeChannel$2(value.channel2OrNull, t1);
 							_this._maybeWriteSlashAlpha$1(value);
-							t1.writeCharCode$1(41);
+							_this._buffer.writeCharCode$1(41);
 							break $label0$0;
 						}
 						_this._writeColorFunction$1(value);
@@ -61506,7 +61501,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._writeChannel$2(channel, null);
 				},
 				_writeLegacyColor$1(color) {
-					var rgb, t3, red, green, blue, hsl, hue, saturation, lightness, hwb, _0_0, format, _1_0, _this = this,
+					var rgb, rgbString, hslString, t3, hwb, _0_0, format, _1_0, _this = this,
 						t1 = color.alphaOrNull,
 						t2 = t1 == null,
 						opaque = A.fuzzyEquals(t2 ? 0 : t1, 1);
@@ -61516,43 +61511,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					if (_this._style === B.OutputStyle_1) {
 						rgb = color.toSpace$1(B.RgbColorSpace_i0P);
-						if (opaque && _this._tryIntegerRgb$1(rgb))
+						if (opaque && _this._tryHexOrNamedRgb$1(rgb))
 							return;
-						t3 = rgb.channel0OrNull;
-						red = _this._writeNumberToString$1(t3 == null ? 0 : t3);
-						t3 = rgb.channel1OrNull;
-						green = _this._writeNumberToString$1(t3 == null ? 0 : t3);
-						t3 = rgb.channel2OrNull;
-						blue = _this._writeNumberToString$1(t3 == null ? 0 : t3);
-						hsl = color.toSpace$1(B.HslColorSpace_JQ2);
-						t3 = hsl.channel0OrNull;
-						hue = _this._writeNumberToString$1(t3 == null ? 0 : t3);
-						t3 = hsl.channel1OrNull;
-						saturation = _this._writeNumberToString$1(t3 == null ? 0 : t3);
-						t3 = hsl.channel2OrNull;
-						lightness = _this._writeNumberToString$1(t3 == null ? 0 : t3);
-						t3 = _this._buffer;
-						if (red.length + green.length + blue.length <= hue.length + saturation.length + lightness.length + 2) {
-							t3.write$1(0, opaque ? "rgb(" : "rgba(");
-							t3.write$1(0, red);
-							t3.writeCharCode$1(44);
-							t3.write$1(0, green);
-							t3.writeCharCode$1(44);
-							t3.write$1(0, blue);
-						} else {
-							t3.write$1(0, opaque ? "hsl(" : "hsla(");
-							t3.write$1(0, hue);
-							t3.writeCharCode$1(44);
-							t3.write$1(0, saturation);
-							t3.write$1(0, "%,");
-							t3.write$1(0, lightness);
-							t3.writeCharCode$1(37);
-						}
-						if (!opaque) {
-							t3.writeCharCode$1(44);
-							_this._writeNumber$1(t2 ? 0 : t1);
-						}
-						t3.writeCharCode$1(41);
+						rgbString = _this._capture$1(new A._SerializeVisitor__writeLegacyColor_closure(_this, rgb));
+						hslString = _this._capture$1(new A._SerializeVisitor__writeLegacyColor_closure0(_this, rgb));
+						t1 = _this._buffer;
+						if (rgbString.length <= hslString.length + 2)
+							t1.write$1(0, rgbString);
+						else
+							t1.write$1(0, hslString);
 						return;
 					}
 					t3 = color._space;
@@ -61560,21 +61527,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						_this._writeHsl$1(color);
 						return;
 					} else if (_this._inspect && t3 === B.HwbColorSpace_guQ) {
-						t3 = _this._buffer;
-						t3.write$1(0, "hwb(");
+						_this._buffer.write$1(0, "hwb(");
 						hwb = color.toSpace$1(B.HwbColorSpace_guQ);
 						_this._writeNumber$1(hwb.channel$1(0, "hue"));
-						t3.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(32);
 						_this._writeNumber$1(hwb.channel$1(0, "whiteness"));
-						t3.writeCharCode$1(37);
-						t3.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(37);
+						_this._buffer.writeCharCode$1(32);
 						_this._writeNumber$1(hwb.channel$1(0, "blackness"));
-						t3.writeCharCode$1(37);
+						_this._buffer.writeCharCode$1(37);
 						if (!A.fuzzyEquals(t2 ? 0 : t1, 1)) {
-							t3.write$1(0, " / ");
+							_this._buffer.write$1(0, " / ");
 							_this._writeNumber$1(t2 ? 0 : t1);
 						}
-						t3.writeCharCode$1(41);
+						_this._buffer.writeCharCode$1(41);
 						return;
 					}
 					_0_0 = color.format;
@@ -61611,7 +61577,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else
 						_this._writeRgb$1(color);
 				},
-				_tryIntegerRgb$1(rgb) {
+				_tryHexOrNamedRgb$1(rgb) {
 					var t1, redInt, greenInt, blueInt, shortHex, _0_0, t2, t3, $name, _this = this;
 					if (!_this._canUseHex$1(rgb))
 						return false;
@@ -61637,9 +61603,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = _this._buffer;
 						if (shortHex) {
 							t2.writeCharCode$1(35);
-							t2.writeCharCode$1(A.hexCharFor(t1));
-							t2.writeCharCode$1(A.hexCharFor(greenInt & 15));
-							t2.writeCharCode$1(A.hexCharFor(blueInt & 15));
+							_this._buffer.writeCharCode$1(A.hexCharFor(t1));
+							_this._buffer.writeCharCode$1(A.hexCharFor(greenInt & 15));
+							_this._buffer.writeCharCode$1(A.hexCharFor(blueInt & 15));
 						} else {
 							t2.writeCharCode$1(35);
 							_this._writeHexComponent$1(redInt);
@@ -61689,17 +61655,49 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						rgb = color.toSpace$1(B.RgbColorSpace_i0P),
 						t3 = _this._buffer;
 					t3.write$1(0, opaque ? "rgb(" : "rgba(");
-					_this._writeNumber$1(rgb.channel$1(0, "red"));
-					t4 = _this._style === B.OutputStyle_1;
-					t3.write$1(0, t4 ? "," : ", ");
-					_this._writeNumber$1(rgb.channel$1(0, "green"));
-					t3.write$1(0, t4 ? "," : ", ");
-					_this._writeNumber$1(rgb.channel$1(0, "blue"));
-					if (!opaque) {
+					if (!_this._tryIntegerRgbChannels$1(rgb)) {
+						t3 = color.channel0OrNull;
+						_this._writeChannel$2((t3 == null ? 0 : t3) * 100 / 255, "%");
+						t3 = _this._buffer;
+						t4 = _this._style === B.OutputStyle_1;
 						t3.write$1(0, t4 ? "," : ", ");
+						t3 = color.channel1OrNull;
+						_this._writeChannel$2((t3 == null ? 0 : t3) * 100 / 255, "%");
+						t3 = _this._buffer;
+						t3.write$1(0, t4 ? "," : ", ");
+						t3 = color.channel2OrNull;
+						_this._writeChannel$2((t3 == null ? 0 : t3) * 100 / 255, "%");
+					}
+					if (!opaque) {
+						t3 = _this._buffer;
+						t3.write$1(0, _this._style === B.OutputStyle_1 ? "," : ", ");
 						_this._writeNumber$1(t2 ? 0 : t1);
 					}
-					t3.writeCharCode$1(41);
+					_this._buffer.writeCharCode$1(41);
+				},
+				_tryIntegerRgbChannels$1(rgb) {
+					var green, blue, t2, _this = this,
+						t1 = rgb.channel0OrNull,
+						red = _this._asInt$1(t1 == null ? 0 : t1);
+					if (red == null)
+						return false;
+					t1 = rgb.channel1OrNull;
+					green = _this._asInt$1(t1 == null ? 0 : t1);
+					if (green == null)
+						return false;
+					t1 = rgb.channel2OrNull;
+					blue = _this._asInt$1(t1 == null ? 0 : t1);
+					if (blue == null)
+						return false;
+					_this._buffer.write$1(0, _this._removeExponent$1(B.JSInt_methods.toString$0(red)));
+					t1 = _this._buffer;
+					t2 = _this._style === B.OutputStyle_1;
+					t1.write$1(0, t2 ? "," : ", ");
+					_this._buffer.write$1(0, _this._removeExponent$1(B.JSInt_methods.toString$0(green)));
+					t1 = _this._buffer;
+					t1.write$1(0, t2 ? "," : ", ");
+					_this._buffer.write$1(0, _this._removeExponent$1(B.JSInt_methods.toString$0(blue)));
+					return true;
 				},
 				_writeHsl$1(color) {
 					var t4, _this = this,
@@ -61710,16 +61708,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t3 = _this._buffer;
 					t3.write$1(0, opaque ? "hsl(" : "hsla(");
 					_this._writeChannel$1(hsl.channel$1(0, "hue"));
+					t3 = _this._buffer;
 					t4 = _this._style === B.OutputStyle_1;
 					t3.write$1(0, t4 ? "," : ", ");
 					_this._writeChannel$2(hsl.channel$1(0, "saturation"), "%");
+					t3 = _this._buffer;
 					t3.write$1(0, t4 ? "," : ", ");
 					_this._writeChannel$2(hsl.channel$1(0, "lightness"), "%");
 					if (!opaque) {
+						t3 = _this._buffer;
 						t3.write$1(0, t4 ? "," : ", ");
 						_this._writeNumber$1(t2 ? 0 : t1);
 					}
-					t3.writeCharCode$1(41);
+					_this._buffer.writeCharCode$1(41);
 				},
 				_writeColorFunction$1(color) {
 					var _this = this,
@@ -61729,25 +61730,23 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1.writeCharCode$1(32);
 					_this._writeBetween$3(color.get$channelsOrNull(), " ", _this.get$_writeChannel());
 					_this._maybeWriteSlashAlpha$1(color);
-					t1.writeCharCode$1(41);
+					_this._buffer.writeCharCode$1(41);
 				},
 				_writeHexComponent$1(color) {
-					var t1 = this._buffer;
-					t1.writeCharCode$1(A.hexCharFor(B.JSInt_methods._shrOtherPositive$1(color, 4)));
-					t1.writeCharCode$1(A.hexCharFor(color & 15));
+					this._buffer.writeCharCode$1(A.hexCharFor(B.JSInt_methods._shrOtherPositive$1(color, 4)));
+					this._buffer.writeCharCode$1(A.hexCharFor(color & 15));
 				},
 				_maybeWriteSlashAlpha$1(color) {
-					var t2, t3, _this = this,
+					var t2, _this = this,
 						t1 = color.alphaOrNull;
 					if (A.fuzzyEquals(t1 == null ? 0 : t1, 1))
 						return;
 					t2 = _this._style !== B.OutputStyle_1;
 					if (t2)
 						_this._buffer.writeCharCode$1(32);
-					t3 = _this._buffer;
-					t3.writeCharCode$1(47);
+					_this._buffer.writeCharCode$1(47);
 					if (t2)
-						t3.writeCharCode$1(32);
+						_this._buffer.writeCharCode$1(32);
 					_this._writeChannel$1(t1);
 				},
 				visitList$1(value) {
@@ -61777,10 +61776,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t5 = _this._separatorString$1(t4);
 					_this._writeBetween$3(t3, t5, t2 ? new A._SerializeVisitor_visitList_closure0(_this, value) : new A._SerializeVisitor_visitList_closure1(_this));
 					if (singleton) {
-						t2 = _this._buffer;
-						t2.write$1(0, t4.separator);
+						_this._buffer.write$1(0, t4.separator);
 						if (!t1)
-							t2.writeCharCode$1(41);
+							_this._buffer.writeCharCode$1(41);
 					}
 					if (t1)
 						_this._buffer.writeCharCode$1(93);
@@ -61830,14 +61828,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return t1;
 				},
 				visitMap$1(map) {
-					var t1, t2, _this = this;
+					var t1, _this = this;
 					if (!_this._inspect)
 						throw A.wrapException(A.SassScriptException$(map.toString$0(0) + " isn't a valid CSS value.", null));
-					t1 = _this._buffer;
-					t1.writeCharCode$1(40);
-					t2 = map._map$_contents;
-					_this._writeBetween$3(t2.get$entries(t2), ", ", new A._SerializeVisitor_visitMap_closure(_this));
-					t1.writeCharCode$1(41);
+					_this._buffer.writeCharCode$1(40);
+					t1 = map._map$_contents;
+					_this._writeBetween$3(t1.get$entries(t1), ", ", new A._SerializeVisitor_visitMap_closure(_this));
+					_this._buffer.writeCharCode$1(41);
 				},
 				_writeMapElement$1(value) {
 					var needsParens = value instanceof A.SassList && value._separator === B.ListSeparator_z0K && !value._hasBrackets;
@@ -61848,7 +61845,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						this._buffer.writeCharCode$1(41);
 				},
 				visitNumber$1(value) {
-					var before, after, t1, _1_0, _this = this,
+					var before, after, t1, _1_0, first, _this = this,
 						_0_0 = value.asSlash;
 					if (type$.Record_2_nullable_Object_and_nullable_Object._is(_0_0)) {
 						before = _0_0._0;
@@ -61868,44 +61865,42 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					else {
 						_this._writeNumber$1(t1);
 						_1_0 = value.get$numeratorUnits(value);
-						if (_1_0.length === 1)
-							_this._buffer.write$1(0, _1_0[0]);
+						if (_1_0.length === 1) {
+							first = _1_0[0];
+							_this._buffer.write$1(0, first);
+						}
 					}
 				},
-				_writeNumberToString$1(number) {
-					var t1 = new A.StringBuffer("");
-					this._writeNumber$2(number, new A.NoSourceMapBuffer(t1));
-					t1 = t1._contents;
-					return t1.charCodeAt(0) == 0 ? t1 : t1;
-				},
-				_writeNumber$2(number, buffer) {
-					var _0_0, t1, integer, text, _this = this;
-					if (buffer == null)
-						buffer = _this._buffer;
-					_0_0 = A.fuzzyAsInt(number);
-					t1 = false;
+				_writeNumber$1(number) {
+					var _0_0, text, _this = this;
+					if (!isFinite(number)) {
+						_this.visitCalculation$1(new A.SassCalculation("calc", A.List_List$unmodifiable(A._setArrayType([A.SassNumber_SassNumber(number, null)], type$.JSArray_Object), type$.Object)));
+						return;
+					}
+					_0_0 = _this._asInt$1(number);
 					if (_0_0 != null) {
-						t1 = !_this._inspect || number === _0_0;
-						integer = _0_0;
-					} else
-						integer = null;
-					if (t1) {
-						buffer.write$1(0, _this._removeExponent$1(J.toString$0$(integer)));
+						_this._buffer.write$1(0, _this._removeExponent$1(B.JSInt_methods.toString$0(_0_0)));
 						return;
 					}
 					text = _this._removeExponent$1(B.JSNumber_methods.toString$0(number));
 					if (_this._inspect) {
-						buffer.write$1(0, text);
+						_this._buffer.write$1(0, text);
 						return;
 					}
 					if (text.length < 12) {
-						buffer.write$1(0, _this._style === B.OutputStyle_1 && text.charCodeAt(0) === 48 ? B.JSString_methods.substring$1(text, 1) : text);
+						if (_this._style === B.OutputStyle_1 && text.charCodeAt(0) === 48)
+							text = B.JSString_methods.substring$1(text, 1);
+						_this._buffer.write$1(0, text);
 						return;
 					}
-					_this._writeRounded$2(text, buffer);
+					_this._writeRounded$2(text, _this._buffer);
 				},
-				_writeNumber$1(number) {
-					return this._writeNumber$2(number, null);
+				_asInt$1(number) {
+					var rounded;
+					if (this._inspect)
+						return A.fuzzyAsInt(number);
+					rounded = B.JSNumber_methods.round$0(number);
+					return rounded === number ? rounded : null;
 				},
 				_removeExponent$1(text) {
 					var buffer, t2, t3, additionalZeroes,
@@ -62093,34 +62088,33 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						buffer.writeCharCode$1(34);
 					else {
 						quote = includesDoubleQuote ? 39 : 34;
-						t1 = _this._buffer;
-						t1.writeCharCode$1(quote);
-						t1.write$1(0, buffer);
-						t1.writeCharCode$1(quote);
+						_this._buffer.writeCharCode$1(quote);
+						_this._buffer.write$1(0, buffer);
+						_this._buffer.writeCharCode$1(quote);
 					}
 				},
 				_visitQuotedString$1(string) {
 					return this._visitQuotedString$2$forceDoubleQuote(string, false);
 				},
 				_visitUnquotedString$1(string) {
-					var t1, t2, afterNewline, i, _1_0, _0_0;
-					for (t1 = string.length, t2 = this._buffer, afterNewline = false, i = 0; i < t1; ++i) {
+					var t1, afterNewline, i, _1_0, _0_0, _this = this;
+					for (t1 = string.length, afterNewline = false, i = 0; i < t1; ++i) {
 						_1_0 = string.charCodeAt(i);
 						if (10 === _1_0) {
-							t2.writeCharCode$1(32);
+							_this._buffer.writeCharCode$1(32);
 							afterNewline = true;
 							continue;
 						}
 						if (32 === _1_0) {
 							if (!afterNewline)
-								t2.writeCharCode$1(32);
+								_this._buffer.writeCharCode$1(32);
 							continue;
 						}
-						_0_0 = this._tryPrivateUseCharacter$4(t2, _1_0, string, i);
+						_0_0 = _this._tryPrivateUseCharacter$4(_this._buffer, _1_0, string, i);
 						if (_0_0 != null)
 							i = _0_0;
 						else
-							t2.writeCharCode$1(_1_0);
+							_this._buffer.writeCharCode$1(_1_0);
 						afterNewline = false;
 					}
 				},
@@ -62151,57 +62145,57 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						buffer.writeCharCode$1(32);
 				},
 				visitAttributeSelector$1(_, attribute) {
-					var _0_0, t2,
-						t1 = this._buffer;
-					t1.writeCharCode$1(91);
-					t1.write$1(0, attribute.name);
+					var _0_0, t1, t2, _this = this;
+					_this._buffer.writeCharCode$1(91);
+					_this._buffer.write$1(0, attribute.name);
 					_0_0 = attribute.value;
 					if (_0_0 != null) {
-						t1.write$1(0, attribute.op);
+						_this._buffer.write$1(0, attribute.op);
 						if (A.Parser_isIdentifier(_0_0) && !B.JSString_methods.startsWith$1(_0_0, "--")) {
-							t1.write$1(0, _0_0);
-							t2 = attribute.modifier;
-							if (t2 != null)
-								t1.writeCharCode$1(32);
+							_this._buffer.write$1(0, _0_0);
+							t1 = attribute.modifier;
+							if (t1 != null)
+								_this._buffer.writeCharCode$1(32);
 						} else {
-							this._visitQuotedString$1(_0_0);
-							t2 = attribute.modifier;
-							if (t2 != null)
-								if (this._style !== B.OutputStyle_1)
-									t1.writeCharCode$1(32);
+							_this._visitQuotedString$1(_0_0);
+							t1 = attribute.modifier;
+							if (t1 != null)
+								if (_this._style !== B.OutputStyle_1)
+									_this._buffer.writeCharCode$1(32);
 						}
-						A.NullableExtension_andThen(t2, t1.get$write(t1));
+						t2 = _this._buffer;
+						A.NullableExtension_andThen(t1, t2.get$write(t2));
 					}
-					t1.writeCharCode$1(93);
+					_this._buffer.writeCharCode$1(93);
 				},
 				visitClassSelector$1(_, klass) {
-					var t1 = this._buffer;
-					t1.writeCharCode$1(46);
-					t1.write$1(0, klass.name);
+					this._buffer.writeCharCode$1(46);
+					this._buffer.write$1(0, klass.name);
 				},
 				visitComplexSelector$1(complex) {
-					var t2, t3, t4, t5, t6, i, component, t7, t8, t9, _this = this,
+					var t2, t3, t4, t5, i, component, t6, t7, t8, t9, _this = this,
 						t1 = complex.leadingCombinators;
 					_this._writeCombinators$1(t1);
 					if (t1.length >= 1 && complex.components.length >= 1)
 						if (_this._style !== B.OutputStyle_1)
 							_this._buffer.writeCharCode$1(32);
-					for (t1 = complex.components, t2 = t1.length, t3 = t2 - 1, t4 = _this._buffer, t5 = _this._style === B.OutputStyle_1, t6 = !t5, i = 0; i < t2; ++i) {
+					for (t1 = complex.components, t2 = t1.length, t3 = t2 - 1, t4 = _this._style === B.OutputStyle_1, t5 = !t4, i = 0; i < t2; ++i) {
 						component = t1[i];
 						_this.visitCompoundSelector$1(component.selector);
-						t7 = component.combinators;
-						t8 = t7.length === 0;
-						if (!t8)
-							if (t6)
-								t4.writeCharCode$1(32);
-						t9 = t5 ? "" : " ";
-						_this._writeBetween$3(t7, t9, t4.get$write(t4));
+						t6 = component.combinators;
+						t7 = t6.length === 0;
+						if (!t7)
+							if (t5)
+								_this._buffer.writeCharCode$1(32);
+						t8 = t4 ? "" : " ";
+						t9 = _this._buffer;
+						_this._writeBetween$3(t6, t8, t9.get$write(t9));
 						if (i !== t3)
-							t7 = !t5 || t8;
+							t6 = !t4 || t7;
 						else
-							t7 = false;
-						if (t7)
-							t4.writeCharCode$1(32);
+							t6 = false;
+						if (t6)
+							_this._buffer.writeCharCode$1(32);
 					}
 				},
 				_writeCombinators$1(combinators) {
@@ -62210,50 +62204,50 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._writeBetween$3(combinators, t1, t2.get$write(t2));
 				},
 				visitCompoundSelector$1(compound) {
-					var t2, t3, _i,
-						t1 = this._buffer,
+					var t2, _i, _this = this,
+						t1 = _this._buffer,
 						start = t1.get$length(t1);
-					for (t2 = compound.components, t3 = t2.length, _i = 0; _i < t3; ++_i)
-						t2[_i].accept$1(this);
+					for (t1 = compound.components, t2 = t1.length, _i = 0; _i < t2; ++_i)
+						t1[_i].accept$1(_this);
+					t1 = _this._buffer;
 					if (t1.get$length(t1) === start)
-						t1.writeCharCode$1(42);
+						_this._buffer.writeCharCode$1(42);
 				},
 				visitIDSelector$1(_, id) {
-					var t1 = this._buffer;
-					t1.writeCharCode$1(35);
-					t1.write$1(0, id.name);
+					this._buffer.writeCharCode$1(35);
+					this._buffer.write$1(0, id.name);
 				},
 				visitSelectorList$1(list) {
-					var t1, t2, t3, first, t4, _this = this,
+					var t1, t2, first, t3, _this = this,
 						complexes = list.components;
-					for (t1 = J.get$iterator$ax(_this._inspect ? complexes : new A.WhereIterable(complexes, new A._SerializeVisitor_visitSelectorList_closure(), A._arrayInstanceType(complexes)._eval$1("WhereIterable<1>"))), t2 = _this._style !== B.OutputStyle_1, t3 = _this._buffer, first = true; t1.moveNext$0();) {
-						t4 = t1.get$current();
+					for (t1 = J.get$iterator$ax(_this._inspect ? complexes : new A.WhereIterable(complexes, new A._SerializeVisitor_visitSelectorList_closure(), A._arrayInstanceType(complexes)._eval$1("WhereIterable<1>"))), t2 = _this._style !== B.OutputStyle_1, first = true; t1.moveNext$0();) {
+						t3 = t1.get$current();
 						if (first)
 							first = false;
 						else {
-							t3.writeCharCode$1(44);
-							if (t4.lineBreak) {
+							_this._buffer.writeCharCode$1(44);
+							if (t3.lineBreak) {
 								if (t2)
-									t3.write$1(0, "\n");
+									_this._buffer.write$1(0, "\n");
 								_this._writeIndentation$0();
 							} else if (t2)
-								t3.writeCharCode$1(32);
+								_this._buffer.writeCharCode$1(32);
 						}
-						_this.visitComplexSelector$1(t4);
+						_this.visitComplexSelector$1(t3);
 					}
 				},
 				visitParentSelector$1(_, $parent) {
-					var t1 = this._buffer;
-					t1.writeCharCode$1(38);
+					var t1;
+					this._buffer.writeCharCode$1(38);
+					t1 = this._buffer;
 					A.NullableExtension_andThen($parent.suffix, t1.get$write(t1));
 				},
 				visitPlaceholderSelector$1(_, placeholder) {
-					var t1 = this._buffer;
-					t1.writeCharCode$1(37);
-					t1.write$1(0, placeholder.name);
+					this._buffer.writeCharCode$1(37);
+					this._buffer.write$1(0, placeholder.name);
 				},
 				visitPseudoSelector$1(_, pseudo) {
-					var _0_4, t3,
+					var _0_4, _this = this,
 						t1 = pseudo.name,
 						t2 = false;
 					if ("not" === t1) {
@@ -62263,34 +62257,31 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 					if (t2)
 						return;
-					t2 = this._buffer;
-					t2.writeCharCode$1(58);
+					_this._buffer.writeCharCode$1(58);
 					if (!pseudo.isSyntacticClass)
-						t2.writeCharCode$1(58);
-					t2.write$1(0, t1);
+						_this._buffer.writeCharCode$1(58);
+					_this._buffer.write$1(0, t1);
 					t1 = pseudo.argument;
-					t3 = t1 == null;
-					if (t3 && pseudo.selector == null)
+					t2 = t1 == null;
+					if (t2 && pseudo.selector == null)
 						return;
-					t2.writeCharCode$1(40);
-					if (!t3) {
-						t2.write$1(0, t1);
+					_this._buffer.writeCharCode$1(40);
+					if (!t2) {
+						_this._buffer.write$1(0, t1);
 						if (pseudo.selector != null)
-							t2.writeCharCode$1(32);
+							_this._buffer.writeCharCode$1(32);
 					}
-					A.NullableExtension_andThen(pseudo.selector, this.get$visitSelectorList());
-					t2.writeCharCode$1(41);
+					A.NullableExtension_andThen(pseudo.selector, _this.get$visitSelectorList());
+					_this._buffer.writeCharCode$1(41);
 				},
 				visitTypeSelector$1(_, type) {
 					this._buffer.write$1(0, type.name);
 				},
 				visitUniversalSelector$1(_, universal) {
-					var t2,
-						t1 = universal.namespace;
+					var t1 = universal.namespace;
 					if (t1 != null) {
-						t2 = this._buffer;
-						t2.write$1(0, t1);
-						t2.writeCharCode$1(124);
+						this._buffer.write$1(0, t1);
+						this._buffer.writeCharCode$1(124);
 					}
 					this._buffer.writeCharCode$1(42);
 				},
@@ -62298,32 +62289,31 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					return this._buffer.forSpan$2(value.span, new A._SerializeVisitor__write_closure(this, value));
 				},
 				_visitChildren$1($parent) {
-					var t2, t3, t4, t5, t6, t7, prePrevious, previous, t8, previous0, t9, savedIndentation, _this = this,
-						t1 = _this._buffer;
-					t1.writeCharCode$1(123);
-					for (t2 = $parent.children, t3 = t2.$ti, t2 = new A.ListIterator(t2, t2.get$length(0), t3._eval$1("ListIterator<ListBase.E>")), t4 = _this._style === B.OutputStyle_1, t5 = !t4, t6 = _this.get$_requiresSemicolon(), t7 = !_this._inspect, t3 = t3._eval$1("ListBase.E"), prePrevious = null, previous = null; t2.moveNext$0();) {
-						t8 = t2.__internal$_current;
-						previous0 = t8 == null ? t3._as(t8) : t8;
-						if (t7)
-							t8 = t4 ? previous0.accept$1(B._IsInvisibleVisitor_true_true) : previous0.accept$1(B._IsInvisibleVisitor_true_false);
+					var t1, t2, t3, t4, t5, t6, prePrevious, previous, t7, previous0, t8, savedIndentation, _this = this;
+					_this._buffer.writeCharCode$1(123);
+					for (t1 = $parent.children, t2 = t1.$ti, t1 = new A.ListIterator(t1, t1.get$length(0), t2._eval$1("ListIterator<ListBase.E>")), t3 = _this._style === B.OutputStyle_1, t4 = !t3, t5 = _this.get$_requiresSemicolon(), t6 = !_this._inspect, t2 = t2._eval$1("ListBase.E"), prePrevious = null, previous = null; t1.moveNext$0();) {
+						t7 = t1.__internal$_current;
+						previous0 = t7 == null ? t2._as(t7) : t7;
+						if (t6)
+							t7 = t3 ? previous0.accept$1(B._IsInvisibleVisitor_true_true) : previous0.accept$1(B._IsInvisibleVisitor_true_false);
 						else
-							t8 = false;
-						if (t8)
+							t7 = false;
+						if (t7)
 							continue;
-						t8 = previous == null;
-						t9 = t8 ? null : t6.call$1(previous);
-						if (t9 == null ? false : t9)
-							t1.writeCharCode$1(59);
-						if (_this._isTrailingComment$2(previous0, t8 ? $parent : previous)) {
-							if (t5)
-								t1.writeCharCode$1(32);
+						t7 = previous == null;
+						t8 = t7 ? null : t5.call$1(previous);
+						if (t8 == null ? false : t8)
+							_this._buffer.writeCharCode$1(59);
+						if (_this._isTrailingComment$2(previous0, t7 ? $parent : previous)) {
+							if (t4)
+								_this._buffer.writeCharCode$1(32);
 							savedIndentation = _this._indentation;
 							_this._indentation = 0;
 							new A._SerializeVisitor__visitChildren_closure(_this, previous0).call$0();
 							_this._indentation = savedIndentation;
 						} else {
-							if (t5)
-								t1.write$1(0, "\n");
+							if (t4)
+								_this._buffer.write$1(0, "\n");
 							++_this._indentation;
 							new A._SerializeVisitor__visitChildren_closure0(_this, previous0).call$0();
 							--_this._indentation;
@@ -62332,17 +62322,17 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						previous = previous0;
 					}
 					if (previous != null) {
-						if ((type$.CssParentNode._is(previous) ? previous.get$isChildless() : !(previous instanceof A.ModifiableCssComment)) && t5)
-							t1.writeCharCode$1(59);
+						if ((type$.CssParentNode._is(previous) ? previous.get$isChildless() : !(previous instanceof A.ModifiableCssComment)) && t4)
+							_this._buffer.writeCharCode$1(59);
 						if (prePrevious == null && _this._isTrailingComment$2(previous, $parent)) {
-							if (t5)
-								t1.writeCharCode$1(32);
+							if (t4)
+								_this._buffer.writeCharCode$1(32);
 						} else {
 							_this._writeLineFeed$0();
 							_this._writeIndentation$0();
 						}
 					}
-					t1.writeCharCode$1(125);
+					_this._buffer.writeCharCode$1(125);
 				},
 				_requiresSemicolon$1(node) {
 					return type$.CssParentNode._is(node) ? node.get$isChildless() : !(node instanceof A.ModifiableCssComment);
@@ -62394,23 +62384,35 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					_this._writeTimes$2(_this._indentCharacter, _this._indentation * _this._indentWidth);
 				},
 				_writeTimes$2(char, times) {
-					var t1, i;
-					for (t1 = this._buffer, i = 0; i < times; ++i)
-						t1.writeCharCode$1(char);
+					var i;
+					for (i = 0; i < times; ++i)
+						this._buffer.writeCharCode$1(char);
 				},
 				_writeBetween$1$3(iterable, text, callback) {
-					var t1, t2, first, value;
-					for (t1 = J.get$iterator$ax(iterable), t2 = this._buffer, first = true; t1.moveNext$0();) {
+					var t1, first, value;
+					for (t1 = J.get$iterator$ax(iterable), first = true; t1.moveNext$0();) {
 						value = t1.get$current();
 						if (first)
 							first = false;
 						else
-							t2.write$1(0, text);
+							this._buffer.write$1(0, text);
 						callback.call$1(value);
 					}
 				},
 				_writeBetween$3(iterable, text, callback) {
 					return this._writeBetween$1$3(iterable, text, callback, type$.dynamic);
+				},
+				_capture$1(callback) {
+					var t1, _this = this,
+						oldBuffer = _this._buffer;
+					_this._buffer = new A.NoSourceMapBuffer(new A.StringBuffer(""));
+					try {
+						callback.call$0();
+						t1 = _this._buffer.toString$0(0);
+						return t1;
+					} finally {
+						_this._buffer = oldBuffer;
+					}
 				}
 			};
 			A._SerializeVisitor_visitCssComment_closure.prototype = {
@@ -62439,15 +62441,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._SerializeVisitor_visitCssAtRule_closure.prototype = {
 				call$0() {
-					var t3, _0_0,
-						t1 = this.$this,
-						t2 = t1._buffer;
-					t2.writeCharCode$1(64);
-					t3 = this.node;
-					t1._write$1(t3.name);
-					_0_0 = t3.value;
+					var t2, _0_0,
+						t1 = this.$this;
+					t1._buffer.writeCharCode$1(64);
+					t2 = this.node;
+					t1._write$1(t2.name);
+					_0_0 = t2.value;
 					if (_0_0 != null) {
-						t2.writeCharCode$1(32);
+						t1._buffer.writeCharCode$1(32);
 						t1._write$1(_0_0);
 					}
 				},
@@ -62455,43 +62456,41 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._SerializeVisitor_visitCssMediaRule_closure.prototype = {
 				call$0() {
-					var t3, firstQuery, t4, t5,
-						t1 = this.$this,
-						t2 = t1._buffer;
-					t2.write$1(0, "@media");
-					t3 = this.node.queries;
-					firstQuery = B.JSArray_methods.get$first(t3);
-					t4 = t1._style === B.OutputStyle_1;
-					t5 = true;
-					if (t4)
+					var t2, firstQuery, t3, t4,
+						t1 = this.$this;
+					t1._buffer.write$1(0, "@media");
+					t2 = this.node.queries;
+					firstQuery = B.JSArray_methods.get$first(t2);
+					t3 = t1._style === B.OutputStyle_1;
+					t4 = true;
+					if (t3)
 						if (firstQuery.modifier == null)
 							if (firstQuery.type == null) {
-								t5 = firstQuery.conditions;
-								t5 = t5.length === 1 && B.JSString_methods.startsWith$1(B.JSArray_methods.get$first(t5), "(not ");
+								t4 = firstQuery.conditions;
+								t4 = t4.length === 1 && B.JSString_methods.startsWith$1(B.JSArray_methods.get$first(t4), "(not ");
 							}
-					if (t5)
-						t2.writeCharCode$1(32);
-					t2 = t4 ? "," : ", ";
-					t1._writeBetween$3(t3, t2, t1.get$_visitMediaQuery());
+					if (t4)
+						t1._buffer.writeCharCode$1(32);
+					t3 = t3 ? "," : ", ";
+					t1._writeBetween$3(t2, t3, t1.get$_visitMediaQuery());
 				},
 				$signature: 0
 			};
 			A._SerializeVisitor_visitCssImport_closure.prototype = {
 				call$0() {
-					var t3, t4, _0_0,
-						t1 = this.$this,
-						t2 = t1._buffer;
-					t2.write$1(0, "@import");
-					t3 = t1._style !== B.OutputStyle_1;
-					if (t3)
-						t2.writeCharCode$1(32);
-					t4 = this.node;
-					t2.forSpan$2(t4.url.span, new A._SerializeVisitor_visitCssImport__closure(t1, t4));
-					_0_0 = t4.modifiers;
+					var t2, t3, _0_0,
+						t1 = this.$this;
+					t1._buffer.write$1(0, "@import");
+					t2 = t1._style !== B.OutputStyle_1;
+					if (t2)
+						t1._buffer.writeCharCode$1(32);
+					t3 = this.node;
+					t1._buffer.forSpan$2(t3.url.span, new A._SerializeVisitor_visitCssImport__closure(t1, t3));
+					_0_0 = t3.modifiers;
 					if (_0_0 != null) {
-						if (t3)
-							t2.writeCharCode$1(32);
-						t2.write$1(0, _0_0);
+						if (t2)
+							t1._buffer.writeCharCode$1(32);
+						t1._buffer.write$1(0, _0_0);
 					}
 				},
 				$signature: 0
@@ -62500,7 +62499,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this._writeImportUrl$1(this.node.url.value);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._SerializeVisitor_visitCssKeyframeBlock_closure.prototype = {
 				call$0() {
@@ -62509,21 +62508,20 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t3 = t1._buffer;
 					return t1._writeBetween$3(this.node.selector.value, t2, t3.get$write(t3));
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._SerializeVisitor_visitCssStyleRule_closure.prototype = {
 				call$0() {
 					return this.$this.visitSelectorList$1(this.node._style_rule$_selector._box$_inner.value);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._SerializeVisitor_visitCssSupportsRule_closure.prototype = {
 				call$0() {
-					var t1 = this.$this,
-						t2 = t1._buffer;
-					t2.write$1(0, "@supports");
+					var t1 = this.$this;
+					t1._buffer.write$1(0, "@supports");
 					if (!(t1._style === B.OutputStyle_1 && this.node.condition.value.charCodeAt(0) === 40))
-						t2.writeCharCode$1(32);
+						t1._buffer.writeCharCode$1(32);
 					t1._write$1(this.node.condition);
 				},
 				$signature: 0
@@ -62543,7 +62541,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.node.value.value.accept$1(this.$this);
 				},
-				$signature: 2
+				$signature: 1
+			};
+			A._SerializeVisitor__writeLegacyColor_closure.prototype = {
+				call$0() {
+					return this.$this._writeRgb$1(this.rgb);
+				},
+				$signature: 1
+			};
+			A._SerializeVisitor__writeLegacyColor_closure0.prototype = {
+				call$0() {
+					return this.$this._writeHsl$1(this.rgb.toSpace$1(B.HslColorSpace_JQ2));
+				},
+				$signature: 1
 			};
 			A._SerializeVisitor_visitList_closure.prototype = {
 				call$1(element) {
@@ -62588,19 +62598,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				call$0() {
 					return this.$this._buffer.write$1(0, this.value.value);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._SerializeVisitor__visitChildren_closure.prototype = {
 				call$0() {
 					return this.child.accept$1(this.$this);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A._SerializeVisitor__visitChildren_closure0.prototype = {
 				call$0() {
 					this.child.accept$1(this.$this);
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.OutputStyle.prototype = {
 				_enumToString$0() {
@@ -63802,7 +63812,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._contents += t2;
 					return null;
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.Highlighter__writeMultilineHighlights_closure.prototype = {
 				call$0() {
@@ -63829,7 +63839,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._contents += t2;
 					return null;
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.Highlighter__writeMultilineHighlights_closure2.prototype = {
 				call$0() {
@@ -63887,7 +63897,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var _this = this;
 					return _this.$this._writeText$1(B.JSString_methods.substring$2(_this.text, _this.startColumn, _this.endColumn));
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.Highlighter__writeIndicator_closure.prototype = {
 				call$0() {
@@ -63915,7 +63925,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					var t1 = this.highlight.span;
 					return this.$this._writeArrow$2(this.line, t1.get$start(t1).get$column());
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.Highlighter__writeIndicator_closure1.prototype = {
 				call$0() {
@@ -63941,14 +63951,14 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._contents += t2;
 					return null;
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.Highlighter__writeLabel_closure0.prototype = {
 				call$0() {
 					this.$this._highlighter$_buffer._contents += " " + this.text;
 					return null;
 				},
-				$signature: 2
+				$signature: 1
 			};
 			A.Highlighter__writeSidebar_closure.prototype = {
 				call$0() {
@@ -64608,7 +64618,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_static_1(A, "async__AsyncRun__scheduleImmediateJsOverride$closure", "_AsyncRun__scheduleImmediateJsOverride", 54);
 				_static_1(A, "async__AsyncRun__scheduleImmediateWithSetImmediate$closure", "_AsyncRun__scheduleImmediateWithSetImmediate", 54);
 				_static_1(A, "async__AsyncRun__scheduleImmediateWithTimer$closure", "_AsyncRun__scheduleImmediateWithTimer", 54);
-				_static_0(A, "async___startMicrotaskLoop$closure", "_startMicrotaskLoop", 2);
+				_static_0(A, "async___startMicrotaskLoop$closure", "_startMicrotaskLoop", 1);
 				_static(A, "async___rootHandleUncaughtError$closure", 5, null, ["call$5"], ["_rootHandleUncaughtError"], 346, 0);
 				*/
 				_static(A, "async___rootRun$closure", 4, null, ["call$1$4", "call$4"], ["_rootRun", function($self, $parent, zone, f) {
@@ -64695,7 +64705,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_instance_0_u(A.CssParser.prototype, "get$silentComment", "silentComment$0", 19);
 				var _;
 				_instance_0_u(_ = A.Parser.prototype, "get$silentComment", "silentComment$0", 19);
-				_instance_0_u(_, "get$loudComment", "loudComment$0", 2);
+				_instance_0_u(_, "get$loudComment", "loudComment$0", 1);
 				_instance_0_u(_, "get$string", "string$0", 25);
 				_instance(_, "get$error", 1, 2, function() {
 					return [null];
@@ -64807,7 +64817,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_inheritMany(A.NativeTypedArrayOfDouble, [A.NativeFloat32List, A.NativeFloat64List]);
 				_inheritMany(A.NativeTypedArrayOfInt, [A.NativeInt16List, A.NativeInt32List, A.NativeInt8List, A.NativeUint16List, A.NativeUint32List, A.NativeUint8ClampedList, A.NativeUint8List]);
 				_inherit(A._TypeError, A._Error);
-				_inheritMany(A.Closure0Args, [/*DSH- A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A._TimerImpl$periodic_closure, A._CustomZone_bindCallback_closure, A._CustomZone_bindCallbackGuarded_closure, A._RootZone_bindCallback_closure, A._RootZone_bindCallbackGuarded_closure, A._rootHandleError_closure, */A._Utf8Decoder__decoder_closure, A._Utf8Decoder__decoderNonfatal_closure, A._isStrictMode_closure, A.ParsedPath__splitExtension_closure0, A.IfConditionOperation_toInterpolation_closure, A.PseudoSelector_specificity_closure, A.Environment_setVariable_closure, A.Environment_setVariable_closure1, A.ExtensionStore__registerSelector_closure, A.ExtensionStore_addExtension_closure, A.ExtensionStore_addExtension_closure0, A.ExtensionStore_addExtension_closure1, A.ExtensionStore__extendExistingExtensions_closure, A.ExtensionStore__extendExistingExtensions_closure0, A.ExtensionStore_addExtensions_closure, A.ExtensionStore_clone__closure, A._changeColor_closure, A.ImportCache_canonicalize_closure, A.ImportCache__canonicalize_closure, A.ImportCache_importCanonical_closure, A.JSToDartFileImporter_canonicalize_closure, A.JSToDartImporter_canonicalize_closure, A.JSToDartImporter_load_closure, A.resolveImportPath_closure, A.resolveImportPath_closure0, A._tryPathAsDirectory_closure, A._realCasePath_helper_closure, A._readFile_closure, A.fileExists_closure, A.dirExists_closure, A.linkExists_closure, A.listDir_closure, A.realpath_closure, A._parseFunctions___closure, A.compilerClass_closure, A.deprecations_closure, A.parseDeprecations_closure, A.versionClass_closure, A.exceptionClass_closure, A._updateLazyFileSpanPrototype_closure, A.updateSourceSpanPrototype_closure, A.valueClass_closure, A.argumentListClass_closure, A.booleanClass_closure, A.calculationClass_closure, A.calculationOperationClass_closure, A.calculationInterpolationClass_closure, A.colorClass_closure, A.functionClass_closure, A.listClass_closure, A.mapClass_closure, A.mixinClass_closure, A.numberClass_closure, A.stringClass_closure/*DSH-, A.JSToDartLogger_internalWarn_closure, A.JSToDartLogger_debug_closure*/, A.AtRootQueryParser_parse_closure, A.KeyframeSelectorParser_parse_closure, A.MediaQueryParser_parse_closure, A.Parser__parseIdentifier_closure, A.Parser_spanFrom_closure, A.Parser_spanFromPosition_closure, A.SassParser_children_closure, A.SelectorParser_parse_closure, A.SelectorParser_parseCompoundSelector_closure, A.StylesheetParser_parse_closure, A.StylesheetParser_parse__closure, A.StylesheetParser_parseParameterList_closure, A.StylesheetParser__parseSingleProduction_closure, A.StylesheetParser_parseSignature_closure, A.StylesheetParser__statement_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure0, A.StylesheetParser__declarationOrBuffer_closure, A.StylesheetParser__declarationOrBuffer_closure0, A.StylesheetParser__declarationOrBuffer_closure2, A.StylesheetParser__propertyOrVariableDeclaration_closure, A.StylesheetParser__forRule_closure, A.StylesheetParser__memberList_closure, A.StylesheetParser_mozDocumentRule_closure, A.StylesheetParser__expression_resetState, A.StylesheetParser__expression_resolveOneOperation, A.StylesheetParser__expression_resolveOperations, A.StylesheetParser__expression_resolveSpaceExpressions, A.StylesheetParser_expressionUntilComma_closure, A.StylesheetParser_interpolatedStringToken_closure, A.StylesheetParser_namespacedExpression_closure, A.StylesheetParser__interpolatedDeclarationValue_closure, A.StylesheetParser__expressionUntilComparison_closure, A.StylesheetParser__publicIdentifier_closure, A.SassNumber__coerceOrConvertValue_compatibilityException, A.SassNumber__coerceOrConvertValue_closure0, A.SassNumber__coerceOrConvertValue_closure2, A.SassNumber_multiplyUnits_closure0, A.SassNumber_multiplyUnits_closure2, A.SingleUnitSassNumber_multiplyUnits_closure0, A._EvaluateVisitor__closure2, A._EvaluateVisitor__closure1, A._EvaluateVisitor_run_closure, A._EvaluateVisitor_run__closure, A._EvaluateVisitor__loadModule_closure, A._EvaluateVisitor__loadModule_closure0, A._EvaluateVisitor__loadModule__closure0, A._EvaluateVisitor__execute_closure, A._EvaluateVisitor__extendModules_closure0, A._EvaluateVisitor_visitAtRootRule_closure, A._EvaluateVisitor_visitAtRootRule_closure0, A._EvaluateVisitor__scopeForAtRoot__closure, A._EvaluateVisitor_visitContentRule_closure, A._EvaluateVisitor_visitDeclaration_closure, A._EvaluateVisitor_visitEachRule_closure1, A._EvaluateVisitor_visitAtRule_closure0, A._EvaluateVisitor_visitAtRule_closure1, A._EvaluateVisitor_visitAtRule__closure, A._EvaluateVisitor_visitForRule_closure, A._EvaluateVisitor_visitForRule_closure0, A._EvaluateVisitor_visitForRule_closure1, A._EvaluateVisitor_visitForRule_closure2, A._EvaluateVisitor_visitForRule_closure3, A._EvaluateVisitor__registerCommentsForModule_closure, A._EvaluateVisitor_visitIfRule__closure, A._EvaluateVisitor__visitDynamicImport_closure, A._EvaluateVisitor__visitDynamicImport__closure2, A._EvaluateVisitor__applyMixin_closure, A._EvaluateVisitor__applyMixin__closure0, A._EvaluateVisitor__applyMixin_closure0, A._EvaluateVisitor__applyMixin__closure, A._EvaluateVisitor__applyMixin___closure, A._EvaluateVisitor__applyMixin____closure, A._EvaluateVisitor_visitIncludeRule_closure, A._EvaluateVisitor_visitIncludeRule_closure1, A._EvaluateVisitor_visitMediaRule_closure, A._EvaluateVisitor_visitMediaRule_closure1, A._EvaluateVisitor_visitMediaRule__closure, A._EvaluateVisitor_visitMediaRule___closure, A._EvaluateVisitor_visitStyleRule_closure, A._EvaluateVisitor_visitStyleRule_closure2, A._EvaluateVisitor_visitStyleRule__closure, A._EvaluateVisitor_visitSupportsRule_closure, A._EvaluateVisitor_visitSupportsRule_closure0, A._EvaluateVisitor_visitSupportsRule__closure, A._EvaluateVisitor__visitSupportsCondition_closure, A._EvaluateVisitor_visitVariableDeclaration_closure, A._EvaluateVisitor_visitVariableDeclaration_closure0, A._EvaluateVisitor_visitVariableDeclaration_closure1, A._EvaluateVisitor_visitWarnRule_closure, A._EvaluateVisitor_visitWhileRule_closure, A._EvaluateVisitor_visitBinaryOperationExpression_closure, A._EvaluateVisitor_visitVariableExpression_closure, A._EvaluateVisitor_visitUnaryOperationExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure1, A._EvaluateVisitor__visitCalculationExpression_closure, A._EvaluateVisitor_visitInterpolatedFunctionExpression_closure, A._EvaluateVisitor__runUserDefinedCallable_closure, A._EvaluateVisitor__runUserDefinedCallable__closure, A._EvaluateVisitor__runUserDefinedCallable___closure, A._EvaluateVisitor__runFunctionCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure0, A._EvaluateVisitor__verifyArguments_closure, A._EvaluateVisitor_visitCssAtRule_closure, A._EvaluateVisitor_visitCssAtRule_closure0, A._EvaluateVisitor_visitCssKeyframeBlock_closure, A._EvaluateVisitor_visitCssMediaRule_closure, A._EvaluateVisitor_visitCssMediaRule_closure1, A._EvaluateVisitor_visitCssMediaRule__closure, A._EvaluateVisitor_visitCssMediaRule___closure, A._EvaluateVisitor_visitCssStyleRule_closure0, A._EvaluateVisitor_visitCssStyleRule__closure, A._EvaluateVisitor_visitCssSupportsRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure0, A._EvaluateVisitor_visitCssSupportsRule__closure, A._EvaluateVisitor__serialize_closure, A._EvaluateVisitor__expressionNode_closure, A._SerializeVisitor_visitCssComment_closure, A._SerializeVisitor_visitCssAtRule_closure, A._SerializeVisitor_visitCssMediaRule_closure, A._SerializeVisitor_visitCssImport_closure, A._SerializeVisitor_visitCssImport__closure, A._SerializeVisitor_visitCssKeyframeBlock_closure, A._SerializeVisitor_visitCssStyleRule_closure, A._SerializeVisitor_visitCssSupportsRule_closure, A._SerializeVisitor_visitCssDeclaration_closure, A._SerializeVisitor_visitCssDeclaration_closure0, A._SerializeVisitor__write_closure, A._SerializeVisitor__visitChildren_closure, A._SerializeVisitor__visitChildren_closure0, A.SingleMapping_SingleMapping$fromEntries_closure, A.SingleMapping_SingleMapping$fromEntries_closure0, A.Highlighter_closure, A.Highlighter__writeFileStart_closure, A.Highlighter__writeMultilineHighlights_closure, A.Highlighter__writeMultilineHighlights_closure0, A.Highlighter__writeMultilineHighlights_closure1, A.Highlighter__writeMultilineHighlights_closure2, A.Highlighter__writeMultilineHighlights__closure, A.Highlighter__writeMultilineHighlights__closure0, A.Highlighter__writeHighlightedText_closure, A.Highlighter__writeIndicator_closure, A.Highlighter__writeIndicator_closure0, A.Highlighter__writeIndicator_closure1, A.Highlighter__writeLabel_closure, A.Highlighter__writeLabel_closure0, A.Highlighter__writeSidebar_closure, A._Highlight_closure]);
+				_inheritMany(A.Closure0Args, [/*DSH- A._AsyncRun__scheduleImmediateJsOverride_internalCallback, A._AsyncRun__scheduleImmediateWithSetImmediate_internalCallback, A._TimerImpl_internalCallback, A._TimerImpl$periodic_closure, A._CustomZone_bindCallback_closure, A._CustomZone_bindCallbackGuarded_closure, A._RootZone_bindCallback_closure, A._RootZone_bindCallbackGuarded_closure, A._rootHandleError_closure, */A._Utf8Decoder__decoder_closure, A._Utf8Decoder__decoderNonfatal_closure, A._isStrictMode_closure, A.ParsedPath__splitExtension_closure0, A.IfConditionOperation_toInterpolation_closure, A.PseudoSelector_specificity_closure, A.Environment_setVariable_closure, A.Environment_setVariable_closure1, A.ExtensionStore__registerSelector_closure, A.ExtensionStore_addExtension_closure, A.ExtensionStore_addExtension_closure0, A.ExtensionStore_addExtension_closure1, A.ExtensionStore__extendExistingExtensions_closure, A.ExtensionStore__extendExistingExtensions_closure0, A.ExtensionStore_addExtensions_closure, A.ExtensionStore_clone__closure, A._changeColor_closure, A.ImportCache_canonicalize_closure, A.ImportCache__canonicalize_closure, A.ImportCache_importCanonical_closure, A.JSToDartFileImporter_canonicalize_closure, A.JSToDartImporter_canonicalize_closure, A.JSToDartImporter_load_closure, A.resolveImportPath_closure, A.resolveImportPath_closure0, A._tryPathAsDirectory_closure, A._realCasePath_helper_closure, A._readFile_closure, A.fileExists_closure, A.dirExists_closure, A.linkExists_closure, A.listDir_closure, A.realpath_closure, A._parseFunctions___closure, A.compilerClass_closure, A.deprecations_closure, A.parseDeprecations_closure, A.versionClass_closure, A.exceptionClass_closure, A._updateLazyFileSpanPrototype_closure, A.updateSourceSpanPrototype_closure, A.valueClass_closure, A.argumentListClass_closure, A.booleanClass_closure, A.calculationClass_closure, A.calculationOperationClass_closure, A.calculationInterpolationClass_closure, A.colorClass_closure, A.functionClass_closure, A.listClass_closure, A.mapClass_closure, A.mixinClass_closure, A.numberClass_closure, A.stringClass_closure/*DSH-, A.JSToDartLogger_internalWarn_closure, A.JSToDartLogger_debug_closure*/, A.AtRootQueryParser_parse_closure, A.KeyframeSelectorParser_parse_closure, A.MediaQueryParser_parse_closure, A.Parser__parseIdentifier_closure, A.Parser_spanFrom_closure, A.Parser_spanFromPosition_closure, A.SassParser_children_closure, A.SelectorParser_parse_closure, A.SelectorParser_parseCompoundSelector_closure, A.StylesheetParser_parse_closure, A.StylesheetParser_parse__closure, A.StylesheetParser_parseParameterList_closure, A.StylesheetParser__parseSingleProduction_closure, A.StylesheetParser_parseSignature_closure, A.StylesheetParser__statement_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure, A.StylesheetParser_variableDeclarationWithoutNamespace_closure0, A.StylesheetParser__declarationOrBuffer_closure, A.StylesheetParser__declarationOrBuffer_closure0, A.StylesheetParser__declarationOrBuffer_closure2, A.StylesheetParser__propertyOrVariableDeclaration_closure, A.StylesheetParser__forRule_closure, A.StylesheetParser__memberList_closure, A.StylesheetParser_mozDocumentRule_closure, A.StylesheetParser__expression_resetState, A.StylesheetParser__expression_resolveOneOperation, A.StylesheetParser__expression_resolveOperations, A.StylesheetParser__expression_resolveSpaceExpressions, A.StylesheetParser_expressionUntilComma_closure, A.StylesheetParser_interpolatedStringToken_closure, A.StylesheetParser_namespacedExpression_closure, A.StylesheetParser__interpolatedDeclarationValue_closure, A.StylesheetParser__expressionUntilComparison_closure, A.StylesheetParser__publicIdentifier_closure, A.SassNumber__coerceOrConvertValue_compatibilityException, A.SassNumber__coerceOrConvertValue_closure0, A.SassNumber__coerceOrConvertValue_closure2, A.SassNumber_multiplyUnits_closure0, A.SassNumber_multiplyUnits_closure2, A.SingleUnitSassNumber_multiplyUnits_closure0, A._EvaluateVisitor__closure2, A._EvaluateVisitor__closure1, A._EvaluateVisitor_run_closure, A._EvaluateVisitor_run__closure, A._EvaluateVisitor__loadModule_closure, A._EvaluateVisitor__loadModule_closure0, A._EvaluateVisitor__loadModule__closure0, A._EvaluateVisitor__execute_closure, A._EvaluateVisitor__extendModules_closure0, A._EvaluateVisitor_visitAtRootRule_closure, A._EvaluateVisitor_visitAtRootRule_closure0, A._EvaluateVisitor__scopeForAtRoot__closure, A._EvaluateVisitor_visitContentRule_closure, A._EvaluateVisitor_visitDeclaration_closure, A._EvaluateVisitor_visitEachRule_closure1, A._EvaluateVisitor_visitAtRule_closure0, A._EvaluateVisitor_visitAtRule_closure1, A._EvaluateVisitor_visitAtRule__closure, A._EvaluateVisitor_visitForRule_closure, A._EvaluateVisitor_visitForRule_closure0, A._EvaluateVisitor_visitForRule_closure1, A._EvaluateVisitor_visitForRule_closure2, A._EvaluateVisitor_visitForRule_closure3, A._EvaluateVisitor__registerCommentsForModule_closure, A._EvaluateVisitor_visitIfRule__closure, A._EvaluateVisitor__visitDynamicImport_closure, A._EvaluateVisitor__visitDynamicImport__closure2, A._EvaluateVisitor__applyMixin_closure, A._EvaluateVisitor__applyMixin__closure0, A._EvaluateVisitor__applyMixin_closure0, A._EvaluateVisitor__applyMixin__closure, A._EvaluateVisitor__applyMixin___closure, A._EvaluateVisitor__applyMixin____closure, A._EvaluateVisitor_visitIncludeRule_closure, A._EvaluateVisitor_visitIncludeRule_closure1, A._EvaluateVisitor_visitMediaRule_closure, A._EvaluateVisitor_visitMediaRule_closure1, A._EvaluateVisitor_visitMediaRule__closure, A._EvaluateVisitor_visitMediaRule___closure, A._EvaluateVisitor_visitStyleRule_closure, A._EvaluateVisitor_visitStyleRule_closure2, A._EvaluateVisitor_visitStyleRule__closure, A._EvaluateVisitor_visitSupportsRule_closure, A._EvaluateVisitor_visitSupportsRule_closure0, A._EvaluateVisitor_visitSupportsRule__closure, A._EvaluateVisitor__visitSupportsCondition_closure, A._EvaluateVisitor_visitVariableDeclaration_closure, A._EvaluateVisitor_visitVariableDeclaration_closure0, A._EvaluateVisitor_visitVariableDeclaration_closure1, A._EvaluateVisitor_visitWarnRule_closure, A._EvaluateVisitor_visitWhileRule_closure, A._EvaluateVisitor_visitBinaryOperationExpression_closure, A._EvaluateVisitor_visitVariableExpression_closure, A._EvaluateVisitor_visitUnaryOperationExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure, A._EvaluateVisitor_visitFunctionExpression_closure1, A._EvaluateVisitor__visitCalculationExpression_closure, A._EvaluateVisitor_visitInterpolatedFunctionExpression_closure, A._EvaluateVisitor__runUserDefinedCallable_closure, A._EvaluateVisitor__runUserDefinedCallable__closure, A._EvaluateVisitor__runUserDefinedCallable___closure, A._EvaluateVisitor__runFunctionCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure, A._EvaluateVisitor__runBuiltInCallable_closure0, A._EvaluateVisitor__verifyArguments_closure, A._EvaluateVisitor_visitCssAtRule_closure, A._EvaluateVisitor_visitCssAtRule_closure0, A._EvaluateVisitor_visitCssKeyframeBlock_closure, A._EvaluateVisitor_visitCssMediaRule_closure, A._EvaluateVisitor_visitCssMediaRule_closure1, A._EvaluateVisitor_visitCssMediaRule__closure, A._EvaluateVisitor_visitCssMediaRule___closure, A._EvaluateVisitor_visitCssStyleRule_closure0, A._EvaluateVisitor_visitCssStyleRule__closure, A._EvaluateVisitor_visitCssSupportsRule_closure, A._EvaluateVisitor_visitCssSupportsRule_closure0, A._EvaluateVisitor_visitCssSupportsRule__closure, A._EvaluateVisitor__serialize_closure, A._EvaluateVisitor__expressionNode_closure, A._SerializeVisitor_visitCssComment_closure, A._SerializeVisitor_visitCssAtRule_closure, A._SerializeVisitor_visitCssMediaRule_closure, A._SerializeVisitor_visitCssImport_closure, A._SerializeVisitor_visitCssImport__closure, A._SerializeVisitor_visitCssKeyframeBlock_closure, A._SerializeVisitor_visitCssStyleRule_closure, A._SerializeVisitor_visitCssSupportsRule_closure, A._SerializeVisitor_visitCssDeclaration_closure, A._SerializeVisitor_visitCssDeclaration_closure0, A._SerializeVisitor__writeLegacyColor_closure, A._SerializeVisitor__writeLegacyColor_closure0, A._SerializeVisitor__write_closure, A._SerializeVisitor__visitChildren_closure, A._SerializeVisitor__visitChildren_closure0, A.SingleMapping_SingleMapping$fromEntries_closure, A.SingleMapping_SingleMapping$fromEntries_closure0, A.Highlighter_closure, A.Highlighter__writeFileStart_closure, A.Highlighter__writeMultilineHighlights_closure, A.Highlighter__writeMultilineHighlights_closure0, A.Highlighter__writeMultilineHighlights_closure1, A.Highlighter__writeMultilineHighlights_closure2, A.Highlighter__writeMultilineHighlights__closure, A.Highlighter__writeMultilineHighlights__closure0, A.Highlighter__writeHighlightedText_closure, A.Highlighter__writeIndicator_closure, A.Highlighter__writeIndicator_closure0, A.Highlighter__writeIndicator_closure1, A.Highlighter__writeLabel_closure, A.Highlighter__writeLabel_closure0, A.Highlighter__writeSidebar_closure, A._Highlight_closure]);
 				_inheritMany(A._Zone, [A._CustomZone, A._RootZone]);
 				_inherit(A._IdentityHashMap, A._HashMap);
 				_inherit(A._LinkedHashSet, A._SetBase);
@@ -64913,7 +64923,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				typeUniverse: {eC: new Map(), tR: {}, eT: {}, tPV: {}, sEA: []},
 				mangledGlobalNames: {int: "int", double: "double", num: "num", String: "String", bool: "bool", Null: "Null", List: "List", Object: "Object", Map: "Map", JSObject: "JSObject"},
 				mangledNames: {},
-				types: ["Null()", "Value(List<Value>)", "~()", "bool(CssNode)", "bool(Object?)", "bool(SimpleSelector)", "SassString(List<Value>)", "bool(ComplexSelector)", "String(String)", "SassBoolean(List<Value>)", "JSClass()", "SassColor(List<Value>)", "SassNumber(List<Value>)", "SassList(List<Value>)", "bool(String)", "double(SassColor)", "double(double)", "FileSpan()", "int(SassColor)", "bool()", "int()", "SassMap(List<Value>)", "SassNumber(SassNumber)", "Value()", "bool(Value)", "String()", "bool(ComplexSelectorComponent)", "Value?()", "bool(int?)", "Null(~())", "ComplexSelector(ComplexSelector)", "Value(Value)", "bool(SelectorList)", "bool(ColorChannel)", "bool(int)", "~(Value)", "bool(Module0<Callable>)", "double(SassNumber)", "Callable?()", "bool(Expression)", "@()", "bool(num,num)", "String?()", "Value?(Statement)", "~(Module0<Callable>,bool)", "double(double,double)", "Object?()", "Map<ComplexSelector,Extension>()", "SassCalculation(Object)", "~(Object?)", "bool(_Highlight)", "~(Expression)", "Statement()", "Object(Object)", "~(~())", "ValueExpression(Value)", "~(String,Function)", "Version(String)"/*DSH-, "String(_NodeException)"*/, "Map<String,Callable>(Module0<Callable>)", "FileLocation(FileSpan)", "JSUrl(Uri)", "String(FileSpan)", "int(SourceLocation)", "Value?(Value)", "Value?(Value,num)", "0&(Object[Object?])", "String(Value)", "Object(CalculationOperation)", "ImmutableList(SassColor)", "bool(SassNumber)", "ImmutableList(SassNumber)", "~(Iterable<ExtensionStore>)", "SassNumber(SassNumber,Object,Object[String?])", "SassNumber(SassNumber,SassNumber[String?,String?])", "double(SassNumber,Object,Object[String?])", "double(SassNumber,SassNumber[String?,String?])", "~(String,Object?)", "Callable?(Module0<Callable>)", "int(ComplexSelector)", "bool(Object)", "StyleRule(List<Statement>,FileSpan)", "AtRootRule(List<Statement>,FileSpan)", "AtRule(List<Statement>,FileSpan)", "List<Extension>()", "String(String{color:Object?})", "~(int)", "double(Value)", "bool(Import)", "~(List<Value>)", "~(Value,Value)", "bool(SassNumber,String)", "SassRuntimeException(AstNode)", "bool(Statement)", "String(Object)", "String(Expression)", "Uri(String)", "SassNumber()", "List<CssMediaQuery>?(List<CssMediaQuery>)", "~(@,@)", "~(String,@)", "~(String[Deprecation?])", "~(String,Value)", "Uri(Uri)", "Expression(Expression)", "SelectorList(Value)", "~(Object)", "bool(Queue<List<ComplexSelectorComponent>>)", "int(@,@)", "MapKeySet<Module0<Callable>>(Map<Module0<Callable>,AstNode>)", "Iterable<String>(@)", "Uri(+originalUrl(Importer,Uri,Uri))", "bool(Uri)", "int(Uri)", "Value?(Module0<Callable>)", "Module0<Callable>?(Module0<Callable>)", "@(@)", "~(Symbol0,@)", "Map<String,Value>(Module0<Callable>)", "String(String[String?])", "Map<String,AstNode>(Module0<Callable>)", "Iterable<String>()", "String(@)", "Iterable<String>(String)", "@(@,String)", "String(Parameter)", "String(int,IfClause)", "Set<0&>(Object)"/*DSH-, "NodeCompileResult(Compiler,String[CompileOptions?])", "NodeCompileResult(Compiler,String[CompileStringOptions?])"*/, "Null(Compiler)", "Iterable<Deprecation>()", "Version(Object,int,int,int)", "bool(Extension)", "Set<ModifiableBox<SelectorList>>()"/*DSH-, "FileSpan(_NodeException)"*/, "~(Object?,Object,Object?)", "bool(CanonicalizeContext)", "JSUrl?(CanonicalizeContext)", "JSExpressionVisitor(JSExpressionVisitorObject)", "JSIfConditionExpressionVisitor(JSIfConditionExpressionVisitorObject)", "JSStatementVisitor(JSStatementVisitorObject)", "JSSimpleSelectorVisitor(JSSimpleSelectorVisitorObject)", "SourceFile(String)", "JSSet(Set<Object?>)", "SourceFile(LazyFileSpan)", "int(LazyFileSpan)", "Uri?(LazyFileSpan)", "String(SourceFile,int[int?])", "FileSpan(SourceFile,int[int?])", "List<int>(SourceFile)", "String?(Interpolation)", "Object?(Statement,StatementVisitor<Object?>)", "Object?(Expression,ExpressionVisitor<Object?>)", "Object?(InterpolatedSelector,InterpolatedSelectorVisitor<Object?>)", "Object?(IfConditionExpression,IfConditionExpressionVisitor<Object?>)", "ArgumentList(IncludeRule)", "ArgumentList(ContentRule)", "ArgumentList(FunctionExpression)", "ArgumentList(LegacyIfExpression)", "ArgumentList(InterpolatedFunctionExpression)", "Interpolation(IfConditionFunction)", "FileSpan(AstNode)", "Interpolation(SupportsCondition)", "String(Object,@,@[@])", "0&(String,int?)", "@(String)", "JSUrl?(FileSpan)", "Iterable<ComplexSelector>(List<ComplexSelector>)", "List<SimpleSelector>(Extender)", "List<Extender>?(SimpleSelector)", "ImmutableList(Value)", "List<Extender>(PseudoSelector)", "String?(Value)", "int(Value,Value[String?])", "List<List<Extender>>(List<Extender>)", "SassBoolean(Value[String?])", "SassCalculation(Value[String?])", "SassColor(Value[String?])", "SassFunction(Value[String?])", "SassMap(Value[String?])", "SassMixin(Value[String?])", "SassNumber(Value[String?])", "SassString(Value[String?])", "SassMap?(Value)", "bool(Value,Object?)", "int(Value[Object?])", "SassArgumentList(Object,Object,Object[String?])", "ImmutableMap(SassArgumentList)", "List<ComplexSelector>(ComplexSelector)", "PseudoSelector(ComplexSelector)", "SassCalculation(Object[Object?,Object?])", "SassCalculation(SassCalculation[String?])", "ImmutableList(SassCalculation)", "Object(Object,String,Object,Object)", "bool(CalculationOperator)", "bool(CalculationOperation,Object)", "int(CalculationOperation)", "String(CalculationOperation)", "~(SimpleSelector,Set<ModifiableBox<SelectorList>>)", "CalculationInterpolation(Object,String)", "bool(CalculationInterpolation,Object)", "int(CalculationInterpolation)", "String(CalculationInterpolation)", "SassColor(Object,_ConstructionOptions)", "bool(SassColor,Object)", "SassColor(SassColor,String)", "bool(SassColor[String?])", "SassColor(SassColor,_ToGamutOptions)", "double(SassColor,String[_ChannelOptions?])", "bool(SassColor,String)", "bool(SassColor,String[_ChannelOptions?])", "SassColor(SassColor,_ConstructionOptions)", "double?(String)", "SassColor(SassColor,SassColor[_InterpolationOptions?])", "String(SassColor)", "bool(SassColor)", "ModifiableBox<SelectorList>()", "SassFunction(Object,String,Value(List<Value>))", "SassList(Object[Object?,_ConstructorOptions?])", "SassMap(Object[ImmutableMap?])", "ImmutableMap(SassMap)", "Value?(SassMap,Object)", "0&(Object)", "SassNumber(Object,num[Object?])", "List<ComplexSelectorComponent>?(List<ComplexSelectorComponent>,List<ComplexSelectorComponent>)", "int?(SassNumber)", "Object?(Object?)", "int(SassNumber[String?])", "double(SassNumber,num,num[String?])", "SassNumber(SassNumber[String?])", "SassNumber(SassNumber,String[String?])", "bool(List<Iterable<ComplexSelectorComponent>>)", "bool(PseudoSelector)", "SelectorList?(PseudoSelector)", "Null(@)", "int(int,ComplexSelectorComponent)", "SassString(Object[Object?,_ConstructorOptions1?])", "String(SassString)", "bool(SassString)", "int(SassString)", "int(SassString,Value[String?])", "String(CssValue<Combinator>)", "int(int)", "AtRootQuery()", "String(BuiltInCallable)", "List<String>()", "List<CssMediaQuery>()", "int(int,SimpleSelector)", "~(Object?,Object?)", "SelectorList()", "CompoundSelector()", "Statement({root:bool})", "String(String?)", "NumberExpression()", "Stylesheet()", "Statement?()", "ParameterList()", "+(String,ParameterList)()", "SassList(ComplexSelector)", "Declaration(List<Statement>,FileSpan)", "Iterable<ComplexSelector>(ComplexSelector)", "EachRule(List<Statement>,FileSpan)", "FunctionRule(List<Statement>,FileSpan)", "ForRule(List<Statement>,FileSpan)", "ContentBlock(List<Statement>,FileSpan)", "MediaRule(List<Statement>,FileSpan)", "MixinRule(List<Statement>,FileSpan)", "SassColor(SassColor)", "SupportsRule(List<Statement>,FileSpan)", "WhileRule(List<Statement>,FileSpan)", "String(double)", "~(BinaryOperator)", "StringExpression(Interpolation)", "SassColor(ColorSpace)", "String(String{color:@})", "Entry(Entry)", "double()", "SassScriptException()", "bool(String?)", "double(double,String)", "SingleUnitSassNumber(double)", "CssValue<String>(Interpolation{trim:bool,warnForColor:bool})", "AstNode(AstNode)", "SassFunction(List<Value>)", "SimpleSelector(SimpleSelector)", "SassMixin(List<Value>)", "0&(List<Value>)", "Object(String)", "bool(Version)", "+loadedUrls,stylesheet(Set<Uri>,CssStylesheet)()", "Module0<Callable>()", "bool(ModifiableCssNode)", "~(Module0<Callable>)", "List<ExtensionStore>()", "bool(ModifiableCssParentNode)", "List<Value>(Value)", "bool(List<Value>)"/*DSH-, "~(String,WarnOptions)"*/, "CssValue<String>(Interpolation)"/*DSH-, "~(String,DebugOptions)"*/, "SassMap(Value)", "List<CssComment>()", "Value?(IfRuleClause)", "bool(UseRule)", "bool(ForwardRule)", "UserDefinedCallable<Environment>(ContentBlock)", "SassMap(SassMap)", "SassNumber(Value)", "String(+(String,Value))", "String(+(IfConditionExpression,String))", "Value(Expression)", "Value(Object)", "bool(Deprecation)", "~([int?])", "Object()", "SelectorList(SelectorList?,SelectorList)", "SelectorList(SelectorList,SelectorList)", "InterpolationMap(List<int>)", "AstNode?()", "String(SassNumber)", "bool(+(IfConditionExpression?,Expression))", "bool(IfConditionExpression)", "SassString(SimpleSelector)", "IfConditionExpression(IfConditionExpression)", "SassString(int)", "~(CssMediaQuery)", "SassString(String)", "~(double?[String?])", "~(SelectorList)", "~(MapEntry<Value,Value>)", "~(IfConditionExpression)", "SourceFile()", "SourceFile?(int)", "String?(SourceFile?)", "int(_Line)", "+originalUrl(Importer,Uri,Uri)?()", "Object(_Line)", "Object(_Highlight)", "int(_Highlight,_Highlight)", "List<_Line>(MapEntry<Object,List<_Highlight>>)", "SourceSpanWithContext()", "int(Frame)", "String(Frame)", "Uri?()", "Stylesheet?()", "~(Zone?,ZoneDelegate?,Zone,Object,StackTrace)", "0^(Zone?,ZoneDelegate?,Zone,0^())<Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^),1^)<Object?,Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^,2^),1^,2^)<Object?,Object?,Object?>", "0^()(Zone,ZoneDelegate,Zone,0^())<Object?>", "0^(1^)(Zone,ZoneDelegate,Zone,0^(1^))<Object?,Object?>", "0^(1^,2^)(Zone,ZoneDelegate,Zone,0^(1^,2^))<Object?,Object?,Object?>", "AsyncError?(Zone,ZoneDelegate,Zone,Object,StackTrace?)", "~(Zone?,ZoneDelegate?,Zone,~())"/*DSH-, "Timer(Zone,ZoneDelegate,Zone,Duration,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~(Timer))"*/, "~(Zone,ZoneDelegate,Zone,String)", "Zone(Zone?,ZoneDelegate?,Zone,ZoneSpecification?,Map<Object?,Object?>?)", "0^(0^,0^)<num>"/*DSH-, "NodeCompileResult(String[CompileOptions?])", "NodeCompileResult(String[CompileStringOptions?])"*/, "Importer(Object?)", "Compiler()", "List<Object?>(Object?)", "ParserExports()", "Stylesheet(String,String,String?)", "String?(String)", "Uri(JSUrl)", "Object(Map<String,Object?>)", "~(String)", "bool(+originalUrl(Importer,Uri,Uri))", "0&(String,FileSpan[StackTrace?])"],
+				types: ["Null()", "~()", "Value(List<Value>)", "bool(CssNode)", "bool(Object?)", "bool(SimpleSelector)", "SassString(List<Value>)", "bool(ComplexSelector)", "String(String)", "SassBoolean(List<Value>)", "JSClass()", "SassColor(List<Value>)", "SassNumber(List<Value>)", "SassList(List<Value>)", "bool(String)", "double(SassColor)", "double(double)", "FileSpan()", "int(SassColor)", "bool()", "int()", "SassMap(List<Value>)", "SassNumber(SassNumber)", "Value()", "bool(Value)", "String()", "bool(ComplexSelectorComponent)", "Value?()", "bool(int?)", "Null(~())", "ComplexSelector(ComplexSelector)", "Value(Value)", "bool(SelectorList)", "bool(ColorChannel)", "bool(int)", "~(Value)", "bool(Module0<Callable>)", "double(SassNumber)", "Callable?()", "bool(Expression)", "@()", "bool(num,num)", "String?()", "Value?(Statement)", "~(Module0<Callable>,bool)", "double(double,double)", "Object?()", "Map<ComplexSelector,Extension>()", "SassCalculation(Object)", "~(Object?)", "bool(_Highlight)", "~(Expression)", "Statement()", "Object(Object)", "~(~())", "ValueExpression(Value)", "~(String,Function)", "Version(String)"/*DSH-, "String(_NodeException)"*/, "Map<String,Callable>(Module0<Callable>)", "FileLocation(FileSpan)", "JSUrl(Uri)", "String(FileSpan)", "int(SourceLocation)", "Value?(Value)", "Value?(Value,num)", "0&(Object[Object?])", "String(Value)", "Object(CalculationOperation)", "ImmutableList(SassColor)", "bool(SassNumber)", "ImmutableList(SassNumber)", "~(Iterable<ExtensionStore>)", "SassNumber(SassNumber,Object,Object[String?])", "SassNumber(SassNumber,SassNumber[String?,String?])", "double(SassNumber,Object,Object[String?])", "double(SassNumber,SassNumber[String?,String?])", "~(String,Object?)", "Callable?(Module0<Callable>)", "int(ComplexSelector)", "bool(Object)", "StyleRule(List<Statement>,FileSpan)", "AtRootRule(List<Statement>,FileSpan)", "AtRule(List<Statement>,FileSpan)", "List<Extension>()", "String(String{color:Object?})", "~(int)", "double(Value)", "bool(Import)", "~(List<Value>)", "~(Value,Value)", "bool(SassNumber,String)", "SassRuntimeException(AstNode)", "bool(Statement)", "String(Object)", "String(Expression)", "Uri(String)", "SassNumber()", "List<CssMediaQuery>?(List<CssMediaQuery>)", "~(@,@)", "~(String,@)", "~(String[Deprecation?])", "~(String,Value)", "Uri(Uri)", "Expression(Expression)", "SelectorList(Value)", "~(Object)", "bool(Queue<List<ComplexSelectorComponent>>)", "int(@,@)", "MapKeySet<Module0<Callable>>(Map<Module0<Callable>,AstNode>)", "Iterable<String>(@)", "Uri(+originalUrl(Importer,Uri,Uri))", "bool(Uri)", "int(Uri)", "Value?(Module0<Callable>)", "Module0<Callable>?(Module0<Callable>)", "@(@)", "~(Symbol0,@)", "Map<String,Value>(Module0<Callable>)", "String(String[String?])", "Map<String,AstNode>(Module0<Callable>)", "Iterable<String>()", "String(@)", "Iterable<String>(String)", "@(@,String)", "String(Parameter)", "String(int,IfClause)", "Set<0&>(Object)"/*DSH-, "NodeCompileResult(Compiler,String[CompileOptions?])", "NodeCompileResult(Compiler,String[CompileStringOptions?])"*/, "Null(Compiler)", "Iterable<Deprecation>()", "Version(Object,int,int,int)", "bool(Extension)", "Set<ModifiableBox<SelectorList>>()"/*DSH-, "FileSpan(_NodeException)"*/, "~(Object?,Object,Object?)", "bool(CanonicalizeContext)", "JSUrl?(CanonicalizeContext)", "JSExpressionVisitor(JSExpressionVisitorObject)", "JSIfConditionExpressionVisitor(JSIfConditionExpressionVisitorObject)", "JSStatementVisitor(JSStatementVisitorObject)", "JSSimpleSelectorVisitor(JSSimpleSelectorVisitorObject)", "SourceFile(String)", "JSSet(Set<Object?>)", "SourceFile(LazyFileSpan)", "int(LazyFileSpan)", "Uri?(LazyFileSpan)", "String(SourceFile,int[int?])", "FileSpan(SourceFile,int[int?])", "List<int>(SourceFile)", "String?(Interpolation)", "Object?(Statement,StatementVisitor<Object?>)", "Object?(Expression,ExpressionVisitor<Object?>)", "Object?(InterpolatedSelector,InterpolatedSelectorVisitor<Object?>)", "Object?(IfConditionExpression,IfConditionExpressionVisitor<Object?>)", "ArgumentList(IncludeRule)", "ArgumentList(ContentRule)", "ArgumentList(FunctionExpression)", "ArgumentList(LegacyIfExpression)", "ArgumentList(InterpolatedFunctionExpression)", "Interpolation(IfConditionFunction)", "FileSpan(AstNode)", "Interpolation(SupportsCondition)", "String(Object,@,@[@])", "0&(String,int?)", "@(String)", "JSUrl?(FileSpan)", "Iterable<ComplexSelector>(List<ComplexSelector>)", "List<SimpleSelector>(Extender)", "List<Extender>?(SimpleSelector)", "ImmutableList(Value)", "List<Extender>(PseudoSelector)", "String?(Value)", "int(Value,Value[String?])", "List<List<Extender>>(List<Extender>)", "SassBoolean(Value[String?])", "SassCalculation(Value[String?])", "SassColor(Value[String?])", "SassFunction(Value[String?])", "SassMap(Value[String?])", "SassMixin(Value[String?])", "SassNumber(Value[String?])", "SassString(Value[String?])", "SassMap?(Value)", "bool(Value,Object?)", "int(Value[Object?])", "SassArgumentList(Object,Object,Object[String?])", "ImmutableMap(SassArgumentList)", "List<ComplexSelector>(ComplexSelector)", "PseudoSelector(ComplexSelector)", "SassCalculation(Object[Object?,Object?])", "SassCalculation(SassCalculation[String?])", "ImmutableList(SassCalculation)", "Object(Object,String,Object,Object)", "bool(CalculationOperator)", "bool(CalculationOperation,Object)", "int(CalculationOperation)", "String(CalculationOperation)", "~(SimpleSelector,Set<ModifiableBox<SelectorList>>)", "CalculationInterpolation(Object,String)", "bool(CalculationInterpolation,Object)", "int(CalculationInterpolation)", "String(CalculationInterpolation)", "SassColor(Object,_ConstructionOptions)", "bool(SassColor,Object)", "SassColor(SassColor,String)", "bool(SassColor[String?])", "SassColor(SassColor,_ToGamutOptions)", "double(SassColor,String[_ChannelOptions?])", "bool(SassColor,String)", "bool(SassColor,String[_ChannelOptions?])", "SassColor(SassColor,_ConstructionOptions)", "double?(String)", "SassColor(SassColor,SassColor[_InterpolationOptions?])", "String(SassColor)", "bool(SassColor)", "ModifiableBox<SelectorList>()", "SassFunction(Object,String,Value(List<Value>))", "SassList(Object[Object?,_ConstructorOptions?])", "SassMap(Object[ImmutableMap?])", "ImmutableMap(SassMap)", "Value?(SassMap,Object)", "0&(Object)", "SassNumber(Object,num[Object?])", "List<ComplexSelectorComponent>?(List<ComplexSelectorComponent>,List<ComplexSelectorComponent>)", "int?(SassNumber)", "Object?(Object?)", "int(SassNumber[String?])", "double(SassNumber,num,num[String?])", "SassNumber(SassNumber[String?])", "SassNumber(SassNumber,String[String?])", "bool(List<Iterable<ComplexSelectorComponent>>)", "bool(PseudoSelector)", "SelectorList?(PseudoSelector)", "Null(@)", "int(int,ComplexSelectorComponent)", "SassString(Object[Object?,_ConstructorOptions1?])", "String(SassString)", "bool(SassString)", "int(SassString)", "int(SassString,Value[String?])", "String(CssValue<Combinator>)", "int(int)", "AtRootQuery()", "String(BuiltInCallable)", "List<String>()", "List<CssMediaQuery>()", "int(int,SimpleSelector)", "~(Object?,Object?)", "SelectorList()", "CompoundSelector()", "Statement({root:bool})", "String(String?)", "NumberExpression()", "Stylesheet()", "Statement?()", "ParameterList()", "+(String,ParameterList)()", "SassList(ComplexSelector)", "Declaration(List<Statement>,FileSpan)", "Iterable<ComplexSelector>(ComplexSelector)", "EachRule(List<Statement>,FileSpan)", "FunctionRule(List<Statement>,FileSpan)", "ForRule(List<Statement>,FileSpan)", "ContentBlock(List<Statement>,FileSpan)", "MediaRule(List<Statement>,FileSpan)", "MixinRule(List<Statement>,FileSpan)", "SassColor(SassColor)", "SupportsRule(List<Statement>,FileSpan)", "WhileRule(List<Statement>,FileSpan)", "String(double)", "~(BinaryOperator)", "StringExpression(Interpolation)", "SassColor(ColorSpace)", "String(String{color:@})", "Entry(Entry)", "double()", "SassScriptException()", "bool(String?)", "double(double,String)", "SingleUnitSassNumber(double)", "CssValue<String>(Interpolation{trim:bool,warnForColor:bool})", "AstNode(AstNode)", "SassFunction(List<Value>)", "SimpleSelector(SimpleSelector)", "SassMixin(List<Value>)", "0&(List<Value>)", "Object(String)", "bool(Version)", "+loadedUrls,stylesheet(Set<Uri>,CssStylesheet)()", "Module0<Callable>()", "bool(ModifiableCssNode)", "~(Module0<Callable>)", "List<ExtensionStore>()", "bool(ModifiableCssParentNode)", "List<Value>(Value)", "bool(List<Value>)"/*DSH-, "~(String,WarnOptions)"*/, "CssValue<String>(Interpolation)"/*DSH-, "~(String,DebugOptions)"*/, "SassMap(Value)", "List<CssComment>()", "Value?(IfRuleClause)", "bool(UseRule)", "bool(ForwardRule)", "UserDefinedCallable<Environment>(ContentBlock)", "SassMap(SassMap)", "SassNumber(Value)", "String(+(String,Value))", "String(+(IfConditionExpression,String))", "Value(Expression)", "Value(Object)", "bool(Deprecation)", "~([int?])", "Object()", "SelectorList(SelectorList?,SelectorList)", "SelectorList(SelectorList,SelectorList)", "InterpolationMap(List<int>)", "AstNode?()", "String(SassNumber)", "bool(+(IfConditionExpression?,Expression))", "bool(IfConditionExpression)", "SassString(SimpleSelector)", "IfConditionExpression(IfConditionExpression)", "SassString(int)", "~(CssMediaQuery)", "SassString(String)", "~(double?[String?])", "~(SelectorList)", "~(MapEntry<Value,Value>)", "~(IfConditionExpression)", "SourceFile()", "SourceFile?(int)", "String?(SourceFile?)", "int(_Line)", "+originalUrl(Importer,Uri,Uri)?()", "Object(_Line)", "Object(_Highlight)", "int(_Highlight,_Highlight)", "List<_Line>(MapEntry<Object,List<_Highlight>>)", "SourceSpanWithContext()", "int(Frame)", "String(Frame)", "Uri?()", "Stylesheet?()", "~(Zone?,ZoneDelegate?,Zone,Object,StackTrace)", "0^(Zone?,ZoneDelegate?,Zone,0^())<Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^),1^)<Object?,Object?>", "0^(Zone?,ZoneDelegate?,Zone,0^(1^,2^),1^,2^)<Object?,Object?,Object?>", "0^()(Zone,ZoneDelegate,Zone,0^())<Object?>", "0^(1^)(Zone,ZoneDelegate,Zone,0^(1^))<Object?,Object?>", "0^(1^,2^)(Zone,ZoneDelegate,Zone,0^(1^,2^))<Object?,Object?,Object?>", "AsyncError?(Zone,ZoneDelegate,Zone,Object,StackTrace?)", "~(Zone?,ZoneDelegate?,Zone,~())"/*DSH-, "Timer(Zone,ZoneDelegate,Zone,Duration,~())", "Timer(Zone,ZoneDelegate,Zone,Duration,~(Timer))"*/, "~(Zone,ZoneDelegate,Zone,String)", "Zone(Zone?,ZoneDelegate?,Zone,ZoneSpecification?,Map<Object?,Object?>?)", "0^(0^,0^)<num>"/*DSH-, "NodeCompileResult(String[CompileOptions?])", "NodeCompileResult(String[CompileStringOptions?])"*/, "Importer(Object?)", "Compiler()", "List<Object?>(Object?)", "ParserExports()", "Stylesheet(String,String,String?)", "String?(String)", "Uri(JSUrl)", "Object(Map<String,Object?>)", "~(String)", "bool(+originalUrl(Importer,Uri,Uri))", "0&(String,FileSpan[StackTrace?])"],
 				interceptorsByTag: null,
 				leafTags: null,
 				arrayRti: Symbol("$ti"),
