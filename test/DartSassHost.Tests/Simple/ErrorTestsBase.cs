@@ -27,7 +27,7 @@ namespace DartSassHost.Tests.Simple
 			string inputPath = GenerateSassFilePath("simplest-working", "style");
 			string input = !fromFile ? GetFileContent(inputPath) : string.Empty;
 			string targetErrorDescription = "SyntaxError: Trying to redefinition member \"et\"" + Environment.NewLine +
-				"   at 2838:500"
+				"   at 2843:500"
 				;
 
 			// Act
