@@ -1,6 +1,9 @@
 Change log
 ==========
 
+## v2.0.12 - September 14, 2026
+ * Added support for the Dart Sass version 1.104.1
+
 ## v2.0.11 - September 6, 2026
  * Added support for the Dart Sass version 1.104.0
 
