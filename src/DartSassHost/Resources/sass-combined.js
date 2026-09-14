@@ -6493,7 +6493,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 	//#region URL: /sass.dart.js
 	modules['/sass.dart.js'] = function () {
 		/*!
-		 * Dart Sass v1.104.0
+		 * Dart Sass v1.104.1
 		 * https://sass-lang.com/dart-sass
 		 * https://github.com/sass/dart-sass
 		 *
@@ -15323,7 +15323,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					J.set$deprecations$x(self.exports, A.jsify($.$get$deprecations()));
 					J.set$Version$x(self.exports, $.$get$versionClass());
 					J.set$loadParserExports_$x(self.exports, A.allowInterop(A.parser__loadParserExports$closure()));
-					J.set$info$x(self.exports, "dart-sass\t1.104.0\t(Sass Compiler)\t[Dart]\ndart2js\t3.13.3\t(Dart Compiler)\t[Dart]");
+					J.set$info$x(self.exports, "dart-sass\t1.104.1\t(Sass Compiler)\t[Dart]\ndart2js\t3.13.3\t(Dart Compiler)\t[Dart]");
 					A.updateCanonicalizeContextPrototype();
 					A.updateSourceSpanPrototype();
 
@@ -46756,11 +46756,15 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 						t2 = t1._position,
 						t3 = new A.StringBuffer(""),
 						buffer = new A.InterpolationBuffer(t3, A._setArrayType([], type$.JSArray_Object), A._setArrayType([], type$.JSArray_nullable_FileSpan));
-					do {
+					for (;;) {
 						buffer.addInterpolation$1(_this.almostAnyValue$1$omitComments(true));
-						t4 = A.Primitives_stringFromCharCode(10);
-						t4 = t3._contents += t4;
-					} while (B.JSString_methods.endsWith$1(B.JSString_methods.trimRight$0(t4.charCodeAt(0) == 0 ? t4 : t4), ",") && _this.scanCharIf$1(new A.SassParser_styleRuleSelector_closure()));
+						t4 = t3._contents;
+						if (B.JSString_methods.endsWith$1(B.JSString_methods.trimRight$0(t4.charCodeAt(0) == 0 ? t4 : t4), ",") && _this.scanCharIf$1(new A.SassParser_styleRuleSelector_closure())) {
+							t4 = A.Primitives_stringFromCharCode(10);
+							t3._contents += t4;
+						} else
+							break;
+					}
 					return buffer.interpolation$1(_this.spanFrom$1(new A._SpanScannerState(t1, t2)));
 				},
 				expectStatementSeparator$1($name) {
@@ -48090,7 +48094,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					}
 				},
 				_styleRule$2(buffer, start_) {
-					var t1, t2, start, selector, interpolation, _this = this;
+					var t1, t2, start, selector, interpolation, unknown, _this = this;
 					_this._isUseAllowed = false;
 					t1 = start_ == null;
 					if (t1) {
@@ -48111,8 +48115,13 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 							t2 = t1.interpolation = buffer.interpolation$1(_this.spanFrom$1(start));
 						} else
 							t2 = interpolation;
-						if (t2.contents.length === 0)
-							_this.scanner.error$1(0, 'expected "}".');
+						if (t2.contents.length === 0) {
+							unknown = _this._interpolatedDeclarationValue$2$allowEmpty$allowOpenBrace(true, false);
+							if (unknown.contents.length === 0)
+								_this.scanner.error$1(0, "expected end of rule.");
+							else
+								_this.error$2(0, "unrecognized syntax", unknown.span);
+						}
 						return _this._withStyleRuleChildren$1$3(t2, start, new A.StylesheetParser__styleRule_closure0(t1, _this, start), type$.StyleRule);
 					}
 				},
@@ -50925,6 +50934,9 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				_interpolatedDeclarationValue$1$allowEmpty(allowEmpty) {
 					return this._interpolatedDeclarationValue$7$allowColon$allowEmpty$allowOpenBrace$allowSemicolon$consumeNewlines$endAfterOf$silentComments(true, allowEmpty, true, false, false, false, true);
 				},
+				_interpolatedDeclarationValue$2$allowEmpty$allowOpenBrace(allowEmpty, allowOpenBrace) {
+					return this._interpolatedDeclarationValue$7$allowColon$allowEmpty$allowOpenBrace$allowSemicolon$consumeNewlines$endAfterOf$silentComments(true, allowEmpty, allowOpenBrace, false, false, false, true);
+				},
 				_interpolatedDeclarationValue$2$consumeNewlines$endAfterOf(consumeNewlines, endAfterOf) {
 					return this._interpolatedDeclarationValue$7$allowColon$allowEmpty$allowOpenBrace$allowSemicolon$consumeNewlines$endAfterOf$silentComments(true, false, true, false, consumeNewlines, endAfterOf, true);
 				},
@@ -50936,9 +50948,6 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 				},
 				_interpolatedDeclarationValue$1$allowOpenBrace(allowOpenBrace) {
 					return this._interpolatedDeclarationValue$7$allowColon$allowEmpty$allowOpenBrace$allowSemicolon$consumeNewlines$endAfterOf$silentComments(true, false, allowOpenBrace, false, false, false, true);
-				},
-				_interpolatedDeclarationValue$2$allowEmpty$allowOpenBrace(allowEmpty, allowOpenBrace) {
-					return this._interpolatedDeclarationValue$7$allowColon$allowEmpty$allowOpenBrace$allowSemicolon$consumeNewlines$endAfterOf$silentComments(true, allowEmpty, allowOpenBrace, false, false, false, true);
 				},
 				_interpolatedDeclarationValue$1$silentComments(silentComments) {
 					return this._interpolatedDeclarationValue$7$allowColon$allowEmpty$allowOpenBrace$allowSemicolon$consumeNewlines$endAfterOf$silentComments(true, false, true, false, false, false, silentComments);
@@ -59030,7 +59039,7 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._EvaluateVisitor__execute_closure.prototype = {
 				call$0() {
-					var t3, t4, t5, t6, _this = this,
+					var t3, t4, root, t5, _this = this,
 						t1 = _this.$this,
 						oldImporter = t1._importer,
 						oldStylesheet = t1.__stylesheet,
@@ -59050,17 +59059,19 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 					t1._importer = _this.importer;
 					t3 = t1.__stylesheet = _this.stylesheet;
 					t4 = t3.span;
-					t5 = t1.__parent = t1.__root = A.ModifiableCssStylesheet$(t4);
+					root = t1.__root = A.ModifiableCssStylesheet$(t4);
+					t1._preModuleComments = A.LinkedHashMap_LinkedHashMap$_empty(type$.Module_Callable, type$.List_CssComment);
+					t1.__parent = root;
 					t1.__endOfImports = 0;
 					t1._outOfOrderImports = null;
 					t1.__extensionStore = _this.extensionStore;
 					t1._declarationName = t1._mediaQueries = t1._styleRuleIgnoringAtRoot = null;
 					t1._inKeyframes = t1._atRootExcludingStyleRule = t1._evaluate$_inUnknownAtRule = false;
-					t6 = _this.configuration;
-					if (t6 != null)
-						t1._evaluate$_configuration = t6;
+					t5 = _this.configuration;
+					if (t5 != null)
+						t1._evaluate$_configuration = t5;
 					t1.visitStylesheet$1(0, t3);
-					t3 = t1._outOfOrderImports == null ? t5 : new A.CssStylesheet(new A.UnmodifiableListView(t1._addOutOfOrderImports$0(), type$.UnmodifiableListView_CssNode), t4);
+					t3 = t1._outOfOrderImports == null ? root : new A.CssStylesheet(new A.UnmodifiableListView(t1._addOutOfOrderImports$0(), type$.UnmodifiableListView_CssNode), t4);
 					_this.css._value = t3;
 					_this.preModuleComments._value = t1._preModuleComments;
 					t1._importer = oldImporter;
@@ -59095,19 +59106,22 @@ var Sass = (function(/*DSH+*/currentOsPlatformName, undefined){
 			};
 			A._EvaluateVisitor__combineCss_visitModule.prototype = {
 				call$1(module) {
-					var t1, t2, t3, t4, _i, upstream, _1_0, statements, index, _this = this;
+					var seenUpstream, t1, t2, t3, t4, _i, upstream, _1_0, statements, index, _this = this;
 					if (!_this.seen.add$1(0, module))
 						return;
 					if (_this.clone)
 						module = module.cloneCss$0();
+					seenUpstream = A.LinkedHashSet_LinkedHashSet$_empty(type$.Module_Callable);
 					for (t1 = module.get$upstream(), t2 = t1.length, t3 = _this.css, t4 = _this.imports, _i = 0; _i < t1.length; t1.length === t2 || (0, A.throwConcurrentModificationError)(t1), ++_i) {
 						upstream = t1[_i];
-						if (upstream.get$transitivelyContainsCss()) {
-							_1_0 = module.get$preModuleComments().$index(0, upstream);
-							if (_1_0 != null)
-								B.JSArray_methods.addAll$1(t3.length === 0 ? t4 : t3, _1_0);
-							_this.call$1(upstream);
-						}
+						if (!upstream.get$transitivelyContainsCss())
+							continue;
+						if (!seenUpstream.add$1(0, upstream))
+							continue;
+						_1_0 = module.get$preModuleComments().$index(0, upstream);
+						if (_1_0 != null)
+							B.JSArray_methods.addAll$1(t3.length === 0 ? t4 : t3, _1_0);
+						_this.call$1(upstream);
 					}
 					_this.sorted.addFirst$1(module);
 					t1 = module.get$css(module);
